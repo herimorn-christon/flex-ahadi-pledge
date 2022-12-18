@@ -19,9 +19,17 @@
         </li>
         <li class="nav-item">
             <a href="{{ url('admin/all-members') }}" class="nav-link  {{ Request::is('admin/all-members') ? 'active':'' }}">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-user-tie"></i>
               <p>
                 Manage Members
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/all-communities') }}" class="nav-link  {{ Request::is('admin/all-commmunities') ? 'active':'' }}">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Manage Communities
               </p>
             </a>
           </li>
