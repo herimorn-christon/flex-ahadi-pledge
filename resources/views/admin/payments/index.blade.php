@@ -15,7 +15,7 @@
         <li class="">    
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
             <i class="fa fa-list"></i>
-             Payment Method
+             Payment Methods
             </button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
         <i class="fa fa-plus"></i>

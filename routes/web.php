@@ -60,6 +60,16 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
  //Delete Payment method Route  
    Route::get('delete-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroyMethod']);
  
+// all cards route
+Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
+//Create Card method route  
+ Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);
+//Edit Card Method page route  
+  Route::get('edit-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'edit']);
+//Update Card Method route  
+  Route::put('edit-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'update']);
+//Delete Card method Route  
+  Route::get('delete-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'destroy']);
 });
 // for Member
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()
