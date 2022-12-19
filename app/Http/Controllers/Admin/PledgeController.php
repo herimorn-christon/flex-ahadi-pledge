@@ -35,7 +35,7 @@ class PledgeController extends Controller
         return view('admin.pledges.edit',compact('type'));
     }
 
-    // update Community function
+    // update pledge type function
     public function updateType(pledgeFormRequest $request,$type_id)
     {
         $data=$request->validated();
@@ -46,5 +46,17 @@ class PledgeController extends Controller
 
         return redirect('admin/all-pledges')->with('status','Pledge type was Updated Successfully');
     }
+// delete  pledge type function
+public function destroyType($type)
+{
+    $jumuiya=PledgeType::find($type);
 
+    if($type){
+        $jumuiya->delete();
+        return redirect('admin/all-pledges')->with('status','Pledge type was deleted Successfully');
+    }
+    else{
+        return redirect('admin/all-pledges')->with('status','No Community ID was found !');
+    }
+}
 }

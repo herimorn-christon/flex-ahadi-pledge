@@ -34,7 +34,7 @@
             </a>
           </li>
         <li class="nav-item">
-          <a href="{{ url('admin/all-pledges') }}" class="nav-link">
+          <a href="{{ url('admin/all-pledges') }}" class="nav-link  {{ Request::is('admin/all-pledges') ? 'active':'' }}">
             <i class="nav-icon fas fa-balance-scale"></i>
             <p>
               Manage Pledges

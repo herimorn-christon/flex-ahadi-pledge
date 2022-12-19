@@ -14,7 +14,7 @@
       <ol class="breadcrumb float-sm-right">
         <li class="">    
 
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
         <i class="fa fa-plus"></i>
          Add Community
         </button>
@@ -105,7 +105,7 @@
                  <div class="col-md-12">
                     <div class="form-group">
                      
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fa fa-save"></i>
                             Save Community
                         </button>

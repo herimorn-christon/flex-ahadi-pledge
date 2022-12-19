@@ -43,9 +43,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
    Route::post('add-type', [App\Http\Controllers\Admin\PledgeController::class,'saveType']);
  //Edit Pledge type page route  
    Route::get('edit-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'editType']);
-
  //Update Commmunity route  
    Route::put('edit-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'updateType']);
+ //Delete Pledge Type Route  
+   Route::get('delete-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'destroyType']);
 
 });
 // for Member

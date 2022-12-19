@@ -13,11 +13,11 @@
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="">    
-        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#types">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
             <i class="fa fa-list"></i>
              Pledge Types
             </button>
-        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-lg">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
         <i class="fa fa-plus"></i>
          Add Pledge Type
         </button>
@@ -78,7 +78,7 @@
                  <div class="col-md-12">
                     <div class="form-group">
                      
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-primary">
                             <i class="fa fa-save"></i>
                             Save Pledge Type
                         </button>
@@ -123,7 +123,7 @@
                       
 
                       <td>
-                          <a href="{{ url('admin/edit-type/'.$item->id)}}" class="btn btn-success btn-sm mx-1">
+                          <a href="{{ url('admin/edit-type/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
                               <i class="fa fa-edit" aria-hidden="true"></i>
                           </a>
                           <a href="{{ url('admin/delete-type/'.$item->id)}}" class="btn btn-danger btn-sm">
