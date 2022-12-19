@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/member/dashbooard';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -50,14 +50,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'fname' => ['required', 'string', 'max:255'],
-            'mname' => ['required', 'string', 'max:255'],
-            'lname' => ['required', 'string', 'max:255'],
-            'fname' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:13'],
-            'gender' => ['required', 'string', 'max:255'],
-            'jumuiya' => ['required', 'string', 'max:255'],
-            'date_of_birth' => ['required', 'date'],
+            'jumuiya' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -71,13 +67,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'fname' => $data['fname'],            
-            'mname' => $data['mname'],
-            'lname' =>$data['lname'],
+            'name' => $data['name'],
+            'email' => $data['email'],
             'phone' => $data['phone'],
-            'jumuiya' =>$data['jumuiya'],
-            'date_of_birth' =>$data['date_of_birth'],      
-            'gender' =>$data['gender'],
+            'jumuiya' => $data['jumuiya'],
             'password' => Hash::make($data['password']),
         ]);
     }
