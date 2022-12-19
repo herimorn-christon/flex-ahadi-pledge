@@ -26,7 +26,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/all-communities') }}" class="nav-link  {{ Request::is('admin/all-commmunities') ? 'active':'' }}">
+            <a href="{{ url('admin/all-communities') }}" class="nav-link  {{ Request::is('admin/all-communities') ? 'active':'' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Manage Communities
@@ -70,6 +70,14 @@
               <i class="nav-icon fas fa-folder"></i>
               <p>
                 Reports
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('member/settings') }}" class="nav-link">
+              <i class="nav-icon fas fa-cog"></i>
+              <p>
+                Settings
               </p>
             </a>
           </li>

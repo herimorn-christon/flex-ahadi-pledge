@@ -17,7 +17,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email','phone', 'password',
+        'name', 'email','phone', 'password','jumuiya',
+
+        
     ];
 
     /**
@@ -28,6 +30,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+       // for relationship
+       public function jumuiya()
+       {
+           return $this->belongsTo(Jumuiya::class, 'jumuiya','id');
+       }
 
     /**
      * The attributes that should be cast to native types.
