@@ -42,7 +42,7 @@
           </a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('member/dashboard') }}" class="nav-link">
+            <a href="{{ url('admin/all-payments') }}" class="nav-link {{ Request::is('admin/all-payments') ? 'active':'' }}">
               <i class="nav-icon fas fa-credit-card"></i>
               <p>
                 Manage Payments

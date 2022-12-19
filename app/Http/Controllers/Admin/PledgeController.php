@@ -17,7 +17,7 @@ class PledgeController extends Controller
     }
 
 
-    // saving pldege type function
+    // saving pledge type function
     public function saveType(pledgeFormRequest $request)
     {
         $data=$request->validated();

@@ -48,6 +48,11 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
  //Delete Pledge Type Route  
    Route::get('delete-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'destroyType']);
 
+
+// all payments route
+  Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
+ //Create Payment method route  
+  Route::post('add-type', [App\Http\Controllers\Admin\PaymentController::class,'saveMethod']);
 });
 // for Member
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()
