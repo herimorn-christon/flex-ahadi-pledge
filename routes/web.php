@@ -52,7 +52,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 // all payments route
   Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
  //Create Payment method route  
-  Route::post('add-type', [App\Http\Controllers\Admin\PaymentController::class,'saveMethod']);
+  Route::post('add-method', [App\Http\Controllers\Admin\PaymentController::class,'saveMethod']);
 });
 // for Member
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()

@@ -26,8 +26,7 @@ class paymentFormRequest extends FormRequest
         $rules=[
             'name'=>[
                 'required',
-                'string',
-                'max:200'
+                'string'
             ]       
         ];
 
