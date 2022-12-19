@@ -14,9 +14,13 @@
       <ol class="breadcrumb float-sm-right">
         <li class="">    
 
+        <a href="{{ url('admin/all-communities') }}" class="btn btn-primary btn-sm"> 
+        <i class="fa fa-list"></i>
+        All Payments
+        </a>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
         <i class="fa fa-plus"></i>
-         Add Community
+         Add Payment Method
         </button>
     </li>
        
@@ -30,8 +34,8 @@
   </div>
   @endif
 <div class="card mt-1">
-    <div class="card-header bg-primary">
-        <h6 class="text-light">All Communities
+    <div class="card-header bg-light">
+        <h6 class="text-light">
             {{-- <a href="{{url('admin/add-course')}}" class="btn btn-danger btn-sm float-end"> Add Course</a> --}}
         </h6>
     </div>
@@ -41,37 +45,35 @@
 
 
         <div class="row">
-            <table id="datatablesSimple" class="table table-bordered ">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Community Name</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($communities as $item)
-                    <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->name }}</td>
-                        
 
-                        <td>
-                            <a href="{{ url('admin/view-community/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </a>
-                            <a href="{{ url('admin/edit-community/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
-                                <i class="fa fa-edit" aria-hidden="true"></i>
-                            </a>
-                            <a href="{{ url('admin/delete-community/'.$item->id)}}" class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    @endforeach
 
-                </tbody>
-            </table>
+                    {{--displaying all the errors  --}}
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <div>{{$error}}</div>
+                        @endforeach
+                    </div>
+                    @endif
+                <form action="{{ url('admin/edit-method/'.$type->id) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="col-lg-12 mb-3">
+                        <div class="form-group">
+                            <label for="">Payment Method Name</label>
+                            <input name="name" type="text" value="{{ $type->name}}" class="form-control">
+                        </div>
+                    </div>
+                    
+
+                        <div class="col-md-12">
+                            <button class="btn btn-primary btn-block" type="submit">
+                                <i class="fa fa-save"></i>
+                                Update Payment Method
+                            </button>
+                        </div>
+                    </div>
+                </form>
 
         </div>
 
@@ -93,13 +95,13 @@
           </button>
         </div>
         <div class="modal-body">
-            <form action="{{ url('admin/add-community') }}" method="post">
+            <form action="{{ url('admin/add-method') }}" method="post">
                 @csrf
                 <div class="row mb-3">
                  <div class="col-md-12">
                     <div class="form-group">
-                        <label for="name" class="text-secondary">Community Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Community Name">
+                        <label for="name" class="text-secondary">Payment Method Name</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Payment Method Name">
                     </div>
                  </div>
                  <div class="col-md-12">
@@ -107,7 +109,7 @@
                      
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-save"></i>
-                            Save Community
+                            Save Payment Method
                         </button>
                     </div>
                  </div>

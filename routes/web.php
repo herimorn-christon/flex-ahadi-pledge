@@ -43,7 +43,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
    Route::post('add-type', [App\Http\Controllers\Admin\PledgeController::class,'saveType']);
  //Edit Pledge type page route  
    Route::get('edit-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'editType']);
- //Update Commmunity route  
+ //Update Pledge type route  
    Route::put('edit-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'updateType']);
  //Delete Pledge Type Route  
    Route::get('delete-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'destroyType']);
@@ -53,6 +53,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
  //Create Payment method route  
   Route::post('add-method', [App\Http\Controllers\Admin\PaymentController::class,'saveMethod']);
+ //Edit Payment Method page route  
+   Route::get('edit-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'editMethod']);
+ //Update Payment Method route  
+   Route::put('edit-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'updateMethod']);
+ //Delete Payment method Route  
+   Route::get('delete-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroyMethod']);
+ 
 });
 // for Member
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()

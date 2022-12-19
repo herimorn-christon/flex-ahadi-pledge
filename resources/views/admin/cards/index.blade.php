@@ -13,10 +13,13 @@
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class="">    
-
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
+            <i class="fa fa-list"></i>
+             Payment Method
+            </button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
         <i class="fa fa-plus"></i>
-         Add Community
+         Add Payment Method
         </button>
     </li>
        
@@ -31,7 +34,7 @@
   @endif
 <div class="card mt-1">
     <div class="card-header bg-primary">
-        <h6 class="text-light">All Communities
+        <h6 class="text-light">All Payments Made
             {{-- <a href="{{url('admin/add-course')}}" class="btn btn-danger btn-sm float-end"> Add Course</a> --}}
         </h6>
     </div>
@@ -41,37 +44,7 @@
 
 
         <div class="row">
-            <table id="datatablesSimple" class="table table-bordered ">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Community Name</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($communities as $item)
-                    <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->name }}</td>
-                        
-
-                        <td>
-                            <a href="{{ url('admin/view-community/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
-                                <i class="fa fa-eye" aria-hidden="true"></i>
-                            </a>
-                            <a href="{{ url('admin/edit-community/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
-                                <i class="fa fa-edit" aria-hidden="true"></i>
-                            </a>
-                            <a href="{{ url('admin/delete-community/'.$item->id)}}" class="btn btn-danger btn-sm">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    @endforeach
-
-                </tbody>
-            </table>
+ 
 
         </div>
 
@@ -93,13 +66,13 @@
           </button>
         </div>
         <div class="modal-body">
-            <form action="{{ url('admin/add-community') }}" method="post">
+            <form action="{{ url('admin/add-method') }}" method="post">
                 @csrf
                 <div class="row mb-3">
                  <div class="col-md-12">
                     <div class="form-group">
-                        <label for="name" class="text-secondary">Community Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Community Name">
+                        <label for="name" class="text-secondary">Payment Method</label>
+                        <input type="text" name="name" id="title" class="form-control" placeholder="Enter Payment Method Name">
                     </div>
                  </div>
                  <div class="col-md-12">
@@ -107,7 +80,7 @@
                      
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-save"></i>
-                            Save Community
+                            Save Payment Method
                         </button>
                     </div>
                  </div>
@@ -119,6 +92,63 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
+
+{{-- All Pledge Types Modal --}}
+
+<div class="modal fade" id="types">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+        <div class="row">
+          <table id="datatablesSimple" class="table table-bordered ">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Method Name</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  @foreach ($types as $item)
+                  <tr>
+                      <td>{{ $item->id }}</td>
+                      <td>{{ $item->name }}</td>
+                      
+
+                      <td>
+                          <a href="{{ url('admin/edit-method/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
+                              <i class="fa fa-edit" aria-hidden="true"></i>
+                          </a>
+                          <a href="{{ url('admin/delete-method/'.$item->id)}}" class="btn btn-danger btn-sm">
+                              <i class="fa fa-trash" aria-hidden="true"></i>
+                          </a>
+                      </td>
+                  </tr>
+                  @endforeach
+
+              </tbody>
+          </table>
+
+      </div>
+      </div>
+      <div class="modal-footer justify-content-between">
+        {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      --}}
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
 
 <script>
     $(function () {
