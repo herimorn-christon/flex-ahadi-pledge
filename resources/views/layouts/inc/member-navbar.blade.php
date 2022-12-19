@@ -124,7 +124,7 @@
       {{-- user details --}}
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-            {{ Auth::user()->name }}
+            {{ Auth::user()->fname }}
             
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

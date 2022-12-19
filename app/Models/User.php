@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $table= 'users';
     protected $fillable = [
         'fname',
         'mname',
@@ -39,7 +40,7 @@ class User extends Authenticatable
     ];
 
        // for relationship
-       public function jumuiya()
+       public function community()
        {
            return $this->belongsTo(Jumuiya::class, 'jumuiya','id');
        }

@@ -25,8 +25,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Full Name</th>
-                        <th>Member No.</th>
-                        <th>Community</th>
+                        <th>Community (Jumuiya)</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -34,18 +33,16 @@
                     @foreach ($users as $item)
                     <tr>
                         <td>{{ $item->id }}</td>
-                        <td>{{ $item->name }} &nbsp; {{ $item->email }} </td>
+                        <td>{{ $item->fname }} &nbsp; {{ $item->mname }} &nbsp;  {{ $item->lname }}</td>
+                       
                         <td>
-                            {{-- <img src="{{asset('uploads/course/'.$item->image) }}" width="40px" height="40px"> --}}
-                         </td>
-                        <td>
-                            {{ $item->jumuiya }}
+                            {{ $item->community->name }}
                         </td>
                         <td>
                             <a href="{{ url('admin/view-course/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                             </a>
-                            <a href="{{ url('admin/edit-course/'.$item->id)}}" class="btn btn-success btn-sm mx-1">
+                            <a href="{{ url('admin/edit-course/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
                                 <i class="fa fa-edit" aria-hidden="true"></i>
                             </a>
                             <a href="{{ url('admin/delete-course/'.$item->id)}}" class="btn btn-danger btn-sm">

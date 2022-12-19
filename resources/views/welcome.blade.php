@@ -194,7 +194,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 ">
-                        <button type="submit" class="btn btn-danger btn-block col-lg-12">
+                        <button type="submit" class="btn btn-primary btn-block col-lg-12">
                             {{ __('Login') }}
 
                             <i class="fa fa-sign-in-alt"></i>
@@ -221,24 +221,50 @@
         <div class="modal-body">
             <form method="POST" action="{{ route('register') }}">
                 @csrf
+                <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="fname" class="">{{ __('First Name') }}</label>
 
-                <div class="row mb-3">
-                    <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                    <div class="form-group">
+                        <input id="fname" type="text" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
 
-                    <div class="col-md-6">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                        @error('name')
+                        @error('fname')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('phone') }}</label>
+                <div class="mb-3 col-md-6">
+                    <label for="mname" class="">{{ __('Middle Name') }}</label>
 
-                    <div class="col-md-6">
+                    <div class="">
+                        <input id="mname" type="text" class="form-control @error('mname') is-invalid @enderror" name="mname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+
+                        @error('mname')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lname" class="">{{ __('Last Name') }}</label>
+
+                    <div class="form-group">
+                        <input id="lname" type="text" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
+
+                        @error('lname')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <label for="phone" class="form-label ">{{ __('phone') }}</label>
+
+                    <div class="form-group">
                         <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                         @error('name')
@@ -248,10 +274,10 @@
                         @enderror
                     </div>
                 </div>
-                <div class="row mb-3">
-                    <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                <div class="col-lg-6 mb-3">
+                    <label for="email" class="">{{ __('Email Address') }}</label>
 
-                    <div class="col-md-6">
+                    <div class="form-group">
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                         @error('email')
@@ -265,7 +291,7 @@
                 @php
                 $jumuiya= App\Models\Jumuiya::get();
                 @endphp
-                <div class="mb-3">
+                <div class="col-md-6">
                     <label for="">Jumuiya (Community) </label>
                     <select name="jumuiya" class="form-control">
                         <option value="">--Select Jumuiya --</option>
@@ -275,10 +301,10 @@
                     </select>
                 </div>
 
-                <div class="row mb-3">
-                    <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                <div class="col-md-6 mb-3">
+                    <label for="password" class="">{{ __('Password') }}</label>
 
-                    <div class="col-md-6">
+                    <div class="form-group">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                         @error('password')
@@ -289,32 +315,25 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
-                    <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                <div class="col-md-6 mb-3">
+                    <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
 
-                    <div class="col-md-6">
+                    <div class="form-group">
                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                     </div>
                 </div>
 
-                <div class="row mb-0">
-                    <div class="col-md-6 offset-md-4">
-                        <button type="submit" class="btn btn-primary">
+                <div class="col-md-12 mb-0 ">
+                    <div class="col-md-8">
+                        <button type="submit" class="btn btn-block text-decoration-none text-light bg-primary col-lg-6">
                             {{ __('Register') }}
                         </button>
                     </div>
                 </div>
+            </div>
             </form>
         </div>
-        <div class="modal-footer">
-            <a href="Member/dashboard.html" class=" btn btn-block text-decoration-none text-light bg-gradient-danger col-lg-6">
-          <!-- <button type="button" type="submit" class="btn btn-primary btn-block  "> -->
-           
-                Register
-                <i class="bi bi-box-arrow-in-right"></i>
-        <!-- </button> -->
-            </a>
-        </div>
+    
       </div>
     </div>
   </div>
