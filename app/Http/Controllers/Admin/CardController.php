@@ -47,4 +47,18 @@ class CardController extends Controller
 
       return redirect('admin/all-cards')->with('status','Card was Updated Successfully');
   }
+
+// delete  card method function
+    public function destroy($card_id)
+    {
+        $card=Card::find($card_id);
+
+        if($card){
+            $card->delete();
+            return redirect('admin/all-cards')->with('status','Card method was deleted Successfully');
+        }
+        else{
+            return redirect('admin/all-cards')->with('status','No Card method ID was found !');
+        }
+    }
 }

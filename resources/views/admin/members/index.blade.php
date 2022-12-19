@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','All Courses')
+@section('title','Dashboard')
 
 
 @section('content')
@@ -39,8 +39,8 @@
                             {{-- <img src="{{asset('uploads/course/'.$item->image) }}" width="40px" height="40px"> --}}
                          </td>
                         <td>
-                            {{-- {{ $item->status=='1'? 'Hidden':'Shown' }}</td> --}}
-
+                            {{ $item->jumuiya }}
+                        </td>
                         <td>
                             <a href="{{ url('admin/view-course/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
                                 <i class="fa fa-eye" aria-hidden="true"></i>

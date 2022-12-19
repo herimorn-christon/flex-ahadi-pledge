@@ -44,7 +44,7 @@ class PaymentController extends Controller
 
         return redirect('admin/all-payments')->with('status','Payment method was Updated Successfully');
     }
-// delete  payment type function
+// delete  payment method function
     public function destroyMethod($method_id)
     {
         $method=PaymentType::find($method_id);

@@ -14,11 +14,11 @@
       <ol class="breadcrumb float-sm-right">
         <li class="">    
 
-        <a href="{{ url('admin/all-communities') }}" class="btn btn-success"> 
+        <a href="{{ url('admin/all-communities') }}" class="btn btn-primary btn-sm"> 
         <i class="fa fa-list"></i>
         All Communities
         </a>
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-lg">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
         <i class="fa fa-plus"></i>
          Add Community
         </button>
@@ -46,7 +46,7 @@
 
         <div class="row">
 
-
+          <div class="col-7 mx-auto">
                     {{--displaying all the errors  --}}
                     @if ($errors->any())
                     <div class="alert alert-danger">
@@ -67,14 +67,14 @@
                     
 
                         <div class="col-md-12">
-                            <button class="btn btn-danger btn-block" type="submit">
+                            <button class="btn btn-primary btn-block" type="submit">
                                 <i class="fa fa-save"></i>
                                 Update Community
                             </button>
                         </div>
                     </div>
                 </form>
-
+              </div>
         </div>
 
 
@@ -104,7 +104,7 @@
                         <input type="text" name="name" id="name" class="form-control" placeholder="Enter Community Name">
                     </div>
                  </div>
-                 <div class="col-md-12">
+                 <div class="col-md-6">
                     <div class="form-group">
                      
                         <button type="submit" class="btn btn-success">

@@ -262,6 +262,19 @@
                     </div>
                 </div>
 
+                @php
+                $jumuiya= App\Models\Jumuiya::get();
+                @endphp
+                <div class="mb-3">
+                    <label for="">Jumuiya (Community) </label>
+                    <select name="jumuiya" class="form-control">
+                        <option value="">--Select Jumuiya --</option>
+                        @foreach ( $jumuiya as $item)
+                         <option value="{{ $item->id}}">{{ $item->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="row mb-3">
                     <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
