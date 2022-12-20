@@ -30,9 +30,9 @@
   </div>
   @endif
 <div class="card mt-1">
-    <div class="card-header bg-primary">
-        <h6 class="text-light">All Communities
-            {{-- <a href="{{url('admin/add-course')}}" class="btn btn-danger btn-sm float-end"> Add Course</a> --}}
+    <div class="card-header bg-light">
+        <h6 class="text-light">
+          {{-- All Communities --}}
         </h6>
     </div>
     <div class="card-body">

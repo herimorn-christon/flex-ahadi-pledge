@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Pledge;
 use App\Models\PledgeType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\pledgeFormRequest;
+use App\Http\Requests\Admin\pledgesFormRequest;
 
 class PledgeController extends Controller
 {
@@ -13,7 +16,8 @@ class PledgeController extends Controller
     public function index()
     {
         $types=PledgeType::all();
-        return view('admin.pledges.index',compact('types'));
+        $pledges=Pledge::all();
+        return view('admin.pledges.index',compact('types','pledges'));
     }
 
 
@@ -59,4 +63,20 @@ public function destroyType($type)
         return redirect('admin/all-pledges')->with('status','No Community ID was found !');
     }
 }
+
+    // saving pledge  function
+    public function save(pledgesFormRequest $request)
+    {
+        $data=$request->validated();
+        $pledge =new Pledge;
+        $pledge->name=$data['name'];
+        $pledge->amount=$data['amount'];
+        $pledge->description=$data['description'];
+        $pledge->deadline=$data['deadline'];
+        $pledge->status= $request->status == true ? '1':'0';
+        $pledge->created_by= Auth::user()->id;
+        $pledge->save();
+
+        return redirect('admin/all-pledges')->with('status','Pledge was Added Successfully');
+    }
 }

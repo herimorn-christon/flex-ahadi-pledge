@@ -12,11 +12,15 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
-        <li class="">    
+        <li class="">  
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_pledge">
+            <i class="fa fa-plus"></i>
+             Register Pledge 
+        </button>  
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
             <i class="fa fa-list"></i>
              Pledge Types
-            </button>
+        </button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
         <i class="fa fa-plus"></i>
          Add Pledge Type
@@ -33,9 +37,10 @@
   </div>
   @endif
 <div class="card mt-1">
-    <div class="card-header bg-primary">
-        <h6 class="text-light">All Pledges Made
-            {{-- <a href="{{url('admin/add-course')}}" class="btn btn-danger btn-sm float-end"> Add Course</a> --}}
+    <div class="card-header bg-light">
+        <h6 class="text-light">
+          {{-- All Pledges Made --}}
+           
         </h6>
     </div>
     <div class="card-body">
@@ -54,10 +59,10 @@
 </div>
 
 
-{{-- Add Community modal --}}
+{{-- Add Pledge Type modal --}}
 
 <div class="modal fade" id="modal-lg">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           {{-- <h4 class="modal-title">Large Modal</h4> --}}
@@ -72,13 +77,13 @@
                  <div class="col-md-12">
                     <div class="form-group">
                         <label for="title" class="text-secondary">Pledge Type</label>
-                        <input type="text" name="title" id="title" class="form-control" placeholder="Enter Pledge Title">
+                        <input type="text" name="title" id="title" class="title form-control" placeholder="Enter Pledge Title">
                     </div>
                  </div>
                  <div class="col-md-12">
                     <div class="form-group">
                      
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="add_type btn btn-primary">
                             <i class="fa fa-save"></i>
                             Save Pledge Type
                         </button>
@@ -148,23 +153,95 @@
   <!-- /.modal-dialog -->
 </div>
 
+{{-- register new pledge  modal--}}
 
+<div class="modal fade" id="add_pledge">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{-- <h4 class="modal-title">Large Modal</h4> --}}
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form action="{{ url('admin/add-pledge') }}" method="post">
+              @csrf
+              <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="">Pledge Type</label>
+                    <select name="type_id" class="form-control">
+                        <option value="">--Select Pledge Type --</option>
+                        @foreach ( $type as $item)
+                         <option value="{{ $item->id}}">{{ $item->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+               <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="name" class="text-secondary">Name</label>
+                      <input type="text" name="name" id="name" class="form-control" placeholder="Enter Pledge Name">
+                  </div>
+               </div>
+               <div class="col-md-12">
+                <div class="form-group">
+                    <label for="amount" class="text-secondary">Amount</label>
+                    <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Pledge Amount">
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                    <label for="deadline" class="text-secondary">Deadline</label>
+                    <input type="date" name="deadline" id="deadline" class="form-control" placeholder="Enter Pledge Deadline">
+                </div>
+             </div>
+             <div class="col-md-12">
+              <div class="form-group">
+                  <label for="description" class="text-secondary">Description</label>
+                  <textarea name="description" class="form-control" id="deadline" rows="4"></textarea>
+              </div>
+           </div>
+               <div class="col-md-12">
+                  <div class="form-group">
+                   
+                      <button type="submit" class="btn btn-primary">
+                          <i class="fa fa-save"></i>
+                          Save Pledge 
+                      </button>
+                  </div>
+               </div>
+              </div>
+          </form>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+
+@endsection
+
+@section('scripts')
 
 <script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
-  </script>
+// for add pledges using ajax
+  $(document).ready(
+  function()
+  {
+    $(document).on('click','add_type',function(e)
+    {
+      e.preventDefault();
+
+      var data= {
+        'title':$('.title').val();
+      }
+
+      console.log("hello");
+    }
+    );
+  }
+  );
+</script>
+
 @endsection
