@@ -294,7 +294,7 @@
                 <div class="col-md-6">
                     <label for="">Jumuiya (Community) </label>
                     <select name="jumuiya" class="form-control">
-                        <option value="">--Select Jumuiya --</option>
+                        <option value="">--Select Community (Jumuiya) --</option>
                         @foreach ( $jumuiya as $item)
                          <option value="{{ $item->id}}">{{ $item->name}}</option>
                         @endforeach

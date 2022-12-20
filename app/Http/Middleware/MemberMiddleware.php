@@ -30,7 +30,7 @@ class MemberMiddleware
         }
         else{
             // if not authenticated
-            return redirect('/login')->with('status','Please Login first !');
+            return redirect('/home')->with('status','Please Login first !');
         }
     }
 }
