@@ -50,7 +50,40 @@
 
         <div class="row">
  
+          <table id="datatablesSimple" class="table table-bordered ">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Pledge Name</th>
+                    <th>Deadline</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($pledges as $item)
+                <tr>
+                    <td>{{ $item->id }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->deadline }}</td>
+                    <td class="text-success">{{ $item->status=='1'? 'Hidden':'Active' }}</td>
 
+                    <td>
+                       <a href="{{ url('admin/view-pledge/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
+                          <i class="fa fa-eye" aria-hidden="true"></i>
+                       </a>
+                        <a href="{{ url('admin/edit-pledge/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </a>
+                        <a href="{{ url('admin/delete-type/'.$item->id)}}" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </td>
+                </tr>
+                @endforeach
+
+            </tbody>
+        </table>
         </div>
 
 
@@ -156,7 +189,7 @@
 {{-- register new pledge  modal--}}
 
 <div class="modal fade" id="add_pledge">
-  <div class="modal-dialog ">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         {{-- <h4 class="modal-title">Large Modal</h4> --}}
@@ -165,31 +198,31 @@
         </button>
       </div>
       <div class="modal-body">
-          <form action="{{ url('admin/add-pledge') }}" method="post">
+          <form action="{{ url('admin/save-pledge') }}" method="post">
               @csrf
               <div class="row mb-3">
                 <div class="col-md-6">
-                    <label for="">Pledge Type</label>
+                    <label for="" class="text-secondary">Pledge Type</label>
                     <select name="type_id" class="form-control">
                         <option value="">--Select Pledge Type --</option>
-                        @foreach ( $type as $item)
-                         <option value="{{ $item->id}}">{{ $item->name}}</option>
+                        @foreach ( $types as $item)
+                         <option value="{{ $item->id}}">{{ $item->title}}</option>
                         @endforeach
                     </select>
                 </div>
-               <div class="col-md-12">
+               <div class="col-md-6">
                   <div class="form-group">
                       <label for="name" class="text-secondary">Name</label>
                       <input type="text" name="name" id="name" class="form-control" placeholder="Enter Pledge Name">
                   </div>
                </div>
-               <div class="col-md-12">
+               <div class="col-md-6">
                 <div class="form-group">
                     <label for="amount" class="text-secondary">Amount</label>
                     <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Pledge Amount">
                 </div>
               </div>
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <div class="form-group">
                     <label for="deadline" class="text-secondary">Deadline</label>
                     <input type="date" name="deadline" id="deadline" class="form-control" placeholder="Enter Pledge Deadline">
@@ -202,13 +235,21 @@
               </div>
            </div>
                <div class="col-md-12">
-                  <div class="form-group">
-                   
-                      <button type="submit" class="btn btn-primary">
-                          <i class="fa fa-save"></i>
-                          Save Pledge 
+
+                <div class="row">
+
+                  <div class="col-md-3 mb-3">
+                      <label for="" class="text-secondary">Status</label>
+                      <input type="checkbox" name="status" id="">
+                  </div>
+
+                  <div class="col-md-9 ">
+                      <button class="btn btn-primary btn-block float-end" type="submit">
+                        <i class="fa fa-save"></i>
+                        Save Pledge 
                       </button>
                   </div>
+              </div>
                </div>
               </div>
           </form>

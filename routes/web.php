@@ -47,7 +47,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
    Route::put('edit-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'updateType']);
  //Delete Pledge Type Route  
    Route::get('delete-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'destroyType']);
-
+ //Create Pledge Route
+   Route::post('save-pledge', [App\Http\Controllers\Admin\PledgeController::class,'save']);
+// edit pledge page
+   Route::get('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'edit']);
+ //Update Pledge type route  
+   Route::put('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'update']);
 
 // all payments route
   Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);

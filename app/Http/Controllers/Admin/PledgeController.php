@@ -73,10 +73,36 @@ public function destroyType($type)
         $pledge->amount=$data['amount'];
         $pledge->description=$data['description'];
         $pledge->deadline=$data['deadline'];
+        $pledge->type_id=$data['type_id'];
         $pledge->status= $request->status == true ? '1':'0';
         $pledge->created_by= Auth::user()->id;
         $pledge->save();
 
         return redirect('admin/all-pledges')->with('status','Pledge was Added Successfully');
+    }
+
+        // edit pledge page function
+        public function edit($pledge_id)
+        {
+            $types=PledgeType::all();
+            $pledge=Pledge::find($pledge_id);
+            return view('admin.pledges.edit-pledge',compact('pledge','types'));
+        }
+    // update pledge function
+    public function update(pledgesFormRequest $request,$type_id)
+    {
+        $data=$request->validated();
+        $pledge =Pledge::find($type_id);
+        $pledge->name=$data['name'];
+        $pledge->amount=$data['amount'];
+        $pledge->description=$data['description'];
+        $pledge->deadline=$data['deadline'];
+        $pledge->type_id=$data['type_id'];
+        $pledge->status= $request->status == true ? '1':'0';
+        $pledge->created_by= Auth::user()->id;
+        // saving data
+        $pledge->update();
+
+        return redirect('admin/all-pledges')->with('status','Pledge was Updated Successfully');
     }
 }

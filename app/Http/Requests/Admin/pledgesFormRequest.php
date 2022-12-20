@@ -13,7 +13,7 @@ class pledgesFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,13 +24,14 @@ class pledgesFormRequest extends FormRequest
     public function rules()
     {
         $rules=[
+            'type_id'=>[
+                'required',
+                'integer'
+            ],
             'name'=>[
                 'required',
                 'string',
                 'max:200'
-            ],
-            'type'=>[
-                'required'
             ],
             'amount'=>[
                 'required'

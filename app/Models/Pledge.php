@@ -25,4 +25,10 @@ class Pledge extends Model
     {
         return $this->belongsTo(PledgeType::class, 'type_id','id');
     }
+
+    // for relationship
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'created_by','id');
+    }
 }
