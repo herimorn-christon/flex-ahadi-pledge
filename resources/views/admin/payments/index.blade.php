@@ -12,11 +12,15 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
-        <li class="">    
+        <li class=""> 
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_payment">
+            <i class="fa fa-plus"></i>
+            Register Payment
+        </button>   
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
             <i class="fa fa-list"></i>
              Payment Methods
-            </button>
+        </button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
         <i class="fa fa-plus"></i>
          Add Payment Method
@@ -54,7 +58,7 @@
 </div>
 
 
-{{-- Add Community modal --}}
+{{-- Add Payment Type modal --}}
 
 <div class="modal fade" id="modal-lg">
     <div class="modal-dialog modal-lg">
@@ -148,8 +152,87 @@
   <!-- /.modal-dialog -->
 </div>
 
+{{-- Register Payment Modal --}}
+
+<div class="modal fade" id="add_payment">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"></h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         
+          <div class="row">
+            <form action="{{ url('admin/add-method') }}" method="post">
+                @csrf
+                <div class="row mb-3">
+                    @php
+                    $jumuiya= App\Models\User::where('role','member')->get();
+                    @endphp
+                    <div class="col-md-12">
+                        <label for="" class="text-secondary">Payer</label>
+                        <select name="user_id" class="form-control">
+                            <option value="">--Select Member --</option>
+                            @foreach ( $jumuiya as $item)
+                             <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    @php
+                    $purpose= App\Models\Pledge::where('status','')->get();
+                    @endphp
+                    <div class="col-md-12">
+                        <label for="" class="text-secondary">Payment Purpose</label>
+                        <select name="user_id" class="form-control">
+                            <option value="">--Select Purpose --</option>
+                            @foreach ( $purpose as $item)
+                             <option value="{{ $item->id}}"> {{ $item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
 
+                    @php
+                    $purpose= App\Models\PaymentType::get();
+                    @endphp
+                    <div class="col-md-12">
+                        <label for="" class="text-secondary">Payment Method</label>
+                        <select name="user_id" class="form-control">
+                            <option value="">--Select Payment Method --</option>
+                            @foreach ( $purpose as $item)
+                             <option value="{{ $item->id}}"> {{ $item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                 <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="amount" class="text-secondary">Paid Amount </label>
+                        <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Payment Amount">
+                    </div>
+                 </div>
+                 <div class="col-md-6"></div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                     
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fa fa-save"></i>
+                            Save Payment
+                        </button>
+                    </div>
+                 </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 <script>
     $(function () {
       $("#example1").DataTable({
