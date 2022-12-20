@@ -37,7 +37,7 @@
           <a href="{{ url('admin/all-pledges') }}" class="nav-link  {{ Request::is('admin/all-pledges') ? 'active':'' }}">
             <i class="nav-icon fas fa-balance-scale"></i>
             <p>
-              Manage Pledges
+              Manage Contributions
             </p>
           </a>
         </li>
@@ -54,14 +54,6 @@
               <i class="nav-icon fas fa-envelope"></i>
               <p>
                 Manage Cards
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('member/dashboard') }}" class="nav-link">
-              <i class="nav-icon fas fa-calendar"></i>
-              <p>
-                Manage Events
               </p>
             </a>
           </li>

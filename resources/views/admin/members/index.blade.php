@@ -27,6 +27,7 @@
                         <th>ID</th>
                         <th>Full Name</th>
                         <th>Community (Jumuiya)</th>
+                        <th>Phone Number</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -38,6 +39,9 @@
                        
                         <td>
                             {{ $item->community->name }}
+                        </td>
+                        <td>
+                            {{ $item->phone }}
                         </td>
                         <td>
                             <a href="{{ url('admin/view-course/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">

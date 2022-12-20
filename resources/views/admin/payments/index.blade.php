@@ -13,15 +13,15 @@
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class=""> 
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_payment">
+        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#add_payment">
             <i class="fa fa-plus"></i>
             Register Payment
         </button>   
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
+        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#types">
             <i class="fa fa-list"></i>
              Payment Methods
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
+        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#modal-lg">
         <i class="fa fa-plus"></i>
          Add Payment Method
         </button>
@@ -48,7 +48,40 @@
 
 
         <div class="row">
- 
+            <table id="datatablesSimple" class="table table-bordered responsive">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Member Name</th>
+                        <th>Purpose</th>
+                        <th>Amount</th>
+                        <th>Method</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($payments as $item)
+                    <tr>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->payer->fname }} {{ $item->payer->mname }} {{ $item->payer->lname }}</td>
+                        <td>{{ $item->purpose->name }}</</td>
+                        <td>{{ $item->amount }}</td>
+                        <td>{{ $item->payment->name }}</td>
+                        <td>{{ $item->created_at }}</td>
+                        <td>
+                            <a href="{{ url('admin/edit-method/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
+                                <i class="fa fa-edit" aria-hidden="true"></i>
+                            </a>
+                            <a href="{{ url('admin/delete-method/'.$item->id)}}" class="btn btn-danger btn-sm">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    @endforeach
+  
+                </tbody>
+            </table>
 
         </div>
 
@@ -166,7 +199,7 @@
         <div class="modal-body">
          
           <div class="row">
-            <form action="{{ url('admin/add-method') }}" method="post">
+            <form action="{{ url('admin/add-payment') }}" method="post">
                 @csrf
                 <div class="row mb-3">
                     @php
@@ -187,7 +220,7 @@
                     @endphp
                     <div class="col-md-12">
                         <label for="" class="text-secondary">Payment Purpose</label>
-                        <select name="user_id" class="form-control">
+                        <select name="pledge_id" class="form-control">
                             <option value="">--Select Purpose --</option>
                             @foreach ( $purpose as $item)
                              <option value="{{ $item->id}}"> {{ $item->name}}</option>
@@ -201,7 +234,7 @@
                     @endphp
                     <div class="col-md-12">
                         <label for="" class="text-secondary">Payment Method</label>
-                        <select name="user_id" class="form-control">
+                        <select name="type_id" class="form-control">
                             <option value="">--Select Payment Method --</option>
                             @foreach ( $purpose as $item)
                              <option value="{{ $item->id}}"> {{ $item->name}}</option>

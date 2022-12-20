@@ -107,7 +107,9 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>
+                  {{$pledges}}
+                </h3>
 
                 <p>Total Pledges</p>
               </div>
@@ -122,7 +124,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3> {{$members}}</h3>
 
                 <p>Total Members</p>
               </div>

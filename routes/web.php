@@ -22,12 +22,12 @@ Route::get('/', function () {
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 {
  // admin dashboard route
-   Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class,'index']);
+    Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class,'index']);
  //  View All Members route
-   Route::get('/all-members', [App\Http\Controllers\Admin\MemberController::class,'index']);
+    Route::get('/all-members', [App\Http\Controllers\Admin\MemberController::class,'index']);
 
  // view all communities route
-   Route::get('/all-communities', [App\Http\Controllers\Admin\JumuiyaController::class,'index']);
+    Route::get('/all-communities', [App\Http\Controllers\Admin\JumuiyaController::class,'index']);
  //Create Commmunity route  
     Route::post('add-community', [App\Http\Controllers\Admin\JumuiyaController::class,'save']);
  //Edit Commmunity page route  
@@ -55,20 +55,22 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
    Route::put('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'update']);
 
 // all payments route
-  Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
+   Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
  //Create Payment method route  
-  Route::post('add-method', [App\Http\Controllers\Admin\PaymentController::class,'saveMethod']);
+   Route::post('add-method', [App\Http\Controllers\Admin\PaymentController::class,'saveMethod']);
  //Edit Payment Method page route  
    Route::get('edit-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'editMethod']);
  //Update Payment Method route  
    Route::put('edit-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'updateMethod']);
  //Delete Payment method Route  
    Route::get('delete-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroyMethod']);
- 
+ //Create Payment Route
+   Route::post('add-payment', [App\Http\Controllers\Admin\PaymentController::class,'save']);
+
 // all cards route
-Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
+  Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
 //Create Card method route  
- Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);
+  Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);
 //Edit Card Method page route  
   Route::get('edit-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'edit']);
 //Update Card Method route  

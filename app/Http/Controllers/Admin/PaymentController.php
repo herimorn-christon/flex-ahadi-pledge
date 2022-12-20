@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use Illuminate\Http\Request;
+use App\Models\Payment;
 use App\Models\PaymentType;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\paymentFormRequest;
+use App\Http\Requests\Admin\paymentsFormRequest;
 
 class PaymentController extends Controller
 {
@@ -14,7 +16,8 @@ class PaymentController extends Controller
     public function index()
     {
         $types=PaymentType::all();
-        return view('admin.payments.index',compact('types'));
+        $payments=Payment::all();
+        return view('admin.payments.index',compact('types','payments'));
     }
     // saving payment method function
     public function saveMethod(paymentFormRequest $request)
@@ -57,4 +60,20 @@ class PaymentController extends Controller
             return redirect('admin/all-payments')->with('status','No Payment method ID was found !');
         }
     }
+
+    // saving payment function
+    public function save(paymentsFormRequest $request)
+    {
+        $data=$request->validated();
+        $payment =new Payment;
+        $payment->user_id=$data['user_id'];
+        $payment->type_id=$data['type_id'];
+        $payment->pledge_id=$data['pledge_id'];
+        $payment->amount=$data['amount'];
+        $payment->created_by= Auth::user()->id;
+        $payment->save();
+
+        return redirect('admin/all-payments')->with('status','Payment was Registered Successfully');
+    }
+
 }
