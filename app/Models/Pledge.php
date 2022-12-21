@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Purpose;
 use App\Models\PledgeType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +29,10 @@ class Pledge extends Model
         return $this->belongsTo(PledgeType::class, 'type_id','id');
     }
 
+    // public function purpose()
+    // {
+    //     return $this->belongsTo(Purpose::class, 'purpose_id','id');
+    // }
     // for relationship
     public function user()
     {

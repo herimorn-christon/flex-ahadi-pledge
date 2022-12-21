@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','All Communities')
+@section('title','All Payments')
 
 
 @section('content')

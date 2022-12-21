@@ -25,10 +25,7 @@
             <i class="fa fa-list"></i>
             Purposes
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_purpose">
-        <i class="fa fa-plus"></i>
-         Add Purpose
-        </button>
+    
     </li>
        
       </ol>
@@ -54,8 +51,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Member Names</th>
                     <th>Pledge Name</th>
+                    <th>Description</th>
                     <th>Amount</th>
                     <th>Deadline</th>
                     <th>Status</th>
@@ -66,8 +63,8 @@
                 @foreach ($pledges as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->user->fname }} {{ $item->user->mname }} {{ $item->user->lname }}</td>
                     <td>{{ $item->name }}</td>
+                    <td>{{ $item->description }}</td>
                     <td>{{ $item->amount }}</td>
                     <td>{{ $item->deadline }}</td>
                     <td class="text-success">{{ $item->status=='1'? 'Inactive':'Active' }}</td>
@@ -79,9 +76,9 @@
                         <a href="{{ url('admin/edit-pledge/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>
-                        <a href="{{ url('admin/delete-type/'.$item->id)}}" class="btn btn-danger btn-sm">
+                        {{-- <a href="{{ url('admin/delete-type/'.$item->id)}}" class="btn btn-danger btn-sm">
                             <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
+                        </a> --}}
                     </td>
                 </tr>
                 @endforeach
@@ -96,44 +93,6 @@
 </div>
 
 
-{{-- Add Pledge Type modal --}}
-
-<div class="modal fade" id="modal-lg">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          {{-- <h4 class="modal-title">Large Modal</h4> --}}
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form action="{{ url('admin/add-type') }}" method="post">
-                @csrf
-                <div class="row mb-3">
-                 <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="title" class="text-secondary">Pledge Type</label>
-                        <input type="text" name="title" id="title" class="title form-control" placeholder="Enter Pledge Title">
-                    </div>
-                 </div>
-                 <div class="col-md-12">
-                    <div class="form-group">
-                     
-                        <button type="submit" class="add_type btn btn-primary">
-                            <i class="fa fa-save"></i>
-                            Save Pledge Type
-                        </button>
-                    </div>
-                 </div>
-                </div>
-            </form>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
 
 {{-- All Pledge Types Modal --}}
 
@@ -165,10 +124,11 @@
                   <tr>
                       <td>{{ $item->id }}</td>
                       <td>{{ $item->title }}</td>
+                      <td>{{ $item->description }}</td>
                       <td>{{ $item->start_date }}</td>
                       <td>{{ $item->end_date }}</td>
                       <td class="text-success">{{ $item->status=='1'? 'Hidden':'Active' }}</td>
-                      <td>{{ $item->description }}</td>
+                   
                   </tr>
                   @endforeach
 
@@ -202,7 +162,12 @@
           <form action="{{ url('member/save-pledge') }}" method="post">
               @csrf
               <div class="row mb-3">
-
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="name" class="text-secondary">Pledge Name</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Pledge Name">
+                    </div>
+                 </div>
                 <div class="col-md-6">
                     <label for="" class="text-secondary">Pledge Type</label>
                     <select name="type_id" class="form-control">
@@ -224,12 +189,7 @@
                         @endforeach
                     </select>
                 </div>
-               <div class="col-md-6">
-                  <div class="form-group">
-                      <label for="name" class="text-secondary">Name</label>
-                      <input type="text" name="name" id="name" class="form-control" placeholder="Enter Pledge Name">
-                  </div>
-               </div>
+
                <div class="col-md-6">
                 <div class="form-group">
                     <label for="amount" class="text-secondary">Amount</label>
@@ -317,8 +277,8 @@
                 <div class="row">
 
                   <div class="col-md-6 mb-3">
-                      <label for="" class="text-secondary">Status</label>
-                      <input type="checkbox" name="status" id="">
+                      {{-- <label for="" class="text-secondary">Status</label> --}}
+                      <input type="checkbox" name="status" id="" hidden>
                   </div>
 
                   <div class="col-md-6 ">

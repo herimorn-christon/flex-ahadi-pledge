@@ -73,21 +73,22 @@
       {{-- user details --}}
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
-            {{ Auth::user()->fname }}
+            {{ Auth::user()->fname }} &nbsp;
+
+            <i class="fa fa-angle-down"></i>
             
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
  
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="#" class="dropdown-item text-secondary">
             <i class="fas fa-user mr-2"></i> My Profile
-            <span class="float-right text-muted text-sm">12 hours</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ route('logout') }}"
+          <a class="dropdown-item text-secondary" href="{{ route('logout') }}"
           onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
-           {{ __('Logout') }}
+          <i class="fas fa-power-off mr-2"></i>  {{ __('Logout') }}
            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
             @csrf
            </form>

@@ -74,6 +74,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
    Route::get('delete-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroyMethod']);
  //Create Payment Route
    Route::post('add-payment', [App\Http\Controllers\Admin\PaymentController::class,'save']);
+ //Delete Payment method Route  
+ Route::get('delete-payment/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroy']);
 
 // all cards route
   Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
@@ -92,6 +94,9 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
  // setting dashboard route
     Route::get('/dashboard', [App\Http\Controllers\Member\DashboardController::class,'index']);
 
- // all pledges route
+ // my-pledges route
  Route::get('/my-pledges', [App\Http\Controllers\Member\PledgeController::class,'index']);
+
+ // my-payments
+ Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
 });

@@ -9,8 +9,8 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item menu-open">
-          <a href="{{ url('member/dashboard') }}" class="nav-link active">
+        <li class="nav-item ">
+          <a href="{{ url('member/dashboard') }}" class="nav-link {{ Request::is('member/dashboard') ? 'active':'' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -18,7 +18,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ url('member/my-pledges') }}" class="nav-link">
+          <a href="{{ url('member/my-pledges') }}" class="nav-link {{ Request::is('member/my-pledges') ? 'active':'' }}">
             <i class="nav-icon fas fa-balance-scale"></i>
             <p>
               My Pledges
@@ -26,7 +26,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ url('member/dashboard') }}" class="nav-link">
+          <a href="{{ url('member/my-payments') }}" class="nav-link {{ Request::is('member/my-payments') ? 'active':'' }}">
             <i class="nav-icon fas fa-credit-card"></i>
             <p>
               My Payments

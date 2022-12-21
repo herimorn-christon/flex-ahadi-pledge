@@ -109,28 +109,28 @@
                         <div class="features-icons-item mx-auto mb-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
                             <h4 class="text-danger">Easy to Use</h4>
-                            <p class="lead mb-0">Ready to use with your own content, or customize it!</p>
+                            <p class="lead mb-0 text-secondary">Ready to use with your own content, or customize it!</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="bi-clipboard-data m-auto text-primary"></i></div>
                             <h4 class="text-danger">Easy Management</h4>
-                            <p class="lead mb-0">You can easily handle your daily Pledges.</p>
+                            <p class="lead mb-0 text-secondary">You can easily handle your daily Pledges.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="bi-bell m-auto text-primary"></i></div>
                             <h4 class="text-danger">Daily Reminders</h4>
-                            <p class="lead mb-0">Receive Daily Notifications of Your Pledges.</p>
+                            <p class="lead mb-0 text-secondary">Receive Daily Notifications of Your Pledges.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="bi-headphones m-auto text-primary"></i></div>
                             <h4 class="text-danger">Full Support</h4>
-                            <p class="lead mb-0">We Offer You Full Customer Support.</p>
+                            <p class="lead mb-0 text-secondary">We Offer You Full Customer Support.</p>
                         </div>
                     </div>
           
@@ -370,13 +370,13 @@
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="#!" class="text-danger"><i class="bi-facebook fs-3"></i></a>
+                                <a href="#!" class="text-secondary"><i class="bi-facebook fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="#!" class="text-danger"><i class="bi-twitter fs-3"></i></a>
+                                <a href="#!" class="text-secondary"><i class="bi-twitter fs-3"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!" class="text-danger"><i class="bi-instagram fs-3"></i></a>
+                                <a href="#!" class="text-secondary"><i class="bi-instagram fs-3"></i></a>
                             </li>
                         </ul>
                     </div>

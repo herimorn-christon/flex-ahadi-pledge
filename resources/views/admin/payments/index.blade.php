@@ -53,6 +53,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Member Name</th>
+                        <th>Member ID</th>
                         <th>Payment Purpose</th>
                         <th>Amount</th>
                         <th>Method</th>
@@ -65,7 +66,8 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->payer->fname }} {{ $item->payer->mname }} {{ $item->payer->lname }}</td>
-                        <td>{{ $item->purpose->name }}</</td>
+                        <td>{{ $item->payer->community->abbreviation }}/{{ $item->payer->id }}</td>
+                        <td>{{ $item->type->title}}</</td>
                         <td>{{ $item->amount }}</td>
                         <td>{{ $item->payment->name }}</td>
                         <td>{{ $item->created_at }}</td>
@@ -73,7 +75,7 @@
                             <a href="{{ url('admin/edit-method/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
                                 <i class="fa fa-edit" aria-hidden="true"></i>
                             </a>
-                            <a href="{{ url('admin/delete-method/'.$item->id)}}" class="btn btn-danger btn-sm">
+                            <a href="{{ url('admin/delete-payment/'.$item->id)}}" class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>

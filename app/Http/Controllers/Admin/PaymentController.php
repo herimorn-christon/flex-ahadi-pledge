@@ -76,4 +76,17 @@ class PaymentController extends Controller
         return redirect('admin/all-payments')->with('status','Payment was Registered Successfully');
     }
 
+    public function destroy($payment_id)
+    {
+        $method=Payment::find($payment_id);
+
+        if($method){
+            $method->delete();
+            return redirect('admin/all-payments')->with('status','Payment was deleted Successfully');
+        }
+        else{
+            return redirect('admin/all-payments')->with('status','No Payment method ID was found !');
+        }
+    }
+
 }

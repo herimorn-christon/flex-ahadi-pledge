@@ -56,6 +56,7 @@
                     <th>ID</th>
                     <th>Member Names</th>
                     <th>Pledge Name</th>
+                    {{-- <th>Purpose</th> --}}
                     <th>Amount</th>
                     <th>Deadline</th>
                     <th>Status</th>
@@ -68,6 +69,7 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->user->fname }} {{ $item->user->mname }} {{ $item->user->lname }}</td>
                     <td>{{ $item->name }}</td>
+                    {{-- <td>{{ $item->purpose->name }}</td> --}}
                     <td>{{ $item->amount }}</td>
                     <td>{{ $item->deadline }}</td>
                     <td class="text-success">{{ $item->status=='1'? 'Inactive':'Active' }}</td>
