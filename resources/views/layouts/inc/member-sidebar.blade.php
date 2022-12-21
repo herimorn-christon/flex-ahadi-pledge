@@ -18,7 +18,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ url('member/dashboard') }}" class="nav-link">
+          <a href="{{ url('member/my-pledges') }}" class="nav-link">
             <i class="nav-icon fas fa-balance-scale"></i>
             <p>
               My Pledges

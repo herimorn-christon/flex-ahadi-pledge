@@ -19,11 +19,11 @@
         </button>  
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
             <i class="fa fa-list"></i>
-             Pledge Types
+            Purposes
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_purpose">
         <i class="fa fa-plus"></i>
-         Add Pledge Type
+         Add Purpose
         </button>
     </li>
        
@@ -149,15 +149,21 @@
               <thead>
                   <tr>
                       <th>ID</th>
-                      <th>Pledge Purpose</th>
+                      <th>Purpose</th>
+                      <th>Start date</th>
+                      <th>End date</th>
+                      <th>Status</th>
                       <th>Actions</th>
                   </tr>
               </thead>
               <tbody>
-                  @foreach ($types as $item)
+                  @foreach ($purposes as $item)
                   <tr>
                       <td>{{ $item->id }}</td>
                       <td>{{ $item->title }}</td>
+                      <td>{{ $item->start_date }}</td>
+                      <td>{{ $item->end_date }}</td>
+                      <td class="text-success">{{ $item->status=='1'? 'Hidden':'Active' }}</td>
                       
 
                       <td>
@@ -260,6 +266,69 @@
   <!-- /.modal-dialog -->
 </div>
 
+{{-- register new purpose --}}
+<div class="modal fade" id="add_purpose">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        {{-- <h4 class="modal-title">Large Modal</h4> --}}
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form action="{{ url('admin/add-purpose') }}" method="post">
+              @csrf
+              <div class="row mb-3">
+               <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="title" class="text-secondary">Title</label>
+                      <input type="text" name="title" id="title" class="form-control" placeholder="Enter Pledge Name">
+                  </div>
+               </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label for="start_date" class="text-secondary">Start Date</label>
+                    <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Enter Pledge Deadline">
+                </div>
+             </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label for="end_date" class="text-secondary">End Date</label>
+                    <input type="date" name="end_date" id="end_date" class="form-control" placeholder="Enter Pledge Deadline">
+                </div>
+             </div>
+             <div class="col-md-12">
+              <div class="form-group">
+                  <label for="description" class="text-secondary">Description</label>
+                  <textarea name="description" class="form-control" id="deadline" rows="4"></textarea>
+              </div>
+           </div>
+               <div class="col-md-12">
+
+                <div class="row">
+
+                  <div class="col-md-3 mb-3">
+                      <label for="" class="text-secondary">Status</label>
+                      <input type="checkbox" name="status" id="">
+                  </div>
+
+                  <div class="col-md-9 ">
+                      <button class="btn btn-primary btn-block float-end" type="submit">
+                        <i class="fa fa-save"></i>
+                        Save Purpose
+                      </button>
+                  </div>
+              </div>
+               </div>
+              </div>
+          </form>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 
 @endsection
 

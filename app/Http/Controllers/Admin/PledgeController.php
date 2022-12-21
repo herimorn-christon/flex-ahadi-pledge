@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Pledge;
+use App\Models\Purpose;
 use App\Models\PledgeType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -17,7 +18,8 @@ class PledgeController extends Controller
     {
         $types=PledgeType::all();
         $pledges=Pledge::all();
-        return view('admin.pledges.index',compact('types','pledges'));
+        $purposes=Purpose::all();
+        return view('admin.pledges.index',compact('types','pledges','purposes'));
     }
 
 

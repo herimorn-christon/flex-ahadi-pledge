@@ -53,6 +53,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
    Route::get('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'edit']);
  //Update Pledge type route  
    Route::put('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'update']);
+ //Create Purpose route  
+   Route::post('add-purpose', [App\Http\Controllers\Admin\PurposeController::class,'save']);
+
 
 // all payments route
    Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
@@ -83,4 +86,7 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
 {
  // setting dashboard route
     Route::get('/dashboard', [App\Http\Controllers\Member\DashboardController::class,'index']);
+
+ // all pledges route
+ Route::get('/my-pledges', [App\Http\Controllers\Member\PledgeController::class,'index']);
 });
