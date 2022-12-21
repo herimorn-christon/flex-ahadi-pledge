@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member;
 
 use App\Models\Pledge;
 use App\Models\Payment;
+use App\Models\Purpose;
 use App\Models\PledgeType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,9 @@ class PledgeController extends Controller
     {
         $types=PledgeType::all();
         $user=Auth::user()->id;
-        $pledges=Payment::where('user_id',$user)->get();
-        return view('member.pledges.index',compact('types','pledges'));
+        $types=PledgeType::all();
+        $purposes=Purpose::all();
+        $pledges=Pledge::where('user_id',$user)->get();
+        return view('member.pledges.index',compact('types','pledges','purposes'));
     }
 }

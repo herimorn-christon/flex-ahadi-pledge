@@ -48,15 +48,15 @@
 
 
         <div class="row">
-            <table id="datatablesSimple" class="table table-bordered responsive">
+            <table id="mytable"  class="table table-bordered responsive">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Member Name</th>
-                        <th>Purpose</th>
+                        <th>Payment Purpose</th>
                         <th>Amount</th>
                         <th>Method</th>
-                        <th>Date</th>
+                        <th>Payment Date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -144,7 +144,7 @@
       <div class="modal-body">
        
         <div class="row">
-          <table id="datatablesSimple" class="table table-bordered ">
+          <table id="mytable"  class="table table-bordered ">
               <thead>
                   <tr>
                       <th>ID</th>

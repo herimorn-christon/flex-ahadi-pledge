@@ -50,7 +50,7 @@
 
         <div class="row">
  
-          <table id="datatablesSimple" class="table table-bordered ">
+          <table id="mytable"  class="table table-bordered ">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -149,7 +149,7 @@
       <div class="modal-body">
        
         <div class="row">
-          <table id="datatablesSimple" class="table table-bordered ">
+          <table id="mytable"  class="table table-bordered ">
               <thead>
                   <tr>
                       <th>ID</th>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Jumuiya;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -50,6 +51,19 @@ class JumuiyaController extends Controller
         return redirect('admin/all-communities')->with('status','Community is Updated Successfully');
     }
 
+
+    // show single community details
+    public function show($id)
+
+    {
+
+        $user = Jumuiya::find($id);
+        $member = User::where('jumuiya',$id)->get();
+  
+
+        return response()->json($user);
+
+    }
         // delete Community function
         public function destroy($jumuiya_id)
         {

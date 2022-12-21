@@ -26,16 +26,21 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
  //  View All Members route
     Route::get('/all-members', [App\Http\Controllers\Admin\MemberController::class,'index']);
 
+// view single member route
+    Route::get('users/{id}', [App\Http\Controllers\Admin\MemberController::class, 'show'])->name('users.show');
+
  // view all communities route
     Route::get('/all-communities', [App\Http\Controllers\Admin\JumuiyaController::class,'index']);
  //Create Commmunity route  
-    Route::post('add-community', [App\Http\Controllers\Admin\JumuiyaController::class,'save']);
+    Route::post('add-community', [App\Http\Controllers\Admin\JumuiyaController::class,'save'])->name('communities.store');
  //Edit Commmunity page route  
     Route::get('edit-community/{jumuiya_id}', [App\Http\Controllers\Admin\JumuiyaController::class,'edit']);
  //Update Commmunity route  
    Route::put('edit-community/{jumuiya_id}', [App\Http\Controllers\Admin\JumuiyaController::class,'update']);
  // delete community route
    Route::get('delete-community/{jumuiya_id}', [App\Http\Controllers\Admin\JumuiyaController::class,'destroy']);
+// view single Community route
+   Route::get('community/{id}', [App\Http\Controllers\Admin\JumuiyaController::class, 'show'])->name('community.show');
 
  // all pledges route
    Route::get('/all-pledges', [App\Http\Controllers\Admin\PledgeController::class,'index']);
