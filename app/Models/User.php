@@ -22,11 +22,16 @@ class User extends Authenticatable
         'fname',
         'mname',
         'lname',
+        'profile_picture',
+        'date_of_birth',
+        'gender',
+        'phone',
+        'disabled',
         'email',
-        'phone', 
-        'password',
+        'role_id',
         'jumuiya',
-
+        'password',
+        'status',
         
     ];
 

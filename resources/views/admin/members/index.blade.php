@@ -28,6 +28,8 @@
                         <th>Full Name</th>
                         <th>Community (Jumuiya)</th>
                         <th>Phone Number</th>
+                        <th>Gender</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -43,6 +45,10 @@
                         <td>
                             {{ $item->phone }}
                         </td>
+                        <td>
+                            {{ $item->gender }}
+                        </td>
+                        <td class="text-success">{{ $item->status=='1'? 'Disabled':'Active' }}</td>
                         <td>
                             <a href="{{ url('admin/view-course/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
                                 <i class="fa fa-eye" aria-hidden="true"></i>

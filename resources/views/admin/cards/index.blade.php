@@ -8,7 +8,11 @@
 
 <div class="row mb-1">
     <div class="col-sm-6">
-      {{-- <h1 class="m-0">Dashboard</h1> --}}
+      @if (session('status'))
+      <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
+          {{ session('status') }}
+      </div>
+      @endif
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
@@ -27,11 +31,7 @@
       
     </div><!-- /.col -->
   </div>
-  @if (session('status'))
-  <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
-      {{ session('status') }}
-  </div>
-  @endif
+
 <div class="card mt-1">
     <div class="card-header bg-light">
         <h6 class="text-light">

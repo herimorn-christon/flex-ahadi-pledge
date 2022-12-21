@@ -70,7 +70,7 @@
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->amount }}</td>
                     <td>{{ $item->deadline }}</td>
-                    <td class="text-success">{{ $item->status=='1'? 'Hidden':'Active' }}</td>
+                    <td class="text-success">{{ $item->status=='1'? 'Inactive':'Active' }}</td>
 
                     <td>
                        <a href="{{ url('admin/view-pledge/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">

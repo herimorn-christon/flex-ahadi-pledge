@@ -20,11 +20,15 @@ class CreateUsersTable extends Migration
             $table->string('lname');
             $table->integer('jumuiya')->nullable();
             $table->string('phone')->unique();
-            $table->string('email')->nullable();
+            $table->string('profile_picture')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->dateTime('date_of_birth');
+            $table->string('gender');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            $table->timestamps();        
+            $table->tinyInteger('status')->default('0');
         });
     }
 
