@@ -8,7 +8,11 @@
 
 <div class="row mb-1">
     <div class="col-sm-6">
-      {{-- <h1 class="m-0">Dashboard</h1> --}}
+      @if (session('status'))
+      <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
+          {{ session('status') }}
+      </div>
+      @endif
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
@@ -24,11 +28,7 @@
       
     </div><!-- /.col -->
   </div>
-  @if (session('status'))
-  <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
-      {{ session('status') }}
-  </div>
-  @endif
+
 <div class="card mt-1">
     <div class="card-header bg-light">
         <h6 class="text-light">
@@ -45,7 +45,9 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Community Name</th>
+                        <th>Jumuiya Name</th>
+                        <th>Abbreviation</th>
+                        <th>Location</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -54,7 +56,8 @@
                     <tr>
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->name }}</td>
-                        
+                        <td>{{ $item->abbreviation }}</td>
+                        <td>{{ $item->location }}</td>                        
 
                         <td>
                             <a href="{{ url('admin/view-community/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
@@ -102,6 +105,18 @@
                         <input type="text" name="name" id="name" class="form-control" placeholder="Enter Community Name">
                     </div>
                  </div>
+                 <div class="col-md-12">
+                  <div class="form-group">
+                      <label for="abbreviation" class="text-secondary">Abbreviation</label>
+                      <input type="text" name="abbreviation" id="abbreviation" class="form-control" placeholder="Enter Abbreviation">
+                  </div>
+               </div>
+               <div class="col-md-12">
+                <div class="form-group">
+                    <label for="location" class="text-secondary">Location</label>
+                    <input type="text" name="location" id="location" class="form-control" placeholder="Enter Location">
+                </div>
+                </div>
                  <div class="col-md-12">
                     <div class="form-group">
                      

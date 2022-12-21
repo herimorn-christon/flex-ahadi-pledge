@@ -28,13 +28,21 @@ class pledgesFormRequest extends FormRequest
                 'required',
                 'integer'
             ],
+            'purpose_id'=>[
+                'required',
+                'integer'
+            ],
+            'user_id'=>[
+                'required',
+                'integer'
+            ],
             'name'=>[
                 'required',
                 'string',
                 'max:200'
             ],
             'amount'=>[
-                'required'
+                'nullable'
             ],
             'deadline'=>[
                 'required'

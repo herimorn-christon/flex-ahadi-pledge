@@ -28,7 +28,17 @@ class jumuiyaFormRequest extends FormRequest
                 'required',
                 'string',
                 'max:200'
-            ]       
+            ], 
+            'abbreviation'=>[
+                'required',
+                'string',
+                'max:200'
+            ], 
+            'location'=>[
+                'required',
+                'string',
+                'max:200'
+            ]      
         ];
 
         return $rules;

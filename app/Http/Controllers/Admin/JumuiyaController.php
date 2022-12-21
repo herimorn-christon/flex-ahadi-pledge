@@ -22,6 +22,8 @@ class JumuiyaController extends Controller
         $data=$request->validated();
         $jumuiya =new Jumuiya;
         $jumuiya->name=$data['name'];
+        $jumuiya->location=$data['location'];
+        $jumuiya->abbreviation=$data['abbreviation'];
         $jumuiya->save();
 
         return redirect('admin/all-communities')->with('status','Community Added Successfully');
@@ -40,6 +42,8 @@ class JumuiyaController extends Controller
         $data=$request->validated();
         $jumuiya =Jumuiya::find($jumuiya_id);
         $jumuiya->name=$data['name'];
+        $jumuiya->location=$data['location'];
+        $jumuiya->abbreviation=$data['abbreviation'];
         // saving data
         $jumuiya->update();
 

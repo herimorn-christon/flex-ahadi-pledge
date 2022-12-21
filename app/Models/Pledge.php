@@ -12,6 +12,8 @@ class Pledge extends Model
     protected $table= 'pledges';
     protected $fillable = [
         'type_id',
+        'user_id',
+        'purpose_id',
         'name',
         'amount',
         'description',
@@ -29,6 +31,6 @@ class Pledge extends Model
     // for relationship
     public function user()
     {
-        return $this->belongsTo(User::class, 'created_by','id');
+        return $this->belongsTo(User::class, 'user_id','id');
     }
 }

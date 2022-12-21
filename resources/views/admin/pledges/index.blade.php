@@ -8,7 +8,11 @@
 
 <div class="row mb-1">
     <div class="col-sm-6">
-      {{-- <h1 class="m-0">Dashboard</h1> --}}
+      @if (session('status'))
+      <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
+          {{ session('status') }}
+      </div>
+      @endif
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
@@ -31,11 +35,7 @@
       
     </div><!-- /.col -->
   </div>
-  @if (session('status'))
-  <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
-      {{ session('status') }}
-  </div>
-  @endif
+
 <div class="card mt-1">
     <div class="card-header bg-light">
         <h6 class="text-light">
@@ -54,7 +54,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Member Names</th>
                     <th>Pledge Name</th>
+                    <th>Amount</th>
                     <th>Deadline</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -64,7 +66,9 @@
                 @foreach ($pledges as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
+                    <td>{{ $item->user->fname }} {{ $item->user->mname }} {{ $item->user->lname }}</td>
                     <td>{{ $item->name }}</td>
+                    <td>{{ $item->amount }}</td>
                     <td>{{ $item->deadline }}</td>
                     <td class="text-success">{{ $item->status=='1'? 'Hidden':'Active' }}</td>
 
@@ -207,12 +211,37 @@
           <form action="{{ url('admin/save-pledge') }}" method="post">
               @csrf
               <div class="row mb-3">
+                @php
+                $jumuiya= App\Models\User::where('role','member')->get();
+                @endphp
+                <div class="col-md-6">
+                    <label for="" class="text-secondary">Payer</label>
+                    <select name="user_id" class="form-control">
+                        <option value="">--Select Member --</option>
+                        @foreach ( $jumuiya as $item)
+                         <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <div class="col-md-6">
                     <label for="" class="text-secondary">Pledge Type</label>
                     <select name="type_id" class="form-control">
                         <option value="">--Select Pledge Type --</option>
                         @foreach ( $types as $item)
                          <option value="{{ $item->id}}">{{ $item->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @php
+                $purpose= App\Models\Purpose::where('status','')->get();
+                @endphp
+                <div class="col-md-6">
+                    <label for="" class="text-secondary">Pledge Purpose</label>
+                    <select name="purpose_id" class="form-control">
+                        <option value="">--Select Purpose --</option>
+                        @foreach ( $purpose as $item)
+                         <option value="{{ $item->id}}"> {{ $item->title}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -244,12 +273,12 @@
 
                 <div class="row">
 
-                  <div class="col-md-3 mb-3">
+                  <div class="col-md-6 mb-3">
                       <label for="" class="text-secondary">Status</label>
                       <input type="checkbox" name="status" id="">
                   </div>
 
-                  <div class="col-md-9 ">
+                  <div class="col-md-6 ">
                       <button class="btn btn-primary btn-block float-end" type="submit">
                         <i class="fa fa-save"></i>
                         Save Pledge 
@@ -308,12 +337,12 @@
 
                 <div class="row">
 
-                  <div class="col-md-3 mb-3">
+                  <div class="col-md-6 mb-3">
                       <label for="" class="text-secondary">Status</label>
                       <input type="checkbox" name="status" id="">
                   </div>
 
-                  <div class="col-md-9 ">
+                  <div class="col-md-6 ">
                       <button class="btn btn-primary btn-block float-end" type="submit">
                         <i class="fa fa-save"></i>
                         Save Purpose

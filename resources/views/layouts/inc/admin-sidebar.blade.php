@@ -29,7 +29,7 @@
             <a href="{{ url('admin/all-communities') }}" class="nav-link  {{ Request::is('admin/all-communities') ? 'active':'' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
-                Manage Communities
+                Manage Jumuiya
               </p>
             </a>
           </li>
@@ -37,7 +37,7 @@
           <a href="{{ url('admin/all-pledges') }}" class="nav-link  {{ Request::is('admin/all-pledges') ? 'active':'' }}">
             <i class="nav-icon fas fa-balance-scale"></i>
             <p>
-              Manage Contributions
+              Manage Ahadis
             </p>
           </a>
         </li>

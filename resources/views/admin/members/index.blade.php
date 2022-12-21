@@ -24,7 +24,7 @@
             <table id="datatablesSimple" class="table table-bordered ">
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>Member ID</th>
                         <th>Full Name</th>
                         <th>Community (Jumuiya)</th>
                         <th>Phone Number</th>
@@ -34,7 +34,7 @@
                 <tbody>
                     @foreach ($users as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->community->abbreviation }}/{{ $item->id }}</td>
                         <td>{{ $item->fname }} &nbsp; {{ $item->mname }} &nbsp;  {{ $item->lname }}</td>
                        
                         <td>

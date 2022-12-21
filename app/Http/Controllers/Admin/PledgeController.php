@@ -76,6 +76,8 @@ public function destroyType($type)
         $pledge->description=$data['description'];
         $pledge->deadline=$data['deadline'];
         $pledge->type_id=$data['type_id'];
+        $pledge->purpose_id=$data['purpose_id'];
+        $pledge->user_id=$data['user_id'];
         $pledge->status= $request->status == true ? '1':'0';
         $pledge->created_by= Auth::user()->id;
         $pledge->save();

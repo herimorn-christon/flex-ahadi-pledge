@@ -16,6 +16,8 @@ class CreateJumuiyaTable extends Migration
         Schema::create('jumuiya', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('location');
+            $table->string('abbreviation');
             $table->timestamps();
         });
     }

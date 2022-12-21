@@ -12,6 +12,8 @@ class Jumuiya extends Model
 
     protected $fillable=[
         'name',
+        'location',
+        'abbreviation'
  
     ];
 

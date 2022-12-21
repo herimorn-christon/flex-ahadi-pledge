@@ -16,9 +16,11 @@ class CreatePledgesTable extends Migration
         Schema::create('pledges', function (Blueprint $table) {
             $table->id();
             $table->integer('type_id');
+            $table->integer('purpose_id');
+            $table->integer('user_id');
             $table->string('name');
             $table->mediumText('description');
-            $table->string('amount');
+            $table->string('amount')->nullable();
             $table->date('deadline');
             $table->tinyInteger('status')->default('0');
             $table->integer('created_by');

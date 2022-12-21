@@ -33,20 +33,21 @@
       {{ session('status') }}
   </div>
   @endif
-<div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-            {{-- <a href="{{url('admin/add-course')}}" class="btn btn-danger btn-sm float-end"> Add Course</a> --}}
-        </h6>
-    </div>
-    <div class="card-body">
+
 
 
 
 
         <div class="row">
 
-          <div class="col-7 mx-auto">
+          <div class="col-8 mx-auto">
+            <div class="card mt-1">
+              <div class="card-header bg-light">
+                  <h6 class="text-light">
+                      {{-- <a href="{{url('admin/add-course')}}" class="btn btn-danger btn-sm float-end"> Add Course</a> --}}
+                  </h6>
+              </div>
+              <div class="card-body">
                     {{--displaying all the errors  --}}
                     @if ($errors->any())
                     <div class="alert alert-danger">
@@ -60,13 +61,24 @@
                     @method('PUT')
                     <div class="col-lg-12 mb-3">
                         <div class="form-group">
-                            <label for="">Community Name</label>
+                            <label for="" class="text-secondary">Community Name</label>
                             <input name="name" type="text" value="{{ $community->name}}" class="form-control">
                         </div>
                     </div>
                     
-
-                        <div class="col-md-12">
+                    <div class="col-lg-12 mb-3">
+                      <div class="form-group">
+                          <label for="" class="text-secondary">Location</label>
+                          <input name="location" type="text" value="{{ $community->location}}" class="form-control">
+                      </div>
+                    </div>
+                    <div class="col-lg-12 mb-3">
+                      <div class="form-group">
+                          <label for="" class="text-secondary">Abbreviation</label>
+                          <input name="abbreviation" type="text" value="{{ $community->abbreviation}}" class="form-control">
+                      </div>
+                   </div>
+                        <div class="col-md-6">
                             <button class="btn btn-primary btn-block" type="submit">
                                 <i class="fa fa-save"></i>
                                 Update Community
