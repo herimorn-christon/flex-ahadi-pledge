@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCardsTable extends Migration
+class CardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,10 @@ class CreateCardsTable extends Migration
     public function up()
     {
         Schema::create('cards', function (Blueprint $table) {
-            $table->id();
-            $table->string('card_no');
-            $table->string('membership_no')->nullable();
+            $table->id();           
+            $table->string('card_no')->unique();
+            $table->tinyInteger('status')->default('0');            
+            $table->integer('created_by');
             $table->timestamps();
         });
     }

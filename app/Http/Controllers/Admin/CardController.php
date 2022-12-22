@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Card;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\cardFormRequest;
 
 class CardController extends Controller
@@ -21,7 +22,7 @@ class CardController extends Controller
         $data=$request->validated();
         $card =new Card;
         $card->card_no=$data['card_no'];
-        $card->membership_no=$data['membership_no'];
+        $card->created_by= Auth::user()->id;
         $card->save();
 
         return redirect('admin/all-cards')->with('status','Card was Created Successfully');

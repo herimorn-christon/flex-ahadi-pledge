@@ -28,4 +28,7 @@ class HomeController extends Controller
         $jumuiya=Jumuiya::all();
         return view('welcome',compact('jumuiya'));
     }
+    
 }
+
+

@@ -13,7 +13,8 @@ class Card extends Model
     protected $table= 'cards';
     protected $fillable = [
         'card_no',
-        'membership_no',
+        'status',
+        'created_by'
     ];
 
 

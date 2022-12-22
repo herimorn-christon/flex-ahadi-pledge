@@ -105,12 +105,6 @@
                  </div>
                  <div class="col-md-12">
                     <div class="form-group">
-                        <label for="membership_no" class="text-secondary">Membership Number</label>
-                        <input type="text" name="membership_no" id="membership_no" class="form-control" placeholder="Enter Member Number">
-                    </div>
-                 </div>
-                 <div class="col-md-12">
-                    <div class="form-group">
                      
                         <button type="submit" class="btn btn-primary">
                             <i class="fa fa-save"></i>

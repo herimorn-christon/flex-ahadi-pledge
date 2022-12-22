@@ -60,16 +60,9 @@
                         <td>{{ $item->location }}</td>                        
 
                         <td>
-                            <a 
-
-                            href="javascript:void(0)" 
-    
-                            id="show-community" 
-    
-                            data-url="{{ route('community.show', $item->id) }}" 
+                            <a href="{{ url('admin/view-community/'.$item->id)}}" 
     
                             class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#userShowModal"
                             >
                         <i class="fa fa-eye"></i>
                           </a>
@@ -127,10 +120,11 @@
                     <input type="text" name="location" id="location" class="form-control" placeholder="Enter Location">
                 </div>
                 </div>
-                 <div class="col-md-12">
+                <div class="col-md-6"></div>
+                 <div class="col-md-6">
                     <div class="form-group">
                      
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-block">
                             <i class="fa fa-save"></i>
                             Save Community
                         </button>

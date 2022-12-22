@@ -58,14 +58,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/notifications') }}" class="nav-link {{ Request::is('admin/notifications') ? 'active':'' }}">
-              <i class="nav-icon fas fa-bell"></i>
-              <p>
-                Manage Notifications
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
             <a href="{{ url('member/dashboard') }}" class="nav-link">
               <i class="nav-icon fas fa-folder"></i>
               <p>

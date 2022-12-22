@@ -43,7 +43,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
  // delete community route
    Route::get('delete-community/{jumuiya_id}', [App\Http\Controllers\Admin\JumuiyaController::class,'destroy']);
 // view single Community route
-   Route::get('community/{id}', [App\Http\Controllers\Admin\JumuiyaController::class, 'show'])->name('community.show');
+   Route::get('view-community/{id}', [App\Http\Controllers\Admin\JumuiyaController::class, 'show'])->name('community.show');
 
  // all pledges route
    Route::get('/all-pledges', [App\Http\Controllers\Admin\PledgeController::class,'index']);
@@ -106,6 +106,9 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
 
  // my-pledges route
  Route::get('/my-pledges', [App\Http\Controllers\Member\PledgeController::class,'index']);
+
+  //Create Pledge Route
+  Route::post('save-pledge', [App\Http\Controllers\Member\PledgeController::class,'save']);
 
  // my-payments
  Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);

@@ -57,12 +57,11 @@ class JumuiyaController extends Controller
 
     {
 
-        $user = Jumuiya::find($id);
-        $member = User::where('jumuiya',$id)->get();
+        $community = Jumuiya::where('id',$id)->get();
+        $members = User::where('jumuiya',$id)->where('role','member')->get();
   
 
-        return response()->json($user);
-
+        return view('admin.jumuiya.detail',compact('community','members'));
     }
         // delete Community function
         public function destroy($jumuiya_id)

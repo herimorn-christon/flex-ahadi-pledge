@@ -27,10 +27,7 @@ class cardFormRequest extends FormRequest
             'card_no'=>[
                 'required',
                 'max:200'
-            ],
-            'membership_no'=>[
-                'required',
-            ]   
+            ] 
         ];
 
         return $rules;
