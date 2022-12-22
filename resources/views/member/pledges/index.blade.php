@@ -52,7 +52,6 @@
                 <tr>
                     <th>ID</th>
                     <th>Pledge Name</th>
-                    <th>Description</th>
                     <th>Amount</th>
                     <th>Deadline</th>
                     <th>Status</th>
@@ -64,7 +63,6 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
-                    <td>{{ $item->description }}</td>
                     <td>{{ $item->amount }}</td>
                     <td>{{ $item->deadline }}</td>
                     <td class="text-success">{{ $item->status=='1'? 'Inactive':'Active' }}</td>
@@ -76,9 +74,6 @@
                         <a href="{{ url('admin/edit-pledge/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>
-                        {{-- <a href="{{ url('admin/delete-type/'.$item->id)}}" class="btn btn-danger btn-sm">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a> --}}
                     </td>
                 </tr>
                 @endforeach

@@ -4,7 +4,28 @@
 
 
 @section('content')
-<div class="card mt-4">
+<div class="row mb-1">
+  <div class="col-sm-6">
+    @if (session('status'))
+    <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
+        {{ session('status') }}
+    </div>
+    @endif
+  </div><!-- /.col -->
+  <div class="col-sm-6">
+    <ol class="breadcrumb float-sm-right">
+      <li class="">  
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_pledge">
+          <i class="fa fa-user-plus"></i>
+           Register Member
+      </button>  
+  </li>
+     
+    </ol>
+    
+  </div><!-- /.col -->
+</div>
+<div class="card mt-1">
     <div class="card-header bg-light">
         <h6 class="text-light">
             {{-- All Members --}}
@@ -12,11 +33,7 @@
         </h6>
     </div>
     <div class="card-body">
-        @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-            @endif
+
 
 
 

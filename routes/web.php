@@ -75,7 +75,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
  //Create Payment Route
    Route::post('add-payment', [App\Http\Controllers\Admin\PaymentController::class,'save']);
  //Delete Payment method Route  
- Route::get('delete-payment/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroy']);
+  Route::get('delete-payment/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroy']);
 
 // all cards route
   Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
@@ -87,6 +87,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::put('edit-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'update']);
 //Delete Card method Route  
   Route::get('delete-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'destroy']);
+
+ // my-profile
+  Route::get('/my-profile', [App\Http\Controllers\Admin\ProfileController::class,'index']);
 });
 // for Member
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()
@@ -100,6 +103,6 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
  // my-payments
  Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
 
- // my-payments
+ // my-profile
  Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });

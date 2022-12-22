@@ -1,6 +1,6 @@
-@extends('layouts.member')
+@extends('layouts.master')
 
-@section('title','All Communities')
+@section('title','My Profile')
 
 
 @section('content')
