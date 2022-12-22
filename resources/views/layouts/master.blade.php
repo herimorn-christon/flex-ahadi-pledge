@@ -50,7 +50,7 @@
   <!-- Preloader -->
 
   <!-- Navbar -->
-  @include('layouts.inc.member-navbar')
+  @include('layouts.inc.admin-navbar')
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->

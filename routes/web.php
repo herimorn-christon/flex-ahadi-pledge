@@ -99,4 +99,7 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
 
  // my-payments
  Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
+
+ // my-payments
+ Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });
