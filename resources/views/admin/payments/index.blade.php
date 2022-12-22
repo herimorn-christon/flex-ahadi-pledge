@@ -67,7 +67,7 @@
                         <td>{{ $item->id }}</td>
                         <td>{{ $item->payer->fname }} {{ $item->payer->mname }} {{ $item->payer->lname }}</td>
                         <td>{{ $item->payer->community->abbreviation }}/{{ $item->payer->id }}</td>
-                        <td>{{ $item->type->title}}</</td>
+                        <td>{{ $item->purpose->title}}</</td>
                         <td>{{ $item->amount }}</td>
                         <td>{{ $item->payment->name }}</td>
                         <td>{{ $item->created_at }}</td>
@@ -190,7 +190,7 @@
 {{-- Register Payment Modal --}}
 
 <div class="modal fade" id="add_payment">
-    <div class="modal-dialog ">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title"></h4>
@@ -207,20 +207,21 @@
                     @php
                     $jumuiya= App\Models\User::where('role','member')->get();
                     @endphp
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="" class="text-secondary">Payer</label>
                         <select name="user_id" class="form-control">
                             <option value="">--Select Member --</option>
                             @foreach ( $jumuiya as $item)
                              <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
-                            @endforeach
+                             @endforeach
                         </select>
                     </div>
 
                     @php
+                    
                     $purpose= App\Models\Purpose::where('status','')->get();
                     @endphp
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="" class="text-secondary">Payment Purpose</label>
                         <select name="pledge_id" class="form-control">
                             <option value="">--Select Purpose --</option>
@@ -230,11 +231,11 @@
                         </select>
                     </div>
 
-
+     
                     @php
                     $purpose= App\Models\PaymentType::get();
                     @endphp
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="" class="text-secondary">Payment Method</label>
                         <select name="type_id" class="form-control">
                             <option value="">--Select Payment Method --</option>
@@ -243,7 +244,7 @@
                             @endforeach
                         </select>
                     </div>
-                 <div class="col-md-12">
+                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="amount" class="text-secondary">Paid Amount </label>
                         <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Payment Amount">

@@ -15,7 +15,7 @@
   <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
       <li class="">  
-      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_pledge">
+      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#registerModal">
           <i class="fa fa-user-plus"></i>
            Register Member
       </button>  
@@ -69,21 +69,16 @@
                         <td>
                             <a 
 
-                            href="javascript:void(0)" 
-    
-                            id="show-user" 
-    
-                            data-url="{{ route('users.show', $item->id) }}" 
+                            href="{{ url('admin/view-member/'.$item->id)}}" 
     
                             class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#userShowModal"
                             >
                         <i class="fa fa-eye"></i>
                           </a>
-                            <a href="{{ url('admin/edit-course/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
+                            <a href="{{ url('admin/edit-member/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
                                 <i class="fa fa-edit" aria-hidden="true"></i>
                             </a>
-                            <a href="{{ url('admin/delete-course/'.$item->id)}}" class="btn btn-danger btn-sm">
+                            <a href="{{ url('admin/delete-member/'.$item->id)}}" class="btn btn-danger btn-sm">
                                 <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>
@@ -102,98 +97,147 @@
 
 
 
-<!--View User Modal -->
+  <!-- Register User Modal  -->
 
-<div class="modal fade" id="userShowModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog modal-lg">
-  
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:1250px;">
       <div class="modal-content">
-  
-        <div class="modal-header">
-  
-          <h5 class="modal-title" id="exampleModalLabel">Show User</h5>
-  
+        <div class="modal-header bg-light">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-  
         </div>
-  
         <div class="modal-body">
-  
-          <p><strong>ID:</strong> <span id="user-id"></span></p>
-  
-          <p><strong>Full Name:</strong> <span id="user-fname"></span>  <span id="user-mname"></span></p>
-  
-          <p><strong>Birthdate:</strong> <span id="user-dob"></span></p>
-  
+            <form method="POST" action="{{ url('admin/add-member') }}">
+                @csrf
+                <div class="row">
+                <div class="mb-3 col-md-6">
+                    <label for="fname" class="text-secondary">{{ __('First Name') }}</label>
+
+                    <div class="form-group">
+                        <input id="fname" type="text" placeholder="Enter First Name" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+
+                        @error('fname')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label for="mname" class="text-secondary">{{ __('Middle Name') }}</label>
+
+                    <div class="">
+                        <input id="mname" type="text" placeholder="Enter Middle Name" class="form-control @error('mname') is-invalid @enderror" name="mname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+
+                        @error('mname')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lname" class="text-secondary">{{ __('Last Name') }}</label>
+
+                    <div class="form-group">
+                        <input id="lname" type="text" placeholder="Enter Last Name" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
+
+                        @error('lname')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <label for="phone" class="form-label text-secondary ">{{ __('phone') }}</label>
+
+                    <div class="form-group">
+                        <input id="phone" type="text" placeholder="Enter Phone Number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+
+        
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <label for="email" class="text-secondary">{{ __('Email Address') }}</label>
+
+                    <div class="form-group">
+                        <input id="email" type="email" placeholder="Enter Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
+        
+                    </div>
+                </div>
+
+                @php
+                $jumuiya= App\Models\Jumuiya::get();
+                @endphp
+                <div class="col-md-6">
+                    <label for="" class="text-secondary">Jumuiya (Community) </label>
+                    <select name="jumuiya" class="form-control">
+                        <option value="">--Select Community (Jumuiya) --</option>
+                        @foreach ( $jumuiya as $item)
+                         <option value="{{ $item->id}}">{{ $item->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-lg-6">
+                    <label for="card_no" class="text-secondary">Birthdate</label>
+                    <div class="form-group form-primary mb-3"> 
+                        <input id="password" type="date" class="form-control" name="date_of_birth" placeholder="" > </div>
+                </div>
+
+            <div class="col-lg-6">
+                <label for="gender" class="text-secondary">Gender</label>
+                <div class="row mx-1 ">
+                    
+                  <div class="col-md-4 form-check form-check-inline"><input type="radio" id="male"   name="gender" value="male" class="form-check-input">
+                    <label class="form-check-label" for="male" >Male</label></div>
+                  <div class="col-md-4 form-check form-check-inline"><input type="radio" id="female"  name="gender" value="female" class="form-check-input">
+                    <label class="form-check-label" for="female">Female</label></div>
+                </div>
+            
+            </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="password" class="text-secondary">{{ __('Password') }}</label>
+
+                    <div class="form-group">
+                        <input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-6 mb-3 text-secondary">
+                    <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
+
+                    <div class="form-group">
+                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-0 ">
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-block text-decoration-none text-light bg-primary btn-block col-lg-12">
+                                {{ __('Save Member') }}
+                            </button>
+                        </div>
+                    </div>
+     
+                </div>
+            </div>
+            </form>
         </div>
-  
-        <div class="modal-footer">
-  
-          <button type="button" class="btn btn-danger" data-dismiss="modal" aria-label="Close">Close</button>
-  
-        </div>
-  
+    
       </div>
-  
     </div>
-  
   </div>
-
-
-  <script type="text/javascript">
-
-      
-
-    $(document).ready(function () {
-
-       
-
-       /* When click show user */
-
-        $('body').on('click', '#show-user', function () {
-
-          var userURL = $(this).data('url');
-
-          $.get(userURL, function (data) {
-
-              $('#userShowModal').modal('show');
-
-              $('#user-id').text(data.id);
-
-              $('#user-fname').text(data.fname);
-              $('#user-mname').text(data.mname);
-
-              $('#user-dob').text(data.date_of_birth);
-
-          })
-
-       });
-
-       
-
-    });
-
-  
-
-</script>
-<script>
-    $(function () {
-      $("#example1").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-      $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-      });
-    });
-  </script>
 @endsection

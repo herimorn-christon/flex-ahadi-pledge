@@ -24,7 +24,7 @@ class Payment extends Model
     }
     public function purpose()
     {
-        return $this->belongsTo(Pledge::class, 'pledge_id','id');
+        return $this->belongsTo(Purpose::class, 'pledge_id','id');
     }
 
     public function payer()

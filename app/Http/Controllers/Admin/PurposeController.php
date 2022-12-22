@@ -10,7 +10,7 @@ use App\Http\Requests\Admin\purposesFormRequest;
 
 class PurposeController extends Controller
 {
-    // saving pledge  function
+    // saving purpose  function
     public function save(purposesFormRequest $request)
     {
         $data=$request->validated();
@@ -25,5 +25,19 @@ class PurposeController extends Controller
 
         return redirect('admin/all-pledges')->with('status','Purpose was Added Successfully');
     }
+
+        // delete  purpose  function
+        public function destroy($id)
+        {
+            $purpose=Purpose::find($id);
+    
+            if($purpose){
+                $purpose->delete();
+                return redirect('admin/all-pledges')->with('status','Purpose was deleted Successfully');
+            }
+            else{
+                return redirect('admin/all-pledges')->with('status','No Purpose ID was found !');
+            }
+        }
 
 }

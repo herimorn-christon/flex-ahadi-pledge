@@ -25,9 +25,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class,'index']);
  //  View All Members route
     Route::get('/all-members', [App\Http\Controllers\Admin\MemberController::class,'index']);
-
+ // Register Member method route  
+    Route::post('add-member', [App\Http\Controllers\Admin\MemberController::class,'create']);
+ // Delete Member method route  
+    Route::get('delete-member/{id}', [App\Http\Controllers\Admin\MemberController::class,'destroy']);
 // view single member route
-    Route::get('users/{id}', [App\Http\Controllers\Admin\MemberController::class, 'show'])->name('users.show');
+    Route::get('view-member/{id}', [App\Http\Controllers\Admin\MemberController::class, 'show'])->name('users.show');
 
  // view all communities route
     Route::get('/all-communities', [App\Http\Controllers\Admin\JumuiyaController::class,'index']);
@@ -58,8 +61,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
    Route::get('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'edit']);
  //Update Pledge type route  
    Route::put('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'update']);
+ // Delete Member method route  
+    Route::get('delete-pledge/{id}', [App\Http\Controllers\Admin\PledgeController::class,'destroy']);
  //Create Purpose route  
    Route::post('add-purpose', [App\Http\Controllers\Admin\PurposeController::class,'save']);
+ // Delete Member method route  
+ Route::get('delete-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'destroy']);
 
 
 // all payments route

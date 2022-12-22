@@ -109,4 +109,19 @@ public function destroyType($type)
 
         return redirect('admin/all-pledges')->with('status','Pledge was Updated Successfully');
     }
+
+
+    // delete  pledge  function
+    public function destroy($id)
+    {
+        $pledge=Pledge::find($id);
+
+        if($pledge){
+            $pledge->delete();
+            return redirect('admin/all-pledges')->with('status','Pledge was deleted Successfully');
+        }
+        else{
+            return redirect('admin/all-pledges')->with('status','No Pledge ID was found !');
+        }
+    }
 }

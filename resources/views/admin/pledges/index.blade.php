@@ -81,7 +81,7 @@
                         <a href="{{ url('admin/edit-pledge/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>
-                        <a href="{{ url('admin/delete-type/'.$item->id)}}" class="btn btn-danger btn-sm">
+                        <a href="{{ url('admin/delete-pledge/'.$item->id)}}" class="btn btn-danger btn-sm">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
                     </td>
@@ -173,10 +173,10 @@
                       
 
                       <td>
-                          <a href="{{ url('admin/edit-type/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
+                          <a href="{{ url('admin/edit-purpose/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
                               <i class="fa fa-edit" aria-hidden="true"></i>
                           </a>
-                          <a href="{{ url('admin/delete-type/'.$item->id)}}" class="btn btn-danger btn-sm">
+                          <a href="{{ url('admin/delete-purpose/'.$item->id)}}" class="btn btn-danger btn-sm">
                               <i class="fa fa-trash" aria-hidden="true"></i>
                           </a>
                       </td>

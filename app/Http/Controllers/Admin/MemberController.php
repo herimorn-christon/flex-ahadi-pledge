@@ -3,15 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Pledge;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Admin\memberFormRequest;
 
 class MemberController extends Controller
 {
     // for index function
     public function index()
     {
-        $users=User::all()->where('role','member');
+        $users=User::where('role','member')->get();
         return view('admin.members.index',compact('users'));
     }
 
@@ -20,11 +24,12 @@ class MemberController extends Controller
 
     {
 
-        $user = User::find($id);
+        $user = User::where('id',$id)->get();
+        $payments = Payment::where('user_id',$id)->get();
+        $pledges= Pledge::where('user_id',$id)->get();
 
   
-
-        return response()->json($user);
+        return view('admin.members.profile',compact('user','payments','pledges'));
 
     }
 
@@ -53,4 +58,36 @@ class MemberController extends Controller
         return json_encode(array('statusCode'=>200));
       
     }
+
+    public function create(memberFormRequest $request)
+    {
+        $data=$request->validated();
+        $user =new User;
+        $user->fname=$data['fname'];
+        $user->mname=$data['mname'];
+        $user->lname=$data['lname'];
+        $user->email=$data['email'];
+        $user->phone=$data['phone'];
+        $user->gender=$data['gender'];
+        $user->date_of_birth=$data['date_of_birth'];
+        $user->jumuiya=$data['jumuiya'];
+        $user->password= Hash::make($data['password']);
+        $user->save();
+
+        return redirect('admin/all-members')->with('status','Member was Registered Successfully');
+    }
+
+        // delete Member function
+        public function destroy($id)
+        {
+            $user=User::find($id);
+
+            if($user){
+                $user->delete();
+                return redirect('admin/all-members')->with('status','Member was deleted Successfully');
+            }
+            else{
+                return redirect('admin/all-members')->with('status','No Member ID was found !');
+            }
+        }
 }
