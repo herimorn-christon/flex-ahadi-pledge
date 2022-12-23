@@ -59,7 +59,7 @@ class MemberController extends Controller
         
         $userData->save();
        
-        return json_encode(array('statusCode'=>200));
+        return redirect('admin/all-members')->with('status','Member was Updated Successfully');
       
     }
 

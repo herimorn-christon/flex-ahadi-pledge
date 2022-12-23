@@ -14,14 +14,10 @@
       <ol class="breadcrumb float-sm-right">
         <li class="">    
 
-        <a href="{{ url('admin/all-pledges') }}" class="btn btn-primary btn-sm"> 
+        <a href="{{ url('admin/all-members') }}" class="btn btn-primary btn-sm"> 
         <i class="fa fa-list"></i>
-        All Pledges
+        All Members
         </a>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal-lg">
-        <i class="fa fa-plus"></i>
-         Add Pledge
-        </button>
     </li>
        
       </ol>
@@ -38,7 +34,7 @@
 
         <div class="row">
 
-            <div class="col-md-10 mx-auto">
+            <div class="col-md-11 mx-auto">
                 <div class="card mt-1">
                     <div class="card-header bg-light">
                         <h6 class="text-light">
@@ -142,17 +138,14 @@
                         <div class="row mx-1 ">
                             
                           <div class="col-md-4 form-check form-check-inline"><input type="radio" id="male"   name="gender" value="male" class="form-check-input">
-                            <label class="form-check-label" for="male" {{$user->gender == 'male' ? 'check':'' }}>Male</label></div>
+                            <label class="form-check-label" for="male" {{$user->gender == 'male' ? 'checked':'' }}>Male</label></div>
                           <div class="col-md-4 form-check form-check-inline">
-                            <input type="radio" id="female"  name="gender" value="female" {{$user->gender == 'female' ? 'selected':'' }} class="form-check-input">
+                            <input type="radio" id="female"  name="gender" value="female" {{$user->gender == 'female' ? 'checked':'' }} class="form-check-input">
                             <label class="form-check-label" for="female">Female</label></div>
                         </div>
                     
                     </div>
         
-
-        
-                    .
         
                         <div class="col-md-12 mb-0 ">
                             <div class="row">
@@ -164,7 +157,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-block text-decoration-none text-light bg-primary btn-block col-lg-12">
-                                        {{ __('Save Member') }}
+                                        {{ __('Update Member') }}
                                     </button>
                                 </div>
                             </div>
