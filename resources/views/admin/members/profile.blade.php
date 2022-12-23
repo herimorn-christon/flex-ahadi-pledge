@@ -146,6 +146,7 @@
                             @endforeach
           
                         </tbody>
+                        <tfoot></tfoot>
                     </table>
         
                   </div>
@@ -154,7 +155,7 @@
                  
                     {{-- start of pledges --}}
  
-                    <table id="mytable"  class="table table-bordered ">
+                    <table id=""  class="table table-bordered ">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -199,7 +200,7 @@
                  
                     {{-- start of pledges --}}
  
-                    <table id="datatablesSimple" class="table table-bordered ">
+                    <table id="mytable" class="table table-bordered ">
                         <thead>
                             <tr>
                                 <th>ID</th>

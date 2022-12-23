@@ -38,9 +38,11 @@ class MemberController extends Controller
     // edit details function
     public function edit($id)
     {
-        $product = User::find($id);
-        return response()->json($product);
+        $user = User::find($id);
+        return view('admin.members.edit',compact('user'));
     }
+
+    
     // update
     public function update($id)
     {

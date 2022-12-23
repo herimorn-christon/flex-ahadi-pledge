@@ -155,41 +155,30 @@
               </div>
               <div class="card-body">
 
-                <div class="col-md-12 py-2">
-                  <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-                  </div>
-                </div>
                
                 <div class="col-md-12 py-2">
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress"  style="height: 30px;">
+                  <div class="progress-bar 
+                  progress-bar-striped progress-bar-animated
+                  @if($progress<=25)
+                  bg-danger
+                  @elseif($progress>25 && $progress<=50)
+                  bg-warning
+                  @elseif($progress>50 && $progress<=75)
+                  bg-primary
+                  @else
+                  bg-success
+                  @endif
+                  "
+
+                  role="progressbar" style="width: {{ $progress}}%" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                 </div>
                 </div>
 
-                <div class="col-md-12 py-2">
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                </div>
-                <div class="col-md-12 py-2">
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                </div>
-                <div class="col-md-12 py-2">
-                <div class="progress">
-                  <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-                </div>
+             
               </div>
             </div>
           </div>
-        <div class="progress" style="height: 1px;">
-          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        <div class="progress" style="height: 20px;">
-          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
 
         <!-- /.row (main row) -->

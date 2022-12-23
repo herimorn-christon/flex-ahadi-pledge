@@ -15,7 +15,7 @@ class CardController extends Controller
     public function index()
     {
         $cards=CardMember::all();
-        $card=Card::all();
+        $card=Card::where('status','')->get();
         return view('admin.cards.index',compact('cards','card'));
     }
     // saving card method function

@@ -31,6 +31,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
     Route::get('delete-member/{id}', [App\Http\Controllers\Admin\MemberController::class,'destroy']);
 // view single member route
     Route::get('view-member/{id}', [App\Http\Controllers\Admin\MemberController::class, 'show'])->name('users.show');
+ //Edit Commmunity page route  
+    Route::get('edit-member/{id}', [App\Http\Controllers\Admin\MemberController::class,'edit']);
 
  // view all communities route
     Route::get('/all-communities', [App\Http\Controllers\Admin\JumuiyaController::class,'index']);

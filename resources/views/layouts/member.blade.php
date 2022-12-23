@@ -118,6 +118,17 @@ $('#mytable').DataTable(
   }
 );
 } );
+$(document).ready( function () {
+$('#modaltable').DataTable(
+  {
+    ordering:  false,
+    searching:  true,
+    autoWidth: false,
+    responsive: true,
+    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+  }
+);
+} );
 </script>
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

@@ -51,7 +51,6 @@
             <table id="mytable"  class="table table-bordered responsive">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Member Name</th>
                         <th>Member ID</th>
                         <th>Payment Purpose</th>
@@ -64,7 +63,6 @@
                 <tbody>
                     @foreach ($payments as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
                         <td>{{ $item->payer->fname }} {{ $item->payer->mname }} {{ $item->payer->lname }}</td>
                         <td>{{ $item->payer->community->abbreviation }}/{{ $item->payer->id }}</td>
                         <td>{{ $item->purpose->title}}</</td>
