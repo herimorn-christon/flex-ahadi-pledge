@@ -126,7 +126,7 @@
                             <select name="jumuiya" class="form-control">
                                 <option value="">--Select Community (Jumuiya) --</option>
                                 @foreach ( $jumuiya as $item)
-                                 <option value="{{ $item->id}}">{{ $item->name}}</option>
+                                 <option value="{{ $item->id}}" {{$user->jumuiya == $item->id ? 'selected':'' }}>{{ $item->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -142,38 +142,26 @@
                         <div class="row mx-1 ">
                             
                           <div class="col-md-4 form-check form-check-inline"><input type="radio" id="male"   name="gender" value="male" class="form-check-input">
-                            <label class="form-check-label" for="male" >Male</label></div>
-                          <div class="col-md-4 form-check form-check-inline"><input type="radio" id="female"  name="gender" value="female" class="form-check-input">
+                            <label class="form-check-label" for="male" {{$user->gender == 'male' ? 'check':'' }}>Male</label></div>
+                          <div class="col-md-4 form-check form-check-inline">
+                            <input type="radio" id="female"  name="gender" value="female" {{$user->gender == 'female' ? 'selected':'' }} class="form-check-input">
                             <label class="form-check-label" for="female">Female</label></div>
                         </div>
                     
                     </div>
         
-                        <div class="col-md-6 mb-3">
-                            <label for="password" class="text-secondary">{{ __('Password') }}</label>
+
         
-                            <div class="form-group">
-                                <input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-        
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-        
-                        <div class="col-md-6 mb-3 text-secondary">
-                            <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
-        
-                            <div class="form-group">
-                                <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
+                    .
         
                         <div class="col-md-12 mb-0 ">
                             <div class="row">
-                                <div class="col-md-6"></div>
+                                <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="" class="text-secondary">Status</label>
+                                        <input type="checkbox" name="status" id="">
+                                    </div>
+                                </div>
                                 <div class="col-md-6">
                                     <button type="submit" class="btn btn-block text-decoration-none text-light bg-primary btn-block col-lg-12">
                                         {{ __('Save Member') }}
