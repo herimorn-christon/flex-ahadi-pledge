@@ -82,10 +82,10 @@
                   <small>Tsh</small>              
                 </h3>
 
-                <p>Total Pledges </p>
+                <p>Pledges Amount</p>
               </div>
               <div class="icon">
-                <i class="fa fa-balance-scale"></i>
+                <i class="fa fa-dollar-sign"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -95,7 +95,10 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>
+                  {{$payments}}
+                  <small>Tsh</small>
+                </h3>
 
                 <p>Paid Pledges</p>
               </div>
@@ -110,12 +113,15 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>
+                  {{$remaining}}
+                  <small>Tsh</small>
+                </h3>
 
-                <p>User Registrations</p>
+                <p>Remaining Amount</p>
               </div>
               <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fa fa-credit-card"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -125,12 +131,12 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3> {{$pledges_no}}</h3>
 
-                <p>Unique Visitors</p>
+                <p>Pledges Made</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fa fa-balance-scale"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -140,6 +146,51 @@
         <!-- /.row -->
         <!-- Main row -->
         <div class="row">
+        {{--start of Goal Progress  --}}
+
+          <div class="col-md-12">
+            <div class="card card-light   ">
+              <div class="card-header">
+                <h6>Goal Progress</h6>
+              </div>
+              <div class="card-body">
+
+                <div class="col-md-12 py-2">
+                  <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+               
+                <div class="col-md-12 py-2">
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </div>
+
+                <div class="col-md-12 py-2">
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </div>
+                <div class="col-md-12 py-2">
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </div>
+                <div class="col-md-12 py-2">
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="progress" style="height: 1px;">
+          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="progress" style="height: 20px;">
+          <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
 
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->

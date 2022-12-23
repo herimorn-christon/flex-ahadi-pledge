@@ -34,7 +34,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{ url('member/dashboard') }}" class="nav-link">
+          <a href="{{ url('member/my-cards') }}" class="nav-link  {{ Request::is('member/my-cards') ? 'active':'' }}">
             <i class="nav-icon fas fa-envelope"></i>
             <p>
               My Cards

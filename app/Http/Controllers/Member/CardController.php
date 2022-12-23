@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Member;
 
-use App\Http\Controllers\Controller;
+use App\Models\Payment;
+use App\Models\CardMember;
+use App\Models\PaymentType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CardController extends Controller
 {
@@ -12,7 +16,7 @@ class CardController extends Controller
     {
         $types=PaymentType::all();
         $user=Auth::user()->id;
-        $cards=Card::where('status','')->where('user_id',$user)->get();
+        $cards=CardMember::where('status','')->where('user_id',$user)->get();
         $payments=Payment::where('user_id',$user)->get();
         return view('member.cards.index',compact('types','payments','cards'));
     }

@@ -68,10 +68,10 @@
                     <td class="text-success">{{ $item->status=='1'? 'Inactive':'Active' }}</td>
 
                     <td>
-                       <a href="{{ url('admin/view-pledge/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
+                       <a href="{{ url('admin/view-pledge/'.$item->id)}}" class="btn btn-primary btn-sm mx-1" >
                           <i class="fa fa-eye" aria-hidden="true"></i>
                        </a>
-                        <a href="{{ url('admin/edit-pledge/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
+                        <a href="{{ url('admin/edit-pledge/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1" {{ $item->user_id==$item->created_by? '':'Hidden' }}>
                             <i class="fa fa-edit" aria-hidden="true"></i>
                         </a>
                     </td>
