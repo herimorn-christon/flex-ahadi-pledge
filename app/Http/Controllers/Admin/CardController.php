@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Card;
+use App\Models\CardMember;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,8 +14,9 @@ class CardController extends Controller
     // for index function
     public function index()
     {
-        $cards=Card::all();
-        return view('admin.cards.index',compact('cards'));
+        $cards=CardMember::all();
+        $card=Card::all();
+        return view('admin.cards.index',compact('cards','card'));
     }
     // saving card method function
     public function save(cardFormRequest $request)
@@ -32,8 +34,9 @@ class CardController extends Controller
     // edit card page function
     public function edit($card_id)
     {
+        $cards=CardMember::all();
         $card=Card::find($card_id);
-        return view('admin.cards.edit',compact('card'));
+        return view('admin.cards.edit',compact('card','cards'));
     }
 
   // update payment method function

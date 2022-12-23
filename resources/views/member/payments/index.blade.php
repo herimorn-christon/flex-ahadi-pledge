@@ -57,7 +57,7 @@
                         <td>{{ $item->id }}</td>
                         
                         <td>{{ $item->created_at }}</td>
-                        <td>{{ $item->purpose->name }}</td>
+                        <td>{{ $item->purpose->title }}</td>
                         <td>{{ $item->amount }}</td>
                         <td>{{ $item->payment->name }}</td>
                      

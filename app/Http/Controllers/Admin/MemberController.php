@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\Pledge;
 use App\Models\Payment;
+use App\Models\CardMember;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -27,9 +28,10 @@ class MemberController extends Controller
         $user = User::where('id',$id)->get();
         $payments = Payment::where('user_id',$id)->get();
         $pledges= Pledge::where('user_id',$id)->get();
+        $cards=CardMember::where('user_id',$id)->get();
 
   
-        return view('admin.members.profile',compact('user','payments','pledges'));
+        return view('admin.members.profile',compact('user','payments','pledges','cards'));
 
     }
 

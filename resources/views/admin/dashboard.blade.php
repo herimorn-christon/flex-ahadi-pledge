@@ -39,8 +39,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ url('admin/dashboard') }}" class="brand-link">
+      <img src="{{ asset('img/flex.png') }}" alt="Flex Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text text-primary font-weight-light">AhadiPledge</span>
     </a>
 
@@ -61,7 +61,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard v1</li>
+              <li class="breadcrumb-item active">Dashboard</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -80,6 +80,8 @@
               <div class="inner">
                 <h3>
                   {{$payments}}
+
+                  <small>Tsh</small>
                 </h3>
 
                 <p>Total Payments</p>
@@ -97,6 +99,7 @@
               <div class="inner">
                 <h3>
                   {{$pledges}}
+                  <small>Tsh</small>
                 </h3>
 
                 <p>Total Pledges</p>
@@ -107,7 +110,7 @@
               <a href="{{ url('admin/all-pledges') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          
+
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
@@ -155,7 +158,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  @include('layouts.inc.member-footer')
+  @include('layouts.inc.admin-footer')
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

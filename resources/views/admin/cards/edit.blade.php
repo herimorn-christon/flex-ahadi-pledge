@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','All Communities')
+@section('title','Manage Cards')
 
 
 @section('content')

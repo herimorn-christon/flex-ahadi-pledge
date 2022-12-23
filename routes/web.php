@@ -95,6 +95,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 //Delete Card method Route  
   Route::get('delete-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'destroy']);
 
+//Create Card method route  
+  Route::post('assign-card', [App\Http\Controllers\Admin\CardMemberController::class,'save']);
+
  // my-profile
   Route::get('/my-profile', [App\Http\Controllers\Admin\ProfileController::class,'index']);
 });
@@ -112,6 +115,8 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
 
  // my-payments
  Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
+  // my-payments
+  Route::get('/my-cards', [App\Http\Controllers\Member\CardController::class,'index']);
 
  // my-profile
  Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);

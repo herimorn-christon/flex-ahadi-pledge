@@ -14,7 +14,7 @@ class DashboardController extends Controller
     {
 
         $user=Auth::user()->id;
-        $pledges=Pledge::where('user_id',$user)->count();
+        $pledges=Pledge::where('user_id',$user)->sum('amount');
 
         return view('member.dashboard',compact('pledges'));
 
