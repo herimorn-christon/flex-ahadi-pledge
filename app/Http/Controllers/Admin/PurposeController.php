@@ -40,4 +40,28 @@ class PurposeController extends Controller
             }
         }
 
+
+      //edit purpose page 
+        public function edit($id)
+        {
+            $purpose=Purpose::find($id);
+            return view('admin.pledges.edit-purpose',compact('purpose'));
+        }
+
+            // saving purpose  function
+        public function update(purposesFormRequest $request,$id)
+        {
+            $data=$request->validated();
+            $purpose =Purpose::find($id);
+            $purpose->title=$data['title'];
+            $purpose->description=$data['description'];
+            $purpose->start_date=$data['start_date'];
+            $purpose->end_date=$data['end_date'];
+            $purpose->status= $request->status == true ? '1':'0';
+            $purpose->created_by= Auth::user()->id;
+            $purpose->save();
+
+            return redirect('admin/all-pledges')->with('status','Purpose was Updated Successfully');
+        }
+
 }

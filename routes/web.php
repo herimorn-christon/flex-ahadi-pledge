@@ -69,9 +69,11 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
     Route::get('delete-pledge/{id}', [App\Http\Controllers\Admin\PledgeController::class,'destroy']);
  //Create Purpose route  
    Route::post('add-purpose', [App\Http\Controllers\Admin\PurposeController::class,'save']);
- // Delete Member method route  
- Route::get('delete-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'destroy']);
-
+ // Delete Purpose method route  
+    Route::get('delete-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'destroy']);
+    Route::get('edit-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'edit']);
+ //Update Purpose route  
+    Route::put('edit-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'update']);
 
 // all payments route
    Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);

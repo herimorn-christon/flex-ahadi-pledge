@@ -85,7 +85,7 @@ public function destroyType($type)
         return redirect('admin/all-pledges')->with('status','Pledge was Added Successfully');
     }
 
-        // edit pledge page function
+     // edit pledge page function
         public function edit($pledge_id)
         {
             $types=PledgeType::all();

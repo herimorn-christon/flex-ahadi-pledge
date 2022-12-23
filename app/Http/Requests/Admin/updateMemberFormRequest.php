@@ -33,7 +33,7 @@ class updateMemberFormRequest extends FormRequest
                 'jumuiya' => ['required'],
                 'date_of_birth' => ['required'],
                 'gender' => ['required'],
-                'email' => [ 'string','max:255', 'unique:users']
+                'email' => [ 'string','max:255']
             ];
     
             return $rules;

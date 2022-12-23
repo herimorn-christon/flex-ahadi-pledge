@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\memberFormRequest;
+use App\Http\Requests\Admin\updateMemberFormRequest;
 
 class MemberController extends Controller
 {
@@ -44,20 +45,21 @@ class MemberController extends Controller
 
     
     // update
-    public function update($id)
+    public function update(updateMemberFormRequest $request,$id)
     {
-        $userData = User::find($id);
-        $userData->status = request('status');
-        $userData->fname = request('fname');
-        $userData->mname = request('mname');
-        $userData->lname = request('lname');
-        $userData->date_of_birth = request('date_of_birth');
-        $userData->gender = request('gender');    
-        $userData->jumuiya = request('jumuiya');
-        $userData->email = request('email');
-        $userData->phone = request('phone');
+        $data=$request->validated();
+        $user =User::find($id);
+        $user->fname=$data['fname'];
+        $user->mname=$data['mname'];
+        $user->lname=$data['lname'];
+        $user->email=$data['email'];
+        $user->phone=$data['phone'];
+        $user->gender=$data['gender'];
+        $user->date_of_birth=$data['date_of_birth'];
+        $user->jumuiya=$data['jumuiya'];
+        $user->status= $request->status == true ? '1':'0';
         
-        $userData->save();
+        $user->save();
        
         return redirect('admin/all-members')->with('status','Member was Updated Successfully');
       

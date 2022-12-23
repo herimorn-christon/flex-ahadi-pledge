@@ -40,7 +40,7 @@
 
         <div class="row">
 
-          <div class="col-8 mx-auto">
+          <div class="col-10 mx-auto">
             <div class="card mt-1">
               <div class="card-header bg-light">
                   <h6 class="text-light">
@@ -78,12 +78,16 @@
                           <input name="abbreviation" type="text" value="{{ $community->abbreviation}}" class="form-control">
                       </div>
                    </div>
-                        <div class="col-md-6">
-                            <button class="btn btn-primary btn-block" type="submit">
-                                <i class="fa fa-save"></i>
-                                Update Community
-                            </button>
-                        </div>
+                   <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                      <button class="btn btn-primary btn-block" type="submit">
+                          <i class="fa fa-save"></i>
+                          Update Community
+                      </button>
+                  </div>
+                   </div>
+                      
                     </div>
                 </form>
               </div>
@@ -107,26 +111,39 @@
           </button>
         </div>
         <div class="modal-body">
-            <form action="{{ url('admin/edit-community') }}" method="post">
-                @csrf
-                <div class="row mb-3">
-                 <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="name" class="text-secondary">Community Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Community Name">
-                    </div>
-                 </div>
-                 <div class="col-md-6">
-                    <div class="form-group">
-                     
-                        <button type="submit" class="btn btn-success">
-                            <i class="fa fa-save"></i>
-                            Save Community
-                        </button>
-                    </div>
-                 </div>
+          <form action="{{ url('admin/add-community') }}" method="post">
+            @csrf
+            <div class="row mb-3">
+             <div class="col-md-12">
+                <div class="form-group">
+                    <label for="name" class="text-secondary">Community Name</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Community Name">
                 </div>
-            </form>
+             </div>
+             <div class="col-md-12">
+              <div class="form-group">
+                  <label for="abbreviation" class="text-secondary">Abbreviation</label>
+                  <input type="text" name="abbreviation" id="abbreviation" class="form-control" placeholder="Enter Abbreviation">
+              </div>
+           </div>
+           <div class="col-md-12">
+            <div class="form-group">
+                <label for="location" class="text-secondary">Location</label>
+                <input type="text" name="location" id="location" class="form-control" placeholder="Enter Location">
+            </div>
+            </div>
+            <div class="col-md-6"></div>
+             <div class="col-md-6">
+                <div class="form-group">
+                 
+                    <button type="submit" class="btn btn-primary btn-block">
+                        <i class="fa fa-save"></i>
+                        Save Community
+                    </button>
+                </div>
+             </div>
+            </div>
+        </form>
         </div>
       </div>
       <!-- /.modal-content -->

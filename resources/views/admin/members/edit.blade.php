@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','All Communities')
+@section('title','Edit Member')
 
 
 @section('content')
@@ -38,7 +38,6 @@
                 <div class="card mt-1">
                     <div class="card-header bg-light">
                         <h6 class="text-light">
-                            {{-- <a href="{{url('admin/add-course')}}" class="btn btn-danger btn-sm float-end"> Add Course</a> --}}
                         </h6>
                     </div>
                     <div class="card-body">
