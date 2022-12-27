@@ -46,7 +46,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="community-table-body">
+                <tbody id="projects-table-body">
 
                 </tbody>
             </table>
@@ -58,85 +58,44 @@
     </div>
 </div>
 
-    <!-- modal for creating and editing function -->
-    <div class="modal" tabindex="-1"  id="form-modal">
-        <div class="modal-dialog " >
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-{{--                 <div id="error-div"></div> --}}
-                <form class="form"> 
-                    <div class="form-group mb-0">
-                 <input type="hidden" name="update_id" id="update_id">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter Community Name">
-                  
-                        <input type="text" class="form-control" id="location" name="location" placeholder="Enter Community Location">
-                     
-                          <input type="text" class="form-control" id="abbreviation" name="abbreviation" placeholder="Enter Community Abbreviation">
-                      </div>
-                 
-                    <button type="submit" class="btn btn-primary mt-3 form-control" id="save-project-btn">
-                      <i class="fa fa-save"></i>
-                      Save Community
-                    </button>
-                </form>
-            </div>
-            </div>
-        </div>
-    </div>
-{{-- Add Community modal --}}
 
-<div class="modal fade" tabindex="-1"  id="form-modal1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          {{-- <h4 class="modal-title">Large Modal</h4> --}}
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-              <div id="error-div"></div>
-            <form>
-                <div class="row mb-3">
-                  <input type="hidden" name="update_id" id="update_id">
-                 <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="name" class="text-secondary">Community Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Community Name">
-                    </div>
-                 </div>
-                 <div class="col-md-12">
-                  <div class="form-group">
-                      <label for="abbreviation" class="text-secondary">Abbreviation</label>
-                      <input type="text" name="abbreviation" id="abbreviation" class="form-control" placeholder="Enter Abbreviation">
-                  </div>
-               </div>
-               <div class="col-md-12">
-                <div class="form-group">
-                    <label for="location" class="text-secondary">Location</label>
-                    <input type="text" name="location" id="location" class="form-control" placeholder="Enter Location">
-                </div>
-                </div>
-                <div class="col-md-6"></div>
-                 <div class="col-md-6">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-outline-primary mt-3 form-control" id="save-project-btn">
-                        <i class="fa fa-save"></i>
-                        Save Community
-                      </button>
-                    </div>
-                 </div>
-                </div>
-            </form>
-        </div>
+
+{{-- test modal --}}
+<div class="modal" id="form-modal" tabindex="-1" >
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <!-- /.modal-content -->
+      <div class="modal-body">
+        <form>
+          <input type="hidden" name="update_id" id="update_id">
+       
+          <div class="mb-3">
+            <label for="recipient-name" class=" text-secondary">Community Name:</label>
+            <input type="text" class="form-control" id="name"  name="name" placeholder="Enter Community Name">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class="text-secondary">Community Abbreviation:</label>
+             <input type="text" class="form-control" id="abbreviation" name="abbreviation" placeholder="Enter Community Abbreviation">
+          </div>
+          <div class="mb-3">
+            <label for="message-text" class=" text-secondary">Community Location:</label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="Enter Community Location">
+          </div>
+          <div class="mb-3">
+             <button type="submit" class="btn btn-primary " id="save-project-btn">
+              <i class="fa fa-save"></i>
+              Save Community
+            </button>
+          </div>
+     
+        </form>
+      </div>
     </div>
-    <!-- /.modal-dialog -->
   </div>
+</div>
 
       <!-- view record modal -->
       <div class="modal" tabindex="-1" id="view-modal">
@@ -164,6 +123,7 @@
           </div>
       </div>
     
+
 
 <script type="text/javascript">
           showAllProjects();
@@ -201,7 +161,7 @@
                             '<td>' + communities[i].location + '</td>' +
                             '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                         '</tr>';
-                        $("#community-table-body").append(projectRow);
+                        $("#projects-table-body").append(projectRow);
                     }
      
                      

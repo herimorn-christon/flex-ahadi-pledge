@@ -18,7 +18,7 @@ class JumuiyaController extends Controller
      */
     public function index()
     {
-        $communities = Jumuiya::orderBy('created_at','DESC')->get();
+        $communities = Jumuiya::orderBy('updated_at','DESC')->get();
         return response()->json(['communities' => $communities]);
     }
 
