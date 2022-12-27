@@ -147,6 +147,9 @@
           <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            <div class="col-md-3 mx-auto">
+                <img src="img/flex-logo.png" class="mt-4 mb-4" height="30px" width="100%">
+            </div>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
@@ -393,6 +396,49 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
+        {{-- auto search scripts --}}
+        
+<script type="text/javascript">
+
+    $('.livesearch').select2({
+
+        placeholder: 'Select movie',
+
+        ajax: {
+
+            url: '/ajax-autocomplete-search',
+
+            dataType: 'json',
+
+            delay: 250,
+
+            processResults: function (data) {
+
+                return {
+
+                    results: $.map(data, function (item) {
+
+                        return {
+
+                            text: item.name,
+
+                            id: item.id
+
+                        }
+
+                    })
+
+                };
+
+            },
+
+            cache: true
+
+        }
+
+    });
+
+</script>
         <!-- Script for Modal -->
         <script>
             const myModal = document.getElementById('myModal')

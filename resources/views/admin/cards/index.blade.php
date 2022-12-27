@@ -208,8 +208,8 @@
               <thead>
                   <tr>
                       <th>ID</th>
-                      <th>Member</th>
                       <th>Card Number</th>
+                      <th>Card Status</th>
                       <th>Actions</th>
                   </tr>
               </thead>

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\JumuiyaController;
 
 // use App\Http\Controllers\Controller\DashboardController;
 
@@ -24,7 +26,12 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
  // admin dashboard route
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class,'index']);
  //  View All Members route
-    Route::get('/all-members', [App\Http\Controllers\Admin\MemberController::class,'index']);
+    // Route::get('/all-members', [App\Http\Controllers\Admin\MemberController::class,'index']);
+    Route::get('/all-members', function () {
+      return view('admin.members.index');
+      });
+// Members API route
+    Route::apiResource('projects', MemberController::class);
  // Register Member method route  
     Route::post('add-member', [App\Http\Controllers\Admin\MemberController::class,'create']);
  // Delete Member method route  
@@ -37,15 +44,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
     Route::put('edit-member/{id}', [App\Http\Controllers\Admin\MemberController::class,'update']);
 
  // view all communities route
-    Route::get('/all-communities', [App\Http\Controllers\Admin\JumuiyaController::class,'index']);
- //Create Commmunity route  
-    Route::post('add-community', [App\Http\Controllers\Admin\JumuiyaController::class,'save'])->name('communities.store');
- //Edit Commmunity page route  
-    Route::get('edit-community/{jumuiya_id}', [App\Http\Controllers\Admin\JumuiyaController::class,'edit']);
- //Update Commmunity route  
-   Route::put('edit-community/{jumuiya_id}', [App\Http\Controllers\Admin\JumuiyaController::class,'update']);
- // delete community route
-   Route::get('delete-community/{jumuiya_id}', [App\Http\Controllers\Admin\JumuiyaController::class,'destroy']);
+    // Route::get('/all-communities', [App\Http\Controllers\Admin\JumuiyaController::class,'index']);
+    Route::get('/all-communities', function () {
+      return view('admin.jumuiya.index');
+      });
+
+  // Community API route
+  Route::apiResource('communities', JumuiyaController::class);
 // view single Community route
    Route::get('view-community/{id}', [App\Http\Controllers\Admin\JumuiyaController::class, 'show'])->name('community.show');
 

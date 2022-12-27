@@ -10,50 +10,82 @@ use App\Http\Requests\Admin\jumuiyaFormRequest;
 
 class JumuiyaController extends Controller
 {
-    // for index function
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $communities=Jumuiya::all();
-        return view('admin.jumuiya.index',compact('communities'));
+        $communities = Jumuiya::orderBy('created_at','DESC')->get();
+        return response()->json(['communities' => $communities]);
     }
 
-    // saving function
-    public function save(jumuiyaFormRequest $request)
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $data=$request->validated();
-        $jumuiya =new Jumuiya;
-        $jumuiya->name=$data['name'];
-        $jumuiya->location=$data['location'];
-        $jumuiya->abbreviation=$data['abbreviation'];
-        $jumuiya->save();
+        request()->validate(
+            [
+            'name' => 'required|max:255',
+            'abbreviation' => 'required',
+            'location' => 'required',
+             ]
+            );
 
-        return redirect('admin/all-communities')->with('status','Community Added Successfully');
+            $communities = new Jumuiya();
+            $communities->name = $request->name;
+            $communities->abbreviation = $request->abbreviation;
+            $communities->location = $request->location;
+            $communities->save();
+            return response()->json(['status' => "success"]);
     }
 
-
-    // edit page function
-    public function edit($jumuiya_id)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
     {
-        $community=Jumuiya::find($jumuiya_id);
-        return view('admin.jumuiya.edit',compact('community'));
+        $community = Jumuiya::find($id);
+        return response()->json(['community' => $community]);
     }
-    // update Community function
-    public function update(jumuiyaFormRequest $request,$jumuiya_id)
+
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
     {
-        $data=$request->validated();
-        $jumuiya =Jumuiya::find($jumuiya_id);
-        $jumuiya->name=$data['name'];
-        $jumuiya->location=$data['location'];
-        $jumuiya->abbreviation=$data['abbreviation'];
-        // saving data
-        $jumuiya->update();
+        request()->validate([
+            'name' => 'required|max:255',
+            'location' => 'required',
+            'abbreviation' => 'required',
+        ]);
+  
+        $community = Jumuiya::find($id);
+        $community->name = $request->name;
+        $community->abbreviation = $request->abbreviation;
+        $community->location = $request->location;
+        $community->save();
 
-        return redirect('admin/all-communities')->with('status','Community is Updated Successfully');
+        return response()->json(['status' => "success"]);
     }
-
 
     // show single community details
-    public function show($id)
+    public function view($id)
 
     {
 
@@ -63,17 +95,15 @@ class JumuiyaController extends Controller
 
         return view('admin.jumuiya.detail',compact('community','members'));
     }
-        // delete Community function
-        public function destroy($jumuiya_id)
-        {
-            $jumuiya=Jumuiya::find($jumuiya_id);
-
-            if($jumuiya){
-                $jumuiya->delete();
-                return redirect('admin/all-communities')->with('status','Community was deleted Successfully');
-            }
-            else{
-                return redirect('admin/all-communities')->with('status','No Community ID was found !');
-            }
-        }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Jumuiya::destroy($id);
+        return response()->json(['status' => "success"]);
+    }
 }

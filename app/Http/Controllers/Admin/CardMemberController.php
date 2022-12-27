@@ -29,5 +29,6 @@ class CardMemberController extends Controller
 
         return redirect('admin/all-cards')->with('status','Card was Assigned Successfully');
     }
+    
 
 }

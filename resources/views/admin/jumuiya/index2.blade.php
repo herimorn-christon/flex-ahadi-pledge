@@ -1,63 +1,49 @@
-@extends('layouts.master')
-
-@section('title','All Communities')
-
-
-@section('content')
-
-
-<div class="row mb-1">
-    <div class="col-sm-6" id="alert-div">
-
-    </div><!-- /.col -->
-    <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
-        <li class="">    
-
-        <button type="button" class="btn btn-primary btn-sm"  onclick="createProject()">
-        <i class="fa fa-plus"></i>
-         Add New Community
-        </button>
-    </li>
-       
-      </ol>
-      
-    </div><!-- /.col -->
-  </div>
-
-<div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-          {{-- All Communities --}}
-        </h6>
-    </div>
-    <div class="card-body">
-
-
-
-
-        <div class="row">
-            <table id="mytable" class="table table-bordered responsive">
-                <thead>
-                    <tr class="text-secondary">
-                        <th>Jumuiya Name</th>
-                        <th>Abbreviation</th>
-                        <th>Location</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="community-table-body">
-
-                </tbody>
-            </table>
-
-        </div>
-
-
-
-    </div>
-</div>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Laravel Project Manager</title>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="app-url" content="{{ url('/') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+  
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Laravel Project Manager</h2>
+        <div class="card">
+            <div class="card-header bg-light">
+                <button class="btn btn-primary btn-sm" onclick="createProject()"> 
+                    Create New Project
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div id="alert-div">
+                 
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Abbreviation</th>
+                            <th>Location</th>
+                            <th width="240px">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="projects-table-body">
+                         
+                    </tbody>
+                     
+                </table>
+            </div>
+        </div>
+    </div>
+  
     <!-- modal for creating and editing function -->
     <div class="modal" tabindex="-1"  id="form-modal">
         <div class="modal-dialog " >
@@ -66,7 +52,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-{{--                 <div id="error-div"></div> --}}
+                <div id="error-div"></div>
                 <form class="form"> 
                     <div class="form-group mb-0">
                  <input type="hidden" name="update_id" id="update_id">
@@ -77,97 +63,42 @@
                           <input type="text" class="form-control" id="abbreviation" name="abbreviation" placeholder="Enter Community Abbreviation">
                       </div>
                  
-                    <button type="submit" class="btn btn-primary mt-3 form-control" id="save-project-btn">
-                      <i class="fa fa-save"></i>
-                      Save Community
-                    </button>
+                    <button type="submit" class="btn btn-outline-primary mt-3 form-control" id="save-project-btn">Save Community</button>
                 </form>
             </div>
             </div>
         </div>
     </div>
-{{-- Add Community modal --}}
-
-<div class="modal fade" tabindex="-1"  id="form-modal1">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          {{-- <h4 class="modal-title">Large Modal</h4> --}}
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-              <div id="error-div"></div>
-            <form>
-                <div class="row mb-3">
-                  <input type="hidden" name="update_id" id="update_id">
-                 <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="name" class="text-secondary">Community Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Community Name">
-                    </div>
-                 </div>
-                 <div class="col-md-12">
-                  <div class="form-group">
-                      <label for="abbreviation" class="text-secondary">Abbreviation</label>
-                      <input type="text" name="abbreviation" id="abbreviation" class="form-control" placeholder="Enter Abbreviation">
-                  </div>
-               </div>
-               <div class="col-md-12">
-                <div class="form-group">
-                    <label for="location" class="text-secondary">Location</label>
-                    <input type="text" name="location" id="location" class="form-control" placeholder="Enter Location">
-                </div>
-                </div>
-                <div class="col-md-6"></div>
-                 <div class="col-md-6">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-outline-primary mt-3 form-control" id="save-project-btn">
-                        <i class="fa fa-save"></i>
-                        Save Community
-                      </button>
-                    </div>
-                 </div>
-                </div>
-            </form>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-
-
-      <!-- view record modal -->
-      <div class="modal" tabindex="-1" id="view-modal">
-          <div class="modal-dialog modal-lg" >
-              <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title text-secondary">Community Information</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <p>
-                      <b class="text-secondary">Name:</b>   <span id="name-info" class="text-dark"></span>
-                  </p>
-                                        
-                  <p>
-                      <b class="text-secondary">Abbreviation:</b>   <span id="description-info" class="text-dark"></span>
-                  </p>
-                   <p>
-                      <b class="text-secondary">Location:</b>   <span id="location-info" class="text-dark"></span>
-                  </p>
-                <hr>
-                  {{-- <a href="{{ url('/admin/')}}" class="btn"></a> --}}
-              </div>
-              </div>
-          </div>
-      </div>
-    
-
-<script type="text/javascript">
-          showAllProjects();
+ 
+  
+    <!-- view record modal -->
+    <div class="modal" tabindex="-1" id="view-modal">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-secondary">Community Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <b class="text-secondary">Name:</b>   <span id="name-info" class="text-dark"></span>
+                </p>
+                                      
+                <p>
+                    <b class="text-secondary">Abbreviation:</b>   <span id="description-info" class="text-dark"></span>
+                </p>
+                 <p>
+                    <b class="text-secondary">Location:</b>   <span id="location-info" class="text-dark"></span>
+                </p>
+              
+            </div>
+            </div>
+        </div>
+    </div>
+  
+    <script type="text/javascript">
+  
+        showAllProjects();
      
         /*
             This function will get all the project records
@@ -202,7 +133,7 @@
                             '<td>' + communities[i].location + '</td>' +
                             '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                         '</tr>';
-                        $("#community-table-body").append(projectRow);
+                        $("#projects-table-body").append(projectRow);
                     }
      
                      
@@ -213,7 +144,7 @@
             });
         }
      
-  /*
+        /*
             check if form submitted is for creating or updating
         */
         $("#save-project-btn").click(function(event ){
@@ -262,7 +193,7 @@
                 data: data,
                 success: function(response) {
                     $("#save-project-btn").prop('disabled', false);
-                    let successHtml = '<div class="alert alert-success " role="alert"> Community Was Added Successfully !</div>';
+                    let successHtml = '<div class="alert alert-success text-light" role="alert"> Community Was Added Successfully !</div>';
                     $("#alert-div").html(successHtml);
                     $("#name").val("");
                     $("#abbreviation").val("");
@@ -451,5 +382,6 @@
             });
         }
      
-</script>
-@endsection
+    </script>
+</body>
+</html>
