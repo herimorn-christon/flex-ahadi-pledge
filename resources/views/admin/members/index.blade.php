@@ -209,57 +209,6 @@
                     </select>
                 </div>
 
-                <div class="col-lg-6">
-                    <label for="card_no" class="text-secondary">Birthdate</label>
-                    <div class="form-group form-primary mb-3"> 
-                        <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" placeholder="" > </div>
-                </div>
-
-            <div class="col-lg-6">
-                <label for="gender" class="text-secondary">Gender</label>
-                <div class="row mx-1 ">
-                    
-                  <div class="col-md-4 form-check form-check-inline"><input type="radio" id="male"   name="gender" value="male" class="form-check-input">
-                    <label class="form-check-label" for="male" >Male</label></div>
-                  <div class="col-md-4 form-check form-check-inline"><input type="radio" id="female"  name="gender" value="female" class="form-check-input">
-                    <label class="form-check-label" for="female">Female</label></div>
-                </div>
-            
-            </div>
-
-                <div class="col-md-6 mb-3">
-                    <label for="password" class="text-secondary">{{ __('Password') }}</label>
-
-                    <div class="form-group">
-                        <input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                        @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="col-md-6 mb-3 text-secondary">
-                    <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
-
-                    <div class="form-group">
-                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                    </div>
-                </div>
-
-                <div class="col-md-12 mb-0 ">
-                    <div class="row">
-                        <div class="col-md-6"></div>
-                        <div class="col-md-6">
-                              <button type="submit" class="btn btn-primary btn-block mt-3" id="save-project-btn">Save Member</button>
-                        </div>
-                    </div>
-     
-                </div>
-            </div>
-            </form>
             </div>
             </div>
         </div>

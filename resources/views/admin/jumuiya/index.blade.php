@@ -138,7 +138,6 @@
     <!-- /.modal-dialog -->
   </div>
 
-
       <!-- view record modal -->
       <div class="modal" tabindex="-1" id="view-modal">
           <div class="modal-dialog modal-lg" >
