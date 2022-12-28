@@ -65,11 +65,11 @@
                     </div>
                     <div class="form-group">
                             <label for="title">Start Date</label>
-                            <input type="text" class="form-control" id="start_date" name="start_date">
+                            <input type="date" class="form-control" id="start_date" name="start_date">
                      </div>
                      <div class="form-group">
                             <label for="title">End Date</label>
-                            <input type="text" class="form-control" id="end_date" name="end_date">
+                            <input type="date" class="form-control" id="end_date" name="end_date">
                      </div>
                     <div class="form-group">
                         <label for="description">Description</label>
@@ -206,18 +206,18 @@
                 type: "POST",
                 data: data,
                 success: function(response) {
-                    $("#save-project-btn").prop('disabled', false);
-                    let successHtml = '<div class="alert alert-success" role="alert"><b>Project Created Successfully</b></div>';
+                    $("#save-purpose-btn").prop('disabled', false);
+                    let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Created Successfully</div>';
                     $("#alert-div").html(successHtml);
                     $("#tite").val("");
                     $("#start_date").val("");
                     $("#end_date").val("");
                     $("#description").val("");
-                    showAllProjects();
+                    showAllPurposes();
                     $("#form-modal").modal('hide');
                 },
                 error: function(response) {
-                    $("#save-project-btn").prop('disabled', false);
+                    $("#save-purpose-btn").prop('disabled', false);
      
                     /*
         show validation error
@@ -230,15 +230,26 @@
                         {
                             descriptionValidation = '<li>' + errors.description[0] + '</li>';
                         }
-                        let nameValidation = "";
-        if (typeof errors.name !== 'undefined') 
+        let titleValidation = "";
+        if (typeof errors.title !== 'undefined') 
                         {
-                            nameValidation = '<li>' + errors.name[0] + '</li>';
+                            titleValidation = '<li>' + errors.title[0] + '</li>';
+                        }
+        let startDateValidation = "";
+        if (typeof errors.start_date !== 'undefined') 
+                        {
+                            startDateValidation = '<li>' + errors.start_date[0] + '</li>';
+                        }
+          
+        let endDateValidation = "";
+        if (typeof errors.end_date !== 'undefined') 
+                        {
+                            endDateValidation = '<li>' + errors.end_date[0] + '</li>';
                         }
          
         let errorHtml = '<div class="alert alert-danger" role="alert">' +
             '<b>Validation Error!</b>' +
-            '<ul>' + nameValidation + descriptionValidation + '</ul>' +
+            '<ul>' + titleValidation + descriptionValidation + startDateValidation + endDateValidation +'</ul>' +
         '</div>';
         $("#error-div").html(errorHtml);        
     }
@@ -357,11 +368,13 @@
         /*
             delete record function
         */
-        function destroyProject(id)
+        function destroyPurpose(id)
         {
-            let url = $('meta[name=app-url]').attr("content") + "/projects/" + id;
+            let url = $('meta[name=app-url]').attr("content") + "/admin/purposes/" + id;
             let data = {
-                name: $("#name").val(),
+                title: $("#title").val(),
+                start_date: $("#start_date").val(),
+                end_date: $("#end_date").val(),
                 description: $("#description").val(),
             };
             $.ajax({
@@ -372,9 +385,9 @@
                 type: "DELETE",
                 data: data,
                 success: function(response) {
-                    let successHtml = '<div class="alert alert-success" role="alert"><b>Project Deleted Successfully</b></div>';
+                    let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Deleted Successfully </div>';
                     $("#alert-div").html(successHtml);
-                    showAllProjects();
+                    showAllPurposes();
                 },
                 error: function(response) {
                     console.log(response.responseJSON)

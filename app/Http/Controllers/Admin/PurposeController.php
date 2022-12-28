@@ -48,7 +48,7 @@ class PurposeController extends Controller
     {
         request()->validate(
             [
-            'name' => 'required|max:255',
+            'title' => 'required|max:255',
             'description' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
@@ -60,25 +60,34 @@ class PurposeController extends Controller
             $purpose->description=$request->description;
             $purpose->start_date=$request->start_date;
             $purpose->end_date=$request->end_date;
-            $purpose->status= $request->status == true ? '1':'0';
             $purpose->created_by= Auth::user()->id;
             $purpose->save();
 
             return response()->json(['status' => "success"]);
     }
-        // delete  purpose  function
-        public function destroy($id)
-        {
-            $purpose=Purpose::find($id);
-    
-            if($purpose){
-                $purpose->delete();
-                return redirect('admin/all-pledges')->with('status','Purpose was deleted Successfully');
-            }
-            else{
-                return redirect('admin/all-pledges')->with('status','No Purpose ID was found !');
-            }
-        }
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $purpose = Purpose::find($id);
+        return response()->json(['purpose' => $purpose]);
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Purpose::destroy($id);
+        return response()->json(['status' => "success"]);
+    }
 
 
       //edit purpose page 
