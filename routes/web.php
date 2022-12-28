@@ -31,7 +31,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
       return view('admin.members.index');
       });
 // Members API route
-    Route::apiResource('projects', MemberController::class);
+    Route::apiResource('members', MemberController::class);
  // Register Member method route  
     Route::post('add-member', [App\Http\Controllers\Admin\MemberController::class,'create']);
  // Delete Member method route  

@@ -30,8 +30,8 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $projects = User::where('role','member')->get();
-        return response()->json(['projects' => $projects]);
+        $members = User::where('role','member')->orderBy('updated_at','DESC')->with('community')->get();
+        return response()->json(['members' => $members]);
     }
 
         /**
@@ -44,33 +44,33 @@ class MemberController extends Controller
     {
         request()->validate(
             [
-                'fname' =>'required|string|max:255',
-                'fname' => 'required|string|max:255',
-                'mname' => 'required|string|max:255',
-                'lname' => 'required|string|max:255',
-                'phone' =>'required|string|max:255',
-                'jumuiya' => 'required',
-                'date_of_birth' =>'required',
+                'fname' => 'required|max:255',
+                'mname' => 'required|max:255',
+                'lname' => 'required|max:255',
+                'email' => 'required',
+                'phone' => 'required',
+                'date_of_birth' => 'required',
+                'password' => 'required',
                 'gender' => 'required',
-                'email' => 'string|max:255',
-                'password' =>'required|string|min:8',
+                'jumuiya' => 'required',
+                
              ]
             );
 
-            $project = new User();
+            $member = new User();
             // $project->name = $request->name;
             // $project->description = $request->description;
             // $project->save();
-            $project->fname=$request->fname;
-            $project->mname=$request->mname;
-            $project->lname=$request->lname;
-            $project->email=$request->email;
-            $project->phone=$request->phone;
-            $project->gender=$request->gender;
-            $project->date_of_birth=$request->date_of_birth;
-            $project->jumuiya=$request->jumuiya;
-            $project->password= Hash::make($request->password);
-            $project->save();
+            $member->fname=$request->fname;
+            $member->mname=$request->mname;
+            $member->lname=$request->lname;
+            $member->email=$request->email;
+            $member->phone=$request->phone;
+            $member->gender=$request->gender;
+            $member->date_of_birth=$request->date_of_birth;
+            $member->jumuiya=$request->jumuiya;
+            $member->password= Hash::make($request->password);
+            $member->save();
             return response()->json(['status' => "success"]);
     }
 
@@ -98,8 +98,8 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $project = User::find($id);
-        return response()->json(['project' => $project]);
+        $member = User::find($id);
+        return response()->json(['member' => $member]);
     }
 
     // edit details function
@@ -111,24 +111,50 @@ class MemberController extends Controller
 
     
     // update
-    public function update(updateMemberFormRequest $request,$id)
-    {
-        $data=$request->validated();
-        $user =User::find($id);
-        $user->fname=$data['fname'];
-        $user->mname=$data['mname'];
-        $user->lname=$data['lname'];
-        $user->email=$data['email'];
-        $user->phone=$data['phone'];
-        $user->gender=$data['gender'];
-        $user->date_of_birth=$data['date_of_birth'];
-        $user->jumuiya=$data['jumuiya'];
-        $user->status= $request->status == true ? '1':'0';
+    // public function update(updateMemberFormRequest $request,$id)
+    // {
+    //     $data=$request->validated();
+    //     $user =User::find($id);
+    //     $user->fname=$data['fname'];
+    //     $user->mname=$data['mname'];
+    //     $user->lname=$data['lname'];
+    //     $user->email=$data['email'];
+    //     $user->phone=$data['phone'];
+    //     $user->gender=$data['gender'];
+    //     $user->date_of_birth=$data['date_of_birth'];
+    //     $user->jumuiya=$data['jumuiya'];
+    //     $user->status= $request->status == true ? '1':'0';
         
-        $user->save();
+    //     $user->save();
        
-        return redirect('admin/all-members')->with('status','Member was Updated Successfully');
+    //     return redirect('admin/all-members')->with('status','Member was Updated Successfully');
       
+    // }
+
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'fname' => 'required|max:255',
+            'mname' => 'required|max:255',
+            'lname' => 'required|max:255',
+            'email' => 'required',
+            'phone' => 'required',
+            'date_of_birth' => 'required',
+            'gender' => 'required',
+            'jumuiya' => 'required',
+        ]);
+  
+        $member = User::find($id);
+        $member->fname=$request->fname;
+        $member->mname=$request->mname;
+        $member->lname=$request->lname;
+        $member->email=$request->email;
+        $member->phone=$request->phone;
+        $member->gender=$request->gender;
+        $member->date_of_birth=$request->date_of_birth;
+        $member->jumuiya=$request->jumuiya;
+        $member->save();
+        return response()->json(['status' => "success"]);
     }
 
     // public function create(memberFormRequest $request)
