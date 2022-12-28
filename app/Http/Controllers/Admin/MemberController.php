@@ -15,13 +15,6 @@ use App\Http\Requests\Admin\updateMemberFormRequest;
 
 class MemberController extends Controller
 {
-    // for index function
-    // public function index()
-    // {
-    //     $users=User::where('role','member')->get();
-    //     return view('admin.members.index',compact('users'));
-    // }
-
 
         /**
      * Display a listing of the resource.
@@ -98,7 +91,7 @@ class MemberController extends Controller
      */
     public function show($id)
     {
-        $member = User::find($id);
+        $member = User::with('community')->find($id);
         return response()->json(['member' => $member]);
     }
 
@@ -142,6 +135,7 @@ class MemberController extends Controller
             'date_of_birth' => 'required',
             'gender' => 'required',
             'jumuiya' => 'required',
+            'status' => 'boolean',
         ]);
   
         $member = User::find($id);
@@ -153,6 +147,7 @@ class MemberController extends Controller
         $member->gender=$request->gender;
         $member->date_of_birth=$request->date_of_birth;
         $member->jumuiya=$request->jumuiya;
+        $member->status= $request->status == true ? '1':'0';
         $member->save();
         return response()->json(['status' => "success"]);
     }

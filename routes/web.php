@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\JumuiyaController;
+use App\Http\Controllers\Admin\PurposeController;
 
 // use App\Http\Controllers\Controller\DashboardController;
 
@@ -26,22 +27,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
  // admin dashboard route
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class,'index']);
  //  View All Members route
-    // Route::get('/all-members', [App\Http\Controllers\Admin\MemberController::class,'index']);
     Route::get('/all-members', function () {
       return view('admin.members.index');
       });
 // Members API route
     Route::apiResource('members', MemberController::class);
- // Register Member method route  
-    Route::post('add-member', [App\Http\Controllers\Admin\MemberController::class,'create']);
- // Delete Member method route  
-    Route::get('delete-member/{id}', [App\Http\Controllers\Admin\MemberController::class,'destroy']);
 // view single member route
     Route::get('view-member/{id}', [App\Http\Controllers\Admin\MemberController::class, 'show'])->name('users.show');
- //Edit Commmunity page route  
-    Route::get('edit-member/{id}', [App\Http\Controllers\Admin\MemberController::class,'edit']);
- //Update Member route  
-    Route::put('edit-member/{id}', [App\Http\Controllers\Admin\MemberController::class,'update']);
 
  // view all communities route
     // Route::get('/all-communities', [App\Http\Controllers\Admin\JumuiyaController::class,'index']);
@@ -70,8 +62,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
    Route::get('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'edit']);
  //Update Pledge type route  
    Route::put('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'update']);
- // Delete Member method route  
+ // Delete Pledge method route  
     Route::get('delete-pledge/{id}', [App\Http\Controllers\Admin\PledgeController::class,'destroy']);
+   // view all purposes route
+    Route::get('/all-purposes', function () {
+      return view('admin.purposes.index');
+      });
+  
+  // Purposes API route
+  Route::apiResource('purposes', PurposeController::class);
  //Create Purpose route  
    Route::post('add-purpose', [App\Http\Controllers\Admin\PurposeController::class,'save']);
  // Delete Purpose method route  

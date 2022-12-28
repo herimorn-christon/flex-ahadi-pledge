@@ -33,6 +33,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/all-purposes') }}" class="nav-link  {{ Request::is('admin/all-purposes') ? 'active':'' }}">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>
+                Manage Purpose
+              </p>
+            </a>
+          </li>
         <li class="nav-item">
           <a href="{{ url('admin/all-pledges') }}" class="nav-link  {{ Request::is('admin/all-pledges') ? 'active':'' }}">
             <i class="nav-icon fas fa-balance-scale"></i>

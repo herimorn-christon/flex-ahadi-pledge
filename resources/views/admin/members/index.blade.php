@@ -70,16 +70,34 @@
           
             </div>
             <div class="modal-body">
-                <p>
-                    <b class="text-secondary">Full Member Name:</b>   <span id="name-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span>
-                </p>                                     
-                <p>
-                    <b class="text-secondary">Birthdate:</b>   <span id="date-info" class="text-dark"></span>
-                </p>
-                                 <p>
-                    <b class="text-secondary">Description:</b>   <span id="description-info" class="text-dark"></span>
-                </p>
-              
+                <table class="table table-bordered">
+                    <tr>
+                        <td><b class="text-secondary">Full Member Name:</b></td>
+                        <td><span id="name-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span></td>
+                    </tr>
+                    <tr>
+                        <td>  <b class="text-secondary">Community:</b></td>
+                        <td><span id="community-info" class="text-dark"></span> </td>
+                    </tr>
+                    <tr>
+                        <td><b class="text-secondary">Birthdate:</b> </td>
+                        <td> <span id="date-info" class="text-dark"></span></td>
+                    </tr>
+                    <tr>
+                        <td>  <b class="text-secondary">Gender:</b></td>
+                        <td><span id="description-info" class="text-dark"></span> </td>
+                    </tr>
+                    <tr>
+                        <td>  <b class="text-secondary">Phone Number:</b></td>
+                        <td><span id="phone-info" class="text-dark"></span> </td>
+                    </tr>
+                    <tr>
+                        <td>  <b class="text-secondary">Email:</b></td>
+                        <td><span id="email-info" class="text-dark"></span> </td>
+                    </tr>
+                </table>
+
+              <a href="" id="user-link"></a>
             </div>
         
           </div>
@@ -207,7 +225,13 @@
                         <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                     </div>
                 </div>
-                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                {{-- <div class="form-group">
+                    <label for="" class="text-secondary">Status</label>
+                    <input type="checkbox" id="status" name="status" >
+                </div> --}}
+                  
+                </div>
 
                 <div class="col-md-6 mb-0 ">
                             <button type="submit" class="btn  text-decoration-none text-light bg-primary btn-block col-lg-12" id="save-project-btn">
@@ -432,6 +456,7 @@
                         $("#gender").val(member.gender);
                         $("#jumuiya").val(member.jumuiya);
                         $("#password").val(member.password);
+                        $("#status").val(member.password);
                         $("#form-modal").modal('show'); 
                     },
                     error: function(response) {
@@ -454,6 +479,7 @@
                     gender: $("#gender").val(),
                     email: $("#email").val(),
                     phone: $("#phone").val(),
+                    status: $("#status").val(),
                     date_of_birth: $("#date_of_birth").val(),
                     jumuiya: $("#jumuiya").val(),
                 };
@@ -550,6 +576,10 @@
                         $("#lname-info").html(member.lname);
                         $("#date-info").html(member.date_of_birth);
                         $("#description-info").html(member.gender);
+                        $("#community-info").html(member.community.name);
+                        $("#phone-info").html(member.phone);
+                        $("#email-info").html(member.email);
+                        $("#user-link").html(member.id);
                         $("#view-modal").modal('show'); 
          
                     },
