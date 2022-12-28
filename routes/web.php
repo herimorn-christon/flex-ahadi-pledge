@@ -32,6 +32,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
       });
 // Members API route
     Route::apiResource('members', MemberController::class);
+// Jumuiya Auto search route
+    Route::get('ajax-autocomplete-search', [MemberController::class,'selectSearch']);
 // view single member route
     Route::get('view-member/{id}', [App\Http\Controllers\Admin\MemberController::class, 'show'])->name('users.show');
 

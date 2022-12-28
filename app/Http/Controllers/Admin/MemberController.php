@@ -27,6 +27,30 @@ class MemberController extends Controller
         return response()->json(['members' => $members]);
     }
 
+
+    // search community 
+    public function selectSearch(Request $request)
+
+    {
+
+    	$movies = [];
+
+
+        if($request->has('q')){
+
+            $search = $request->q;
+
+            $movies =Jumuiya::select("id", "name")
+
+            		->where('name', 'LIKE', "%$search%")
+
+            		->get();
+
+        }
+
+        return response()->json($movies);
+
+    }
         /**
      * Store a newly created resource in storage.
      *

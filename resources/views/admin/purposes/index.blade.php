@@ -61,7 +61,7 @@
 
 
 
-{{-- test modal --}}
+{{-- Add Purpose modal --}}
 <div class="modal" id="form-modal" tabindex="-1" >
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -108,31 +108,32 @@
   </div>
 </div>
 
-      <!-- view record modal -->
-      <div class="modal" tabindex="-1" id="view-modal">
-          <div class="modal-dialog modal-lg" >
-              <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title text-secondary">Community Information</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <p>
-                      <b class="text-secondary">Name:</b>   <span id="name-info" class="text-dark"></span>
-                  </p>
-                                        
-                  <p>
-                      <b class="text-secondary">Abbreviation:</b>   <span id="description-info" class="text-dark"></span>
-                  </p>
-                   <p>
-                      <b class="text-secondary">Location:</b>   <span id="location-info" class="text-dark"></span>
-                  </p>
-                <hr>
-                  {{-- <a href="{{ url('/admin/')}}" class="btn"></a> --}}
-              </div>
-              </div>
-          </div>
-      </div>
+
+{{-- View Single Purpose --}}
+<div class="modal" id="view-modal" tabindex="-1" >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>
+                <b class="text-secondary">Purpose Title:</b>   <span id="title-info" class="text-dark"></span>
+                <hr>
+                <b class="text-secondary">Start Date:</b>   <span id="start-info" class="text-dark"></span>
+                <hr>
+                <b class="text-secondary">End Date:</b>   <span id="end-info" class="text-dark"></span>
+                <hr>
+                <b class="text-secondary">Description:</b> <br>   <span id="description-info" class="text-dark"></span>
+            </p>
+              <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+   
     
 
 
