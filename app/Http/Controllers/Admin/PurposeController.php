@@ -97,20 +97,31 @@ class PurposeController extends Controller
             return view('admin.pledges.edit-purpose',compact('purpose'));
         }
 
-            // saving purpose  function
-        public function update(purposesFormRequest $request,$id)
-        {
-            $data=$request->validated();
-            $purpose =Purpose::find($id);
-            $purpose->title=$data['title'];
-            $purpose->description=$data['description'];
-            $purpose->start_date=$data['start_date'];
-            $purpose->end_date=$data['end_date'];
-            $purpose->status= $request->status == true ? '1':'0';
-            $purpose->created_by= Auth::user()->id;
-            $purpose->save();
+ /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+        ]);
+  
+        $purpose = Purpose::find($id);
+        $purpose->title=$request->title;
+        $purpose->description=$request->description;
+        $purpose->start_date=$request->start_date;
+        $purpose->end_date=$request->end_date;
+        $purpose->created_by= Auth::user()->id;
+        $purpose->save();
+        return response()->json(['status' => "success"]);
+    }
 
-            return redirect('admin/all-pledges')->with('status','Purpose was Updated Successfully');
-        }
 
 }

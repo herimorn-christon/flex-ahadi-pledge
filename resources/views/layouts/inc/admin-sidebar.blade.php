@@ -37,7 +37,7 @@
             <a href="{{ url('admin/all-purposes') }}" class="nav-link  {{ Request::is('admin/all-purposes') ? 'active':'' }}">
               <i class="nav-icon fas fa-calendar"></i>
               <p>
-                Manage Purpose
+                Manage Purposes
               </p>
             </a>
           </li>
