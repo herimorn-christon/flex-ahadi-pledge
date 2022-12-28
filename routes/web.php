@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\PledgeController;
 use App\Http\Controllers\Admin\JumuiyaController;
 use App\Http\Controllers\Admin\PurposeController;
 
@@ -49,7 +50,11 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
    Route::get('view-community/{id}', [App\Http\Controllers\Admin\JumuiyaController::class, 'show'])->name('community.show');
 
  // all pledges route
-   Route::get('/all-pledges', [App\Http\Controllers\Admin\PledgeController::class,'index']);
+  //  Route::get('/all-pledges', [App\Http\Controllers\Admin\PledgeController::class,'index']);
+  Route::get('/all-pledges', function () { return view('admin.pledges.index'); });
+
+  // Pledges API route
+  Route::apiResource('pledges', PledgeController::class);
  //Create Pledge type route  
    Route::post('add-type', [App\Http\Controllers\Admin\PledgeController::class,'saveType']);
  //Edit Pledge type page route  

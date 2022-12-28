@@ -1,218 +1,65 @@
-@extends('layouts.master')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Laravel Project Manager</title>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="app-url" content="{{ url('/') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+</head>
+<body>
+  
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Laravel Project Manager</h2>
+        <div class="card">
+            <div class="card-header bg-light">
+                <button class="btn btn-primary btn-sm" onclick="createPledge()"> 
+                    Create New Pledge
 
-@section('title','All Communities')
+                    <i class="fa fa-plus"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div id="alert-div">
+                 
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="text-secondary">
+                            <th>Member Name</th>
+                            <th>Pledge(Ahadi)</th>
+                            <th>Purpose</th>
+                            <th>Amount</th>
+                            <th width="240px">Actions</th>
 
-
-@section('content')
-
-
-<div class="row mb-1">
-    <div class="col-sm-6">
-      @if (session('status'))
-      <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
-          {{ session('status') }}
-      </div>
-      @endif
-    </div><!-- /.col -->
-    <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
-        <li class="">  
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_pledge">
-            <i class="fa fa-plus"></i>
-             Register Pledge 
-        </button>  
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
-            <i class="fa fa-list"></i>
-            Purposes
-        </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_purpose">
-        <i class="fa fa-plus"></i>
-         Add Purpose
-        </button>
-    </li>
-       
-      </ol>
-      
-    </div><!-- /.col -->
-  </div>
-
-<div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-          {{-- All Pledges Made --}}
-           
-        </h6>
-    </div>
-    <div class="card-body">
-
-
-
-
-        <div class="row">
- 
-          <table id="mytable"  class="table table-bordered ">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Member Names</th>
-                    <th>Pledge Name</th>
-                    {{-- <th>Purpose</th> --}}
-                    <th>Amount</th>
-                    <th>Deadline</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($pledges as $item)
-                <tr>
-                    <td>{{ $item->id }}</td>
-                    <td>{{ $item->user->fname }} {{ $item->user->mname }} {{ $item->user->lname }}</td>
-                    <td>{{ $item->name }}</td>
-                    {{-- <td>{{ $item->purpose->name }}</td> --}}
-                    <td>{{ $item->amount }}</td>
-                    <td>{{ $item->deadline }}</td>
-                    <td class="text-success">{{ $item->status=='1'? 'Inactive':'Active' }}</td>
-
-                    <td>
-                       <a href="{{ url('admin/view-pledge/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                       </a>
-                        <a href="{{ url('admin/edit-pledge/'.$item->id)}}" class="btn btn-secondary btn-sm mx-1">
-                            <i class="fa fa-edit" aria-hidden="true"></i>
-                        </a>
-                        <a href="{{ url('admin/delete-pledge/'.$item->id)}}" class="btn btn-danger btn-sm">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                </tr>
-                @endforeach
-
-            </tbody>
-        </table>
-        </div>
-
-
-
-    </div>
-</div>
-
-
-{{-- Add Pledge Type modal --}}
-
-<div class="modal fade" id="modal-lg">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          {{-- <h4 class="modal-title">Large Modal</h4> --}}
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form action="{{ url('admin/add-type') }}" method="post">
-                @csrf
+                        </tr>
+                    </thead>
+                    <tbody id="projects-table-body">
+                         
+                    </tbody>
+                     
+                </table>
+            </div>
+        </div>
+    </div>
+  
+    <!-- modal for creating and editing function -->
+    <div class="modal" tabindex="-1"  id="form-modal">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Project Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="error-div"></div>
+             <form>
+             
                 <div class="row mb-3">
-                 <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="title" class="text-secondary">Pledge Type</label>
-                        <input type="text" name="title" id="title" class="title form-control" placeholder="Enter Pledge Title">
-                    </div>
-                 </div>
-                 <div class="col-md-12">
-                    <div class="form-group">
-                     
-                        <button type="submit" class="add_type btn btn-primary">
-                            <i class="fa fa-save"></i>
-                            Save Pledge Type
-                        </button>
-                    </div>
-                 </div>
-                </div>
-            </form>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-
-{{-- All Pledge Types Modal --}}
-
-<div class="modal fade" id="types">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       
-        <div class="row">
-          <table id="mytable"  class="table table-bordered ">
-              <thead>
-                  <tr>
-                      <th>ID</th>
-                      <th>Purpose</th>
-                      <th>Start date</th>
-                      <th>End date</th>
-                      <th>Status</th>
-                      <th>Actions</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  @foreach ($purposes as $item)
-                  <tr>
-                      <td>{{ $item->id }}</td>
-                      <td>{{ $item->title }}</td>
-                      <td>{{ $item->start_date }}</td>
-                      <td>{{ $item->end_date }}</td>
-                      <td class="text-success">{{ $item->status=='1'? 'Hidden':'Active' }}</td>
-                      
-
-                      <td>
-                          <a href="{{ url('admin/edit-purpose/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
-                              <i class="fa fa-edit" aria-hidden="true"></i>
-                          </a>
-                          <a href="{{ url('admin/delete-purpose/'.$item->id)}}" class="btn btn-danger btn-sm">
-                              <i class="fa fa-trash" aria-hidden="true"></i>
-                          </a>
-                      </td>
-                  </tr>
-                  @endforeach
-
-              </tbody>
-          </table>
-
-      </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      --}}
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-{{-- register new pledge  modal--}}
-
-<div class="modal fade" id="add_pledge">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        {{-- <h4 class="modal-title">Large Modal</h4> --}}
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form action="{{ url('admin/save-pledge') }}" method="post">
-              @csrf
-              <div class="row mb-3">
                 @php
                 $jumuiya= App\Models\User::where('role','member')->get();
                 @endphp
@@ -221,17 +68,19 @@
                     <select name="user_id" class="form-control">
                         <option value="">--Select Member --</option>
                         @foreach ( $jumuiya as $item)
-                         <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
+                        <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
                         @endforeach
                     </select>
                 </div>
-
+                @php
+                $types= App\Models\PledgeType::get();
+                @endphp
                 <div class="col-md-6">
                     <label for="" class="text-secondary">Pledge Type</label>
                     <select name="type_id" class="form-control">
                         <option value="">--Select Pledge Type --</option>
                         @foreach ( $types as $item)
-                         <option value="{{ $item->id}}">{{ $item->title}}</option>
+                        <option value="{{ $item->id}}">{{ $item->title}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -243,146 +92,390 @@
                     <select name="purpose_id" class="form-control">
                         <option value="">--Select Purpose --</option>
                         @foreach ( $purpose as $item)
-                         <option value="{{ $item->id}}"> {{ $item->title}}</option>
+                        <option value="{{ $item->id}}"> {{ $item->title}}</option>
                         @endforeach
                     </select>
                 </div>
-               <div class="col-md-6">
-                  <div class="form-group">
-                      <label for="name" class="text-secondary">Name</label>
-                      <input type="text" name="name" id="name" class="form-control" placeholder="Enter Pledge Name">
-                  </div>
-               </div>
-               <div class="col-md-6">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name" class="text-secondary">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Pledge Name">
+                    </div>
+                </div>
+                <div class="col-md-6">
                 <div class="form-group">
                     <label for="amount" class="text-secondary">Amount</label>
                     <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Pledge Amount">
                 </div>
-              </div>
-              <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
                 <div class="form-group">
                     <label for="deadline" class="text-secondary">Deadline</label>
                     <input type="date" name="deadline" id="deadline" class="form-control" placeholder="Enter Pledge Deadline">
                 </div>
-             </div>
-             <div class="col-md-12">
-              <div class="form-group">
-                  <label for="description" class="text-secondary">Description</label>
-                  <textarea name="description" class="form-control" id="deadline" rows="4"></textarea>
-              </div>
-           </div>
-               <div class="col-md-12">
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="description" class="text-secondary">Description</label>
+                    <textarea name="description" class="form-control" id="deadline" rows="4"></textarea>
+                </div>
+            </div>
+                <div class="col-md-12">
 
-                <div class="row">
+                <div class="row mt-2">
 
-                  <div class="col-md-6 mb-3">
-                      <label for="" class="text-secondary">Status</label>
-                      <input type="checkbox" name="status" id="">
-                  </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="" class="text-secondary">Status</label>
+                        <input type="checkbox" name="status" id="">
+                    </div>
 
-                  <div class="col-md-6 ">
-                      <button class="btn btn-primary btn-block float-end" type="submit">
+                    <div class="col-md-6 ">
+                        <button class="btn btn-primary btn-block float-end" id="save-pledge-btn" type="submit">
                         <i class="fa fa-save"></i>
                         Save Pledge 
-                      </button>
-                  </div>
-              </div>
-               </div>
-              </div>
-          </form>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-{{-- register new purpose --}}
-<div class="modal fade" id="add_purpose">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        {{-- <h4 class="modal-title">Large Modal</h4> --}}
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <form action="{{ url('admin/add-purpose') }}" method="post">
-              @csrf
-              <div class="row mb-3">
-               <div class="col-md-12">
-                  <div class="form-group">
-                      <label for="title" class="text-secondary">Title</label>
-                      <input type="text" name="title" id="title" class="form-control" placeholder="Enter Pledge Name">
-                  </div>
-               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                    <label for="start_date" class="text-secondary">Start Date</label>
-                    <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Enter Pledge Deadline">
+                        </button>
+                    </div>
                 </div>
-             </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                    <label for="end_date" class="text-secondary">End Date</label>
-                    <input type="date" name="end_date" id="end_date" class="form-control" placeholder="Enter Pledge Deadline">
                 </div>
-             </div>
-             <div class="col-md-12">
-              <div class="form-group">
-                  <label for="description" class="text-secondary">Description</label>
-                  <textarea name="description" class="form-control" id="deadline" rows="4"></textarea>
-              </div>
-           </div>
-               <div class="col-md-12">
-
-                <div class="row">
-
-                  <div class="col-md-6 mb-3">
-                      <label for="" class="text-secondary">Status</label>
-                      <input type="checkbox" name="status" id="">
-                  </div>
-
-                  <div class="col-md-6 ">
-                      <button class="btn btn-primary btn-block float-end" type="submit">
-                        <i class="fa fa-save"></i>
-                        Save Purpose
-                      </button>
-                  </div>
-              </div>
-               </div>
-              </div>
-          </form>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
-@endsection
-
-@section('scripts')
-
-<script>
-// for add pledges using ajax
-  $(document).ready(
-  function()
-  {
-    $(document).on('click','add_type',function(e)
-    {
-      e.preventDefault();
-
-      var data= {
-        'title':$('.title').val();
-      }
-
-      console.log("hello");
-    }
-    );
-  }
-  );
-</script>
-
-@endsection
+                </div>
+            </form>
+            </div>
+            </div>
+        </div>
+    </div>
+ 
+  
+    <!-- view record modal -->
+    <div class="modal" tabindex="-1" id="view-modal">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Project Information</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <b class="text-secondary">Purpose Title:</b>   <span id="title-info" class="text-dark"></span>
+                    <hr>
+                    <b class="text-secondary">Start Date:</b>   <span id="start-info" class="text-dark"></span>
+                    <hr>
+                    <b class="text-secondary">End Date:</b>   <span id="end-info" class="text-dark"></span>
+                    <hr>
+                    <b class="text-secondary">Description:</b>   <span id="description-info" class="text-dark"></span>
+                </p>
+                
+              
+            </div>
+            </div>
+        </div>
+    </div>
+  
+    <script type="text/javascript">
+  
+        showAllPledges();
+     
+        /*
+            This function will get all the purposes records
+        */
+        function showAllPledges()
+        {
+            let url = $('meta[name=app-url]').attr("content") + "/admin/pledges";
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function(response) {
+                    $("#projects-table-body").html("");
+                    let purposes = response.purposes;
+                    for (var i = 0; i < purposes.length; i++) 
+                    {
+                        let showBtn =  '<button ' +
+                            ' class="btn btn-primary    " ' +
+                            ' onclick="showPurpose(' + purposes[i].id + ')">Show' +
+                        '</button> ';
+                        let editBtn =  '<button ' +
+                            ' class="btn btn-secondary" ' +
+                            ' onclick="editPurpose(' + purposes[i].id + ')">Edit' +
+                        '</button> ';
+                        let deleteBtn =  '<button ' +
+                            ' class="btn btn-danger" ' +
+                            ' onclick="destroyPurpose(' + purposes[i].id + ')">Delete' +
+                        '</button>';
+     
+                        let projectRow = '<tr>' +
+                            '<td>' + purposes[i].user.fname + '&nbsp;' + purposes[i].user.mname +  '&nbsp;' + purposes[i].user.lname +   '</td>' +
+                            '<td>' + purposes[i].name + '</td>' +
+                            '<td>' + purposes[i].purpose.title + '</td>' +
+                            '<td>' + purposes[i].amount + '</td>' +
+                            '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
+                        '</tr>';
+                        $("#projects-table-body").append(projectRow);
+                    }
+     
+                     
+                },
+                error: function(response) {
+                    console.log(response.responseJSON)
+                }
+            });
+        }
+     
+        /*
+            check if form submitted is for creating or updating
+        */
+        $("#save-purpose-btn").click(function(event ){
+            event.preventDefault();
+            if($("#update_id").val() == null || $("#update_id").val() == "")
+            {
+                storePledge();
+            } else {
+                updatePledge();
+            }
+        })
+     
+        /*
+            show modal for creating a record and 
+            empty the values of form and remove existing alerts
+        */
+        function createPledge()
+        {
+            $("#alert-div").html("");
+            $("#error-div").html("");   
+            $("#update_id").val("");
+            $("#title").val("");
+            $("#start_date").val("");
+            $("#end_date").val("");
+            $("#description").val("");
+            $("#form-modal").modal('show'); 
+        }
+     
+        /*
+            submit the form and will be stored to the database
+        */
+        function storePurpose()
+        {   
+            $("#save-purpose-btn").prop('disabled', true);
+            let url = $('meta[name=app-url]').attr("content") + "/admin/purposes";
+            let data = {
+                title: $("#title").val(),
+                start_date: $("#start_date").val(),
+                end_date: $("#end_date").val(),
+                description: $("#description").val(),
+            };
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,
+                type: "POST",
+                data: data,
+                success: function(response) {
+                    $("#save-purpose-btn").prop('disabled', false);
+                    let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Created Successfully</div>';
+                    $("#alert-div").html(successHtml);
+                    $("#tite").val("");
+                    $("#start_date").val("");
+                    $("#end_date").val("");
+                    $("#description").val("");
+                    showAllPurposes();
+                    $("#form-modal").modal('hide');
+                },
+                error: function(response) {
+                    $("#save-purpose-btn").prop('disabled', false);
+     
+                    /*
+        show validation error
+                    */
+                    if (typeof response.responseJSON.errors !== 'undefined') 
+                    {
+        let errors = response.responseJSON.errors;
+        let descriptionValidation = "";
+        if (typeof errors.description !== 'undefined') 
+                        {
+                            descriptionValidation = '<li>' + errors.description[0] + '</li>';
+                        }
+        let titleValidation = "";
+        if (typeof errors.title !== 'undefined') 
+                        {
+                            titleValidation = '<li>' + errors.title[0] + '</li>';
+                        }
+        let startDateValidation = "";
+        if (typeof errors.start_date !== 'undefined') 
+                        {
+                            startDateValidation = '<li>' + errors.start_date[0] + '</li>';
+                        }
+          
+        let endDateValidation = "";
+        if (typeof errors.end_date !== 'undefined') 
+                        {
+                            endDateValidation = '<li>' + errors.end_date[0] + '</li>';
+                        }
+         
+        let errorHtml = '<div class="alert alert-danger" role="alert">' +
+            '<b>Validation Error!</b>' +
+            '<ul>' + titleValidation + descriptionValidation + startDateValidation + endDateValidation +'</ul>' +
+        '</div>';
+        $("#error-div").html(errorHtml);        
+    }
+                }
+            });
+        }
+     
+     
+        /*
+            edit record function
+            it will get the existing value and show the purpose form
+        */
+        function editPurpose(id)
+        {
+            let url = $('meta[name=app-url]').attr("content") + "/admin/purposes/" + id ;
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function(response) {
+                    let purpose = response.purpose;
+                    $("#alert-div").html("");
+                    $("#error-div").html("");   
+                    $("#update_id").val(purpose.id);
+                    $("#title").val(purpose.title);
+                    $("#start_date").val(purpose.start_date);
+                    $("#end_date").val(purpose.end_date);
+                    $("#description").val(purpose.description);
+                    $("#form-modal").modal('show'); 
+                },
+                error: function(response) {
+                    console.log(response.responseJSON)
+                }
+            });
+        }
+     
+        /*
+            sumbit the form and will update a record
+        */
+        function updatePurpose()
+        {
+            $("#save-purpose-btn").prop('disabled', true);
+            let url = $('meta[name=app-url]').attr("content") + "/admin/purposes/" + $("#update_id").val();
+            let data = {
+                title: $("#title").val(),
+                start_date: $("#start_date").val(),
+                end_date: $("#end_date").val(),
+                description: $("#description").val(),
+            };
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,
+                type: "PUT",
+                data: data,
+                success: function(response) {
+                    $("#save-purpose-btn").prop('disabled', false);
+                    let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Updated Successfully !</div>';
+                    $("#alert-div").html(successHtml);
+                    $("#tite").val("");
+                    $("#start_date").val("");
+                    $("#end_date").val("");
+                    $("#description").val("");
+                    showAllPurposes();
+                    $("#form-modal").modal('hide');
+                },
+                error: function(response) {
+                    /*
+        show validation error
+                    */
+                    $("#save-purpose-btn").prop('disabled', false);
+                    if (typeof response.responseJSON.errors !== 'undefined') 
+                    {
+                        console.log(response)
+        let errors = response.responseJSON.errors;
+       descriptionValidation = "";
+        if (typeof errors.description !== 'undefined') 
+                        {
+                            descriptionValidation = '<li>' + errors.description[0] + '</li>';
+                        }
+        let titleValidation = "";
+        if (typeof errors.title !== 'undefined') 
+                        {
+                            titleValidation = '<li>' + errors.title[0] + '</li>';
+                        }
+        let startDateValidation = "";
+        if (typeof errors.start_date !== 'undefined') 
+                        {
+                            startDateValidation = '<li>' + errors.start_date[0] + '</li>';
+                        }
+          
+        let endDateValidation = "";
+        if (typeof errors.end_date !== 'undefined') 
+                        {
+                            endDateValidation = '<li>' + errors.end_date[0] + '</li>';
+                        }
+         
+        let errorHtml = '<div class="alert alert-danger" role="alert">' +
+            '<b>Validation Error!</b>' +
+            '<ul>' + titleValidation + descriptionValidation + startDateValidation + endDateValidation +'</ul>' +
+        '</div>';
+        $("#error-div").html(errorHtml);        
+    }
+                }
+            });
+        }
+     
+        /*
+            get and display the record info on modal
+        */
+        function showPurpose(id)
+        {
+            $("#name-info").html("");
+            $("#description-info").html("");
+            let url = $('meta[name=app-url]').attr("content") + "/admin/purposes/" + id +"";
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function(response) {
+                    let purpose = response.purpose;
+                    $("#title-info").html(purpose.title);
+                    $("#start-info").html(purpose.start_date);
+                    $("#end-info").html(purpose.end_date);
+                    $("#description-info").html(purpose.description);
+                    $("#view-modal").modal('show'); 
+     
+                },
+                error: function(response) {
+                    console.log(response.responseJSON)
+                }
+            });
+        }
+     
+        /*
+            delete record function
+        */
+        function destroyPurpose(id)
+        {
+            let url = $('meta[name=app-url]').attr("content") + "/admin/pledges/" + id;
+            let data = {
+                title: $("#title").val(),
+                start_date: $("#start_date").val(),
+                end_date: $("#end_date").val(),
+                description: $("#description").val(),
+            };
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: url,
+                type: "DELETE",
+                data: data,
+                success: function(response) {
+                    let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Deleted Successfully </div>';
+                    $("#alert-div").html(successHtml);
+                    showAllPurposes();
+                },
+                error: function(response) {
+                    console.log(response.responseJSON)
+                }
+            });
+        }
+     
+    </script>
+</body>
+</html>

@@ -13,16 +13,54 @@ use App\Http\Requests\Admin\pledgesFormRequest;
 
 class PledgeController extends Controller
 {
-    // for index function
+            /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $types=PledgeType::all();
-        $pledges=Pledge::all();
-        $purposes=Purpose::all();
-        return view('admin.pledges.index',compact('types','pledges','purposes'));
+        $purposes = Pledge::orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
+        return response()->json(['purposes' => $purposes]);
     }
 
 
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        request()->validate(
+            [
+            'name' => 'required|max:255',
+            'amount' => 'required',
+            'description' => 'required',
+            'deadline' => 'required',
+            'user_id' => 'required',
+            'type_id' => 'required',
+            'purpose_id' => 'required',
+             ]
+            );
+
+            $pledge = new Pledge();
+            $pledge->name = $request->name;
+            $pledge->description = $request->description;
+            $pledge->amount = $request->amount;
+            $pledge->deadline=$request->deadline;
+            $pledge->type_id=$request->type_id;
+            $pledge->purpose_id=$request->purpose_id;
+            $pledge->user_id=$request->user_id;
+            $pledge->status= $request->status == true ? '1':'0';
+            $pledge->created_by= Auth::user()->id;
+            $pledge->save();
+            return response()->json(['status' => "success"]);
+    }
+
+    
     // saving pledge type function
     public function saveType(pledgeFormRequest $request)
     {

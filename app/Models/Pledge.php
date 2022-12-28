@@ -29,10 +29,10 @@ class Pledge extends Model
         return $this->belongsTo(PledgeType::class, 'type_id','id');
     }
 
-    // public function purpose()
-    // {
-    //     return $this->belongsTo(Purpose::class, 'purpose_id','id');
-    // }
+    public function purpose()
+    {
+        return $this->belongsTo(Purpose::class, 'purpose_id','id');
+    }
     // for relationship
     public function user()
     {
