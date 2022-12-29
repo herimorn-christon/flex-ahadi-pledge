@@ -39,7 +39,7 @@ class CardController extends Controller
 
            
             $card =new Card();
-            $type->card_no=$request->card_no;
+            $card->card_no=$request->card_no;
             $card->created_by= Auth::user()->id;
             $card->save();
 
