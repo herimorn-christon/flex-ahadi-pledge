@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\MethodController;
 use App\Http\Controllers\Admin\PledgeController;
@@ -57,6 +58,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 
   // Pledges API route
   Route::apiResource('pledges', PledgeController::class);
+   // Pledge Types API route
+  Route::apiResource('types', TypeController::class);
  //Create Pledge type route  
    Route::post('add-type', [App\Http\Controllers\Admin\PledgeController::class,'saveType']);
  //Edit Pledge type page route  

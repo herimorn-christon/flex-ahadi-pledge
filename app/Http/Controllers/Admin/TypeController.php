@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\PaymentType;
+use App\Models\PledgeType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class MethodController extends Controller
+class TypeController extends Controller
 {
-    
-            /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $methods = PaymentType::orderBy('updated_at','DESC')->get();
-        return response()->json(['methods' => $methods]);
+        $types = PledgeType::orderBy('updated_at','DESC')->get();
+        return response()->json(['types' => $types ]);
     }
-        /**
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -29,18 +29,18 @@ class MethodController extends Controller
     {
         request()->validate(
             [
-            'name' => 'required|max:255',
+            'title' => 'required|max:255',
              ]
             );
 
-            $method = new PaymentType();
-            $method->name=$request->name;
-            $method->save();
+            $type = new PledgeType();
+            $type->title=$request->title;
+            $type->save();
 
             return response()->json(['status' => "success"]);
     }
 
-        /**
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -48,11 +48,10 @@ class MethodController extends Controller
      */
     public function show($id)
     {
-        $method = PaymentType::find($id);
-        return response()->json(['method' => $method]);
+        //
     }
-    
- /**
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -61,17 +60,10 @@ class MethodController extends Controller
      */
     public function update(Request $request, $id)
     {
-        request()->validate([
-            'name' => 'required|max:255',
-        ]);
-  
-        $method = PaymentType::find($id);
-        $method->name=$request->name;
-        $method->save();
-        return response()->json(['status' => "success"]);
+        //
     }
 
-       /**
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -79,8 +71,6 @@ class MethodController extends Controller
      */
     public function destroy($id)
     {
-        PaymentType::destroy($id);
-        return response()->json(['status' => "success"]);
+        //
     }
-
 }

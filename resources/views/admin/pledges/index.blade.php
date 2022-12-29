@@ -16,7 +16,7 @@
             <i class="fa fa-plus"></i>
              Register Pledge 
         </button>  
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="showAllTypes()">
             <i class="fa fa-list"></i>
             Pledge Types
         </button>
@@ -114,11 +114,9 @@
 <div class="modal fade" id="types">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header bg-light">
+        <button type="button" class="btn-close btn-sm btn-danger " data-bs-dismiss="modal" aria-label="Close"></button>
+
       </div>
       <div class="modal-body">
        
@@ -132,26 +130,12 @@
 
                 </tr>
               </thead>
-              @php
-              $types= App\Models\PledgeType::get();
-              @endphp
-              <tbody id="projects-table-body">
-                @foreach ( $types as $item)
-                <tr>
-                  <td>{{ $item->id}}</td>
-                  <td>{{ $item->title}}</td>
-                  <td></td>
-                </tr>
-                @endforeach
+              <tbody id="types-table-body">
 
               </tbody>
           </table>
 
       </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      --}}
       </div>
     </div>
     <!-- /.modal-content -->
@@ -346,6 +330,50 @@
               });
           }
        
+            showAllTypes();
+
+
+            /*
+                This function will get all the payments records
+            */
+            function showAllTypes()
+            {
+                let url = $('meta[name=app-url]').attr("content") + "/admin/types";
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: function(response) {
+                        $("#types-table-body").html("");
+                        let types = response.types;
+                        for (var i = 0; i < types.length; i++) 
+                        {
+                          
+                            let editBtn =  '<button ' +
+                                ' class="btn btn-secondary" ' +
+                                ' onclick="editType(' + types[i].id + ')">Edit' +
+                            '</button> ';
+                            let deleteBtn =  '<button ' +
+                                ' class="btn btn-danger" ' +
+                                ' onclick="destroyType(' + types[i].id + ')">Delete' +
+                            '</button>';
+         
+                            let projectRow = '<tr>' +
+                                '<td>' + types[i].id + '</td>' +
+                                '<td>' + types[i].title + '</td>' +
+                                '<td>' + editBtn + deleteBtn + '</td>' +
+                            '</tr>';
+                            $("#types-table-body").append(projectRow);
+                            $("#types").modal('show'); 
+                        }
+         
+                         
+                    },
+                    error: function(response) {
+                        console.log(response.responseJSON)
+                    }
+                });
+            }
+
           /*
               check if form submitted is for creating or updating
           */
@@ -358,6 +386,20 @@
                   updatePledge();
               }
           })
+
+
+          /*
+                check if form submitted is for creating or updating
+            */
+            $("#save-type-btn").click(function(event ){
+                event.preventDefault();
+                if($("#update_id").val() == null || $("#update_id").val() == "")
+                {
+                    storeType();
+                } else {
+                    updateType();
+                }
+            })
        
           /*
               show modal for creating a record and 

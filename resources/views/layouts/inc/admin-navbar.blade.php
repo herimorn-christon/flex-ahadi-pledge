@@ -54,7 +54,8 @@
     {{-- user details --}}
     <li class="nav-item dropdown">
       <a class="nav-link" data-toggle="dropdown" href="#">
-          {{ Auth::user()->fname }} &nbsp;
+        <img src="{{ asset('uploads/user/'. Auth::user()->profile_picture ) }}" alt="" width="20px" height="20px" class="img-circle">
+          {{ Auth::user()->fname }}  {{ Auth::user()->lname }}&nbsp;
 
           <i class="fa fa-angle-down"></i>
           

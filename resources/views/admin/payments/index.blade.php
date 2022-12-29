@@ -21,7 +21,7 @@
             <i class="fa fa-plus"></i>
             Register Payment
         </button>   
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#types">
+        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
              Payment Methods
         </button>
@@ -82,6 +82,7 @@
         </div>
         <div class="modal-body">
             <form>
+              <input type="hidden" name="update_id" id="update_id">
                 <div class="row mb-3">
                  <div class="col-md-12">
                     <div class="form-group">
@@ -114,12 +115,12 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-light">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+         <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+
       </div>
       <div class="modal-body">
-       
+        <div class="col-sm-12" id="alert-div">
+        </div>
         <div class="row">
           <table   class="table table-bordered ">
               <thead>
@@ -342,6 +343,7 @@
                                 '<td>' + editBtn + deleteBtn + '</td>' +
                             '</tr>';
                             $("#methods-table-body").append(projectRow);
+                            $("#types").modal('show'); 
                         }
          
                          
@@ -538,7 +540,7 @@
          
             /*
                 edit record function
-                it will get the existing value and show the purpose form
+                it will get the existing value and show the Payments form
             */
             function editPledge(id)
             {
@@ -635,6 +637,82 @@
                 });
             }
          
+
+      /*
+                edit record function
+                it will get the existing value and show the payment form form
+            */
+            function editMethod(id)
+            {
+                let url = $('meta[name=app-url]').attr("content") + "/admin/methods/" + id ;
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: function(response) {
+                        let method = response.method;
+                        $("#alert-div").html("");
+                        $("#error-div").html("");   
+                        $("#update_id").val(method.id);
+                        $("#name").val(method.name);
+                        $("#types").modal('hide');
+                        $("#method-modal").modal('show'); 
+                       
+                    },
+                    error: function(response) {
+                        console.log(response.responseJSON)
+                    }
+                });
+            }
+         
+            /*
+                sumbit the form and will update a record
+            */
+            function updateMethod()
+            {
+                $("#save-method-btn").prop('disabled', true);
+                let url = $('meta[name=app-url]').attr("content") + "/admin/methods/" + $("#update_id").val();
+                let data = {
+                    name: $("#name").val(),
+                };
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: url,
+                    type: "PUT",
+                    data: data,
+                    success: function(response) {
+                        $("#save-pledge-btn").prop('disabled', false);
+                        let successHtml = '<div class="alert alert-success" role="alert">Payment Method Was Updated Successfully !</div>';
+                        $("#alert-div").html(successHtml);
+                        $("#name").val("");
+                        showAllMethods();
+                        $("#method-modal").modal('hide');
+                    },
+                    error: function(response) {
+                        /*
+            show validation error
+                        */
+                        $("#save-pledge-btn").prop('disabled', false);
+                        if (typeof response.responseJSON.errors !== 'undefined') 
+                        {
+                            console.log(response)
+            let errors = response.responseJSON.errors;
+            let nameValidation = "";
+            if (typeof errors.name !== 'undefined') 
+                            {
+                                nameValidation = '<li>' + errors.name[0] + '</li>';
+                            }
+            let errorHtml = '<div class="alert alert-danger" role="alert">' +
+                '<b>Validation Error!</b>' +
+                '<ul>' + nameValidation + '</ul>' +
+            '</div>';
+            $("#error-div").html(errorHtml);        
+        }
+                    }
+                });
+            }
+         
             /*
                 get and display the record info on modal
             */
@@ -693,6 +771,37 @@
                     }
                 });
             }
+
+
+            /*
+                delete payment record function
+            */
+            function destroyMethod(id)
+            {
+                let url = $('meta[name=app-url]').attr("content") + "/admin/methods/" + id;
+                let data = {
+                    name: $("#name").val(),
+                };
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: url,
+                    type: "DELETE",
+                    data: data,
+                    success: function(response) {
+                        let successHtml = '<div class="alert alert-danger" role="alert">Payment Method Was Deleted Successfully </div>';
+                        $("#alert-div").html(successHtml);
+    //                     showAllMethods();
+    
+                        $("#types").modal('hide'); 
+                    },
+                    error: function(response) {
+                        console.log(response.responseJSON)
+                    }
+                });
+            }
+         
          
   </script>
 @endsection
