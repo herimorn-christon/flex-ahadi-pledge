@@ -248,6 +248,9 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
+
+
+  {{-- view payment modal --}}
    <script type="text/javascript">
   
             showAllPledges();
