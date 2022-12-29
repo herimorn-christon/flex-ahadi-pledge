@@ -60,6 +60,33 @@ class PaymentController extends Controller
             return response()->json(['status' => "success"]);
     }
 
+           /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'type_id' => 'required|max:255',
+            'user_id' => 'required',
+            'pledge_id' => 'required',
+            'amount' => 'required',
+        ]);
+  
+        $payment = Payment::find($id);
+        $payment->type_id = $request->type_id;
+        $payment->user_id = $request->user_id;
+        $payment->amount = $request->amount;
+        $payment->pledge_id=$request->pledge_id;
+        $payment->user_id=$request->user_id;
+        $payment->created_by= Auth::user()->id;
+        $payment->save();
+        return response()->json(['status' => "success"]);
+    }
+
         /**
      * Remove the specified resource from storage.
      *
@@ -71,7 +98,17 @@ class PaymentController extends Controller
         Payment::destroy($id);
         return response()->json(['status' => "success"]);
     }
-
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $purpose = Payment::with('payer')->with('payment')->with('purpose')->find($id);
+        return response()->json(['purpose' => $purpose]);
+    }
     // saving payment method function
     public function saveMethod(paymentFormRequest $request)
     {
