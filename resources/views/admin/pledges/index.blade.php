@@ -229,19 +229,24 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="description" class="text-secondary">Description</label>
-                    <textarea name="description" class="form-control" id="description" rows="4"></textarea>
+                    <textarea name="description" class="form-control" id="description" rows="3"></textarea>
                 </div>
             </div>
                 <div class="col-md-12">
 
                 <div class="row mt-2">
 
-                    <div class="col-md-6 mb-3">
-                        {{-- <label for="" class="text-secondary">Status</label>
-                        <input type="checkbox" name="status" id=""> --}}
+                    <div class="col-md-6 ">
+                        <label for="" class="text-secondary"> Pledge Status</label>
+                        {{-- <input type="checkbox" name="status" id="status"> --}}
+                        <select name="status" id="status" class="form-control">
+                          <option value="0">Not Fullfilled</option>
+                          <option value="1">Fullfilled</option>
+                        </select>
                     </div>
 
                     <div class="col-md-6 ">
+                      <label for="" class="text-white">.</label>
                         <button class="btn btn-primary btn-block " id="save-pledge-btn" type="submit">
                         <i class="fa fa-save"></i>
                         Save Pledge 
@@ -274,7 +279,9 @@
           <b class="text-secondary">Pledge Type:</b>   <span id="type-info" class="text-dark"></span>
           <hr>
           <b class="text-secondary">Pledge Purpose:</b>   <span id="purpose-info" class="text-dark"></span>
-          <hr>          
+          <hr>    
+          <b class="text-secondary">Pledge Status:</b>   <span id="status-info" class="text-success"></span>
+          <hr>        
           <b class="text-secondary">Deadline:</b>   <span id="start-info" class="text-dark"></span>
           <hr>
           <b class="text-secondary">Amount:</b>   <span id="end-info" class="text-dark"></span>
@@ -472,6 +479,7 @@
                       $("#purpose_id").val(purpose.purpose_id);
                       $("#deadline").val(purpose.deadline);
                       $("#description").val(purpose.description);
+                      $("#status").val(purpose.status);
                       $("#form-modal").modal('show'); 
                   },
                   error: function(response) {
@@ -495,6 +503,7 @@
                   user_id: $("#user_id").val(),
                   type_id: $("#type_id").val(),
                   purpose_id: $("#purpose_id").val(),
+                  status: $("#status").val(),
               };
               $.ajax({
                   headers: {
@@ -514,6 +523,7 @@
                       $("#deadline").val("");
                       $("#amount").val("");
                       $("#description").val("");   
+                      $("#status").val(""); 
                       showAllPledges();
                       $("#form-modal").modal('hide');
                   },
@@ -576,6 +586,7 @@
                       $("#lname-info").html(purpose.user.lname );
                       $("#title-info").html(purpose.name);
                       $("#start-info").html(purpose.deadline);
+                      $("#status-info").html(purpose.status == '0' ? 'Not Fullfilled':'Fullfilled');
                       $("#end-info").html(purpose.amount);
                       $("#type-info").html(purpose.type.title);
                       $("#purpose-info").html(purpose.purpose.title);

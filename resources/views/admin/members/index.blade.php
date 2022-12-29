@@ -96,8 +96,6 @@
                         <td><span id="email-info" class="text-dark"></span> </td>
                     </tr>
                 </table>
-
-              <a href="" id="user-link"></a>
             </div>
         
           </div>

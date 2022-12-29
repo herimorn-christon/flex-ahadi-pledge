@@ -19,7 +19,7 @@
         <li class="">    
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#cards">
             <i class="fa fa-envelope"></i>
-             All Cards
+             Available Cards
         </button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
             <i class="fa fa-list"></i>
@@ -45,7 +45,7 @@
     <div class="card-body">
 
         <div class="row">
-            <table id="mytable" class="table table-bordered ">
+            <table  class="table table-bordered ">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -88,13 +88,12 @@
 </div>
 
 
-{{-- Add Community modal --}}
+{{-- Add Card modal --}}
 
 <div class="modal fade" id="modal-lg">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
-        <div class="modal-header">
-          {{-- <h4 class="modal-title">Large Modal</h4> --}}
+        <div class="modal-header bg-light">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -109,10 +108,11 @@
                         <input type="text" name="card_no" id="card_no" class="form-control" placeholder="Enter Card Number">
                     </div>
                  </div>
-                 <div class="col-md-12">
+                 <div class="col-md-6"></div>
+                 <div class="col-md-6">
                     <div class="form-group">
                      
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary btn-block">
                             <i class="fa fa-save"></i>
                             Create Card
                         </button>
@@ -134,8 +134,7 @@
 <div class="modal fade" id="types">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
+      <div class="modal-header bg-light">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -171,10 +170,11 @@
                     @endforeach
                 </select>
             </div>
-           <div class="col-md-12">
+            <div class="col-md-6"></div>
+           <div class="col-md-6">
               <div class="form-group">
                
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" class="btn btn-primary btn-block">
                       <i class="fa fa-save"></i>
                       Assign Card
                   </button>
@@ -195,8 +195,7 @@
 <div class="modal fade" id="cards">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
+      <div class="modal-header bg-light">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -206,7 +205,7 @@
         <div class="row">
           <table id="modaltable" class="table table-bordered ">
               <thead>
-                  <tr>
+                  <tr class="text-secondary">
                       <th>ID</th>
                       <th>Card Number</th>
                       <th>Card Status</th>
