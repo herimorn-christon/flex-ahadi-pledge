@@ -13,7 +13,7 @@ use App\Http\Requests\Admin\pledgesFormRequest;
 
 class PledgeController extends Controller
 {
-            /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

@@ -258,63 +258,30 @@
   <!-- /.modal-dialog -->
 </div>
 
-{{-- register new purpose --}}
-<div class="modal fade" id="add_purpose">
+{{-- view single pledge info--}}
+<div class="modal fade" id="view-modal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        {{-- <h4 class="modal-title">Large Modal</h4> --}}
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header bg-light">
+        <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <form action="{{ url('admin/add-purpose') }}" method="post">
-              @csrf
-              <div class="row mb-3">
-               <div class="col-md-12">
-                  <div class="form-group">
-                      <label for="title" class="text-secondary">Title</label>
-                      <input type="text" name="title" id="title" class="form-control" placeholder="Enter Pledge Name">
-                  </div>
-               </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                    <label for="start_date" class="text-secondary">Start Date</label>
-                    <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Enter Pledge Deadline">
-                </div>
-             </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                    <label for="end_date" class="text-secondary">End Date</label>
-                    <input type="date" name="end_date" id="end_date" class="form-control" placeholder="Enter Pledge Deadline">
-                </div>
-             </div>
-             <div class="col-md-12">
-              <div class="form-group">
-                  <label for="description" class="text-secondary">Description</label>
-                  <textarea name="description" class="form-control" id="deadline" rows="4"></textarea>
-              </div>
-           </div>
-               <div class="col-md-12">
-
-                <div class="row">
-
-                  <div class="col-md-6 mb-3">
-                      <label for="" class="text-secondary">Status</label>
-                      <input type="checkbox" name="status" id="">
-                  </div>
-
-                  <div class="col-md-6 ">
-                      <button class="btn btn-primary btn-block float-end" type="submit">
-                        <i class="fa fa-save"></i>
-                        Save Purpose
-                      </button>
-                  </div>
-              </div>
-               </div>
-              </div>
-          </form>
+        <p>
+          <b class="text-secondary">Member Name:</b>   <span id="fname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span>
+          <hr>
+          <b class="text-secondary">Pledge Name:</b>   <span id="title-info" class="text-dark"></span>
+          <hr>
+          <b class="text-secondary">Pledge Type:</b>   <span id="type-info" class="text-dark"></span>
+          <hr>
+          <b class="text-secondary">Pledge Purpose:</b>   <span id="purpose-info" class="text-dark"></span>
+          <hr>          
+          <b class="text-secondary">Deadline:</b>   <span id="start-info" class="text-dark"></span>
+          <hr>
+          <b class="text-secondary">Amount:</b>   <span id="end-info" class="text-dark"></span>
+          <hr>
+          <b class="text-secondary">Description:</b> <br>   <span id="description-info" class="text-dark"></span>
+      </p>
+                
       </div>
     </div>
     <!-- /.modal-content -->
@@ -604,9 +571,14 @@
                   type: "GET",
                   success: function(response) {
                       let purpose = response.purpose;
+                      $("#fname-info").html(purpose.user.fname );
+                      $("#mname-info").html(purpose.user.mname );
+                      $("#lname-info").html(purpose.user.lname );
                       $("#title-info").html(purpose.name);
                       $("#start-info").html(purpose.deadline);
                       $("#end-info").html(purpose.amount);
+                      $("#type-info").html(purpose.type.title);
+                      $("#purpose-info").html(purpose.purpose.title);
                       $("#description-info").html(purpose.description);
                       $("#view-modal").modal('show'); 
        

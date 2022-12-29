@@ -13,12 +13,25 @@ class PaymentController extends Controller
 {
 
     // for index function
+    // public function index()
+    // {
+    //     $types=PaymentType::all();
+    //     $payments=Payment::all();
+    //     return view('admin.payments.index',compact('types','payments'));
+    // }
+
+     /**
+     * Display a listing of the payments.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $types=PaymentType::all();
-        $payments=Payment::all();
-        return view('admin.payments.index',compact('types','payments'));
+        $purposes = Payment::orderBy('updated_at','DESC')->with('payer')->with('payment')->with('purpose')->get();
+        return response()->json(['purposes' => $purposes]);
     }
+
+
     // saving payment method function
     public function saveMethod(paymentFormRequest $request)
     {

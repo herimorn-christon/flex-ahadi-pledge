@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\PledgeController;
 use App\Http\Controllers\Admin\JumuiyaController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PurposeController;
 
 // use App\Http\Controllers\Controller\DashboardController;
@@ -87,7 +88,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
     Route::put('edit-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'update']);
 
 // all payments route
-   Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
+  //  Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
+  Route::get('/all-payments', function () {
+    return view('admin.payments.index');
+    });
+  // Payments API route
+  Route::apiResource('payments', PaymentController::class);
+
  //Create Payment method route  
    Route::post('add-method', [App\Http\Controllers\Admin\PaymentController::class,'saveMethod']);
  //Edit Payment Method page route  
