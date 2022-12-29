@@ -37,7 +37,7 @@
 
 
         <div class="row">
-            <table id="mytable" class="table table-bordered responsive">
+            <table  class="table table-bordered responsive">
                 <thead>
                     <tr class="text-secondary">
                         <th>Purpose Title</th>
