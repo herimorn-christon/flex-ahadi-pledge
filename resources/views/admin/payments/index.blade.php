@@ -25,7 +25,7 @@
             <i class="fa fa-list"></i>
              Payment Methods
         </button>
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#modal-lg">
+        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
         <i class="fa fa-plus"></i>
          Add Payment Method
         </button>
@@ -74,29 +74,26 @@
 
 {{-- Add Payment Type modal --}}
 
-<div class="modal fade" id="modal-lg">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="method-modal">
+    <div class="modal-dialog ">
       <div class="modal-content">
         <div class="modal-header bg-light">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+           <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="{{ url('admin/add-method') }}" method="post">
-                @csrf
+            <form>
                 <div class="row mb-3">
                  <div class="col-md-12">
                     <div class="form-group">
                         <label for="name" class="text-secondary">Payment Method</label>
-                        <input type="text" name="name" id="title" class="form-control" placeholder="Enter Payment Method Name">
+                        <input type="text" id="name" name="name" id="title" class="form-control" placeholder="Enter Payment Method Name">
                     </div>
                  </div>
                  <div class="col-md-6"></div>
                  <div class="col-md-6">
                     <div class="form-group">
                      
-                        <button type="submit" class="btn btn-primary btn-block">
+                        <button type="submit" class="btn btn-primary btn-block" id="save-method-btn">
                             <i class="fa fa-save"></i>
                             Save Payment Method
                         </button>
@@ -132,26 +129,7 @@
                       <th>Actions</th>
                   </tr>
               </thead>
-              <tbody>
-                @php
-                $types= App\Models\PaymentType::all();
-                @endphp
-                  @foreach ($types as $item)
-                  <tr>
-                      <td>{{ $item->id }}</td>
-                      <td>{{ $item->name }}</td>
-                      
-
-                      <td>
-                          <a href="{{ url('admin/edit-method/'.$item->id)}}" class="btn btn-primary btn-sm mx-1">
-                              <i class="fa fa-edit" aria-hidden="true"></i>
-                          </a>
-                          <a href="{{ url('admin/delete-method/'.$item->id)}}" class="btn btn-danger btn-sm">
-                              <i class="fa fa-trash" aria-hidden="true"></i>
-                          </a>
-                      </td>
-                  </tr>
-                  @endforeach
+              <tbody id="methods-table-body">
 
               </tbody>
           </table>
@@ -284,9 +262,9 @@
    <script type="text/javascript">
   
             showAllPledges();
-         
+        
             /*
-                This function will get all the purposes records
+                This function will get all the payments records
             */
             function showAllPledges()
             {
@@ -330,6 +308,50 @@
                 });
             }
          
+
+            showAllMethods();
+
+
+            /*
+                This function will get all the payments records
+            */
+            function showAllMethods()
+            {
+                let url = $('meta[name=app-url]').attr("content") + "/admin/methods";
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: function(response) {
+                        $("#methods-table-body").html("");
+                        let methods = response.methods;
+                        for (var i = 0; i < methods.length; i++) 
+                        {
+                          
+                            let editBtn =  '<button ' +
+                                ' class="btn btn-secondary" ' +
+                                ' onclick="editMethod(' + methods[i].id + ')">Edit' +
+                            '</button> ';
+                            let deleteBtn =  '<button ' +
+                                ' class="btn btn-danger" ' +
+                                ' onclick="destroyMethod(' + methods[i].id + ')">Delete' +
+                            '</button>';
+         
+                            let projectRow = '<tr>' +
+                                '<td>' + methods[i].id + '</td>' +
+                                '<td>' + methods[i].name + '</td>' +
+                                '<td>' + editBtn + deleteBtn + '</td>' +
+                            '</tr>';
+                            $("#methods-table-body").append(projectRow);
+                        }
+         
+                         
+                    },
+                    error: function(response) {
+                        console.log(response.responseJSON)
+                    }
+                });
+            }
+         
             /*
                 check if form submitted is for creating or updating
             */
@@ -343,6 +365,19 @@
                 }
             })
          
+
+            /*
+                check if form submitted is for creating or updating
+            */
+            $("#save-method-btn").click(function(event ){
+                event.preventDefault();
+                if($("#update_id").val() == null || $("#update_id").val() == "")
+                {
+                    storeMethod();
+                } else {
+                    updateMethod();
+                }
+            })
             /*
                 show modal for creating a record and 
                 empty the values of form and remove existing alerts
@@ -434,6 +469,71 @@
                     }
                 });
             }
+         
+
+
+      /*
+                show modal for creating a record and 
+                empty the values of form and remove existing alerts
+            */
+            function createMethod()
+            {
+                $("#alert-div").html("");
+                $("#error-div").html("");   
+                $("#update_id").val("");
+                $("#name").val("");
+                $("#method-modal").modal('show'); 
+            }
+         
+            /*
+                submit the form and will be stored to the database
+            */
+            function storeMethod()
+            {   
+                $("#save-method-btn").prop('disabled', true);
+                let url = $('meta[name=app-url]').attr("content") + "/admin/methods";
+                let data = {
+                    name: $("#name").val(),
+                };
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: url,
+                    type: "POST",
+                    data: data,
+                    success: function(response) {
+                        $("#save-method-btn").prop('disabled', false);
+                        let successHtml = '<div class="alert alert-success" role="alert">Payment Method Was Added Successfully</div>';
+                        $("#alert-div").html(successHtml);
+                        $("#name").val("");
+                        showAllPledges();
+                        $("#method-modal").modal('hide');
+                    },
+                    error: function(response) {
+                        $("#save-method-btn").prop('disabled', false);
+         
+                        /*
+            show validation error
+                        */
+                        if (typeof response.responseJSON.errors !== 'undefined') 
+                        {
+            let errors = response.responseJSON.errors;
+            if (typeof errors.name !== 'undefined') 
+                            {
+                                nameValidation = '<li>' + errors.name[0] + '</li>';
+                            }
+             
+            let errorHtml = '<div class="alert alert-danger" role="alert">' +
+                '<b>Validation Error!</b>' +
+                '<ul>' + nameValidation + '</ul>' +
+            '</div>';
+            $("#error-div").html(errorHtml);        
+        }
+                    }
+                });
+            }
+         
          
          
             /*
