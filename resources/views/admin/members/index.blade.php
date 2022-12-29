@@ -95,6 +95,10 @@
                         <td>  <b class="text-secondary">Email:</b></td>
                         <td><span id="email-info" class="text-dark"></span> </td>
                     </tr>
+                    <tr>
+                        <td>  <b class="text-secondary">Member Status:</b></td>
+                        <td><span id="status-info" class="text-success"></span> </td>
+                    </tr>
                 </table>
             </div>
         
@@ -224,14 +228,17 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                {{-- <div class="form-group">
-                    <label for="" class="text-secondary">Status</label>
-                    <input type="checkbox" id="status" name="status" >
-                </div> --}}
+                    <label for="" class="text-secondary"> Member Status</label>
+                    {{-- <input type="checkbox" name="status" id="status"> --}}
+                    <select name="status" id="status" class="form-control">
+                      <option value="0">Enabled</option>
+                      <option value="1">Disabled</option>
+                    </select>
                   
                 </div>
 
                 <div class="col-md-6 mb-0 ">
+                        <label for="" class="text-white">.</label>
                             <button type="submit" class="btn  text-decoration-none text-light bg-primary btn-block col-lg-12" id="save-project-btn">
                                <i class="fa fa-save"></i>
                                 {{ __('Save Member') }}
@@ -326,6 +333,7 @@
                 $("#password").val("");
                 $("#jumuiya").val("");
                 $("#email").val("");
+                $("#status").val("");
                 $("#form-modal").modal('show'); 
             }
          
@@ -343,6 +351,7 @@
                     gender: $("#gender").val(),
                     email: $("#email").val(),
                     phone: $("#phone").val(),
+                    status: $("#status").val(),
                     date_of_birth: $("#date_of_birth").val(),
                     jumuiya: $("#jumuiya").val(),
                     password: $("#password").val(),
@@ -367,6 +376,7 @@
                         $("#gender").val("");
                         $("#jumuiya").val("");
                         $("#password").val("");
+                        $("#status").val("");
                         showAllProjects();
                         $("#form-modal").modal('hide');
                     },
@@ -454,7 +464,7 @@
                         $("#gender").val(member.gender);
                         $("#jumuiya").val(member.jumuiya);
                         $("#password").val(member.password);
-                        $("#status").val(member.password);
+                        $("#status").val(member.status);
                         $("#form-modal").modal('show'); 
                     },
                     error: function(response) {
@@ -577,6 +587,7 @@
                         $("#community-info").html(member.community.name);
                         $("#phone-info").html(member.phone);
                         $("#email-info").html(member.email);
+                        $("#status-info").html(member.status == '1' ? 'Disabled':'Enabled');
                         $("#user-link").html(member.id);
                         $("#view-modal").modal('show'); 
          

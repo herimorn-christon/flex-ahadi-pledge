@@ -86,6 +86,7 @@ class MemberController extends Controller
             $member->gender=$request->gender;
             $member->date_of_birth=$request->date_of_birth;
             $member->jumuiya=$request->jumuiya;
+            $member->status= $request->status == true ? '1':'0';
             $member->password= Hash::make($request->password);
             $member->save();
             return response()->json(['status' => "success"]);
