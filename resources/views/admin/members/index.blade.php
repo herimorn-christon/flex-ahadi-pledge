@@ -34,7 +34,7 @@
 
 
         <div class="row">
-            <table id="mytable" class="table table-bordered table-datatable ">
+            <table  class="table table-bordered">
                 <thead>
                      <tr class="text-secondary">
                             <th>Member ID</th>

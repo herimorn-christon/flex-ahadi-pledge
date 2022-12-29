@@ -50,7 +50,7 @@
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    {{-- <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     {{-- for autosearch --}}
@@ -83,7 +83,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="text-decoration-none brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text text-primary font-weight-light">AhadiPledge</span>
+      <span class="brand-text text-info font-weight-light">AhadiPledge</span>
     </a>
 
     <!-- Sidebar -->

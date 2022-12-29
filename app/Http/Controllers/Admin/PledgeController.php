@@ -69,9 +69,43 @@ class PledgeController extends Controller
      */
     public function show($id)
     {
-        $purpose = Pledge::find($id)->with('user')->with('type')->with('purpose');
+        $purpose = Pledge::with('user')->with('type')->with('purpose')->find($id);
         return response()->json(['purpose' => $purpose]);
     }
+
+        /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'name' => 'required|max:255',
+            'amount' => 'required',
+            'description' => 'required',
+            'deadline' => 'required',
+            'user_id' => 'required',
+            'type_id' => 'required',
+            'purpose_id' => 'required',
+        ]);
+  
+        $pledge = Pledge::find($id);
+        $pledge->name = $request->name;
+        $pledge->description = $request->description;
+        $pledge->amount = $request->amount;
+        $pledge->deadline=$request->deadline;
+        $pledge->purpose_id=$request->purpose_id;
+        $pledge->type_id=$request->type_id;
+        $pledge->status= $request->status == true ? '1':'0';
+        $pledge->user_id=$request->user_id;
+        $pledge->created_by= Auth::user()->id;
+        $pledge->save();
+        return response()->json(['status' => "success"]);
+    }
+
     // saving pledge type function
     public function saveType(pledgeFormRequest $request)
     {
@@ -141,23 +175,6 @@ public function destroyType($type)
             $pledge=Pledge::find($pledge_id);
             return view('admin.pledges.edit-pledge',compact('pledge','types'));
         }
-    // update pledge function
-    public function update(pledgesFormRequest $request,$type_id)
-    {
-        $data=$request->validated();
-        $pledge =Pledge::find($type_id);
-        $pledge->name=$data['name'];
-        $pledge->amount=$data['amount'];
-        $pledge->description=$data['description'];
-        $pledge->deadline=$data['deadline'];
-        $pledge->type_id=$data['type_id'];
-        $pledge->status= $request->status == true ? '1':'0';
-        $pledge->created_by= Auth::user()->id;
-        // saving data
-        $pledge->update();
-
-        return redirect('admin/all-pledges')->with('status','Pledge was Updated Successfully');
-    }
 
 
     /**
