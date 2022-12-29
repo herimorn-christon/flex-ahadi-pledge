@@ -11,58 +11,81 @@ use App\Http\Requests\Admin\cardFormRequest;
 
 class CardController extends Controller
 {
-    // for index function
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $cards=CardMember::all();
-        $card=Card::where('status','')->get();
-        return view('admin.cards.index',compact('cards','card'));
+        $cards = Card::orderBy('updated_at','DESC')->get();
+        return response()->json(['cards' => $cards ]);
     }
-    // saving card method function
-    public function save(cardFormRequest $request)
+
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
     {
-        $data=$request->validated();
-        $card =new Card;
-        $card->card_no=$data['card_no'];
-        $card->created_by= Auth::user()->id;
+        request()->validate(
+            [
+            'card_no' => 'required|max:255',
+             ]
+            );
+
+           
+            $card =new Card();
+            $type->card_no=$request->card_no;
+            $card->created_by= Auth::user()->id;
+            $card->save();
+
+            return response()->json(['status' => "success"]);
+    }
+
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $card = Card::find($id);
+        return response()->json(['card' => $card]);
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'card_no' => 'required|max:255',
+        ]);
+  
+        $card = Card::find($id);
+        $card->card_no=$request->card_no;
         $card->save();
-
-        return redirect('admin/all-cards')->with('status','Card was Created Successfully');
+        return response()->json(['status' => "success"]);
     }
-
-
-    // edit card page function
-    public function edit($card_id)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
     {
-        $cards=CardMember::all();
-        $card=Card::find($card_id);
-        return view('admin.cards.edit',compact('card','cards'));
-    }
-
-  // update payment method function
-  public function update(cardFormRequest $request,$card_id)
-  {
-      $data=$request->validated();
-      $card =Card::find($card_id);
-      $card->card_no=$data['card_no'];
-      $card->membership_no=$data['membership_no'];
-      // saving data
-      $card->update();
-
-      return redirect('admin/all-cards')->with('status','Card was Updated Successfully');
-  }
-
-// delete  card method function
-    public function destroy($card_id)
-    {
-        $card=Card::find($card_id);
-
-        if($card){
-            $card->delete();
-            return redirect('admin/all-cards')->with('status','Card method was deleted Successfully');
-        }
-        else{
-            return redirect('admin/all-cards')->with('status','No Card method ID was found !');
-        }
+        Card::destroy($id);
+        return response()->json(['status' => "success"]);
     }
 }

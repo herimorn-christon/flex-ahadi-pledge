@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\MethodController;
@@ -114,7 +115,13 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::get('delete-payment/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroy']);
 
 // all cards route
-  Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
+  // Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
+  Route::get('/all-cards', function () {
+    return view('admin.cards.index');
+    });
+  // Payments API route
+  Route::apiResource('cards', CardController::class);
+
 //Create Card method route  
   Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);
 //Edit Card Method page route  
