@@ -49,7 +49,7 @@ class TypeController extends Controller
     public function show($id)
     {
         $type = PledgeType::find($id);
-        return response()->json(['method' => $type]);
+        return response()->json(['type' => $type]);
     }
 
     /**
