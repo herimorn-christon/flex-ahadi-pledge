@@ -20,7 +20,7 @@
             <i class="fa fa-list"></i>
             Pledge Types
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_type">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="createType()">
         <i class="fa fa-plus"></i>
          Add Type
         </button>
@@ -71,30 +71,27 @@
 
 {{-- Add Pledge Type modal --}}
 
-<div class="modal fade" id="add_type">
+<div class="modal fade" id="type-modal">
     <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-header">
-          {{-- <h4 class="modal-title">Large Modal</h4> --}}
-          <button type="button" class="close btn-danger btn-sm " data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+        <div class="modal-header bg-light">
+          <button type="button" class="btn-close btn-sm btn-danger " data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="{{ url('admin/add-type') }}" method="post">
-                @csrf
+            <form >
+                
                 <div class="row mb-3">
                  <div class="col-md-12">
                     <div class="form-group">
                         <label for="title" class="text-secondary">Pledge Type</label>
-                        <input type="text" name="title" id="title" class="title form-control" placeholder="Enter Pledge Title">
+                        <input type="text" name="title" id="title" class="title form-control" placeholder="Enter Pledge Type Title">
                     </div>
                  </div>
                  <div class="col-md-6"></div>
                  <div class="col-md-6">
                     <div class="form-group">
                      
-                        <button type="submit" class="add_type btn btn-primary">
+                        <button type="submit" class="add_type btn btn-primary" id="save-type-btn">
                             <i class="fa fa-save"></i>
                             Save Pledge Type
                         </button>
@@ -498,7 +495,70 @@
               });
           }
        
-       
+        /*
+                show modal for creating a record and 
+                empty the values of form and remove existing alerts
+            */
+            function createType()
+            {
+                $("#alert-div").html("");
+                $("#error-div").html("");   
+                $("#update_id").val("");
+                $("#title").val("");
+                $("#type-modal").modal('show'); 
+            }
+         
+            /*
+                submit the form and will be stored to the database
+            */
+            function storeType()
+            {   
+                $("#save-type-btn").prop('disabled', true);
+                let url = $('meta[name=app-url]').attr("content") + "/admin/types";
+                let data = {
+                    title: $("#title").val(),
+                };
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: url,
+                    type: "POST",
+                    data: data,
+                    success: function(response) {
+                        $("#save-type-btn").prop('disabled', false);
+                        let successHtml = '<div class="alert alert-success" role="alert">Pledge Type Was Added Successfully</div>';
+                        $("#alert-div").html(successHtml);
+                        $("#title").val("");
+                        showAllTypes();
+                        $("#type-modal").modal('hide');
+                    },
+                    error: function(response) {
+                        $("#save-type-btn").prop('disabled', false);
+         
+                        /*
+            show validation error
+                        */
+                        if (typeof response.responseJSON.errors !== 'undefined') 
+                        {
+            let errors = response.responseJSON.errors;
+            if (typeof errors.title !== 'undefined') 
+                            {
+                                nameValidation = '<li>' + errors.title[0] + '</li>';
+                            }
+             
+            let errorHtml = '<div class="alert alert-danger" role="alert">' +
+                '<b>Validation Error!</b>' +
+                '<ul>' + nameValidation + '</ul>' +
+            '</div>';
+            $("#error-div").html(errorHtml);        
+        }
+                    }
+                });
+            }
+         
+         
+         
           /*
               edit record function
               it will get the existing value and show the purpose form
