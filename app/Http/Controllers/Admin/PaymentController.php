@@ -31,6 +31,46 @@ class PaymentController extends Controller
         return response()->json(['purposes' => $purposes]);
     }
 
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        request()->validate(
+            [
+            'type_id' => 'required|max:255',
+            'user_id' => 'required',
+            'pledge_id' => 'required',
+            'amount' => 'required',
+             ]
+            );
+
+            $payment = new Payment();
+            $payment->type_id = $request->type_id;
+            $payment->user_id = $request->user_id;
+            $payment->amount = $request->amount;
+            $payment->pledge_id=$request->pledge_id;
+            $payment->user_id=$request->user_id;
+            $payment->created_by= Auth::user()->id;
+            $payment->save();
+            return response()->json(['status' => "success"]);
+    }
+
+        /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Payment::destroy($id);
+        return response()->json(['status' => "success"]);
+    }
 
     // saving payment method function
     public function saveMethod(paymentFormRequest $request)
@@ -89,17 +129,6 @@ class PaymentController extends Controller
         return redirect('admin/all-payments')->with('status','Payment was Registered Successfully');
     }
 
-    public function destroy($payment_id)
-    {
-        $method=Payment::find($payment_id);
 
-        if($method){
-            $method->delete();
-            return redirect('admin/all-payments')->with('status','Payment was deleted Successfully');
-        }
-        else{
-            return redirect('admin/all-payments')->with('status','No Payment method ID was found !');
-        }
-    }
 
 }

@@ -18,7 +18,7 @@
         <div class="card">
             <div class="card-header bg-light">
                 <button class="btn btn-primary btn-sm" onclick="createPledge()"> 
-                    Create New Pledge
+                    Register New Payment
 
                     <i class="fa fa-plus"></i>
                 </button>
@@ -30,8 +30,8 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr class="text-secondary">
-                            <th>Member Name</th>
-                            <th>Pledge(Ahadi)</th>
+                            <th>Payer Name</th>
+                            <th>Payment Method</th>
                             <th>Purpose</th>
                             <th>Amount</th>
                             <th width="240px">Actions</th>
@@ -57,86 +57,65 @@
             </div>
             <div class="modal-body">
                 <div id="error-div"></div>
-             <form>
-             <input type="hidden" name="update_id" id="update_id">
+            <form>
+                <input type="hidden" name="update_id" id="update_id">
                 <div class="row mb-3">
-                @php
-                $jumuiya= App\Models\User::where('role','member')->get();
-                @endphp
-                <div class="col-md-6">
-                    <label for="" class="text-secondary">Payer</label>
-                    <select name="user_id" id="user_id" class="form-control">
-                        <option value="">--Select Member --</option>
-                        @foreach ( $jumuiya as $item)
-                        <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                @php
-                $types= App\Models\PledgeType::get();
-                @endphp
-                <div class="col-md-6">
-                    <label for="" class="text-secondary">Pledge Type</label>
-                    <select name="type_id"  id="type_id" class="form-control">
-                        <option value="">--Select Pledge Type --</option>
-                        @foreach ( $types as $item)
-                        <option value="{{ $item->id}}">{{ $item->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                @php
-                $purpose= App\Models\Purpose::where('status','')->get();
-                @endphp
-                <div class="col-md-6">
-                    <label for="" class="text-secondary">Pledge Purpose</label>
-                    <select name="purpose_id" id="purpose_id" class="form-control">
-                        <option value="">--Select Purpose --</option>
-                        @foreach ( $purpose as $item)
-                        <option value="{{ $item->id}}"> {{ $item->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-6">
+                    @php
+                    $jumuiya= App\Models\User::where('role','member')->get();
+                    @endphp
+                    <div class="col-md-6">
+                        <label for="" class="text-secondary">Payer</label>
+                        <select name="user_id" id="user_id" class="form-control">
+                            <option value="">--Select Member --</option>
+                            @foreach ( $jumuiya as $item)
+                             <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
+                             @endforeach
+                        </select>
+                    </div>
+
+                    @php
+                    
+                    $purpose= App\Models\Purpose::where('status','')->get();
+                    @endphp
+                    <div class="col-md-6">
+                        <label for="" class="text-secondary">Payment Purpose</label>
+                        <select name="pledge_id" id="pledge_id" class="form-control">
+                            <option value="">--Select Purpose --</option>
+                            @foreach ( $purpose as $item)
+                             <option value="{{ $item->id}}"> {{ $item->title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+     
+                    @php
+                    $purpose= App\Models\PaymentType::get();
+                    @endphp
+                    <div class="col-md-6">
+                        <label for="" class="text-secondary">Payment Method</label>
+                        <select name="type_id" id="type_id" class="form-control">
+                            <option value="">--Select Payment Method --</option>
+                            @foreach ( $purpose as $item)
+                             <option value="{{ $item->id}}"> {{ $item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="name" class="text-secondary">Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Pledge Name">
+                        <label for="amount" class="text-secondary">Paid Amount </label>
+                        <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Payment Amount">
                     </div>
-                </div>
-                <div class="col-md-6">
-                <div class="form-group">
-                    <label for="amount" class="text-secondary">Amount</label>
-                    <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Pledge Amount">
-                </div>
-                </div>
-                <div class="col-md-6">
-                <div class="form-group">
-                    <label for="deadline" class="text-secondary">Deadline</label>
-                    <input type="date" name="deadline" id="deadline" class="form-control" placeholder="Enter Pledge Deadline">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="description" class="text-secondary">Description</label>
-                    <textarea name="description" class="form-control" id="description" rows="4"></textarea>
-                </div>
-            </div>
-                <div class="col-md-12">
-
-                <div class="row mt-2">
-
-                    <div class="col-md-6 mb-3">
-                        {{-- <label for="" class="text-secondary">Status</label>
-                        <input type="checkbox" name="status" id=""> --}}
-                    </div>
-
-                    <div class="col-md-6 ">
-                        <button class="btn btn-primary btn-block " id="save-pledge-btn" type="submit">
-                        <i class="fa fa-save"></i>
-                        Save Pledge 
+                 </div>
+                 <div class="col-md-6 mt-2"></div>
+                 <div class="col-md-6 mt-2">
+                    <div class="form-group">
+                     
+                        <button type="submit" class="btn btn-primary btn-block" id="save-pledge-btn">
+                            <i class="fa fa-save"></i>
+                            Save Payment
                         </button>
                     </div>
-                </div>
-                </div>
+                 </div>
                 </div>
             </form>
             </div>
@@ -257,15 +236,12 @@
         function storePledge()
         {   
             $("#save-pledge-btn").prop('disabled', true);
-            let url = $('meta[name=app-url]').attr("content") + "/admin/pledges";
+            let url = $('meta[name=app-url]').attr("content") + "/admin/payments";
             let data = {
-                name: $("#name").val(),
+                pledge_id: $("#pledge_id").val(),
                 amount: $("#amount").val(),
-                deadline: $("#deadline").val(),
-                description: $("#description").val(),
                 user_id: $("#user_id").val(),
                 type_id: $("#type_id").val(),
-                purpose_id: $("#purpose_id").val(),
             };
             $.ajax({
                 headers: {
@@ -276,15 +252,13 @@
                 data: data,
                 success: function(response) {
                     $("#save-ledge-btn").prop('disabled', false);
-                    let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Created Successfully</div>';
+                    let successHtml = '<div class="alert alert-success" role="alert">Payment Was Added Successfully</div>';
                     $("#alert-div").html(successHtml);
-                    $("#name").val("");
+                    $("#pledge_id").val("");
                     $("#type_id").val("");
                     $("#purpose_id").val("");
                     $("#user_id").val("");
-                    $("#deadline").val("");
                     $("#amount").val("");
-                    $("#description").val("");
                     showAllPledges();
                     $("#form-modal").modal('hide');
                 },
@@ -298,9 +272,9 @@
                     {
         let errors = response.responseJSON.errors;
         let descriptionValidation = "";
-        if (typeof errors.description !== 'undefined') 
+        if (typeof errors.user_id !== 'undefined') 
                         {
-                            descriptionValidation = '<li>' + errors.description[0] + '</li>';
+                            descriptionValidation = '<li>' + errors.user_id[0] + '</li>';
                         }
         let nameValidation = "";
         if (typeof errors.name !== 'undefined') 
@@ -336,7 +310,7 @@
         */
         function editPledge(id)
         {
-            let url = $('meta[name=app-url]').attr("content") + "/admin/pledges/" + id ;
+            let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id ;
             $.ajax({
                 url: url,
                 type: "GET",
@@ -366,7 +340,7 @@
         function updatePledge()
         {
             $("#save-pledge-btn").prop('disabled', true);
-            let url = $('meta[name=app-url]').attr("content") + "/admin/pledges/" + $("#update_id").val();
+            let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + $("#update_id").val();
             let data = {
                 name: $("#name").val(),
                 amount: $("#amount").val(),
@@ -385,7 +359,7 @@
                 data: data,
                 success: function(response) {
                     $("#save-pledge-btn").prop('disabled', false);
-                    let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Updated Successfully !</div>';
+                    let successHtml = '<div class="alert alert-success" role="alert">Payment Was Updated Successfully !</div>';
                     $("#alert-div").html(successHtml);
                     $("#name").val("");
                     $("#type_id").val("");
@@ -445,7 +419,7 @@
         {
             $("#name-info").html("");
             $("#description-info").html("");
-            let url = $('meta[name=app-url]').attr("content") + "/admin/pledges/" + id +"";
+            let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id +"";
             $.ajax({
                 url: url,
                 type: "GET",
@@ -469,15 +443,12 @@
         */
         function destroyPledge(id)
         {
-            let url = $('meta[name=app-url]').attr("content") + "/admin/pledges/" + id;
+            let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id;
             let data = {
-                name: $("#name").val(),
+                pledge_id: $("#pledge_id").val(),
                 amount: $("#amount").val(),
-                deadline: $("#deadline").val(),
                 user_id: $("#user_id").val(),
                 type_id: $("#type_id").val(),
-                purpose_id: $("#purpose_id").val(),
-                description: $("#description").val(),
             };
             $.ajax({
                 headers: {
@@ -487,7 +458,7 @@
                 type: "DELETE",
                 data: data,
                 success: function(response) {
-                    let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Deleted Successfully </div>';
+                    let successHtml = '<div class="alert alert-success" role="alert">Payment Was Deleted Successfully </div>';
                     $("#alert-div").html(successHtml);
                     showAllPledges();
                 },
