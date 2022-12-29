@@ -58,14 +58,14 @@
             <div class="modal-body">
                 <div id="error-div"></div>
              <form>
-             
+             <input type="hidden" name="update_id" id="update_id">
                 <div class="row mb-3">
                 @php
                 $jumuiya= App\Models\User::where('role','member')->get();
                 @endphp
                 <div class="col-md-6">
                     <label for="" class="text-secondary">Payer</label>
-                    <select name="user_id" class="form-control">
+                    <select name="user_id" id="user_id" class="form-control">
                         <option value="">--Select Member --</option>
                         @foreach ( $jumuiya as $item)
                         <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
@@ -77,7 +77,7 @@
                 @endphp
                 <div class="col-md-6">
                     <label for="" class="text-secondary">Pledge Type</label>
-                    <select name="type_id" class="form-control">
+                    <select name="type_id"  id="type_id" class="form-control">
                         <option value="">--Select Pledge Type --</option>
                         @foreach ( $types as $item)
                         <option value="{{ $item->id}}">{{ $item->title}}</option>
@@ -89,7 +89,7 @@
                 @endphp
                 <div class="col-md-6">
                     <label for="" class="text-secondary">Pledge Purpose</label>
-                    <select name="purpose_id" class="form-control">
+                    <select name="purpose_id" id="purpose_id" class="form-control">
                         <option value="">--Select Purpose --</option>
                         @foreach ( $purpose as $item)
                         <option value="{{ $item->id}}"> {{ $item->title}}</option>
@@ -117,7 +117,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="description" class="text-secondary">Description</label>
-                    <textarea name="description" class="form-control" id="deadline" rows="4"></textarea>
+                    <textarea name="description" class="form-control" id="description" rows="4"></textarea>
                 </div>
             </div>
                 <div class="col-md-12">
@@ -125,12 +125,12 @@
                 <div class="row mt-2">
 
                     <div class="col-md-6 mb-3">
-                        <label for="" class="text-secondary">Status</label>
-                        <input type="checkbox" name="status" id="">
+                        {{-- <label for="" class="text-secondary">Status</label>
+                        <input type="checkbox" name="status" id=""> --}}
                     </div>
 
                     <div class="col-md-6 ">
-                        <button class="btn btn-primary btn-block float-end" id="save-pledge-btn" type="submit">
+                        <button class="btn btn-primary btn-block " id="save-pledge-btn" type="submit">
                         <i class="fa fa-save"></i>
                         Save Pledge 
                         </button>
@@ -198,7 +198,7 @@
                         '</button> ';
                         let deleteBtn =  '<button ' +
                             ' class="btn btn-danger" ' +
-                            ' onclick="destroyPurpose(' + purposes[i].id + ')">Delete' +
+                            ' onclick="destroyPledge(' + purposes[i].id + ')">Delete' +
                         '</button>';
      
                         let projectRow = '<tr>' +
@@ -222,7 +222,7 @@
         /*
             check if form submitted is for creating or updating
         */
-        $("#save-purpose-btn").click(function(event ){
+        $("#save-pledge-btn").click(function(event ){
             event.preventDefault();
             if($("#update_id").val() == null || $("#update_id").val() == "")
             {
@@ -241,9 +241,12 @@
             $("#alert-div").html("");
             $("#error-div").html("");   
             $("#update_id").val("");
-            $("#title").val("");
-            $("#start_date").val("");
-            $("#end_date").val("");
+            $("#name").val("");
+            $("#type_id").val("");
+            $("#purpose_id").val("");
+            $("#user_id").val("");
+            $("#deadline").val("");
+            $("#amount").val("");
             $("#description").val("");
             $("#form-modal").modal('show'); 
         }
@@ -251,15 +254,18 @@
         /*
             submit the form and will be stored to the database
         */
-        function storePurpose()
+        function storePledge()
         {   
-            $("#save-purpose-btn").prop('disabled', true);
-            let url = $('meta[name=app-url]').attr("content") + "/admin/purposes";
+            $("#save-pledge-btn").prop('disabled', true);
+            let url = $('meta[name=app-url]').attr("content") + "/admin/pledges";
             let data = {
-                title: $("#title").val(),
-                start_date: $("#start_date").val(),
-                end_date: $("#end_date").val(),
+                name: $("#name").val(),
+                amount: $("#amount").val(),
+                deadline: $("#deadline").val(),
                 description: $("#description").val(),
+                user_id: $("#user_id").val(),
+                type_id: $("#type_id").val(),
+                purpose_id: $("#purpose_id").val(),
             };
             $.ajax({
                 headers: {
@@ -270,17 +276,20 @@
                 data: data,
                 success: function(response) {
                     $("#save-purpose-btn").prop('disabled', false);
-                    let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Created Successfully</div>';
+                    let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Created Successfully</div>';
                     $("#alert-div").html(successHtml);
-                    $("#tite").val("");
-                    $("#start_date").val("");
-                    $("#end_date").val("");
-                    $("#description").val("");
-                    showAllPurposes();
+                    $("#name").val("");
+                    $("#type_id").val("");
+                    $("#purpose_id").val("");
+                    $("#user_id").val("");
+                    $("#deadline").val("");
+                    $("#amount").val("");
+                    $("#description").val("");
+                    showAllPledges();
                     $("#form-modal").modal('hide');
                 },
                 error: function(response) {
-                    $("#save-purpose-btn").prop('disabled', false);
+                    $("#save-pledge-btn").prop('disabled', false);
      
                     /*
         show validation error
@@ -293,26 +302,26 @@
                         {
                             descriptionValidation = '<li>' + errors.description[0] + '</li>';
                         }
-        let titleValidation = "";
-        if (typeof errors.title !== 'undefined') 
+        let nameValidation = "";
+        if (typeof errors.name !== 'undefined') 
                         {
-                            titleValidation = '<li>' + errors.title[0] + '</li>';
+                            nameValidation = '<li>' + errors.name[0] + '</li>';
                         }
-        let startDateValidation = "";
-        if (typeof errors.start_date !== 'undefined') 
+        let deadlineValidation = "";
+        if (typeof errors.deadline !== 'undefined') 
                         {
-                            startDateValidation = '<li>' + errors.start_date[0] + '</li>';
+                            deadlineValidation = '<li>' + errors.deadline[0] + '</li>';
                         }
           
-        let endDateValidation = "";
-        if (typeof errors.end_date !== 'undefined') 
+        let amountValidation = "";
+        if (typeof errors.amount !== 'undefined') 
                         {
-                            endDateValidation = '<li>' + errors.end_date[0] + '</li>';
+                            amountValidation = '<li>' + errors.amount[0] + '</li>';
                         }
          
         let errorHtml = '<div class="alert alert-danger" role="alert">' +
             '<b>Validation Error!</b>' +
-            '<ul>' + titleValidation + descriptionValidation + startDateValidation + endDateValidation +'</ul>' +
+            '<ul>' + nameValidation + descriptionValidation + deadlineValidation + amountValidation +'</ul>' +
         '</div>';
         $("#error-div").html(errorHtml);        
     }
@@ -423,19 +432,19 @@
         /*
             get and display the record info on modal
         */
-        function showPurpose(id)
+        function showPledge(id)
         {
             $("#name-info").html("");
             $("#description-info").html("");
-            let url = $('meta[name=app-url]').attr("content") + "/admin/purposes/" + id +"";
+            let url = $('meta[name=app-url]').attr("content") + "/admin/pledges/" + id +"";
             $.ajax({
                 url: url,
                 type: "GET",
                 success: function(response) {
                     let purpose = response.purpose;
-                    $("#title-info").html(purpose.title);
-                    $("#start-info").html(purpose.start_date);
-                    $("#end-info").html(purpose.end_date);
+                    $("#title-info").html(purpose.name);
+                    $("#start-info").html(purpose.deadline);
+                    $("#end-info").html(purpose.amount);
                     $("#description-info").html(purpose.description);
                     $("#view-modal").modal('show'); 
      
@@ -449,13 +458,16 @@
         /*
             delete record function
         */
-        function destroyPurpose(id)
+        function destroyPledge(id)
         {
             let url = $('meta[name=app-url]').attr("content") + "/admin/pledges/" + id;
             let data = {
-                title: $("#title").val(),
-                start_date: $("#start_date").val(),
-                end_date: $("#end_date").val(),
+                name: $("#name").val(),
+                amount: $("#amount").val(),
+                deadline: $("#deadline").val(),
+                user_id: $("#user_id").val(),
+                type_id: $("#type_id").val(),
+                purpose_id: $("#purpose_id").val(),
                 description: $("#description").val(),
             };
             $.ajax({
@@ -466,9 +478,9 @@
                 type: "DELETE",
                 data: data,
                 success: function(response) {
-                    let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Deleted Successfully </div>';
+                    let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Deleted Successfully </div>';
                     $("#alert-div").html(successHtml);
-                    showAllPurposes();
+                    showAllPledges();
                 },
                 error: function(response) {
                     console.log(response.responseJSON)

@@ -61,6 +61,17 @@ class PledgeController extends Controller
     }
 
     
+        /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $purpose = Pledge::find($id)->with('user')->with('type')->with('purpose');
+        return response()->json(['purpose' => $purpose]);
+    }
     // saving pledge type function
     public function saveType(pledgeFormRequest $request)
     {
@@ -149,17 +160,15 @@ public function destroyType($type)
     }
 
 
-    // delete  pledge  function
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
-        $pledge=Pledge::find($id);
-
-        if($pledge){
-            $pledge->delete();
-            return redirect('admin/all-pledges')->with('status','Pledge was deleted Successfully');
-        }
-        else{
-            return redirect('admin/all-pledges')->with('status','No Pledge ID was found !');
-        }
+        Pledge::destroy($id);
+        return response()->json(['status' => "success"]);
     }
 }
