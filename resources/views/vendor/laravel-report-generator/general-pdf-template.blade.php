@@ -15,6 +15,7 @@
 		    }
 		    .title {
 			    font-size: 35px;
+				/* color: rgb(44, 44, 255); */
 		    }
 		    .pb-10 {
 		    	padding-bottom: 10px;
@@ -91,7 +92,10 @@
 		<div class="wrapper">
 		    <div class="pb-5">
 			    <div class="middle pb-10 title">
-			        {{ $headers['title'] }}
+					<h5>
+						{{ $headers['title'] }}
+					</h5>
+					<hr class="bg-black">
 			    </div>
     			@if ($showMeta)
 				<div class="head-content">

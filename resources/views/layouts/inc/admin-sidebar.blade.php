@@ -66,7 +66,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('member/dashboard') }}" class="nav-link">
+            <a href="{{ url('admin/all-reports') }}" class="nav-link {{ Request::is('admin/all-reports') ? 'active':'' }}">
               <i class="nav-icon fas fa-folder"></i>
               <p>
                 Reports

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Dashboard')
+@section('title','Admin | Manage Members')
 
 
 @section('content')

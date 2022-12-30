@@ -138,8 +138,16 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 //Create Card method route  
   Route::post('assign-card', [App\Http\Controllers\Admin\CardMemberController::class,'save']);
 
+// All reports page route
+  Route::get('/all-reports', function () {
+  return view('admin.reports.index');
+  });
+// Registered Members Reports
+Route::get('registered-members', [App\Http\Controllers\PDFViewController::class, 'displayReport']);
+
  // my-profile
   Route::get('/my-profile', [App\Http\Controllers\Admin\ProfileController::class,'index']);
+
 });
 // for Member
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()
