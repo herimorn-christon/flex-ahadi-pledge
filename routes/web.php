@@ -143,8 +143,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   return view('admin.reports.index');
   });
 // Registered Members Reports
-Route::get('registered-members', [App\Http\Controllers\PDFViewController::class, 'displayReport']);
-
+  Route::get('registered-members', [App\Http\Controllers\PDFViewController::class, 'displayReport']);
+// Collected Payments Reports
+  Route::get('collected-payments', [App\Http\Controllers\PDFViewController::class, 'paymentReport']);
  // my-profile
   Route::get('/my-profile', [App\Http\Controllers\Admin\ProfileController::class,'index']);
 

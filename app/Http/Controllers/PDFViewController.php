@@ -73,6 +73,9 @@ public function paymentReport(Request $request)
     $toDate = $request->input('to_date');
     $sortBy = $request->input('sort_by');
 
+    $total=Payment::select(['amount'])
+    ->whereBetween('created_at', [$fromDate, $toDate])
+    ->sum('amount');
     // Report title
     $title = 'Collected Payments Report';
 
@@ -83,15 +86,25 @@ public function paymentReport(Request $request)
     ];
 
     // Do some querying..
-    $queryBuilder = Payment::select(['user_id', 'pledge_id','amount','created_at','jumuiya'])
+    $queryBuilder = Payment::select(['user_id', 'pledge_id','type_id','amount','created_at'])
                         ->whereBetween('created_at', [$fromDate, $toDate])
                         ->with('payer')
                         ->orderBy($sortBy);
 
     // Set Column to be displayed
     $columns = [
-        'First name' => 'fname','Middle name'=>'mname','Last name'=>'lname',
-        'Registered At'=>'created_at','gender'
+        'Full Name' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->payer->fname.''.$user->payer->mname.''.$user->payer->lname;
+        },
+        'Purpose' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->purpose->title;
+        },
+        'Payment Method' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->payment->title;
+        },
+        'First name' => 'user_id','Middle name'=>'pledge_id',
+        'Registered At'=>'created_at','amount',
+        
     ];
 
     return PdfReport::of($title, $meta, $queryBuilder, $columns)
@@ -100,7 +113,11 @@ public function paymentReport(Request $request)
                             return $result->created_at->format('d M Y');
                         }
                     ])
-                    ->download('MemberReport'); 
+                    // ->groupBy('Purpose')
+                    ->showTotal([
+                        'amount' => 'point'
+                    ])
+                    ->download('Collected_Payments_Report'); 
 }
 
 }
