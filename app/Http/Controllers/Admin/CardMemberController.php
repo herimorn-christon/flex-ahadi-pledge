@@ -10,6 +10,18 @@ use App\Http\Requests\Admin\cardMemberFormRequest;
 
 class CardMemberController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $members = CardMember::orderBy('updated_at','DESC')->with('user')->with('card')->get();
+        return response()->json(['members' => $members]);
+    }
+
     // assigning card method function
     public function save(cardMemberFormRequest $request)
     {

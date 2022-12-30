@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PledgeController;
 use App\Http\Controllers\Admin\JumuiyaController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PurposeController;
+use App\Http\Controllers\Admin\CardMemberController;
 
 // use App\Http\Controllers\Controller\DashboardController;
 
@@ -119,8 +120,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::get('/all-cards', function () {
     return view('admin.cards.index');
     });
-  // Payments API route
+  // Cards API route
   Route::apiResource('cards', CardController::class);
+  // CardMember API route
+  Route::apiResource('card-member', CardMemberController::class);
 
 //Create Card method route  
   Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);

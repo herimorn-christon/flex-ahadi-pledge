@@ -18,7 +18,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        $cards = Card::orderBy('updated_at','DESC')->get();
+        $cards = Card::orderBy('updated_at','DESC')->where('status','')->get();
         return response()->json(['cards' => $cards ]);
     }
 
