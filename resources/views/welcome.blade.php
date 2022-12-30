@@ -147,18 +147,18 @@
           <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="col-md-3 mx-auto">
-                <img src="img/flex-logo.png" class="mt-4 mb-4" height="30px" width="100%">
-            </div>
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="row mb-2">
-                    <label for="email" class="col-md-1 col-form-label text-md-end text-primary">
-                        <i class="fa fa-phone" aria-hidden="true"></i>
-                    </label>
+                   
 
-                    <div class="col-md-10">
+                    <div class="col-md-12">
+                        <label for="email" class=" text-secondary mb-2">
+                            <i class="fa fa-phone" aria-hidden="true"></i>
+                            Phone Number
+                        </label>
+                        
                         <input id="phone" placeholder="Phone Number/Nambari ya Simu" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                         @error('phone')
@@ -170,11 +170,14 @@
                 </div>
 
                 <div class="row mb-3">
-                    <label for="password" class="text-primary col-md-1 col-form-label text-md-end">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                        </label>
+                   
 
-                    <div class="col-md-10">
+                    <div class="col-md-112">
+                        <label for="password" class="text-secondary  mb-2">
+                            <i class="fa fa-lock" aria-hidden="true"></i>
+                            Password
+                            </label>
+                            
                         <input id="password" placeholder="Password/Neno siri" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                         @error('password')

@@ -11,7 +11,7 @@
              with font-awesome or any other icon font library -->
         <li class="nav-item ">
           <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'active':'' }}">
-            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="nav-icon fas fa-tachometer-alt {{ Request::is('admin/dashboard') ? 'text-danger':'' }}"></i>
             <p>
               Dashboard
             </p>
@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item">
             <a href="{{ url('admin/all-members') }}" class="nav-link  {{ Request::is('admin/all-members') ? 'active':'' }}">
-              <i class="nav-icon fas fa-user-tie"></i>
+              <i class="nav-icon fas fa-user-tie {{ Request::is('admin/all-members') ? 'text-danger':'' }}"></i>
               <p>
                 Manage Members
               </p>
@@ -27,7 +27,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/all-communities') }}" class="nav-link  {{ Request::is('admin/all-communities') ? 'active':'' }}">
-              <i class="nav-icon fas fa-users"></i>
+              <i class="nav-icon fas fa-users {{ Request::is('admin/all-communities') ? 'text-danger':'' }}"></i>
               <p>
                 Manage Communities
               </p>
@@ -35,7 +35,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/all-purposes') }}" class="nav-link  {{ Request::is('admin/all-purposes') ? 'active':'' }}">
-              <i class="nav-icon fas fa-calendar"></i>
+              <i class="nav-icon fas fa-calendar {{ Request::is('admin/all-purposes') ? 'text-danger':'' }}"></i>
               <p>
                 Manage Purposes
               </p>
@@ -43,7 +43,7 @@
           </li>
         <li class="nav-item">
           <a href="{{ url('admin/all-pledges') }}" class="nav-link  {{ Request::is('admin/all-pledges') ? 'active':'' }}">
-            <i class="nav-icon fas fa-balance-scale"></i>
+            <i class="nav-icon fas fa-balance-scale {{ Request::is('admin/all-pledges') ? 'text-danger':'' }}"></i>
             <p>
               Manage Pledges
             </p>

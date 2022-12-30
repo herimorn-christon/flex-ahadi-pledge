@@ -14,8 +14,7 @@
 		        text-align: center;
 		    }
 		    .title {
-			    font-size: 35px;
-				/* color: rgb(44, 44, 255); */
+			    font-size: 24px;
 		    }
 		    .pb-10 {
 		    	padding-bottom: 10px;
@@ -52,7 +51,10 @@
 				font-weight: 600;
 			}
 			.bg-black {
-				background-color: #000;
+				background-color: rgb(56, 118, 199);
+			}
+			.bg-primary {
+				color: skyblue;
 			}
 			.f-white {
 				color: #fff;
@@ -91,10 +93,11 @@
 		?>
 		<div class="wrapper">
 		    <div class="pb-5">
+				<small class="bg-primary">Flex AhadiPledge</small>
 			    <div class="middle pb-10 title">
-					<h5>
+					<p>
 						{{ $headers['title'] }}
-					</h5>
+					</p>
 					<hr class="bg-black">
 			    </div>
     			@if ($showMeta)
