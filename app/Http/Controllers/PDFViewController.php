@@ -131,48 +131,45 @@ public function pledgesReport(Request $request)
     $sortBy = $request->input('sort_by');
     $purpose = $request->input('purpose_id');
 
-    $total=Pledge::select(['pledge_id','type_id'])
+    $total=Pledge::select(['purpose_id','type_id','created_at'])
     ->whereBetween('created_at', [$fromDate, $toDate])
     ->where('purpose_id',$purpose)
     ->count();
     // Report title
-    $title = 'Collected Payments Report';
+    $title = 'Pledges Per Purpose Report';
 
     // For displaying filters description on header
     $meta = [
-        'Collected From: ' => $fromDate .' ', ' To: ' => $toDate .' ',  'Total Amount: '=>$total
+        'Collected From: ' => $fromDate .' ', ' To: ' => $toDate .' ',  'Total Pledges: '=>$total
       
     ];
 
     // Do some querying..
-    $queryBuilder = Pledge::select(['user_id', 'purpose_id','type_id','status','created_at'])
+    $queryBuilder = Pledge::select(['name','user_id', 'purpose_id','status','created_at','amount','deadline'])
                         ->whereBetween('created_at', [$fromDate, $toDate])
                         ->where('purpose_id',$purpose)
                         ->with('user')
                         ->with('purpose')
-                        ->with('type')
                         ->orderBy($sortBy);
 
     // Set Column to be displayed
     $columns = [
 
         'Full Name' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
-            return $user->payer->fname.' '.$user->payer->mname.' '.$user->payer->lname;
+            return $user->user->fname.' '.$user->user->mname.' '.$user->user->lname;
         },
         'Pledge Title'=>'name',
         'Purpose' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
             return $user->purpose->title;
         },
-        'Pledge Type' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
-            return $user->type->name;
-        },
-        'Amount'=>'amount',
         'Created Date'=>'created_at',
+        'Amount'=>'amount',
+        
         
     ];
 
     return PdfReport::of($title, $meta, $queryBuilder, $columns)
-                    ->editColumn('Payment Date', [
+                    ->editColumn('Created Date', [
                         'displayAs' => function($result) {
                             return $result->created_at->format('d M Y');
                         }
@@ -181,7 +178,7 @@ public function pledgesReport(Request $request)
                     ->showTotal([
                         'Amount' => 'point'
                     ])
-                    ->download('Collected_Payments_Report'); 
+                    ->download('Pledges_Per_Purpose_Report'); 
 }
 
 }

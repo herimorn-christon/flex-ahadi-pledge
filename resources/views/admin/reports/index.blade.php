@@ -201,7 +201,7 @@
             @endphp
             <div class="mb-3">
                 <label for="" class="text-secondary">Choose Purpose</label>
-                <select name="pledge_id" id="pledge_id" class="form-control">
+                <select name="purpose_id" id="purpose_id" class="form-control">
                     <option value="">--Select Purpose --</option>
                     @foreach ( $purpose as $item)
                     <option value="{{ $item->id}}">{{ $item->title}} </option>
