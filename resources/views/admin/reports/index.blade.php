@@ -221,7 +221,7 @@
                 <select name="sort_by" id="sort_by">
                     <option value="created_at">Created Date</option>
                     <option value="user_id">Member</option>
-                    <option value="pledge_id">Purpose</option>
+                    <option value="purpose_id">Purpose</option>
                     <option value="type_id">Pledge Type</option>
                 </select>
               </div>
