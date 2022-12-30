@@ -22,25 +22,49 @@ class CardMemberController extends Controller
         return response()->json(['members' => $members]);
     }
 
-    // assigning card method function
-    public function save(cardMemberFormRequest $request)
-    {
-        $data=$request->validated();
 
-        $card_no=$data['card_no'];
-        $card =Card::find($card_no);
-        $card->status=1;
-        $card->update();
         
-        $cardMember =new CardMember;
-        $cardMember->card_no=$data['card_no'];
-        $cardMember->user_id=$data['user_id'];
-        $cardMember->save();
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        request()->validate(
+            [
+            'card_no' => 'required',
+            'user_id' => 'required',
+             ]
+            );
 
+           
+            $member =new CardMember();
+            $member->card_no=$request->card_no;
+            $card_no=$request->card_no;
+            $card = Card::find($card_no);
+            $card->status=1;
+            $card->update();
 
+            $member->user_id=$request->user_id;
+            $member->status= $request->status == true ? '1':'0';
+            $member->save();
 
-        return redirect('admin/all-cards')->with('status','Card was Assigned Successfully');
+            return response()->json(['status' => "success"]);
     }
-    
+
+            /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $member = CardMember::find($id);
+        return response()->json(['member' => $member]);
+    }
+  
 
 }
