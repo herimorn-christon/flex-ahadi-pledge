@@ -47,7 +47,7 @@ class CardMemberController extends Controller
             $card->update();
 
             $member->user_id=$request->user_id;
-            // $member->status= $request->status == true ? '1':'0';
+            $member->status= $request->status == true ? '1':'0';
             $member->save();
 
             return response()->json(['status' => "success"]);
