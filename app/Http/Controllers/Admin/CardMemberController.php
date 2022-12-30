@@ -6,7 +6,6 @@ use App\Models\Card;
 use App\Models\CardMember;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\cardMemberFormRequest;
 
 class CardMemberController extends Controller
 {
@@ -48,7 +47,7 @@ class CardMemberController extends Controller
             $card->update();
 
             $member->user_id=$request->user_id;
-            $member->status= $request->status == true ? '1':'0';
+            // $member->status= $request->status == true ? '1':'0';
             $member->save();
 
             return response()->json(['status' => "success"]);
