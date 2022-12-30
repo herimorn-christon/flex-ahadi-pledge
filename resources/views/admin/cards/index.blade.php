@@ -21,7 +21,7 @@
             <i class="fa fa-envelope"></i>
              Available Cards
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#types">
+        <button type="button" class="btn btn-primary btn-sm"  onclick="createMember()">
             <i class="fa fa-list"></i>
              Assign Card
         </button>
@@ -112,27 +112,27 @@
 
   {{-- Assign Card  Modal --}}
 
-<div class="modal fade" id="types">
+  
+
+<div class="modal fade" id="types-modal">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-light">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       
-        <form action="{{ url('admin/assign-card') }}" method="post">
-          @csrf
+          <div id="error-div"></div>
+        <form>
+          <input type="hidden" name="update_id" id="update_id">
           <div class="row mb-3">
             @php
-            $jumuiya= App\Models\User::where('role','member')->get();
+            $members= App\Models\User::where('role','member')->get();
             @endphp
             <div class="col-md-12">
                 <label for="" class="text-secondary">All Members</label>
-                <select name="user_id" class="form-control">
+                <select name="user_id" id="user_id"  class="form-control">
                     <option value="">--Select Member --</option>
-                    @foreach ( $jumuiya as $item)
+                    @foreach ( $members as $item)
                      <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
                      @endforeach
                 </select>
@@ -144,7 +144,7 @@
             @endphp
             <div class="col-md-12 mb-3">
                 <label for="" class="text-secondary">Available Cards</label>
-                <select name="card_no" class="form-control">
+                <select name="card_no" id="card_no" class="form-control">
                     <option value="">--Select  Card --</option>
                     @foreach ( $purpose as $item)
                      <option value="{{ $item->id}}"> {{ $item->card_no}}</option>
@@ -153,13 +153,12 @@
             </div>
             <div class="col-md-6"></div>
            <div class="col-md-6">
-              <div class="form-group">
                
-                  <button type="submit" class="btn btn-primary btn-block">
+                  <button type="submit" class="btn btn-primary btn-block" id="assign-card-btn">
                       <i class="fa fa-save"></i>
                       Assign Card
                   </button>
-              </div>
+              
            </div>
           </div>
       </form>
@@ -312,7 +311,21 @@
               }
           })
        
+
           /*
+              check if form submitted is for creating or updating
+          */
+          $("#assign-card-btn").click(function(event ){
+              event.preventDefault();
+              if($("#update_id").val() == null || $("#update_id").val() == "")
+              {
+                  storeMember();
+              } else {
+                  updateMember();
+              }
+          })
+       
+          /*
               show modal for creating a record and 
               empty the values of form and remove existing alerts
           */
@@ -374,6 +387,78 @@
                   }
               });
           }
+
+   /*
+              show modal for creating a record and 
+              empty the values of form and remove existing alerts
+          */
+          function createMember()
+          {
+              $("#alert-div").html("");
+              $("#error-div").html("");   
+              $("#update_id").val("");
+              $("#card_no").val("");
+              $("#user_id").val("");
+              $("#types-modal").modal('show'); 
+          }
+       
+          /*
+              submit the form and will be stored to the database
+          */
+          function storeMember()
+          {   
+              $("#assign-card-btn").prop('disabled', true);
+              let url = $('meta[name=app-url]').attr("content") + "/admin/card-member";
+              let data = {
+                  card_no: $("#card_no").val(),
+                  user_id: $("#user_id").val(),
+              };
+              $.ajax({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: url,
+                  type: "POST",
+                  data: data,
+                  success: function(response) {
+                      $("assign-card-btn").prop('disabled', false);
+                      let successHtml = '<div class="alert alert-success" role="alert">Card Was Assigned Successfully</div>';
+                      $("#alert-div").html(successHtml);
+                      $("#card_no").val("");
+                      $("#user_id").val("");
+                      showAllCardMembers();
+                      $("#types-modal").modal('hide');
+                  },
+                  error: function(response) {
+                      $("#assign-card-btn").prop('disabled', false);
+       
+                      /*
+          show validation error
+                      */
+                      if (typeof response.responseJSON.errors !== 'undefined') 
+                      {
+          let errors = response.responseJSON.errors;
+          let numberValidation = "";
+          if (typeof errors.card_no !== 'undefined') 
+                          {
+                              numberValidation = '<li>' + errors.card_no[0] + '</li>';
+                          }
+          let userValidation = "";
+          if (typeof errors.user_id !== 'undefined') 
+                          {
+                              userValidation = '<li>' + errors.user_id[0] + '</li>';
+                          }
+           
+          let errorHtml = '<div class="alert alert-danger" role="alert">' +
+              '<b>Validation Error!</b>' +
+              '<ul>' + numberValidation  + userValidation  +'</ul>' +
+          '</div>';
+          $("#error-div").html(errorHtml);        
+      }
+                  }
+              });
+          }
+       
        
        
           /*
@@ -467,32 +552,7 @@
               });
           }
        
-          /*
-              get and display the record info on modal
-          */
-          function showCard(id)
-          {
-              $("#name-info").html("");
-              $("#description-info").html("");
-              let url = $('meta[name=app-url]').attr("content") + "/admin/pledges/" + id +"";
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                      let purpose = response.purpose;
-                      $("#title-info").html(purpose.name);
-                      $("#start-info").html(purpose.deadline);
-                      $("#end-info").html(purpose.amount);
-                      $("#description-info").html(purpose.description);
-                      $("#view-modal").modal('show'); 
-       
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-       
+
           /*
               delete record function
           */

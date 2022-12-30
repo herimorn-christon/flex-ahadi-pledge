@@ -25,6 +25,7 @@ Route::get('/', function () {
    return view('welcome');
 });
 
+Route::get('generate-pdf-from-view', [App\Http\Controllers\PDFViewController::class, 'displayReport']);
 
 // for Admin
 
