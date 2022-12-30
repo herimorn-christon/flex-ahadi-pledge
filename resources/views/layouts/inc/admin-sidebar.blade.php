@@ -51,7 +51,7 @@
         </li>
         <li class="nav-item">
             <a href="{{ url('admin/all-payments') }}" class="nav-link {{ Request::is('admin/all-payments') ? 'active':'' }}">
-              <i class="nav-icon fas fa-credit-card"></i>
+              <i class="nav-icon fas fa-credit-card {{ Request::is('admin/all-payments') ? 'text-danger':'' }}"></i>
               <p>
                 Manage Payments
               </p>
@@ -59,7 +59,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/all-cards') }}" class="nav-link {{ Request::is('admin/all-cards') ? 'active':'' }}">
-              <i class="nav-icon fas fa-envelope"></i>
+              <i class="nav-icon fas fa-envelope {{ Request::is('admin/all-cards') ? 'text-danger':'' }}"></i>
               <p>
                 Manage Cards
               </p>
@@ -67,7 +67,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/all-reports') }}" class="nav-link {{ Request::is('admin/all-reports') ? 'active':'' }}">
-              <i class="nav-icon fas fa-folder"></i>
+              <i class="nav-icon fas fa-folder {{ Request::is('admin/all-reports') ? 'text-danger':'' }}"></i>
               <p>
                 Reports
               </p>
