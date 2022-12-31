@@ -74,6 +74,11 @@ class CardMemberController extends Controller
      */
     public function destroy($id)
     {
+        $member = CardMember::find($id);
+        $card_no=$member->card_no;
+        $card = Card::find($card_no);
+        $card->status=0;
+        $card->update();
         CardMember::destroy($id);
         return response()->json(['status' => "success"]);
     }
