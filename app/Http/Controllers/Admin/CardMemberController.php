@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Card;
 use App\Models\CardMember;
+use App\Models\CardPayment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -61,8 +62,10 @@ class CardMemberController extends Controller
      */
     public function show($id)
     {
-        $member = CardMember::find($id);
-        return response()->json(['member' => $member]);
+        // $member = CardMember::find($id);
+        // return response()->json(['member' => $member]);
+        $payment=CardPayment::where('card_member',$id)->get();
+        return response()->json(['payment' => $payment]);
     }
   
 

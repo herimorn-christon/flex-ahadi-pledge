@@ -220,23 +220,36 @@
         <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>
-          <b class="text-secondary">Member Name:</b>   <span id="fname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span>
-          <hr>
-          <b class="text-secondary">Pledge Name:</b>   <span id="title-info" class="text-dark"></span>
-          <hr>
-          <b class="text-secondary">Pledge Type:</b>   <span id="type-info" class="text-dark"></span>
-          <hr>
-          <b class="text-secondary">Pledge Purpose:</b>   <span id="purpose-info" class="text-dark"></span>
-          <hr>    
-          <b class="text-secondary">Pledge Status:</b>   <span id="status-info" class="text-success"></span>
-          <hr>        
-          <b class="text-secondary">Deadline:</b>   <span id="start-info" class="text-dark"></span>
-          <hr>
-          <b class="text-secondary">Amount:</b>   <span id="end-info" class="text-dark"></span>
-          <hr>
-          <b class="text-secondary">Description:</b> <br>   <span id="description-info" class="text-dark"></span>
-      </p>
+        <b class="text-secondary">Member Name:</b>   <span id="fname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span>
+        <hr>
+        <div class="row">
+          <table id="modaltable" class="table table-bordered ">
+              <thead>
+                  <tr class="text-secondary">
+                      <th>ID</th>
+                      <th>Payment Date</th>
+                      <th>Amount</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              <tbody id="payment-table-body">
+         
+
+              </tbody>
+          </table>
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          
+        </div>
+        <div class="col-md-6">
+        <button class="btn btn-sm btn-primary btn-block" onclick="">  
+          Add Card Payment
+        </button>
+        </div>
+        
+      </div>
+      </div>
                 
       </div>
     </div>
@@ -613,14 +626,35 @@
                   url: url,
                   type: "GET",
                   success: function(response) {
-                      let payment = response.payment;
-                      $("#fname-info").html(payment.amount );
-                      $("#mname-info").html(payment.created_by );
-                      // $("#lname-info").html(payment.user.lname );
-                      // $("#end-info").html(payment.amount);
-                      // $("#type-info").html(payment.card_no.title);
-                      // $("#purpose-info").html(payment.created_at);
-                      $("#view-modal").modal('show'); 
+                    $("#payment-table-body").html("");
+
+                       let card = response.card;
+                       $("#fname-info").html(card.user.fname );
+                       $("#mname-info").html(card.user.mname );
+                       $("#lname-info").html(card.user.lname );
+                       let payment = response.payment;
+                      for (var i = 0; i < payment.length; i++) 
+                      {
+                         
+                          let editBtn =  '<button ' +
+                              ' class="btn btn-secondary" ' +
+                              ' onclick="editPayment(' + payment[i].id + ')">Edit' +
+                          '</button> ';
+                          let deleteBtn =  '<button ' +
+                              ' class="btn btn-danger" ' +
+                              ' onclick="destroyPayment(' + payment[i].id + ')">Delete' +
+                          '</button>';
+       
+                          let projectRow = '<tr>' +
+                              '<td>' + payment[i].id + '</td>' +
+                              '<td>' + payment[i].created_at + '</td>' +
+                              '<td>' + payment[i].amount + '</td>' +
+                              '<td>'  + editBtn + deleteBtn + '</td>' +
+                          '</tr>';
+                          $("#payment-table-body").append(projectRow);
+                       $("#view-modal").modal('show'); 
+                      }
+                    
        
                   },
                   error: function(response) {
