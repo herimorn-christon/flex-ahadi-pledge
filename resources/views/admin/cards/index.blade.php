@@ -122,46 +122,55 @@
       </div>
       <div class="modal-body">
           <div id="error-div"></div>
-        <form>
-          <input type="hidden" name="update_id" id="update_id">
-          <div class="row mb-3">
-            @php
-            $members= App\Models\User::where('role','member')->get();
-            @endphp
-            <div class="col-md-12">
-                <label for="" class="text-secondary">All Members</label>
-                <select name="user_id" id="user_id"  class="form-control">
-                    <option value="">--Select Member --</option>
-                    @foreach ( $members as $item)
-                     <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
-                     @endforeach
-                </select>
-            </div>
+             <form>
+             <input type="hidden" name="update_id" id="update_id">
+  
+             <div class="row mb-3">
+                @php
+                $members= App\Models\User::where('role','member')->get();
+                @endphp
+                <div class="col-md-12">
+                    <label for="" class="text-secondary">All Members</label>
+                    <select name="user_id" id="user_id"  class="form-control">
+                        <option value="">--Select Member --</option>
+                        @foreach ( $members as $item)
+                         <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
+                         @endforeach
+                    </select>
+                </div>
+    
+                @php
+                
+                $purpose= App\Models\Card::where('status','')->get();
+                @endphp
+                <div class="col-md-12 mb-3">
+                    <label for="" class="text-secondary">Available Cards</label>
+                    <select name="card_no" id="card_no" class="form-control">
+                        <option value="">--Select  Card --</option>
+                        @foreach ( $purpose as $item)
+                         <option value="{{ $item->id}}"> {{ $item->card_no}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-12">
 
-            @php
-            
-            $purpose= App\Models\Card::where('status','')->get();
-            @endphp
-            <div class="col-md-12 mb-3">
-                <label for="" class="text-secondary">Available Cards</label>
-                <select name="card_no" id="card_no" class="form-control">
-                    <option value="">--Select  Card --</option>
-                    @foreach ( $purpose as $item)
-                     <option value="{{ $item->id}}"> {{ $item->card_no}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-6"></div>
-           <div class="col-md-6">
-               
-                  <button type="submit" class="btn btn-primary btn-block" id="assign-card-btn">
-                      <i class="fa fa-save"></i>
-                      Assign Card
-                  </button>
-              
-           </div>
-          </div>
-      </form>
+                <div class="row mt-2">
+
+                    <div class="col-md-6 mb-3">
+                        {{-- <label for="" class="text-secondary">Status</label>
+                        <input type="checkbox" name="status" id=""> --}}
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <button class="btn btn-primary btn-block " id="assign-card-btn" type="submit">
+                        <i class="fa fa-save"></i>
+                        Assign Card
+                        </button>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </form>
       </div>
 
     </div>
@@ -427,7 +436,7 @@
                     $("#card_no").val("");
                      $("#user_id").val("");
                     showAllCardMembers();
-                    $("#form-modal").modal('hide');
+                    $("#types-modal").modal('hide');
                 },
                 error: function(response) {
                     $("#assign-card-btn").prop('disabled', false);
@@ -572,6 +581,34 @@
                       let successHtml = '<div class="alert alert-danger" role="alert">Card Was Deleted Successfully </div>';
                       $("#alert-div").html(successHtml);
   //                     showAllCards();
+                  },
+                  error: function(response) {
+                      console.log(response.responseJSON)
+                  }
+              });
+          }
+       
+          /*
+              delete record function
+          */
+          function destroyCardMember(id)
+          {
+              let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + id;
+              let data = {
+                  card_no: $("#card_no").val(),
+                  user_id: $("#user_id").val(),
+              };
+              $.ajax({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: url,
+                  type: "DELETE",
+                  data: data,
+                  success: function(response) {
+                      let successHtml = '<div class="alert alert-danger" role="alert">Assigned Card Was Deleted Successfully </div>';
+                      $("#alert-div").html(successHtml);
+                      showAllCardMembers();
                   },
                   error: function(response) {
                       console.log(response.responseJSON)
