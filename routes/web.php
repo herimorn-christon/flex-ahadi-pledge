@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\JumuiyaController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PurposeController;
 use App\Http\Controllers\Admin\CardMemberController;
+use App\Http\Controllers\Admin\CardPaymentController;
 
 // use App\Http\Controllers\Controller\DashboardController;
 
@@ -125,6 +126,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::apiResource('cards', CardController::class);
   // CardMember API route
   Route::apiResource('card-member', CardMemberController::class);
+    // CardPayment API route
+    Route::apiResource('card-payments', CardPaymentController::class);
 
 //Create Card method route  
   Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);
