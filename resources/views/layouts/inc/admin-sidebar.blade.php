@@ -74,8 +74,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('member/settings') }}" class="nav-link">
-              <i class="nav-icon fas fa-cog"></i>
+            <a href="{{ url('admin/settings') }}" class="nav-link {{ Request::is('admin/settings') ? 'active':'' }}">
+              <i class="nav-icon fas fa-cog {{ Request::is('admin/settings') ? 'text-danger':'' }}"></i>
               <p>
                 Settings
               </p>
