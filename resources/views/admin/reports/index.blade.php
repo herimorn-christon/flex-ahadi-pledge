@@ -65,6 +65,41 @@
             </div>
           </div>
 
+        {{-- Card Payments Reports --}}
+        <div class="col-lg-4 col-12">
+          <!-- small box -->
+          <div class="small-box bg-white">
+            <div class="inner">
+              <h5 class="text-center">
+              </h5>
+
+              <p class="text-secondary">Pledges/Member Report</p>
+            </div>
+            <div class="icon text-center">
+              <i class="fa fa-user-tie text-danger"></i>
+            </div>
+            <br>
+            <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#pledgesModal">Generate Report <i class="fas fa-download text-primary"></i></a>
+          </div>
+        </div>
+
+        {{-- Collected Payments Reports --}}
+        <div class="col-lg-4 col-12">
+            <!-- small box -->
+            <div class="small-box bg-white">
+              <div class="inner">
+                <h5 class="text-center">
+                </h5>
+  
+                <p class="text-secondary">Card/Member Report</p>
+              </div>
+              <div class="icon text-center">
+                <i class="fa fa-envelope text-danger"></i>
+              </div>
+              <br>
+              <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#pledgesModal">Generate Report <i class="fas fa-download text-primary"></i></a>
+            </div>
+          </div>
 
           <div class="col-m-12">
             <hr class="bg-primary font-weight-bolder">
