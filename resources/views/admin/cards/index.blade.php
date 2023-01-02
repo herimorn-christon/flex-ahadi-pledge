@@ -56,39 +56,47 @@
             </div>
             <div class="modal-body">
                 <div id="error-div"></div>
-                  <form >
-    <input type="hidden" name="update_id" id="update_id">
-      <div class="row mb-3">
-        @php
-        $cardMember= App\Models\CardMember::where('status','')->get();
-        @endphp
-        <div class="col-md-12">
-            <label for="" class="text-secondary">Member Card</label>
-            <select name="card_member" id="card_member"  class="form-control">
-                <option value="">--Select Member Card --</option>
-                @foreach ( $cardMember as $item)
-                 <option value="{{ $item->id}}">{{ $item->card->card_no}} / {{ $item->user->id}} </option>
-                 @endforeach
-            </select>
-        </div>
-       <div class="col-md-12">
-          <div class="form-group">
-              <label for="amount" class="text-secondary">Paid Amount</label>
-              <input type="text" name="card_amount" id="card_amount" class="form-control" placeholder="Enter Paid Amount">
-          </div>
-       </div>
-       <div class="col-md-6"></div>
-       <div class="col-md-6">
-          <div class="form-group">
-           
-              <button type="submit" class="btn btn-primary btn-block" id="save-payment-btn">
-                  <i class="fa fa-save"></i>
-                  Save Card Payment
-              </button>
-          </div>
-       </div>
-      </div>
-  </form>
+             <form>
+             <input type="hidden" name="update_id" id="update_id">
+  
+             <div class="row mb-3">
+                @php
+                $members= App\Models\CardMember::where('status','')->get();
+                @endphp
+                <div class="col-md-12">
+                    <label for="" class="text-secondary">All Member Cards</label>
+                    <select name="card_id" id="card_id"  class="form-control">
+                        <option value="">--Select Member Card --</option>
+                        @foreach ( $members as $item)
+                         <option value="{{ $item->id}}">{{ $item->card->card_no}} </option>
+                         @endforeach
+                    </select>
+                </div>
+    
+             
+                <div class="col-md-12 mb-3">
+                    <label for="" class="text-secondary">Paid Amount</label>
+                    <input type="text" name="amount" id="amount" class="form-control">
+                </div>
+                <div class="col-md-12">
+
+                <div class="row mt-2">
+
+                    <div class="col-md-6 mb-3">
+                        {{-- <label for="" class="text-secondary">Status</label>
+                        <input type="checkbox" name="status" id=""> --}}
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <button class="btn btn-primary btn-block " id="save-card-btn" type="submit">
+                        <i class="fa fa-save"></i>
+                        Assign Card
+                        </button>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </form>
             </div>
             </div>
         </div>
@@ -239,8 +247,8 @@
             $("#alert-div").html("");
             $("#error-div").html("");   
             $("#update_id").val("");
-            $("#card_no").val("");
-            $("#user_id").val("");
+            $("#card_id").val("");
+            $("#amount").val("");
             $("#form-modal").modal('show'); 
         }
      
@@ -250,10 +258,10 @@
         function storeCard()
         {   
             $("#save-card-btn").prop('disabled', true);
-            let url = $('meta[name=app-url]').attr("content") + "/admin/card-member";
+            let url = $('meta[name=app-url]').attr("content") + "/admin/card-payments";
             let data = {
-                card_no: $("#card_no").val(),
-                user_id: $("#user_id").val(),
+                amount: $("#amount").val(),
+                card_id: $("#card_id").val(),
             };
             $.ajax({
                 headers: {
@@ -263,12 +271,11 @@
                 type: "POST",
                 data: data,
                 success: function(response) {
-                    $("#save-ledge-btn").prop('disabled', false);
+                    $("#save-card-btn").prop('disabled', false);
                     let successHtml = '<div class="alert alert-success" role="alert">Card Was Created Successfully</div>';
                     $("#alert-div").html(successHtml);
-                    $("#card_no").val("");
-                     $("#user_id").val("");
-                    showAllCardMembers();
+                    $("#amount").val("");
+                     $("#card_id").val("");
                     $("#form-modal").modal('hide');
                 },
                 error: function(response) {
@@ -281,18 +288,18 @@
                     {
         let errors = response.responseJSON.errors;
         let numberValidation = "";
-        if (typeof errors.card_no !== 'undefined') 
+        if (typeof errors.amount !== 'undefined') 
                         {
-                            numberValidation = '<li>' + errors.card_no[0] + '</li>';
+                            numberValidation = '<li>' + errors.amount[0] + '</li>';
                         }
         let userValidation = "";
-        if (typeof errors.user_id !== 'undefined') 
+        if (typeof errors.card_id !== 'undefined') 
                         {
-                            userValidation = '<li>' + errors.user_id[0] + '</li>';
+                            userValidation = '<li>' + errors.card_id[0] + '</li>';
                         }        
         let errorHtml = '<div class="alert alert-danger" role="alert">' +
             '<b>Validation Error!</b>' +
-            '<ul>' + numberValidation  +'</ul>' +
+            '<ul>' + numberValidation  + userValidation  +'</ul>' +
         '</div>';
         $("#error-div").html(errorHtml);        
     }

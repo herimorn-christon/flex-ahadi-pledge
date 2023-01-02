@@ -14,7 +14,7 @@ class CardPayment extends Model
     protected $fillable = [
         'card_member',
         'amount',
-        'created_by'
+        'created_by',
    
     ];
 

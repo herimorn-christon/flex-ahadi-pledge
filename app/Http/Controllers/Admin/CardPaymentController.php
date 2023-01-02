@@ -30,17 +30,17 @@ class CardPaymentController extends Controller
     {
         request()->validate(
             [
-            'card_member' => 'required',
-            'amount' => 'required'
+            'card_id' => 'required',
+            'amount' => 'required',
              ]
             );
 
            
-            $payment =new CardPayment();
-            $payment->card_member=$request->card_member;
-            $payment->amount=$request->amount;
-            $payment->created_by= Auth::user()->id;
-            $payment->save();
+            $card =new CardPaymet();
+            $card->card_member=$request->card_id;
+            $card->amount=$request->amount;
+            $card->created_by= Auth::user()->id;
+            $card->save();
 
             return response()->json(['status' => "success"]);
     }
