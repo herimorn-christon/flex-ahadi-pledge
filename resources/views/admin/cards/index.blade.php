@@ -784,7 +784,7 @@
                           '</button> ';
                           let deleteBtn =  '<button ' +
                               ' class="btn btn-danger" ' +
-                              ' onclick="destroyCardPayment(' + payment[i].id + ')">Delete' +
+                              ' onclick="destroyCardPayment(' + payment[i].id + ')">Delete' + payment[i].id +
                           '</button>';
        
                           let projectRow = '<tr>' +
@@ -867,10 +867,10 @@
           */
           function destroyCardPayment(id)
           {
-              let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id;
+              let url = $('meta[name=app-url]').attr("content") + "/admin/card-payments/" + id;
               let data = {
                   card_member: $("#card_member").val(),
-                  card_amount: $("#card_amount").val(),
+                  amount: $("#card_amount").val(),
               };
               $.ajax({
                   headers: {

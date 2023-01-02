@@ -80,7 +80,9 @@ class CardPaymentController extends Controller
      */
     public function destroy($id)
     {
-        CardPayment::destroy($id);
+        // CardPayment::destroy($id);
+        $card=CardPayment::where('id',$id)->first();
+        $card->delete();
         return response()->json(['status' => "success"]);
     }
 }
