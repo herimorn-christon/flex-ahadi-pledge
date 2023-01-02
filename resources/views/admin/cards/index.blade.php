@@ -784,12 +784,12 @@
                           '</button> ';
                           let deleteBtn =  '<button ' +
                               ' class="btn btn-danger" ' +
-                              ' onclick="destroyPayment(' + payment[i].id + ')">Delete' +
+                              ' onclick="destroyCardPayment(' + payment[i].id + ')">Delete' +
                           '</button>';
        
                           let projectRow = '<tr>' +
                               '<td>' + payment[i].id + '</td>' +
-                              '<td>' + payment[i].created_at + '</td>' +
+                              '<td>' + payment[i].created_at+ '</td>' +
                               '<td>' + payment[i].amount + '</td>' +
                               '<td>'  + editBtn + deleteBtn + '</td>' +
                           '</tr>';
@@ -854,6 +854,36 @@
                       $("#alert-div").html(successHtml);
                       showAllCardMembers();
                       showAllCards();
+                   
+                  },
+                  error: function(response) {
+                      console.log(response.responseJSON)
+                  }
+              });
+          }
+
+   /*
+              delete record function
+          */
+          function destroyCardPayment(id)
+          {
+              let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id;
+              let data = {
+                  card_member: $("#card_member").val(),
+                  card_amount: $("#card_amount").val(),
+              };
+              $.ajax({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: url,
+                  type: "DELETE",
+                  data: data,
+                  success: function(response) {
+                      let successHtml = '<div class="alert alert-danger" role="alert">Card Payment Was Deleted Successfully </div>';
+                      $("#alert-div").html(successHtml);
+                      showAllCardMembers();
+                      $("#view-modal").modal('hide'); 
                   },
                   error: function(response) {
                       console.log(response.responseJSON)
