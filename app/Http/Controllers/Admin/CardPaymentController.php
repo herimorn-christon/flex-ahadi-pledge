@@ -31,14 +31,14 @@ class CardPaymentController extends Controller
         request()->validate(
             [
             'card_member' => 'required',
-            'amount' => 'required',
+            'card_amount' => 'required',
              ]
             );
 
            
             $payment =new CardPayment();
             $payment->card_member=$request->card_member;
-            $payment->amount=$request->amount;
+            $payment->amount=$request->card_amount;
             $payment->created_by= Auth::user()->id;
             $payment->save();
 
