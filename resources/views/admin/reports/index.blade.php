@@ -109,13 +109,13 @@
                 <h5 class="text-center">
                 </h5>
   
-                <p class="text-secondary">Pledges/Purpose Report</p>
+                <p class="text-secondary">Card/Payment Report</p>
               </div>
               <div class="icon text-center">
-                <i class="fa fa-balance-scale text-danger"></i>
+                <i class="fa fa-download text-danger"></i>
               </div>
               <br>
-              <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#pledgesModal">Generate Report <i class="fas fa-download text-primary"></i></a>
+              <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#cardPaymentModal">Generate Report <i class="fas fa-download text-primary"></i></a>
             </div>
           </div>
 
@@ -232,7 +232,63 @@
   </div>
   
 
-{{-- Pledges/Purpose modal --}}
+
+  {{-- card payment modal --}}
+
+  <div class="modal fade" id="cardPaymentModal" tabindex="-1" >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="{{ url('admin/card-payments') }}" method="GET">
+            @csrf
+    
+            <div class="mb-3">
+            <h5 class="text-secondary">
+                Generate Card Payments Report From the Given Start Date To the given End Date
+            </h5>
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="text-secondary">From Date:</label>
+               <input type="date" class="form-control" id="from_date" name="from_date" placeholder="Enter Start Date">
+            </div>
+            <div class="mb-3">
+              <label for="message-text" class="text-secondary">To Date:</label>
+               <input type="date" class="form-control" id="to_date" name="to_date" placeholder="Enter End Date">
+            </div>
+            <div class="mb-3">
+                <label for="message-text" class="text-secondary">Sort By:</label>
+                <select name="sort_by" id="sort_by">
+                    <option value="created_at">Payment Date</option>
+                    <option value="card_member">Member Card</option>
+                    <option value="amount">Amount</option>
+                </select>
+              </div>
+            <div class="row">
+              <div class="col-md-6">
+  
+              </div>
+              <div class="mb-3 col-md-6">
+                 <button type="submit" class="btn btn-primary btn-block " id="save-purpose-btn">
+                  <i class="fa fa-download"></i>
+                  Download Report
+                </button>
+              </div>
+            </div>
+  
+       
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  {{-- Pledges/Purpose modal --}}
 <div class="modal fade" id="pledgesModal" tabindex="-1" >
     <div class="modal-dialog modal-lg">
       <div class="modal-content">

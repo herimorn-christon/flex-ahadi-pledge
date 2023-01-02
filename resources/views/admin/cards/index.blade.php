@@ -613,7 +613,7 @@
               let url = $('meta[name=app-url]').attr("content") + "/admin/card-payments";
               let data = {
                   card_member: $("#card_member").val(),
-                  amount: $("#card_amount").val(),
+                  card_amount: $("#card_amount").val(),
               };
               $.ajax({
                   headers: {
