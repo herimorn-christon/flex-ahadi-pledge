@@ -182,8 +182,65 @@ public function pledgesReport(Request $request)
                     ->download('Pledges_Per_Purpose_Report'); 
 }
 
+// For Pledges Per Purpose Reports
+public function memberPledgesReport(Request $request) 
+{
+    // Retrieve any filters
+    $fromDate = $request->input('from_date');
+    $toDate = $request->input('to_date');
+    $sortBy = $request->input('sort_by');
+    $member = $request->input('user_id');
 
-// For Card Payment Reports
+    $total=Pledge::select(['user_id','type_id','created_at'])
+    ->whereBetween('created_at', [$fromDate, $toDate])
+    ->where('user_id',$member)
+    ->count();
+    // Report title
+    $title = 'Pledges Per Purpose Report';
+
+    // For displaying filters description on header
+    $meta = [
+        'Collected From: ' => $fromDate .' ', ' To: ' => $toDate .' ',  'Total Pledges: '=>$total
+      
+    ];
+
+    // Do some querying..
+    $queryBuilder = Pledge::select(['name','user_id', 'purpose_id','status','created_at','amount','deadline'])
+                        ->whereBetween('created_at', [$fromDate, $toDate])
+                        ->where('purpose_id',$purpose)
+                        ->with('user')
+                        ->with('purpose')
+                        ->orderBy($sortBy);
+
+    // Set Column to be displayed
+    $columns = [
+
+        'Full Name' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->user->fname.' '.$user->user->mname.' '.$user->user->lname;
+        },
+        'Pledge Title'=>'name',
+        'Purpose' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->purpose->title;
+        },
+        'Created Date'=>'created_at',
+        'Amount'=>'amount',
+        
+        
+    ];
+
+    return PdfReport::of($title, $meta, $queryBuilder, $columns)
+                    ->editColumn('Created Date', [
+                        'displayAs' => function($result) {
+                            return $result->created_at->format('d M Y');
+                        }
+                    ])
+                    // ->groupBy('Purpose')
+                    ->showTotal([
+                        'Amount' => 'point'
+                    ])
+                    ->download('Pledges_Per_Purpose_Report'); 
+}
+
 // For Pledges Per Purpose Reports
 public function cardPaymentReport(Request $request) 
 {
@@ -218,7 +275,7 @@ public function cardPaymentReport(Request $request)
             return $name->card->user->fname.' '.$name->card->user->mname.' '.$name->card->user->lname;
         },
         'Member Card' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
-            return $user->card->card_no.'/'.$user->card->user_id;
+            return $user->card->card->card_no.'/'.$user->card->user_id;
         },
         'Payment Date'=>'created_at',
         'Amount'=>'amount',
