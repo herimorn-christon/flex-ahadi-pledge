@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CardPayment extends Model
 {
-    use HasFactory;
+    // use HasFactory;
     protected $table= 'card_payments';
     protected $fillable = [
         'card_member',
