@@ -182,7 +182,7 @@ public function pledgesReport(Request $request)
                     ->download('Pledges_Per_Purpose_Report'); 
 }
 
-// For Pledges Per Purpose Reports
+// For Pledges Per Member Reports
 public function memberPledgesReport(Request $request) 
 {
     // Retrieve any filters
@@ -207,7 +207,7 @@ public function memberPledgesReport(Request $request)
     // Do some querying..
     $queryBuilder = Pledge::select(['name','user_id', 'purpose_id','status','created_at','amount','deadline'])
                         ->whereBetween('created_at', [$fromDate, $toDate])
-                        ->where('purpose_id',$purpose)
+                        ->where('user_id',$member)
                         ->with('user')
                         ->with('purpose')
                         ->orderBy($sortBy);

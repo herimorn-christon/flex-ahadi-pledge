@@ -153,6 +153,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::get('pledges-purposes', [App\Http\Controllers\PDFViewController::class, 'pledgesReport']);
   // Cards Payments Report 
   Route::get('card-payments', [App\Http\Controllers\PDFViewController::class, 'cardPaymentReport']);
+  // Member Pledges Report
+  Route::get('member-pledges', [App\Http\Controllers\PDFViewController::class, '  memberPledgesReport']);
 
 // settings page route
 Route::get('/settings', function () {
