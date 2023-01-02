@@ -7,16 +7,20 @@
 
 
 <div class="row mb-1">
-    <div class="col-sm-6" id="alert-div">
+    <div class="col-sm-5" id="alert-div">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
           {{ session('status') }}
       </div>
       @endif
     </div><!-- /.col -->
-    <div class="col-sm-6">
+    <div class="col-sm-7">
       <ol class="breadcrumb float-sm-right">
         <li class="">    
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="createPayment()">
+            <i class="fa fa-dollar-sign"></i>
+             Add Card Payment
+        </button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="showAllCards()">
             <i class="fa fa-envelope"></i>
              Available Cards
@@ -119,6 +123,18 @@
           <form >
             <input type="hidden" name="update_id" id="update_id">
               <div class="row mb-3">
+                @php
+                $members= App\Models\CardMember::all();
+                @endphp
+                <div class="col-md-12">
+                    <label for="" class="text-secondary">Member Card</label>
+                    <select name="user_id" id="user_id"  class="form-control">
+                        <option value="">--Select Member Card --</option>
+                        @foreach ( $members as $item)
+                         <option value="{{ $item->id}}">{{ $item->id}}</option>
+                         @endforeach
+                    </select>
+                </div>
                <div class="col-md-12">
                   <div class="form-group">
                       <label for="amount" class="text-secondary">Paid Amount</label>
@@ -304,6 +320,8 @@
 
 
 
+
+
   <script type="text/javascript">
   
           showAllCardMembers();
@@ -438,6 +456,17 @@
               $("#update_id").val("");
               $("#card").val("");
               $("#form-modal").modal('show'); 
+          }
+
+
+          function createPayment()
+          {
+              $("#alert-div").html("");
+              $("#error-div").html("");   
+              $("#update_id").val("");
+              $("#card_member").val("");
+              $("#amount").val("");
+              $("#payment-modal").modal('show'); 
           }
        
           /*
