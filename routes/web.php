@@ -127,7 +127,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   // CardMember API route
   Route::apiResource('card-member', CardMemberController::class);
     // CardPayment API route
-    Route::apiResource('card-payments', CardPaymentController::class);
+  Route::apiResource('card-payments', CardPaymentController::class);
 
 //Create Card method route  
   Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);

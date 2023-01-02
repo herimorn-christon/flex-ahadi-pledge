@@ -76,7 +76,7 @@
              
                 <div class="col-md-12 mb-3">
                     <label for="" class="text-secondary">Paid Amount</label>
-                    <input type="text" name="amount" id="amount" class="form-control">
+                    <input type="text" name="paid_amount" id="paid_amount" class="form-control">
                 </div>
                 <div class="col-md-12">
 
@@ -248,7 +248,7 @@
             $("#error-div").html("");   
             $("#update_id").val("");
             $("#card_id").val("");
-            $("#amount").val("");
+            $("#paid_amount").val("");
             $("#form-modal").modal('show'); 
         }
      
@@ -260,7 +260,7 @@
             $("#save-card-btn").prop('disabled', true);
             let url = $('meta[name=app-url]').attr("content") + "/admin/card-payments";
             let data = {
-                amount: $("#amount").val(),
+                paid_amount: $("#paid_amount").val(),
                 card_id: $("#card_id").val(),
             };
             $.ajax({
@@ -274,7 +274,7 @@
                     $("#save-card-btn").prop('disabled', false);
                     let successHtml = '<div class="alert alert-success" role="alert">Card Was Created Successfully</div>';
                     $("#alert-div").html(successHtml);
-                    $("#amount").val("");
+                    $("#paid_amount").val("");
                      $("#card_id").val("");
                     $("#form-modal").modal('hide');
                 },
@@ -288,9 +288,9 @@
                     {
         let errors = response.responseJSON.errors;
         let numberValidation = "";
-        if (typeof errors.amount !== 'undefined') 
+        if (typeof errors.paid_amount !== 'undefined') 
                         {
-                            numberValidation = '<li>' + errors.amount[0] + '</li>';
+                            numberValidation = '<li>' + errors.paid_amount[0] + '</li>';
                         }
         let userValidation = "";
         if (typeof errors.card_id !== 'undefined') 
