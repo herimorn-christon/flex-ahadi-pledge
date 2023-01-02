@@ -6,6 +6,7 @@ use App\Models\CardMember;
 use App\Models\CardPayment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CardPaymentController extends Controller
 {
@@ -36,7 +37,7 @@ class CardPaymentController extends Controller
             );
 
            
-            $card =new CarPayment();
+            $card =new CardPayment();
             $card->card_member=$request->card_id;
             $card->amount=$request->paid_amount;
             $card->created_by= Auth::user()->id;
