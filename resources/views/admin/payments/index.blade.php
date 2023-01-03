@@ -38,16 +38,11 @@
 
 <div class="card mt-1">
     <div class="card-header bg-light">
-        <h6 class="text-light">
-          
-        </h6>
+  
     </div>
-    <div class="card-body">
 
 
-
-
-        <div class="row">
+        <div class="responsiveness">
             <table  class="table table-bordered responsive">
                 <thead>
                      <tr class="text-secondary">
@@ -63,11 +58,6 @@
   
                 </tbody>
             </table>
-
-        </div>
-
-
-
     </div>
 </div>
 

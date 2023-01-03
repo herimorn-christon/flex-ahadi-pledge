@@ -11,9 +11,85 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
      
-          <div class="col-m-12">
-            <hr class="bg-primary font-weight-bolder">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header p-2">
+              <ul class="nav nav-pills">
+                <li class="nav-item"><a class="nav-link active" href="#interface" data-toggle="tab">Interface Settings</a></li>
+                <li class="nav-item"><a class="nav-link" href="#audits" data-toggle="tab">System Audits</a></li>
+                <li class="nav-item"><a class="nav-link" href="#announcements" data-toggle="tab">Announcements</a></li>
+              </ul>
+            </div><!-- /.card-header -->
+            <div class="">
+              <div class="tab-content">
+                <div class="active tab-pane" id="interface">
+                  {{-- start of interface settings --}}
+                  <div class="col-md-11">
+                 
+                  </div>
+
+                  {{-- end of interface settings --}}
+                </div>
+                <!-- /.tab-pane -->
+                <div class="tab-pane" id="audits">
+               
+                  {{-- start of pledges --}}
+
+                  <table id="my_table"  class="table table-bordered ">
+                      <thead>
+                          <tr class="text-secondary">
+                              <th>ID</th>
+                              <th>User</th>
+                              <th>Old Value</th>
+                              <th>New Value</th>
+                              <th>IP Address</th>
+                              <th>Url</th>
+                              <th>User Agent</th>
+                              <th>Date</th>
+                          </tr>
+                      </thead>
+                      <tbody id="pledges-table-body">
+                          
+          
+                      </tbody>
+                   </table>
+                  {{-- end of pledges --}}
+               
+              
+              
+              </div>
+                <!-- /.tab-pane -->
+
+                <div class="tab-pane" id="announcements">
+
+               
+                  {{-- start of cards --}}
+
+                  <table  class="table table-bordered ">
+                      <thead>
+                          <tr class="text-secondary">
+                              <th>ID</th>
+                              <th>Card Number</th>
+                              <th>Status</th>
+                              {{-- <th>Actions</th> --}}
+                          </tr>
+                      </thead>
+                      <tbody id="cards-table-body">
+
+        
+                      </tbody>
+                  </table>
+                  {{-- end of pledges --}}
+               
+              
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div><!-- /.card-body -->
           </div>
+          <!-- /.card -->
+        </div>       
       </div>
     </div>
 </section>

@@ -132,7 +132,7 @@
                      
                         {{-- start of pledges --}}
      
-                        <table id=""  class="table table-bordered ">
+                        <table id="my_table"  class="table table-bordered ">
                             <thead>
                                 <tr class="text-secondary">
                                     <th>ID</th>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','All Communities')
+@section('title','Admin | Manage Pledges')
 
 
 @section('content')
@@ -33,17 +33,14 @@
 
 <div class="card mt-1">
     <div class="card-header bg-light">
-        <h6 class="text-light">
-          {{-- All Pledges Made --}}
-           
-        </h6>
+   
     </div>
-    <div class="card-body">
+  
 
 
 
 
-        <div class="row">
+        <div class="responsive">
  
           <table  class="table table-bordered ">
             <thead>
@@ -63,9 +60,9 @@
         </table>
         </div>
 
+          <div class="card-footer bg-light"></div>
 
 
-    </div>
 </div>
 
 
@@ -267,7 +264,7 @@
           <hr>
           <b class="text-secondary">Amount:</b>   <span id="end-info" class="text-dark"></span>
           <hr>
-          <b class="text-secondary">Description:</b> <br>   <span id="description-info" class="text-dark"></span>
+          <b class="text-secondary">Description:</b> <br><span id="description-info" class="text-dark"></span>
       </p>
                 
       </div>
@@ -327,7 +324,7 @@
               });
           }
        
-            showAllTypes();
+   
 
 
             /*

@@ -20,6 +20,7 @@
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.4",
+        "owen-it/laravel-auditing": "^13.0",
         "wemersonjanuario/wkhtmltopdf-windows": "0.12.2.3"
     },
     "require-dev": {
