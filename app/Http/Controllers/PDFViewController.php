@@ -183,7 +183,7 @@ public function pledgesReport(Request $request)
 }
 
 // For Pledges Per Member Reports
-public function memberPledgesReport(Request $request) 
+public function  memberPledgesReport(Request $request) 
 {
     // Retrieve any filters
     $fromDate = $request->input('from_date');
@@ -195,17 +195,20 @@ public function memberPledgesReport(Request $request)
     ->whereBetween('created_at', [$fromDate, $toDate])
     ->where('user_id',$member)
     ->count();
+
+    $name=User::where('id',$member)->first();
     // Report title
-    $title = 'Pledges Per Purpose Report';
+    $title = 'Member Pledges Report';
 
     // For displaying filters description on header
     $meta = [
-        'Collected From: ' => $fromDate .' ', ' To: ' => $toDate .' ',  'Total Pledges: '=>$total
+
+         'Member Name: ' => $name->fname .' '.$name->mname.' '.$name->lname.' ','Jumuiya: '=>$name->community->name.' ','Collected From: ' => $fromDate .' ', ' To: ' => $toDate .' ',  'Total Pledges: '=>$total
       
     ];
 
     // Do some querying..
-    $queryBuilder = Pledge::select(['name','user_id', 'purpose_id','status','created_at','amount','deadline'])
+    $queryBuilder = Pledge::select(['name','user_id','description','purpose_id','status','created_at','amount','deadline'])
                         ->whereBetween('created_at', [$fromDate, $toDate])
                         ->where('user_id',$member)
                         ->with('user')
@@ -215,14 +218,15 @@ public function memberPledgesReport(Request $request)
     // Set Column to be displayed
     $columns = [
 
-        'Full Name' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
-            return $user->user->fname.' '.$user->user->mname.' '.$user->user->lname;
-        },
+       
         'Pledge Title'=>'name',
         'Purpose' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
             return $user->purpose->title;
         },
-        'Created Date'=>'created_at',
+        'Description'=>'description',
+        'Status' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->status == 0 ? 'Not Fullfilled':'Fullfiled';
+        },
         'Amount'=>'amount',
         
         

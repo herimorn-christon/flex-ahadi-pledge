@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\MethodController;
 use App\Http\Controllers\Admin\PledgeController;
 use App\Http\Controllers\Admin\JumuiyaController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PurposeController;
 use App\Http\Controllers\Admin\CardMemberController;
 use App\Http\Controllers\Admin\CardPaymentController;
@@ -154,7 +155,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   // Cards Payments Report 
   Route::get('card-payments', [App\Http\Controllers\PDFViewController::class, 'cardPaymentReport']);
   // Member Pledges Report
-  Route::get('member-pledges', [App\Http\Controllers\PDFViewController::class, '  memberPledgesReport']);
+  Route::get('member-pledges', [App\Http\Controllers\PDFViewController::class, 'memberPledgesReport']);
 
 // settings page route
 Route::get('/settings', function () {
@@ -162,8 +163,13 @@ Route::get('/settings', function () {
   });
 
  // my-profile
-  Route::get('/my-profile', [App\Http\Controllers\Admin\ProfileController::class,'index']);
+  // Route::get('/my-profile', [App\Http\Controllers\Admin\ProfileController::class,'index']);
 
+  Route::get('/my-profile', function () {
+    return view('admin.profile.index');
+    });
+// my-profile API
+  Route::apiResource('profile', ProfileController::class);
 });
 // for Member
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()

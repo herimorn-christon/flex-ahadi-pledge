@@ -10,8 +10,8 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item ">
-          <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'active':'' }}">
-            <i class="nav-icon fas fa-tachometer-alt {{ Request::is('admin/dashboard') ? 'text-danger':'' }}"></i>
+          <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'active':'' }} {{ Request::is('admin/my-profile') ? 'active':'' }}">
+            <i class="nav-icon fas fa-tachometer-alt {{ Request::is('admin/dashboard') ? 'text-danger':'' }} {{ Request::is('admin/my-profile') ? 'text-danger':'' }}"></i>
             <p>
               Dashboard
             </p>
