@@ -41,7 +41,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="Flex Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text text-primary font-weight-light">AhadiPledge</span>
+      <span class="brand-text text-white font-weight-light">AhadiPledge</span>
     </a>
 
     <!-- Sidebar -->

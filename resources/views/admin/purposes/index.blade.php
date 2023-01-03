@@ -137,8 +137,8 @@
                             <thead>
                                 <tr class="text-secondary">
                                     <th>ID</th>
+                                    <th>Member Fullname</th>
                                     <th>Payment Date</th>
-                                    <th>Payment Purpose</th>
                                     <th>Amount</th>
                                     <th>Method</th>
                                 </tr>
@@ -480,6 +480,21 @@
                                 '<td class="text-success">' + (pledges[i].status == '0' ? 'Not Fullfilled':'Fullfilled') + '</td>' +
                             '</tr>';
                             $("#pledges-table-body").append(pledgesRow);
+                        }
+                        // for payments
+                                                            
+                        let payments = response.payments;
+                        for (var i = 0; i < payments.length; i++) 
+                        {      
+         
+                       let paymentsRow = '<tr>' +
+                                '<td>' + payments[i].id + '</td>' +
+                                '<td>' + payments[i].payer.fname + '&nbsp;'+ payments[i].payer.mname + '&nbsp;'+ payments[i].payer.lname +'</td>' +
+                                '<td>' + payments[i].created_at + '</td>' +
+                                '<td>' + payments[i].amount + '</td>' +
+                                '<td>' + payments[i].payment.name + '</td>' +
+                            '</tr>';
+                            $("#payments-table-body").append(paymentsRow);
                         }
 
                         $("#view-modal").modal('show'); 

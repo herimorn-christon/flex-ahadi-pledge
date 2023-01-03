@@ -187,19 +187,7 @@
                             @endforeach
                         </select>
                     </div>
-
-             
-
-                <select>
-                  <optgroup label="Fruits">
-                  <option>Orange</option>
-                  <option>Apple</option>
-                  </optgroup>
-                  <optgroup label="Food">
-                  <option>Chicket</option>
-                  <option>Beef</option>
-                  </optgroup> 
-                </select>
+           
                     @php
                     $purpose= App\Models\PaymentType::get();
                     @endphp
