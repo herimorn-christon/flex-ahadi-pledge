@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Purpose;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -62,7 +63,16 @@ class PurposeController extends Controller
             $purpose->end_date=$request->end_date;
             $purpose->created_by= Auth::user()->id;
             $purpose->save();
-
+            
+            // start of user notification
+            $notification = new Notification();
+            $notification->user_id= 0;
+            $notification->created_by= Auth::user()->id;
+            $notification->type='Lengo Jipya La Ahadi';
+            $name=$request->title;
+            $description=$request->description;
+            $notification->message='Habari, kuna lengo jipya limeongeza na linaitwa '.$name.', unakaribishwa kuweka ahadi yako kwenye lengo hili.';
+            $notification->save();
             return response()->json(['status' => "success"]);
     }
 
@@ -120,6 +130,8 @@ class PurposeController extends Controller
         $purpose->end_date=$request->end_date;
         $purpose->created_by= Auth::user()->id;
         $purpose->save();
+
+     
         return response()->json(['status' => "success"]);
     }
 
