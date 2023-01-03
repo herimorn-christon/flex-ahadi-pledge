@@ -60,7 +60,7 @@
 
 
 
-{{-- test modal --}}
+{{-- add community modal --}}
 <div class="modal" id="form-modal" tabindex="-1" >
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -103,36 +103,58 @@
   </div>
 </div>
 
-      <!-- view record modal -->
-      <div class="modal" tabindex="-1" id="view-modal">
-          <div class="modal-dialog modal-lg" >
-              <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title text-secondary">Community Information</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <p>
-                      <b class="text-secondary">Name:</b>   <span id="name-info" class="text-dark"></span>
-                  </p>
-                                        
-                  <p>
-                      <b class="text-secondary">Abbreviation:</b>   <span id="description-info" class="text-dark"></span>
-                  </p>
-                   <p>
-                      <b class="text-secondary">Location:</b>   <span id="location-info" class="text-dark"></span>
-                  </p>
-                <hr>
-                  {{-- <a href="{{ url('/admin/')}}" class="btn"></a> --}}
-              </div>
-              </div>
-          </div>
-      </div>
-    
+<!-- view record modal -->
+
+<div class="modal fade" id="view-modal" tabindex="-1" >
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <tr>
+            <td class="font-weight-bolder text-secondary">Community Name</td>
+            <td><span id="name-info" class="text-dark"></span></td>
+          </tr>
+          <tr>
+            <td class="font-weight-bolder text-secondary">Abbreviation</td>
+            <td><span id="description-info" class="text-dark"></span></td>
+          </tr>
+          <tr>
+            <td class="font-weight-bolder text-secondary">Location</td>
+            <td><span id="location-info" class="text-dark"></span></td>
+          </tr>
+        </table>
+        <h6 class="text-secondary">
+          Community(Jumuiya) Members
+        </h6>
+        <hr>
+        <table class="table table-bordered responsive">
+          <thead>
+              <tr class="text-secondary">
+                <th>Member ID</th>
+                <th>Member Name</th>
+                <th>Phone Number</th>
+                <th>Gender</th>
+                <th>Status </th>
+              </tr>
+          </thead>
+          <tbody id="members-table-body">
+        
+          </tbody>
+          <tfoot></tfoot>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+      
 
 
 <script type="text/javascript">
-          showAllProjects();
+        showAllProjects();
      
         /*
             This function will get all the project records
@@ -374,11 +396,29 @@
                 url: url,
                 type: "GET",
                 success: function(response) {
+                    $("#members-table-body").html("");
                     let community = response.community;
                     $("#name-info").html(community.name);
                     $("#description-info").html(community.abbreviation);
                     $("#location-info").html(community.location);
-                    $("#view-modal").modal('show'); 
+                  
+                  // for community members
+                  let members = response.members;
+                        for (var i = 0; i < members.length; i++) 
+                        {      
+         
+                       let membersRow = '<tr>' +
+                            '<td>' + community.abbreviation +'/' + members[i].id +'</td>' +
+                                '<td>' + members[i].fname + '&nbsp;'+ members[i].mname + '&nbsp;'+ members[i].lname +'</td>' +
+                                '<td>' + members[i].lname + '</td>' +  
+                                '<td>' + members[i].phone + '</td>' +
+                                '<td class="text-success">' + (members[i].status == '0' ? 'Enabled':'Disabled') + '</td>' +
+                            '</tr>';
+                            $("#members-table-body").append(membersRow);
+                        }   
+
+
+                $("#view-modal").modal('show'); 
      
                 },
                 error: function(response) {

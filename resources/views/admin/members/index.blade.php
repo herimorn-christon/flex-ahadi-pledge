@@ -142,6 +142,7 @@
                                     <th>ID</th>
                                     <th>Pledge Name</th>
                                     <th>Amount</th>
+                                    <th>Purpose</th>
                                     <th>Deadline</th>
                                     <th>Status</th>
                                 </tr>
@@ -169,7 +170,7 @@
                                     <th>ID</th>
                                     <th>Card Number</th>
                                     <th>Status</th>
-                                    <th>Actions</th>
+                                    {{-- <th>Actions</th> --}}
                                 </tr>
                             </thead>
                             <tbody id="cards-table-body">
@@ -667,6 +668,7 @@
                     success: function(response) {
                         $("#payments-table-body").html("");
                         $("#pledges-table-body").html("");
+                        $("#cards-table-body").html("");                       
                         let member = response.member;
                         $("#name-info").html(member.fname);
                         $("#mname-info").html(member.mname);
@@ -703,12 +705,27 @@
          
                        let pledgesRow = '<tr>' +
                                 '<td>' + pledges[i].id + '</td>' +
-                                '<td>' + pledges[i].created_at + '</td>' +
-                                '<td>' + pledges[i].purpose.title + '</td>' +
-                                '<td>' + pledges[i].amount + '</td>' +
+                                '<td>' + pledges[i].name + '</td>' +
+                                '<td>' + pledges[i].amount + '</td>' +
+                                '<td>' + pledges[i].purpose.title + '</td>' +  
+                                '<td>' + pledges[i].deadline + '</td>' +
                                 '<td class="text-success">' + (pledges[i].status == '0' ? 'Not Fullfilled':'Fullfilled') + '</td>' +
                             '</tr>';
                             $("#pledges-table-body").append(pledgesRow);
+                        }
+
+                        // for cards
+
+                        let cards = response.cards;
+                        for (var i = 0; i < cards.length; i++) 
+                        {      
+         
+                       let cardsRow = '<tr>' +
+                                '<td>' + cards[i].id + '</td>' +
+                                '<td>' + cards[i].card.card_no +'/'+ cards[i].user_id +'</td>' +
+                                '<td class="text-success">' + (cards[i].status == '0' ? 'Active':'InActive') + '</td>' +
+                            '</tr>';
+                            $("#cards-table-body").append(cardsRow);
                         }
 
 

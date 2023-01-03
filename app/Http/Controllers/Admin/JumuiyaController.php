@@ -55,7 +55,8 @@ class JumuiyaController extends Controller
     public function show($id)
     {
         $community = Jumuiya::find($id);
-        return response()->json(['community' => $community]);
+        $members = User::where('jumuiya',$id)->where('role','member')->get();
+        return response()->json(['community' => $community,'members' => $members]);
     }
 
 
@@ -90,7 +91,7 @@ class JumuiyaController extends Controller
     {
 
         $community = Jumuiya::where('id',$id)->get();
-        $members = User::where('jumuiya',$id)->where('role','member')->get();
+        $members = User::where('jumuiya',$id)->where('role','member')->with('community')->get();
   
 
         return view('admin.jumuiya.detail',compact('community','members'));
