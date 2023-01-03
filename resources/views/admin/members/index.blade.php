@@ -31,8 +31,6 @@
     <div class="card-body">
 
 
-
-
         <div class="row">
             <table  class="table table-bordered">
                 <thead>
@@ -63,7 +61,7 @@
 
 
     <div class="modal fade" id="view-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" style="width:1250px;">
+        <div class="modal-dialog modal-lg modal-xl" style="width:1250px;">
           <div class="modal-content">
             <div class="modal-header bg-light">
                 <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -102,6 +100,94 @@
                 </table>
             </div>
         
+            <hr class="bg-primary font-weight-bolder">
+            <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item"><a class="nav-link active" href="#pledges" data-toggle="tab">Payments</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Pledges</a></li>
+                      <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Cards</a></li>
+                    </ul>
+                  </div><!-- /.card-header -->
+                  <div class="card-body">
+                    <div class="tab-content">
+                      <div class="active tab-pane" id="pledges">
+                        {{-- start of member payments --}}
+                        <table   class="table table-bordered responsive">
+                            <thead>
+                                <tr class="text-secondary">
+                                    <th>ID</th>
+                                    <th>Payment Date</th>
+                                    <th>Payment Purpose</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payments-table-body">
+
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+            
+                      </div>
+                      <!-- /.tab-pane -->
+                      <div class="tab-pane" id="timeline">
+                     
+                        {{-- start of pledges --}}
+     
+                        <table id=""  class="table table-bordered ">
+                            <thead>
+                                <tr class="text-secondary">
+                                    <th>ID</th>
+                                    <th>Pledge Name</th>
+                                    <th>Amount</th>
+                                    <th>Deadline</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pledges-table-body">
+                                
+                
+                            </tbody>
+                         </table>
+                        {{-- end of pledges --}}
+                     
+                    
+                    
+                    </div>
+                      <!-- /.tab-pane -->
+    
+                      <div class="tab-pane" id="settings">
+    
+                     
+                        {{-- start of cards --}}
+     
+                        <table  class="table table-bordered ">
+                            <thead>
+                                <tr class="text-secondary">
+                                    <th>ID</th>
+                                    <th>Card Number</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cards-table-body">
+
+              
+                            </tbody>
+                        </table>
+                        {{-- end of pledges --}}
+                     
+                    
+                      </div>
+                      <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                  </div><!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
           </div>
         </div>
       </div>
@@ -579,6 +665,8 @@
                     url: url,
                     type: "GET",
                     success: function(response) {
+                        $("#payments-table-body").html("");
+                        $("#pledges-table-body").html("");
                         let member = response.member;
                         $("#name-info").html(member.fname);
                         $("#mname-info").html(member.mname);
@@ -590,8 +678,42 @@
                         $("#email-info").html(member.email);
                         $("#status-info").html(member.status == '1' ? 'Disabled':'Enabled');
                         $("#user-link").html(member.id);
-                        $("#view-modal").modal('show'); 
+                        
+                        // for payments
+                      
+                        let payments = response.payments;
+                        for (var i = 0; i < payments.length; i++) 
+                        {      
          
+                       let paymentsRow = '<tr>' +
+                                '<td>' + payments[i].id + '</td>' +
+                                '<td>' + payments[i].created_at + '</td>' +
+                                '<td>' + payments[i].purpose.title + '</td>' +
+                                '<td>' + payments[i].amount + '</td>' +
+                                '<td>' + payments[i].payment.name + '</td>' +
+                            '</tr>';
+                            $("#payments-table-body").append(paymentsRow);
+                        }
+
+                        // for pledges
+                        
+                        let pledges = response.pledges;
+                        for (var i = 0; i < pledges.length; i++) 
+                        {      
+         
+                       let pledgesRow = '<tr>' +
+                                '<td>' + pledges[i].id + '</td>' +
+                                '<td>' + pledges[i].created_at + '</td>' +
+                                '<td>' + pledges[i].purpose.title + '</td>' +
+                                '<td>' + pledges[i].amount + '</td>' +
+                                '<td class="text-success">' + (pledges[i].status == '0' ? 'Not Fullfilled':'Fullfilled') + '</td>' +
+                            '</tr>';
+                            $("#pledges-table-body").append(pledgesRow);
+                        }
+
+
+                        $("#view-modal").modal('show'); 
+  
                     },
                     error: function(response) {
                         console.log(response.responseJSON)
