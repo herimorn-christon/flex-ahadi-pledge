@@ -23,15 +23,12 @@
 </div>
 <div class="card mt-1">
     <div class="card-header bg-light">
-        <h6 class="text-light">
-            {{-- All Members --}}
-          
-        </h6>
+      
     </div>
-    <div class="card-body">
+    <div class="">
 
 
-        <div class="row">
+        <div class="responsive">
             <table  class="table table-bordered">
                 <thead>
                      <tr class="text-secondary">
@@ -100,7 +97,6 @@
                 </table>
             </div>
         
-            <hr class="bg-primary font-weight-bolder">
             <div class="col-md-12">
                 <div class="card">
                   <div class="card-header p-2">
@@ -110,7 +106,7 @@
                       <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Cards</a></li>
                     </ul>
                   </div><!-- /.card-header -->
-                  <div class="card-body">
+                  <div class="">
                     <div class="tab-content">
                       <div class="active tab-pane" id="pledges">
                         {{-- start of member payments --}}

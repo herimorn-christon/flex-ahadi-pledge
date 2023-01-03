@@ -27,16 +27,11 @@
 
 <div class="card mt-1">
     <div class="card-header bg-light">
-        <h6 class="text-light">
-          {{-- All Communities --}}
-        </h6>
     </div>
-    <div class="card-body">
 
 
 
-
-        <div class="row">
+        <div class="responsive">
             <table  class="table table-bordered responsive">
                 <thead>
                     <tr class="text-secondary">
@@ -54,9 +49,6 @@
 
         </div>
 
-
-
-    </div>
 </div>
 
 
@@ -111,7 +103,7 @@
 
 {{-- View Single Purpose --}}
 <div class="modal" id="view-modal" tabindex="-1" >
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header bg-light">
           <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -125,9 +117,77 @@
                 <hr>
                 <b class="text-secondary">End Date:</b>   <span id="end-info" class="text-dark"></span>
                 <hr>
-                <b class="text-secondary">Description:</b> <br>   <span id="description-info" class="text-dark"></span>
+                <b class="text-secondary">Description:</b> <br><span id="description-info" class="text-dark"></span>
             </p>
               <hr>
+   <div class="">
+                <div class="card">
+                  <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Pledges Made</a></li>
+                      <li class="nav-item"><a class="nav-link " href="#pledges" data-toggle="tab">Payments Made</a></li>
+                     
+                    </ul>
+                  </div><!-- /.card-header -->
+                  <div class="">
+                    <div class="tab-content">
+                      <div class="active tab-pane" id="pledges">
+                        {{-- start of member payments --}}
+                        <table   class="table table-bordered responsive">
+                            <thead>
+                                <tr class="text-secondary">
+                                    <th>ID</th>
+                                    <th>Payment Date</th>
+                                    <th>Payment Purpose</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payments-table-body">
+
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+            
+                      </div>
+                      <!-- /.tab-pane -->
+                      <div class="tab-pane" id="timeline">
+                     
+                        {{-- start of pledges --}}
+     
+                        <table id=""  class="table table-bordered ">
+                            <thead>
+                                <tr class="text-secondary">
+                                    <th>ID</th>
+                                    <th>Pledge Name</th>
+                                    <th>Amount</th>
+                                    <th>Deadline</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pledges-table-body">
+                                
+                
+                            </tbody>
+                         </table>
+                        {{-- end of pledges --}}
+                     
+                    
+                    
+                    </div>
+                      <!-- /.tab-pane -->
+    
+                    
+                     
+                    
+                      </div>
+                      <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                  </div><!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
         </div>
       </div>
     </div>
@@ -398,11 +458,30 @@
                     url: url,
                     type: "GET",
                     success: function(response) {
+                        $("#payments-table-body").html("");
+                        $("#pledges-table-body").html("");
                         let purpose = response.purpose;
                         $("#title-info").html(purpose.title);
                         $("#start-info").html(purpose.start_date);
                         $("#end-info").html(purpose.end_date);
                         $("#description-info").html(purpose.description);
+
+                        // for pledges
+                        
+                        let pledges = response.pledges;
+                        for (var i = 0; i < pledges.length; i++) 
+                        {      
+         
+                          let pledgesRow = '<tr>' +
+                                '<td>' + pledges[i].id + '</td>' +
+                                '<td>' + pledges[i].name + '</td>' +
+                                '<td>' + pledges[i].amount + '</td>' +
+                                '<td>' + pledges[i].deadline + '</td>' +
+                                '<td class="text-success">' + (pledges[i].status == '0' ? 'Not Fullfilled':'Fullfilled') + '</td>' +
+                            '</tr>';
+                            $("#pledges-table-body").append(pledgesRow);
+                        }
+
                         $("#view-modal").modal('show'); 
          
                     },

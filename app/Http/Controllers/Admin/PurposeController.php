@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Pledge;
 use App\Models\Purpose;
 use App\Models\Notification;
 use Illuminate\Http\Request;
@@ -85,7 +86,8 @@ class PurposeController extends Controller
     public function show($id)
     {
         $purpose = Purpose::find($id);
-        return response()->json(['purpose' => $purpose]);
+        $pledges = Pledge::where('purpose_id',$id)->orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
+        return response()->json(['purpose' => $purpose,'pledges' => $pledges]);
     }
     /**
      * Remove the specified resource from storage.

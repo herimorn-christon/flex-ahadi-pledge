@@ -27,16 +27,14 @@
 
 <div class="card mt-1">
     <div class="card-header bg-light">
-        <h6 class="text-light">
-          {{-- All Communities --}}
-        </h6>
+    
     </div>
-    <div class="card-body">
+    <div class="">
 
 
 
 
-        <div class="row">
+        <div class="">
             <table class="table table-bordered responsive">
                 <thead>
                     <tr class="text-secondary">
