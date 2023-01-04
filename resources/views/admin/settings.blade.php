@@ -7,7 +7,7 @@
 
 
 <section class="content">
-    <div class="container-fluid">
+    
       <!-- Small boxes (Stat box) -->
       <div class="row">
      
@@ -15,7 +15,7 @@
           <div class="card">
             <div class="card-header p-2">
               <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link active" href="#interface" data-toggle="tab">Interface Settings</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#interface" data-toggle="tab">System Settings</a></li>
                 <li class="nav-item"><a class="nav-link" href="#audits" data-toggle="tab">System Audits</a></li>
                 <li class="nav-item"><a class="nav-link" href="#announcements" data-toggle="tab">Announcements</a></li>
               </ul>
@@ -24,9 +24,82 @@
               <div class="tab-content">
                 <div class="active tab-pane" id="interface">
                   {{-- start of interface settings --}}
-                  <div class="col-md-11">
-                 
+                  
+                    <div class="col-md-12">
+                      <div class="p-2">
+                        
+                          <div class="">
+                               {{--displaying all the errors  --}}
+                               @if ($errors->any())
+                               <div class="alert alert-danger">
+                                   @foreach ($errors->all() as $error)
+                                       <div>{{$error}}</div>
+                                   @endforeach
+                               </div>
+                               @endif
+                              <form action="{{ url('admin/settings') }}" method="post"  enctype="multipart/form-data" >
+                                  @csrf
+                                  <div class="mb-3">
+                                      <label for="" class="text-secondary">System Name</label>
+                                      <input name="system_name"  type="text" class="form-control">
+                                  </div>
+                                   <div class="mb-3">
+                                      <label for="" class="text-secondary">System Logo</label>
+                                      <input name="logo" type="file" class="form-control">
+                              
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="" class="text-secondary">System Favicon</label>
+                                      <input name="favicon" type="file" class="form-control">
+                                      
+                                      <img src="" width="20px" height="20px">
+                                      
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="" class="text-secondary">Landing Page Image</label>
+                                    <input name="favicon" type="file" class="form-control">
+                                    
+                                    <img src="" width="20px" height="20px">
+                                    
+                                  </div>
+                                  <div class="mb-3">
+                                      <label for="" class="text-secondary">Navbar Theme</label>
+                                      <select name="nav_bar" id="" class="form-control">
+                                        <option value="">Light and Light Theme</option>
+                                        <option value="">Light and Blue Theme</option>
+                                        <option value="">Dark and Blue Theme</option>
+                                        <option value="">Dark and Info Theme</option>
+                                       
+                                      </select>
+                                     
+                                  </div>
+                                  <div class="mb-3">
+                                    <label for="" class="text-secondary">Sidebar Theme</label>
+                                    <select name="nav_bar" id="" class="form-control">
+                                      <option value="">Light and Light Theme</option>
+                                      <option value="">Light and Blue Theme</option>
+                                      <option value="">Dark and Blue Theme</option>
+                                      <option value="">Dark and Info Theme</option>
+                                     
+                                    </select>
+                                   
+                                </div>
+                                <hr>
+                                  <div class="row">
+                                    
+                                      <div class="col-md-6"></div>
+                                      <div class="col-md-6 ">
+                                          <button class="btn btn-primary btn-block float-end" type="submit">
+                                            <i class="fa fa-save"></i>
+                                            Save Settings
+                                          </button>
+                                      </div>
+                                  </div>
+                              </form>
+                          </div>
+                      </div>
                   </div>
+                  
 
                   {{-- end of interface settings --}}
                 </div>
@@ -52,7 +125,7 @@
                       @php
 
                       $user=Auth::user()->id;
-                      $audits=App\Models\Audit::all();
+                      $audits=App\Models\Audit::orderBy('created_at','DESC')->get();
                       @endphp
                       @foreach ($audits as $item)
                       <tr>
@@ -108,7 +181,7 @@
           <!-- /.card -->
         </div>       
       </div>
-    </div>
+   
 </section>
     
 {{-- Register Member modal --}}
