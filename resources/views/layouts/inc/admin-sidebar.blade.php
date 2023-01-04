@@ -11,7 +11,7 @@
              with font-awesome or any other icon font library -->
         <li class="nav-item ">
           <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'active':'' }} {{ Request::is('admin/my-profile') ? 'active':'' }}">
-            <i class="nav-icon fas fa-tachometer-alt {{ Request::is('admin/dashboard') ? 'text-danger':'' }} {{ Request::is('admin/my-profile') ? 'text-danger':'' }}"></i>
+            <i class="nav-icon fas fa-tachometer-alt "></i>
             <p>
               Dashboard
             </p>
@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item">
             <a href="{{ url('admin/all-members') }}" class="nav-link  {{ Request::is('admin/all-members') ? 'active':'' }}">
-              <i class="nav-icon fas fa-user-tie {{ Request::is('admin/all-members') ? 'text-danger':'' }}"></i>
+              <i class="nav-icon fas fa-user-tie "></i>
               <p>
                 Manage Members
               </p>
@@ -27,7 +27,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/all-communities') }}" class="nav-link  {{ Request::is('admin/all-communities') ? 'active':'' }}">
-              <i class="nav-icon fas fa-users {{ Request::is('admin/all-communities') ? 'text-danger':'' }}"></i>
+              <i class="nav-icon fas fa-users "></i>
               <p>
                 Manage Communities
               </p>
@@ -35,7 +35,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/all-purposes') }}" class="nav-link  {{ Request::is('admin/all-purposes') ? 'active':'' }}">
-              <i class="nav-icon fas fa-calendar {{ Request::is('admin/all-purposes') ? 'text-danger':'' }}"></i>
+              <i class="nav-icon fas fa-calendar "></i>
               <p>
                 Manage Purposes
               </p>
@@ -43,7 +43,7 @@
           </li>
         <li class="nav-item">
           <a href="{{ url('admin/all-pledges') }}" class="nav-link  {{ Request::is('admin/all-pledges') ? 'active':'' }}">
-            <i class="nav-icon fas fa-balance-scale {{ Request::is('admin/all-pledges') ? 'text-danger':'' }}"></i>
+            <i class="nav-icon fas fa-balance-scale "></i>
             <p>
               Manage Pledges
             </p>
@@ -51,7 +51,7 @@
         </li>
         <li class="nav-item">
             <a href="{{ url('admin/all-payments') }}" class="nav-link {{ Request::is('admin/all-payments') ? 'active':'' }}">
-              <i class="nav-icon fas fa-credit-card {{ Request::is('admin/all-payments') ? 'text-danger':'' }}"></i>
+              <i class="nav-icon fas fa-credit-card "></i>
               <p>
                 Manage Payments
               </p>
@@ -59,7 +59,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/all-cards') }}" class="nav-link {{ Request::is('admin/all-cards') ? 'active':'' }}">
-              <i class="nav-icon fas fa-envelope {{ Request::is('admin/all-cards') ? 'text-danger':'' }}"></i>
+              <i class="nav-icon fas fa-envelope "></i>
               <p>
                 Manage Cards
               </p>
@@ -67,7 +67,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/all-reports') }}" class="nav-link {{ Request::is('admin/all-reports') ? 'active':'' }}">
-              <i class="nav-icon fas fa-folder {{ Request::is('admin/all-reports') ? 'text-danger':'' }}"></i>
+              <i class="nav-icon fas fa-folder "></i>
               <p>
                 Reports
               </p>
@@ -75,7 +75,7 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/settings') }}" class="nav-link {{ Request::is('admin/settings') ? 'active':'' }}">
-              <i class="nav-icon fas fa-cog {{ Request::is('admin/settings') ? 'text-danger':'' }}"></i>
+              <i class="nav-icon fas fa-cog "></i>
               <p>
                 Settings
               </p>
