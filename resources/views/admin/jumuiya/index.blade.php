@@ -34,8 +34,8 @@
 
 
 
-        <div class="mt-3">
-            <table class="table table-bordered ">
+        <div class="mt-3 p-1">
+            <table id="example" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
                         <th>Jumuiya Name</th>
@@ -129,7 +129,7 @@
           Community(Jumuiya) Members
         </h6>
         <hr>
-        <table class="table table-bordered responsive">
+        <table id="mytable" class="table table-bordered responsive cell-border">
           <thead>
               <tr class="text-secondary">
                 <th>Member ID</th>

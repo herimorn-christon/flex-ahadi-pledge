@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+<nav class="main-header navbar navbar-expand fixed-top  navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -17,25 +17,31 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-danger navbar-badge">15</span>
+          @php
+          $user=Auth::User()->id;
+          $counts=App\Models\Notification::where('user_id',$user)->orwhere('user_id','0')->count();
+        
+          @endphp
+          <span class="badge badge-danger navbar-badge">{{ $counts }}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <span class="dropdown-item dropdown-header">{{ $counts}} Notifications</span>
           <div class="dropdown-divider"></div>
+          
+          @php
+          $user=Auth::User()->id;
+          $notifications=App\Models\Notification::where('user_id',$user)->orwhere('user_id','0')->limit(5)->get();
+        
+          @endphp
+
+          @foreach ($notifications as $item)
           <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
+            <i class="fas fa-bell mr-2"></i> {{ $item->type}}
+            <span class="float-right text-muted text-sm">{{ $item->created_at->format('m/d/Y') }}</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
+          @endforeach
+         
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>

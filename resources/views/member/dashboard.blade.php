@@ -36,7 +36,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-lightblue elevation-4">
+  <aside class="main-sidebar sidebar-light-navy elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('member/dashboard') }}" class="brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -209,14 +209,15 @@
                     <div class="">
       
                       @php
-                         $purpose= {{$item->pledge_id}}; 
+                         $purpose= $item->purpose->id; 
                          $user=Auth::User()->id;
-                         $payment=App\Models\Payment::where('user_id',$user)->where('pledge_id',$purpose)->sum('amount');
-                         $amount=$pledge-$amount;
-                         $progress=10;
+                         $payment=App\Models\Payment::whereYear('created_at', date('Y'))->where('user_id',$user)->where('pledge_id',$purpose)->sum('amount');
+                         $amount= $item->amount;
+                         $progress=$payment/$amount*100;
+
                       @endphp
                       <div class="col-md-12 py-2">
-                      <div class="progress"  style="height:25px;">
+                      <div class="progress"  style="height:20px;">
                         <div class="progress-bar 
                         progress-bar-striped 
                         progress-bar-animated

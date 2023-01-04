@@ -40,9 +40,9 @@
 
 
 
-        <div class="responsive">
+        <div class="responsive p-1">
  
-          <table  class="table table-bordered ">
+          <table id="example" class="table table-bordered cell-border">
             <thead>
                <tr class="text-secondary">
                   <th>Member Name</th>

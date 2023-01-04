@@ -28,8 +28,8 @@
     <div class="">
 
 
-        <div class="responsive">
-            <table  class="table table-bordered">
+        <div class="responsive p-1">
+            <table id="example"  class="cell-border table table-bordered">
                 <thead>
                      <tr class="text-secondary">
                             <th>Member ID</th>

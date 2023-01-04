@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\JumuiyaController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PurposeController;
+use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
 use App\Http\Controllers\Admin\CardPaymentController;
 
@@ -178,7 +179,12 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::get('/dashboard', [App\Http\Controllers\Member\DashboardController::class,'index']);
 
  // my-pledges route
- Route::get('/my-pledges', [App\Http\Controllers\Member\PledgeController::class,'index']);
+    // Route::get('/my-pledges', [App\Http\Controllers\Member\PledgeController::class,'index']);
+    Route::get('/my-pledges', function () {
+      return view('member.pledges.index');
+      });
+// my-pledges API
+    Route::apiResource('pledges', MyPledgeController::class);
 
   //Create Pledge Route
   Route::post('save-pledge', [App\Http\Controllers\Member\PledgeController::class,'save']);
