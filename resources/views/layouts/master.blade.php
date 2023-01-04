@@ -63,7 +63,56 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     
-  
+     <style>
+      .bg-gradient-primary {
+  background-color: #4e73df !important;
+  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%) !important;
+  background-size: cover;
+}
+
+.bg-gradient-nav{
+  background-color: #0d2879 !important;
+  background-image: linear-gradient(180deg, #0d1d50 10%, #224abe 100%) !important;
+  background-size: cover;
+}
+
+.bg-gradient-secondary {
+  background-color: #858796;
+  background-image: linear-gradient(180deg, #858796 10%, #60616f 100%);
+  background-size: cover;
+}
+
+.bg-gradient-success {
+  background-color: #1cc88a;
+  background-image: linear-gradient(180deg, #1cc88a 10%, #13855c 100%);
+  background-size: cover;
+}
+
+.bg-gradient-info {
+  background-color: #36b9cc;
+  background-image: linear-gradient(180deg, #36b9cc 10%, #258391 100%);
+  background-size: cover;
+}
+
+.bg-gradient-warning {
+  background-color: #f6c23e;
+  background-image: linear-gradient(180deg, #f6c23e 10%, #dda20a 100%);
+  background-size: cover;
+}
+
+.bg-gradient-danger {
+  background-color: #e74a3b;
+  background-image: linear-gradient(180deg, #e74a3b 10%, #be2617 100%);
+  background-size: cover;
+}
+
+.bg-gradient-light {
+  background-color: #f8f9fc;
+  background-image: linear-gradient(180deg, #f8f9fc 10%, #c2cbe5 100%);
+  background-size: cover;
+}
+
+     </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -74,7 +123,7 @@
   @include('layouts.inc.admin-navbar')
   <!-- /.navbar -->
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-light elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="text-decoration-none brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">

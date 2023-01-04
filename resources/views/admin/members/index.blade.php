@@ -9,20 +9,20 @@
 
   </div><!-- /.col -->
   <div class="col-sm-6">
-    <ol class="breadcrumb float-sm-right">
+    <ul class="float-sm-right" type="none">
       <li class="">  
-      <button type="button" class="btn btn-primary btn-sm" onclick="createProject()">
+      <button type="button" class="btn btn-primary bg-gradient-primary btn-sm" onclick="createProject()">
           <i class="fa fa-user-plus"></i>
            Register New Member
       </button>  
   </li>
      
-    </ol>
+</ul>
     
   </div><!-- /.col -->
 </div>
 <div class="card mt-1">
-    <div class="card-header bg-light">
+    <div class="card-header bg-gradient-light">
       
     </div>
     <div class="">
@@ -355,16 +355,16 @@
                         for (var i = 0; i < members.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-primary    " ' +
-                                ' onclick="showProject(' + members[i].id + ')">Show' +
+                                ' class="btn btn-primary bg-gradient-primary btn-sm    " ' +
+                                ' onclick="showProject(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
-                                ' class="btn btn-secondary" ' +
-                                ' onclick="editProject(' + members[i].id + ')">Edit' +
+                                ' class="btn btn-secondary btn-sm" ' +
+                                ' onclick="editProject(' + members[i].id + ')"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger" ' +
-                                ' onclick="destroyProject(' + members[i].id + ')">Delete' +
+                                ' class="btn btn-danger btn-sm bg-gradient-danger" ' +
+                                ' onclick="destroyProject(' + members[i].id + ')"><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +
