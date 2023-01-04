@@ -80,7 +80,8 @@ class MyPledgeController extends Controller
      */
     public function show($id)
     {
-        //
+        $purpose = Pledge::with('user')->with('type')->with('purpose')->find($id);
+        return response()->json(['purpose' => $purpose]);
     }
 
     /**
@@ -92,7 +93,37 @@ class MyPledgeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'name' => 'required|max:255',
+            'amount' => 'required',
+            'description' => 'required',
+            'deadline' => 'required',
+            'type_id' => 'required',
+            'purpose_id' => 'required',
+        ]);
+  
+        $pledge = Pledge::find($id);
+        $pledge->name = $request->name;
+        $pledge->description = $request->description;
+        $pledge->amount = $request->amount;
+        $pledge->deadline=$request->deadline;
+        $pledge->purpose_id=$request->purpose_id;
+        $pledge->type_id=$request->type_id;
+        $pledge->status= $request->status == true ? '1':'0';
+        $pledge->user_id=Auth::user()->id;
+        $pledge->created_by= Auth::user()->id;
+        $pledge->save();
+
+        // saving user notification
+        $notification = new Notification();
+        $notification->user_id=Auth::user()->id;
+        $notification->created_by= Auth::user()->id;
+        $notification->type='Mabadilisho ya Ahadi !';
+        $name=$request->name;
+        $date=$request->deadline;
+        $notification->message='Habari,kuna mabadiliko yametokea kwenye ahadi inayoitwa '.$name.'.';
+        $notification->save();     
+        return response()->json(['status' => "success"]);
     }
 
     /**

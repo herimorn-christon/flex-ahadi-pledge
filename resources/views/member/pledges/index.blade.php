@@ -7,7 +7,7 @@
 
 
 <div class="row mb-1">
-    <div class="col-sm-6">
+    <div class="col-sm-6" id="alert-div">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
           {{ session('status') }}
@@ -77,13 +77,13 @@
 {{-- All Pledge Types Modal --}}
 
 <div class="modal fade" id="types">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <div class="modal-header bg-light">
+        <button type="button" class="close btn-sm btn-danger" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
+        
       </div>
       <div class="modal-body">
         @php
@@ -197,17 +197,12 @@
                 <div class="row mt-2">
 
                     <div class="col-md-6 ">
-                        <label for="" class="text-secondary"> Pledge Status</label>
-                        {{-- <input type="checkbox" name="status" id="status"> --}}
-                        <select name="status" id="status" class="form-control">
-                          <option value="0">Not Fullfilled</option>
-                          <option value="1">Fullfilled</option>
-                        </select>
+                 
                     </div>
 
                     <div class="col-md-6 ">
                       <label for="" class="text-white">.</label>
-                        <button class="btn btn-primary btn-block " id="save-pledge-btn" type="submit">
+                        <button class="btn bg-navy btn-block " id="save-pledge-btn" type="submit">
                         <i class="fa fa-save"></i>
                         Save Pledge 
                         </button>
@@ -285,46 +280,7 @@
           }
        
    
-          /*
-                This function will get all the payments records
-            */
-            function showAllTypes()
-            {
-                let url = $('meta[name=app-url]').attr("content") + "/admin/types";
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function(response) {
-                        $("#types-table-body").html("");
-                        let types = response.types;
-                        for (var i = 0; i < types.length; i++) 
-                        {
-                          
-                            let editBtn =  '<button ' +
-                                ' class="btn btn-secondary" ' +
-                                ' onclick="editType(' + types[i].id + ')">Edit' +
-                            '</button> ';
-                            let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger" ' +
-                                ' onclick="destroyType(' + types[i].id + ')">Delete' +
-                            '</button>';
-         
-                            let projectRow = '<tr>' +
-                                '<td>' + types[i].id + '</td>' +
-                                '<td>' + types[i].title + '</td>' +
-                                '<td>' + editBtn + deleteBtn + '</td>' +
-                            '</tr>';
-                            $("#types-table-body").append(projectRow);
-                            $("#types").modal('show'); 
-                        }
-         
-                         
-                    },
-                    error: function(response) {
-                        console.log(response.responseJSON)
-                    }
-                });
-            }
+        
 
           /*
               check if form submitted is for creating or updating
@@ -340,18 +296,7 @@
           })
 
 
-          /*
-                check if form submitted is for creating or updating
-            */
-            $("#save-type-btn").click(function(event ){
-                event.preventDefault();
-                if($("#update_id").val() == null || $("#update_id").val() == "")
-                {
-                    storeType();
-                } else {
-                    updateType();
-                }
-            })
+      
        
           /*
               show modal for creating a record and 
@@ -448,6 +393,114 @@
           }
        
 
+    /*
+              edit record function
+              it will get the existing value and show the purpose form
+          */
+          function editPledge(id)
+          {
+              let url = $('meta[name=app-url]').attr("content") + "/member/pledges/" + id ;
+              $.ajax({
+                  url: url,
+                  type: "GET",
+                  success: function(response) {
+                      let purpose = response.purpose;
+                      $("#alert-div").html("");
+                      $("#error-div").html("");   
+                      $("#update_id").val(purpose.id);
+                      $("#name").val(purpose.name);
+                      $("#amount").val(purpose.amount);
+                      $("#user_id").val(purpose.user_id);
+                      $("#type_id").val(purpose.type_id);
+                      $("#purpose_id").val(purpose.purpose_id);
+                      $("#deadline").val(purpose.deadline);
+                      $("#description").val(purpose.description);
+                      $("#status").val(purpose.status);
+                      $("#form-modal").modal('show'); 
+                  },
+                  error: function(response) {
+                      console.log(response.responseJSON)
+                  }
+              });
+          }
+       
+          /*
+              sumbit the form and will update a record
+          */
+          function updatePledge()
+          {
+              $("#save-pledge-btn").prop('disabled', true);
+              let url = $('meta[name=app-url]').attr("content") + "/member/pledges/" + $("#update_id").val();
+              let data = {
+                  name: $("#name").val(),
+                  amount: $("#amount").val(),
+                  deadline: $("#deadline").val(),
+                  description: $("#description").val(),
+                  type_id: $("#type_id").val(),
+                  purpose_id: $("#purpose_id").val(),
+                  status: $("#status").val(),
+              };
+              $.ajax({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: url,
+                  type: "PUT",
+                  data: data,
+                  success: function(response) {
+                      $("#save-pledge-btn").prop('disabled', false);
+                      let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Updated Successfully !</div>';
+                      $("#alert-div").html(successHtml);
+                      $("#name").val("");
+                      $("#type_id").val("");
+                      $("#purpose_id").val("");
+                      $("#deadline").val("");
+                      $("#amount").val("");
+                      $("#description").val("");   
+                      $("#status").val(""); 
+                      showAllPledges();
+                      $("#form-modal").modal('hide');
+                  },
+                  error: function(response) {
+                      /*
+          show validation error
+                      */
+                      $("#save-pledge-btn").prop('disabled', false);
+                      if (typeof response.responseJSON.errors !== 'undefined') 
+                      {
+                          console.log(response)
+          let errors = response.responseJSON.errors;
+          let descriptionValidation = "";
+          if (typeof errors.description !== 'undefined') 
+                          {
+                              descriptionValidation = '<li>' + errors.description[0] + '</li>';
+                          }
+          let nameValidation = "";
+          if (typeof errors.name !== 'undefined') 
+                          {
+                              nameValidation = '<li>' + errors.name[0] + '</li>';
+                          }
+          let deadlineValidation = "";
+          if (typeof errors.deadline !== 'undefined') 
+                          {
+                              deadlineValidation = '<li>' + errors.deadline[0] + '</li>';
+                          }
+            
+          let amountValidation = "";
+          if (typeof errors.amount !== 'undefined') 
+                          {
+                              amountValidation = '<li>' + errors.amount[0] + '</li>';
+                          }
+           
+          let errorHtml = '<div class="alert alert-danger" role="alert">' +
+              '<b>Validation Error!</b>' +
+              '<ul>' + nameValidation + descriptionValidation + deadlineValidation + amountValidation +'</ul>' +
+          '</div>';
+          $("#error-div").html(errorHtml);        
+      }
+                  }
+              });
+          }
 
 </script>
 
