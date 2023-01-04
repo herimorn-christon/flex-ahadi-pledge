@@ -41,17 +41,17 @@
     <!-- DataTables -->
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-    {{-- <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> --}}
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     {{-- for autosearch --}}
@@ -74,7 +74,7 @@
   @include('layouts.inc.admin-navbar')
   <!-- /.navbar -->
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-lightblue elevation-4">
+  <aside class="main-sidebar sidebar-light-navyn elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="text-decoration-none brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -129,7 +129,18 @@
 
 <script>
   $(document).ready( function () {
-$('#mytable').DataTable(
+$('#mytable').addClass("myclass2").DataTable(
+  {
+    ordering:  false,
+    searching:  true,
+    autoWidth: false,
+    responsive: true,
+     info: false,
+  }
+);
+} );
+$(document).ready( function () {
+$('#modaltable').DataTable(
   {
     ordering:  false,
     searching:  true,
@@ -139,6 +150,10 @@ $('#mytable').DataTable(
   }
 );
 } );
+
+$(document).ready(function () {
+    $('#example').DataTable();
+});
 </script>
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
