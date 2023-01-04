@@ -36,11 +36,11 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-lightblue elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('member/dashboard') }}" class="brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light text-primary">AhadiPledge</span>
+      <span class="brand-text font-weight-light text-lightblue">AhadiPledge</span>
     </a>
 
     <!-- Sidebar -->
@@ -55,12 +55,13 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h5 class="m-0 text-lightblue">Hello, {{ Auth::User()->fname}}  {{ Auth::User()->mname}}  {{ Auth::User()->lname}}</h5>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+             <li class="bg-light text-success p-2">
+              {{ date(('D:d-M-Y'))}}
+            </li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -145,21 +146,22 @@
         </div>
         <!-- /.row -->
         <!-- Main row -->
-        <div class="row">
+        <div class="row ">
         {{--start of Goal Progress  --}}
 
           <div class="col-md-12">
             <div class="card card-light   ">
               <div class="card-header">
-                <h6>Goal Progress</h6>
+                <h6 class="text-secondary font-weight-bolder">Goal Progress</h6>
               </div>
-              <div class="card-body">
+              <div class="">
 
                
                 <div class="col-md-12 py-2">
-                <div class="progress"  style="height: 30px;">
+                <div class="progress"  style="height:25px;">
                   <div class="progress-bar 
-                  progress-bar-striped progress-bar-animated
+                  progress-bar-striped 
+                  progress-bar-animated
                   @if($progress<=25)
                   bg-danger
                   @elseif($progress>25 && $progress<=50)
@@ -179,6 +181,70 @@
               </div>
             </div>
           </div>
+
+
+
+          {{-- stats --}}
+         
+            <div class="col-md-6 mb-2">
+              <div id="container"></div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <div class="card">
+              <div class="card-header bg-light">
+                <h6 class="text-secondary font-weight-bolder">Latest Pledges Progress</h6>
+              </div>
+              <div class="row">
+              @foreach($mypledges as $item)
+              
+              
+                <div class="col-md-12 mt-2">
+                  <div class="card">
+                    <div class="card-header">
+                      <h6 class="text-secondary ">
+                       
+                        {{ $item->name }}
+                      </h6>
+                    </div>
+                    <div class="">
+      
+                      @php
+                         $purpose= {{$item->pledge_id}}; 
+                         $user=Auth::User()->id;
+                         $payment=App\Models\Payment::where('user_id',$user)->where('pledge_id',$purpose)->sum('amount');
+                         $amount=$pledge-$amount;
+                         $progress=10;
+                      @endphp
+                      <div class="col-md-12 py-2">
+                      <div class="progress"  style="height:25px;">
+                        <div class="progress-bar 
+                        progress-bar-striped 
+                        progress-bar-animated
+                        @if($progress<=25)
+                        bg-danger
+                        @elseif($progress>25 && $progress<=50)
+                        bg-warning
+                        @elseif($progress>50 && $progress<=75)
+                        bg-primary
+                        @else
+                        bg-success
+                        @endif
+                        "
+      
+                        role="progressbar" style="width: {{ $progress}}%" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
+                      </div>
+                      </div>
+      
+                   
+                    </div>
+                  </div>
+                </div>
+              
+               @endforeach
+              </div>
+            </div>
+            </div>
+       
         </div>
 
         <!-- /.row (main row) -->
@@ -197,6 +263,8 @@
 </div>
 <!-- ./wrapper -->
 
+<!-- ./wrapper -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -231,5 +299,96 @@
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+<script type="text/javascript">
+
+  var users =  <?php echo json_encode($payrate) ?>;
+  
+  
+  
+  Highcharts.chart('container', {
+  
+      title: {
+  
+          text: 'Pledge Payments Trend'
+  
+      },
+  
+  
+  
+       xAxis: {
+  
+          categories: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+  
+      },
+  
+      yAxis: {
+  
+          title: {
+  
+              text: 'Payment Amount (TSH)'
+  
+          }
+  
+      },
+  
+      legend: {
+  
+          layout: 'vertical',
+  
+          align: 'right',
+  
+          verticalAlign: 'middle'
+  
+      },
+  
+      plotOptions: {
+  
+          series: {
+  
+              allowPointSelect: true
+  
+          }
+  
+      },
+  
+      series: [{
+  
+          name: 'Amount',
+  
+          data: users
+  
+      }],
+  
+      responsive: {
+  
+          rules: [{
+  
+              condition: {
+  
+                  maxWidth: 500
+  
+              },
+  
+              chartOptions: {
+  
+                  legend: {
+  
+                      layout: 'horizontal',
+  
+                      align: 'center',
+  
+                      verticalAlign: 'bottom'
+  
+                  }
+  
+              }
+  
+          }]
+  
+      }
+  
+  });
+  
+  </script>
 </body>
 </html>

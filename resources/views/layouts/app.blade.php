@@ -49,7 +49,7 @@
 
             <div class=" text-center pt-2">
                 <div class="underline"><hr class="bg-warning font-weight-bolder"></div>
-                <div class="text-muted">Copyright &copy; <i class="text-danger"> <a href="" class="text-decoration-none text-danger">Tazpedia</a>  </i> All right reserved. Designed and Developed by TazarChriss {{ date(('Y'))}}</div>
+                <div class="text-muted">Copyright &copy; <i class="text-danger"> <a href="" class="text-decoration-none text-danger">AhadiPledge</a>  </i> All right reserved. Designed and Developed  {{ date(('Y'))}}</div>
 
             </div>
             </div>

@@ -38,7 +38,7 @@
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
-                    <button type="button" class="btn btn-info bg-lightblue  " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn  bg-lightblue  " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Login To Your Account
                     </button>
                     @endif
@@ -87,10 +87,10 @@
                                 <!-- Email address input-->
                                 <div class="row">
                                     <div class="col-xl-8 mx-auto">
-                                        <a data-bs-toggle="modal" data-bs-target="#registerModal" href="#myModal" class="btn btn-danger  font-weight-bolder   mt-2">Join Us Now !</a>
+                                        <a data-bs-toggle="modal" data-bs-target="#registerModal" href="#myModal" class="btn bg-danger  font-weight-bolder   mt-2">Join Us Now !</a>
 
                                   
-                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"  data-toggle="modal"  data-target="#loginModal"  class="btn btn-info bg-lightblue  mt-2 font-weight-bolder">Login To Your Account</a>
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"  data-toggle="modal"  data-target="#loginModal"  class="btn  bg-lightblue  mt-2 font-weight-bolder">Login To Your Account</a>
 
                                     </div>
                                 </div>
@@ -154,33 +154,24 @@
 
                 <div class="row mb-2">
                    
-
-                    <div class="col-md-12">
-                        <label for="email" class=" text-secondary mb-2">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                            Phone Number
-                        </label>
-                        
-                        <input id="phone" placeholder="Phone Number/Nambari ya Simu" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
-
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Phone Number/Nambari ya Simu" aria-label="Username" aria-describedby="basic-addon1">
                         @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
+      
                 </div>
 
                 <div class="row mb-3">
                    
 
-                    <div class="col-md-112">
-                        <label for="password" class="text-secondary  mb-2">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                            Password
-                            </label>
-                            
-                        <input id="password" placeholder="Password/Neno siri" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <div class="input-group mb-32">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password/Neno siri" aria-label="Password" aria-describedby="basic-addon1" required autocomplete="current-password">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
