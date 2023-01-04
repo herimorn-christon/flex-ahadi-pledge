@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','Reports')
+@section('title','System Settings')
 
 
 @section('content')
@@ -34,26 +34,43 @@
                 <div class="tab-pane" id="audits">
                
                   {{-- start of pledges --}}
+              
+                  <table id="my_table"  class="table table-bordered responsive">
+                    <thead>
+                        <tr class="text-secondary">
+                            <th>ID</th>
+                            <th>User</th>
+                            <th>User Agent</th>
+                            <th>Event</th>
+                            <th>IP Address</th>
+                            <th>Url</th>
+                            <th>Audit Type</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pledges-table-body">
+                      @php
 
-                  <table id="my_table"  class="table table-bordered ">
-                      <thead>
-                          <tr class="text-secondary">
-                              <th>ID</th>
-                              <th>User</th>
-                              <th>Old Value</th>
-                              <th>New Value</th>
-                              <th>IP Address</th>
-                              <th>Url</th>
-                              <th>User Agent</th>
-                              <th>Date</th>
-                          </tr>
-                      </thead>
-                      <tbody id="pledges-table-body">
-                          
-          
-                      </tbody>
-                   </table>
-                  {{-- end of pledges --}}
+                      $user=Auth::user()->id;
+                      $audits=App\Models\Audit::all();
+                      @endphp
+                      @foreach ($audits as $item)
+                      <tr>
+                      <td>{{$item->id}}</td>
+                      <td>{{$item->user_id}}</td>
+                      <td>{{$item->user_agent}}</td>
+                      <td>{{$item->event}}</td>
+                      <td>{{$item->ip_address}}</td>
+                      <td>{{$item->url}}</td>
+                      <td>{{$item->auditable_type}}</td>
+                      <td>{{$item->created_at}}</td>
+                      </tr>
+                      @endforeach
+                    </tbody>
+                 </table>
+                {{-- end of pledges --}}
+              
+                 
                
               
               
