@@ -47,7 +47,7 @@
 
         <div class="mt-4 px-2 ">
  
-          <table id=""  class="table table-bordered cell-border " >
+          <table id="mytable"  class="table table-bordered cell-border " >
             <thead>
                 <tr class="text-secondary">
                     <th>ID</th>
@@ -211,6 +211,38 @@
                 </div>
                 </div>
             </form>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+{{-- view single pledge info--}}
+<div class="modal fade" id="view-modal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>
+         
+          <b class="text-secondary">Pledge Name:</b>   <span id="title-info" class="text-dark"></span>
+          <hr>
+          <b class="text-secondary">Pledge Type:</b>   <span id="type-info" class="text-dark"></span>
+          <hr>
+          <b class="text-secondary">Pledge Purpose:</b>   <span id="purpose-info" class="text-dark"></span>
+          <hr>    
+          <b class="text-secondary">Pledge Status:</b>   <span id="status-info" class="text-success"></span>
+          <hr>        
+          <b class="text-secondary">Deadline:</b>   <span id="start-info" class="text-dark"></span>
+          <hr>
+          <b class="text-secondary">Amount:</b>   <span id="end-info" class="text-dark"></span>
+          <hr>
+          <b class="text-secondary">Description:</b> <br><span id="description-info" class="text-dark"></span>
+      </p>
+                
       </div>
     </div>
     <!-- /.modal-content -->
@@ -501,7 +533,35 @@
                   }
               });
           }
-
+ /*
+              get and display the record info on modal
+          */
+          function showPledge(id)
+          {
+              $("#name-info").html("");
+              $("#description-info").html("");
+              let url = $('meta[name=app-url]').attr("content") + "/member/pledges/" + id +"";
+              $.ajax({
+                  url: url,
+                  type: "GET",
+                  success: function(response) {
+                      let purpose = response.purpose;
+                      $("#title-info").html(purpose.name);
+                      $("#start-info").html(purpose.deadline);
+                      $("#status-info").html(purpose.status == '0' ? 'Not Fullfilled':'Fullfilled');
+                      $("#end-info").html(purpose.amount);
+                      $("#type-info").html(purpose.type.title);
+                      $("#purpose-info").html(purpose.purpose.title);
+                      $("#description-info").html(purpose.description);
+                      $("#view-modal").modal('show'); 
+       
+                  },
+                  error: function(response) {
+                      console.log(response.responseJSON)
+                  }
+              });
+          }
+       
 </script>
 
 @endsection
