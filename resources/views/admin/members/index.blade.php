@@ -11,7 +11,7 @@
   <div class="col-sm-6">
     <ul class="float-sm-right" type="none">
       <li class="">  
-      <button type="button" class="btn btn-primary bg-gradient-primary btn-sm" onclick="createProject()">
+      <button type="button" class="btn btn-info bg-lightblue btn-sm" onclick="createProject()">
           <i class="fa fa-user-plus"></i>
            Register New Member
       </button>  
@@ -323,7 +323,7 @@
 
                 <div class="col-md-6 mb-0 ">
                         <label for="" class="text-white">.</label>
-                            <button type="submit" class="btn  text-decoration-none text-light bg-primary btn-block col-lg-12" id="save-project-btn">
+                            <button type="submit" class="btn  text-decoration-none text-light bg-lightblue btn-block col-lg-12" id="save-project-btn">
                                <i class="fa fa-save"></i>
                                 {{ __('Save Member') }}
                             </button>
@@ -355,7 +355,7 @@
                         for (var i = 0; i < members.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-primary bg-gradient-primary btn-sm    " ' +
+                                ' class="btn btn-primary bg-lightblue btn-sm    " ' +
                                 ' onclick="showProject(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +

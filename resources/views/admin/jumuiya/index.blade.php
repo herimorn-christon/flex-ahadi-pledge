@@ -11,10 +11,10 @@
 
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+      <ol class=" float-sm-right" type="none">
         <li class="">    
 
-        <button type="button" class="btn btn-primary btn-sm"  onclick="createProject()">
+        <button type="button" class="btn btn-info bg-lightblue btn-sm"  onclick="createProject()">
         <i class="fa fa-plus"></i>
          Add New Community
         </button>
@@ -34,8 +34,8 @@
 
 
 
-        <div class="">
-            <table class="table table-bordered responsive">
+        <div class="mt-3">
+            <table class="table table-bordered ">
                 <thead>
                     <tr class="text-secondary">
                         <th>Jumuiya Name</th>
@@ -59,7 +59,7 @@
 
 
 {{-- add community modal --}}
-<div class="modal" id="form-modal" tabindex="-1" >
+<div class="modal fade" id="form-modal" tabindex="-1" >
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-light">
@@ -87,7 +87,7 @@
 
             </div>
             <div class="mb-3 col-md-6">
-               <button type="submit" class="btn btn-primary btn-block " id="save-project-btn">
+               <button type="submit" class="btn bg-lightblue btn-block " id="save-project-btn">
                 <i class="fa fa-save"></i>
                 Save Community
               </button>
@@ -169,16 +169,16 @@
                     for (var i = 0; i < communities.length; i++) 
                     {
                         let showBtn =  '<button ' +
-                            ' class="btn btn-primary" ' +
-                            ' onclick="showProject(' + communities[i].id + ')">Show' +
+                            ' class="btn btn-info btn-sm bg-lightblue" ' +
+                            ' onclick="showProject(' + communities[i].id + ')"><i class="fa fa-eye"></i>' +
                         '</button> ';
                         let editBtn =  '<button ' +
-                            ' class="btn btn-secondary" ' +
-                            ' onclick="editProject(' + communities[i].id + ')">Edit' +
+                            ' class="btn btn-secondary btn-sm" ' +
+                            ' onclick="editProject(' + communities[i].id + ')"><i class="fa fa-edit"></i>' +
                         '</button> ';
                         let deleteBtn =  '<button ' +
-                            ' class="btn btn-danger" ' +
-                            ' onclick="destroyProject(' + communities[i].id + ')">Delete' +
+                            ' class="btn btn-danger btn-sm" ' +
+                            ' onclick="destroyProject(' + communities[i].id + ')"><i class="fa fa-trash"></i>' +
                         '</button>';
      
                         let projectRow = '<tr>' +
@@ -444,7 +444,7 @@
                 type: "DELETE",
                 data: data,
                 success: function(response) {
-                    let successHtml = '<div class="alert alert-success " role="alert">Community Was Deleted Successfully !</div>';
+                    let successHtml = '<div class="alert alert-danger " role="alert">Community Was Deleted Successfully !</div>';
                     $("#alert-div").html(successHtml);
                     showAllProjects();
                 },
