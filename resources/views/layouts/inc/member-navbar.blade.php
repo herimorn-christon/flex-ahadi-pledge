@@ -8,7 +8,7 @@
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto ">
 
 
       <!-- Messages Dropdown Menu -->
@@ -22,28 +22,33 @@
           $counts=App\Models\Notification::where('user_id',$user)->orwhere('user_id','0')->count();
         
           @endphp
-          <span class="badge badge-danger navbar-badge">{{ $counts }}</span>
+          <sup><span class="badge badge-danger">{{ $counts }}</span></sup>
+         
         </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <div class="dropdown-menu  dropdown-menu-right" >
           <span class="dropdown-item dropdown-header">{{ $counts}} Notifications</span>
           <div class="dropdown-divider"></div>
           
           @php
           $user=Auth::User()->id;
-          $notifications=App\Models\Notification::where('user_id',$user)->orwhere('user_id','0')->orderBy('updated_at','DESC')->limit(5)->get();
+          $notifications=App\Models\Notification::where('user_id',$user)->orwhere('user_id','0')->orderBy('updated_at','DESC')->limit(3)->get();
         
           @endphp
 
           @foreach ($notifications as $item)
+
           <a href="#" class="dropdown-item">
-            <i class="fas fa-bell mr-2"></i> {{ $item->type}}
-            <span class="float-right text-muted text-sm">{{ $item->created_at->format('m/d/Y') }}</span>
+            <i class="fas fa-bell mr-2"></i> 
+            {{ $item->type}}
+            {{-- <small class="float-right text-muted text-sm">
+              {{ $item->created_at->format('m/d/Y') }}
+            </small> --}}
           </a>
-          <div class="dropdown-divider"></div>
+          <hr>
           @endforeach
          
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="{{ url('member/my-notifications') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
    

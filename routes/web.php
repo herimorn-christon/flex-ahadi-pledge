@@ -16,6 +16,7 @@ use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
 use App\Http\Controllers\Admin\CardPaymentController;
 use App\Http\Controllers\Member\MyPaymentsController;
+use App\Http\Controllers\Member\MyNotificationsController;
 
 // use App\Http\Controllers\Controller\DashboardController;
 
@@ -209,6 +210,14 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     });
   // my-cards API
     Route::apiResource('cards', MyCardController::class);
+
+      
+    Route::get('my-notifications', function () {
+      return view('member.notifications.index');
+      });
+  // my-notifications API
+    Route::apiResource('notifications', MyNotificationsController::class);
+
  // All reports page route
     Route::get('my-reports', function () {
      return view('member.reports.index');
