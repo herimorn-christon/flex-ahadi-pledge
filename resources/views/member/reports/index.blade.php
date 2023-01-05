@@ -38,11 +38,11 @@
                 <h5 class="text-center">
                   {{-- <i class="fa fa-users"></i> --}}
                 </h5>
-  
-                <p class="text-secondary">Payments Report</p>
+                <p class="text-navy font-weight-bolder">Payments Report</p>
+                <small class="text-secondary">This is ....</small>
               </div>
               <div class="icon text-center">
-                <i class="fa fa-dollar-sign text-danger"></i>
+                <i class="fa fa-file-pdf text-light"></i>
               </div>
               <br>
               <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#paymentModal">Generate Report <i class="fas fa-download text-navy"></i></a>
@@ -97,11 +97,14 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-light">
-          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <h6 class="modal-title" id="exampleModalLabel">
+            <i class="fa fa-file-pdf text-danger"></i>
+            My Pledges Report
+          </h6>
           <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('member/pledges-payment') }}" method="GET">
+          <form action="{{ url('member/pledges-report') }}" method="GET">
             @csrf
     
             <div class="mb-3">
@@ -121,10 +124,13 @@
             </div>
             <div class="mb-3">
                 <label for="message-text" class="text-secondary">Sort By:</label>
-                <select name="sort_by" id="sort_by">
-                    <option value="created_at">Registered Date</option>
-                    <option value="fname">First Name</option>
-                    <option value="date_of_birth">Birthdate</option>
+                <select name="sort_by" id="sort_by" class="bg-navy text-light form-control">
+                    <option value="name">Pledge Name</option>
+                    <option value="purpose">Pledge Purpose</option>
+                    <option value="type_id">Pledge Type</option>
+                    <option value="created_at">Created Date</option>
+                    <option value="status">Status</option>
+                  
                 </select>
               </div>
             <div class="row">
@@ -147,7 +153,7 @@
   </div>
   
 
-{{-- Register Member modal --}}
+{{-- Pleges Payment modal --}}
 <div class="modal fade" id="paymentModal" tabindex="-1" >
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -156,12 +162,14 @@
           <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('admin/collected-payments') }}" method="GET">
+          <form action="{{ url('member/pledges-payment-report') }}" method="GET">
             @csrf
     
             <div class="mb-3">
             <h5 class="text-secondary">
-                Generate Collected Payments Report From the Given Start Date To the given End Date
+                <small>
+                    Generate Collected Payments Report From the Given Start Date To the given End Date
+                </small>
             </h5>
             </div>
             <div class="mb-3">
@@ -174,10 +182,10 @@
             </div>
             <div class="mb-3">
                 <label for="message-text" class="text-secondary">Sort By:</label>
-                <select name="sort_by" id="sort_by">
+                <select name="sort_by" id="sort_by" class="form-control bg-navy text-white">
                     <option value="created_at">Collected Date</option>
-                    <option value="user_id">Payer</option>
                     <option value="pledge_id">Purpose</option>
+                    <option value="type_id">Payment Method</option>
                 </select>
               </div>
             <div class="row">
@@ -185,7 +193,7 @@
   
               </div>
               <div class="mb-3 col-md-6">
-                 <button type="submit" class="btn btn-primary btn-block " id="save-purpose-btn">
+                 <button type="submit" class="btn bg-navy btn-block " id="save-purpose-btn">
                   <i class="fa fa-download"></i>
                   Download Report
                 </button>
