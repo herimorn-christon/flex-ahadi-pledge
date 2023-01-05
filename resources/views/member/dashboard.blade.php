@@ -158,9 +158,9 @@
         {{--start of Goal Progress  --}}
 
           <div class="col-md-12">
-            <div class="card card-light   ">
-              <div class="card-header">
-                <h6 class="text-secondary font-weight-bolder">Goal Progress</h6>
+            <div class="card">
+              <div class="p-2">
+                <h6 class="text-secondary font-weight-bolder">My Goal Progress</h6>
               </div>
               <div class="">
 

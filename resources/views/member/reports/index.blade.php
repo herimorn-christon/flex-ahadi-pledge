@@ -7,7 +7,7 @@
 
 
 <section class="content">
-    <div class="container-fluid">
+    <div class="">
       <!-- Small boxes (Stat box) -->
       <div class="row">
         {{-- Registered Members Reports --}}
@@ -19,7 +19,7 @@
                 {{-- <i class="fa fa-users"></i> --}}
               </h5>
 
-              <p class="text-navy font-weight-bolder">Pledges Payment Report</p>
+              <p class="text-navy font-weight-bolder">Pledges Report</p>
               <small class="text-secondary">This is ....</small>
             </div>
             <div class="icon text-center">
@@ -39,7 +39,7 @@
                   {{-- <i class="fa fa-users"></i> --}}
                 </h5>
   
-                <p class="text-secondary">Collected Payments Report</p>
+                <p class="text-secondary">Payments Report</p>
               </div>
               <div class="icon text-center">
                 <i class="fa fa-dollar-sign text-danger"></i>
@@ -56,7 +56,7 @@
                 <h5 class="text-center">
                 </h5>
   
-                <p class="text-secondary">Pledges/Purpose Report</p>
+                <p class="text-secondary">Card Payment Reports</p>
               </div>
               <div class="icon text-center">
                 <i class="fa fa-balance-scale text-danger"></i>
@@ -74,7 +74,7 @@
               <h5 class="text-center">
               </h5>
 
-              <p class="text-secondary">Pledges/Member Report</p>
+              <p class="text-secondary">Contributions Report</p>
             </div>
             <div class="icon text-center">
               <i class="fa fa-user-tie text-danger"></i>
@@ -101,12 +101,14 @@
           <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('admin/registered-members') }}" method="GET">
+          <form action="{{ url('member/pledges-payment') }}" method="GET">
             @csrf
     
             <div class="mb-3">
             <h5 class="text-secondary">
-                Generate Registered Member Report From the Given Start Date To the given End Date
+                <small>
+                    Generate Registered Member Report From the Given Start Date To the given End Date
+                </small>  
             </h5>
             </div>
             <div class="mb-3">
@@ -130,7 +132,7 @@
   
               </div>
               <div class="mb-3 col-md-6">
-                 <button type="submit" class="btn btn-primary btn-block " id="save-purpose-btn">
+                 <button type="submit" class="btn bg-navy btn-block " id="save-purpose-btn">
                   <i class="fa fa-download"></i>
                   Download Report
                 </button>
