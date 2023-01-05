@@ -231,6 +231,11 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::get('cards-payment-report', [App\Http\Controllers\Member\MyReportController::class,'cardReport']);
     // Pledges Payment  Reports
     Route::get('contributions-report', [App\Http\Controllers\Member\MyReportController::class,'purposeReport']);
+  // For my settings
+  // settings page route
+    Route::get('/settings', function () {
+      return view('member.settings');
+      });
   // my-profile
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });

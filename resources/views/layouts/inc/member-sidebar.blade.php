@@ -50,7 +50,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('member/dashboard') }}" class="nav-link">
+            <a href="{{ url('member/settings') }}" class="nav-link {{ Request::is('member/settings') ? 'active':'' }}">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Settings
