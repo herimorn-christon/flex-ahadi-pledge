@@ -310,7 +310,7 @@
             </div>
             <div class="mb-3">
                 <label for="message-text" class="text-secondary">Sort By:</label>
-                <select name="sort_by" id="sort_by">
+                <select name="sort_by" id="sort_by" class="bg-navy text-white form-control">
                     <option value="created_at">Created Date</option>
                     <option value="amount">Amount Paid</option>
                 </select>
@@ -320,7 +320,7 @@
   
               </div>
               <div class="mb-3 col-md-6">
-                 <button type="submit" class="btn btn-primary btn-block " id="save-purpose-btn">
+                 <button type="submit" class="btn bg-teal btn-block " id="save-purpose-btn">
                   <i class="fa fa-download"></i>
                   Download Report
                 </button>
@@ -345,7 +345,7 @@
           <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('admin/purpose-payment-report') }}" method="GET">
+          <form action="{{ url('member/contributions-report') }}" method="GET">
             @csrf
     
             <div class="mb-3">
@@ -360,7 +360,7 @@
             @endphp
             <div class="mb-3">
                 <label for="" class="text-secondary">Choose Contribution Purpose</label>
-                <select name="user_id" id="user_id" class="form-control bg-navy text-white">
+                <select name="user_id" id="user_id" class="form-control bg-light text-navy">
                     <option value="">-- Choose Contribution Purpose Here --</option>
                     @foreach ( $member as $item)
                     <option value="{{ $item->id}}">{{ $item->title}}  </option>
@@ -377,7 +377,7 @@
             </div>
             <div class="mb-3">
                 <label for="message-text" class="text-secondary">Sort By:</label>
-                <select name="sort_by" id="sort_by" class="form-control bg-navy text-white">
+                <select name="sort_by" id="sort_by" class="form-control bg-light text-navy">
                     <option value="created_at">Created Date</option>
                     <option value="type_id">Pledge Type</option>
                     <option value="status">Pledge Status</option>
@@ -388,7 +388,7 @@
   
               </div>
               <div class="mb-3 col-md-6">
-                 <button type="submit" class="btn bg-navy btn-block " id="save-purpose-btn">
+                 <button type="submit" class="btn bg-teal btn-block " id="save-purpose-btn">
                   <i class="fa fa-download"></i>
                   Download Report
                 </button>

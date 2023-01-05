@@ -5,7 +5,11 @@
 
 @section('content')
 
-
+<style>
+  #example_filter.dataTaable_filter{
+    width: 200px !important;
+  }
+</style>
 <div class="row mb-1">
     <div class="col-sm-6" id="alert-div">
       @if (session('status'))
@@ -31,12 +35,9 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-  
-    </div>
+ 
 
-
-        <div class="responsiveness p-1">
+        <div class="col-md-12 responsivenes mx-auto p-2">
             <table id="example"  class="table table-bordered responsive cell-border">
                 <thead>
                      <tr class="text-secondary">
@@ -51,6 +52,7 @@
           
   
                 </tbody>
+                <tfoot></tfoot>
             </table>
     </div>
 </div>
@@ -182,7 +184,7 @@
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-sm btn-warning " ' +
+                                ' class="btn btn-sm bg-teal " ' +
                                 ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
@@ -200,7 +202,7 @@
                                 '<td>' + purposes[i].purpose.title + '</td>' +
                                 '<td>' + purposes[i].amount + '</td>' +
                                 '<td>' + showBtn + '</td>' +
-                            '</tr>';
+                            '</tr>'+'';
                             $("#projects-table-body").append(projectRow);
                         }
          

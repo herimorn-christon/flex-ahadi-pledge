@@ -34,12 +34,7 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-          {{-- All Pledges Made --}}
-           
-        </h6>
-    </div>
+    
     <div class="">
 
 

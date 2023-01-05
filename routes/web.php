@@ -228,6 +228,8 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::get('pledges-payment-report', [App\Http\Controllers\Member\MyReportController::class,'paymentReport']);
   // Pledges Payment  Reports
     Route::get('cards-payment-report', [App\Http\Controllers\Member\MyReportController::class,'cardReport']);
+    // Pledges Payment  Reports
+    Route::get('contributions-report', [App\Http\Controllers\Member\MyReportController::class,'purposeReport']);
   // my-profile
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });

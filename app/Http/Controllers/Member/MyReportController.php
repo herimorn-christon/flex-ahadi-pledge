@@ -196,4 +196,65 @@ public function cardReport(Request $request)
                     ->download('Card_Payments_Report'); 
 }
 
+// For Pledges Per Purpose Reports
+public function purposeReport(Request $request) 
+{
+    // Retrieve any filters
+    $fromDate = $request->input('from_date');
+    $toDate = $request->input('to_date');
+    $sortBy = $request->input('sort_by');
+    $purpose = $request->input('purpose_id');
+    $user=Auth::User()->id;
+    $total=Pledge::select(['purpose_id','type_id','created_at'])
+    ->whereBetween('created_at', [$fromDate, $toDate])
+    ->where('purpose_id',$purpose)
+    ->where('user_id',$user)
+    ->count();
+    // Report title
+    $title = 'Contributions Report';
+
+    // For displaying filters description on header
+    $meta = [
+        'Collected From: ' => $fromDate .' ', ' To: ' => $toDate .' ',  'Total Pledges: '=>$total
+      
+    ];
+
+    // Do some querying..
+    $queryBuilder = Pledge::select(['name','user_id', 'purpose_id','status','created_at','amount','deadline'])
+                        ->whereBetween('created_at', [$fromDate, $toDate])
+                        ->where('purpose_id',$purpose)
+                        ->where('user_id',$user)
+                        ->with('user')
+                        ->with('purpose')
+                        ->orderBy($sortBy);
+
+    // Set Column to be displayed
+    $columns = [
+
+        'Full Name' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->user->fname.' '.$user->user->mname.' '.$user->user->lname;
+        },
+        'Pledge Title'=>'name',
+        'Purpose' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->purpose->title;
+        },
+        'Created Date'=>'created_at',
+        'Amount'=>'amount',
+        
+        
+    ];
+
+    return PdfReport::of($title, $meta, $queryBuilder, $columns)
+                    ->editColumn('Created Date', [
+                        'displayAs' => function($result) {
+                            return $result->created_at->format('d M Y');
+                        }
+                    ])
+                    // ->groupBy('Purpose')
+                    ->showTotal([
+                        'Amount' => 'point'
+                    ])
+                    ->download('Contributions_Report'); 
+    }
+
 }
