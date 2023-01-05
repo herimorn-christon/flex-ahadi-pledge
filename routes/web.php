@@ -10,9 +10,12 @@ use App\Http\Controllers\Admin\JumuiyaController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PurposeController;
+use App\Http\Controllers\Member\MyCardController;
+use App\Http\Controllers\Member\MethodsController;
 use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
 use App\Http\Controllers\Admin\CardPaymentController;
+use App\Http\Controllers\Member\MyPaymentsController;
 
 // use App\Http\Controllers\Controller\DashboardController;
 
@@ -190,10 +193,23 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   Route::post('save-pledge', [App\Http\Controllers\Member\PledgeController::class,'save']);
 
  // my-payments
- Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
-  // my-payments
+//  Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
+  Route::get('/my-payments', function () {
+  return view('member.payments.index');
+  });
+// my-pledges API
+  Route::apiResource('payments', MyPaymentsController::class);
+  // Payment Methods API route
+  Route::apiResource('methods', MethodsController::class);
+  // my-cards
   Route::get('/my-cards', [App\Http\Controllers\Member\CardController::class,'index']);
-
- // my-profile
+  
+  Route::get('/mcards', function () {
+    return view('member.cards.cards');
+    });
+  // my-pledges API
+    Route::apiResource('payments', MyCardController::class);
+ 
+    // my-profile
  Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });

@@ -1,13 +1,13 @@
 @extends('layouts.member')
 
-@section('title','All Communities')
+@section('title','My Payments')
 
 
 @section('content')
 
 
 <div class="row mb-1">
-    <div class="col-sm-6">
+    <div class="col-sm-6" id="alert-div">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
           {{ session('status') }}
@@ -17,11 +17,12 @@
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class=""> 
-  
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#types">
+    
+        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
-             Payment Methods
+            Available Payment Methods
         </button>
+     
     </li>
        
       </ol>
@@ -31,80 +32,88 @@
 
 <div class="card mt-1">
     <div class="card-header bg-light">
-        <h6 class="text-light">
-          
-        </h6>
+  
     </div>
-    <div class="card-body">
 
 
-
-
-        <div class="row">
-            <table id="mytable"  class="table table-bordered responsive">
+        <div class="responsiveness">
+            <table  class="table table-bordered responsive">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Payment Date</th>
-                        <th>Payment Purpose</th>
+                     <tr class="text-secondary">
+                        <th>Payer Name</th>
+                        <th>Payment Method</th>
+                        <th>Purpose</th>
                         <th>Amount</th>
-                        <th>Method</th>
-                    </tr>
+                        <th>Action</th>
+                    </tr>
                 </thead>
-                <tbody>
-                    @foreach ($payments as $item)
-                    <tr>
-                        <td>{{ $item->id }}</td>
-                        
-                        <td>{{ $item->created_at }}</td>
-                        <td>{{ $item->purpose->title }}</td>
-                        <td>{{ $item->amount }}</td>
-                        <td>{{ $item->payment->name }}</td>
-                     
-                    </tr>
-                    @endforeach
+                <tbody id="projects-table-body">
+          
   
                 </tbody>
             </table>
-
-        </div>
-
-
-
     </div>
 </div>
 
 
+{{-- Add Payment Type modal --}}
+
+<div class="modal fade" id="method-modal">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+           <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form>
+              <input type="hidden" name="update_id" id="update_id">
+                <div class="row mb-3">
+                 <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="name" class="text-secondary">Payment Method</label>
+                        <input type="text" id="name" name="name" id="title" class="form-control" placeholder="Enter Payment Method Name">
+                    </div>
+                 </div>
+                 <div class="col-md-6"></div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                     
+                        <button type="submit" class="btn btn-primary btn-block" id="save-method-btn">
+                            <i class="fa fa-save"></i>
+                            Save Payment Method
+                        </button>
+                    </div>
+                 </div>
+                </div>
+            </form>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 
 {{-- All Pledge Types Modal --}}
 
 <div class="modal fade" id="types">
-  <div class="modal-dialog ">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title"></h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <div class="modal-header bg-light">
+         <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+
       </div>
       <div class="modal-body">
-       
+        <div class="col-sm-12" id="alert-div">
+        </div>
         <div class="row">
-          <table id="mytable"  class="table table-bordered ">
+          <table   class="table table-bordered ">
               <thead>
-                  <tr>
+                  <tr class="text-secondary">
                       <th>ID</th>
                       <th>Method Name</th>
                   </tr>
               </thead>
-              <tbody>
-                  @foreach ($types as $item)
-                  <tr>
-                      <td>{{ $item->id }}</td>
-                      <td>{{ $item->name }}</td>
-                      
-                  </tr>
-                  @endforeach
+              <tbody id="methods-table-body">
 
               </tbody>
           </table>
@@ -121,4 +130,298 @@
   <!-- /.modal-dialog -->
 </div>
 
+{{-- Register Payment Modal --}}
+
+<div class="modal fade" id="form-modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+           <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           <div id="error-div"></div>
+          <div class="row">
+            <form>
+              <input type="hidden" name="update_id" id="update_id">
+                <div class="row mb-3">
+                    @php
+                    $jumuiya= App\Models\User::where('role','member')->get();
+                    @endphp
+                    <div class="col-md-6">
+                        <label for="" class="text-secondary">Payer</label>
+                        <select name="user_id" id="user_id" class="form-control">
+                            <option value="">--Select Member --</option>
+                            @foreach ( $jumuiya as $item)
+                             <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
+                             @endforeach
+                        </select>
+                    </div>
+
+                    @php
+                    
+                    $purpose= App\Models\Purpose::where('status','')->get();
+                    @endphp
+                    <div class="col-md-6">
+                        <label for="" class="text-secondary">Payment Purpose</label>
+                        <select name="pledge_id" id="pledge_id" class="form-control">
+                            <option value="">--Select Purpose --</option>
+                            @foreach ( $purpose as $item)
+                             <option value="{{ $item->id}}"> {{ $item->title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+           
+                    @php
+                    $purpose= App\Models\PaymentType::get();
+                    @endphp
+                    <div class="col-md-6">
+                        <label for="" class="text-secondary">Payment Method</label>
+                        <select name="type_id" id="type_id" class="form-control">
+                            <option value="">--Select Payment Method --</option>
+                            @foreach ( $purpose as $item)
+                             <option value="{{ $item->id}}"> {{ $item->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="amount" class="text-secondary">Paid Amount </label>
+                        <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Payment Amount">
+                    </div>
+                 </div>
+                 <div class="col-md-6"></div>
+                 <div class="col-md-6">
+                    <div class="form-group">
+                     
+                        <button type="submit" class="btn btn-primary btn-block" id="save-pledge-btn">
+                            <i class="fa fa-save"></i>
+                            Save Payment
+                        </button>
+                    </div>
+                 </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+
+
+  {{-- view payment modal --}}
+
+  <div class="modal fade" id="view-modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+           <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>
+            
+            <b class="text-secondary">Payment Purpose:</b>   <span id="purpose-info" class="text-dark"></span>
+            <hr>
+            <b class="text-secondary">Payment Amount:</b>   <span id="amount-info" class="text-dark"></span>
+            <hr>
+            <b class="text-secondary">Payment Method:</b>   <span id="method-info" class="text-dark"></span>
+            <hr>
+            <b class="text-secondary">Payment Date:</b>   <span id="date-info" class="text-dark"></span>
+            <hr>
+        </p>       
+       
+        </div>
+        <div class="modal-footer justify-content-between">
+          {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        --}}
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+   <script type="text/javascript">
+  
+            showAllPledges();
+        
+            /*
+                This function will get all the payments records
+            */
+            function showAllPledges()
+            {
+                let url = $('meta[name=app-url]').attr("content") + "/member/payments";
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: function(response) {
+                        $("#projects-table-body").html("");
+                        let purposes = response.purposes;
+                        for (var i = 0; i < purposes.length; i++) 
+                        {
+                            let showBtn =  '<button ' +
+                                ' class="btn btn-primary    " ' +
+                                ' onclick="showPledge(' + purposes[i].id + ')">Show' +
+                            '</button> ';
+                            let editBtn =  '<button ' +
+                                ' class="btn btn-secondary" ' +
+                                ' onclick="editPledge(' + purposes[i].id + ')">Edit' +
+                            '</button> ';
+                            let deleteBtn =  '<button ' +
+                                ' class="btn btn-danger" ' +
+                                ' onclick="destroyPledge(' + purposes[i].id + ')">Delete' +
+                            '</button>';
+         
+                            let projectRow = '<tr>' +
+                                '<td>' + purposes[i].payer.fname + '&nbsp;' + purposes[i].payer.mname +  '&nbsp;' + purposes[i].payer.lname +   '</td>' +
+                                '<td>' + purposes[i].payment.name + '</td>' +
+                                '<td>' + purposes[i].purpose.title + '</td>' +
+                                '<td>' + purposes[i].amount + '</td>' +
+                                '<td>' + showBtn + '</td>' +
+                            '</tr>';
+                            $("#projects-table-body").append(projectRow);
+                        }
+         
+                         
+                    },
+                    error: function(response) {
+                        console.log(response.responseJSON)
+                    }
+                });
+            }
+         
+
+    //         showAllMethods();
+
+
+            /*
+                This function will get all the payments records
+            */
+            function showAllMethods()
+            {
+                let url = $('meta[name=app-url]').attr("content") + "/member/methods";
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: function(response) {
+                        $("#methods-table-body").html("");
+                        let methods = response.methods;
+                        for (var i = 0; i < methods.length; i++) 
+                        {
+                          
+                            let editBtn =  '<button ' +
+                                ' class="btn btn-secondary" ' +
+                                ' onclick="editMethod(' + methods[i].id + ')">Edit' +
+                            '</button> ';
+                            let deleteBtn =  '<button ' +
+                                ' class="btn btn-danger" ' +
+                                ' onclick="destroyMethod(' + methods[i].id + ')">Delete' +
+                            '</button>';
+         
+                            let projectRow = '<tr>' +
+                                '<td>' + methods[i].id + '</td>' +
+                                '<td>' + methods[i].name + '</td>' +
+                            '</tr>';
+                            $("#methods-table-body").append(projectRow);
+                            $("#types").modal('show'); 
+                        }
+         
+                         
+                    },
+                    error: function(response) {
+                        console.log(response.responseJSON)
+                    }
+                });
+            }
+   
+            /*
+                get and display the record info on modal
+            */
+            function showPledge(id)
+            {
+                $("#name-info").html("");
+                $("#description-info").html("");
+                let url = $('meta[name=app-url]').attr("content") + "/member/payments/" + id +"";
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: function(response) {
+                        let purpose = response.purpose;
+                        $("#mname-info").html(purpose.payer.mname);
+                        $("#lname-info").html(purpose.payer.lname);
+                        $("#purpose-info").html(purpose.purpose.title);
+                        $("#amount-info").html(purpose.amount);
+                        $("#method-info").html(purpose.payment.name);
+                        $("#date-info").html(purpose.   created_at);
+                        $("#view-modal").modal('show'); 
+         
+                    },
+                    error: function(response) {
+                        console.log(response.responseJSON)
+                    }
+                });
+            }
+         
+            /*
+                delete record function
+            */
+            function destroyPledge(id)
+            {
+                let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id;
+                let data = {
+                    pledge_id: $("#pledge_id").val(),
+                    amount: $("#amount").val(),
+                    user_id: $("#user_id").val(),
+                    type_id: $("#type_id").val(),
+                };
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: url,
+                    type: "DELETE",
+                    data: data,
+                    success: function(response) {
+                        let successHtml = '<div class="alert alert-success" role="alert">Payment Was Deleted Successfully </div>';
+                        $("#alert-div").html(successHtml);
+                        showAllPledges();
+                    },
+                    error: function(response) {
+                        console.log(response.responseJSON)
+                    }
+                });
+            }
+
+
+            /*
+                delete payment record function
+            */
+            function destroyMethod(id)
+            {
+                let url = $('meta[name=app-url]').attr("content") + "/admin/methods/" + id;
+                let data = {
+                    name: $("#name").val(),
+                };
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    url: url,
+                    type: "DELETE",
+                    data: data,
+                    success: function(response) {
+                        let successHtml = '<div class="alert alert-danger" role="alert">Payment Method Was Deleted Successfully </div>';
+                        $("#alert-div").html(successHtml);
+    //                     showAllMethods();
+    
+                        $("#types").modal('hide'); 
+                    },
+                    error: function(response) {
+                        console.log(response.responseJSON)
+                    }
+                });
+            }
+         
+         
+  </script>
 @endsection
