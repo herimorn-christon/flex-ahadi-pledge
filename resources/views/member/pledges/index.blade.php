@@ -17,11 +17,11 @@
     <div class="col-sm-6">
       <ol class="float-sm-right" type="none">
         <li class="">  
-        <button type="button" class="btn bg-lightblue btn-sm" data-toggle="modal"  onclick="createPledge()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal"  onclick="createPledge()">
             <i class="fa fa-plus"></i>
              Register New Pledge 
         </button>  
-        <button type="button" class="btn bg-lightblue btn-sm" data-toggle="modal" data-target="#types">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" data-target="#types">
             <i class="fa fa-list"></i>
             Purposes
         </button>
@@ -274,18 +274,21 @@
                       for (var i = 0; i < pledges.length; i++) 
                       {
                           let showBtn =  '<button ' +
-                              ' class="btn btn-sm bg-lightblue    " ' +
+                              ' class="btn btn-sm bg-warning    " ' +
                               ' onclick="showPledge(' + pledges[i].id + ')"><i class="fa fa-eye"></i>' +
                           '</button> ';
 
                         
                             let editBtn =  '<button ' +
-                              ' class="btn btn-sm btn-secondary " ' +
+                              ' class="btn btn-sm bg-navy " ' +
                               ' onclick="editPledge(' + pledges[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
                               ' class="btn btn-sm btn-danger" ' +
                               ' onclick="destroyPledge(' + pledges[i].id + ')">Delete' +
+                          '</button>';
+                          let adminBtn =  '<button ' +
+                              ' class="btn btn-sm bg-navy" disabled><i class="fa fa-user-tie text-danger"></i>' +
                           '</button>';
                               
                    
@@ -298,7 +301,7 @@
                               '<td>' + pledges[i].amount +'</td>' +
                               '<td>' + pledges[i].deadline +'</td>' +
                               '<td class="text-success">' +(pledges[i].purpose.status == '0' ? 'Not Fullfilled':'Fullfilled')+ '</td>'+
-                              '<td>' + showBtn + (pledges[i].user_id == pledges[i].created_by ? editBtn :'')+'</td>' +
+                              '<td>' + showBtn + (pledges[i].user_id == pledges[i].created_by ? editBtn :adminBtn)+'</td>' +
                           '</tr>';
                           $("#pledges-table-body").append(pledgesRow);
                       }

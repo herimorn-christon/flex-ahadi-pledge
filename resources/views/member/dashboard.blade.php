@@ -40,7 +40,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('member/dashboard') }}" class="brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light text-lightblue">AhadiPledge</span>
+      <span class="brand-text font-weight-light text-navy">AhadiPledge</span>
     </a>
 
     <!-- Sidebar -->
@@ -49,19 +49,25 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper py-4">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
+    <div class="content-header mt-4">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h5 class="m-0 text-lightblue">Hello, {{ Auth::User()->fname}}  {{ Auth::User()->mname}}  {{ Auth::User()->lname}}</h5>
+        <div class="row mb-0">
+          <div class="col-sm-6 col-6">
+            <h5 class="m-0 text-white">
+              <span class="badge bg-navy">
+                Hello, {{ Auth::User()->fname}}  {{ Auth::User()->mname}}  {{ Auth::User()->lname}}
+              </span>
+            </h5>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-             <li class="bg-light text-success p-2">
-              {{ date(('D:d-M-Y'))}}
-            </li>
+          <div class="col-sm-6 col-6">
+            <ol class="float-sm-right" type="none">
+              <h5 class="float-end">
+                <span class="badge bg-teal">
+                  {{ date(('D:d-M-Y'))}}
+                </span>
+               </h5>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,70 +82,72 @@
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-white">
               <div class="inner">
-                <h3> 
+                <h5 class="text-navy font-weight-bolder"> 
                   {{$pledges}}
                   <small>Tsh</small>              
-                </h3>
+                </h5>
 
                 <p>Pledges Amount</p>
               </div>
               <div class="icon">
                 <i class="fa fa-dollar-sign"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer bg-light">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-white">
               <div class="inner">
-                <h3>
+                <h5 class="text-navy font-weight-bolder"> 
                   {{$payments}}
                   <small>Tsh</small>
-                </h3>
+                </h5>
 
                 <p>Paid Pledges</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer bg-light">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
+            <div class="small-box bg-white">
               <div class="inner">
-                <h3>
+                <h5 class="text-navy font-weight-bolder"> 
                   {{$remaining}}
                   <small>Tsh</small>
-                </h3>
+                </h5>
 
                 <p>Remaining Amount</p>
               </div>
               <div class="icon">
                 <i class="fa fa-credit-card"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer bg-light">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-white">
               <div class="inner">
-                <h3> {{$pledges_no}}</h3>
+                <h5 class="text-navy font-weight-bolder"> 
+                  {{$pledges_no}}
+                </h5>
 
                 <p>Pledges Made</p>
               </div>
-              <div class="icon">
+              <div class="icon mb-1">
                 <i class="fa fa-balance-scale"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer bg-light">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

@@ -11,7 +11,7 @@
       <!-- Small boxes (Stat box) -->
       <div class="row">
         {{-- Registered Members Reports --}}
-        <div class="col-lg-4 col-sm-6 col-12">
+        <div class="col-lg-6 col-sm-6 col-12">
           <!-- small box -->
           <div class="small-box bg-white">
             <div class="inner">
@@ -19,18 +19,19 @@
                 {{-- <i class="fa fa-users"></i> --}}
               </h5>
 
-              <p class="text-secondary">Registered Members Report</p>
-              
+              <p class="text-navy font-weight-bolder">Pledges Payment Report</p>
+              <small class="text-secondary">This is ....</small>
             </div>
             <div class="icon text-center">
-              <i class="fa fa-file-pdf text-danger"></i>
+              <i class="fa fa-balance-scale text-light"></i>
+             
             </div>
             <br>
-            <a href="" class=" mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">Generate Report <i class="fas fa-download text-primary"></i></a>
+            <a href="" class=" mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">Generate Report <i class="fas fa-download text-navy"></i></a>
           </div>
         </div>
         {{-- Collected Payments Reports --}}
-        <div class="col-lg-4 col-sm-6 col-12">
+        <div class="col-lg-6 col-sm-6 col-12">
             <!-- small box -->
             <div class="small-box bg-white">
               <div class="inner">
@@ -44,11 +45,11 @@
                 <i class="fa fa-dollar-sign text-danger"></i>
               </div>
               <br>
-              <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#paymentModal">Generate Report <i class="fas fa-download text-primary"></i></a>
+              <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#paymentModal">Generate Report <i class="fas fa-download text-navy"></i></a>
             </div>
           </div>
         {{-- Collected Payments Reports --}}
-        <div class="col-lg-4 col-12">
+        <div class="col-lg-6 col-12">
             <!-- small box -->
             <div class="small-box bg-white">
               <div class="inner">
@@ -61,12 +62,12 @@
                 <i class="fa fa-balance-scale text-danger"></i>
               </div>
               <br>
-              <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#pledgesModal">Generate Report <i class="fas fa-download text-primary"></i></a>
+              <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#pledgesModal">Generate Report <i class="fas fa-download text-navy"></i></a>
             </div>
           </div>
 
         {{-- Card Payments Reports --}}
-        <div class="col-lg-4 col-12">
+        <div class="col-lg-6 col-12">
           <!-- small box -->
           <div class="small-box bg-white">
             <div class="inner">
@@ -79,46 +80,11 @@
               <i class="fa fa-user-tie text-danger"></i>
             </div>
             <br>
-            <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#memberPledgesModal">Generate Report <i class="fas fa-download text-primary"></i></a>
+            <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#memberPledgesModal">Generate Report <i class="fas fa-download text-navy"></i></a>
           </div>
         </div>
 
-        {{-- Collected Payments Reports --}}
-        <div class="col-lg-4 col-12">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h5 class="text-center">
-                </h5>
-  
-                <p class="text-secondary">Card/Member Report</p>
-              </div>
-              <div class="icon text-center">
-                <i class="fa fa-envelope text-danger"></i>
-              </div>
-              <br>
-              <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#pledgesModal">Generate Report <i class="fas fa-download text-primary"></i></a>
-            </div>
-          </div>
-
-          {{-- Collected Payments Reports --}}
-        <div class="col-lg-4 col-12">
-            <!-- small box -->
-            <div class="small-box bg-white">
-              <div class="inner">
-                <h5 class="text-center">
-                </h5>
-  
-                <p class="text-secondary">Card/Payment Report</p>
-              </div>
-              <div class="icon text-center">
-                <i class="fa fa-download text-danger"></i>
-              </div>
-              <br>
-              <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#cardPaymentModal">Generate Report <i class="fas fa-download text-primary"></i></a>
-            </div>
-          </div>
-
+       
           <div class="col-m-12">
             <hr class="bg-primary font-weight-bolder">
           </div>

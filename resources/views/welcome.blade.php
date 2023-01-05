@@ -38,7 +38,7 @@
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
-                    <button type="button" class="btn  bg-lightblue  " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn  bg-navy  " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Login To Your Account
                     </button>
                     @endif
@@ -72,7 +72,7 @@
                         <div class=" text-white">
                             <!-- System Tiite -->
                             <h1 class="" style="font-weight: bold;text-shadow: rgb(255, 255, 255) 1px 0 10px;">
-                             <span class="text-lightblue">Ahadi</span>
+                             <span class="text-navy">Ahadi</span>
                              <span class="text-danger">Pledge</span>
                             </h1>
                         
@@ -90,7 +90,7 @@
                                         <a data-bs-toggle="modal" data-bs-target="#registerModal" href="#myModal" class="btn bg-danger  font-weight-bolder   mt-2">Join Us Now !</a>
 
                                   
-                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"  data-toggle="modal"  data-target="#loginModal"  class="btn  bg-lightblue  mt-2 font-weight-bolder">Login To Your Account</a>
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"  data-toggle="modal"  data-target="#loginModal"  class="btn  bg-navy  mt-2 font-weight-bolder">Login To Your Account</a>
 
                                     </div>
                                 </div>
@@ -109,28 +109,28 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-lightblue"></i></div>
+                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-navy"></i></div>
                             <h4 class="text-danger">Easy to Use</h4>
                             <p class="lead mb-0 text-secondary">Ready to use with your own content, or customize it!</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-clipboard-data m-auto text-lightblue"></i></div>
+                            <div class="features-icons-icon d-flex"><i class="bi-clipboard-data m-auto text-navy"></i></div>
                             <h4 class="text-danger">Easy Management</h4>
                             <p class="lead mb-0 text-secondary">You can easily handle your daily Pledges.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-bell m-auto text-lightblue"></i></div>
+                            <div class="features-icons-icon d-flex"><i class="bi-bell m-auto text-navy"></i></div>
                             <h4 class="text-danger">Daily Reminders</h4>
                             <p class="lead mb-0 text-secondary">Receive Daily Notifications of Your Pledges.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-headphones m-auto text-lightblue"></i></div>
+                            <div class="features-icons-icon d-flex"><i class="bi-headphones m-auto text-navy"></i></div>
                             <h4 class="text-danger">Full Support</h4>
                             <p class="lead mb-0 text-secondary">We Offer You Full Customer Support.</p>
                         </div>
@@ -193,7 +193,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 ">
-                        <button type="submit" class="btn bg-lightblue btn-block col-lg-12">
+                        <button type="submit" class="btn bg-navy btn-block col-lg-12">
                             {{ __('Login') }}
 
                             <i class="fa fa-sign-in-alt"></i>
@@ -336,7 +336,7 @@
                     <div class="row">
                         <div class="col-md-6"></div>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-block text-decoration-none text-light bg-info bg-lightblue btn-block col-lg-12">
+                            <button type="submit" class="btn btn-block text-decoration-none text-light bg-info bg-navy btn-block col-lg-12">
                                 {{ __('Register') }}
                             </button>
                         </div>
