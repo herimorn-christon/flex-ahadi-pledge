@@ -204,12 +204,15 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   // my-cards
   // Route::get('/my-cards', [App\Http\Controllers\Member\CardController::class,'index']);
   
-  Route::get('/my-cards', function () {
+    Route::get('my-cards', function () {
     return view('member.cards.index');
     });
-  // my-pledges API
+  // my-cards API
     Route::apiResource('cards', MyCardController::class);
- 
+ // All reports page route
+    Route::get('my-reports', function () {
+     return view('member.reports.index');
+    });
   // my-profile
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });

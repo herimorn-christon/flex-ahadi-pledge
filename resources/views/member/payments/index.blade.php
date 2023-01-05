@@ -15,10 +15,10 @@
       @endif
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+      <ol class="float-sm-right" type="none">
         <li class=""> 
     
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
+        <button type="button" class="btn bg-navy btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
             Available Payment Methods
         </button>
