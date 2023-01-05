@@ -30,7 +30,7 @@
           
           @php
           $user=Auth::User()->id;
-          $notifications=App\Models\Notification::where('user_id',$user)->orwhere('user_id','0')->limit(5)->get();
+          $notifications=App\Models\Notification::where('user_id',$user)->orwhere('user_id','0')->orderBy('updated_at','DESC')->limit(5)->get();
         
           @endphp
 

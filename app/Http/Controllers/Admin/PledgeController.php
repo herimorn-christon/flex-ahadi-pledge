@@ -59,6 +59,7 @@ class PledgeController extends Controller
             $pledge->created_by= Auth::user()->id;
             $pledge->save();
 
+            // saving user notification
             $notification = new Notification();
             $notification->user_id= $request->user_id;
             $notification->created_by= Auth::user()->id;

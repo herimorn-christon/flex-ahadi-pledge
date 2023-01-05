@@ -36,8 +36,8 @@
     </div>
 
 
-        <div class="responsiveness">
-            <table  class="table table-bordered responsive">
+        <div class="responsiveness p-1">
+            <table id="example"  class="table table-bordered responsive cell-border">
                 <thead>
                      <tr class="text-secondary">
                         <th>Payer Name</th>
@@ -130,84 +130,6 @@
   <!-- /.modal-dialog -->
 </div>
 
-{{-- Register Payment Modal --}}
-
-<div class="modal fade" id="form-modal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header bg-light">
-           <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-           <div id="error-div"></div>
-          <div class="row">
-            <form>
-              <input type="hidden" name="update_id" id="update_id">
-                <div class="row mb-3">
-                    @php
-                    $jumuiya= App\Models\User::where('role','member')->get();
-                    @endphp
-                    <div class="col-md-6">
-                        <label for="" class="text-secondary">Payer</label>
-                        <select name="user_id" id="user_id" class="form-control">
-                            <option value="">--Select Member --</option>
-                            @foreach ( $jumuiya as $item)
-                             <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
-                             @endforeach
-                        </select>
-                    </div>
-
-                    @php
-                    
-                    $purpose= App\Models\Purpose::where('status','')->get();
-                    @endphp
-                    <div class="col-md-6">
-                        <label for="" class="text-secondary">Payment Purpose</label>
-                        <select name="pledge_id" id="pledge_id" class="form-control">
-                            <option value="">--Select Purpose --</option>
-                            @foreach ( $purpose as $item)
-                             <option value="{{ $item->id}}"> {{ $item->title}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-           
-                    @php
-                    $purpose= App\Models\PaymentType::get();
-                    @endphp
-                    <div class="col-md-6">
-                        <label for="" class="text-secondary">Payment Method</label>
-                        <select name="type_id" id="type_id" class="form-control">
-                            <option value="">--Select Payment Method --</option>
-                            @foreach ( $purpose as $item)
-                             <option value="{{ $item->id}}"> {{ $item->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                 <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="amount" class="text-secondary">Paid Amount </label>
-                        <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Payment Amount">
-                    </div>
-                 </div>
-                 <div class="col-md-6"></div>
-                 <div class="col-md-6">
-                    <div class="form-group">
-                     
-                        <button type="submit" class="btn btn-primary btn-block" id="save-pledge-btn">
-                            <i class="fa fa-save"></i>
-                            Save Payment
-                        </button>
-                    </div>
-                 </div>
-                </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
 
 
   {{-- view payment modal --}}
@@ -260,8 +182,8 @@
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-primary    " ' +
-                                ' onclick="showPledge(' + purposes[i].id + ')">Show' +
+                                ' class="btn btn-sm btn-warning " ' +
+                                ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
                                 ' class="btn btn-secondary" ' +

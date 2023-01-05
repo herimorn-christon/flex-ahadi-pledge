@@ -202,14 +202,14 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   // Payment Methods API route
   Route::apiResource('methods', MethodsController::class);
   // my-cards
-  Route::get('/my-cards', [App\Http\Controllers\Member\CardController::class,'index']);
+  // Route::get('/my-cards', [App\Http\Controllers\Member\CardController::class,'index']);
   
-  Route::get('/mcards', function () {
-    return view('member.cards.cards');
+  Route::get('/my-cards', function () {
+    return view('member.cards.index');
     });
   // my-pledges API
-    Route::apiResource('payments', MyCardController::class);
+    Route::apiResource('cards', MyCardController::class);
  
-    // my-profile
- Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
+  // my-profile
+    Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });

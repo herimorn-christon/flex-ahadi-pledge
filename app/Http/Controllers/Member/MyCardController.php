@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Member;
 
-use App\Http\Controllers\Controller;
+use App\Models\CardMember;
+use App\Models\CardPayment;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class MyCardController extends Controller
 {
@@ -14,7 +17,9 @@ class MyCardController extends Controller
      */
     public function index()
     {
-        //
+        $user=Auth::user()->id;
+        $members = CardMember::where('user_id',$user)->orderBy('updated_at','DESC')->with('user')->with('card')->get();
+        return response()->json(['members' => $members]);
     }
 
     /**
@@ -23,7 +28,7 @@ class MyCardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         //
     }
@@ -36,29 +41,11 @@ class MyCardController extends Controller
      */
     public function show($id)
     {
-        //
+        $card = CardMember::with('user')->with('card')->find($id);  
+        $cid=$card->id;   
+        $payment=CardPayment::where('card_member',$cid)->get();
+        return response()->json(['payment' => $payment,'card'=>$card]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+   
 }
