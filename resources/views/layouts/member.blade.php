@@ -98,8 +98,8 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
+    <section class="p-2">
+      <div class="">
         
         @yield('content')
 

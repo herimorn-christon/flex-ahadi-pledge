@@ -269,7 +269,7 @@
                       for (var i = 0; i < pledges.length; i++) 
                       {
                           let showBtn =  '<button ' +
-                              ' class="btn btn-sm bg-warning    " ' +
+                              ' class="btn btn-sm bg-teal    " ' +
                               ' onclick="showPledge(' + pledges[i].id + ')"><i class="fa fa-eye"></i>' +
                           '</button> ';
 
@@ -283,7 +283,7 @@
                               ' onclick="destroyPledge(' + pledges[i].id + ')">Delete' +
                           '</button>';
                           let adminBtn =  '<button ' +
-                              ' class="btn btn-sm bg-navy" disabled><i class="fa fa-user-tie text-danger"></i>' +
+                              ' class="btn btn-sm text-center" disabled ><i class="fa fa-user-tie text-danger"></i>' +
                           '</button>';
                               
                    

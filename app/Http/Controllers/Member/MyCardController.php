@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Member;
 
+use App\Models\Card;
 use App\Models\CardMember;
 use App\Models\CardPayment;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +30,57 @@ class MyCardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
-    {
-        //
-    }
+
+        public function store(Request $request)
+        {
+            request()->validate(
+                [
+                'user_id' => 'required'
+                 ]
+                );
+                $user=Auth::User()->id;
+
+                $card=CardMember::where('user_id',$user)->where('status','')->first();
+
+                if ($card) {
+                    // $status="Sorry,You Already Have an Active Member Card!";
+                    return redirect('member/my-cards')->with('status','Sorry,You Already Have an Active Member Card!');
+                }
+                else{
+
+
+                    $member =new CardMember();
+
+
+                    $card = Card::where('status','')->orderBy('created_by')->first();
+                    if ($card) {
+                        $card->status=1;
+                        $card->update();
+                        $member->card_no=$card->id;
+                        $member->user_id=$request->user_id;
+                        $member->status= $request->status == true ? '1':'0';
+                        $member->save(); # code...
+
+                        return redirect('member/my-cards')->with('status','Congratulatioons,You have been assigned a Member Card!');
+                    }
+                
+                    else{
+                        $notification = new Notification();
+                        $notification->user_id= 0; //0=Admin notification
+                        $notification->created_by= Auth::user()->id;
+                        $notification->type='Card Request !';
+                        $name=$request->Auth::User()->fname;
+                        $notification->message='User '.$name.' has requested a new Card Member!';
+                        $notification->save();
+                        return redirect('member/my-cards')->with('status','Please wait to be assigned a Member Card!');
+                    }
+                 
+        
+               
+                }
+           
+        }
+    
 
     /**
      * Display the specified resource.

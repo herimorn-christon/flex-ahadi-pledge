@@ -144,8 +144,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 //Delete Card method Route  
   Route::get('delete-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'destroy']);
 
-//Create Card method route  
-  Route::post('assign-card', [App\Http\Controllers\Admin\CardMemberController::class,'save']);
+
 
 // All reports page route
   Route::get('/all-reports', function () {
@@ -211,6 +210,8 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   // my-cards API
     Route::apiResource('cards', MyCardController::class);
 
+  //Create Card method route  
+   Route::post('request-card', [App\Http\Controllers\Member\MyCardController::class,'store']);  
       
     Route::get('my-notifications', function () {
       return view('member.notifications.index');

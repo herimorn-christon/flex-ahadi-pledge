@@ -13,15 +13,21 @@
           {{ session('status') }}
       </div>
       @endif
+      
     </div><!-- /.col -->
     <div class="col-sm-7">
       <ol class="float-sm-right" type="none">
-        <li class="">    
-        <button type="button" class="btn bg-navy btn-outline" data-toggle="modal" onclick="createPayment()">
+        <li class="">  
+          <form action="{{ url('member/request-card') }}" method="post">
+            @csrf 
+                <input type="text" name="user_id" value="{{ Auth::User()->id; }}" hidden>
+                 
+        
+          <button  type="submit"  class="btn bg-navy btn-outline" >
             <i class="fa fa-envelope"></i>
              Request New Card
         </button>
-       
+      </form> 
     </li>
        
       </ol>
