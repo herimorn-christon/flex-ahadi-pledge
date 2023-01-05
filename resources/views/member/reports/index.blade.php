@@ -23,7 +23,7 @@
               <small class="text-secondary">This is ....</small>
             </div>
             <div class="icon text-center">
-              <i class="fa fa-balance-scale text-light"></i>
+              <i class="fa fa-balance-scale text-teal"></i>
              
             </div>
             <br>
@@ -42,7 +42,7 @@
                 <small class="text-secondary">This is ....</small>
               </div>
               <div class="icon text-center">
-                <i class="fa fa-file-pdf text-light"></i>
+                <i class="fa fa-file-pdf text-teal"></i>
               </div>
               <br>
               <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#paymentModal">Generate Report <i class="fas fa-download text-navy"></i></a>
@@ -55,11 +55,11 @@
               <div class="inner">
                 <h5 class="text-center">
                 </h5>
-  
-                <p class="text-secondary">Card Payment Reports</p>
+                <p class="text-navy font-weight-bolder">Card Payment Reports</p>
+                <small class="text-secondary">This is ....</small>
               </div>
               <div class="icon text-center">
-                <i class="fa fa-balance-scale text-danger"></i>
+                <i class="fa fa-envelope text-teal"></i>
               </div>
               <br>
               <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#pledgesModal">Generate Report <i class="fas fa-download text-navy"></i></a>
@@ -74,10 +74,11 @@
               <h5 class="text-center">
               </h5>
 
-              <p class="text-secondary">Contributions Report</p>
+              <p class="text-navy font-weight-bolder">Contributions Reports</p>
+              <small class="text-secondary">This is ....</small>
             </div>
             <div class="icon text-center">
-              <i class="fa fa-user-tie text-danger"></i>
+              <i class="fa fa-download text-teal"></i>
             </div>
             <br>
             <a href="" class="mt-4 small-box-footer" type="button"  data-bs-toggle="modal" data-bs-target="#memberPledgesModal">Generate Report <i class="fas fa-download text-navy"></i></a>
@@ -168,7 +169,7 @@
             <div class="mb-3">
             <h5 class="text-secondary">
                 <small>
-                    Generate Collected Payments Report From the Given Start Date To the given End Date
+                    Generate Pledge Payments Made Report From the Given Start Date To the given End Date
                 </small>
             </h5>
             </div>
@@ -265,7 +266,8 @@
 
 
   {{-- Pledges/Purpose modal --}}
-<div class="modal fade" id="pledgesModal" tabindex="-1" >
+
+  <div class="modal fade" id="pledgesModal" tabindex="-1" >
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-light">
@@ -273,23 +275,28 @@
           <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('admin/pledges-purposes') }}" method="GET">
+          <form action="{{ url('member/cards-payment-report') }}" method="GET">
             @csrf
     
             <div class="mb-3">
             <h5 class="text-secondary">
-                Generate Pledges Per Purpose Report From the Given Start Date To the given End Date
+                <small>
+                    Generate Card Payments Made Report From the Given Start Date To the given End Date
+                </small>
             </h5>
             </div>
             @php
-            $purpose= App\Models\Purpose::get();
+            $user=Auth::User()->id;
+            $purpose= App\Models\CardMember::where('user_id',$user)
+                                            ->orderBy('created_at')
+                                            ->get();
             @endphp
             <div class="mb-3">
-                <label for="" class="text-secondary">Choose Purpose</label>
-                <select name="purpose_id" id="purpose_id" class="form-control">
-                    <option value="">--Select Purpose --</option>
+                <label for="" class="text-secondary">Choose Your Card</label>
+                <select name="card_no" id="card_no" class="form-control bg-navy text-white">
+                    <option value="">--Select Card --</option>
                     @foreach ( $purpose as $item)
-                    <option value="{{ $item->id}}">{{ $item->title}} </option>
+                    <option value="{{ $item->id}}">{{ $item->card->card_no}} / {{ $item->user_id }}   </option>
                     @endforeach
                 </select>
             </div>
@@ -305,9 +312,7 @@
                 <label for="message-text" class="text-secondary">Sort By:</label>
                 <select name="sort_by" id="sort_by">
                     <option value="created_at">Created Date</option>
-                    <option value="user_id">Member</option>
-                    <option value="purpose_id">Purpose</option>
-                    <option value="type_id">Pledge Type</option>
+                    <option value="amount">Amount Paid</option>
                 </select>
               </div>
             <div class="row">
@@ -340,23 +345,25 @@
           <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('admin/member-pledges') }}" method="GET">
+          <form action="{{ url('admin/purpose-payment-report') }}" method="GET">
             @csrf
     
             <div class="mb-3">
             <h5 class="text-secondary">
-                Generate Pledges Per Member Report From the Given Start Date To the given End Date
+                <small>
+                    Generate Contribution by purpose Report From the Given Start Date To the given End Date
+                </small>     
             </h5>
             </div>
             @php
-            $member= App\Models\User::where('role','member')->get();
+            $member= App\Models\Purpose::get();
             @endphp
             <div class="mb-3">
-                <label for="" class="text-secondary">Choose Member</label>
-                <select name="user_id" id="user_id" class="form-control">
-                    <option value="">--Select Member Here --</option>
+                <label for="" class="text-secondary">Choose Contribution Purpose</label>
+                <select name="user_id" id="user_id" class="form-control bg-navy text-white">
+                    <option value="">-- Choose Contribution Purpose Here --</option>
                     @foreach ( $member as $item)
-                    <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}} </option>
+                    <option value="{{ $item->id}}">{{ $item->title}}  </option>
                     @endforeach
                 </select>
             </div>
@@ -370,9 +377,8 @@
             </div>
             <div class="mb-3">
                 <label for="message-text" class="text-secondary">Sort By:</label>
-                <select name="sort_by" id="sort_by">
+                <select name="sort_by" id="sort_by" class="form-control bg-navy text-white">
                     <option value="created_at">Created Date</option>
-                    <option value="purpose_id">Purpose</option>
                     <option value="type_id">Pledge Type</option>
                     <option value="status">Pledge Status</option>
                 </select>
@@ -382,7 +388,7 @@
   
               </div>
               <div class="mb-3 col-md-6">
-                 <button type="submit" class="btn btn-primary btn-block " id="save-purpose-btn">
+                 <button type="submit" class="btn bg-navy btn-block " id="save-purpose-btn">
                   <i class="fa fa-download"></i>
                   Download Report
                 </button>

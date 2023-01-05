@@ -223,9 +223,11 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
      return view('member.reports.index');
     });
   // Pledges Made  Reports
-    Route::get('pledges-repport', [App\Http\Controllers\Member\MyReportController::class,'pledgesReport']);
+    Route::get('pledges-report', [App\Http\Controllers\Member\MyReportController::class,'pledgesReport']);
   // Pledges Payment  Reports
     Route::get('pledges-payment-report', [App\Http\Controllers\Member\MyReportController::class,'paymentReport']);
+  // Pledges Payment  Reports
+    Route::get('cards-payment-report', [App\Http\Controllers\Member\MyReportController::class,'cardReport']);
   // my-profile
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });
