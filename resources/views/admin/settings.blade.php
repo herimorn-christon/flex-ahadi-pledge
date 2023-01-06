@@ -13,11 +13,22 @@
      
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header p-2">
-              <ul class="nav nav-pills">
+            <div class="card-header p-2 bg-white">
+              {{-- <ul class="nav nav-pills">
                 <li class="nav-item"><a class="nav-link bg-light nav-light active" href="#interface" data-toggle="tab">System Settings</a></li>
                 <li class="nav-item"><a class="nav-link bg-light nav-light" href="#audits" data-toggle="tab">System Audits</a></li>
                 <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Announcements</a></li>
+              </ul> --}}
+              <ul class="nav nav-tabs nav-light">
+                <li class="nav-item">
+                  <a class="nav-link text-navy active" href="#interface"  data-toggle="tab">System Settings</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#audits"  data-toggle="tab">System Audits</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#announcements" data-toggle="tab" >Announcements</a>
+                </li>
               </ul>
             </div><!-- /.card-header -->
             <div class="">

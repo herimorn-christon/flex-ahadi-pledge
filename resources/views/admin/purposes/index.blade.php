@@ -36,7 +36,7 @@
                         <th>Purpose Title</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                         <th width="240px">Actions</th>
+                         <th>Actions</th>
 
                     </tr>
                 </thead>

@@ -18,12 +18,26 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header p-2 bg-white">
-              <ul class="nav nav-pills nav-light">
-                <li class="nav-item active"><a class="nav-link bg-light nav-white " href="#interface" data-toggle="tab" >Members Report</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light " href="#audits" data-toggle="tab">Payments Report</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Purpose Report</a></li>
+              {{-- <ul class="nav nav-pills nav-light"> --}}
+                {{-- <li class="nav-item active"><a class="nav-link bg-light nav-white " href="#interface" data-toggle="tab" >Members Report</a></li> --}}
+                {{-- <li class="nav-item"><a class="nav-link bg-light nav-light " href="#audits" data-toggle="tab">Payments Report</a></li> --}}
+                {{-- <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Purpose Report</a></li> --}}
                 {{-- <li class="nav-item"><a class="nav-link bg-light nav-light" href="#cards" data-toggle="tab">Card Payments Report</a></li> --}}
                 {{-- <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Member Pledges Report</a></li> --}}
+              {{-- </ul> --}}
+              <ul class="nav nav-tabs">
+                <li class="nav-item">
+                  <a class="nav-link " href="#interface"  data-toggle="tab">Active</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#audits"  data-toggle="tab">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
               </ul>
             </div><!-- /.card-header -->
             <div class="">
