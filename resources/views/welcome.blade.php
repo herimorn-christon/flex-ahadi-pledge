@@ -283,7 +283,7 @@
                 $jumuiya= App\Models\Jumuiya::get();
                 @endphp
                 <div class="col-md-6">
-                    <label for="">Jumuiya (Community) </label>
+                    <label for="" class="text-secondary">Jumuiya (Community) </label>
                     <select name="jumuiya" class="form-control">
                         <option value="">--Select Community (Jumuiya) --</option>
                         @foreach ( $jumuiya as $item)

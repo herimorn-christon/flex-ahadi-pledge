@@ -15,21 +15,21 @@
       @endif
     </div><!-- /.col -->
     <div class="col-sm-7">
-      <ol class="breadcrumb float-sm-right">
+      <ol class="float-sm-right" type="none">
         <li class="">    
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="createPayment()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="createPayment()">
             <i class="fa fa-dollar-sign"></i>
              Add Card Payment
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="showAllCards()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="showAllCards()">
             <i class="fa fa-envelope"></i>
              Available Cards
         </button>
-        <button type="button" class="btn btn-primary btn-sm"  onclick="createCardMember()">
+        <button type="button" class="btn bg-navy btn-sm"  onclick="createCardMember()">
             <i class="fa fa-list"></i>
              Assign Card
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="createCard()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="createCard()">
         <i class="fa fa-plus"></i>
             Create Card
         </button>
@@ -41,15 +41,11 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-            
-        </h6>
-    </div>
+
     <div class="card-body">
 
         <div class="row">
-            <table  class="table table-bordered ">
+            <table id="example"  class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>
@@ -91,7 +87,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                    
-                      <button type="submit" class="btn btn-primary btn-block" id="save-card-btn">
+                      <button type="submit" class="btn bg-navy btn-block" id="save-card-btn">
                           <i class="fa fa-save"></i>
                           Create Card
                       </button>
@@ -145,7 +141,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                    
-                      <button type="submit" class="btn btn-primary btn-block" id="save-payment-btn">
+                      <button type="submit" class="btn bg-navy btn-block" id="save-payment-btn">
                           <i class="fa fa-save"></i>
                           Save Card Payment
                       </button>
@@ -216,7 +212,7 @@
                       </div>
   
                       <div class="col-md-6 ">
-                          <button class="btn btn-primary btn-block " id="save-member-btn" type="submit">
+                          <button class="btn bg-navy btn-block " id="save-member-btn" type="submit">
                           <i class="fa fa-save"></i>
                           Assign Card
                           </button>
@@ -331,16 +327,16 @@
                       for (var i = 0; i < members.length; i++) 
                       {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-primary    " ' +
-                                ' onclick="showCardMember(' + members[i].id + ')">Show' +
+                                ' class="btn bg-teal  btn-sm   " ' +
+                                ' onclick="showCardMember(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                           let editBtn =  '<button ' +
-                              ' class="btn btn-secondary" ' +
-                              ' onclick="editCardMember(' + members[i].id + ')">Edit' +
+                              ' class="btn bg-navy btn-sm" ' +
+                              ' onclick="editCardMember(' + members[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger" ' +
-                              ' onclick="destroyCardMember(' + members[i].id + ')">Delete' +
+                              ' class="btn btn-danger btn-sm" ' +
+                              ' onclick="destroyCardMember(' + members[i].id + ')"><i class="fa fa-trash"></i>' +
                           '</button>';
                           let status= members[i].status == '0' ? 'Active':'InActive';
        
@@ -779,12 +775,12 @@
                       {
                          
                           let editBtn =  '<button ' +
-                              ' class="btn btn-secondary" ' +
-                              ' onclick="editPayment(' + payment[i].id + ')">Edit' +
+                              ' class="btn bg-navy btn-sm" ' +
+                              ' onclick="editPayment(' + payment[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger" ' +
-                              ' onclick="destroyCardPayment(' + payment[i].id + ')">Delete' + payment[i].id +
+                              ' class="btn btn-danger btn-sm" ' +
+                              ' onclick="destroyCardPayment(' + payment[i].id + ')"><i class="fa fa-trash"></i>' +
                           '</button>';
        
                           let projectRow = '<tr>' +

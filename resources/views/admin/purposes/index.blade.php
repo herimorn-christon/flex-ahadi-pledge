@@ -86,7 +86,7 @@
             <div class="mb-3 col-md-3">
                <button type="submit" class="btn bg-navy btn-block " id="save-purpose-btn">
                 <i class="fa fa-save"></i>
-                Save Community
+                Save Purpose
               </button>
             </div>
           </div>

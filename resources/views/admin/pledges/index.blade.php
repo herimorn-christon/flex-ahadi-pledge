@@ -81,11 +81,11 @@
                         <input type="text" name="title" id="title" class="title form-control" placeholder="Enter Pledge Type Title">
                     </div>
                  </div>
-                 <div class="col-md-6"></div>
-                 <div class="col-md-6">
+                 <div class="col-md-7"></div>
+                 <div class="col-md-5">
                     <div class="form-group">
                      
-                        <button type="submit" class="add_type btn btn-primary btn-block" id="save-type-btn">
+                        <button type="submit" class="add_type btn bg-navy btn-block" id="save-type-btn">
                             <i class="fa fa-save"></i>
                             Save Pledge Type
                         </button>
@@ -213,16 +213,15 @@
 
                     <div class="col-md-6 ">
                         <label for="" class="text-secondary"> Pledge Status</label>
-                        {{-- <input type="checkbox" name="status" id="status"> --}}
-                        <select name="status" id="status" class="form-control">
-                          <option value="0">Not Fullfilled</option>
+                        <select name="status" id="status" class="form-control bg-light">
+                          <option value="0">Not Fullfilled</option> 
                           <option value="1">Fullfilled</option>
                         </select>
                     </div>
 
                     <div class="col-md-6 ">
                       <label for="" class="text-white">.</label>
-                        <button class="btn btn-primary btn-block " id="save-pledge-btn" type="submit">
+                        <button class="btn bg-navy btn-block " id="save-pledge-btn" type="submit">
                         <i class="fa fa-save"></i>
                         Save Pledge 
                         </button>
@@ -340,7 +339,7 @@
                         {
                           
                             let editBtn =  '<button ' +
-                                ' class="btn bg-teal btn-sm" ' +
+                                ' class="btn bg-navy btn-sm" ' +
                                 ' onclick="editType(' + types[i].id + ')"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
