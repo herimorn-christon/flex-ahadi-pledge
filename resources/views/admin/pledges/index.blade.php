@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','All Communities')
+@section('title','Admin | Manage Pledges')
 
 
 @section('content')
@@ -10,17 +10,17 @@
     <div class="col-sm-6" id="alert-div">
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+      <ol class="float-sm-right" type="none">
         <li class="">  
-        <button type="button" class="btn btn-primary btn-sm"  onclick="createPledge()">
+        <button type="button" class="btn bg-navy btn-sm"  onclick="createPledge()">
             <i class="fa fa-plus"></i>
              Register Pledge 
         </button>  
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="showAllTypes()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="showAllTypes()">
             <i class="fa fa-list"></i>
             Pledge Types
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="createType()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="createType()">
         <i class="fa fa-plus"></i>
          Add Type
         </button>
@@ -32,27 +32,21 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-          {{-- All Pledges Made --}}
-           
-        </h6>
-    </div>
-    <div class="card-body">
+    
 
 
 
 
-        <div class="row">
+        <div class="responsive p-1">
  
-          <table  class="table table-bordered ">
+          <table id="example" class="table table-bordered cell-border">
             <thead>
                <tr class="text-secondary">
                   <th>Member Name</th>
                   <th>Pledge(Ahadi)</th>
                 <th>Purpose</th>
                 <th>Amount</th>
-                   <th width="240px">Actions</th>
+                 <th>Actions</th>
 
                 </tr>
             </thead>
@@ -63,9 +57,9 @@
         </table>
         </div>
 
+          <div class="card-footer bg-light"></div>
 
 
-    </div>
 </div>
 
 
@@ -87,11 +81,11 @@
                         <input type="text" name="title" id="title" class="title form-control" placeholder="Enter Pledge Type Title">
                     </div>
                  </div>
-                 <div class="col-md-6"></div>
-                 <div class="col-md-6">
+                 <div class="col-md-7"></div>
+                 <div class="col-md-5">
                     <div class="form-group">
                      
-                        <button type="submit" class="add_type btn btn-primary btn-block" id="save-type-btn">
+                        <button type="submit" class="add_type btn bg-navy btn-block" id="save-type-btn">
                             <i class="fa fa-save"></i>
                             Save Pledge Type
                         </button>
@@ -219,16 +213,15 @@
 
                     <div class="col-md-6 ">
                         <label for="" class="text-secondary"> Pledge Status</label>
-                        {{-- <input type="checkbox" name="status" id="status"> --}}
-                        <select name="status" id="status" class="form-control">
-                          <option value="0">Not Fullfilled</option>
+                        <select name="status" id="status" class="form-control bg-light">
+                          <option value="0">Not Fullfilled</option> 
                           <option value="1">Fullfilled</option>
                         </select>
                     </div>
 
                     <div class="col-md-6 ">
                       <label for="" class="text-white">.</label>
-                        <button class="btn btn-primary btn-block " id="save-pledge-btn" type="submit">
+                        <button class="btn bg-navy btn-block " id="save-pledge-btn" type="submit">
                         <i class="fa fa-save"></i>
                         Save Pledge 
                         </button>
@@ -267,7 +260,7 @@
           <hr>
           <b class="text-secondary">Amount:</b>   <span id="end-info" class="text-dark"></span>
           <hr>
-          <b class="text-secondary">Description:</b> <br>   <span id="description-info" class="text-dark"></span>
+          <b class="text-secondary">Description:</b> <br><span id="description-info" class="text-dark"></span>
       </p>
                 
       </div>
@@ -297,16 +290,16 @@
                       for (var i = 0; i < purposes.length; i++) 
                       {
                           let showBtn =  '<button ' +
-                              ' class="btn btn-primary    " ' +
-                              ' onclick="showPledge(' + purposes[i].id + ')">Show' +
+                              ' class="btn btn-sm bg-teal" ' +
+                              ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                           '</button> ';
                           let editBtn =  '<button ' +
-                              ' class="btn btn-secondary" ' +
-                              ' onclick="editPledge(' + purposes[i].id + ')">Edit' +
+                              ' class="btn btn-sm bg-navy" ' +
+                              ' onclick="editPledge(' + purposes[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger" ' +
-                              ' onclick="destroyPledge(' + purposes[i].id + ')">Delete' +
+                              ' class="btn btn-danger btn-sm" ' +
+                              ' onclick="destroyPledge(' + purposes[i].id + ')"><i class="fa fa-trash"></i>' +
                           '</button>';
        
                           let projectRow = '<tr>' +
@@ -327,7 +320,7 @@
               });
           }
        
-            showAllTypes();
+   
 
 
             /*
@@ -346,12 +339,12 @@
                         {
                           
                             let editBtn =  '<button ' +
-                                ' class="btn btn-secondary" ' +
-                                ' onclick="editType(' + types[i].id + ')">Edit' +
+                                ' class="btn bg-navy btn-sm" ' +
+                                ' onclick="editType(' + types[i].id + ')"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger" ' +
-                                ' onclick="destroyType(' + types[i].id + ')">Delete' +
+                                ' class="btn btn-danger btn-sm" ' +
+                                ' onclick="destroyType(' + types[i].id + ')"><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +

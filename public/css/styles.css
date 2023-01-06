@@ -546,6 +546,53 @@ progress {
     font-size: 3rem;
   }
 }
+.bg-gradient-primary {
+  background-color: #4e73df !important;
+  background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%) !important;
+  background-size: cover;
+}
+
+.bg-gradient-nav{
+  background-color: #0d2879 !important;
+  background-image: linear-gradient(180deg, #0d1d50 10%, #224abe 100%) !important;
+  background-size: cover;
+}
+
+.bg-gradient-secondary {
+  background-color: #858796;
+  background-image: linear-gradient(180deg, #858796 10%, #60616f 100%);
+  background-size: cover;
+}
+
+.bg-gradient-success {
+  background-color: #1cc88a;
+  background-image: linear-gradient(180deg, #1cc88a 10%, #13855c 100%);
+  background-size: cover;
+}
+
+.bg-gradient-info {
+  background-color: #36b9cc;
+  background-image: linear-gradient(180deg, #36b9cc 10%, #258391 100%);
+  background-size: cover;
+}
+
+.bg-gradient-warning {
+  background-color: #f6c23e;
+  background-image: linear-gradient(180deg, #f6c23e 10%, #dda20a 100%);
+  background-size: cover;
+}
+
+.bg-gradient-danger {
+  background-color: #e74a3b;
+  background-image: linear-gradient(180deg, #e74a3b 10%, #be2617 100%);
+  background-size: cover;
+}
+
+.bg-gradient-light {
+  background-color: #f8f9fc;
+  background-image: linear-gradient(180deg, #f8f9fc 10%, #c2cbe5 100%);
+  background-size: cover;
+}
 
 .display-6 {
   font-size: calc(1.375rem + 1.5vw);

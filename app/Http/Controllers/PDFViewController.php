@@ -6,6 +6,7 @@ use PdfReport;
 use App\Models\User;
 use App\Models\Pledge;
 use App\Models\Payment;
+use App\Models\CardPayment;
 use Illuminate\Http\Request;
 
 class PDFViewController extends Controller
@@ -181,4 +182,121 @@ public function pledgesReport(Request $request)
                     ->download('Pledges_Per_Purpose_Report'); 
 }
 
+// For Pledges Per Member Reports
+public function  memberPledgesReport(Request $request) 
+{
+    // Retrieve any filters
+    $fromDate = $request->input('from_date');
+    $toDate = $request->input('to_date');
+    $sortBy = $request->input('sort_by');
+    $member = $request->input('user_id');
+
+    $total=Pledge::select(['user_id','type_id','created_at'])
+    ->whereBetween('created_at', [$fromDate, $toDate])
+    ->where('user_id',$member)
+    ->count();
+
+    $name=User::where('id',$member)->first();
+    // Report title
+    $title = 'Member Pledges Report';
+
+    // For displaying filters description on header
+    $meta = [
+
+         'Member Name: ' => $name->fname .' '.$name->mname.' '.$name->lname.' ','Jumuiya: '=>$name->community->name.' ','Collected From: ' => $fromDate .' ', ' To: ' => $toDate .' ',  'Total Pledges: '=>$total
+      
+    ];
+
+    // Do some querying..
+    $queryBuilder = Pledge::select(['name','user_id','description','purpose_id','status','created_at','amount','deadline'])
+                        ->whereBetween('created_at', [$fromDate, $toDate])
+                        ->where('user_id',$member)
+                        ->with('user')
+                        ->with('purpose')
+                        ->orderBy($sortBy);
+
+    // Set Column to be displayed
+    $columns = [
+
+       
+        'Pledge Title'=>'name',
+        'Purpose' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->purpose->title;
+        },
+        'Description'=>'description',
+        'Status' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->status == 0 ? 'Not Fullfilled':'Fullfiled';
+        },
+        'Amount'=>'amount',
+        
+        
+    ];
+
+    return PdfReport::of($title, $meta, $queryBuilder, $columns)
+                    ->editColumn('Created Date', [
+                        'displayAs' => function($result) {
+                            return $result->created_at->format('d M Y');
+                        }
+                    ])
+                    // ->groupBy('Purpose')
+                    ->showTotal([
+                        'Amount' => 'point'
+                    ])
+                    ->download('Pledges_Per_Purpose_Report'); 
+}
+
+// For Pledges Per Purpose Reports
+public function cardPaymentReport(Request $request) 
+{
+    // Retrieve any filters
+    $fromDate = $request->input('from_date');
+    $toDate = $request->input('to_date');
+    $sortBy = $request->input('sort_by');
+
+    $total=CardPayment::select(['amount','card_member','created_at'])
+    ->whereBetween('created_at', [$fromDate, $toDate])
+    ->sum('amount');
+    // Report title
+    $title = 'Payments Made by Cards Report';
+
+    // For displaying filters description on header
+    $meta = [
+        'Collected From: ' => $fromDate .' ', ' To: ' => $toDate .' ',  'Collected Amount: '=>$total
+      
+    ];
+
+    // Do some querying..
+    $queryBuilder = CardPayment::select(['card_member','created_at','amount'])
+                        ->whereBetween('created_at', [$fromDate, $toDate])
+                        ->with('user')
+                        ->with('card')
+                        ->orderBy($sortBy);
+
+    // Set Column to be displayed
+    $columns = [
+
+        'Full Name' => function($name) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $name->card->user->fname.' '.$name->card->user->mname.' '.$name->card->user->lname;
+        },
+        'Member Card' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+            return $user->card->card->card_no.'/'.$user->card->user_id;
+        },
+        'Payment Date'=>'created_at',
+        'Amount'=>'amount',
+        
+        
+    ];
+
+    return PdfReport::of($title, $meta, $queryBuilder, $columns)
+                    ->editColumn('Payment Date', [
+                        'displayAs' => function($result) {
+                            return $result->created_at->format('d M Y');
+                        }
+                    ])
+                    // ->groupBy('Purpose')
+                    ->showTotal([
+                        'Amount' => 'point'
+                    ])
+                    ->download('Card_Payments_Report'); 
+}
 }

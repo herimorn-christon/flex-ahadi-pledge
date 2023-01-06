@@ -36,11 +36,11 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-navy elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('member/dashboard') }}" class="brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light text-primary">AhadiPledge</span>
+      <span class="brand-text font-weight-light text-navy">AhadiPledge</span>
     </a>
 
     <!-- Sidebar -->
@@ -49,18 +49,26 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper ">
     <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+    <div class="content-header ">
+      <div class="">
+        <div class="row mb-0">
+          <div class="col-sm-6 col-6">
+            <h5 class="m-0 text-white">
+              {{-- <span class="btn badge bg-navy disabled" >
+                Hello, {{ Auth::User()->fname}}  {{ Auth::User()->mname}}  {{ Auth::User()->lname}}
+              </span> --}}
+            </h5>
           </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+          <div class="col-sm-6 col-6">
+            <ol class="float-sm-right" type="none">
+              <h5 class="float-end">
+                <span class=" badge bg-navy ">
+                  <i class="fa fa-clock"></i> &nbsp;
+                  {{ date(('D, d M, Y'))}}
+                </span>
+               </h5>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -70,35 +78,35 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="">
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-lightblue">
               <div class="inner">
-                <h3> 
+                <h5 class=" font-weight-bolder"> 
                   {{$pledges}}
                   <small>Tsh</small>              
-                </h3>
+                </h5>
 
                 <p>Pledges Amount</p>
               </div>
               <div class="icon">
                 <i class="fa fa-dollar-sign"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer ">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-success">
+            <div class="small-box bg-cyan">
               <div class="inner">
-                <h3>
+                <h5 class=" font-weight-bolder"> 
                   {{$payments}}
                   <small>Tsh</small>
-                </h3>
+                </h5>
 
                 <p>Paid Pledges</p>
               </div>
@@ -113,53 +121,60 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>
+                <h5 class=" font-weight-bolder"> 
                   {{$remaining}}
                   <small>Tsh</small>
-                </h3>
+                </h5>
 
                 <p>Remaining Amount</p>
               </div>
               <div class="icon">
                 <i class="fa fa-credit-card"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer ">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-teal">
               <div class="inner">
-                <h3> {{$pledges_no}}</h3>
+                <h5 class=" font-weight-bolder"> 
+                  {{$pledges_no}}
+                </h5>
 
                 <p>Pledges Made</p>
               </div>
-              <div class="icon">
+              <div class="icon mb-1">
                 <i class="fa fa-balance-scale"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer ">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
         </div>
         <!-- /.row -->
         <!-- Main row -->
-        <div class="row">
+        <div class="row ">
         {{--start of Goal Progress  --}}
 
           <div class="col-md-12">
-            <div class="card card-light   ">
-              <div class="card-header">
-                <h6>Goal Progress</h6>
+            <div class="">
+              <div class="p-2">
+                <h6 class="text-secondary font-weight-bolder">
+                <span class="btn bg-white disabled text-navy">
+                  Overall Goal Progress in {{ date('Y')}}
+                </span>
+               </h6>
               </div>
-              <div class="card-body">
+              <div class="">
 
                
                 <div class="col-md-12 py-2">
-                <div class="progress"  style="height: 30px;">
+                <div class="progress"  style="height:25px;">
                   <div class="progress-bar 
-                  progress-bar-striped progress-bar-animated
+                  progress-bar-striped 
+                  progress-bar-animated
                   @if($progress<=25)
                   bg-danger
                   @elseif($progress>25 && $progress<=50)
@@ -179,6 +194,77 @@
               </div>
             </div>
           </div>
+
+          <div class="p-2 col-md-12">
+            <h6 class="text-secondary font-weight-bolder">
+            <span class="btn bg-white disabled text-navy">
+              Daily Statistics and Activities in {{ date('Y')}}
+            </span>
+           </h6>
+          </div>
+
+          {{-- stats --}}
+         
+            <div class="col-md-6 mb-2">
+              <div id="container"></div>
+            </div>
+            <div class="col-md-6 mb-2">
+              <div class="card">
+              <div class="card-header bg-light">
+                <h6 class="text-secondary font-weight-bolder">Latest Pledges Progress</h6>
+              </div>
+              <div class="row">
+              @foreach($mypledges as $item)
+              
+              
+                <div class="col-md-12 mt-2">
+                  <div class="card">
+                    <div class="card-header">
+                      <h6 class="text-secondary ">
+                       
+                        {{ $item->name }}
+                      </h6>
+                    </div>
+                    <div class="">
+      
+                      @php
+                         $purpose= $item->purpose->id; 
+                         $user=Auth::User()->id;
+                         $payment=App\Models\Payment::whereYear('created_at', date('Y'))->where('user_id',$user)->where('pledge_id',$purpose)->sum('amount');
+                         $amount= $item->amount;
+                         $progress=$payment/$amount*100;
+
+                      @endphp
+                      <div class="col-md-12 py-2">
+                      <div class="progress"  style="height:20px;">
+                        <div class="progress-bar 
+                        progress-bar-striped 
+                        progress-bar-animated
+                        @if($progress<=25)
+                        bg-danger
+                        @elseif($progress>25 && $progress<=50)
+                        bg-warning
+                        @elseif($progress>50 && $progress<=75)
+                        bg-primary
+                        @else
+                        bg-success
+                        @endif
+                        "
+      
+                        role="progressbar" style="width: {{ $progress}}%" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
+                      </div>
+                      </div>
+      
+                   
+                    </div>
+                  </div>
+                </div>
+              
+               @endforeach
+              </div>
+            </div>
+            </div>
+       
         </div>
 
         <!-- /.row (main row) -->
@@ -197,6 +283,8 @@
 </div>
 <!-- ./wrapper -->
 
+<!-- ./wrapper -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -231,5 +319,96 @@
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+<script type="text/javascript">
+
+  var users =  <?php echo json_encode($payrate) ?>;
+  
+  
+  
+  Highcharts.chart('container', {
+  
+      title: {
+  
+          text: 'Pledge Payments Trend'
+  
+      },
+  
+  
+  
+       xAxis: {
+  
+          categories: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+  
+      },
+  
+      yAxis: {
+  
+          title: {
+  
+              text: 'Payment Amount (TSH)'
+  
+          }
+  
+      },
+  
+      legend: {
+  
+          layout: 'vertical',
+  
+          align: 'right',
+  
+          verticalAlign: 'middle'
+  
+      },
+  
+      plotOptions: {
+  
+          series: {
+  
+              allowPointSelect: true
+  
+          }
+  
+      },
+  
+      series: [{
+  
+          name: 'Amount',
+  
+          data: users
+  
+      }],
+  
+      responsive: {
+  
+          rules: [{
+  
+              condition: {
+  
+                  maxWidth: 500
+  
+              },
+  
+              chartOptions: {
+  
+                  legend: {
+  
+                      layout: 'horizontal',
+  
+                      align: 'center',
+  
+                      verticalAlign: 'bottom'
+  
+                  }
+  
+              }
+  
+          }]
+  
+      }
+  
+  });
+  
+  </script>
 </body>
 </html>

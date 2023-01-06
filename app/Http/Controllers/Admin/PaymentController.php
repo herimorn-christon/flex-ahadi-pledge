@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\Payment;
 use App\Models\PaymentType;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -57,6 +58,15 @@ class PaymentController extends Controller
             $payment->user_id=$request->user_id;
             $payment->created_by= Auth::user()->id;
             $payment->save();
+
+            // start of user notification
+            $notification = new Notification();
+            $notification->user_id= $request->user_id;
+            $notification->created_by= Auth::user()->id;
+            $notification->type='Member Pledge';
+            $name=$request->amount;
+            $notification->message='Your Payment of '.$name.' Tsh has been confirmed successfully.';
+            $notification->save();
             return response()->json(['status' => "success"]);
     }
 

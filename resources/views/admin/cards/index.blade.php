@@ -7,25 +7,29 @@
 
 
 <div class="row mb-1">
-    <div class="col-sm-6" id="alert-div">
+    <div class="col-sm-5" id="alert-div">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
           {{ session('status') }}
       </div>
       @endif
     </div><!-- /.col -->
-    <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+    <div class="col-sm-7">
+      <ol class="float-sm-right" type="none">
         <li class="">    
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="showAllCards()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="createPayment()">
+            <i class="fa fa-dollar-sign"></i>
+             Add Card Payment
+        </button>
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="showAllCards()">
             <i class="fa fa-envelope"></i>
              Available Cards
         </button>
-        <button type="button" class="btn btn-primary btn-sm"  onclick="createCardMember()">
+        <button type="button" class="btn bg-navy btn-sm"  onclick="createCardMember()">
             <i class="fa fa-list"></i>
              Assign Card
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="createCard()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="createCard()">
         <i class="fa fa-plus"></i>
             Create Card
         </button>
@@ -37,15 +41,11 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-            
-        </h6>
-    </div>
+
     <div class="card-body">
 
         <div class="row">
-            <table  class="table table-bordered ">
+            <table id="example"  class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>
@@ -87,7 +87,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                    
-                      <button type="submit" class="btn btn-primary btn-block" id="save-card-btn">
+                      <button type="submit" class="btn bg-navy btn-block" id="save-card-btn">
                           <i class="fa fa-save"></i>
                           Create Card
                       </button>
@@ -119,17 +119,29 @@
           <form >
             <input type="hidden" name="update_id" id="update_id">
               <div class="row mb-3">
+                @php
+                $cardMember= App\Models\CardMember::where('status','')->get();
+                @endphp
+                <div class="col-md-12">
+                    <label for="" class="text-secondary">Member Card</label>
+                    <select name="card_member" id="card_member"  class="form-control">
+                        <option value="">--Select Member Card --</option>
+                        @foreach ( $cardMember as $item)
+                         <option value="{{ $item->id}}">{{ $item->card->card_no}} / {{ $item->user->id}} </option>
+                         @endforeach
+                    </select>
+                </div>
                <div class="col-md-12">
                   <div class="form-group">
                       <label for="amount" class="text-secondary">Paid Amount</label>
-                      <input type="text" name="amount" id="card" class="form-control" placeholder="Enter Paid Amount">
+                      <input type="text" name="card_amount" id="card_amount" class="form-control" placeholder="Enter Paid Amount">
                   </div>
                </div>
                <div class="col-md-6"></div>
                <div class="col-md-6">
                   <div class="form-group">
                    
-                      <button type="submit" class="btn btn-primary btn-block" id="save-card-btn">
+                      <button type="submit" class="btn bg-navy btn-block" id="save-payment-btn">
                           <i class="fa fa-save"></i>
                           Save Card Payment
                       </button>
@@ -153,7 +165,7 @@
   
 
   <div class="modal fade" id="member-modal">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog ">
       <div class="modal-content">
         <div class="modal-header bg-light">
           <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -200,7 +212,7 @@
                       </div>
   
                       <div class="col-md-6 ">
-                          <button class="btn btn-primary btn-block " id="save-member-btn" type="submit">
+                          <button class="btn bg-navy btn-block " id="save-member-btn" type="submit">
                           <i class="fa fa-save"></i>
                           Assign Card
                           </button>
@@ -282,17 +294,7 @@
               </tbody>
           </table>
       <hr>
-      <div class="row">
-        <div class="col-md-6" id="add-payment">
-          
-        </div>
-        <div class="col-md-6">
-        <button class="btn btn-sm btn-primary btn-block" onclick="">  
-          Add Card Payment
-        </button>
-        </div>
-        
-      </div>
+
       </div>
                 
       </div>
@@ -301,6 +303,8 @@
   </div>
   <!-- /.modal-dialog -->
 </div>
+
+
 
 
 
@@ -323,16 +327,16 @@
                       for (var i = 0; i < members.length; i++) 
                       {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-primary    " ' +
-                                ' onclick="showCardMember(' + members[i].id + ')">Show' +
+                                ' class="btn bg-teal  btn-sm   " ' +
+                                ' onclick="showCardMember(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                           let editBtn =  '<button ' +
-                              ' class="btn btn-secondary" ' +
-                              ' onclick="editCardMember(' + members[i].id + ')">Edit' +
+                              ' class="btn bg-navy btn-sm" ' +
+                              ' onclick="editCardMember(' + members[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger" ' +
-                              ' onclick="destroyCardMember(' + members[i].id + ')">Delete' +
+                              ' class="btn btn-danger btn-sm" ' +
+                              ' onclick="destroyCardMember(' + members[i].id + ')"><i class="fa fa-trash"></i>' +
                           '</button>';
                           let status= members[i].status == '0' ? 'Active':'InActive';
        
@@ -439,7 +443,8 @@
               $("#card").val("");
               $("#form-modal").modal('show'); 
           }
-       
+
+
           /*
               submit the form and will be stored to the database
           */
@@ -565,7 +570,91 @@
             });
         }
      
+
+   function createPayment()
+          {
+              $("#alert-div").html("");
+              $("#error-div").html("");   
+              $("#update_id").val("");
+              $("#card_member").val("");
+              $("#card_amount").val("");
+              $("#payment-modal").modal('show'); 
+          }
+       
      
+        /*
+              check if form submitted is for creating or updating
+          */
+          $("#save-payment-btn").click(function(event ){
+              event.preventDefault();
+              if($("#update_id").val() == null || $("#update_id").val() == "")
+              {
+                  storePayment();
+              } else {
+                  updatePayment();
+              }
+          })
+       
+
+     
+
+  
+
+         /*
+              submit the form and will be stored to the database
+          */
+          function storePayment()
+          {   
+              $("#save-payment-btn").prop('disabled', true);
+              let url = $('meta[name=app-url]').attr("content") + "/admin/card-payments";
+              let data = {
+                  card_member: $("#card_member").val(),
+                  card_amount: $("#card_amount").val(),
+              };
+              $.ajax({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: url,
+                  type: "POST",
+                  data: data,
+                  success: function(response) {
+                      $("#save-payment-btn").prop('disabled', false);
+                      let successHtml = '<div class="alert alert-success" role="alert">Payment Was Recorded Successfully</div>';
+                      $("#alert-div").html(successHtml);
+                      $("#card_member").val("");
+                      $("#card_amount").val("");
+  //                     showAllCards();
+                      $("#payment-modal").modal('hide');
+                  },
+                  error: function(response) {
+                      $("#save-payment-btn").prop('disabled', false);
+       
+                      /*
+          show validation error
+                      */
+                      if (typeof response.responseJSON.errors !== 'undefined') 
+                      {
+          let errors = response.responseJSON.errors;
+          let amountValidation = "";
+          if (typeof errors.card_amount !== 'undefined') 
+                          {
+                              amountValidation = '<li>' + errors.card_amount[0] + '</li>';
+                          }
+          let cardValidation = "";
+          if (typeof errors.card_member !== 'undefined') 
+                          {
+                              cardValidation = '<li>' + errors.card_member[0] + '</li>';
+                          }
+          let errorHtml = '<div class="alert alert-danger" role="alert">' +
+              '<b>Validation Error!</b>' +
+              '<ul>' + amountValidation  + cardValidation  +'</ul>' +
+          '</div>';
+          $("#error-div").html(errorHtml);        
+      }
+                  }
+              });
+          }
        
           /*
               edit record function
@@ -686,17 +775,17 @@
                       {
                          
                           let editBtn =  '<button ' +
-                              ' class="btn btn-secondary" ' +
-                              ' onclick="editPayment(' + payment[i].id + ')">Edit' +
+                              ' class="btn bg-navy btn-sm" ' +
+                              ' onclick="editPayment(' + payment[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger" ' +
-                              ' onclick="destroyPayment(' + payment[i].id + ')">Delete' +
+                              ' class="btn btn-danger btn-sm" ' +
+                              ' onclick="destroyCardPayment(' + payment[i].id + ')"><i class="fa fa-trash"></i>' +
                           '</button>';
        
                           let projectRow = '<tr>' +
                               '<td>' + payment[i].id + '</td>' +
-                              '<td>' + payment[i].created_at + '</td>' +
+                              '<td>' + payment[i].created_at+ '</td>' +
                               '<td>' + payment[i].amount + '</td>' +
                               '<td>'  + editBtn + deleteBtn + '</td>' +
                           '</tr>';
@@ -761,6 +850,36 @@
                       $("#alert-div").html(successHtml);
                       showAllCardMembers();
                       showAllCards();
+                   
+                  },
+                  error: function(response) {
+                      console.log(response.responseJSON)
+                  }
+              });
+          }
+
+   /*
+              delete record function
+          */
+          function destroyCardPayment(id)
+          {
+              let url = $('meta[name=app-url]').attr("content") + "/admin/card-payments/" + id;
+              let data = {
+                  card_member: $("#card_member").val(),
+                  amount: $("#card_amount").val(),
+              };
+              $.ajax({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: url,
+                  type: "DELETE",
+                  data: data,
+                  success: function(response) {
+                      let successHtml = '<div class="alert alert-danger" role="alert">Card Payment Was Deleted Successfully </div>';
+                      $("#alert-div").html(successHtml);
+                      showAllCardMembers();
+                      $("#view-modal").modal('hide'); 
                   },
                   error: function(response) {
                       console.log(response.responseJSON)

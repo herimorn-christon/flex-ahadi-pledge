@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Pledge;
 use App\Models\Purpose;
 use App\Models\PledgeType;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -58,6 +59,16 @@ class PledgeController extends Controller
             $pledge->status= $request->status == true ? '1':'0';
             $pledge->created_by= Auth::user()->id;
             $pledge->save();
+
+            // saving user notification
+            $notification = new Notification();
+            $notification->user_id= $request->user_id;
+            $notification->created_by= Auth::user()->id;
+            $notification->type='Member Pledge';
+            $name=$request->name;
+            $notification->message='Hello,You have made a new pledge tited '.$name.'.';
+            $notification->save();
+            
             return response()->json(['status' => "success"]);
     }
 

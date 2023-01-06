@@ -6,6 +6,7 @@ use App\Models\CardMember;
 use App\Models\CardPayment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CardPaymentController extends Controller
 {
@@ -31,16 +32,16 @@ class CardPaymentController extends Controller
         request()->validate(
             [
             'card_member' => 'required',
-            'amount' => 'required',
+            'card_amount' => 'required',
              ]
             );
 
            
-            $payment =new CardPayment();
-            $payment->card_member=$request->card_member;
-            $payment->amount=$request->amount;
-            $payment->created_by= Auth::user()->id;
-            $payment->save();
+            $card =new CardPayment();
+            $card->card_member=$request->card_member;
+            $card->amount=$request->card_amount;
+            $card->created_by= Auth::user()->id;
+            $card->save();
 
             return response()->json(['status' => "success"]);
     }
@@ -79,6 +80,9 @@ class CardPaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // CardPayment::destroy($id);
+        $card=CardPayment::where('id',$id)->first();
+        $card->delete();
+        return response()->json(['status' => "success"]);
     }
 }

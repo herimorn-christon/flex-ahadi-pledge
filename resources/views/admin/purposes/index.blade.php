@@ -11,10 +11,10 @@
 
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+      <ol class="float-sm-right" type="none">
         <li class="">    
 
-        <button type="button" class="btn btn-primary btn-sm"  onclick="createPurpose()">
+        <button type="button" class="btn bg-navy btn-sm"  onclick="createPurpose()">
         <i class="fa fa-plus"></i>
          Add New Purpose
         </button>
@@ -26,24 +26,17 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-          {{-- All Communities --}}
-        </h6>
-    </div>
-    <div class="card-body">
 
 
 
-
-        <div class="row">
-            <table  class="table table-bordered responsive">
+        <div class="responsive p-1">
+            <table id="example" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
                         <th>Purpose Title</th>
                         <th>Start Date</th>
                         <th>End Date</th>
-                         <th width="240px">Actions</th>
+                         <th>Actions</th>
 
                     </tr>
                 </thead>
@@ -54,9 +47,6 @@
 
         </div>
 
-
-
-    </div>
 </div>
 
 
@@ -90,13 +80,13 @@
              <textarea class="form-control" id="description" rows="3" name="description"></textarea>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-9">
 
             </div>
-            <div class="mb-3 col-md-6">
-               <button type="submit" class="btn btn-primary btn-block " id="save-purpose-btn">
+            <div class="mb-3 col-md-3">
+               <button type="submit" class="btn bg-navy btn-block " id="save-purpose-btn">
                 <i class="fa fa-save"></i>
-                Save Community
+                Save Purpose
               </button>
             </div>
           </div>
@@ -111,7 +101,7 @@
 
 {{-- View Single Purpose --}}
 <div class="modal" id="view-modal" tabindex="-1" >
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
       <div class="modal-content">
         <div class="modal-header bg-light">
           <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -125,9 +115,77 @@
                 <hr>
                 <b class="text-secondary">End Date:</b>   <span id="end-info" class="text-dark"></span>
                 <hr>
-                <b class="text-secondary">Description:</b> <br>   <span id="description-info" class="text-dark"></span>
+                <b class="text-secondary">Description:</b> <br><span id="description-info" class="text-dark"></span>
             </p>
               <hr>
+   <div class="">
+                <div class="card">
+                  <div class="card-header p-2">
+                    <ul class="nav nav-pills">
+                      <li class="nav-item"><a class="nav-link active bg-light nav-light" href="#timeline" data-toggle="tab">Pledges Made</a></li>
+                      <li class="nav-item"><a class="nav-link bg-light" href="#pledges" data-toggle="tab">Payments Made</a></li>
+                     
+                    </ul>
+                  </div><!-- /.card-header -->
+                  <div class="">
+                    <div class="tab-content">
+                      <div class="active tab-pane" id="pledges">
+                        {{-- start of member payments --}}
+                        <table id=""  class="table table-bordered cell-border mx-1">
+                            <thead>
+                                <tr class="text-secondary">
+                                    <th>ID</th>
+                                    <th>Member Fullname</th>
+                                    <th>Payment Date</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payments-table-body">
+
+                            </tbody>
+                            <tfoot></tfoot>
+                        </table>
+            
+                      </div>
+                      <!-- /.tab-pane -->
+                      <div class="tab-pane" id="timeline">
+                     
+                        {{-- start of pledges --}}
+     
+                        <table id=""  class="table table-bordered ">
+                            <thead>
+                                <tr class="text-secondary">
+                                    <th>ID</th>
+                                    <th>Pledge Name</th>
+                                    <th>Amount</th>
+                                    <th>Deadline</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="pledges-table-body">
+                                
+                
+                            </tbody>
+                         </table>
+                        {{-- end of pledges --}}
+                     
+                    
+                    
+                    </div>
+                      <!-- /.tab-pane -->
+    
+                    
+                     
+                    
+                      </div>
+                      <!-- /.tab-pane -->
+                    </div>
+                    <!-- /.tab-content -->
+                  </div><!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+              </div>
         </div>
       </div>
     </div>
@@ -156,16 +214,16 @@
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-primary    " ' +
-                                ' onclick="showPurpose(' + purposes[i].id + ')">Show' +
+                                ' class="btn btn-sm bg-teal" ' +
+                                ' onclick="showPurpose(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
-                                ' class="btn btn-secondary" ' +
-                                ' onclick="editPurpose(' + purposes[i].id + ')">Edit' +
+                                ' class="btn btn-sm bg-navy" ' +
+                                ' onclick="editPurpose(' + purposes[i].id + ')"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger" ' +
-                                ' onclick="destroyPurpose(' + purposes[i].id + ')">Delete' +
+                                ' class="btn btn-sm btn-danger" ' +
+                                ' onclick="destroyPurpose(' + purposes[i].id + ')"><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +
@@ -398,11 +456,45 @@
                     url: url,
                     type: "GET",
                     success: function(response) {
+                        $("#payments-table-body").html("");
+                        $("#pledges-table-body").html("");
                         let purpose = response.purpose;
                         $("#title-info").html(purpose.title);
                         $("#start-info").html(purpose.start_date);
                         $("#end-info").html(purpose.end_date);
                         $("#description-info").html(purpose.description);
+
+                        // for pledges
+                        
+                        let pledges = response.pledges;
+                        for (var i = 0; i < pledges.length; i++) 
+                        {      
+         
+                          let pledgesRow = '<tr>' +
+                                '<td>' + pledges[i].id + '</td>' +
+                                '<td>' + pledges[i].name + '</td>' +
+                                '<td>' + pledges[i].amount + '</td>' +
+                                '<td>' + pledges[i].deadline + '</td>' +
+                                '<td class="text-success">' + (pledges[i].status == '0' ? 'Not Fullfilled':'Fullfilled') + '</td>' +
+                            '</tr>';
+                            $("#pledges-table-body").append(pledgesRow);
+                        }
+                        // for payments
+                                                            
+                        let payments = response.payments;
+                        for (var i = 0; i < payments.length; i++) 
+                        {      
+         
+                       let paymentsRow = '<tr>' +
+                                '<td>' + payments[i].id + '</td>' +
+                                '<td>' + payments[i].payer.fname + '&nbsp;'+ payments[i].payer.mname + '&nbsp;'+ payments[i].payer.lname +'</td>' +
+                                '<td>' + payments[i].created_at + '</td>' +
+                                '<td>' + payments[i].amount + '</td>' +
+                                '<td>' + payments[i].payment.name + '</td>' +
+                            '</tr>';
+                            $("#payments-table-body").append(paymentsRow);
+                        }
+
                         $("#view-modal").modal('show'); 
          
                     },

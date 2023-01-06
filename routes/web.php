@@ -8,9 +8,15 @@ use App\Http\Controllers\Admin\MethodController;
 use App\Http\Controllers\Admin\PledgeController;
 use App\Http\Controllers\Admin\JumuiyaController;
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PurposeController;
+use App\Http\Controllers\Member\MyCardController;
+use App\Http\Controllers\Member\MethodsController;
+use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
 use App\Http\Controllers\Admin\CardPaymentController;
+use App\Http\Controllers\Member\MyPaymentsController;
+use App\Http\Controllers\Member\MyNotificationsController;
 
 // use App\Http\Controllers\Controller\DashboardController;
 
@@ -127,7 +133,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   // CardMember API route
   Route::apiResource('card-member', CardMemberController::class);
     // CardPayment API route
-    Route::apiResource('card-payments', CardPaymentController::class);
+  Route::apiResource('card-payments', CardPaymentController::class);
 
 //Create Card method route  
   Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);
@@ -138,8 +144,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 //Delete Card method Route  
   Route::get('delete-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'destroy']);
 
-//Create Card method route  
-  Route::post('assign-card', [App\Http\Controllers\Admin\CardMemberController::class,'save']);
+
 
 // All reports page route
   Route::get('/all-reports', function () {
@@ -151,9 +156,24 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::get('collected-payments', [App\Http\Controllers\PDFViewController::class, 'paymentReport']);
   // Collected Payments Reports
   Route::get('pledges-purposes', [App\Http\Controllers\PDFViewController::class, 'pledgesReport']);
- // my-profile
-  Route::get('/my-profile', [App\Http\Controllers\Admin\ProfileController::class,'index']);
+  // Cards Payments Report 
+  Route::get('card-payments', [App\Http\Controllers\PDFViewController::class, 'cardPaymentReport']);
+  // Member Pledges Report
+  Route::get('member-pledges', [App\Http\Controllers\PDFViewController::class, 'memberPledgesReport']);
 
+// settings page route
+Route::get('/settings', function () {
+  return view('admin.settings');
+  });
+
+ // my-profile
+  // Route::get('/my-profile', [App\Http\Controllers\Admin\ProfileController::class,'index']);
+
+  Route::get('/my-profile', function () {
+    return view('admin.profile.index');
+    });
+// my-profile API
+  Route::apiResource('profile', ProfileController::class);
 });
 // for Member
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()
@@ -162,16 +182,62 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::get('/dashboard', [App\Http\Controllers\Member\DashboardController::class,'index']);
 
  // my-pledges route
- Route::get('/my-pledges', [App\Http\Controllers\Member\PledgeController::class,'index']);
+    // Route::get('/my-pledges', [App\Http\Controllers\Member\PledgeController::class,'index']);
+    Route::get('/my-pledges', function () {
+      return view('member.pledges.index');
+      });
+// my-pledges API
+    Route::apiResource('pledges', MyPledgeController::class);
 
   //Create Pledge Route
   Route::post('save-pledge', [App\Http\Controllers\Member\PledgeController::class,'save']);
 
  // my-payments
- Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
-  // my-payments
-  Route::get('/my-cards', [App\Http\Controllers\Member\CardController::class,'index']);
+//  Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
+  Route::get('/my-payments', function () {
+  return view('member.payments.index');
+  });
+// my-pledges API
+  Route::apiResource('payments', MyPaymentsController::class);
+  // Payment Methods API route
+  Route::apiResource('methods', MethodsController::class);
+  // my-cards
+  // Route::get('/my-cards', [App\Http\Controllers\Member\CardController::class,'index']);
+  
+    Route::get('my-cards', function () {
+    return view('member.cards.index');
+    });
+  // my-cards API
+    Route::apiResource('cards', MyCardController::class);
 
- // my-profile
- Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
+  //Create Card method route  
+   Route::post('request-card', [App\Http\Controllers\Member\MyCardController::class,'store']);  
+      
+    Route::get('my-notifications', function () {
+      return view('member.notifications.index');
+      });
+  // my-notifications API
+    Route::apiResource('notifications', MyNotificationsController::class);
+
+ // All reports page route
+    Route::get('my-reports', function () {
+     return view('member.reports.index');
+    });
+  // Pledges Made  Reports
+    Route::get('pledges-report', [App\Http\Controllers\Member\MyReportController::class,'pledgesReport']);
+  // Pledges Payment  Reports
+    Route::get('pledges-payment-report', [App\Http\Controllers\Member\MyReportController::class,'paymentReport']);
+  // Pledges Payment  Reports
+    Route::get('cards-payment-report', [App\Http\Controllers\Member\MyReportController::class,'cardReport']);
+    // Pledges Payment  Reports
+    Route::get('contributions-report', [App\Http\Controllers\Member\MyReportController::class,'purposeReport']);
+  // For my settings
+  // settings page route
+    Route::get('/settings', function () {
+      return view('member.settings');
+      });
+  // member change password route
+    Route::post('change-password', [App\Http\Controllers\Member\ProfileController::class,'store']);
+  // my-profile
+    Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });

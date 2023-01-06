@@ -10,7 +10,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item ">
-          <a href="{{ url('member/dashboard') }}" class="nav-link {{ Request::is('member/dashboard') ? 'active':'' }}">
+          <a href="{{ url('member/dashboard') }}" class="nav-link {{ Request::is('member/dashboard') ? 'active':'' }} {{ Request::is('member/my-notifications') ? 'active':'' }}">
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>
               Dashboard
@@ -42,7 +42,7 @@
           </a>
           
           <li class="nav-item">
-            <a href="{{ url('member/dashboard') }}" class="nav-link">
+            <a href="{{ url('member/my-reports') }}" class="nav-link {{ Request::is('member/my-reports') ? 'active':'' }}">
               <i class="nav-icon fas fa-file-pdf"></i>
               <p>
                 My Reports
@@ -50,7 +50,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('member/dashboard') }}" class="nav-link">
+            <a href="{{ url('member/settings') }}" class="nav-link {{ Request::is('member/settings') ? 'active':'' }}">
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Settings

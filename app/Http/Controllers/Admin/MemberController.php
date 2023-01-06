@@ -117,7 +117,10 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = User::with('community')->find($id);
-        return response()->json(['member' => $member]);
+        $payments = Payment::where('user_id',$id)->with('payment')->with('purpose')->get();
+        $pledges= Pledge::where('user_id',$id)->with('type')->with('purpose')->get();
+        $cards=CardMember::where('user_id',$id)->with('user')->with('card')->get();
+        return response()->json(['member' => $member,'payments' =>$payments,'pledges'=>$pledges,'cards'=>$cards]);
     }
 
     // edit details function
@@ -128,26 +131,7 @@ class MemberController extends Controller
     }
 
     
-    // update
-    // public function update(updateMemberFormRequest $request,$id)
-    // {
-    //     $data=$request->validated();
-    //     $user =User::find($id);
-    //     $user->fname=$data['fname'];
-    //     $user->mname=$data['mname'];
-    //     $user->lname=$data['lname'];
-    //     $user->email=$data['email'];
-    //     $user->phone=$data['phone'];
-    //     $user->gender=$data['gender'];
-    //     $user->date_of_birth=$data['date_of_birth'];
-    //     $user->jumuiya=$data['jumuiya'];
-    //     $user->status= $request->status == true ? '1':'0';
-        
-    //     $user->save();
-       
-    //     return redirect('admin/all-members')->with('status','Member was Updated Successfully');
-      
-    // }
+
 
     public function update(Request $request, $id)
     {
@@ -177,37 +161,7 @@ class MemberController extends Controller
         return response()->json(['status' => "success"]);
     }
 
-    // public function create(memberFormRequest $request)
-    // {
-    //     $data=$request->validated();
-    //     $user =new User;
-    //     $user->fname=$data['fname'];
-    //     $user->mname=$data['mname'];
-    //     $user->lname=$data['lname'];
-    //     $user->email=$data['email'];
-    //     $user->phone=$data['phone'];
-    //     $user->gender=$data['gender'];
-    //     $user->date_of_birth=$data['date_of_birth'];
-    //     $user->jumuiya=$data['jumuiya'];
-    //     $user->password= Hash::make($data['password']);
-    //     $user->save();
-
-    //     return redirect('admin/all-members')->with('status','Member was Registered Successfully');
-    // }
-
-        // delete Member function
-        // public function destroy($id)
-        // {
-        //     $user=User::find($id);
-
-        //     if($user){
-        //         $user->delete();
-        //         return redirect('admin/all-members')->with('status','Member was deleted Successfully');
-        //     }
-        //     else{
-        //         return redirect('admin/all-members')->with('status','No Member ID was found !');
-        //     }
-        // }
+    
 
             /**
      * Remove the specified resource from storage.

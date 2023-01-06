@@ -14,6 +14,8 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+         <!-- Theme style -->
+        <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
           <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
@@ -36,7 +38,7 @@
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
-                    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn  bg-navy  " data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Login To Your Account
                     </button>
                     @endif
@@ -70,7 +72,7 @@
                         <div class=" text-white">
                             <!-- System Tiite -->
                             <h1 class="" style="font-weight: bold;text-shadow: rgb(255, 255, 255) 1px 0 10px;">
-                             <span class="text-primary">Ahadi</span>
+                             <span class="text-navy">Ahadi</span>
                              <span class="text-danger">Pledge</span>
                             </h1>
                         
@@ -85,10 +87,10 @@
                                 <!-- Email address input-->
                                 <div class="row">
                                     <div class="col-xl-8 mx-auto">
-                                        <a data-bs-toggle="modal" data-bs-target="#registerModal" href="#myModal" class="btn btn-danger btn-block font-weight-bolder   mt-2">Join Us Now !</a>
+                                        <a data-bs-toggle="modal" data-bs-target="#registerModal" href="#myModal" class="btn bg-danger  font-weight-bolder   mt-2">Join Us Now !</a>
 
                                   
-                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal" href="Member/dashboard.html" data-toggle="modal"  data-target="#loginModal"  class="btn btn-primary btn-block  mt-2 ">Login To Your Account</a>
+                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"  data-toggle="modal"  data-target="#loginModal"  class="btn  bg-navy  mt-2 font-weight-bolder">Login To Your Account</a>
 
                                     </div>
                                 </div>
@@ -107,28 +109,28 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
+                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-navy"></i></div>
                             <h4 class="text-danger">Easy to Use</h4>
                             <p class="lead mb-0 text-secondary">Ready to use with your own content, or customize it!</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-clipboard-data m-auto text-primary"></i></div>
+                            <div class="features-icons-icon d-flex"><i class="bi-clipboard-data m-auto text-navy"></i></div>
                             <h4 class="text-danger">Easy Management</h4>
                             <p class="lead mb-0 text-secondary">You can easily handle your daily Pledges.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-bell m-auto text-primary"></i></div>
+                            <div class="features-icons-icon d-flex"><i class="bi-bell m-auto text-navy"></i></div>
                             <h4 class="text-danger">Daily Reminders</h4>
                             <p class="lead mb-0 text-secondary">Receive Daily Notifications of Your Pledges.</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 ">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <div class="features-icons-icon d-flex"><i class="bi-headphones m-auto text-primary"></i></div>
+                            <div class="features-icons-icon d-flex"><i class="bi-headphones m-auto text-navy"></i></div>
                             <h4 class="text-danger">Full Support</h4>
                             <p class="lead mb-0 text-secondary">We Offer You Full Customer Support.</p>
                         </div>
@@ -152,33 +154,24 @@
 
                 <div class="row mb-2">
                    
-
-                    <div class="col-md-12">
-                        <label for="email" class=" text-secondary mb-2">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                            Phone Number
-                        </label>
-                        
-                        <input id="phone" placeholder="Phone Number/Nambari ya Simu" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
-
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" id="phone" placeholder="Phone Number/Nambari ya Simu" aria-label="Username" aria-describedby="basic-addon1">
                         @error('phone')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                     </div>
+      
                 </div>
 
                 <div class="row mb-3">
                    
 
-                    <div class="col-md-112">
-                        <label for="password" class="text-secondary  mb-2">
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                            Password
-                            </label>
-                            
-                        <input id="password" placeholder="Password/Neno siri" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <div class="input-group mb-32">
+                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
+                        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password/Neno siri" aria-label="Password" aria-describedby="basic-addon1" required autocomplete="current-password">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -200,7 +193,7 @@
                         </div>
                     </div>
                     <div class="col-md-6 ">
-                        <button type="submit" class="btn btn-primary btn-block col-lg-12">
+                        <button type="submit" class="btn bg-navy btn-block col-lg-12">
                             {{ __('Login') }}
 
                             <i class="fa fa-sign-in-alt"></i>
@@ -290,7 +283,7 @@
                 $jumuiya= App\Models\Jumuiya::get();
                 @endphp
                 <div class="col-md-6">
-                    <label for="">Jumuiya (Community) </label>
+                    <label for="" class="text-secondary">Jumuiya (Community) </label>
                     <select name="jumuiya" class="form-control">
                         <option value="">--Select Community (Jumuiya) --</option>
                         @foreach ( $jumuiya as $item)
@@ -343,7 +336,7 @@
                     <div class="row">
                         <div class="col-md-6"></div>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-block text-decoration-none text-light bg-primary btn-block col-lg-12">
+                            <button type="submit" class="btn btn-block text-decoration-none text-light bg-info bg-navy btn-block col-lg-12">
                                 {{ __('Register') }}
                             </button>
                         </div>

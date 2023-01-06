@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Card;
 use App\Models\CardMember;
 use App\Models\CardPayment;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CardMemberController extends Controller
 {
@@ -50,6 +52,14 @@ class CardMemberController extends Controller
             $member->user_id=$request->user_id;
             $member->status= $request->status == true ? '1':'0';
             $member->save();
+
+            $notification = new Notification();
+            $notification->user_id= $request->user_id;
+            $notification->created_by= Auth::user()->id;
+            $notification->type='New Card !';
+            $name=$request->card_no.' /'.$request->user_id;
+            $notification->message='Habari,Umetengenezewa kadi mpya yenye namba : '.$name.'. Hakikisha unaitumia hiyo kadi tu.';
+            $notification->save();
 
             return response()->json(['status' => "success"]);
     }

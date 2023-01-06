@@ -41,17 +41,17 @@
     <!-- DataTables -->
     <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
   
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-    {{-- <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script> --}}
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     {{-- for autosearch --}}
@@ -63,7 +63,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     
-  
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -74,11 +74,11 @@
   @include('layouts.inc.admin-navbar')
   <!-- /.navbar -->
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-primary elevation-4">
+  <aside class="main-sidebar sidebar-light-navy elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="text-decoration-none brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text text-info font-weight-light">AhadiPledge</span>
+      <span class="brand-text text-white font-weight-light">AhadiPledge</span>
     </a>
 
     <!-- Sidebar -->
@@ -90,7 +90,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container-fluid">
+      <div class="">
  
         <!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -100,7 +100,7 @@
     <!-- Main content -->
     <section class="content">
       
-      <div class="container-fluid mt-3">
+      <div class=" mt-3">
         
         @yield('content')
 
@@ -110,7 +110,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer mt-4">
-    <strong>Copyright &copy; 2022 <a href="#" class="text-decoration-none text-primary">AhadiPledge</a>.</strong>
+    <strong>Copyright &copy; {{ date('Y')}} <a href="#" class="text-decoration-none text-navy">AhadiPledge</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 0.0.1
@@ -131,6 +131,16 @@
   $(document).ready( function () {
 $('#mytable').DataTable(
   {
+    ordering:  true,
+    searching:  true,
+    autoWidth: false,
+    responsive: true
+  }
+);
+} );
+$(document).ready( function () {
+$('#modaltable').DataTable(
+  {
     ordering:  false,
     searching:  true,
     autoWidth: false,
@@ -139,6 +149,10 @@ $('#mytable').DataTable(
   }
 );
 } );
+
+$(document).ready(function () {
+    $('#example').DataTable();
+});
 </script>
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

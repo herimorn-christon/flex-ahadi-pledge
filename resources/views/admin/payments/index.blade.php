@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title','All Communities')
+@section('title','Admin | Manage Payments')
 
 
 @section('content')
@@ -15,17 +15,17 @@
       @endif
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+      <ol class="float-sm-right" type="none">
         <li class=""> 
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="createPledge()">
+        <button type="button" class="btn bg-navy btn-sm mb-2" data-toggle="modal" onclick="createPledge()">
             <i class="fa fa-plus"></i>
             Register Payment
         </button>   
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
+        <button type="button" class="btn bg-navy btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
              Payment Methods
         </button>
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
+        <button type="button" class="btn bg-navy btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
         <i class="fa fa-plus"></i>
          Add Payment Method
         </button>
@@ -37,25 +37,16 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-          
-        </h6>
-    </div>
-    <div class="card-body">
 
-
-
-
-        <div class="row">
-            <table  class="table table-bordered responsive">
+        <div class="responsiveness p-1">
+            <table id="example" class="table table-bordered cell-border responsive">
                 <thead>
                      <tr class="text-secondary">
                         <th>Payer Name</th>
                         <th>Payment Method</th>
                         <th>Purpose</th>
                         <th>Amount</th>
-                        <th width="240px">Actions</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody id="projects-table-body">
@@ -63,11 +54,6 @@
   
                 </tbody>
             </table>
-
-        </div>
-
-
-
     </div>
 </div>
 
@@ -94,7 +80,7 @@
                  <div class="col-md-6">
                     <div class="form-group">
                      
-                        <button type="submit" class="btn btn-primary btn-block" id="save-method-btn">
+                        <button type="submit" class="btn bg-navy btn-block" id="save-method-btn">
                             <i class="fa fa-save"></i>
                             Save Payment Method
                         </button>
@@ -187,8 +173,7 @@
                             @endforeach
                         </select>
                     </div>
-
-     
+           
                     @php
                     $purpose= App\Models\PaymentType::get();
                     @endphp
@@ -211,7 +196,7 @@
                  <div class="col-md-6">
                     <div class="form-group">
                      
-                        <button type="submit" class="btn btn-primary btn-block" id="save-pledge-btn">
+                        <button type="submit" class="btn btn-sm bg-navy btn-block" id="save-pledge-btn">
                             <i class="fa fa-save"></i>
                             Save Payment
                         </button>
@@ -279,16 +264,16 @@
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-primary    " ' +
-                                ' onclick="showPledge(' + purposes[i].id + ')">Show' +
+                                ' class="btn btn-sm bg-teal    " ' +
+                                ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
-                                ' class="btn btn-secondary" ' +
-                                ' onclick="editPledge(' + purposes[i].id + ')">Edit' +
+                                ' class="btn btn-sm bg-navy" ' +
+                                ' onclick="editPledge(' + purposes[i].id + ')"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger" ' +
-                                ' onclick="destroyPledge(' + purposes[i].id + ')">Delete' +
+                                ' class="btn btn-danger btn-sm" ' +
+                                ' onclick="destroyPledge(' + purposes[i].id + ')"><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +
@@ -329,12 +314,12 @@
                         {
                           
                             let editBtn =  '<button ' +
-                                ' class="btn btn-secondary" ' +
-                                ' onclick="editMethod(' + methods[i].id + ')">Edit' +
+                                ' class="btn btn-sm bg-navy" ' +
+                                ' onclick="editMethod(' + methods[i].id + ')"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger" ' +
-                                ' onclick="destroyMethod(' + methods[i].id + ')">Delete' +
+                                ' class="btn btn-danger btn-sm" ' +
+                                ' onclick="destroyMethod(' + methods[i].id + ')"><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +

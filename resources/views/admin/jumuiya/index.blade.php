@@ -11,10 +11,10 @@
 
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+      <ol class=" float-sm-right" type="none">
         <li class="">    
 
-        <button type="button" class="btn btn-primary btn-sm"  onclick="createProject()">
+        <button type="button" class="btn  bg-navy btn-sm"  onclick="createProject()">
         <i class="fa fa-plus"></i>
          Add New Community
         </button>
@@ -26,20 +26,16 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-          {{-- All Communities --}}
-        </h6>
-    </div>
-    <div class="card-body">
+    <div class="">
 
 
 
 
-        <div class="row">
-            <table class="table table-bordered responsive">
+        <div class="mt-3 p-1">
+            <table id="example" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
+                        <th>ID</th>
                         <th>Jumuiya Name</th>
                         <th>Abbreviation</th>
                         <th>Location</th>
@@ -60,8 +56,8 @@
 
 
 
-{{-- test modal --}}
-<div class="modal" id="form-modal" tabindex="-1" >
+{{-- add community modal --}}
+<div class="modal fade" id="form-modal" tabindex="-1" >
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-light">
@@ -89,7 +85,7 @@
 
             </div>
             <div class="mb-3 col-md-6">
-               <button type="submit" class="btn btn-primary btn-block " id="save-project-btn">
+               <button type="submit" class="btn bg-navy btn-block " id="save-project-btn">
                 <i class="fa fa-save"></i>
                 Save Community
               </button>
@@ -103,36 +99,58 @@
   </div>
 </div>
 
-      <!-- view record modal -->
-      <div class="modal" tabindex="-1" id="view-modal">
-          <div class="modal-dialog modal-lg" >
-              <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title text-secondary">Community Information</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                  <p>
-                      <b class="text-secondary">Name:</b>   <span id="name-info" class="text-dark"></span>
-                  </p>
-                                        
-                  <p>
-                      <b class="text-secondary">Abbreviation:</b>   <span id="description-info" class="text-dark"></span>
-                  </p>
-                   <p>
-                      <b class="text-secondary">Location:</b>   <span id="location-info" class="text-dark"></span>
-                  </p>
-                <hr>
-                  {{-- <a href="{{ url('/admin/')}}" class="btn"></a> --}}
-              </div>
-              </div>
-          </div>
-      </div>
-    
+<!-- view record modal -->
+
+<div class="modal fade" id="view-modal" tabindex="-1" >
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header bg-light">
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <tr>
+            <td class="font-weight-bolder text-secondary">Community Name</td>
+            <td><span id="name-info" class="text-dark"></span></td>
+          </tr>
+          <tr>
+            <td class="font-weight-bolder text-secondary">Abbreviation</td>
+            <td><span id="description-info" class="text-dark"></span></td>
+          </tr>
+          <tr>
+            <td class="font-weight-bolder text-secondary">Location</td>
+            <td><span id="location-info" class="text-dark"></span></td>
+          </tr>
+        </table>
+        <h6 class="text-secondary">
+          Community(Jumuiya) Members
+        </h6>
+        <hr>
+        <table id="mytable" class="table table-bordered responsive cell-border">
+          <thead>
+              <tr class="text-secondary">
+                <th>Member ID</th>
+                <th>Member Name</th>
+                <th>Phone Number</th>
+                <th>Gender</th>
+                <th>Status </th>
+              </tr>
+          </thead>
+          <tbody id="members-table-body">
+        
+          </tbody>
+          <tfoot></tfoot>
+      </table>
+      </div>
+    </div>
+  </div>
+</div>
+      
 
 
 <script type="text/javascript">
-          showAllProjects();
+        showAllProjects();
      
         /*
             This function will get all the project records
@@ -149,19 +167,20 @@
                     for (var i = 0; i < communities.length; i++) 
                     {
                         let showBtn =  '<button ' +
-                            ' class="btn btn-primary" ' +
-                            ' onclick="showProject(' + communities[i].id + ')">Show' +
+                            ' class="btn  btn-sm bg-teal" ' +
+                            ' onclick="showProject(' + communities[i].id + ')"><i class="fa fa-eye"></i>' +
                         '</button> ';
                         let editBtn =  '<button ' +
-                            ' class="btn btn-secondary" ' +
-                            ' onclick="editProject(' + communities[i].id + ')">Edit' +
+                            ' class="btn bg-navy btn-sm" ' +
+                            ' onclick="editProject(' + communities[i].id + ')"><i class="fa fa-edit"></i>' +
                         '</button> ';
                         let deleteBtn =  '<button ' +
-                            ' class="btn btn-danger" ' +
-                            ' onclick="destroyProject(' + communities[i].id + ')">Delete' +
+                            ' class="btn btn-danger btn-sm" ' +
+                            ' onclick="destroyProject(' + communities[i].id + ')"><i class="fa fa-trash"></i>' +
                         '</button>';
      
                         let projectRow = '<tr>' +
+                            '<td>' + communities[i].id + '</td>' +
                             '<td>' + communities[i].name + '</td>' +
                             '<td>' + communities[i].abbreviation + '</td>' +
                             '<td>' + communities[i].location + '</td>' +
@@ -374,11 +393,29 @@
                 url: url,
                 type: "GET",
                 success: function(response) {
+                    $("#members-table-body").html("");
                     let community = response.community;
                     $("#name-info").html(community.name);
                     $("#description-info").html(community.abbreviation);
                     $("#location-info").html(community.location);
-                    $("#view-modal").modal('show'); 
+                  
+                  // for community members
+                  let members = response.members;
+                        for (var i = 0; i < members.length; i++) 
+                        {      
+         
+                       let membersRow = '<tr>' +
+                            '<td>' + community.abbreviation +'/' + members[i].id +'</td>' +
+                                '<td>' + members[i].fname + '&nbsp;'+ members[i].mname + '&nbsp;'+ members[i].lname +'</td>' +
+                                '<td>' + members[i].lname + '</td>' +  
+                                '<td>' + members[i].phone + '</td>' +
+                                '<td class="text-success">' + (members[i].status == '0' ? 'Enabled':'Disabled') + '</td>' +
+                            '</tr>';
+                            $("#members-table-body").append(membersRow);
+                        }   
+
+
+                $("#view-modal").modal('show'); 
      
                 },
                 error: function(response) {
@@ -406,7 +443,7 @@
                 type: "DELETE",
                 data: data,
                 success: function(response) {
-                    let successHtml = '<div class="alert alert-success " role="alert">Community Was Deleted Successfully !</div>';
+                    let successHtml = '<div class="alert alert-danger " role="alert">Community Was Deleted Successfully !</div>';
                     $("#alert-div").html(successHtml);
                     showAllProjects();
                 },
