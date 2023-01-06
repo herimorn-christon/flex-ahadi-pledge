@@ -26,13 +26,14 @@
 
 
         <div class="responsive p-1">
-            <table id="example"  class="cell-border table table-bordered">
+            <table id="example"  class="cell-border table table-bordered " >
                 <thead>
                      <tr class="text-secondary">
+                            <th>SN</th>
                             <th>Member ID</th>
                             <th>Member Name</th>
                             <th>Community </th>
-                            <th>Phone Number</th>
+                            {{-- <th>Phone Number</th> --}}
                             <th>Gender</th>
                             <th>Actions</th>
                         </tr>
@@ -132,6 +133,7 @@
                         <table id="my_table"  class="table table-bordered ">
                             <thead>
                                 <tr class="text-secondary">
+                                    
                                     <th>ID</th>
                                     <th>Pledge Name</th>
                                     <th>Amount</th>
@@ -364,10 +366,11 @@
                             '</button>';
          
                             let projectRow = '<tr>' +
+                                '<td>' +(i+1)+ '</td>' +
                                 '<td>' + members[i].community.abbreviation +'/' + members[i].id +'</td>' +
                                 '<td>' + members[i].fname + '&nbsp;'+ members[i].mname + '&nbsp;'+ members[i].lname +'</td>' +
                                 '<td>' + members[i].community.name + '</td>' +
-                                '<td>' + members[i].phone + '</td>' +
+                                // '<td>' + members[i].phone + '</td>' +
                                 '<td>' + members[i].gender + '</td>' +
                                 // '<td class="'+(members[i].status == '0' ? 'text-success':'text-danger')+'">' + (members[i].status == '0' ? 'Enabled':'Disabled') + '</td>'+
                                 '<td>' + showBtn + editBtn + deleteBtn + '</td>'+
