@@ -24,9 +24,11 @@
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+      <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 </head>
-<body class="bg-light">
-    <div id="app" class="bg-white">
+<body class="bg-secondary">
+    <div id="app" class="bg-secondary">
 
         {{-- including navbar --}}
         @include('layouts.inc.frontend-navbar')

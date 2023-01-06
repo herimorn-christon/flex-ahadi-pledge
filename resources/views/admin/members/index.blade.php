@@ -4,6 +4,7 @@
 
 
 @section('content')
+
 <div class="row mb-1">
   <div class="col-sm-6" id="alert-div">
 
@@ -25,7 +26,7 @@
     <div class="">
 
 
-        <div class="responsive p-1">
+        <div class="p-1">
             <table id="example"  class="cell-border table table-bordered " >
                 <thead>
                      <tr class="text-secondary">
@@ -33,7 +34,6 @@
                             <th>Member ID</th>
                             <th>Member Name</th>
                             <th>Community </th>
-                            {{-- <th>Phone Number</th> --}}
                             <th>Gender</th>
                             <th>Actions</th>
                         </tr>
@@ -202,7 +202,7 @@
             <form >
                    <input type="hidden" name="update_id" id="update_id">
                 <div class="row">
-                <div class="mb-3 col-md-6">
+                <div class="mb-2 col-md-6">
                     <label for="fname" class="text-secondary">{{ __('First Name') }}</label>
 
                     <div class="form-group">
@@ -215,7 +215,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="mb-3 col-md-6">
+                <div class="mb-2 col-md-6">
                     <label for="mname" class="text-secondary">{{ __('Middle Name') }}</label>
 
                     <div class="">
@@ -228,7 +228,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-2">
                     <label for="lname" class="text-secondary">{{ __('Last Name') }}</label>
 
                     <div class="form-group">
@@ -241,7 +241,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-lg-6 mb-3">
+                <div class="col-lg-6 mb-2">
                     <label for="phone" class="form-label text-secondary ">{{ __('phone') }}</label>
 
                     <div class="form-group">
@@ -250,7 +250,7 @@
         
                     </div>
                 </div>
-                <div class="col-lg-6 mb-3">
+                <div class="col-lg-6 mb-2">
                     <label for="email" class="text-secondary">{{ __('Email Address') }}</label>
 
                     <div class="form-group">
@@ -275,7 +275,7 @@
 
                 <div class="col-lg-6">
                     <label for="card_no" class="text-secondary">Birthdate</label>
-                    <div class="form-group form-primary mb-3"> 
+                    <div class="form-group form-primary mb-2"> 
                         <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" placeholder="" > </div>
                 </div>
 
@@ -289,7 +289,7 @@
                
             </div>
 
-                <div class="col-md-6 mb-3">
+                <div class="col-md-6 mb-2">
                     <label for="password" class="text-secondary">{{ __('Password') }}</label>
 
                     <div class="form-group">
@@ -303,7 +303,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 mb-3 text-secondary">
+                <div class="col-md-6 mb-2 text-secondary">
                     <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
 
                     <div class="form-group">
