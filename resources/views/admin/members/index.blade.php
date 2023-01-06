@@ -34,7 +34,6 @@
                             <th>Community </th>
                             <th>Phone Number</th>
                             <th>Gender</th>
-                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                 </thead>
@@ -99,9 +98,9 @@
                 <div class="card">
                   <div class="card-header p-2">
                     <ul class="nav nav-pills">
-                      <li class="nav-item"><a class="nav-link active" href="#pledges" data-toggle="tab">Payments</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Pledges</a></li>
-                      <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Cards</a></li>
+                      <li class="nav-item"><a class="nav-link active bg-light nav-light" href="#pledges" data-toggle="tab">Payments</a></li>
+                      <li class="nav-item"><a class="nav-link bg-light" href="#timeline" data-toggle="tab">Pledges</a></li>
+                      <li class="nav-item"><a class="nav-link bg-light" href="#settings" data-toggle="tab">Cards</a></li>
                     </ul>
                   </div><!-- /.card-header -->
                   <div class="">
@@ -317,8 +316,8 @@
                     </select>
                   
                 </div>
-
-                <div class="col-md-6 mb-0 ">
+                <div class="col-md-3"></div>
+                <div class="col-md-3 mb-0 ">
                         <label for="" class="text-white">.</label>
                             <button type="submit" class="btn  text-decoration-none text-light bg-navy btn-block col-lg-12" id="save-project-btn">
                                <i class="fa fa-save"></i>
@@ -370,7 +369,7 @@
                                 '<td>' + members[i].community.name + '</td>' +
                                 '<td>' + members[i].phone + '</td>' +
                                 '<td>' + members[i].gender + '</td>' +
-                                '<td class="'+(members[i].status == '0' ? 'text-success':'text-danger')+'">' + (members[i].status == '0' ? 'Enabled':'Disabled') + '</td>'+
+                                // '<td class="'+(members[i].status == '0' ? 'text-success':'text-danger')+'">' + (members[i].status == '0' ? 'Enabled':'Disabled') + '</td>'+
                                 '<td>' + showBtn + editBtn + deleteBtn + '</td>'+
                             '</tr>';
                             $("#projects-table-body").append(projectRow);

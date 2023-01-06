@@ -10,17 +10,17 @@
     <div class="col-sm-6" id="alert-div">
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+      <ol class="float-sm-right" type="none">
         <li class="">  
-        <button type="button" class="btn btn-primary btn-sm"  onclick="createPledge()">
+        <button type="button" class="btn bg-navy btn-sm"  onclick="createPledge()">
             <i class="fa fa-plus"></i>
              Register Pledge 
         </button>  
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="showAllTypes()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="showAllTypes()">
             <i class="fa fa-list"></i>
             Pledge Types
         </button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" onclick="createType()">
+        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="createType()">
         <i class="fa fa-plus"></i>
          Add Type
         </button>
@@ -32,10 +32,7 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-   
-    </div>
-  
+    
 
 
 
@@ -49,7 +46,7 @@
                   <th>Pledge(Ahadi)</th>
                 <th>Purpose</th>
                 <th>Amount</th>
-                   <th width="240px">Actions</th>
+                 <th>Actions</th>
 
                 </tr>
             </thead>
@@ -294,16 +291,16 @@
                       for (var i = 0; i < purposes.length; i++) 
                       {
                           let showBtn =  '<button ' +
-                              ' class="btn btn-primary    " ' +
-                              ' onclick="showPledge(' + purposes[i].id + ')">Show' +
+                              ' class="btn btn-sm bg-teal" ' +
+                              ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                           '</button> ';
                           let editBtn =  '<button ' +
-                              ' class="btn btn-secondary" ' +
-                              ' onclick="editPledge(' + purposes[i].id + ')">Edit' +
+                              ' class="btn btn-sm bg-navy" ' +
+                              ' onclick="editPledge(' + purposes[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger" ' +
-                              ' onclick="destroyPledge(' + purposes[i].id + ')">Delete' +
+                              ' class="btn btn-danger btn-sm" ' +
+                              ' onclick="destroyPledge(' + purposes[i].id + ')"><i class="fa fa-trash"></i>' +
                           '</button>';
        
                           let projectRow = '<tr>' +
@@ -343,12 +340,12 @@
                         {
                           
                             let editBtn =  '<button ' +
-                                ' class="btn btn-secondary" ' +
-                                ' onclick="editType(' + types[i].id + ')">Edit' +
+                                ' class="btn bg-teal btn-sm" ' +
+                                ' onclick="editType(' + types[i].id + ')"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger" ' +
-                                ' onclick="destroyType(' + types[i].id + ')">Delete' +
+                                ' class="btn btn-danger btn-sm" ' +
+                                ' onclick="destroyType(' + types[i].id + ')"><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +

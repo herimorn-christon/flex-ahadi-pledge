@@ -64,7 +64,7 @@
                                   </div>
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">Navbar Theme</label>
-                                      <select name="nav_bar" id="" class="form-control">
+                                      <select name="nav_bar" id="" class="form-control bg-light">
                                         <option value="">Light and Light Theme</option>
                                         <option value="">Light and Blue Theme</option>
                                         <option value="">Dark and Blue Theme</option>
@@ -75,7 +75,7 @@
                                   </div>
                                   <div class="mb-3">
                                     <label for="" class="text-secondary">Sidebar Theme</label>
-                                    <select name="nav_bar" id="" class="form-control">
+                                    <select name="nav_bar" id="" class="form-control bg-light">
                                       <option value="">Light and Light Theme</option>
                                       <option value="">Light and Blue Theme</option>
                                       <option value="">Dark and Blue Theme</option>
@@ -87,9 +87,9 @@
                                 <hr>
                                   <div class="row">
                                     
-                                      <div class="col-md-6"></div>
-                                      <div class="col-md-6 ">
-                                          <button class="btn btn-primary btn-block float-end" type="submit">
+                                      <div class="col-md-9"></div>
+                                      <div class="col-md-3 ">
+                                          <button class="btn bg-navy btn-block float-end" type="submit">
                                             <i class="fa fa-save"></i>
                                             Save Settings
                                           </button>
@@ -158,20 +158,6 @@
                
                   {{-- start of cards --}}
 
-                  <table  class="table table-bordered ">
-                      <thead>
-                          <tr class="text-secondary">
-                              <th>ID</th>
-                              <th>Card Number</th>
-                              <th>Status</th>
-                              {{-- <th>Actions</th> --}}
-                          </tr>
-                      </thead>
-                      <tbody id="cards-table-body">
-
-        
-                      </tbody>
-                  </table>
                   {{-- end of pledges --}}
                
               

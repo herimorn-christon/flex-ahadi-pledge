@@ -11,10 +11,10 @@
 
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+      <ol class="float-sm-right" type="none">
         <li class="">    
 
-        <button type="button" class="btn btn-primary btn-sm"  onclick="createPurpose()">
+        <button type="button" class="btn bg-navy btn-sm"  onclick="createPurpose()">
         <i class="fa fa-plus"></i>
          Add New Purpose
         </button>
@@ -26,13 +26,11 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-    </div>
 
 
 
-        <div class="responsive">
-            <table  class="table table-bordered responsive">
+        <div class="responsive p-1">
+            <table id="example" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
                         <th>Purpose Title</th>
@@ -82,11 +80,11 @@
              <textarea class="form-control" id="description" rows="3" name="description"></textarea>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-9">
 
             </div>
-            <div class="mb-3 col-md-6">
-               <button type="submit" class="btn btn-primary btn-block " id="save-purpose-btn">
+            <div class="mb-3 col-md-3">
+               <button type="submit" class="btn bg-navy btn-block " id="save-purpose-btn">
                 <i class="fa fa-save"></i>
                 Save Community
               </button>
@@ -124,8 +122,8 @@
                 <div class="card">
                   <div class="card-header p-2">
                     <ul class="nav nav-pills">
-                      <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">Pledges Made</a></li>
-                      <li class="nav-item"><a class="nav-link " href="#pledges" data-toggle="tab">Payments Made</a></li>
+                      <li class="nav-item"><a class="nav-link active bg-light nav-light" href="#timeline" data-toggle="tab">Pledges Made</a></li>
+                      <li class="nav-item"><a class="nav-link bg-light" href="#pledges" data-toggle="tab">Payments Made</a></li>
                      
                     </ul>
                   </div><!-- /.card-header -->
@@ -133,7 +131,7 @@
                     <div class="tab-content">
                       <div class="active tab-pane" id="pledges">
                         {{-- start of member payments --}}
-                        <table   class="table table-bordered responsive">
+                        <table id=""  class="table table-bordered cell-border mx-1">
                             <thead>
                                 <tr class="text-secondary">
                                     <th>ID</th>
@@ -225,7 +223,7 @@
                             '</button> ';
                             let deleteBtn =  '<button ' +
                                 ' class="btn btn-sm btn-danger" ' +
-                                ' onclick="destroyPurpose(' + purposes[i].id + ')"><i class="fa fa-"></i>' +
+                                ' onclick="destroyPurpose(' + purposes[i].id + ')"><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +
