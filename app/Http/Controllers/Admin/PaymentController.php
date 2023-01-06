@@ -166,6 +166,17 @@ class PaymentController extends Controller
         return redirect('admin/all-payments')->with('status','Payment was Registered Successfully');
     }
 
+     /**
+     * Display a listing of the resource by user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function users($id)
+    {
+        $payments = Payment::where('user_id', $id)->get();
+        return response()->json(['payments' => $payments]);
+    }
+
 
 
 }

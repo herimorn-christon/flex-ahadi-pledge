@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\pledgeFormRequest;
 use App\Http\Requests\Admin\pledgesFormRequest;
+use App\Models\Reminder;
 
 class PledgeController extends Controller
 {
@@ -20,8 +21,8 @@ class PledgeController extends Controller
      */
     public function index()
     {
-        $purposes = Pledge::orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
-        return response()->json(['purposes' => $purposes]);
+        $pledges = Pledge::orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
+        return response()->json(['pledges' => $pledges]);
     }
 
 
@@ -69,8 +70,8 @@ class PledgeController extends Controller
      */
     public function show($id)
     {
-        $purpose = Pledge::with('user')->with('type')->with('purpose')->find($id);
-        return response()->json(['purpose' => $purpose]);
+        $pledge = Pledge::with('user')->with('type')->with('purpose')->find($id);
+        return response()->json(['pledge' => $pledge]);
     }
 
         /**
@@ -152,6 +153,7 @@ public function destroyType($type)
     // saving pledge  function
     public function save(pledgesFormRequest $request)
     {
+
         $data=$request->validated();
         $pledge =new Pledge;
         $pledge->name=$data['name'];
@@ -187,5 +189,49 @@ public function destroyType($type)
     {
         Pledge::destroy($id);
         return response()->json(['status' => "success"]);
+    }
+
+
+     /**
+     * Display a listing of the resource by user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function users($id)
+    {
+        $pledges = Pledge::orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->where('user_id', $id)->get();
+        return response()->json(['pledges' => $pledges]);
+    }
+
+
+    public function apisave(Request $request){
+
+        Pledge::create([
+        "name" => $request['name'],
+        "amount" => $request['amount'],
+        "description" => $request['description'],
+        "deadline" => $request['deadline'],
+        "type_id" => $request['type_id'],
+        "purpose_id" => $request['purpose_id'],
+        "user_id" => $request['user_id'],
+        "status" => $request['status'],
+        "created_by" => $request['created_by']
+        ]);
+
+        return  response()->json(['success' => true]);
+
+    }
+
+    public function reminder(Request $request){
+
+        $validated = $request->validate([
+            "pledge_id" => 'required',
+            "date" => 'required',
+            ]);
+
+        Reminder::create($validated);
+
+        return  response()->json(['success' => true]);
+
     }
 }

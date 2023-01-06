@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class RegisterController extends Controller
 {
@@ -81,5 +83,39 @@ class RegisterController extends Controller
             'jumuiya' => $data['jumuiya'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function apistore(Request $request) {
+
+  
+            $request->validate(
+                [
+                    'fname' => ['required', 'string', 'max:255'],
+                    'mname' => ['required', 'string', 'max:255'],
+                    'lname' => ['required', 'string', 'max:255'],
+                    'phone' => ['required', 'string', 'max:13'],
+                    'jumuiya' => ['required'],
+                    'date_of_birth' => ['required'],
+                    'gender' => ['required'],
+                    'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                    'password' => ['required', 'string', 'min:8'],
+                ]
+            );
+    
+            User::create([
+                'fname' => $request['fname'],
+                'mname' => $request['mname'],
+                'lname' => $request['lname'],
+                'email' => $request['email'],
+                'phone' => $request['phone'],
+                'date_of_birth' => $request['date_of_birth'],
+                'gender' => $request['gender'],
+                'jumuiya' => $request['jumuiya'],
+                'password' => Hash::make($request['password']),
+            ]);
+    
+            return response()->json(['success' => true], 201);
+      
+        
     }
 }

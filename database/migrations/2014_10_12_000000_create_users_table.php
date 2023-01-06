@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('gender');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('fcm_token')->nullable();
             $table->rememberToken();
             $table->timestamps();        
             $table->tinyInteger('status')->default('0');
