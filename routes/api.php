@@ -109,9 +109,9 @@ Route::middleware('auth:sanctum')->delete('/jumuiya/{id}', [JumuiyaController::c
 
 //PLEDGE ROUTES
 Route::middleware('auth:sanctum')->get('/pledge', [PledgeController::class, 'index']);
-Route::middleware('auth:sanctum')->get('/pledge/user/{id}', [PledgeController::class, 'users']);
+Route::middleware('auth:sanctum')->get('/pledge/user', [PledgeController::class, 'users']);
 Route::middleware('auth:sanctum')->get('/pledge/{id}', [PledgeController::class, 'show']);
-Route::middleware('auth:sanctum')->post('/pledge', [PledgeController::class, 'apisave']);
+Route::middleware('auth:sanctum')->post('/pledge', [PledgeController::class, 'apistore']);
 Route::middleware('auth:sanctum')->patch('/pledge/{id}', [PledgeController::class, 'update']);
 Route::middleware('auth:sanctum')->delete('/pledge/{id}', [PledgeController::class, 'destroy']);
 Route::middleware('auth:sanctum')->post('/pledge/reminder', [PledgeController::class, 'reminder']);
@@ -139,10 +139,10 @@ Route::middleware('auth:sanctum')->get('/pledgepurposes', [PurposeController::cl
 
 //PAYMENT ROUTES
 // Route::get('/payment', [PaymentController::class, 'index']);
-Route::middleware('auth:sanctum')->get('/payment/user/{id}', [PaymentController::class, 'users']);
+Route::middleware('auth:sanctum')->get('/payment/user', [PaymentController::class, 'users']);
 // Route::get('/payment/pledge/{id}', [PaymentController::class, 'pledge']);
 // Route::get('/payment/{id}', [PaymentController::class, 'show']);
-Route::middleware('auth:sanctum')->post('/payment', [PaymentController::class, 'store']);
+Route::middleware('auth:sanctum')->post('/payment', [PaymentController::class, 'apistore']);
 
 //CARD ROUTES
 

@@ -197,14 +197,14 @@ public function destroyType($type)
      *
      * @return \Illuminate\Http\Response
      */
-    public function users($id)
+    public function users(Request $request)
     {
-        $pledges = Pledge::orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->where('user_id', $id)->get();
+        $pledges = Pledge::orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->where('user_id', $request->user()->id)->get();
         return response()->json(['pledges' => $pledges]);
     }
 
 
-    public function apisave(Request $request){
+    public function apistore(Request $request){
 
         Pledge::create([
         "name" => $request['name'],
@@ -213,9 +213,8 @@ public function destroyType($type)
         "deadline" => $request['deadline'],
         "type_id" => $request['type_id'],
         "purpose_id" => $request['purpose_id'],
-        "user_id" => $request['user_id'],
-        "status" => $request['status'],
-        "created_by" => $request['created_by']
+        "user_id" => $request->user()->id,
+        "created_by" => $request->user()->id
         ]);
 
         return  response()->json(['success' => true]);

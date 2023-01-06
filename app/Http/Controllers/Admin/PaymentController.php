@@ -171,10 +171,32 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function users($id)
+    public function users(Request $request)
     {
-        $payments = Payment::where('user_id', $id)->get();
+        $payments = Payment::where('user_id', $request->user()->id)->get();
         return response()->json(['payments' => $payments]);
+    }
+
+    public function apistore(Request $request)
+    {
+        request()->validate(
+            [
+            'type_id' => 'required',
+            'pledge_id' => 'required',
+            'amount' => 'required',
+             ]
+            );
+
+            Payment::create([
+                "type_id" => $request->type_id,
+                "user_id" => $request->user()->id,
+                "amount" => $request->amount,
+                "pledge_id"=>$request->pledge_id,
+                "created_by"=> $request->user()->id
+            ]);
+
+          
+            return response()->json(['status' => "success"]);
     }
 
 
