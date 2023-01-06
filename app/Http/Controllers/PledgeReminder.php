@@ -14,10 +14,10 @@ use NotificationChannels\Fcm\Resources\ApnsFcmOptions;
 
 class PledgeReminder extends Notification
 {
-    public string $name;
+    public $name;
 
     public function __construct(
-        string $name, 
+        $name 
     ) {
         $this->name = $name;
 
