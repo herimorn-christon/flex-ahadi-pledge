@@ -43,7 +43,6 @@ class MyCardController extends Controller
                 $card=CardMember::where('user_id',$user)->where('status','')->first();
 
                 if ($card) {
-                    // $status="Sorry,You Already Have an Active Member Card!";
                     return redirect('member/my-cards')->with('status','Sorry,You Already Have an Active Member Card!');
                 }
                 else{

@@ -17,10 +17,7 @@
     <div class="col-sm-7">
       <ol class="float-sm-right" type="none">
         <li class="">    
-        <button type="button" class="btn bg-navy btn-outline" data-toggle="modal" onclick="createPayment()">
-            <i class="fa fa-envelope"></i>
-             Request New Card
-        </button>
+   
        
     </li>
        
@@ -30,11 +27,7 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-        <h6 class="text-light">
-            
-        </h6>
-    </div>
+ 
     <div class="mt-2">
 
         <div class="responsive p-1">
@@ -101,7 +94,7 @@
                       for (var i = 0; i < members.length; i++) 
                       {
                           let showBtn =  '<button ' +
-                                ' class="btn btn-warning  btn-sm " ' +
+                                ' class="btn bg-teal  btn-sm " ' +
                                 ' onclick="showCardMember(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +

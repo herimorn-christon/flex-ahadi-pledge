@@ -14,7 +14,7 @@
       <ol class=" float-sm-right" type="none">
         <li class="">    
 
-        <button type="button" class="btn btn-info bg-teal btn-sm"  onclick="createProject()">
+        <button type="button" class="btn  bg-navy btn-sm"  onclick="createProject()">
         <i class="fa fa-plus"></i>
          Add New Community
         </button>
@@ -35,6 +35,7 @@
             <table id="example" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
+                        <th>ID</th>
                         <th>Jumuiya Name</th>
                         <th>Abbreviation</th>
                         <th>Location</th>
@@ -179,6 +180,7 @@
                         '</button>';
      
                         let projectRow = '<tr>' +
+                            '<td>' + communities[i].id + '</td>' +
                             '<td>' + communities[i].name + '</td>' +
                             '<td>' + communities[i].abbreviation + '</td>' +
                             '<td>' + communities[i].location + '</td>' +

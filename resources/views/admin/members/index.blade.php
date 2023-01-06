@@ -11,7 +11,7 @@
   <div class="col-sm-6">
     <ul class="float-sm-right" type="none">
       <li class="">  
-      <button type="button" class="btn btn-warning btn-sm" onclick="createProject()">
+      <button type="button" class="btn bg-navy btn-sm" onclick="createProject()">
           <i class="fa fa-user-plus"></i>
            Register New Member
       </button>  
@@ -34,7 +34,8 @@
                             <th>Community </th>
                             <th>Phone Number</th>
                             <th>Gender</th>
-                            <th width="240px">Actions</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                 </thead>
                 <tbody id="projects-table-body">
@@ -351,7 +352,7 @@
                         for (var i = 0; i < members.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn bg-warning btn-sm    " ' +
+                                ' class="btn bg-teal btn-sm    " ' +
                                 ' onclick="showProject(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
@@ -369,7 +370,8 @@
                                 '<td>' + members[i].community.name + '</td>' +
                                 '<td>' + members[i].phone + '</td>' +
                                 '<td>' + members[i].gender + '</td>' +
-                                '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
+                                '<td class="'+(members[i].status == '0' ? 'text-success':'text-danger')+'">' + (members[i].status == '0' ? 'Enabled':'Disabled') + '</td>'+
+                                '<td>' + showBtn + editBtn + deleteBtn + '</td>'+
                             '</tr>';
                             $("#projects-table-body").append(projectRow);
                         }

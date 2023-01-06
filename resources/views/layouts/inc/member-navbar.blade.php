@@ -15,7 +15,7 @@
   
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+        <a class="nav-link"  href="{{ url('member/my-notifications') }}">
           <i class="far fa-bell"></i>
           @php
           $user=Auth::User()->id;
@@ -37,7 +37,7 @@
 
           @foreach ($notifications as $item)
 
-          <a href="#" class="dropdown-item">
+          <a href="{{ url('member/my-notifications') }}" >
             <i class="fas fa-bell mr-2"></i> 
             {{ $item->type}}
             {{-- <small class="float-right text-muted text-sm">

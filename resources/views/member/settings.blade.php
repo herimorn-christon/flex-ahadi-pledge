@@ -20,7 +20,7 @@
             <div class="card-header p-2 bg-white">
               <ul class="nav nav-pills nav-light">
                 <li class="nav-item active"><a class="nav-link bg-light nav-white " href="#interface" data-toggle="tab" >Change Password</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light " href="#audits" data-toggle="tab">Notifications</a></li>
+                {{-- <li class="nav-item"><a class="nav-link bg-light nav-light " href="#audits" data-toggle="tab">Notifications</a></li> --}}
                 <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Report a Problem</a></li>
               </ul>
             </div><!-- /.card-header -->
@@ -49,11 +49,11 @@
                               <form action="{{ url('member/change-password') }}" method="post"  enctype="multipart/form-data" >
                                   @csrf
                                   <div class="mb-3">
-                                      <label for="" class="">Current Password</label>
+                                      <label for="" class="text-secondary">Current Password</label>
                                       <input name="current_password" placeholder="Enter Current Password" type="text" class="form-control">
                                   </div>
                                   <div class="mb-3">
-                                    <label for="newPasswordInput" class="form-label">New Password</label>
+                                    <label for="newPasswordInput" class="form-label text-secondary">New Password</label>
                                     <input name="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" id="newPasswordInput"
                                         placeholder="New Password">
                                     @error('new_password')
@@ -61,7 +61,7 @@
                                     @enderror
                                 </div>
                                 <div class="mb-3">
-                                    <label for="confirmNewPasswordInput" class="form-label">Confirm New Password</label>
+                                    <label for="confirmNewPasswordInput" class="form-label text-secondary">Confirm New Password</label>
                                     <input name="new_password_confirmation" type="password" class="form-control" id="confirmNewPasswordInput"
                                         placeholder="Confirm New Password">
                                 </div>                              
@@ -69,8 +69,8 @@
                                 <hr>
                                   <div class="row">
                                     
-                                      <div class="col-md-6"></div>
-                                      <div class="col-md-6 ">
+                                      <div class="col-md-9"></div>
+                                      <div class="col-md-3">
                                           <button class="btn bg-navy btn-block float-end" type="submit">
                                             <i class="fa fa-key"></i>
                                             Change Password
@@ -99,10 +99,58 @@
                 <div class="tab-pane" id="announcements">
 
                
-                  {{-- start of cards --}}
+                  {{-- start of report form --}}
 
-               
-                  {{-- end of cards --}}
+                  <div class="col-md-12">
+                    <div class="p-2">
+                      
+                        <div class="col-md-12">
+                          @if (session('status'))
+                          <div class="btn btn-danger disabled btn-block"  role="alert">
+                              {{ session('status') }}
+                          </div>
+                          @endif
+                             {{--displaying all the errors  --}}
+                             @if ($errors->any())
+                             <div class="alert alert-danger">
+                                 @foreach ($errors->all() as $error)
+                                     <div>{{$error}}</div>
+                                 @endforeach
+                             </div>
+                             @endif
+                            <form action="{{ url('member/report-problem') }}" method="post"  enctype="multipart/form-data" >
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="" class="text-secondary">Your Issue</label>
+                                   <textarea name="problem" id="problem" cols="30" rows="5" class="form-control"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <br>
+                                    <label for="" class="text-secondary">Attachment</label>
+                                    <p>
+                                        <small class="text-secondary">Upload Screenshots if you have any</small>
+                                    </p>
+                                    
+                                    <input type="file" class="form-control">
+                                </div>
+                               
+                              <hr>
+                                <div class="row">
+                                  
+                                    <div class="col-md-9"></div>
+                                    <div class="col-md-3 ">
+                                        <button class="btn bg-navy btn-block float-end" type="submit">
+                                          <i class="fa fa-headset"></i>
+                                           Report Issue
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                  {{-- end of report form --}}
                
               
                 </div>

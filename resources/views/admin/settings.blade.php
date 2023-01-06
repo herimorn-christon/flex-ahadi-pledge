@@ -15,9 +15,9 @@
           <div class="card">
             <div class="card-header p-2">
               <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link active" href="#interface" data-toggle="tab">System Settings</a></li>
-                <li class="nav-item"><a class="nav-link" href="#audits" data-toggle="tab">System Audits</a></li>
-                <li class="nav-item"><a class="nav-link" href="#announcements" data-toggle="tab">Announcements</a></li>
+                <li class="nav-item"><a class="nav-link bg-light nav-light active" href="#interface" data-toggle="tab">System Settings</a></li>
+                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#audits" data-toggle="tab">System Audits</a></li>
+                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Announcements</a></li>
               </ul>
             </div><!-- /.card-header -->
             <div class="">
@@ -107,40 +107,43 @@
                 <div class="tab-pane" id="audits">
                
                   {{-- start of pledges --}}
-              
-                  <table id="my_table"  class="table table-bordered responsive">
-                    <thead>
-                        <tr class="text-secondary">
-                            <th>ID</th>
-                            <th>User</th>
-                            <th>User Agent</th>
-                            <th>Event</th>
-                            <th>IP Address</th>
-                            <th>Url</th>
-                            <th>Audit Type</th>
-                            <th>Date</th>
+                  <div class="p-2">
+                    <table id="example"  class="table table-bordered cell-border">
+                      <thead>
+                          <tr class="text-secondary">
+                              <th>ID</th>
+                              <th>User</th>
+                              <th>User Agent</th>
+                              <th>Event</th>
+                              <th>IP Address</th>
+                              <th>Url</th>
+                              <th>Audit Type</th>
+                              <th>Date</th>
+                          </tr>
+                      </thead>
+                      <tbody id="pledges-table-body">
+                        @php
+  
+                        $user=Auth::user()->id;
+                        $audits=App\Models\Audit::orderBy('created_at','DESC')->get();
+                        @endphp
+                        @foreach ($audits as $item)
+                        <tr>
+                        <td>{{$item->id}}</td>
+                        <td>{{$item->user_id}}</td>
+                        <td>{{$item->user_agent}}</td>
+                        <td>{{$item->event}}</td>
+                        <td>{{$item->ip_address}}</td>
+                        <td>{{$item->url}}</td>
+                        <td>{{$item->auditable_type}}</td>
+                        <td>{{$item->created_at}}</td>
                         </tr>
-                    </thead>
-                    <tbody id="pledges-table-body">
-                      @php
-
-                      $user=Auth::user()->id;
-                      $audits=App\Models\Audit::orderBy('created_at','DESC')->get();
-                      @endphp
-                      @foreach ($audits as $item)
-                      <tr>
-                      <td>{{$item->id}}</td>
-                      <td>{{$item->user_id}}</td>
-                      <td>{{$item->user_agent}}</td>
-                      <td>{{$item->event}}</td>
-                      <td>{{$item->ip_address}}</td>
-                      <td>{{$item->url}}</td>
-                      <td>{{$item->auditable_type}}</td>
-                      <td>{{$item->created_at}}</td>
-                      </tr>
-                      @endforeach
-                    </tbody>
-                 </table>
+                        @endforeach
+                      </tbody>
+                   </table>
+                  </div>
+              
+            
                 {{-- end of pledges --}}
               
                  
