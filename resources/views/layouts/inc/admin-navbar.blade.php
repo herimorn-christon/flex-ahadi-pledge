@@ -15,9 +15,14 @@
 
     <!-- Notifications Dropdown Menu -->
     <li class="nav-item dropdown">
-      <a class="nav-link" data-toggle="dropdown" href="#">
+      <a class="nav-link"  href="{{ url('admin/user-notifications') }}">
         <i class="far fa-bell"></i>
-        <sup> <span class="badge badge-danger">15</span></sup>
+        @php
+        $user=Auth::User()->id;
+        $counts=App\Models\Notification::where('user_id','0')->count();
+      
+        @endphp
+        <sup><span class="badge badge-danger">{{ $counts }}</span></sup>
        
       </a>
       <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">

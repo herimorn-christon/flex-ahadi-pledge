@@ -16,6 +16,7 @@ use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
 use App\Http\Controllers\Admin\CardPaymentController;
 use App\Http\Controllers\Member\MyPaymentsController;
+use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Member\MyNotificationsController;
 
 // use App\Http\Controllers\Controller\DashboardController;
@@ -167,14 +168,22 @@ Route::get('/settings', function () {
   });
 
  // my-profile
-  // Route::get('/my-profile', [App\Http\Controllers\Admin\ProfileController::class,'index']);
-
   Route::get('/my-profile', function () {
     return view('admin.profile.index');
     });
+
+  //User Notifications 
+  Route::get('user-notifications', function () {
+    return view('admin.notifications.index');
+  });
+
+  // my-notifications API
+   Route::apiResource('notifications', NotificationsController::class);
+
 // my-profile API
   Route::apiResource('profile', ProfileController::class);
 });
+
 // for Member
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()
 {
@@ -236,6 +245,7 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::get('/settings', function () {
       return view('member.settings');
       });
+
   // member change password route
     Route::post('change-password', [App\Http\Controllers\Member\ProfileController::class,'store']);
   // my-profile

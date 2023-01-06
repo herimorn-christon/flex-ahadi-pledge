@@ -34,26 +34,11 @@
         <main class="">
             @yield('content')
         </main>
-<!-- start of move to the top button -->
-<a
-        type="button"
-        class="btn btn-danger  btn-floating btn-lg"
-        id="top" href="#nav"
-        >
-  <i class="fas  fa-angle-double-up"></i>
-</a>
+
+
 <!-- end of move to the top -->
 
-        <footer class="py-4 bg-dark mt-2   ">
-            <div class="container-fluid px-4">
-
-            <div class=" text-center pt-2">
-                <div class="underline"><hr class="bg-warning font-weight-bolder"></div>
-                <div class="text-muted">Copyright &copy; <i class="text-danger"> <a href="" class="text-decoration-none text-danger">AhadiPledge</a>  </i> All right reserved. Designed and Developed  {{ date(('Y'))}}</div>
-
-            </div>
-            </div>
-        </footer>
+  
     </div>
    <!-- Scripts -->
 
