@@ -52,20 +52,21 @@
   <div class="content-wrapper py-4">
     <!-- Content Header (Page header) -->
     <div class="content-header mt-4">
-      <div class="container-fluid">
+      <div class="">
         <div class="row mb-0">
           <div class="col-sm-6 col-6">
             <h5 class="m-0 text-white">
-              <span class="badge bg-navy">
+              {{-- <span class="btn badge bg-navy disabled" >
                 Hello, {{ Auth::User()->fname}}  {{ Auth::User()->mname}}  {{ Auth::User()->lname}}
-              </span>
+              </span> --}}
             </h5>
           </div><!-- /.col -->
           <div class="col-sm-6 col-6">
             <ol class="float-sm-right" type="none">
               <h5 class="float-end">
-                <span class="badge bg-teal">
-                  {{ date(('D:d-M-Y'))}}
+                <span class=" badge bg-navy ">
+                  <i class="fa fa-clock"></i> &nbsp;
+                  {{ date(('D, d M, Y'))}}
                 </span>
                </h5>
             </ol>
@@ -77,14 +78,14 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="">
         <!-- Small boxes (Stat box) -->
         <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-white">
+            <div class="small-box bg-lightblue">
               <div class="inner">
-                <h5 class="text-navy font-weight-bolder"> 
+                <h5 class=" font-weight-bolder"> 
                   {{$pledges}}
                   <small>Tsh</small>              
                 </h5>
@@ -94,15 +95,15 @@
               <div class="icon">
                 <i class="fa fa-dollar-sign"></i>
               </div>
-              <a href="#" class="small-box-footer bg-light">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer ">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-white">
+            <div class="small-box bg-cyan">
               <div class="inner">
-                <h5 class="text-navy font-weight-bolder"> 
+                <h5 class=" font-weight-bolder"> 
                   {{$payments}}
                   <small>Tsh</small>
                 </h5>
@@ -112,15 +113,15 @@
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer bg-light">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-white">
+            <div class="small-box bg-warning">
               <div class="inner">
-                <h5 class="text-navy font-weight-bolder"> 
+                <h5 class=" font-weight-bolder"> 
                   {{$remaining}}
                   <small>Tsh</small>
                 </h5>
@@ -130,15 +131,15 @@
               <div class="icon">
                 <i class="fa fa-credit-card"></i>
               </div>
-              <a href="#" class="small-box-footer bg-light">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer ">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-white">
+            <div class="small-box bg-teal">
               <div class="inner">
-                <h5 class="text-navy font-weight-bolder"> 
+                <h5 class=" font-weight-bolder"> 
                   {{$pledges_no}}
                 </h5>
 
@@ -147,7 +148,7 @@
               <div class="icon mb-1">
                 <i class="fa fa-balance-scale"></i>
               </div>
-              <a href="#" class="small-box-footer bg-light">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="#" class="small-box-footer ">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -158,9 +159,13 @@
         {{--start of Goal Progress  --}}
 
           <div class="col-md-12">
-            <div class="card">
+            <div class="">
               <div class="p-2">
-                <h6 class="text-secondary font-weight-bolder">My Goal Progress</h6>
+                <h6 class="text-secondary font-weight-bolder">
+                <span class="btn bg-white disabled text-navy">
+                  Overall Goal Progress in {{ date('Y')}}
+                </span>
+               </h6>
               </div>
               <div class="">
 
@@ -190,7 +195,13 @@
             </div>
           </div>
 
-
+          <div class="p-2 col-md-12">
+            <h6 class="text-secondary font-weight-bolder">
+            <span class="btn bg-white disabled text-navy">
+              Daily Statistics and Activities in {{ date('Y')}}
+            </span>
+           </h6>
+          </div>
 
           {{-- stats --}}
          
