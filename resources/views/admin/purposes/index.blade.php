@@ -216,16 +216,16 @@
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-primary    " ' +
-                                ' onclick="showPurpose(' + purposes[i].id + ')">Show' +
+                                ' class="btn btn-sm bg-teal" ' +
+                                ' onclick="showPurpose(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
-                                ' class="btn btn-secondary" ' +
-                                ' onclick="editPurpose(' + purposes[i].id + ')">Edit' +
+                                ' class="btn btn-sm bg-navy" ' +
+                                ' onclick="editPurpose(' + purposes[i].id + ')"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger" ' +
-                                ' onclick="destroyPurpose(' + purposes[i].id + ')">Delete' +
+                                ' class="btn btn-sm btn-danger" ' +
+                                ' onclick="destroyPurpose(' + purposes[i].id + ')"><i class="fa fa-"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +
