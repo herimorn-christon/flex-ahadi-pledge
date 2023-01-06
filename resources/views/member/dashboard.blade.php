@@ -49,9 +49,9 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper py-4">
+  <div class="content-wrapper ">
     <!-- Content Header (Page header) -->
-    <div class="content-header mt-4">
+    <div class="content-header ">
       <div class="">
         <div class="row mb-0">
           <div class="col-sm-6 col-6">

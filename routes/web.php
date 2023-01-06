@@ -236,6 +236,8 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::get('/settings', function () {
       return view('member.settings');
       });
+  // member change password route
+    Route::post('change-password', [App\Http\Controllers\Member\ProfileController::class,'store']);
   // my-profile
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
 });
