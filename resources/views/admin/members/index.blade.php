@@ -11,7 +11,7 @@
   <div class="col-sm-6">
     <ul class="float-sm-right" type="none">
       <li class="">  
-      <button type="button" class="btn btn-info bg-lightblue btn-sm" onclick="createProject()">
+      <button type="button" class="btn btn-warning btn-sm" onclick="createProject()">
           <i class="fa fa-user-plus"></i>
            Register New Member
       </button>  
@@ -22,9 +22,6 @@
   </div><!-- /.col -->
 </div>
 <div class="card mt-1">
-    <div class="card-header bg-gradient-light">
-      
-    </div>
     <div class="">
 
 
@@ -313,8 +310,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="" class="text-secondary"> Member Status</label>
-                    {{-- <input type="checkbox" name="status" id="status"> --}}
-                    <select name="status" id="status" class="form-control">
+                    <select name="status" id="status" class="form-control bg-light">
                       <option value="0">Enabled</option>
                       <option value="1">Disabled</option>
                     </select>
@@ -323,7 +319,7 @@
 
                 <div class="col-md-6 mb-0 ">
                         <label for="" class="text-white">.</label>
-                            <button type="submit" class="btn  text-decoration-none text-light bg-lightblue btn-block col-lg-12" id="save-project-btn">
+                            <button type="submit" class="btn  text-decoration-none text-light bg-navy btn-block col-lg-12" id="save-project-btn">
                                <i class="fa fa-save"></i>
                                 {{ __('Save Member') }}
                             </button>
@@ -355,11 +351,11 @@
                         for (var i = 0; i < members.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-primary bg-lightblue btn-sm    " ' +
+                                ' class="btn bg-warning btn-sm    " ' +
                                 ' onclick="showProject(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
-                                ' class="btn btn-secondary btn-sm" ' +
+                                ' class="btn bg-navy btn-sm" ' +
                                 ' onclick="editProject(' + members[i].id + ')"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +

@@ -90,7 +90,7 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container-fluid">
+      <div class="">
  
         <!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -100,7 +100,7 @@
     <!-- Main content -->
     <section class="content">
       
-      <div class="container-fluid mt-3">
+      <div class=" mt-3">
         
         @yield('content')
 

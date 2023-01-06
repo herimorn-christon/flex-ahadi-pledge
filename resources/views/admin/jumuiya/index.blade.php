@@ -14,7 +14,7 @@
       <ol class=" float-sm-right" type="none">
         <li class="">    
 
-        <button type="button" class="btn btn-info bg-lightblue btn-sm"  onclick="createProject()">
+        <button type="button" class="btn btn-info bg-teal btn-sm"  onclick="createProject()">
         <i class="fa fa-plus"></i>
          Add New Community
         </button>
@@ -26,9 +26,6 @@
   </div>
 
 <div class="card mt-1">
-    <div class="card-header bg-light">
-    
-    </div>
     <div class="">
 
 
@@ -87,7 +84,7 @@
 
             </div>
             <div class="mb-3 col-md-6">
-               <button type="submit" class="btn bg-lightblue btn-block " id="save-project-btn">
+               <button type="submit" class="btn bg-navy btn-block " id="save-project-btn">
                 <i class="fa fa-save"></i>
                 Save Community
               </button>
@@ -169,11 +166,11 @@
                     for (var i = 0; i < communities.length; i++) 
                     {
                         let showBtn =  '<button ' +
-                            ' class="btn btn-info btn-sm bg-lightblue" ' +
+                            ' class="btn  btn-sm bg-teal" ' +
                             ' onclick="showProject(' + communities[i].id + ')"><i class="fa fa-eye"></i>' +
                         '</button> ';
                         let editBtn =  '<button ' +
-                            ' class="btn btn-secondary btn-sm" ' +
+                            ' class="btn bg-navy btn-sm" ' +
                             ' onclick="editProject(' + communities[i].id + ')"><i class="fa fa-edit"></i>' +
                         '</button> ';
                         let deleteBtn =  '<button ' +
