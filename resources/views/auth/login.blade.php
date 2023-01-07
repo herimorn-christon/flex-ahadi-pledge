@@ -58,12 +58,12 @@
 
 </style>
 <div class="row my-2 py-5">
-    <div class="col-md-4 mx-auto my-5">
+    <div class="col-md-4 mx-auto my-5 col-sm-8 col-11">
         <div class="card border-top-navy">
 
             <div class="card-body">
                 <div class="py-4 mt-2">
-                    <div class="col-md-5 mx-auto">
+                    <div class="col-md-5 col-sm-5 col-5 mx-auto">
                         <img src="{{ asset('img/logoshorts.png') }}" alt="Flex Logo" class="" width="100%" height="60px">
                     </div>
                     <h4 class="text-center text-navy py-2">

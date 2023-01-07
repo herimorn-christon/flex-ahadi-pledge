@@ -30,7 +30,7 @@
 
 
         <div class="responsive p-1">
-            <table id="example" class="table table-bordered cell-border">
+            <table id="example1" class="table table-bordered ">
                 <thead>
                     <tr class="text-secondary">
                         <th>Purpose Title</th>
@@ -131,7 +131,7 @@
                     <div class="tab-content">
                       <div class="active tab-pane" id="pledges">
                         {{-- start of member payments --}}
-                        <table id=""  class="table table-bordered cell-border mx-1">
+                        <table id="mytable"  class="table display responsive table-bordered " width=""  >
                             <thead>
                                 <tr class="text-secondary">
                                     <th>ID</th>

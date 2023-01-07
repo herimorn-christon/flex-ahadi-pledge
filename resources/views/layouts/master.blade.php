@@ -214,16 +214,7 @@
 
 
 <script>
-  $(document).ready( function () {
-$('#mytables').DataTable(
-  {
-    ordering:  true,
-    searching:  true,
-    autoWidth: true,
-    responsive: true
-  }
-);
-} );
+
 $(document).ready( function () {
 $('#modaltable').DataTable(
   {
@@ -246,6 +237,22 @@ $('#modaltable').DataTable(
       "buttons": ["csv", "excel", "pdf"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     $('#example').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+  $(function () {
+    $("#mytable").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["csv", "excel", "pdf"]
+    }).buttons().container().appendTo('#mytable_wrapper .col-md-6:eq(0)');
+    $('#table').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
@@ -294,11 +301,11 @@ $('#modaltable').DataTable(
 <!-- Page specific script -->
 <script>
   $(function () {
-    $("#example2").DataTable({
+    $("#example").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["csv", "excel", "pdf", "colvis"]
-    }).buttons().container().appendTo('#example2_wrapper .col-md-6:eq(0)');
-    $('mytable').DataTable({
+    }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+    $('mytable1').DataTable({
       "paging": true,
       "lengthChange": false,
       "searching": false,
