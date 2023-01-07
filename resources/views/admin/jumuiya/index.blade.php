@@ -170,7 +170,7 @@
                     for (var i = 0; i < communities.length; i++) 
                     {
                         let showBtn =  '<button ' +
-                            ' class="btn  btn-sm bg-teal" ' +
+                            ' class="btn  btn-sm bg-navy" ' +
                             ' onclick="showProject(' + communities[i].id + ')"><i class="fa fa-eye"></i>' +
                         '</button> ';
                         let editBtn =  '<button ' +

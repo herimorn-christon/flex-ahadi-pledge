@@ -289,7 +289,7 @@
                       for (var i = 0; i < pledges.length; i++) 
                       {
                           let showBtn =  '<button ' +
-                              ' class="btn btn-sm bg-teal" ' +
+                              ' class="btn btn-sm bg-navy" ' +
                               ' onclick="showPledge(' + pledges[i].id + ')"><i class="fa fa-eye"></i>' +
                           '</button> ';
                           let editBtn =  '<button ' +

@@ -27,7 +27,7 @@
 
 
         <div class="p-1">
-            <table id="example1"  class="table display responsive table-bordered " width=""  >
+            <table id="example1"  class="table  responsive table-bordered " width=""  >
                 <thead>
                      <tr class="text-secondary ">
                             <th>SN</th>
@@ -356,7 +356,7 @@
                         for (var i = 0; i < members.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn bg-teal btn-sm    " ' +
+                                ' class="btn bg-navy btn-sm    " ' +
                                 ' onclick="showProject(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +

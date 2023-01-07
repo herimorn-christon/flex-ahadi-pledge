@@ -149,7 +149,7 @@
                 <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height="">
               </div>
               <div class="text-center">
-                <h6 class="text-secondary">                  
+                <h6 class="">                  
                   Pledges Amount
                 </h6>
 

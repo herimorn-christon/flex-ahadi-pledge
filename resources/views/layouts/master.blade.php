@@ -98,7 +98,7 @@
 
         .nav-tabs .nav-link.active{
           background-color: #1888cb  !important;
-          font-weight:bold;
+          font-weight:light;
           color: #e5e9ec !important;
         }
         table.#example {

@@ -264,7 +264,7 @@
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-sm bg-teal    " ' +
+                                ' class="btn btn-sm bg-navy" ' +
                                 ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +

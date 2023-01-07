@@ -33,6 +33,7 @@
             <table id="example1" class="table table-bordered ">
                 <thead>
                     <tr class="text-secondary">
+                        <th>SN</th>
                         <th>Purpose Title</th>
                         <th>Start Date</th>
                         <th>End Date</th>
@@ -214,7 +215,7 @@
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-sm bg-teal" ' +
+                                ' class="btn btn-sm bg-navy" ' +
                                 ' onclick="showPurpose(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
@@ -227,6 +228,7 @@
                             '</button>';
          
                             let projectRow = '<tr>' +
+                                '<td>' + (i+1) + '</td>' +
                                 '<td>' + purposes[i].title + '</td>' +
                                 '<td>' + purposes[i].start_date + '</td>' +
                                 '<td>' + purposes[i].end_date + '</td>' +
