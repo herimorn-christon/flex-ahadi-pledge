@@ -285,27 +285,27 @@
                   type: "GET",
                   success: function(response) {
                       $("#projects-table-body").html("");
-                      let purposes = response.purposes;
-                      for (var i = 0; i < purposes.length; i++) 
+                      let pledges = response.pledges;
+                      for (var i = 0; i < pledges.length; i++) 
                       {
                           let showBtn =  '<button ' +
                               ' class="btn btn-sm bg-teal" ' +
-                              ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
+                              ' onclick="showPledge(' + pledges[i].id + ')"><i class="fa fa-eye"></i>' +
                           '</button> ';
                           let editBtn =  '<button ' +
                               ' class="btn btn-sm bg-navy" ' +
-                              ' onclick="editPledge(' + purposes[i].id + ')"><i class="fa fa-edit"></i>' +
+                              ' onclick="editPledge(' + pledges[i].id + ')"><i class="fa fa-pen"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
                               ' class="btn btn-danger btn-sm" ' +
-                              ' onclick="destroyPledge(' + purposes[i].id + ')"><i class="fa fa-trash"></i>' +
+                              ' onclick="destroyPledge(' + pledges[i].id + ')"><i class="fa fa-trash"></i>' +
                           '</button>';
        
                           let projectRow = '<tr>' +
-                              '<td>' + purposes[i].user.fname + '&nbsp;' + purposes[i].user.mname +  '&nbsp;' + purposes[i].user.lname +   '</td>' +
-                              '<td>' + purposes[i].name + '</td>' +
-                              '<td>' + purposes[i].purpose.title + '</td>' +
-                              '<td>' + purposes[i].amount + '</td>' +
+                              '<td>' + pledges[i].user.fname + '&nbsp;' + pledges[i].user.mname +  '&nbsp;' + pledges[i].user.lname +   '</td>' +
+                              '<td>' + pledges[i].name + '</td>' +
+                              '<td>' + pledges[i].purpose.title + '</td>' +
+                              '<td>' + pledges[i].amount + '</td>' +
                               '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                           '</tr>';
                           $("#projects-table-body").append(projectRow);
@@ -570,7 +570,7 @@
                       $("#amount").val(purpose.amount);
                       $("#user_id").val(purpose.user_id);
                       $("#type_id").val(purpose.type_id);
-                      $("#purpose_id").val(purpose.purpose_id);
+                      // $("#purpose_id").val(purpose.purpose_id);
                       $("#deadline").val(purpose.deadline);
                       $("#description").val(purpose.description);
                       $("#status").val(purpose.status);
