@@ -46036,25 +46036,25 @@ blockquote.quote-gray-dark h6 {
   color: #fff;
 }
 
-.bg-navy {
+/* .bg-navy {
   background-color: #001f3f !important;
-}
+} */
 
-.bg-navy,
+/* .bg-navy,
 .bg-navy > a {
   color: #fff !important;
-}
+} */
 
-.bg-navy.btn:hover {
+/* .bg-navy.btn:hover {
   border-color: #00060c;
   color: #ececec;
-}
+} */
 
-.bg-navy.btn:not(:disabled):not(.disabled):active, .bg-navy.btn:not(:disabled):not(.disabled).active, .bg-navy.btn:active, .bg-navy.btn.active {
+/* .bg-navy.btn:not(:disabled):not(.disabled):active, .bg-navy.btn:not(:disabled):not(.disabled).active, .bg-navy.btn:active, .bg-navy.btn.active {
   background-color: #00060c !important;
   border-color: black;
   color: #fff;
-}
+} */
 
 .bg-olive {
   background-color: #3d9970 !important;

@@ -27,9 +27,9 @@
 
 
         <div class="p-1">
-            <table id="example"  class="cell-border table table-bordered " >
+            <table id="example1"  class="table display responsive table-bordered " width=""  >
                 <thead>
-                     <tr class="text-secondary">
+                     <tr class="text-secondary ">
                             <th>SN</th>
                             <th>Member ID</th>
                             <th>Member Name</th>
@@ -108,7 +108,7 @@
                     <div class="tab-content">
                       <div class="active tab-pane" id="pledges">
                         {{-- start of member payments --}}
-                        <table   class="table table-bordered responsive">
+                        <table id="mytable"   class="table table-bordered responsive ">
                             <thead>
                                 <tr class="text-secondary">
                                     <th>ID</th>
@@ -336,8 +336,11 @@
   </div>
      <script type="text/javascript">
   
+
+
             showAllProjects();
          
+    
             /*
                 This function will get all the project records
             */

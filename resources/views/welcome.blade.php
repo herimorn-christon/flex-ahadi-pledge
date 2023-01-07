@@ -37,6 +37,9 @@
     .bg-navy{
       background-color: #1888cb !important;
     }
+    .text-navy{
+      color: #1888cb !important;
+    }
     .paginate_button{
       margin: 1px !important;
     }
@@ -65,6 +68,7 @@
         font-weight:bold;
         color: #e5e9ec !important;
       }
+
 </style>
 </head>
     <body>
