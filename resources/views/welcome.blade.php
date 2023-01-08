@@ -160,7 +160,9 @@
                         <div class="features-icons-item mx-auto mb-0 mb-lg-2">
                             <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-navy"></i></div>
                             <h4 class="text-danger">Easy to Use</h4>
-                            <p class="lead mb-0 text-secondary">Ready to use with your own content, or customize it!</p>
+                            <p class="lead mb-0 text-secondary">
+                                Ready to use with your own content, or customize it!
+                            </p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-3 col-5">

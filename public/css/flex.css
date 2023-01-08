@@ -1,0 +1,55 @@
+/* This is the file for custom css */
+
+
+    .page-item.active .page-link{
+        color: whitesmoke !important;
+        background-color: #1888cb  !important; 
+        border: none;
+    }
+
+     .page-link {
+      
+        text-decoration: none !important;
+        color:#1888cb  !important;
+    }
+    /* main colors */
+    .bg-flex{
+      background-color: #1888cb !important;
+    }
+    .text-flex{
+      color: #1888cb !important;
+    }
+    .paginate_button{
+      margin: 1px !important;
+    }
+    .paginate_button.disabled{
+      color: gainsboro !important;
+    }
+    .dataTables_paginate .paginate_button:hover{
+      border: 1px solid transparent !important;
+      background: transparent !important;
+    }
+
+    .current {
+        border-left: 0.45rem solid #1888cb !important;
+        background-color:#f2f3f4 !important;
+      }
+    .bg-lightflex{
+      background-color: #01b4f2 !important;
+    }
+    
+    .text-lightflex{
+      color: #01b4f2 !important;
+    }
+      .border-bottom-flex {
+        border-bottom: 0.25rem solid #1888cb !important;
+      }
+      .border-top-flex {
+        border-top: 0.25rem solid #1888cb !important;
+      }
+      .nav-tabs .nav-link.active{
+        background-color: #1888cb  !important;
+        font-weight:bold;
+        color: #e5e9ec !important;
+      }
+
