@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
 
         $user=Auth::user()->id;
-        $pledges=thousandsCurrencyFormat(Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->sum('amount'));
+        $pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->sum('amount');
         $payments=Payment::where('user_id',$user)->whereYear('created_at', date('Y'))->sum('amount');
         $pledges_no=Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->count();
         $mypledges=Pledge::whereYear('created_at', date('Y'))
@@ -24,11 +24,11 @@ class DashboardController extends Controller
                            ->get();
 
         // For Payment Statistics
-        $payrate =thousandsCurrencyFormat( Payment::select(\DB::raw("SUM(amount) as count"))
+        $payrate = Payment::select(\DB::raw("SUM(amount) as count"))
         ->whereYear('created_at', date('Y'))
         ->where('user_id',$user)
         ->groupBy(\DB::raw("Day(created_at)"))
-        ->pluck('count'));
+        ->pluck('count');
 
         if($pledges>$payments){
 

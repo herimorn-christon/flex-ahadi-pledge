@@ -1,3 +1,4 @@
+<!--  This is the admin view profile page -->
 @extends('layouts.master')
 
 @section('title','My Profile')
@@ -12,21 +13,26 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
 @endphp
 <div class="row mb-1">
     <div class="col-sm-6">
+
+    {{-- start of alert message i.e updated or failed requesst --}}
       @if (session('status'))
-      <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
+      <div class="btn btn-success disabled" disabled role="alert">
           {{ session('status') }}
       </div>
       @endif
+    {{-- end of alert message  --}}
+
     </div><!-- /.col -->
     <div class="col-sm-6">
       <ol class="float-sm-right" type="none">
         <li class=""> 
-          @foreach ($profile as $item)
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="editProfile({{ $item->id }})">
+          {{-- start of edit profile button --}}
+        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="editProfile()">
+            
             <i class="fa fa-cog"></i>
              Edit My Profile
         </button>
-        @endforeach
+        {{-- end of edit profile button --}}
     </li>
        
       </ol>
@@ -40,24 +46,28 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
 
         <div class="row">
             <div class="col-md-12 mx-auto">
-
-             
-                
-                <!-- /.card -->
-    
                 <!-- About Me Box -->
                 <div class="card card-light">
                   <!-- /.card-header -->
                   <div class="card-body">
 
                     <div class="col-md-12">
-                         <!-- Profile Image -->
-           
-                    <div class="text-center">
+                         <!-- Start of Profile Image -->
+                        
+                    <a href="#profile-modal" data-toggle="modal" data-bs-target="#profile-modal" class="text-decoration-none">
+                    <div class="text-center" >
                       <img class="profile-user-img img-fluid img-circle"
                            src="{{ asset('img/user.png') }}"
                            alt="User profile picture" width="240px">
+                           <br>
+                           <small class="text-secondary">
+                            <i class="fa fa-edit muted text-secondary"></i>
+                            Change Image
+                           </small>
                     </div>
+                    
+                    </a>
+                         <!-- End of Profile Image -->
                     @foreach($profile as $item)
                     <h3 class="profile-username text-center"> {{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</h3>
     
@@ -108,7 +118,7 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
 
 {{-- edit profile modal --}}
 <div class="modal fade" id="profile-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" style="width:1250px;">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-light">
           <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -116,8 +126,10 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
       </div>
       <div class="modal-body">
           <div id="error-div"></div>
-          <form >
-                 <input type="hidden" name="update_id" id="update_id">
+          {{-- start of edit profile form --}}
+          <form>
+           
+              <input type="hidden" name="update_id" id="update_id">
               <div class="row">
               <div class="mb-3 col-md-6">
                   <label for="fname" class="text-secondary">{{ __('First Name') }}</label>
@@ -193,7 +205,7 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
               <div class="col-lg-6">
                   <label for="card_no" class="text-secondary">Birthdate</label>
                   <div class="form-group form-primary mb-3"> 
-                      <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" placeholder="" > </div>
+                      <input id="date_of_birth" type="date" value="{{Auth::User()->date_of_birth;}}"  class="form-control" name="date_of_birth" placeholder="" > </div>
               </div>
 
           <div class="col-lg-6">
@@ -221,7 +233,9 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
                       </div>
            
           </div>
-          </form>
+        </form>
+
+        {{-- start of edit profile form --}}
       </div>
   
     </div>
@@ -246,12 +260,14 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
          
 
         /*
-                edit record function
-                it will get the existing value and show the project form
+                edit profile detail function
+                it will get the existing value and show the edit profile form
             */
-            function editProfile(id)
+   
+            function editProfile()
             {
-                let url = $('meta[name=app-url]').attr("content") + "/admin/profile/" + id ;
+
+                let url = $('meta[name=app-url]').attr("content") + "/admin/profile/{{Auth::User()->id; }}" ;
                 $.ajax({
                     url: url,
                     type: "GET",
@@ -259,17 +275,17 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
                         let member = response.member;
                         $("#alert-div").html("");
                         $("#error-div").html("");   
-                        $("#update_id").val(member.id);
-                        $("#fname").val(member.fname);
-                        $("#mname").val(member.mname);
-                        $("#lname").val(member.lname);
-                        $("#phone").val(member.phone);
-                        $("#email").val(member.email);
-                        $("#date_of_birth").val(member.date_of_birth);
-                        $("#gender").val(member.gender);
-                        $("#jumuiya").val(member.jumuiya);
+                        $("#update_id").val("{{Auth::User()->id;}}");
+                        $("#fname").val("{{Auth::User()->fname;}}");
+                        $("#mname").val("{{Auth::User()->mname;}}");
+                        $("#lname").val("{{Auth::User()->lname;}}");
+                        $("#phone").val("{{Auth::User()->phone;}}");
+                        $("#email").val("{{Auth::User()->email;}}");
+                        $("#date_of_birth").val("{{Auth::User()->date_of_birth;}}");
+                        $("#gender").val("{{Auth::User()->gender;}}");
+                        $("#jumuiya").val("{{Auth::User()->jumuiya;}}");
                         $("#password").val(member.password);
-                        $("#status").val(member.status);
+                        $("#status").val("{{Auth::User()->status;}}");
                         $("#profile-modal").modal('show'); 
                     },
                     error: function(response) {
