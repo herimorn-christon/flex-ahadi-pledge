@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->get('/notification', function (Request $request) {
- $request->user()->notify(new PledgeReminder("WATOTO WALEMAVU"));
+ //$request->user()->notify(new PledgeReminder("WATOTO WALEMAVU"));
  return response()->json(['success' => "Notification Sent"], 200);
 });
 
