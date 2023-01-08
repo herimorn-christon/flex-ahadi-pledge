@@ -59,7 +59,7 @@
                     <label for="phone" class="form-label text-secondary ">{{ __('phone') }}</label>
 
                     <div class="form-group">
-                        <input id="phone" type="text" placeholder="Enter Phone Number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus type="required">
+                        <input id="phone" type="text" maxlength="10" placeholder="Enter Phone Number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus type="required">
 
         
                     </div>
@@ -124,6 +124,7 @@
                         <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                     </div>
                 </div>
+                {{-- start of member status select --}}
                 <div class="col-md-6">
                     <label for="" class="text-secondary"> Member Status</label>
                     <select name="status" id="status" class="form-control bg-light">
@@ -132,10 +133,11 @@
                     </select>
                   
                 </div>
+                {{-- end of member status select --}}
                 <div class="col-md-3"></div>
                 <div class="col-md-3 mb-0 ">
                         <label for="" class="text-white">.</label>
-                            <button type="submit" class="btn  text-decoration-none text-light bg-flex btn-block col-lg-12" id="save-project-btn">
+                            <button type="submit" class="btn  text-decoration-none text-light bg-flex btn-block col-lg-12" id="save-member-btn">
                                <i class="fa fa-save"></i>
                                 {{ __('Save Member') }}
                             </button>
