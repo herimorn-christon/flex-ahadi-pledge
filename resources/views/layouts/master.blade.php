@@ -46,7 +46,7 @@
   <!-- Theme style -->
     {{-- for autosearch --}}
     {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css"> --}}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    {{--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -73,14 +73,12 @@
       .bg-navy{
         background-color: #1888cb !important;
       }
-      .paginate_button{
-        margin: 1px !important;
-      }
+   
       .paginate_button.disabled{
         color: gainsboro !important;
       }
       .dataTables_paginate .paginate_button:hover{
-        border: 1px solid transparent !important;
+        /* border: 1px solid transparent !important; */
         background: transparent !important;
       }
 
@@ -114,7 +112,7 @@
           background-color: #001f3f;
         }
         button.btn-secondary:nth-child(3){
-          border: 1px solid #1888cb  !important;
+          border: 1px solid  #01b4f2  !important;
           background-color: white  !important;
           margin: 1px !important;
           color: #1888cb  !important;
@@ -132,20 +130,20 @@
           color: #1888cb  !important;
         }
         button.btn-secondary:nth-child(1):hover{
-          border: 1px solid #1888cb  !important;
-          background-color: #1888cb  !important;
+          border: 1px solid #01b4f2  !important;
+          background-color: #01b4f2  !important;
           margin: 1px !important;
           color: white  !important;
         }
         button.btn-secondary:nth-child(2):hover{
-          border: 1px solid #1888cb  !important;
-          background-color: #1888cb  !important;
+          border: 1px solid #01b4f2  !important;
+          background-color: #01b4f2  !important;
           margin: 1px !important;
           color: white  !important;
         }
         button.btn-secondary:nth-child(3):hover{
-          border: 1px solid #1888cb  !important;
-          background-color: #1888cb  !important;
+          border: 1px solid #01b4f2 !important;
+          background-color:#01b4f2  !important;
           margin: 1px !important;
           color: white  !important;
         }

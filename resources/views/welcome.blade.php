@@ -89,9 +89,7 @@
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
-                    <button type="button" class="btn  bg-navy  " data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Login To Your Account
-                    </button>
+                    <a href="{{ url('login') }}"  class="btn  bg-navy  mt-2 font-weight-light">Sign In To Your Account</a>
                     @endif
                 @else
                     <li class="nav-item dropdown">
@@ -99,7 +97,7 @@
                             {{ Auth::user()->name }}
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <div class="float dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
@@ -127,7 +125,7 @@
                              <span class="text-danger">Pledge</span>
                             </h1>
                         
-                            <p class="mt-2" style="font-weight: bold;text-shadow: rgb(39 20 20 / 75%) 1px 0 10px;">
+                            <p class="mt-2" style="font-weight:light;text-shadow: rgb(39 20 20 / 75%) 1px 0 8px;">
                                 Will a mere mortal rob God? Yet you rob me. 'But you ask, 'How are we robbing you?' 'In tithes and offerings.
                             </p>
                             <p class="mt-3" style="font-weight: bold;text-shadow: rgb(39 20 20 / 75%) 1px 0 10px;">Malachi 3:8, NIV</p>
@@ -141,7 +139,7 @@
                                         <a data-bs-toggle="modal" data-bs-target="#registerModal" href="#myModal" class="btn bg-danger  font-weight-bolder   mt-2">Join Us Now !</a>
 
                                   
-                                        <a data-bs-toggle="modal" data-bs-target="#exampleModal"  data-toggle="modal"  data-target="#loginModal"  class="btn  bg-navy  mt-2 font-weight-bolder">Login To Your Account</a>
+                                        <a href="{{ url('login') }}"  class="btn  bg-navy  mt-2 font-weight-bolder">Sign In To Your Account</a>
 
                                     </div>
                                 </div>
@@ -157,22 +155,22 @@
         <!-- Icons Grid-->
         <section class="features-icons bg-light text-center">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 ">
-                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                <div class="row mx-auto">
+                    <div class="col-lg-3 col-md-3 col-5">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-2">
                             <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-navy"></i></div>
                             <h4 class="text-danger">Easy to Use</h4>
                             <p class="lead mb-0 text-secondary">Ready to use with your own content, or customize it!</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3 ">
+                    <div class="col-lg-3 col-md-3 col-5">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="bi-clipboard-data m-auto text-navy"></i></div>
                             <h4 class="text-danger">Easy Management</h4>
                             <p class="lead mb-0 text-secondary">You can easily handle your daily Pledges.</p>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-3 ">
+                    <div class="col-lg-3 col-md-3 col-5">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
                             <div class="features-icons-icon d-flex"><i class="bi-bell m-auto text-navy"></i></div>
                             <h4 class="text-danger">Daily Reminders</h4>

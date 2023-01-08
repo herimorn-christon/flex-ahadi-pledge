@@ -146,34 +146,33 @@
           <div class="row">
             <form>
               <input type="hidden" name="update_id" id="update_id">
-                <div class="row mb-3">
-                    @php
-                    $jumuiya= App\Models\User::where('role','member')->get();
-                    @endphp
-                    <div class="col-md-6">
-                        <label for="" class="text-secondary">Payer</label>
-                        <select name="user_id" id="user_id" class="form-control">
-                            <option value="">--Select Member --</option>
-                            @foreach ( $jumuiya as $item)
-                             <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
-                             @endforeach
-                        </select>
-                    </div>
 
-                    @php
-                    
-                    $purpose= App\Models\Purpose::where('status','')->get();
-                    @endphp
-                    <div class="col-md-6">
-                        <label for="" class="text-secondary">Payment Purpose</label>
-                        <select name="pledge_id" id="pledge_id" class="form-control">
-                            <option value="">--Select Purpose --</option>
-                            @foreach ( $purpose as $item)
-                             <option value="{{ $item->id}}"> {{ $item->title}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-           
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <label for="" class="text-secondary">Payment Owner</label>
+                   <select id='user_id' name='sel_depart' class="form-control">
+                  <option value='0'>-- Select Member Here --</option>
+                  @php
+                  $departmentData= App\Models\User::where('role','member')->get();
+                  @endphp
+                  <!-- Read Departments -->
+                  @foreach($departmentData as $department)
+                    <option value='{{ $department->id }}'>{{ $department->fname }} {{ $department->mname }} {{ $department->lname }} ({{ $department->community->abbreviation}} /{{ $department->id }} ) </option>
+                  @endforeach
+
+              </select>
+                </div>
+              <div class="col-md-6">
+              <!-- Department Employees Dropdown -->
+              <label for="" class="text-secondary">Payment Pledge</label>
+              <select id='pledge_id' name='sel_emp' class="form-control">
+                  <option value='0'>-- Select Member's Pledge --</option>
+              </select>
+              
+              </div>
+              </div>
+     
+           <div class="row mb-2">
                     @php
                     $purpose= App\Models\PaymentType::get();
                     @endphp
@@ -192,15 +191,19 @@
                         <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Payment Amount">
                     </div>
                  </div>
-                 <div class="col-md-6"></div>
-                 <div class="col-md-6">
-                    <div class="form-group">
-                     
-                        <button type="submit" class="btn btn-sm bg-navy btn-block" id="save-pledge-btn">
-                            <i class="fa fa-save"></i>
-                            Save Payment
-                        </button>
-                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6"></div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                      
+                         <button type="submit" class="btn btn-sm bg-navy btn-block" id="save-pledge-btn">
+                             <i class="fa fa-save"></i>
+                             Save Payment
+                         </button>
+                     </div>
+                </div>
+
                  </div>
                 </div>
             </form>
@@ -245,8 +248,61 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
+
+  {{-- start auto populate member pledges --}}
+
+         <!-- Script -->
+         <script type='text/javascript'>
+
+          $(document).ready(function(){
+
+            // Department Change
+            $('#user_id').change(function(){
+
+                // Department id
+                var id = $(this).val();
+
+                // Empty the dropdown
+                $('#pledge_id').find('option').not(':first').remove();
+
+                // AJAX request 
+                $.ajax({
+                  url: 'getEmployees/'+id,
+                  type: 'get',
+                  dataType: 'json',
+                  success: function(response){
+
+                    var len = 0;
+                    if(response['data'] != null){
+                      len = response['data'].length;
+                    }
+
+                    if(len > 0){
+                      // Read data and create <option >
+                      for(var i=0; i<len; i++){
+
+                        var id = response['data'][i].id;
+                        var name = response['data'][i].name;
+
+                        var option = "<option value='"+id+"'>"+name+"</option>"; 
+
+                        $("#pledge_id").append(option); 
+                      }
+                    }
+
+                  }
+              });
+            });
+
+          });
+
+          </script>
+         
+  {{-- end of auto populate member pledges --}}
    <script type="text/javascript">
   
+
+
             showAllPledges();
         
             /*
@@ -279,7 +335,7 @@
                             let projectRow = '<tr>' +
                                 '<td>' + purposes[i].payer.fname + '&nbsp;' + purposes[i].payer.mname +  '&nbsp;' + purposes[i].payer.lname +   '</td>' +
                                 '<td>' + purposes[i].payment.name + '</td>' +
-                                '<td>' + purposes[i].purpose.title + '</td>' +
+                                '<td>' + purposes[i].pledge.name + '</td>' +
                                 '<td>' + purposes[i].amount + '</td>' +
                                 '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                             '</tr>';
@@ -714,7 +770,7 @@
                         $("#fname-info").html(purpose.payer.fname);
                         $("#mname-info").html(purpose.payer.mname);
                         $("#lname-info").html(purpose.payer.lname);
-                        $("#purpose-info").html(purpose.purpose.title);
+                        $("#purpose-info").html(purpose.pledge.name);
                         $("#amount-info").html(purpose.amount);
                         $("#method-info").html(purpose.payment.name);
                         $("#date-info").html(purpose.   created_at);

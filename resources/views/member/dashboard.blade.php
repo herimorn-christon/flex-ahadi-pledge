@@ -221,19 +221,20 @@
                   <div class="card">
                     <div class="card-header">
                       <h6 class="text-secondary ">
-                       
+                        {{ $item->id }}
                         {{ $item->name }}
                       </h6>
                     </div>
                     <div class="">
       
                       @php
-                         $purpose= $item->purpose->id; 
+                         $purpose= "{$item->id}" ; 
+                         
                          $user=Auth::User()->id;
-                         $payment=App\Models\Payment::whereYear('created_at', date('Y'))->where('user_id',$user)->where('pledge_id',$purpose)->sum('amount');
-                         $amount= $item->amount;
-                         $progress=$payment/$amount*100;
-
+                         $payment=App\Models\Payment::where('user_id',$user)->where('pledge_id',$purpose)->whereYear('created_at', date('Y'))->sum('amount');
+                         $amount="{$item->amount}";
+                         $number=($payment/$amount)*100;//progress formular
+                         $progress=number_format((float)$number, 2, '.', '');
                       @endphp
                       <div class="col-md-12 py-2">
                       <div class="progress"  style="height:20px;">
