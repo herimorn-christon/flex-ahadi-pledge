@@ -184,6 +184,9 @@ Route::get('/settings', function () {
 // my-profile API
   Route::apiResource('profile', ProfileController::class);
 
+  // update profile image
+  Route::post('profile-image',[App\Http\Controllers\Admin\ProfileController::class, 'updateImg']);
+
 
   Route::get('/getEmployees/{id}',  [App\Http\Controllers\Admin\PaymentController::class, 'getEmployees']);
 

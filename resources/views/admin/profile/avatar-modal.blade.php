@@ -10,9 +10,9 @@
             <div id="error-div"></div>
             {{-- start of current image --}}
             <div class="row">
-              <div class="text-center col-md-5 mx-auto" >
+              <div class="text-center col-md-6 mx-auto" >
                 <img class="profile-user-img img-fluid img-circle"
-                     src="{{ asset('img/user.png') }}"
+                     src="{{ asset('uploads/user/'. Auth::user()->profile_picture ) }}"
                      alt="User profile picture" width="100%">
                      <br>
                      <small class="text-secondary">
@@ -22,30 +22,24 @@
             </div>
             {{--  end of current image --}}
             {{-- start of update image form --}}
-            <form>
-             
+            <form method="post" action="{{ url('admin/profile-image')}}">
+                 @csrf
                 <input type="hidden" name="update_id" id="{{Auth::User()->id;}}">
                 <div class="row">
-           
-            <div class="col-lg-12">
-                    <label for="file" class="text-secondary font-weight-light">Upload New Image</label>
-                    <input type="file" name="profile_img" id="profile_img" class="form-control">
-               
-            </div>
-  
-             
-                <div class="col-md-6">
-                 
-                  
+                <div class="col-lg-12">
+                        <label for="file" class="text-secondary font-weight-light">Upload New Image</label>
+                        <input type="file" name="image" id="image" class="form-control">
                 </div>
+             
+                <div class="col-md-6"></div>
   
                 <div class="col-md-6 mb-0 ">
-                        <label for="" class="text-white">.</label>
-                            <button type="submit" class="btn text-light bg-flex btn-block col-lg-12" id="save-profile-btn">
-                               <i class="fa fa-save"></i>
-                                {{ __('Update Image') }}
-                            </button>
-                        </div>
+                      <label for="" class="text-white">.</label>
+                      <button type="submit" class="btn text-light bg-flex btn-block col-lg-12" >
+                          <i class="fa fa-save"></i>
+                          {{ __('Update Image') }}
+                      </button>
+                </div>
              
             </div>
           </form>

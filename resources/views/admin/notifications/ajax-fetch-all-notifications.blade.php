@@ -1,0 +1,1 @@
+{{-- This is the file for the method of  fetching all the user notifications --}}

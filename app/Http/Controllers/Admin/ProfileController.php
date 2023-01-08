@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use file;
 use App\Models\User;
+use illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {
@@ -15,7 +18,6 @@ class ProfileController extends Controller
      
         $user=Auth::user()->id;
         $member=User::where('id',$user)->with('community')->get();
-        // return view('admin.profile.index',compact('profile'));
         return response()->json(['member' => $member]);
     }
 
@@ -59,5 +61,38 @@ class ProfileController extends Controller
         $member->save();
         return response()->json(['status' => "success"]);
     }
+
+
+    // For updating profile image
+       // update function
+       public function updateImg(Request $request)
+       {
+
+        request()->validate([
+            'image' => 'required'
+        ]);
+           $user=Auth::user()->id;
+        
+           $member=User::find($user);
+           if($request->hasfile('image')){
+   
+               $destination= 'uploads/user/'. Auth::User()->profile_picture;
+               if(File::exists($destination)){
+                $img=$member->profile_picture;
+                if($img!="user.png"){
+
+                    File::delete($destination);
+                }
+               }
+               $file=$request->file('image');
+               $filename=time().'.'.$file->getClientOriginalExtension();
+               $file->move('uploads/user/', $filename);
+               $member->profile_picture=$filename;
+           }
+           // saving data
+           $member->update();
+   
+           return redirect('admin/my-profile')->with('status', 'Image Has been uploaded');
+       }
 
 }
