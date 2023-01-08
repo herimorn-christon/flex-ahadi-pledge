@@ -29,27 +29,12 @@ class MemberController extends Controller
 
 
     // search community 
-    public function selectSearch(Request $request)
-
-    {
-
-    	$movies = [];
-
-
-        if($request->has('q')){
-
-            $search = $request->q;
-
-            $movies =Jumuiya::select("id", "name")
-
-            		->where('name', 'LIKE', "%$search%")
-
-            		->get();
-
-        }
-
-        return response()->json($movies);
-
+     public function autocomplete(Request $request)
+    {        
+        $data = Jumuiya::select("name")
+                ->where("name","LIKE","%{$request->str}%")
+                ->get('query');   
+        return response()->json($data);
     }
         /**
      * Store a newly created resource in storage.

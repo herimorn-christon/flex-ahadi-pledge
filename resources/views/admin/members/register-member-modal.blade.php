@@ -20,7 +20,7 @@
                     <label for="fname" class="text-secondary">{{ __('First Name') }}</label>
 
                     <div class="form-group">
-                        <input id="fname" type="text" placeholder="Enter First Name" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+                        <input id="fname" type="text" placeholder="Enter First Name" class="text-capitalize form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus type="required">
 
                         @error('fname')
                             <span class="invalid-feedback" role="alert">
@@ -33,7 +33,7 @@
                     <label for="mname" class="text-secondary">{{ __('Middle Name') }}</label>
 
                     <div class="">
-                        <input id="mname" type="text" placeholder="Enter Middle Name" class="form-control @error('mname') is-invalid @enderror" name="mname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
+                        <input id="mname" type="text" placeholder="Enter Middle Name" class="text-capitalize  form-control @error('mname') is-invalid @enderror" name="mname" value="{{ old('fname') }}" required autocomplete="name" autofocus type="required">
 
                         @error('mname')
                             <span class="invalid-feedback" role="alert">
@@ -46,7 +46,7 @@
                     <label for="lname" class="text-secondary">{{ __('Last Name') }}</label>
 
                     <div class="form-group">
-                        <input id="lname" type="text" placeholder="Enter Last Name" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
+                        <input id="lname" type="text" placeholder="Enter Last Name" class="text-capitalize  form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus type="required">
 
                         @error('lname')
                             <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                     <label for="phone" class="form-label text-secondary ">{{ __('phone') }}</label>
 
                     <div class="form-group">
-                        <input id="phone" type="text" placeholder="Enter Phone Number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
+                        <input id="phone" type="text" placeholder="Enter Phone Number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus type="required">
 
         
                     </div>
@@ -68,7 +68,7 @@
                     <label for="email" class="text-secondary">{{ __('Email Address') }}</label>
 
                     <div class="form-group">
-                        <input id="email" type="email" placeholder="Enter Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" type="email" placeholder="Enter Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" type="required">
 
         
                     </div>
@@ -135,7 +135,7 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-3 mb-0 ">
                         <label for="" class="text-white">.</label>
-                            <button type="submit" class="btn  text-decoration-none text-light bg-navy btn-block col-lg-12" id="save-project-btn">
+                            <button type="submit" class="btn  text-decoration-none text-light bg-flex btn-block col-lg-12" id="save-project-btn">
                                <i class="fa fa-save"></i>
                                 {{ __('Save Member') }}
                             </button>

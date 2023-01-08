@@ -20,16 +20,16 @@
                         for (var i = 0; i < members.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn bg-flex btn-sm    " ' +
-                                ' onclick="showMember(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
+                                ' class="btn bg-flex btn-sm   text-light" ' +
+                                ' onclick="showMember(' + members[i].id + ')" data-toggle="tooltip" data-placement="left" title="Click here to View Member Details"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
-                                ' class="btn bg-flex btn-sm" ' +
-                                ' onclick="editMember(' + members[i].id + ')"><i class="fa fa-edit"></i>' +
+                                ' class="btn bg-flex btn-sm text-light" ' +
+                                ' onclick="editMember(' + members[i].id + ')" data-toggle="tooltip" data-placement="bottom" title="Click here to Edit Member Details"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
                                 ' class="btn btn-danger btn-sm bg-gradient-danger" ' +
-                                ' onclick="destroyMember(' + members[i].id + ')"><i class="fa fa-trash"></i>' +
+                                ' onclick="destroyMember(' + members[i].id + ')" data-toggle="tooltip" data-placement="left" title="Click here to Delete this Member"><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +
