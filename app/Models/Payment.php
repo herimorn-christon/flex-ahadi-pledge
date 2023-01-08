@@ -17,7 +17,9 @@ class Payment extends Model implements Auditable
         'user_id',
         'pledge_id',
         'amount',
-        'created_by'
+        'created_by',
+        'verified',
+        'receipt'
    
     ];
 

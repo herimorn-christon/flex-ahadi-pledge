@@ -187,19 +187,47 @@ class PaymentController extends Controller
             'type_id' => 'required',
             'pledge_id' => 'required',
             'amount' => 'required',
+            'receipt' => 'required'
              ]
             );
 
-            Payment::create([
-                "type_id" => $request->type_id,
-                "user_id" => $request->user()->id,
-                "amount" => $request->amount,
-                "pledge_id"=>$request->pledge_id,
-                "created_by"=> $request->user()->id
-            ]);
+    
+            $pledge = Pledge::find($request->pledge_id);
 
-          
-            return response()->json(['status' => "success"]);
+            $pledgePayments = Payment::where('pledge_id', $request->pledge_id)->get()->toArray();
+
+            $totalPaid = array_reduce($pledgePayments, 
+            function ($acc, $element)
+                {
+                    return $acc + (int) $element['amount'];
+                }
+            , 0);
+
+            $reqAmount = (int) $request->amount;
+            $pledgeAmount = (int) $pledge->amount;
+
+            $remainigAmount = $pledgeAmount - $totalPaid;
+
+            if($reqAmount > $remainigAmount){
+
+                return response()->json(['error' => "Amount exceeds remaining amount"], 500);
+
+
+            }else {
+                Payment::create([
+                    "type_id" => $request->type_id,
+                    "user_id" => $request->user()->id,
+                    "amount" => $request->amount,
+                    "receipt" => $request->receipt,
+                    "pledge_id"=>$request->pledge_id,
+                    "created_by"=> $request->user()->id
+                ]);
+    
+              
+                return response()->json(['status' => "success"]);
+            }
+
+            
     }
 
 
