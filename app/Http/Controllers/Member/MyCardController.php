@@ -95,5 +95,51 @@ class MyCardController extends Controller
         return response()->json(['payment' => $payment,'card'=>$card]);
     }
 
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function apistore(Request $request)
+        {
+            
+                $user=$request->user()->id;
+
+                $card=CardMember::where('user_id',$user)->where('status','')->first();
+
+                if ($card) {
+                    return response()->json(['error' => "Sorry,You Already Have an Active Member Card!"]);
+
+                }
+                else{
+
+
+                    $member =new CardMember();
+
+
+                    $card = Card::where('status','')->orderBy('created_by')->first();
+                    if ($card) {
+                        $card->status=1;
+                        $card->update();
+                        $member->card_no=$card->id;
+                        $member->user_id=$request->user_id;
+                        $member->status= $request->status == true ? '1':'0';
+                        $member->save(); # code...
+                        return response()->json(['success' => "Congratulatioons,You have been assigned a Member Card!"]);
+
+                    }
+                
+                    else{
+        
+                        return response()->json(['success' => "Please wait to be assigned a Member Card!"]);
+                    }
+                 
+        
+               
+                }
+           
+        }
+
    
 }

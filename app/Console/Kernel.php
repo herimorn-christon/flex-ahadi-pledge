@@ -31,7 +31,14 @@ class Kernel extends ConsoleKernel
             $reminders = Reminder::all();
             foreach ($reminders as $reminder) {
                 $name = $reminder->pledge->name;
-                $reminder->pledge->user->notify(new PledgeReminder($name));
+
+                FCMService::send(
+                    $reminder->pledge->user->fcm_token,
+                    [
+                        'title' => $name,
+                        'body' => 'reminder to complete pledge goal',
+                    ]
+                );
                 $reminder->delete();
             }
         })->everyMinute();

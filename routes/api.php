@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\Admin\CardPaymentController;
 use App\Models\User;
 use App\Models\Reminder;
+use App\Services\FCMService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\JumuiyaController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PurposeController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Member\MyCardController;
+use App\Http\Controllers\Admin\CardPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +36,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->get('/notification', function (Request $request) {
- //$request->user()->notify(new PledgeReminder("WATOTO WALEMAVU"));
+    FCMService::send(
+        $request->user()->fcm_token,
+        [
+            'title' => 'UJENZI WA KANISA',
+            'body' => 'reminder to complete pledge goal.',
+        ]
+    );
  return response()->json(['success' => "Notification Sent"], 200);
 });
 
@@ -145,6 +153,7 @@ Route::middleware('auth:sanctum')->get('/payment/user', [PaymentController::clas
 Route::middleware('auth:sanctum')->post('/payment', [PaymentController::class, 'apistore']);
 
 //CARD ROUTES
+Route::middleware('auth:sanctum')->get('/request-card', [MyCardController::class,'apistore']);  
 
 // Route::get('/card', [JumuiyaController::class, 'index']);
 // Route::get('/card/{id}', [JumuiyaController::class, 'show']);

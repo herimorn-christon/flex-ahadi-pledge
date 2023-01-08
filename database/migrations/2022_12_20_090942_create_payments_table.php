@@ -19,6 +19,8 @@ class CreatePaymentsTable extends Migration
             $table->integer('pledge_id');
             $table->integer('user_id');
             $table->string('amount');
+            $table->string('receipt');
+            $table->boolean('verified')->default(false);
             $table->integer('created_by');
             $table->timestamps();
         });
