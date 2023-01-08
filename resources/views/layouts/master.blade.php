@@ -148,6 +148,8 @@
           color: white  !important;
         }
   </style>
+  {{-- for flex theme --}}
+    <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

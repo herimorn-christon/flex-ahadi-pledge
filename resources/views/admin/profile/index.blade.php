@@ -27,7 +27,7 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
       <ol class="float-sm-right" type="none">
         <li class=""> 
           {{-- start of edit profile button --}}
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="editProfile()">
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="editProfile()">
             
             <i class="fa fa-cog"></i>
              Edit My Profile
@@ -54,7 +54,7 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
                     <div class="col-md-12">
                          <!-- Start of Profile Image -->
                         
-                    <a href="#profile-modal" data-toggle="modal" data-bs-target="#profile-modal" class="text-decoration-none">
+                    <a href="#avatar-modal" data-toggle="modal" class="text-decoration-none"  onclick="editImage()">
                     <div class="text-center" >
                       <img class="profile-user-img img-fluid img-circle"
                            src="{{ asset('img/user.png') }}"
@@ -64,46 +64,17 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
                             <i class="fa fa-edit muted text-secondary"></i>
                             Change Image
                            </small>
-                    </div>
+                    </div> 
                     
                     </a>
-                         <!-- End of Profile Image -->
-                    @foreach($profile as $item)
-                    <h3 class="profile-username text-center"> {{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</h3>
-    
-                    <p class="text-muted text-center">Member</p>
-               
-                    </div>
-                    <strong  class="text-secondary"><i class="fas fa-user-tie mr-1"></i> Full Names</strong>
-    
-                    <p class="text-dark">
-                        {{ $item->fname}} {{ $item->mname}} {{ $item->lname}}
-                    </p>
-    
-                    <hr>
-    
-                    <strong  class="text-secondary"><i class="fas fa-users mr-1"></i> Community (Jumuiya)</strong>
-    
-                    <p class="text-dark">{{ $item->community->name}}</p>
-    
-                    <hr>
-    
-                    <strong  class="text-secondary"><i class="fas fa-calendar mr-1"></i> Birthdate</strong>
-    
-                    <p class="text-dark">
-                        {{ $item->date_of_birth}}
-                   
-                    </p>
-    
-                    <hr>
-    
-                    <strong class="text-secondary"><i class="fa fa-address-book mr-1 text-secondary"></i> Contacts</strong>
-    
-                    <p class="text-dark">
-                        {{ $item->phone}}
-                   <br>
-                        {{ $item->email}}
-                    </p>
+                    <!-- End of Profile Image -->
+{{-- start of avatar modal --}}
+@include('admin.profile.avatar-modal')
+{{-- end of avatar modal --}}
+
+<!-- Start of Profile Details -->
+@include('admin.profile.profile-detail')
+ <!-- End Of Profile Details -->
                   </div>
                   <!-- /.card-body -->
                 </div>
@@ -113,185 +84,15 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
         </div>
 
 
-        @endforeach
 
 
-{{-- edit profile modal --}}
-<div class="modal fade" id="profile-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-          <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
-    
-      </div>
-      <div class="modal-body">
-          <div id="error-div"></div>
-          {{-- start of edit profile form --}}
-          <form>
-           
-              <input type="hidden" name="update_id" id="update_id">
-              <div class="row">
-              <div class="mb-3 col-md-6">
-                  <label for="fname" class="text-secondary">{{ __('First Name') }}</label>
-
-                  <div class="form-group">
-                      <input id="fname" type="text" placeholder="Enter First Name" class="form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
-
-                      @error('fname')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-              </div>
-              <div class="mb-3 col-md-6">
-                  <label for="mname" class="text-secondary">{{ __('Middle Name') }}</label>
-
-                  <div class="">
-                      <input id="mname" type="text" placeholder="Enter Middle Name" class="form-control @error('mname') is-invalid @enderror" name="mname" value="{{ old('fname') }}" required autocomplete="name" autofocus>
-
-                      @error('mname')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                  <label for="lname" class="text-secondary">{{ __('Last Name') }}</label>
-
-                  <div class="form-group">
-                      <input id="lname" type="text" placeholder="Enter Last Name" class="form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus>
-
-                      @error('lname')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-              </div>
-              <div class="col-lg-6 mb-3">
-                  <label for="phone" class="form-label text-secondary ">{{ __('phone') }}</label>
-
-                  <div class="form-group">
-                      <input id="phone" type="text" placeholder="Enter Phone Number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
-
-      
-                  </div>
-              </div>
-              <div class="col-lg-6 mb-3">
-                  <label for="email" class="text-secondary">{{ __('Email Address') }}</label>
-
-                  <div class="form-group">
-                      <input id="email" type="email" placeholder="Enter Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-      
-                  </div>
-              </div>
-
-              @php
-              $jumuiya= App\Models\Jumuiya::get();
-              @endphp
-              <div class="col-md-6">
-                  <label for="" class="text-secondary">Jumuiya (Community) </label>
-                  <select name="jumuiya" id="jumuiya" class="form-control">
-                      <option value="">--Select Community (Jumuiya) --</option>
-                      @foreach ( $jumuiya as $item)
-                       <option value="{{ $item->id}}">{{ $item->name}}</option>
-                      @endforeach
-                  </select>
-              </div>
-
-              <div class="col-lg-6">
-                  <label for="card_no" class="text-secondary">Birthdate</label>
-                  <div class="form-group form-primary mb-3"> 
-                      <input id="date_of_birth" type="date" value="{{Auth::User()->date_of_birth;}}"  class="form-control" name="date_of_birth" placeholder="" > </div>
-              </div>
-
-          <div class="col-lg-6">
-                  <label for="gender" class="text-secondary">Gender</label>
-                  <select name="gender" id="gender" class="form-control">
-                          <option value="">--Select Gender --</option>
-                          <option value="male">Male</option>
-                          <option value="female">Female</option>
-                  </select>
-             
-          </div>
-
-           
-              <div class="col-md-6">
-               
-                
-              </div>
-
-              <div class="col-md-6 mb-0 ">
-                      <label for="" class="text-white">.</label>
-                          <button type="submit" class="btn  text-decoration-none text-light bg-primary btn-block col-lg-12" id="save-profile-btn">
-                             <i class="fa fa-save"></i>
-                              {{ __('Save Changes') }}
-                          </button>
-                      </div>
-           
-          </div>
-        </form>
-
-        {{-- start of edit profile form --}}
-      </div>
-  
-    </div>
-  </div>
-</div>
+{{-- start of profile modal --}}
+@include('admin.profile.profile-modal')
+{{-- end of profile modal --}}
 
 
+{{-- start of edit profile ajax method --}}
 
-<script>
-      /*
-                check if form submitted is for creating or updating
-            */
-            $("#save-profile-btn").click(function(event ){
-                event.preventDefault();
-                if($("#update_id").val() == null || $("#update_id").val() == "")
-                {
-                    storeProject();
-                } else {
-                    updateProject();
-                }
-            })
-         
-
-        /*
-                edit profile detail function
-                it will get the existing value and show the edit profile form
-            */
-   
-            function editProfile()
-            {
-
-                let url = $('meta[name=app-url]').attr("content") + "/admin/profile/{{Auth::User()->id; }}" ;
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function(response) {
-                        let member = response.member;
-                        $("#alert-div").html("");
-                        $("#error-div").html("");   
-                        $("#update_id").val("{{Auth::User()->id;}}");
-                        $("#fname").val("{{Auth::User()->fname;}}");
-                        $("#mname").val("{{Auth::User()->mname;}}");
-                        $("#lname").val("{{Auth::User()->lname;}}");
-                        $("#phone").val("{{Auth::User()->phone;}}");
-                        $("#email").val("{{Auth::User()->email;}}");
-                        $("#date_of_birth").val("{{Auth::User()->date_of_birth;}}");
-                        $("#gender").val("{{Auth::User()->gender;}}");
-                        $("#jumuiya").val("{{Auth::User()->jumuiya;}}");
-                        $("#password").val(member.password);
-                        $("#status").val("{{Auth::User()->status;}}");
-                        $("#profile-modal").modal('show'); 
-                    },
-                    error: function(response) {
-                        console.log(response.responseJSON)
-                    }
-                });
-            }
-</script>
+@include('admin.profile.edit-detail')
+{{-- end of edit profile ajax method --}}
 @endsection
