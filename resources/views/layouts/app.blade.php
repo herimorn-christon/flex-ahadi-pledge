@@ -15,7 +15,57 @@
     <link rel="shortcut icon" href="#" type="image/x-icon">
 
 
+  <style>
+    .page-item.active .page-link{
+        color: whitesmoke !important;
+        background-color: #1888cb  !important; 
+        border: none;
+    }
 
+     .page-link {
+      
+        text-decoration: none !important;
+        color:#1888cb  !important;
+    }
+    .bg-flex{
+      background-color: #1888cb;
+    }
+    .bg-navy{
+      background-color: #1888cb !important;
+    }
+    .text-navy{
+      color: #1888cb !important;
+    }
+    .paginate_button{
+      margin: 1px !important;
+    }
+    .paginate_button.disabled{
+      color: gainsboro !important;
+    }
+    .dataTables_paginate .paginate_button:hover{
+      border: 1px solid transparent !important;
+      background: transparent !important;
+    }
+
+    .current {
+        border-left: 0.45rem solid #1888cb !important;
+        background-color:#f2f3f4 !important;
+      }
+    .bg-teal{
+      background-color: #01b4f2 !important;
+    }
+    
+      .border-bottom-navy {
+        border-bottom: 0.25rem solid #001f3f !important;
+      }
+
+      .nav-tabs .nav-link.active{
+        background-color: #1888cb  !important;
+        font-weight:bold;
+        color: #e5e9ec !important;
+      }
+
+</style>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -24,9 +74,11 @@
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 
     <link href="{{ asset('assets/css/custom.css') }}" rel="stylesheet">
+      <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 </head>
 <body class="bg-light">
-    <div id="app" class="bg-white">
+    <div id="app" class="bg-light">
 
         {{-- including navbar --}}
         @include('layouts.inc.frontend-navbar')
@@ -34,26 +86,11 @@
         <main class="">
             @yield('content')
         </main>
-<!-- start of move to the top button -->
-<a
-        type="button"
-        class="btn btn-danger  btn-floating btn-lg"
-        id="top" href="#nav"
-        >
-  <i class="fas  fa-angle-double-up"></i>
-</a>
+
+
 <!-- end of move to the top -->
 
-        <footer class="py-4 bg-dark mt-2   ">
-            <div class="container-fluid px-4">
-
-            <div class=" text-center pt-2">
-                <div class="underline"><hr class="bg-warning font-weight-bolder"></div>
-                <div class="text-muted">Copyright &copy; <i class="text-danger"> <a href="" class="text-decoration-none text-danger">AhadiPledge</a>  </i> All right reserved. Designed and Developed  {{ date(('Y'))}}</div>
-
-            </div>
-            </div>
-        </footer>
+  
     </div>
    <!-- Scripts -->
 

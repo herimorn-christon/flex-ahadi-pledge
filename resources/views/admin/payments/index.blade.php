@@ -39,7 +39,7 @@
 <div class="card mt-1">
 
         <div class="responsiveness p-1">
-            <table id="example" class="table table-bordered cell-border responsive">
+            <table id="example1" class="table table-bordered cell-border responsive">
                 <thead>
                      <tr class="text-secondary">
                         <th>Payer Name</th>
@@ -264,7 +264,7 @@
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-sm bg-teal    " ' +
+                                ' class="btn btn-sm bg-navy" ' +
                                 ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +

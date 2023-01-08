@@ -19,7 +19,58 @@
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
           <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-    </head>
+  <style>
+    .page-item.active .page-link{
+        color: whitesmoke !important;
+        background-color: #1888cb  !important; 
+        border: none;
+    }
+
+     .page-link {
+      
+        text-decoration: none !important;
+        color:#1888cb  !important;
+    }
+    .bg-flex{
+      background-color: #1888cb;
+    }
+    .bg-navy{
+      background-color: #1888cb !important;
+    }
+    .text-navy{
+      color: #1888cb !important;
+    }
+    .paginate_button{
+      margin: 1px !important;
+    }
+    .paginate_button.disabled{
+      color: gainsboro !important;
+    }
+    .dataTables_paginate .paginate_button:hover{
+      border: 1px solid transparent !important;
+      background: transparent !important;
+    }
+
+    .current {
+        border-left: 0.45rem solid #1888cb !important;
+        background-color:#f2f3f4 !important;
+      }
+    .bg-teal{
+      background-color: #01b4f2 !important;
+    }
+    
+      .border-bottom-navy {
+        border-bottom: 0.25rem solid #001f3f !important;
+      }
+
+      .nav-tabs .nav-link.active{
+        background-color: #1888cb  !important;
+        font-weight:bold;
+        color: #e5e9ec !important;
+      }
+
+</style>
+</head>
     <body>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-gradient-white static-top">

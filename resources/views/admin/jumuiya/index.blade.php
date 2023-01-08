@@ -32,7 +32,7 @@
 
 
         <div class="mt-3 p-1">
-            <table id="example" class="table table-bordered cell-border">
+             <table id="example1" class="table table-bordered " >
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>
@@ -45,6 +45,9 @@
                 <tbody id="projects-table-body">
 
                 </tbody>
+                <tfoot>
+                 
+              </tfoot>
             </table>
 
         </div>
@@ -127,7 +130,7 @@
           Community(Jumuiya) Members
         </h6>
         <hr>
-        <table id="mytable" class="table table-bordered responsive cell-border">
+        <table id="mytable"  class="table display responsive table-bordered " width="100%"  >
           <thead>
               <tr class="text-secondary">
                 <th>Member ID</th>
@@ -167,7 +170,7 @@
                     for (var i = 0; i < communities.length; i++) 
                     {
                         let showBtn =  '<button ' +
-                            ' class="btn  btn-sm bg-teal" ' +
+                            ' class="btn  btn-sm bg-navy" ' +
                             ' onclick="showProject(' + communities[i].id + ')"><i class="fa fa-eye"></i>' +
                         '</button> ';
                         let editBtn =  '<button ' +

@@ -10,7 +10,7 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item ">
-          <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'active':'' }} {{ Request::is('admin/my-profile') ? 'active':'' }}">
+          <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'current':'' }} {{ Request::is('admin/my-profile') ? 'active':'' }}">
             <i class="nav-icon fas fa-tachometer-alt "></i>
             <p>
               Dashboard
@@ -18,7 +18,7 @@
           </a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('admin/all-members') }}" class="nav-link  {{ Request::is('admin/all-members') ? 'active':'' }}">
+            <a href="{{ url('admin/all-members') }}" class="nav-link  {{ Request::is('admin/all-members') ? 'current':'' }}">
               <i class="nav-icon fas fa-user-tie "></i>
               <p>
                 Manage Members
@@ -26,7 +26,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/all-communities') }}" class="nav-link  {{ Request::is('admin/all-communities') ? 'active':'' }}">
+            <a href="{{ url('admin/all-communities') }}" class="nav-link  {{ Request::is('admin/all-communities') ? 'current':'' }}">
               <i class="nav-icon fas fa-users "></i>
               <p>
                 Manage Communities
@@ -34,7 +34,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/all-purposes') }}" class="nav-link  {{ Request::is('admin/all-purposes') ? 'active':'' }}">
+            <a href="{{ url('admin/all-purposes') }}" class="nav-link  {{ Request::is('admin/all-purposes') ? 'current':'' }}">
               <i class="nav-icon fas fa-calendar "></i>
               <p>
                 Manage Purposes
@@ -42,7 +42,7 @@
             </a>
           </li>
         <li class="nav-item">
-          <a href="{{ url('admin/all-pledges') }}" class="nav-link  {{ Request::is('admin/all-pledges') ? 'active':'' }}">
+          <a href="{{ url('admin/all-pledges') }}" class="nav-link  {{ Request::is('admin/all-pledges') ? 'current':'' }}">
             <i class="nav-icon fas fa-balance-scale "></i>
             <p>
               Manage Pledges
@@ -50,7 +50,7 @@
           </a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('admin/all-payments') }}" class="nav-link {{ Request::is('admin/all-payments') ? 'active':'' }}">
+            <a href="{{ url('admin/all-payments') }}" class="nav-link {{ Request::is('admin/all-payments') ? 'current':'' }}">
               <i class="nav-icon fas fa-credit-card "></i>
               <p>
                 Manage Payments
@@ -58,7 +58,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/all-cards') }}" class="nav-link {{ Request::is('admin/all-cards') ? 'active':'' }}">
+            <a href="{{ url('admin/all-cards') }}" class="nav-link {{ Request::is('admin/all-cards') ? 'current':'' }}">
               <i class="nav-icon fas fa-envelope "></i>
               <p>
                 Manage Cards
@@ -66,7 +66,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/all-reports') }}" class="nav-link {{ Request::is('admin/all-reports') ? 'active':'' }}">
+            <a href="{{ url('admin/all-reports') }}" class="nav-link {{ Request::is('admin/all-reports') ? 'current':'' }}"  >
               <i class="nav-icon fas fa-folder "></i>
               <p>
                 Reports
@@ -74,7 +74,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/settings') }}" class="nav-link {{ Request::is('admin/settings') ? 'active':'' }}">
+            <a href="{{ url('admin/settings') }}" class="nav-link {{ Request::is('admin/settings') ? 'current':'' }}">
               <i class="nav-icon fas fa-cog "></i>
               <p>
                 Settings

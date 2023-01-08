@@ -16,7 +16,11 @@
         "guzzlehttp/guzzle": "^7.5.0",
         "jimmyjs/laravel-report-generator": "^2.2",
         "jorenvanhocht/laravel-share": "^4.1",
+<<<<<<< HEAD
         "laravel-notification-channels/fcm": "~2.0",
+=======
+        "kreait/laravel-firebase": "^4.2",
+>>>>>>> 01e42ab4ce68ee06435639b513eecbba2ae8c79a
         "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.0",

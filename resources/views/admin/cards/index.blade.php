@@ -327,7 +327,7 @@
                       for (var i = 0; i < members.length; i++) 
                       {
                             let showBtn =  '<button ' +
-                                ' class="btn bg-teal  btn-sm   " ' +
+                                ' class="btn bg-navy   btn-sm   " ' +
                                 ' onclick="showCardMember(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                           let editBtn =  '<button ' +

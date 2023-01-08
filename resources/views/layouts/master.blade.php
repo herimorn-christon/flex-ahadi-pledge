@@ -21,7 +21,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+  {{-- <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}"> --}}
   <!-- iCheck -->
   <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   
@@ -39,36 +39,122 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
     <!-- DataTables -->
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-
-    <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-
-  
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.js"></script>
-
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
-    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+  <!-- Theme style -->
     {{-- for autosearch --}}
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css"> --}}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    
+    <link href="{{ asset('assets/css/datatables.css') }}" rel="stylesheet">
+    <script src="{{ asset('assets/js/datatables.js') }}" ></script>
+<script src="{{ asset('assets/js/datatables-simple-demo.js') }}" ></script>
+    <style>
+      .page-item.active .page-link{
+          color: whitesmoke !important;
+          background-color: #1888cb  !important; 
+          border: none;
+      }
+  
+       .page-link {
+        
+          text-decoration: none !important;
+          color:#1888cb  !important;
+      }
+      .bg-flex{
+        background-color: #1888cb;
+      }
+      .bg-navy{
+        background-color: #1888cb !important;
+      }
+      .paginate_button{
+        margin: 1px !important;
+      }
+      .paginate_button.disabled{
+        color: gainsboro !important;
+      }
+      .dataTables_paginate .paginate_button:hover{
+        border: 1px solid transparent !important;
+        background: transparent !important;
+      }
 
+      .current {
+          border-left: 0.45rem solid #1888cb !important;
+          background-color:#f2f3f4 !important;
+        }
+      .bg-teal{
+        background-color: #01b4f2 !important;
+      }
+      
+        .border-bottom-navy {
+          border-bottom: 0.25rem solid #001f3f !important;
+        }
+
+        .nav-tabs .nav-link.active{
+          background-color: #1888cb  !important;
+          font-weight:light;
+          color: #e5e9ec !important;
+        }
+        table.#example {
+        border-collapse: collapse !important;
+        width: 100% !important;
+        
+        }
+        .dataTable-selector{
+          background-color:  white  !important;
+        }
+        .dt-buttons .button-group{
+          margin: 1px !important;
+          background-color: #001f3f;
+        }
+        button.btn-secondary:nth-child(3){
+          border: 1px solid #1888cb  !important;
+          background-color: white  !important;
+          margin: 1px !important;
+          color: #1888cb  !important;
+        }
+        button.btn-secondary:nth-child(2){
+          border: 1px solid #1888cb  !important;
+          background-color: white  !important;
+          margin: 1px !important;
+          color: #1888cb  !important;
+        }
+        button.btn-secondary:nth-child(1){
+          border: 1px solid #1888cb  !important;
+          background-color: white  !important;
+          margin: 1px !important;
+          color: #1888cb  !important;
+        }
+        button.btn-secondary:nth-child(1):hover{
+          border: 1px solid #1888cb  !important;
+          background-color: #1888cb  !important;
+          margin: 1px !important;
+          color: white  !important;
+        }
+        button.btn-secondary:nth-child(2):hover{
+          border: 1px solid #1888cb  !important;
+          background-color: #1888cb  !important;
+          margin: 1px !important;
+          color: white  !important;
+        }
+        button.btn-secondary:nth-child(3):hover{
+          border: 1px solid #1888cb  !important;
+          background-color: #1888cb  !important;
+          margin: 1px !important;
+          color: white  !important;
+        }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
+  
 
   <!-- Navbar -->
   @include('layouts.inc.admin-navbar')
@@ -128,36 +214,60 @@
 
 
 <script>
-  $(document).ready( function () {
-$('#mytable').DataTable(
-  {
-    ordering:  true,
-    searching:  true,
-    autoWidth: false,
-    responsive: true
-  }
-);
-} );
+
 $(document).ready( function () {
 $('#modaltable').DataTable(
   {
-    ordering:  false,
-    searching:  true,
-    autoWidth: false,
-    responsive: true,
-    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      autoWidth:true,
+      rowReorder: {
+            selector: 'tr'
+        },
+        columnDefs: [
+            { targets: 0, visible: true }
+        ]
   }
 );
 } );
 
-$(document).ready(function () {
-    $('#example').DataTable();
-});
 </script>
-<!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["csv", "excel", "pdf"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+  $(function () {
+    $("#mytable").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["csv", "excel", "pdf"]
+    }).buttons().container().appendTo('#mytable_wrapper .col-md-6:eq(0)');
+    $('#table').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+<!-- jQuery -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+
 <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 <script>
@@ -166,6 +276,7 @@ $(document).ready(function () {
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
 {{-- datatables --}}
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -181,6 +292,30 @@ $(document).ready(function () {
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <!-- ChartJS -->
+{{-- end --}}
+<script src="{{ asset('dist/js/adminlte.js') }}"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["csv", "excel", "pdf", "colvis"]
+    }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+    $('mytable1').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
 <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
@@ -203,7 +338,8 @@ $(document).ready(function () {
 <!-- AdminLTE App -->
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-
+<script src="{{ asset('assets/js/datatables.js') }}" ></script>
+<script src="{{ asset('assets/js/datatables-simple-demo.js') }}" ></script>
  @yield('scripts')
 </body>
 </html>

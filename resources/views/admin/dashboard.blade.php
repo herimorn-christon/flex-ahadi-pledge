@@ -17,15 +17,80 @@
   <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+  {{-- datatables --}}
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  <style>
+    .page-item.active .page-link{
+        color: whitesmoke !important;
+        background-color: #1888cb  !important; 
+        border: none;
+    }
 
+     .page-link {
+      
+        text-decoration: none !important;
+        color:#1888cb  !important;
+    }
+    .bg-flex{
+      background-color: #1888cb;
+    }
+    .bg-navy{
+      background-color: #1888cb !important;
+    }
+    .text-navy{
+      color: #1888cb !important;
+    }
+    .paginate_button{
+      margin: 1px !important;
+    }
+    .paginate_button.disabled{
+      color: gainsboro !important;
+    }
+    .dataTables_paginate .paginate_button:hover{
+      border: 1px solid transparent !important;
+      background: transparent !important;
+    }
+
+    .current {
+        border-left: 0.45rem solid #1888cb !important;
+        background-color:#f2f3f4 !important;
+      }
+    .bg-teal{
+      background-color: #01b4f2 !important;
+    }
+    
+    .text-teal{
+      color: #01b4f2 !important;
+    }
+      .border-bottom-navy {
+        border-bottom: 0.25rem solid #1888cb !important;
+      }
+      .border-top-navy {
+        border-top: 0.25rem solid #1888cb !important;
+      }
+      .nav-tabs .nav-link.active{
+        background-color: #1888cb  !important;
+        font-weight:bold;
+        color: #e5e9ec !important;
+      }
+      .marginRow{
+   margin-bottom:0px !important; 
+   }
+
+   
+</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -56,12 +121,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h4 class="m-0 text-secondary">Admin Dashboard</h4>
+            <h4 class="m-0 text-secondary"></h4>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
+              <li class="breadcrumb-item"><a href="#"></a></li>
+              <li class="breadcrumb-item active"></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -71,89 +136,120 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="container-fluid">
+      <div class="">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-teal">
-              <div class="inner">
-                <h3>
-                  {{$payments}}
+        <div class="row g-1"  >
 
-                  <small>Tsh</small>
-                </h3>
-
-                <p>Total Payments</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-dollar-sign"></i>
-              </div>
-              <a href="{{ url('admin/all-payments') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
+          {{-- start  --}}
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
             <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>
+            <div class="small-box bg-white border-top-navy">
+              <div class="mx-auto text-center pt-4">
+                {{-- <i class="fa fa-dollar-sign"></i> --}}
+                <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height="">
+              </div>
+              <div class="text-center">
+                <h6 class="">                  
+                  Pledges Amount
+                </h6>
+
+                <h3 class="text-secondary">
                   {{$pledges}}
                   <small>Tsh</small>
                 </h3>
-
-                <p>Total Pledges</p>
               </div>
-              <div class="icon">
-                <i class="fa fa-balance-scale"></i>
-              </div>
-              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              
+              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
             </div>
           </div>
-
-          <div class="col-lg-3 col-6">
+          {{-- end  --}}
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
             <!-- small box -->
-            <div class="small-box bg-cyan">
-              <div class="inner">
-                <h3> {{ $cards }}</h3>
+            <div class="small-box bg-white border-top-navy">
+              <div class="mx-auto text-center pt-4">
+                {{-- <i class="fa fa-dollar-sign"></i> --}}
+                <img src="{{ asset('icons/salary.png') }}" alt="Flex Logo" class="" width="20%" height="">
+              </div>
+              <div class="text-center">
+                <h6>                  
+                  Pledges Payments  
+                </h6>
 
-                <p>Total Cards</p>
+                <h3 class="text-secondary">
+                  {{$payments}}
+                  <small>Tsh</small>
+                </h3>
               </div>
-              <div class="icon">
-                <i class="fa fa-envelope"></i>
-              </div>
-              <a href="{{ url('admin/all-cards')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              
+              <a href="{{ url('admin/all-payments') }}" class="small-box-footer" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
 
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3> {{$members}}</h3>
+      
 
-                <p>Total Members</p>
+          {{-- start --}}
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+            <!-- small box -->
+            <div class="small-box bg-white border-top-navy">
+              <div class="mx-auto text-center pt-4">
+                {{-- <i class="fa fa-dollar-sign"></i> --}}
+                <img src="{{ asset('icons/card.png') }}" alt="Flex Logo" class="" width="20%" height="">
               </div>
-              <div class="icon">
-                <i class="fa fa-users"></i>
+              <div class="text-center">
+                <h6>                  
+                  Card Payments
+                </h6>
+
+                <h3 class="text-secondary">
+                  {{$pledges}}
+                  <small>Tsh</small>
+                </h3>
               </div>
-              <a href="{{ url('admin/all-members') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              
+              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
             </div>
           </div>
+
+          {{--  start --}}
+
+          <!-- ./col -->
+
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+            <!-- small box -->
+            <div class="small-box bg-white border-top-navy">
+              <div class="mx-auto text-center pt-4">
+                {{-- <i class="fa fa-dollar-sign"></i> --}}
+                <img src="{{ asset('icons/team.png') }}" alt="Flex Logo" class="" width="20%" height="">
+              </div>
+              <div class="text-center">
+                <h6 >                   
+                  Total Members
+                </h6>
+
+                <h3 class="text-secondary">
+                  {{$members}}
+                </h3>
+              </div>
+              
+              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+            </div>
+          </div>
+     
           <!-- ./col -->
         </div>
         <!-- /.row -->
         <!-- Main row -->
         <div class="row mx-auto">
-          <div class="col-md-6 mt-1 mb-1  ">
+          <div class="col-md-6 mt-1 mb-1 ">
             <div id="container"></div>
           </div>
           <div class="col-md-6 mt-1 mb-1">
             <div id="container1"></div>
           </div>
       </div><!-- /.container-fluid -->
+
+ 
     </section>
     <!-- /.content -->
   </div>
@@ -197,11 +293,47 @@
 <!-- overlayScrollbars -->
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
+
+
+{{-- datatables --}}
+<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/jszip/jszip.min.js') }}"></script>
+<script src="{{ asset('plugins/pdfmake/pdfmake.min.js') }} "></script>
+<script src="{{ asset('plugins/pdfmake/vfs_fonts.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<!-- ChartJS -->
+{{-- end --}}
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+<!-- Page specific script -->
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 <script type="text/javascript">
 
     var users =  <?php echo json_encode($users) ?>;
