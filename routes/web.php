@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\PurposeController;
 use App\Http\Controllers\Member\MyCardController;
+use App\Http\Controllers\Select2SearchController;
 use App\Http\Controllers\Member\MethodsController;
 use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
@@ -182,6 +183,14 @@ Route::get('/settings', function () {
 
 // my-profile API
   Route::apiResource('profile', ProfileController::class);
+
+
+  Route::get('/getEmployees/{id}',  [App\Http\Controllers\Admin\PaymentController::class, 'getEmployees']);
+
+
+  Route::get('ajax-autocomplete-search', [Select2SearchController::class,'selectSearch']);
+
+
 });
 
 // for Member

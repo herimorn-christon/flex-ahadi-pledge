@@ -32,11 +32,20 @@
               </ul>
               <ul class="nav nav-pills nav-light">
                
-                <li class="nav-item active"><a class="nav-link bg-light nav-white " href="#interface" data-toggle="tab" >Members Report</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light " href="#audits" data-toggle="tab">Payments Report</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Purpose Report</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#cards" data-toggle="tab">Card Payments Report</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Member Pledges Report</a></li>
+                <select name="" id="">
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#interface" data-toggle="tab">Members Report</a></li>
+                    <li><a class="dropdown-item" href="#audits" data-toggle="tab">Payments Report</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Separated link</a></li>
+                  </ul>
+                </select>
+                
+                
+                <li class="nav-item"><a class="nav-link  nav-light" href="#announcements" data-toggle="tab">Purpose Report</a></li>
+                <li class="nav-item"><a class="nav-link  nav-light" href="#cards" data-toggle="tab">Card Payments Report</a></li>
+                <li class="nav-item"><a class="nav-link   nav-light" href="#announcements" data-toggle="tab">Member Pledges Report</a></li>
               </ul>
               {{-- <ul class="nav nav-tabs">
                 <li class="nav-item">

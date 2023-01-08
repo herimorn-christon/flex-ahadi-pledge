@@ -19,7 +19,7 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
       @endif
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="breadcrumb float-sm-right">
+      <ol class="float-sm-right" type="none">
         <li class=""> 
           @foreach ($profile as $item)
         <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" onclick="editProfile({{ $item->id }})">
@@ -47,8 +47,6 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
     
                 <!-- About Me Box -->
                 <div class="card card-light">
-                  <div class="card-header">
-                  </div>
                   <!-- /.card-header -->
                   <div class="card-body">
 

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\Pledge;
 use App\Models\Payment;
 use App\Models\PaymentType;
 use App\Models\Notification;
@@ -14,14 +15,6 @@ use App\Models\Pledge;
 class PaymentController extends Controller
 {
 
-    // for index function
-    // public function index()
-    // {
-    //     $types=PaymentType::all();
-    //     $payments=Payment::all();
-    //     return view('admin.payments.index',compact('types','payments'));
-    // }
-
      /**
      * Display a listing of the payments.
      *
@@ -29,7 +22,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $purposes = Payment::orderBy('updated_at','DESC')->with('payer')->with('payment')->with('purpose')->get();
+        $purposes = Payment::orderBy('updated_at','DESC')->with('payer')->with('payment')->with('pledge')->get();
         return response()->json(['purposes' => $purposes]);
     }
 
@@ -117,7 +110,7 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        $purpose = Payment::with('payer')->with('payment')->with('purpose')->find($id);
+        $purpose = Payment::with('payer')->with('payment')->with('pledge')->find($id);
         return response()->json(['purpose' => $purpose]);
     }
     // saving payment method function
@@ -238,6 +231,21 @@ class PaymentController extends Controller
             
     }
 
+
+    // auto fill member pledges
+      // Fetch records
+      public function getEmployees($departmentid=0){
+
+    	// Fetch Employees by Departmentid
+        $empData['data'] = Pledge::orderby("name","asc")
+                    ->whereYear('created_at', date('Y'))
+                    ->with('user')  
+        			->where('user_id',$departmentid)
+        			->get();
+  
+        return response()->json($empData);
+     
+    }
 
 
 }

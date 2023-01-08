@@ -202,7 +202,7 @@
                 </h6>
 
                 <h3 class="text-secondary">
-                  {{$pledges}}
+                  {{$cards}}
                   <small>Tsh</small>
                 </h3>
               </div>
@@ -453,7 +453,7 @@ Highcharts.chart('container1', {
 
         title: {
 
-            text: 'Payment Amount (TSH)'
+            text: 'Payment Amount (Tsh)'
 
         }
 

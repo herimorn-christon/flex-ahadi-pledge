@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Pledge;
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Payment extends Model implements Auditable
 {
@@ -26,9 +27,9 @@ class Payment extends Model implements Auditable
     {
         return $this->belongsTo(PaymentType::class, 'type_id','id');
     }
-    public function purpose()
+    public function pledge()
     {
-        return $this->belongsTo(Purpose::class, 'pledge_id','id');
+        return $this->belongsTo(Pledge::class, 'pledge_id','id');
     }
 
     public function payer()
