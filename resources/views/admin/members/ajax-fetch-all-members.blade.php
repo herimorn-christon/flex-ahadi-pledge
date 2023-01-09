@@ -31,12 +31,11 @@
                                 ' onclick="editMember(' + members[i].id + ')" data-toggle="tooltip" data-placement="bottom" title="Click here to Edit Member Details"><i class="fa fa-edit"></i>' +
                             '</button> ';
                             
-                          //For Delete Single Member Details
+                            //For View Single Member Details
                             let deleteBtn =  '<button ' +
                                 ' class="btn btn-danger btn-sm bg-gradient-danger" ' +
                                 ' onclick="destroyMember(' + members[i].id + ')" data-toggle="tooltip" data-placement="left" title="Click here to Delete this Member"><i class="fa fa-trash"></i>' +
                             '</button>';
-    
          
                             let projectRow = '<tr>' +
                                 '<td>' +(i+1)+ '</td>' +

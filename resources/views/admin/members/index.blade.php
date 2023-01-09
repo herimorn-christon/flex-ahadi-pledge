@@ -67,7 +67,6 @@
 
     </div>
 </div>
-
   
         {{-- start of single member modal --}}
         @include('admin.members.single-member-modal')
@@ -76,6 +75,10 @@
         {{-- start of ajax fetch all members method --}}
         @include('admin.members.ajax-fetch-member-details')
         {{-- end of ajax fetch all members method --}}
+
+        {{-- start of ajax delete members method --}}
+        @include('admin.members.ajax-delete-member')
+        {{-- end of ajax delete members method --}}
 
     
 

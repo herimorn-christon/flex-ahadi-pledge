@@ -14,7 +14,7 @@
       <ol class=" float-sm-right" type="none">
         <li class="">    
 
-        <button type="button" class="btn  bg-navy btn-sm"  onclick="createProject()">
+        <button type="button" class="btn  bg-flex btn-sm"  onclick="createProject()">
         <i class="fa fa-plus"></i>
          Add New Community
         </button>
@@ -42,7 +42,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="projects-table-body">
+                <tbody id="communities-table-body">
 
                 </tbody>
                 <tfoot>
@@ -153,53 +153,7 @@
 
 
 <script type="text/javascript">
-        showAllProjects();
-     
-        /*
-            This function will get all the project records
-        */
-        function showAllProjects()
-        {
-            let url = $('meta[name=app-url]').attr("content") + "/admin/communities";
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function(response) {
-                    $("#projects-table-body").html("");
-                    let communities = response.communities;
-                    for (var i = 0; i < communities.length; i++) 
-                    {
-                        let showBtn =  '<button ' +
-                            ' class="btn  btn-sm bg-navy" ' +
-                            ' onclick="showProject(' + communities[i].id + ')"><i class="fa fa-eye"></i>' +
-                        '</button> ';
-                        let editBtn =  '<button ' +
-                            ' class="btn bg-navy btn-sm" ' +
-                            ' onclick="editProject(' + communities[i].id + ')"><i class="fa fa-edit"></i>' +
-                        '</button> ';
-                        let deleteBtn =  '<button ' +
-                            ' class="btn btn-danger btn-sm" ' +
-                            ' onclick="destroyProject(' + communities[i].id + ')"><i class="fa fa-trash"></i>' +
-                        '</button>';
-     
-                        let projectRow = '<tr>' +
-                            '<td>' + communities[i].id + '</td>' +
-                            '<td>' + communities[i].name + '</td>' +
-                            '<td>' + communities[i].abbreviation + '</td>' +
-                            '<td>' + communities[i].location + '</td>' +
-                            '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
-                        '</tr>';
-                        $("#projects-table-body").append(projectRow);
-                    }
-     
-                     
-                },
-                error: function(response) {
-                    console.log(response.responseJSON)
-                }
-            });
-        }
-     
+     
   /*
             check if form submitted is for creating or updating
         */
