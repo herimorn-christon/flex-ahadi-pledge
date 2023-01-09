@@ -29,7 +29,7 @@ class TypeController extends Controller
     {
         request()->validate(
             [
-            'title' => 'required|max:255',
+            'title1' => 'required|max:255',
              ]
             );
 
@@ -62,7 +62,7 @@ class TypeController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'title' => 'required|max:255',
+            'title1' => 'required|max:255',
         ]);
   
         $type = PledgeType::find($id);

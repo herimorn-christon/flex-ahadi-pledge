@@ -13,14 +13,14 @@
                  <div class="col-md-12">
                     <div class="form-group">
                         <label for="title" class="text-secondary">Pledge Type</label>
-                        <input type="text" name="title" id="title" class="title form-control" placeholder="Enter Pledge Type Title">
+                        <input type="text" name="title1" id="title1" class="title form-control" placeholder="Enter Pledge Type Title">
                     </div>
                  </div>
                  <div class="col-md-7"></div>
                  <div class="col-md-5">
                     <div class="form-group">
                      
-                        <button type="submit" class=" btn bg-navy btn-block" id="save-type-btn">
+                        <button type="submit" class=" btn bg-flex text-light btn-block" id="save-type-btn">
                             <i class="fa fa-save"></i>
                             Save Pledge Type
                         </button>

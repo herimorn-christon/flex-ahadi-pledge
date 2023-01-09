@@ -56,7 +56,10 @@
         {{-- start of ajax update pledge types method --}}
         @include('admin.pledges.ajax-update-type')
         {{-- end of ajax update pledge types method --}}
-        
+       
+        {{-- start of ajax delete Pledge type method --}}
+        @include('admin.pledges.ajax-delete-type')
+        {{-- end of ajax delete Pledge type method --}}
         
         <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="createType()">
         <i class="fa fa-plus"></i>
@@ -116,14 +119,6 @@
 
 </div>
 
-
-
-
  
 @endsection
 
-@section('scripts')
-
-
-
-@endsection

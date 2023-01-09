@@ -9,7 +9,7 @@
                 $("#alert-div").html("");
                 $("#error-div").html("");   
                 $("#update_id").val("");
-                $("#title").val("");
+                $("#title1").val("");
                 $("#type-modal").modal('show'); 
             }
          
@@ -21,7 +21,7 @@
                 $("#save-type-btn").prop('disabled', true);
                 let url = $('meta[name=app-url]').attr("content") + "/admin/types";
                 let data = {
-                    title: $("#title").val(),
+                    title: $("#title1").val(),
                 };
                 $.ajax({
                     headers: {
@@ -34,7 +34,7 @@
                         $("#save-type-btn").prop('disabled', false);
                         let successHtml = '<div class="alert alert-success" role="alert">Pledge Type Was Added Successfully</div>';
                         $("#alert-div").html(successHtml);
-                        $("#title").val("");
+                        $("#title1").val("");
     //                     showAllTypes();
                         $("#type-modal").modal('hide');
                     },
