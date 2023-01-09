@@ -1,17 +1,17 @@
 {{-- This is the main view of Admin- Manage Communities --}}
 @extends('layouts.master')
 
-@section('title','All Communities')
+@section('title','All Communities (Jumuiya)')
 
 
 @section('content')
 
 
 <div class="row mb-1">
-  {{-- start of activities notifications i.e registration,deletion and update status --}}
-    <div class="col-sm-6" id="alert-div">
-    </div>
-  {{-- end of activities notifications --}}
+      {{-- start of activities notifications i.e registration,deletion and update status --}}
+        <div class="col-sm-6" id="alert-div">
+        </div>
+      {{-- end of activities notifications --}}
 
     <div class="col-sm-6">
       <ol class=" float-sm-right" type="none">
@@ -30,16 +30,20 @@
         {{-- start of ajax add community method --}}
         @include('admin.jumuiya.ajax-register-community')
         {{--  end of ajax add community method --}}
+
     </li>
        
       </ol>
       
-    </div><!-- /.col -->
+    </div>
   </div>
 
+
+ 
 <div class="card mt-1">
     <div>
         <div class="mt-3 p-1">
+           {{-- start of view all communities table --}}
              <table id="example1" class="table table-bordered " >
                 <thead>
                     <tr class="text-secondary">
@@ -57,13 +61,20 @@
                  
               </tfoot>
             </table>
+             {{-- end of view all communities table --}}
         </div>
+
         {{-- start of ajax fetch all communities method --}}
         @include('admin.jumuiya.ajax-fetch-all-communities')
         {{--  end of ajax fetch all communities method --}}
 
+        {{-- start of ajax view community details modal --}}
+        @include('admin.jumuiya.view-community-detail-modal')
+        {{--  end of ajax view community details modal --}}
+
+
         {{-- start of ajax fetch community details method --}}
-        {{-- @include('admin.jumuiya.ajax-fetch-all-communities') --}}
+        @include('admin.jumuiya.ajax-fetch-community-details')
         {{--  end of ajax fetch  community details method --}}
 
 
@@ -166,49 +177,7 @@
             });
         }
      
-        /*
-            get and display the record info on modal
-        */
-        function showProject(id)
-        {
-            $("#name-info").html("");
-            $("#description-info").html("");
-            let url = $('meta[name=app-url]').attr("content") + "/admin/communities/" + id +"";
-            $.ajax({
-                url: url,
-                type: "GET",
-                success: function(response) {
-                    $("#members-table-body").html("");
-                    let community = response.community;
-                    $("#name-info").html(community.name);
-                    $("#description-info").html(community.abbreviation);
-                    $("#location-info").html(community.location);
-                  
-                  // for community members
-                  let members = response.members;
-                        for (var i = 0; i < members.length; i++) 
-                        {      
-         
-                       let membersRow = '<tr>' +
-                            '<td>' + community.abbreviation +'/' + members[i].id +'</td>' +
-                                '<td>' + members[i].fname + '&nbsp;'+ members[i].mname + '&nbsp;'+ members[i].lname +'</td>' +
-                                '<td>' + members[i].lname + '</td>' +  
-                                '<td>' + members[i].phone + '</td>' +
-                                '<td class="text-success">' + (members[i].status == '0' ? 'Enabled':'Disabled') + '</td>' +
-                            '</tr>';
-                            $("#members-table-body").append(membersRow);
-                        }   
-
-
-                $("#view-modal").modal('show'); 
-     
-                },
-                error: function(response) {
-                    console.log(response.responseJSON)
-                }
-            });
-        }
-     
+    
         /*
             delete record function
         */

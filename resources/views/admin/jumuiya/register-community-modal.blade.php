@@ -16,15 +16,15 @@
          
             <div class="mb-3">
               <label for="recipient-name" class=" text-secondary">Community Name:</label>
-              <input type="text" class="form-control" id="name"  name="name" placeholder="Enter Community Name">
+              <input type="text" class="text-capitalize form-control" id="name"  name="name" placeholder="Enter Community Name">
             </div>
             <div class="mb-3">
               <label for="message-text" class="text-secondary">Community Abbreviation:</label>
-               <input type="text" class="form-control" id="abbreviation" name="abbreviation" placeholder="Enter Community Abbreviation">
+               <input type="text" class="text-uppercase form-control" id="abbreviation" name="abbreviation" placeholder="Enter Community Abbreviation">
             </div>
             <div class="mb-3">
               <label for="message-text" class=" text-secondary">Community Location:</label>
-              <input type="text" class="form-control" id="location" name="location" placeholder="Enter Community Location">
+              <input type="text" class="text-capitalize form-control" id="location" name="location" placeholder="Enter Community Location">
             </div>
             <div class="row">
               <div class="col-md-6">
