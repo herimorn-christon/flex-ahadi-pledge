@@ -99,7 +99,7 @@
             <tbody id="pledges-table-body">
             </tbody>
           </table>
-          {{--  start of all pledges table --}}
+          {{--  end of all pledges table --}}
 
              {{-- start of ajax fetch all pledges method --}}
              @include('admin.pledges.ajax-fetch-all-pledges')
