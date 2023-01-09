@@ -44,30 +44,37 @@
             <i class="fa fa-list"></i>
              Payment Methods
         </button>
-
-
         
-        {{-- start all pledge types modal --}}
+        {{-- start all payment methods modal --}}
         @include('admin.payments.all-payment-methods-modal')
-        {{-- end of all pledge types modal --}}
+        {{-- end of all payment methods modal --}}
 
         {{-- start of ajax fetch all pledges method --}}
         @include('admin.payments.ajax-fetch-all-methods')
         {{-- end of ajax fetch all pleges method --}}
 
 
-        {{-- start of ajax update pledge types method --}}
-        @include('admin.pledges.ajax-update-type')
-        {{-- end of ajax update pledge types method --}}
+        {{-- start of ajax update payment methods method --}}
+        @include('admin.payments.ajax-update-method')
+        {{-- end of ajax update payment methods method --}}
        
-        {{-- start of ajax delete Pledge type method --}}
-        @include('admin.pledges.ajax-delete-type')
-        {{-- end of ajax delete Pledge type method --}}
+        {{-- start of ajax delete payment methods method --}}
+        @include('admin.payments.ajax-delete-method')
+        {{-- end of ajax delete payment methods method --}}
 
         <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
         <i class="fa fa-plus"></i>
          Add Payment Method
         </button>
+                
+        {{-- start register pledge type modal --}}
+        @include('admin.payments.register-method-modal')
+        {{-- end of register pledge type modal --}}
+
+        {{-- start of ajax register pledge method --}}
+        @include('admin.payments.ajax-register-method')
+        {{-- end of ajax register pledge method --}}
+
     </li>
        
       </ol>
@@ -94,9 +101,7 @@
   
                 </tbody>
             </table>
-
-
-             
+            
              {{-- start of ajax fetch all pledges method --}}
              @include('admin.payments.ajax-fetch-all-payments')
              {{-- end of ajax fetch all pleges method --}}
@@ -111,48 +116,6 @@
 
     </div>
 </div>
-
-
-{{-- Add Payment Type modal --}}
-
-<div class="modal fade" id="method-modal">
-    <div class="modal-dialog ">
-      <div class="modal-content">
-        <div class="modal-header bg-light">
-           <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form>
-              <input type="hidden" name="update_id" id="update_id">
-                <div class="row mb-3">
-                 <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="name" class="text-secondary">Payment Method</label>
-                        <input type="text" id="name" name="name" id="title" class="form-control" placeholder="Enter Payment Method Name">
-                    </div>
-                 </div>
-                 <div class="col-md-6"></div>
-                 <div class="col-md-6">
-                    <div class="form-group">
-                     
-                        <button type="submit" class="btn bg-navy btn-block" id="save-method-btn">
-                            <i class="fa fa-save"></i>
-                            Save Payment Method
-                        </button>
-                    </div>
-                 </div>
-                </div>
-            </form>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-
-
-
-
 
  
   {{-- start auto populate member pledges --}}
@@ -205,203 +168,5 @@
           </script>
          
   {{-- end of auto populate member pledges --}}
-   <script type="text/javascript">
-  
-         
-
-    //         showAllMethods();
-
-
-          
-          
-
-            /*
-                check if form submitted is for creating or updating
-            */
-            $("#save-method-btn").click(function(event ){
-                event.preventDefault();
-                if($("#update_id").val() == null || $("#update_id").val() == "")
-                {
-                    storeMethod();
-                } else {
-                    updateMethod();
-                }
-            })
-            
-
-      /*
-                show modal for creating a record and 
-                empty the values of form and remove existing alerts
-            */
-            function createMethod()
-            {
-                $("#alert-div").html("");
-                $("#error-div").html("");   
-                $("#update_id").val("");
-                $("#name").val("");
-                $("#method-modal").modal('show'); 
-            }
-         
-            /*
-                submit the form and will be stored to the database
-            */
-            function storeMethod()
-            {   
-                $("#save-method-btn").prop('disabled', true);
-                let url = $('meta[name=app-url]').attr("content") + "/admin/methods";
-                let data = {
-                    name: $("#name").val(),
-                };
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: url,
-                    type: "POST",
-                    data: data,
-                    success: function(response) {
-                        $("#save-method-btn").prop('disabled', false);
-                        let successHtml = '<div class="alert alert-success" role="alert">Payment Method Was Added Successfully</div>';
-                        $("#alert-div").html(successHtml);
-                        $("#name").val("");
-                        showAllPledges();
-                        $("#method-modal").modal('hide');
-                    },
-                    error: function(response) {
-                        $("#save-method-btn").prop('disabled', false);
-         
-                        /*
-            show validation error
-                        */
-                        if (typeof response.responseJSON.errors !== 'undefined') 
-                        {
-            let errors = response.responseJSON.errors;
-            if (typeof errors.name !== 'undefined') 
-                            {
-                                nameValidation = '<li>' + errors.name[0] + '</li>';
-                            }
-             
-            let errorHtml = '<div class="alert alert-danger" role="alert">' +
-                '<b>Validation Error!</b>' +
-                '<ul>' + nameValidation + '</ul>' +
-            '</div>';
-            $("#error-div").html(errorHtml);        
-        }
-                    }
-                });
-            }
-         
-         
-         
-          
-
-      /*
-                edit record function
-                it will get the existing value and show the payment form form
-            */
-            function editMethod(id)
-            {
-                let url = $('meta[name=app-url]').attr("content") + "/admin/methods/" + id ;
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function(response) {
-                        let method = response.method;
-                        $("#alert-div").html("");
-                        $("#error-div").html("");   
-                        $("#update_id").val(method.id);
-                        $("#name").val(method.name);
-                        $("#types").modal('hide');
-                        $("#method-modal").modal('show'); 
-                       
-                    },
-                    error: function(response) {
-                        console.log(response.responseJSON)
-                    }
-                });
-            }
-         
-            /*
-                sumbit the form and will update a record
-            */
-            function updateMethod()
-            {
-                $("#save-method-btn").prop('disabled', true);
-                let url = $('meta[name=app-url]').attr("content") + "/admin/methods/" + $("#update_id").val();
-                let data = {
-                    name: $("#name").val(),
-                };
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: url,
-                    type: "PUT",
-                    data: data,
-                    success: function(response) {
-                        $("#save-pledge-btn").prop('disabled', false);
-                        let successHtml = '<div class="alert alert-success" role="alert">Payment Method Was Updated Successfully !</div>';
-                        $("#alert-div").html(successHtml);
-                        $("#name").val("");
-                        showAllMethods();
-                        $("#method-modal").modal('hide');
-                    },
-                    error: function(response) {
-                        /*
-            show validation error
-                        */
-                        $("#save-pledge-btn").prop('disabled', false);
-                        if (typeof response.responseJSON.errors !== 'undefined') 
-                        {
-                            console.log(response)
-            let errors = response.responseJSON.errors;
-            let nameValidation = "";
-            if (typeof errors.name !== 'undefined') 
-                            {
-                                nameValidation = '<li>' + errors.name[0] + '</li>';
-                            }
-            let errorHtml = '<div class="alert alert-danger" role="alert">' +
-                '<b>Validation Error!</b>' +
-                '<ul>' + nameValidation + '</ul>' +
-            '</div>';
-            $("#error-div").html(errorHtml);        
-        }
-                    }
-                });
-            }
-         
-          
-
-
-            /*
-                delete payment record function
-            */
-            function destroyMethod(id)
-            {
-                let url = $('meta[name=app-url]').attr("content") + "/admin/methods/" + id;
-                let data = {
-                    name: $("#name").val(),
-                };
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: url,
-                    type: "DELETE",
-                    data: data,
-                    success: function(response) {
-                        let successHtml = '<div class="alert alert-danger" role="alert">Payment Method Was Deleted Successfully </div>';
-                        $("#alert-div").html(successHtml);
-    //                     showAllMethods();
-    
-                        $("#types").modal('hide'); 
-                    },
-                    error: function(response) {
-                        console.log(response.responseJSON)
-                    }
-                });
-            }
-         
-         
-  </script>
+   
 @endsection
