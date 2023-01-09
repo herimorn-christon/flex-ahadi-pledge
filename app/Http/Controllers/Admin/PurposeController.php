@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Purpose;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\purposesFormRequest;
@@ -89,6 +90,7 @@ class PurposeController extends Controller
         $purpose = Purpose::find($id);
         $pledges = Pledge::where('purpose_id',$id)->orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
         $payments = Payment::where('pledge_id',$id)->orderBy('updated_at','DESC')->with('payer')->with('payment')->get();
+      
         return response()->json(['purpose' => $purpose,'pledges' => $pledges,'payments' => $payments]);
     }
     /**
