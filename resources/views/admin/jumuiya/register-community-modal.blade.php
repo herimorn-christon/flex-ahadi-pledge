@@ -27,10 +27,10 @@
               <input type="text" class="text-capitalize form-control" id="location" name="location" placeholder="Enter Community Location">
             </div>
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-9">
   
               </div>
-              <div class="mb-3 col-md-6">
+              <div class="mb-3 col-md-3">
                  <button type="submit" class="btn bg-flex text-light btn-block " id="save-community-btn">
                   <i class="fa fa-save"></i>
                   Save Community

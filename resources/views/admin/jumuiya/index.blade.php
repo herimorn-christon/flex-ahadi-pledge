@@ -17,7 +17,7 @@
       <ol class=" float-sm-right" type="none">
         <li class="">    
 
-        <button type="button" class="btn  bg-flex  text-light btn-sm"  onclick="createCommunity()">
+        <button type="button" class="btn  bg-flex  text-light btn-sm" data-toggle="tooltip" data-placement="bottom" title="Click here to Register a New Community"  onclick="createCommunity()">
         <i class="fa fa-plus"></i>
          Add New Community
         </button>

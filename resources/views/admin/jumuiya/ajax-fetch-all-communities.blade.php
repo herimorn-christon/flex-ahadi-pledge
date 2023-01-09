@@ -21,15 +21,15 @@
                     {
                         let showBtn =  '<button ' +
                             ' class="btn  btn-sm bg-flex text-light" ' +
-                            ' onclick="showCommunity(' + communities[i].id + ')"><i class="fa fa-eye"></i>' +
+                            ' onclick="showCommunity(' + communities[i].id + ')" data-toggle="tooltip" data-placement="left" title="Click here to View ' + communities[i].name + ' details" ><i class="fa fa-eye"></i>' +
                         '</button> ';
                         let editBtn =  '<button ' +
                             ' class="btn bg-flex btn-sm text-light" ' +
-                            ' onclick="editCommunity(' + communities[i].id + ')"><i class="fa fa-edit"></i>' +
+                            ' onclick="editCommunity(' + communities[i].id + ')" data-toggle="tooltip" data-placement="left" title="Click here to Edit ' + communities[i].name + ' details"><i class="fa fa-edit"></i>' +
                         '</button> ';
                         let deleteBtn =  '<button ' +
                             ' class="btn btn-danger  btn-sm" ' +
-                            ' onclick="destroyCommunity(' + communities[i].id + ')"><i class="fa fa-trash"></i>' +
+                            ' onclick="destroyCommunity(' + communities[i].id + ')" data-toggle="tooltip" data-placement="left" title="Click here to Delete ' + communities[i].name + '."><i class="fa fa-trash"></i>' +
                         '</button>';
      
                         let projectRow = '<tr>' +
