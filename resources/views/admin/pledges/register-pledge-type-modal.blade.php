@@ -13,7 +13,7 @@
                  <div class="col-md-12">
                     <div class="form-group">
                         <label for="title" class="text-secondary">Pledge Type</label>
-                        <input type="text" name="title1" id="title1" class="title form-control" placeholder="Enter Pledge Type Title">
+                        <input type="text" name="title1" id="title" class="title form-control" placeholder="Enter Pledge Type Title">
                     </div>
                  </div>
                  <div class="col-md-7"></div>

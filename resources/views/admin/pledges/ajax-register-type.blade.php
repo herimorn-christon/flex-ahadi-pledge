@@ -1,6 +1,20 @@
 {{--  This is the ajax register new Pledge Type Ajax  method page --}}
 <script type="text/javascript">
-        /*
+            
+          /*
+                check if form submitted is for creating or updating
+            */
+            $("#save-type-btn").click(function(event ){
+                event.preventDefault();
+                if($("#update_id").val() == null || $("#update_id").val() == "")
+                {
+                    storeType();
+                } else {
+                    updateType();
+                }
+            })
+       
+            /*
                 show modal for creating a record and 
                 empty the values of form and remove existing alerts
             */
@@ -9,7 +23,7 @@
                 $("#alert-div").html("");
                 $("#error-div").html("");   
                 $("#update_id").val("");
-                $("#title1").val("");
+                $("#title").val("");
                 $("#type-modal").modal('show'); 
             }
          
@@ -21,7 +35,7 @@
                 $("#save-type-btn").prop('disabled', true);
                 let url = $('meta[name=app-url]').attr("content") + "/admin/types";
                 let data = {
-                    title: $("#title1").val(),
+                    title: $("#title").val(),
                 };
                 $.ajax({
                     headers: {
@@ -34,7 +48,7 @@
                         $("#save-type-btn").prop('disabled', false);
                         let successHtml = '<div class="alert alert-success" role="alert">Pledge Type Was Added Successfully</div>';
                         $("#alert-div").html(successHtml);
-                        $("#title1").val("");
+                        $("#title").val("");
     //                     showAllTypes();
                         $("#type-modal").modal('hide');
                     },

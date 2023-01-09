@@ -16,19 +16,6 @@
 
 
           /*
-                check if form submitted is for creating or updating
-            */
-            $("#save-type-btn").click(function(event ){
-                event.preventDefault();
-                if($("#update_id").val() == null || $("#update_id").val() == "")
-                {
-                    storeType();
-                } else {
-                    updateType();
-                }
-            })
-       
-          /*
               show modal for creating a record and 
               empty the values of form and remove existing alerts
           */
