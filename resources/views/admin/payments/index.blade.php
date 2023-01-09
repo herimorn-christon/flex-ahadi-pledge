@@ -16,32 +16,54 @@
     <div class="col-sm-6">
       <ol class="float-sm-right" type="none">
         <li class=""> 
-        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createPledge()">
+        {{-- start of register payment button --}}
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createPayment()">
             <i class="fa fa-plus"></i>
             Register Payment
         </button>   
+        {{-- end of register payment button --}}
 
-            {{-- end of create purpose button --}}
-
-        {{-- start register purpose modal --}}
+        {{-- start register payment modal --}}
         @include('admin.payments.register-payment-modal')
-        {{-- end of register purpose modal --}}
+        {{-- end of register  payment modal --}}
 
-        {{-- start of ajax register purpose method --}}
+        {{-- start of ajax register  payment method --}}
         @include('admin.payments.ajax-register-payment')
-        {{-- end of ajax register purpose method --}}
+        {{-- end of ajax register  payment method --}}
 
-        {{-- start of ajax update purpose method --}}
-        {{-- @include('admin.purposes.ajax-update-purpose') --}}
-        {{-- end of ajax update purpose method --}}
+        {{-- start of ajax update  payment method --}}
+        @include('admin.payments.ajax-update-payment')
+        {{-- end of ajax update  payment method --}}
 
-        {{-- start of ajax delete purpose method --}}
-        {{-- @include('admin.purposes.ajax-delete-purpose') --}}
-        {{-- end of ajax delete purpose method --}}
+        {{-- start of ajax delete payment method --}}
+        @include('admin.payments.ajax-delete-payment')
+        {{-- end of ajax delete  payment method --}}
+
+
         <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
              Payment Methods
         </button>
+
+
+        
+        {{-- start all pledge types modal --}}
+        @include('admin.payments.all-payment-methods-modal')
+        {{-- end of all pledge types modal --}}
+
+        {{-- start of ajax fetch all pledges method --}}
+        @include('admin.payments.ajax-fetch-all-methods')
+        {{-- end of ajax fetch all pleges method --}}
+
+
+        {{-- start of ajax update pledge types method --}}
+        @include('admin.pledges.ajax-update-type')
+        {{-- end of ajax update pledge types method --}}
+       
+        {{-- start of ajax delete Pledge type method --}}
+        @include('admin.pledges.ajax-delete-type')
+        {{-- end of ajax delete Pledge type method --}}
+
         <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
         <i class="fa fa-plus"></i>
          Add Payment Method
@@ -80,12 +102,13 @@
              {{-- end of ajax fetch all pleges method --}}
      
              {{-- start of ajax view pledge details method --}}
-             {{-- @include('admin.pledges.ajax-fetch-pledge-details') --}}
+             @include('admin.payments.ajax-fetch-payments-details')
              {{-- end of ajax view purpose details method --}}
      
-             {{-- start of ajax view purpose details modal --}}
-             {{-- @include('admin.pledges.single-pledge-modal') --}}
-             {{-- end of ajax view purpose details modal --}}
+             {{-- start of ajax view payment details modal --}}
+             @include('admin.payments.single-payment-modal')
+             {{-- end of ajax view payment details modal --}}
+
     </div>
 </div>
 
@@ -127,83 +150,11 @@
     <!-- /.modal-dialog -->
   </div>
 
-{{-- All Pledge Types Modal --}}
-
-<div class="modal fade" id="types">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-         <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-
-      </div>
-      <div class="modal-body">
-        <div class="col-sm-12" id="alert-div">
-        </div>
-        <div class="row">
-        {{-- start of ajax fetch all pledges method --}}
-
-          <table   class="table table-bordered ">
-              <thead>
-                  <tr class="text-secondary">
-                      <th>ID</th>
-                      <th>Method Name</th>
-                      <th>Actions</th>
-                  </tr>
-              </thead>
-              <tbody id="methods-table-body">
-
-              </tbody>
-          </table>
-
-
-         
-      </div>
-      </div>
-      <div class="modal-footer justify-content-between">
-        {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      --}}
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
 
 
 
-  {{-- view payment modal --}}
 
-  <div class="modal fade" id="view-modal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header bg-light">
-           <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <p>
-            <b class="text-secondary">Payer's Fullname:</b>   <span id="fname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span>
-            <hr>
-            <b class="text-secondary">Payment Purpose:</b>   <span id="purpose-info" class="text-dark"></span>
-            <hr>
-            <b class="text-secondary">Payment Amount:</b>   <span id="amount-info" class="text-dark"></span>
-            <hr>
-            <b class="text-secondary">Payment Method:</b>   <span id="method-info" class="text-dark"></span>
-            <hr>
-            <b class="text-secondary">Payment Date:</b>   <span id="date-info" class="text-dark"></span>
-            <hr>
-        </p>       
-       
-        </div>
-        <div class="modal-footer justify-content-between">
-          {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        --}}
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-
+ 
   {{-- start auto populate member pledges --}}
 
          <!-- Script -->
@@ -261,47 +212,7 @@
     //         showAllMethods();
 
 
-            /*
-                This function will get all the payments records
-            */
-            function showAllMethods()
-            {
-                let url = $('meta[name=app-url]').attr("content") + "/admin/methods";
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function(response) {
-                        $("#methods-table-body").html("");
-                        let methods = response.methods;
-                        for (var i = 0; i < methods.length; i++) 
-                        {
-                          
-                            let editBtn =  '<button ' +
-                                ' class="btn btn-sm bg-navy" ' +
-                                ' onclick="editMethod(' + methods[i].id + ')"><i class="fa fa-edit"></i>' +
-                            '</button> ';
-                            let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger btn-sm" ' +
-                                ' onclick="destroyMethod(' + methods[i].id + ')"><i class="fa fa-trash"></i>' +
-                            '</button>';
-         
-                            let projectRow = '<tr>' +
-                                '<td>' + methods[i].id + '</td>' +
-                                '<td>' + methods[i].name + '</td>' +
-                                '<td>' + editBtn + deleteBtn + '</td>' +
-                            '</tr>';
-                            $("#methods-table-body").append(projectRow);
-                            $("#types").modal('show'); 
-                        }
-         
-                         
-                    },
-                    error: function(response) {
-                        console.log(response.responseJSON)
-                    }
-                });
-            }
-         
+          
           
 
             /*
@@ -382,105 +293,7 @@
          
          
          
-            /*
-                edit record function
-                it will get the existing value and show the Payments form
-            */
-            function editPledge(id)
-            {
-                let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id ;
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function(response) {
-                        let purpose = response.purpose;
-                        $("#alert-div").html("");
-                        $("#error-div").html("");   
-                        $("#update_id").val(purpose.id);
-                        $("#pledge_id").val(purpose.pledge_id);
-                        $("#amount").val(purpose.amount);
-                        $("#user_id").val(purpose.user_id);
-                        $("#type_id").val(purpose.type_id);
-                        $("#form-modal").modal('show'); 
-                    },
-                    error: function(response) {
-                        console.log(response.responseJSON)
-                    }
-                });
-            }
-         
-            /*
-                sumbit the form and will update a record
-            */
-            function updatePledge()
-            {
-                $("#save-pledge-btn").prop('disabled', true);
-                let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + $("#update_id").val();
-                let data = {
-                    pledge_id: $("#pledge_id").val(),
-                    amount: $("#amount").val(),
-                    user_id: $("#user_id").val(),
-                    type_id: $("#type_id").val(),
-                };
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: url,
-                    type: "PUT",
-                    data: data,
-                    success: function(response) {
-                        $("#save-pledge-btn").prop('disabled', false);
-                        let successHtml = '<div class="alert alert-success" role="alert">Payment Was Updated Successfully !</div>';
-                        $("#alert-div").html(successHtml);
-                        $("#pledge_id").val("");
-                        $("#type_id").val("");
-                        $("#user_id").val("");
-                        $("#amount").val(""); 
-                        showAllPledges();
-                        $("#form-modal").modal('hide');
-                    },
-                    error: function(response) {
-                        /*
-            show validation error
-                        */
-                        $("#save-pledge-btn").prop('disabled', false);
-                        if (typeof response.responseJSON.errors !== 'undefined') 
-                        {
-                            console.log(response)
-            let errors = response.responseJSON.errors;
-            let descriptionValidation = "";
-            if (typeof errors.description !== 'undefined') 
-                            {
-                                descriptionValidation = '<li>' + errors.description[0] + '</li>';
-                            }
-            let nameValidation = "";
-            if (typeof errors.name !== 'undefined') 
-                            {
-                                nameValidation = '<li>' + errors.name[0] + '</li>';
-                            }
-            let deadlineValidation = "";
-            if (typeof errors.deadline !== 'undefined') 
-                            {
-                                deadlineValidation = '<li>' + errors.deadline[0] + '</li>';
-                            }
-              
-            let amountValidation = "";
-            if (typeof errors.amount !== 'undefined') 
-                            {
-                                amountValidation = '<li>' + errors.amount[0] + '</li>';
-                            }
-             
-            let errorHtml = '<div class="alert alert-danger" role="alert">' +
-                '<b>Validation Error!</b>' +
-                '<ul>' + nameValidation + descriptionValidation + deadlineValidation + amountValidation +'</ul>' +
-            '</div>';
-            $("#error-div").html(errorHtml);        
-        }
-                    }
-                });
-            }
-         
+          
 
       /*
                 edit record function
@@ -557,64 +370,7 @@
                 });
             }
          
-            /*
-                get and display the record info on modal
-            */
-            function showPledge(id)
-            {
-                $("#name-info").html("");
-                $("#description-info").html("");
-                let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id +"";
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function(response) {
-                        let purpose = response.purpose;
-                        $("#fname-info").html(purpose.payer.fname);
-                        $("#mname-info").html(purpose.payer.mname);
-                        $("#lname-info").html(purpose.payer.lname);
-                        $("#purpose-info").html(purpose.pledge.name);
-                        $("#amount-info").html(purpose.amount);
-                        $("#method-info").html(purpose.payment.name);
-                        $("#date-info").html(purpose.   created_at);
-                        $("#view-modal").modal('show'); 
-         
-                    },
-                    error: function(response) {
-                        console.log(response.responseJSON)
-                    }
-                });
-            }
-         
-            /*
-                delete record function
-            */
-            function destroyPledge(id)
-            {
-                let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id;
-                let data = {
-                    pledge_id: $("#pledge_id").val(),
-                    amount: $("#amount").val(),
-                    user_id: $("#user_id").val(),
-                    type_id: $("#type_id").val(),
-                };
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: url,
-                    type: "DELETE",
-                    data: data,
-                    success: function(response) {
-                        let successHtml = '<div class="alert alert-success" role="alert">Payment Was Deleted Successfully </div>';
-                        $("#alert-div").html(successHtml);
-                        showAllPledges();
-                    },
-                    error: function(response) {
-                        console.log(response.responseJSON)
-                    }
-                });
-            }
+          
 
 
             /*

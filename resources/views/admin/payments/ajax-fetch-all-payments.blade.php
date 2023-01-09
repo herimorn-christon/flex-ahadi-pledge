@@ -22,15 +22,15 @@
                     {
                         let showBtn =  '<button ' +
                             ' class="btn btn-sm bg-flex text-light" ' +
-                            ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
+                            ' onclick="showPayment(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                         '</button> ';
                         let editBtn =  '<button ' +
                             ' class="btn btn-sm bg-flex text-light" ' +
-                            ' onclick="editPledge(' + purposes[i].id + ')"><i class="fa fa-edit"></i>' +
+                            ' onclick="editPayment(' + purposes[i].id + ')"><i class="fa fa-edit"></i>' +
                         '</button> ';
                         let deleteBtn =  '<button ' +
                             ' class="btn btn-danger btn-sm" ' +
-                            ' onclick="destroyPledge(' + purposes[i].id + ')"><i class="fa fa-trash"></i>' +
+                            ' onclick="destroyPayment(' + purposes[i].id + ')"><i class="fa fa-trash"></i>' +
                         '</button>';
      
                         let projectRow = '<tr>' +

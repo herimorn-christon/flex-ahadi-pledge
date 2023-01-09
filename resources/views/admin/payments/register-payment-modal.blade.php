@@ -62,7 +62,7 @@
                 <div class="col-md-6">
                    <div class="form-group">
                     
-                       <button type="submit" class="btn btn-sm bg-navy btn-block" id="save-pledge-btn">
+                       <button type="submit" class="btn btn-sm bg-flex text-light btn-block" id="save-payment-btn">
                            <i class="fa fa-save"></i>
                            Save Payment
                        </button>
