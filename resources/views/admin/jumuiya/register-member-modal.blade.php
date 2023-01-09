@@ -1,4 +1,0 @@
-<!-- Register Community Modal Page -->
-
-
-  
