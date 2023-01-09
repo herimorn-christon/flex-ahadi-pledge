@@ -60,9 +60,6 @@ class MemberController extends Controller
             );
 
             $member = new User();
-            // $project->name = $request->name;
-            // $project->description = $request->description;
-            // $project->save();
             $member->fname=$request->fname;
             $member->mname=$request->mname;
             $member->lname=$request->lname;
@@ -78,20 +75,6 @@ class MemberController extends Controller
     }
 
 
-    //view single member
-    // public function show($id)
-
-    // {
-
-    //     $user = User::where('id',$id)->get();
-    //     $payments = Payment::where('user_id',$id)->get();
-    //     $pledges= Pledge::where('user_id',$id)->get();
-    //     $cards=CardMember::where('user_id',$id)->get();
-
-  
-    //     return view('admin.members.profile',compact('user','payments','pledges','cards'));
-
-    // }
 
     /**
      * Display the specified resource.
@@ -102,21 +85,11 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = User::with('community')->find($id);
-        $payments = Payment::where('user_id',$id)->with('payment')->with('purpose')->get();
+        $payments = Payment::where('user_id',$id)->with('payment')->with('pledge')->get();
         $pledges= Pledge::where('user_id',$id)->with('type')->with('purpose')->get();
         $cards=CardMember::where('user_id',$id)->with('user')->with('card')->get();
         return response()->json(['member' => $member,'payments' =>$payments,'pledges'=>$pledges,'cards'=>$cards]);
     }
-
-    // edit details function
-    public function edit($id)
-    {
-        $user = User::find($id);
-        return view('admin.members.edit',compact('user'));
-    }
-
-    
-
 
     public function update(Request $request, $id)
     {

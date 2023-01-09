@@ -216,7 +216,9 @@
 <script>
   // for enabling tooltips
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip({
+    'delay': { show: 1200, hide: 500 }
+  })
 })
 
 $(document).ready( function () {
