@@ -79,32 +79,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 
   //Manage Pledges API route
   Route::apiResource('pledges', PledgeController::class);
-   // Pledge Types API route
+   // Pledge Pledge Types API route
   Route::apiResource('types', TypeController::class);
- //Create Pledge type route  
-   Route::post('add-type', [App\Http\Controllers\Admin\PledgeController::class,'saveType']);
- //Edit Pledge type page route  
-   Route::get('edit-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'editType']);
- //Update Pledge type route  
-   Route::put('edit-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'updateType']);
- //Delete Pledge Type Route  
-   Route::get('delete-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'destroyType']);
- //Create Pledge Route
-   Route::post('save-pledge', [App\Http\Controllers\Admin\PledgeController::class,'save']);
-// edit pledge page
-   Route::get('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'edit']);
- //Update Pledge type route  
-   Route::put('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'update']);
- // Delete Pledge method route  
-    Route::get('delete-pledge/{id}', [App\Http\Controllers\Admin\PledgeController::class,'destroy']);
- 
- //Create Purpose route  
-   Route::post('add-purpose', [App\Http\Controllers\Admin\PurposeController::class,'save']);
- // Delete Purpose method route  
-    Route::get('delete-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'destroy']);
-    Route::get('edit-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'edit']);
- //Update Purpose route  
-    Route::put('edit-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'update']);
+
+
 
 // all payments route
   //  Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
