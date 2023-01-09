@@ -19,15 +19,15 @@
                         {
                             let showBtn =  '<button ' +
                                 ' class="btn btn-sm bg-flex text-light" ' +
-                                ' onclick="showPurpose(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
+                                ' onclick="showPurpose(' + purposes[i].id + ')" data-toggle="tooltip" data-placement="bottom" title="Click here to View '+ purposes[i].title +' details."><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
                                 ' class="btn btn-sm bg-flex text-light" ' +
-                                ' onclick="editPurpose(' + purposes[i].id + ')"><i class="fa fa-edit"></i>' +
+                                ' onclick="editPurpose(' + purposes[i].id + ')" data-toggle="tooltip" data-placement="bottom" title="Click here to Update '+ purposes[i].title +' details."><i class="fa fa-edit"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
                                 ' class="btn btn-sm btn-danger" ' +
-                                ' onclick="destroyPurpose(' + purposes[i].id + ')"><i class="fa fa-trash"></i>' +
+                                ' onclick="destroyPurpose(' + purposes[i].id + ')" data-toggle="tooltip" data-placement="bottom" title="Click here to Delete '+ purposes[i].title +'."><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +

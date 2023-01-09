@@ -15,7 +15,7 @@
       <ol class="float-sm-right" type="none">
         <li class="">    
         {{-- start of create purpose button --}}
-        <button type="button" class="btn bg-flex text-light btn-sm"  onclick="createPurpose()">
+        <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="tooltip" data-placement="bottom" title="Click here to Register a New Purpose (Contribution)" onclick="createPurpose()">
         <i class="fa fa-plus"></i>
          Add New Purpose
         </button>
