@@ -75,12 +75,13 @@
              {{-- end of ajax fetch all pleges method --}}
      
              {{-- start of ajax view pledge details method --}}
-             {{-- @include('admin.purposes.ajax-fetch-purpose-details') --}}
+             @include('admin.pledges.ajax-fetch-pledge-details')
              {{-- end of ajax view purpose details method --}}
      
              {{-- start of ajax view purpose details modal --}}
              @include('admin.pledges.single-pledge-modal')
              {{-- end of ajax view purpose details modal --}}
+             
         </div>
 
 
@@ -458,37 +459,7 @@
             }
          
        
-          /*
-              get and display the record info on modal
-          */
-          function showPledge(id)
-          {
-              $("#name-info").html("");
-              $("#description-info").html("");
-              let url = $('meta[name=app-url]').attr("content") + "/admin/pledges/" + id +"";
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                      let purpose = response.purpose;
-                      $("#fname-info").html(purpose.user.fname );
-                      $("#mname-info").html(purpose.user.mname );
-                      $("#lname-info").html(purpose.user.lname );
-                      $("#title-info").html(purpose.name);
-                      $("#start-info").html(purpose.deadline);
-                      $("#status-info").html(purpose.status == '0' ? 'Not Fullfilled':'Fullfilled');
-                      $("#end-info").html(purpose.amount);
-                      $("#type-info").html(purpose.type.title);
-                      $("#purpose-info").html(purpose.purpose.title);
-                      $("#description-info").html(purpose.description);
-                      $("#view-modal").modal('show'); 
-       
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
+    
        
           /*
               delete record function
