@@ -55,7 +55,7 @@
 
         
       {{-- start of generate report button --}}
-      <a href="" class="btn btn-success  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+      <a href="" class="btn bg-cyan  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
         <i class="fa fa-download text-light" ></i>
         Generate Report
       </a>

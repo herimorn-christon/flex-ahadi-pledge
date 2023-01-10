@@ -5,11 +5,48 @@
 
 @section('content')
 
-
+<div class="card  p-2 border-left-flex">
 <div class="row mb-1">
-    <div class="col-sm-6" id="alert-div">
+    {{-- start of statistics --}}
+<div class="">
+
+  <div class="row starts-border mt-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made  (Ahadi) </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+  <div class="row starts-border" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Money Pledges (Ahadi) </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Object Pledges (Ahadi)</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Fulfilled Pledges</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Unfulfilled Pledges </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Best Pledge Maker</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+
+
+</div>
+{{-- end of statistics --}}
+
+    <div class="col-sm-5" id="alert-div">
     </div><!-- /.col -->
-    <div class="col-sm-6">
+    <div class="col-sm-7">
       <ol class="float-sm-right" type="none">
         <li class="">  
           {{-- start of create pledge button --}}
@@ -17,23 +54,8 @@
             <i class="fa fa-plus"></i>
              Register Pledge 
         </button> 
-            {{-- end of create purpose button --}}
+          {{-- end of create purpose button --}}
 
-        {{-- start register purpose modal --}}
-        @include('admin.pledges.register-pledge-modal')
-        {{-- end of register purpose modal --}}
-
-        {{-- start of ajax register pledge method --}}
-        @include('admin.pledges.ajax-register-pledge')
-        {{-- end of ajax register pledge method --}}
-
-        {{-- start of ajax update purpose method --}}
-        @include('admin.pledges.ajax-update-pledge')
-        {{-- end of ajax update purpose method --}}
-
-        {{-- start of ajax delete purpose method --}}
-        @include('admin.pledges.ajax-delete-pledge')
-        {{-- end of ajax delete purpose method --}}
 
           {{-- End of create pledge button  --}}
 
@@ -44,7 +66,21 @@
         </button>
         {{-- end of button --}}
 
-        {{-- start all pledge types modal --}}
+    
+        
+        <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="createType()">
+        <i class="fa fa-plus"></i>
+         Add Pledge Type
+        </button>
+
+      {{-- start of generate report button --}}
+      <a href="" class="btn bg-cyan  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+        <i class="fa fa-download text-light" ></i>
+        Generate Report
+      </a>
+        {{-- end of generate report button --}}
+        
+            {{-- start all pledge types modal --}}
         @include('admin.pledges.all-pledge-types-modal')
         {{-- end of all pledge types modal --}}
 
@@ -60,13 +96,6 @@
         {{-- start of ajax delete Pledge type method --}}
         @include('admin.pledges.ajax-delete-type')
         {{-- end of ajax delete Pledge type method --}}
-        
-        <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="createType()">
-        <i class="fa fa-plus"></i>
-         Add Type
-        </button>
-
-        
         {{-- start register pledge type modal --}}
         @include('admin.pledges.register-pledge-type-modal')
         {{-- end of register pledge type modal --}}
@@ -74,6 +103,23 @@
         {{-- start of ajax register pledge method --}}
         @include('admin.pledges.ajax-register-type')
         {{-- end of ajax register pledge method --}}
+
+        
+        {{-- start register purpose modal --}}
+        @include('admin.pledges.register-pledge-modal')
+        {{-- end of register purpose modal --}}
+
+        {{-- start of ajax register pledge method --}}
+        @include('admin.pledges.ajax-register-pledge')
+        {{-- end of ajax register pledge method --}}
+
+        {{-- start of ajax update purpose method --}}
+        @include('admin.pledges.ajax-update-pledge')
+        {{-- end of ajax update purpose method --}}
+
+        {{-- start of ajax delete purpose method --}}
+        @include('admin.pledges.ajax-delete-pledge')
+        {{-- end of ajax delete purpose method --}}
         
     </li>
        
@@ -81,6 +127,7 @@
       
     </div><!-- /.col -->
   </div>
+</div>
 
 <div class="card mt-1">
         <div class="responsive p-1">

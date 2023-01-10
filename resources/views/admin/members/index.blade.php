@@ -31,7 +31,7 @@
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
   </div>
 
-  <div class="row starts-border" >
+  <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Male Members </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
   </div>
@@ -55,7 +55,7 @@
       {{-- end of register member button --}}
 
        {{-- start of generate report button --}}
-      <a href="" class="btn btn-success  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+      <a href="" class="btn bg-cyan  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
         <i class="fa fa-download text-light" ></i>
         Generate Report
       </a>

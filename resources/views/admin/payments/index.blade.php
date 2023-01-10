@@ -5,15 +5,44 @@
 
 @section('content')
 
+<div class="card  p-2 border-left-flex">
+
 <div class="row mb-1">
-    <div class="col-sm-6" id="alert-div">
+  {{-- start of statistics --}}
+<div class="">
+
+  <div class="row starts-border mt-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Payments</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+  <div class="row starts-border" >
+    <div class="col-md-6"> <h6 class="text-secondary">Highest Pledge Payment </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Lowest Pledge Payment</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Best Pledge Payer</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+
+
+</div>
+{{-- end of statistics --}}
+
+    <div class="col-sm-5" id="alert-div">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
           {{ session('status') }}
       </div>
       @endif
     </div><!-- /.col -->
-    <div class="col-sm-6">
+    <div class="col-sm-7">
       <ol class="float-sm-right" type="none">
         <li class=""> 
         {{-- start of register payment button --}}
@@ -22,6 +51,24 @@
             Register Payment
         </button>   
         {{-- end of register payment button --}}
+
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
+            <i class="fa fa-list"></i>
+             Payment Methods
+        </button>
+        
+
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
+        <i class="fa fa-plus"></i>
+         Add Payment Method
+        </button>
+      
+        {{-- start of generate report button --}}
+      <a href="" class="btn bg-cyan  btn-sm mb-2" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+        <i class="fa fa-download text-light" ></i>
+        Generate Report
+      </a>
+        {{-- end of generate report button --}}
 
         {{-- start register payment modal --}}
         @include('admin.payments.register-payment-modal')
@@ -38,12 +85,6 @@
         {{-- start of ajax delete payment method --}}
         @include('admin.payments.ajax-delete-payment')
         {{-- end of ajax delete  payment method --}}
-
-
-        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
-            <i class="fa fa-list"></i>
-             Payment Methods
-        </button>
         
         {{-- start all payment methods modal --}}
         @include('admin.payments.all-payment-methods-modal')
@@ -61,12 +102,6 @@
         {{-- start of ajax delete payment methods method --}}
         @include('admin.payments.ajax-delete-method')
         {{-- end of ajax delete payment methods method --}}
-
-        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
-        <i class="fa fa-plus"></i>
-         Add Payment Method
-        </button>
-                
         {{-- start register pledge type modal --}}
         @include('admin.payments.register-method-modal')
         {{-- end of register pledge type modal --}}
@@ -81,7 +116,7 @@
       
     </div>
   </div>
-
+</div>
 <div class="card mt-1">
 
         <div class="responsiveness p-1">
