@@ -21,7 +21,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                    
-                      <button type="submit" class="btn bg-navy btn-block" id="save-card-btn">
+                      <button type="submit" class="btn bg-flex text-light btn-block" id="save-card-btn">
                           <i class="fa fa-save"></i>
                           Create Card
                       </button>
@@ -36,5 +36,4 @@
   <!-- /.modal-dialog -->
 </div>
 
-    </div>
-</div>
+ 

@@ -6,11 +6,12 @@
 
 @section('content')
 
+<div class="card p-2">
 <div class="row mb-1">
   <div class="col-sm-6" id="alert-div">
 
   </div><!-- /.col -->
-  <div class="col-sm-6">
+  <div class="col-sm-6 col-12">
     <ul class="float-sm-right" type="none">
       <li class="">  
 
@@ -38,6 +39,18 @@
     
   </div><!-- /.col -->
 </div>
+
+{{-- start of statistics --}}
+<div class="">
+
+     <p>Total Registered Members:</p>
+     <p>Total Active Members:</p>
+     <p>Total Inactive Members:</p>
+  </div>
+{{-- end of statistics --}}
+</div>
+
+
 {{-- start of all members card --}}
 <div class="card mt-1">
     <div class="">

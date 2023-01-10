@@ -34,7 +34,7 @@
                <div class="col-md-6">
                   <div class="form-group">
                    
-                      <button type="submit" class="btn bg-navy btn-block" id="save-payment-btn">
+                      <button type="submit" class="btn bg-flex text-light btn-block" id="save-payment-btn">
                           <i class="fa fa-save"></i>
                           Save Card Payment
                       </button>
