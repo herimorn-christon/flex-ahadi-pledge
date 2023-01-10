@@ -11,7 +11,8 @@
 
    
      <meta name="app-url" content="{{ url('/') }}">
-  
+    <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -26,7 +27,7 @@
   <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   
   <!-- JQVMap -->
-  <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+  {{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet" /> --}}
   
 
   <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
@@ -48,10 +49,10 @@
   <!-- Theme style -->
     {{-- for autosearch --}}
     {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css"> --}}
-    {{--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> --}}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
     <link rel="stylesheet" href="sweetalert2.min.css">
     <link href="{{ asset('assets/css/datatables.css') }}" rel="stylesheet">
@@ -61,98 +62,10 @@
 <script src="{{ asset('assets/js/datatables-simple-demo.js') }}" ></script>
 <script src="sweetalert2.min.js"></script>
     <style>
-      .page-item.active .page-link{
-          color: whitesmoke !important;
-          background-color: #1888cb  !important; 
-          border: none;
-      }
-  
-       .page-link {
-        
-          text-decoration: none !important;
-          color:#1888cb  !important;
-      }
-      .bg-flex{
-        background-color: #1888cb;
-      }
-      .bg-navy{
-        background-color: #1888cb !important;
-      }
-   
-      .paginate_button.disabled{
-        color: gainsboro !important;
-      }
-      .dataTables_paginate .paginate_button:hover{
-        /* border: 1px solid transparent !important; */
-        background: transparent !important;
-      }
-
-      .current {
-          border-left: 0.45rem solid #1888cb !important;
-          background-color:#f2f3f4 !important;
-        }
-      .bg-teal{
-        background-color: #01b4f2 !important;
-      }
-      
-        .border-bottom-navy {
-          border-bottom: 0.25rem solid #001f3f !important;
-        }
-
-        .nav-tabs .nav-link.active{
-          background-color: #1888cb  !important;
-          font-weight:light;
-          color: #e5e9ec !important;
-        }
-        table.#example {
-        border-collapse: collapse !important;
-        width: 100% !important;
-        
-        }
-        .dataTable-selector{
-          background-color:  white  !important;
-        }
-        .dt-buttons .button-group{
-          margin: 1px !important;
-          background-color: #001f3f;
-        }
-        button.btn-secondary:nth-child(3){
-          border: 1px solid  #01b4f2  !important;
-          background-color: white  !important;
-          margin: 1px !important;
-          color: #1888cb  !important;
-        }
-        button.btn-secondary:nth-child(2){
-          border: 1px solid #1888cb  !important;
-          background-color: white  !important;
-          margin: 1px !important;
-          color: #1888cb  !important;
-        }
-        button.btn-secondary:nth-child(1){
-          border: 1px solid #1888cb  !important;
-          background-color: white  !important;
-          margin: 1px !important;
-          color: #1888cb  !important;
-        }
-        button.btn-secondary:nth-child(1):hover{
-          border: 1px solid #01b4f2  !important;
-          background-color: #01b4f2  !important;
-          margin: 1px !important;
-          color: white  !important;
-        }
-        button.btn-secondary:nth-child(2):hover{
-          border: 1px solid #01b4f2  !important;
-          background-color: #01b4f2  !important;
-          margin: 1px !important;
-          color: white  !important;
-        }
-        button.btn-secondary:nth-child(3):hover{
-          border: 1px solid #01b4f2 !important;
-          background-color:#01b4f2  !important;
-          margin: 1px !important;
-          color: white  !important;
-        }
+     
   </style>
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   {{-- for flex theme --}}
     <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
 </head>
@@ -317,7 +230,7 @@ $('#modaltable').DataTable(
   });
 </script>
 <!-- jQuery UI 1.11.4 -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script> --}}
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 
@@ -328,7 +241,7 @@ $('#modaltable').DataTable(
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
 
 {{-- datatables --}}
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
@@ -347,8 +260,6 @@ $('#modaltable').DataTable(
 <!-- ChartJS -->
 {{-- end --}}
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <!-- Page specific script -->
@@ -388,14 +299,14 @@ $('#modaltable').DataTable(
 <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
 <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('dist/js/adminlte.js') }}"></script>
+
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('assets/js/datatables.js') }}" ></script>
 <script src="{{ asset('assets/js/datatables-simple-demo.js') }}" ></script>
 <!-- SweetAlert2 -->
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-
+<!-- AdminLTE App -->
+<script src="{{ asset('dist/js/adminlte.js') }}"></script>
  @yield('scripts')
 </body>
 </html>

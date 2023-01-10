@@ -1,5 +1,86 @@
 /* This is the file for custom css */
 
+.page-item.active .page-link{
+  color: whitesmoke !important;
+  background-color: #1888cb  !important; 
+  border: none;
+}
+
+.page-link {
+
+  text-decoration: none !important;
+  color:#1888cb  !important;
+}
+.bg-flex{
+background-color: #1888cb;
+}
+.bg-navy{
+background-color: #1888cb !important;
+}
+
+.paginate_button.disabled{
+color: gainsboro !important;
+}
+.dataTables_paginate .paginate_button:hover{
+/* border: 1px solid transparent !important; */
+background: transparent !important;
+}
+
+.current {
+  border-left: 0.45rem solid #1888cb !important;
+  background-color:#f2f3f4 !important;
+}
+
+.nav-tabs .nav-link.active{
+  background-color: #1888cb  !important;
+  font-weight:light;
+  color: #e5e9ec !important;
+}
+
+
+.dataTable-selector{
+  background-color:  white  !important;
+}
+.dt-buttons .button-group{
+  margin: 1px !important;
+  background-color: #001f3f;
+}
+button.btn-secondary:nth-child(3):hover{
+  border: 1px solid  #01b4f2  !important;
+  background-color: white  !important;
+  margin: 1px !important;
+  color: #1888cb  !important;
+}
+button.btn-secondary:nth-child(2):hover{
+  border: 1px solid #1888cb  !important;
+  background-color: white  !important;
+  margin: 1px !important;
+  color: #1888cb  !important;
+}
+button.btn-secondary:nth-child(1):hover{
+  border: 1px solid #1888cb  !important;
+  background-color: white  !important;
+  margin: 1px !important;
+  color: #1888cb  !important;
+}
+button.btn-secondary:nth-child(1):hover{
+  border: 1px solid #01b4f2  !important;
+  background-color: #01b4f2  !important;
+  margin: 1px !important;
+  color: white  !important;
+}
+button.btn-secondary:nth-child(2):hover{
+  border: 1px solid #01b4f2  !important;
+  background-color: #01b4f2  !important;
+  margin: 1px !important;
+  color: white  !important;
+}
+button.btn-secondary:nth-child(3):hover{
+  border: 1px solid #01b4f2 !important;
+  background-color:#01b4f2  !important;
+  margin: 1px !important;
+  color: white  !important;
+}
 
     .page-item.active .page-link{
         color: whitesmoke !important;
@@ -19,16 +100,7 @@
     .text-flex{
       color: #1888cb !important;
     }
-    .paginate_button{
-      margin: 1px !important;
-    }
-    .paginate_button.disabled{
-      color: gainsboro !important;
-    }
-    .dataTables_paginate .paginate_button:hover{
-      border: 1px solid transparent !important;
-      background: transparent !important;
-    }
+
 
     .current {
         border-left: 0.45rem solid #1888cb !important;
@@ -44,6 +116,11 @@
       .border-bottom-flex {
         border-bottom: 0.25rem solid #1888cb !important;
       }
+
+      .border-left-flex {
+        border-left: 0.25rem solid #1888cb !important;
+      }
+
       .border-top-flex {
         border-top: 0.25rem solid #1888cb !important;
       }
@@ -53,3 +130,6 @@
         color: #e5e9ec !important;
       }
 
+      .starts-border{
+        border-bottom: 1px solid rgb(226, 223, 223);
+      }

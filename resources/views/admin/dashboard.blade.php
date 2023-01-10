@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AhadiPledge| Dashboard</title>
-
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -31,66 +32,9 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-  <style>
-    .page-item.active .page-link{
-        color: whitesmoke !important;
-        background-color: #1888cb  !important; 
-        border: none;
-    }
+   {{-- for flex theme --}}
+   <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
 
-     .page-link {
-      
-        text-decoration: none !important;
-        color:#1888cb  !important;
-    }
-    .bg-flex{
-      background-color: #1888cb;
-    }
-    .bg-navy{
-      background-color: #1888cb !important;
-    }
-    .text-navy{
-      color: #1888cb !important;
-    }
-    .paginate_button{
-      margin: 1px !important;
-    }
-    .paginate_button.disabled{
-      color: gainsboro !important;
-    }
-    .dataTables_paginate .paginate_button:hover{
-      border: 1px solid transparent !important;
-      background: transparent !important;
-    }
-
-    .current {
-        border-left: 0.45rem solid #1888cb !important;
-        background-color:#f2f3f4 !important;
-      }
-    .bg-teal{
-      background-color: #01b4f2 !important;
-    }
-    
-    .text-teal{
-      color: #01b4f2 !important;
-    }
-      .border-bottom-navy {
-        border-bottom: 0.25rem solid #1888cb !important;
-      }
-      .border-top-navy {
-        border-top: 0.25rem solid #1888cb !important;
-      }
-      .nav-tabs .nav-link.active{
-        background-color: #1888cb  !important;
-        font-weight:bold;
-        color: #e5e9ec !important;
-      }
-      .marginRow{
-   margin-bottom:0px !important; 
-   }
-
-   
-</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -237,8 +181,46 @@
           </div>
      
           <!-- ./col -->
+
+          <div class="col-md-12">
+            <div class="card p-2 border-left-flex">
+              <div class="row mb-1">
+               
+              {{-- start of statistics --}}
+              <div class="col-md-12">
+                  <div class="row starts-border" >
+                    <div class="col-md-6"> <h6 class="text-secondary">Registered Members </h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+                  </div>
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary">Total Purposes (Contributions)</h6></div>
+                    <div class="col-md-6 text-right"><h6 >212</h6></div>
+                  </div>
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Made</h6></div>
+                    <div class="col-md-6 text-right"><h6 >212</h6></div>
+                  </div>
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Payments</h6></div>
+                    <div class="col-md-6 text-right"><h6 >212</h6></div>
+                  </div>
+                  
+                  
+
+              
+                </div>
+              {{-- end of statistics --}}
+              
+           
+              </div>
+              
+              </div>
+              
+          </div>
+
         </div>
         <!-- /.row -->
+       
         <!-- Main row -->
         <div class="row mx-auto">
           <div class="col-md-6 mt-1 mb-1 ">

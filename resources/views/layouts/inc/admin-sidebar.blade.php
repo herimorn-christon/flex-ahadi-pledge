@@ -67,9 +67,9 @@
           </li>
           <li class="nav-item">
             <a href="{{ url('admin/all-reports') }}" class="nav-link {{ Request::is('admin/all-reports') ? 'current':'' }}"  >
-              <i class="nav-icon fas fa-folder "></i>
+              <i class="nav-icon fas fa-bullhorn"></i>
               <p>
-                Reports
+                Announcements
               </p>
             </a>
           </li>

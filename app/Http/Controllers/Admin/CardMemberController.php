@@ -93,4 +93,27 @@ class CardMemberController extends Controller
         CardMember::destroy($id);
         return response()->json(['status' => "success"]);
     }
+
+             /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'card_no' => 'required',
+            'user_id' => 'required',
+        ]);
+  
+        $member = CardMember::find($id);
+        $member->user_id=$request->user_id;
+        $member->card_no=$request->card_no;
+        $member->status= $request->status == true ? '1':'0';
+        $member->save();
+        
+        return response()->json(['status' => "success"]);
+    }
 }
