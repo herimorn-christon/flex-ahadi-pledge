@@ -25,21 +25,7 @@ class PurposeController extends Controller
         $purposes = Purpose::orderBy('updated_at','DESC')->get();
         return response()->json(['purposes' => $purposes]);
     }
-    // saving purpose  function
-    public function save(purposesFormRequest $request)
-    {
-        $data=$request->validated();
-        $purpose =new Purpose;
-        $purpose->title=$data['title'];
-        $purpose->description=$data['description'];
-        $purpose->start_date=$data['start_date'];
-        $purpose->end_date=$data['end_date'];
-        $purpose->status= $request->status == true ? '1':'0';
-        $purpose->created_by= Auth::user()->id;
-        $purpose->save();
-
-        return redirect('admin/all-pledges')->with('status','Purpose was Added Successfully');
-    }
+ 
 
 
         /**

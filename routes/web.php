@@ -17,6 +17,7 @@ use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
 use App\Http\Controllers\Admin\CardPaymentController;
 use App\Http\Controllers\Member\MyPaymentsController;
+use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Member\MyNotificationsController;
 
@@ -91,20 +92,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
     });
   // Payments API route
   Route::apiResource('payments', PaymentController::class);
+
   // Payment Methods API route
   Route::apiResource('methods', MethodController::class);
- //Create Payment method route  
-   Route::post('add-method', [App\Http\Controllers\Admin\PaymentController::class,'saveMethod']);
- //Edit Payment Method page route  
-   Route::get('edit-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'editMethod']);
- //Update Payment Method route  
-   Route::put('edit-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'updateMethod']);
- //Delete Payment method Route  
-   Route::get('delete-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroyMethod']);
- //Create Payment Route
-   Route::post('add-payment', [App\Http\Controllers\Admin\PaymentController::class,'save']);
- //Delete Payment method Route  
-  Route::get('delete-payment/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroy']);
+
 
 // all cards route
   // Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
@@ -117,16 +108,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::apiResource('card-member', CardMemberController::class);
     // CardPayment API route
   Route::apiResource('card-payments', CardPaymentController::class);
-
-//Create Card method route  
-  Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);
-//Edit Card Method page route  
-  Route::get('edit-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'edit']);
-//Update Card Method route  
-  Route::put('edit-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'update']);
-//Delete Card method Route  
-  Route::get('delete-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'destroy']);
-
 
 
 // All reports page route
@@ -148,6 +129,16 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 Route::get('/settings', function () {
   return view('admin.settings');
   });
+
+
+// all announcements route
+  Route::get('/all-announcements', function () {
+    return view('admin.reports.index');
+    });
+
+// Payments API route
+  Route::apiResource('announcements', AnnouncementController::class);
+
 
  // my-profile
   Route::get('/my-profile', function () {
