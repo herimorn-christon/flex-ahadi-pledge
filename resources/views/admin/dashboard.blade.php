@@ -87,7 +87,7 @@
           {{-- start  --}}
           <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
             <!-- small box -->
-            <div class="small-box bg-white border-top-navy">
+            <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
                 <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height="">
@@ -109,7 +109,7 @@
           {{-- end  --}}
           <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
             <!-- small box -->
-            <div class="small-box bg-white border-top-navy">
+            <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
                 <img src="{{ asset('icons/salary.png') }}" alt="Flex Logo" class="" width="20%" height="">
@@ -135,7 +135,7 @@
           {{-- start --}}
           <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
             <!-- small box -->
-            <div class="small-box bg-white border-top-navy">
+            <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
                 <img src="{{ asset('icons/card.png') }}" alt="Flex Logo" class="" width="20%" height="">
@@ -161,7 +161,7 @@
 
           <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
             <!-- small box -->
-            <div class="small-box bg-white border-top-navy">
+            <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
                 <img src="{{ asset('icons/team.png') }}" alt="Flex Logo" class="" width="20%" height="">

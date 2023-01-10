@@ -20,13 +20,24 @@
     <div class="col-md-6"> <h6 class="text-secondary">Total Active Members </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
   </div>
-  <div class="row starts-border" >
+  
+  <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Inactive Members </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
   </div>
-
-     <hr class="bg-light font-weight-borfer">
+  
+  <div class="row starts-border" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Female Members </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
   </div>
+
+  <div class="row starts-border" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Male Members </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+
+</div>
 {{-- end of statistics --}}
 
 <div class="col-sm-6" id="alert-div">

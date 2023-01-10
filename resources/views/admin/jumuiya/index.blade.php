@@ -6,8 +6,26 @@
 
 @section('content')
 
+<div class="card  p-2 border-left-flex">
+  <div class="row mb-1">
 
-<div class="row mb-1">
+  {{-- start of statistics --}}
+<div class="">
+  <div class="row starts-border mt-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Communities  (Jumuiya) </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  <div class="row starts-border" >
+    <div class="col-md-6"> <h6 class="text-secondary">Largest Community(Jumuiya) </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">smallest Community (Jumuiya)</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+</div>
+{{-- end of statistics --}}
+
       {{-- start of activities notifications i.e registration,deletion and update status --}}
         <div class="col-sm-6" id="alert-div">
         </div>
@@ -21,6 +39,13 @@
         <i class="fa fa-plus"></i>
          Add New Community
         </button>
+
+      {{-- start of generate report button --}}
+      <a href="" class="btn btn-success  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+        <i class="fa fa-download text-light" ></i>
+        Generate Report
+      </a>
+        {{-- end of generate report button --}}
 
         {{-- start of ajax add community modal --}}
         @include('admin.jumuiya.register-community-modal')
@@ -44,6 +69,7 @@
       </ol>
       
     </div>
+</div>
 </div>
 
 

@@ -35,6 +35,7 @@
                                 '<td>' + purposes[i].title + '</td>' +
                                 '<td>' + purposes[i].start_date + '</td>' +
                                 '<td>' + purposes[i].end_date + '</td>' +
+                                '<td>' + purposes[i].status + '</td>' +
                                 '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                             '</tr>';
                             $("#purposes-table-body").append(projectRow);
