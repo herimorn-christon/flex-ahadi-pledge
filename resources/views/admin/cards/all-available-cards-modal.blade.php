@@ -11,7 +11,7 @@
           <table id="modaltable" class="table table-bordered ">
               <thead>
                   <tr class="text-secondary">
-                      <th>ID</th>
+                      <th>SN</th>
                       <th>Card Number</th>
                       <th>Card Status</th>
                       <th>Actions</th>

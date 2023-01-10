@@ -12,11 +12,11 @@
                     url: url,
                     type: "GET",
                     success: function(response) {
-                        let card = response.card;
+                    let card = response.member;
                     $("#alert-div").html("");
                     $("#error-div").html("");   
                     $("#update_id").val(card.id);
-                    $("#card_no").val(card.card_member);
+                    $("#card_no").val(card.card_no);
                     $("#user_id").val(card.user_id);
                     $("#member-modal").modal('show'); 
                        
@@ -30,10 +30,10 @@
             /*
                 sumbit the form and will update a record
             */
-            function updateMethod()
+            function updateCardMember()
             {
                 $("#save-member-btn").prop('disabled', true);
-                let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + $("#update_id").val();
+                let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + $("#update_id").val(card.id);
                 let data = {
                     name: $("#name").val(),
                 };
@@ -48,7 +48,7 @@
                     $("#save-member-btn").prop('disabled', false);
                     let successHtml = '<div class="alert alert-success" role="alert">Card Member Was Updated Successfully</div>';
                     $("#alert-div").html(successHtml);
-                    $("#card_no").val("");
+                     $("#card_no").val("");
                      $("#user_id").val("");
                     showAllCardMembers();
                     showAllCards();

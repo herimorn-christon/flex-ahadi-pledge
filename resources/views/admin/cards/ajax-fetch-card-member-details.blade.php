@@ -1,6 +1,20 @@
 {{--  This is the ajax fetch card member  details method page --}}
 <script type="text/javascript">
-           /*
+         
+        /*
+              check if form submitted is for creating or updating
+          */
+          $("#save-member-btn").click(function(event ){
+              event.preventDefault();
+              if($("#update_id").val() == null || $("#update_id").val() == "")
+              {
+                  storeCardMember();
+              } else {
+                  updateCardMember();
+              }
+          })
+       
+     /*
               get and display the record info on modal
           */
           function showCardMember(id)

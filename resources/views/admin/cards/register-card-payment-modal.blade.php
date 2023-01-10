@@ -49,8 +49,6 @@
   <!-- /.modal-dialog -->
 </div>
 
-    </div>
-</div>
 
 
  

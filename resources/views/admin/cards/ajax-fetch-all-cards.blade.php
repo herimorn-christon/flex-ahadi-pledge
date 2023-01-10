@@ -18,16 +18,16 @@
                          
                           let editBtn =  '<button ' +
                               ' class="btn btn-sm bg-flex text-light" ' +
-                              ' onclick="editCard(' + cards[i].id + ')">Edit' +
+                              ' onclick="editCard(' + cards[i].id + ')"><i class="fa fa-eye"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
                               ' class="btn btn-sm btn-danger" ' +
-                              ' onclick="destroyCard(' + cards[i].id + ')">Delete' +
+                              ' onclick="destroyCard(' + cards[i].id + ')"><i class="fa fa-trash"></i>' +
                           '</button>';
                           let status= cards[i].status == '0' ? 'Available':'NotAvailable';
        
                           let projectRow = '<tr>' +
-                              '<td>' + cards[i].id + '</td>' +
+                              '<td>' + (i+1) + '</td>' +
                               '<td>' + cards[i].card_no + ' /'+ '</td>' +
                               '<td class="text-success">' + status +'</td>' +
                               '<td>'  + editBtn + deleteBtn + '</td>' +

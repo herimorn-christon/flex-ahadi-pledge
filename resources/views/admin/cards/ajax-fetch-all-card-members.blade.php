@@ -23,7 +23,7 @@
                                 ' onclick="showCardMember(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                           let editBtn =  '<button ' +
-                              ' class="btn bg-navy text-light btn-sm" ' +
+                              ' class="btn bg-flex text-light btn-sm" ' +
                               ' onclick="editCardMember(' + members[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
@@ -33,7 +33,7 @@
                           let status= members[i].status == '0' ? 'Active':'InActive';
        
                           let projectRow = '<tr>' +
-                              '<td>' + members[i].id +  '</td>' +
+                              '<td>' + (1+i) +  '</td>' +
                               '<td>' + members[i].user.fname + '&nbsp;' + members[i].user.mname +  '&nbsp;' + members[i].user.lname +   '</td>' +
                               '<td>' + members[i].card.card_no + ' /'+ members[i].user.id + '</td>' +
                               '<td class="text-success">' + status +'</td>' +

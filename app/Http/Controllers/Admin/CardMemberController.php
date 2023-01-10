@@ -72,10 +72,8 @@ class CardMemberController extends Controller
      */
     public function show($id)
     {
-        // $member = CardMember::find($id);
-        // return response()->json(['member' => $member]);
-        $payment=CardPayment::where('card_member',$id)->get();
-        return response()->json(['payment' => $payment]);
+         $member = CardMember::find($id);
+        return response()->json(['member' => $member]);
     }
   
 
