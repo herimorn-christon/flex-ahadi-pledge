@@ -13,7 +13,6 @@ class PDFViewController extends Controller
 {
     public function index()
     {
-        // $course=Faq::where('id','5');
 
         $users=User::where('status','0')->where('role','member')->get();
 
@@ -37,7 +36,7 @@ public function displayReport(Request $request)
 
     // For displaying filters description on header
     $meta = [
-        'Registered From: ' => $fromDate .' ', ' To: ' => $toDate .' ',  'Total Members: '=>$total
+        'Registered From' => $fromDate .' ', ' To' => $toDate .' ',  'Total Members'=>$total
       
     ];
 

@@ -44,8 +44,8 @@
       {{-- end of register member button --}}
 
        {{-- start of generate report button --}}
-      <a href="" class="btn bg-flex text-light btn-sm">
-        <i class="fa fa-download text-light"></i>
+      <a href="" class="btn btn-success  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+        <i class="fa fa-download text-light" ></i>
         Generate Report
       </a>
         {{-- start of generate report button --}}
@@ -61,6 +61,11 @@
       {{-- start of ajax register new mwmber method --}}
       @include('admin.members.ajax-update-member')
       {{-- end of ajax register new mwmber method --}}
+
+
+      {{-- start of generate member report modal --}}
+      @include('admin.reports.member-report-modal')
+      {{-- end of generate member report modal --}}
 </li>
    
 </ul>

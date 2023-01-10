@@ -15,6 +15,7 @@
 		    }
 		    .title {
 			    font-size: 24px;
+				text-transform: uppercase;
 		    }
 		    .pb-10 {
 		    	padding-bottom: 10px;
@@ -23,9 +24,9 @@
 		    	padding-bottom: 5px;
 		    }
 		    .head-content{
-		    	padding-bottom: 4px;
+		    	padding-bottom: 2px;
 		    	border-style: none none ridge none;
-		    	font-size: 18px;
+		    	font-size: 14px;
 		    }
             thead { display: table-header-group; }
             tfoot { display: table-row-group; }
@@ -53,8 +54,14 @@
 			.bg-black {
 				background-color: rgb(56, 118, 199);
 			}
+			.blue{
+				color: rgb(56, 118, 199);
+			}
 			.bg-primary {
 				color: skyblue;
+			}
+			.bg-dark {
+				color: rgb(15, 15, 15);
 			}
 			.f-white {
 				color: #fff;
@@ -93,28 +100,27 @@
 		?>
 		<div class="wrapper">
 		    <div class="pb-5">
-				<small class="bg-primary">Flex AhadiPledge</small>
+				<small class="bg-primary">Flèx AhadiPledge</small>
 			    <div class="middle pb-10 title">
+					<img src="" alt="image">
 					<p>
 						{{ $headers['title'] }}
 					</p>
-					<hr class="bg-black">
 			    </div>
     			@if ($showMeta)
 				<div class="head-content">
-					<table cellpadding="0" cellspacing="0" width="100%" border="0">
 						<?php $metaCtr = 0; ?>
+						<hr>
 						@foreach($headers['meta'] as $name => $value)
 							@if ($metaCtr % 2 == 0)
-							<tr>
+							
 							@endif
-								<td><span style="color:#808080;">{{ $name }}</span>: {{ ucwords($value) }}</td>
+									<span class="dark">{{ $name }}</span>: {{ ucwords($value) }}
+								&nbsp;
 							@if ($metaCtr % 2 == 1)
-							</tr>
 							@endif
 							<?php $metaCtr++; ?>
 						@endforeach
-					</table>
 				</div>
 				@endif
 		    </div>
