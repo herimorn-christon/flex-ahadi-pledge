@@ -13,7 +13,7 @@
                 $("#update_id").val("");
                 $("#title").val("");
                 $("#body").val("");
-                $("#file").val("");
+                $("#attachment").val("");
                 $("#form-modal").modal('show'); 
             }
          
@@ -85,9 +85,9 @@
                                 bodyValidation = '<li>' + errors.body[0] + '</li>';
                             }
                       let fileValidation = "";
-            if (typeof errors.file !== 'undefined') 
+            if (typeof errors.attachment !== 'undefined') 
                             {
-                                fileValidation = '<li>' + errors.file[0] + '</li>';
+                                fileValidation = '<li>' + errors.attachment[0] + '</li>';
                             }
              
             let errorHtml = '<div class="alert alert-danger" role="alert">' +

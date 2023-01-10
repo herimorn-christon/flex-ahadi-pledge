@@ -7,6 +7,9 @@
           <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+            {{--start of displaying errors --}}
+            <div id="error-div"></div>
+            {{--end of displaying errors --}}
           <form>
             <input type="hidden" name="update_id" id="update_id">
          

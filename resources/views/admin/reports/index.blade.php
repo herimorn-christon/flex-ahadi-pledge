@@ -48,7 +48,7 @@
         {{-- end of ajax update purpose method --}}
 
         {{-- start of ajax delete purpose method --}}
-        {{-- @include('admin.purposes.ajax-delete-purpose') --}}
+        @include('admin.reports.ajax-delete-announcement')
         {{-- end of ajax delete purpose method --}}
 
     </li>

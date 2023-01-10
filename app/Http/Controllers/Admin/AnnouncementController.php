@@ -33,15 +33,19 @@ class AnnouncementController extends Controller
             [
             'title' => 'required|max:255',
             'body' => 'required',
-            'attachment' => 'required',
+            'attachment' => 'nullable',
              ]
             );
 
             $announcement = new Announcement();
             $announcement->title=$request->title;
             $announcement->body=$request->body;
-            $announcement->file="asavsd";
-            $announcement->created_by= Auth::user()->id;
+            if($request->hasfile('attachment')){
+                $file=$request->file('attachment');
+                $filename=$book->slug.'.'.$file->getClientOriginalExtension();
+                $file->move('uploads/announcement/', $filename);
+                $attachment->file=$filename;
+            }
             $announcement->save();
             
             // start of user notification
@@ -50,7 +54,7 @@ class AnnouncementController extends Controller
             $notification->created_by= Auth::user()->id;
             $notification->type='Lengo Jipya La Ahadi';
             $name=$request->title;
-            $notification->message='Habari, kuna lengo jipya limeongeza na linaitwa '.$name.', unakaribishwa kuweka ahadi yako kwenye lengo hili.';
+            $notification->message='Habari, kuna Tangazo jipya limetolewa kuhusu '.$name.', tafadhari lipitie.';
             $notification->save();
             return response()->json(['status' => "success"]);
     }
@@ -86,6 +90,7 @@ class AnnouncementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Announcement::destroy($id);
+        return response()->json(['status' => "success"]);
     }
 }

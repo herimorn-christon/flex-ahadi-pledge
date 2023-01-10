@@ -13,7 +13,6 @@ class Announcement extends Model
         'title',
         'body',
         'file',
-        'created_by',
     ];
 
 }
