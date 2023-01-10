@@ -17,19 +17,19 @@
     <div class="col-sm-7">
       <ol class="float-sm-right" type="none">
         <li class="">    
-        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="createPayment()">
+        <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="createPayment()">
             <i class="fa fa-dollar-sign"></i>
              Add Card Payment
         </button>
-        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="showAllCards()">
+        <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="showAllCards()">
             <i class="fa fa-envelope"></i>
              Available Cards
         </button>
-        <button type="button" class="btn bg-navy btn-sm"  onclick="createCardMember()">
+        <button type="button" class="btn bg-flex text-light btn-sm"  onclick="createCardMember()">
             <i class="fa fa-list"></i>
              Assign Card
         </button>
-        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" onclick="createCard()">
+        <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="createCard()">
         <i class="fa fa-plus"></i>
             Create Card
         </button>
@@ -42,10 +42,10 @@
 
 <div class="card mt-1">
 
-    <div class="card-body">
+    <div class="">
 
-        <div class="row">
-            <table id="example"  class="table table-bordered cell-border">
+        <div class="p-1 mt-2">
+            <table id="example1"  class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>
@@ -160,74 +160,7 @@
 </div>
 
 
-  {{-- Assign Card  Modal --}}
-
-  
-
-  <div class="modal fade" id="member-modal">
-    <div class="modal-dialog ">
-      <div class="modal-content">
-        <div class="modal-header bg-light">
-          <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div id="error-div"></div>
-               <form>
-               <input type="hidden" name="update_id" id="update_id">
-    
-               <div class="row mb-3">
-                  @php
-                  $members= App\Models\User::where('role','member')->get();
-                  @endphp
-                  <div class="col-md-12">
-                      <label for="" class="text-secondary">All Members</label>
-                      <select name="user_id" id="user_id"  class="form-control">
-                          <option value="">--Select Member --</option>
-                          @foreach ( $members as $item)
-                           <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
-                           @endforeach
-                      </select>
-                  </div>
-      
-                  @php
-                  
-                  $purpose= App\Models\Card::where('status','')->get();
-                  @endphp
-                  <div class="col-md-12 mb-3">
-                      <label for="" class="text-secondary">Available Cards</label>
-                      <select name="card_no" id="card_no" class="form-control">
-                          <option value="">--Select  Card --</option>
-                          @foreach ( $purpose as $item)
-                           <option value="{{ $item->id}}"> {{ $item->card_no}}</option>
-                          @endforeach
-                      </select>
-                  </div>
-                  <div class="col-md-12">
-  
-                  <div class="row mt-2">
-  
-                      <div class="col-md-6 mb-3">
-                          {{-- <label for="" class="text-secondary">Status</label>
-                          <input type="checkbox" name="status" id=""> --}}
-                      </div>
-  
-                      <div class="col-md-6 ">
-                          <button class="btn bg-navy btn-block " id="save-member-btn" type="submit">
-                          <i class="fa fa-save"></i>
-                          Assign Card
-                          </button>
-                      </div>
-                  </div>
-                  </div>
-                  </div>
-              </form>
-        </div>
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-  
+ 
 
 
 
@@ -268,41 +201,6 @@
   <!-- /.modal-dialog -->
 </div>
 
-{{-- view single card member info--}}
-<div class="modal fade" id="view-modal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-        <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <b class="text-secondary">Member Name:</b>   <span id="fname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span>
-        <hr>
-        <div class="row">
-          <table id="modaltable" class="table table-bordered ">
-              <thead>
-                  <tr class="text-secondary">
-                      <th>ID</th>
-                      <th>Payment Date</th>
-                      <th>Amount</th>
-                      <th>Actions</th>
-                  </tr>
-              </thead>
-              <tbody id="payment-table-body">
-         
-
-              </tbody>
-          </table>
-      <hr>
-
-      </div>
-                
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
 
 
 
@@ -310,97 +208,7 @@
 
   <script type="text/javascript">
   
-          showAllCardMembers();
-  
-          /*
-              This function will get all the Available Cards records
-          */
-          function showAllCardMembers()
-          {
-              let url = $('meta[name=app-url]').attr("content") + "/admin/card-member";
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                      $("#members-table-body").html("");
-                      let members = response.members;
-                      for (var i = 0; i < members.length; i++) 
-                      {
-                            let showBtn =  '<button ' +
-                                ' class="btn bg-navy   btn-sm   " ' +
-                                ' onclick="showCardMember(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
-                            '</button> ';
-                          let editBtn =  '<button ' +
-                              ' class="btn bg-navy btn-sm" ' +
-                              ' onclick="editCardMember(' + members[i].id + ')"><i class="fa fa-edit"></i>' +
-                          '</button> ';
-                          let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger btn-sm" ' +
-                              ' onclick="destroyCardMember(' + members[i].id + ')"><i class="fa fa-trash"></i>' +
-                          '</button>';
-                          let status= members[i].status == '0' ? 'Active':'InActive';
-       
-                          let projectRow = '<tr>' +
-                              '<td>' + members[i].id +  '</td>' +
-                              '<td>' + members[i].user.fname + '&nbsp;' + members[i].user.mname +  '&nbsp;' + members[i].user.lname +   '</td>' +
-                              '<td>' + members[i].card.card_no + ' /'+ members[i].user.id + '</td>' +
-                              '<td class="text-success">' + status +'</td>' +
-                              '<td>'  + showBtn+ editBtn + deleteBtn + '</td>' +
-                          '</tr>';
-                          $("#members-table-body").append(projectRow);
-                      
-                      }
-       
-                       
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-       
-          /*
-              This function will get all the Available Cards records
-          */
-          function showAllCards()
-          {
-              let url = $('meta[name=app-url]').attr("content") + "/admin/cards";
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                      $("#cards-table-body").html("");
-                      let cards = response.cards;
-                      for (var i = 0; i < cards.length; i++) 
-                      {
-                         
-                          let editBtn =  '<button ' +
-                              ' class="btn btn-secondary" ' +
-                              ' onclick="editCard(' + cards[i].id + ')">Edit' +
-                          '</button> ';
-                          let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger" ' +
-                              ' onclick="destroyCard(' + cards[i].id + ')">Delete' +
-                          '</button>';
-                          let status= cards[i].status == '0' ? 'Available':'NotAvailable';
-       
-                          let projectRow = '<tr>' +
-                              '<td>' + cards[i].id + '</td>' +
-                              '<td>' + cards[i].card_no + ' /'+ '</td>' +
-                              '<td class="text-success">' + status +'</td>' +
-                              '<td>'  + editBtn + deleteBtn + '</td>' +
-                          '</tr>';
-                          $("#cards-table-body").append(projectRow);
-                          $("#cards").modal('show'); 
-                      }
-       
-                       
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
+        
        
           /*
               check if form submitted is for creating or updating
@@ -499,77 +307,7 @@
          /*
               check if form submitted is for creating or updating
           */
-        /*
-            show modal for creating a record and 
-            empty the values of form and remove existing alerts
-        */
-        function createCardMember()
-        {
-            $("#alert-div").html("");
-            $("#error-div").html("");   
-            $("#update_id").val("");
-            $("#card_no").val("");
-            $("#user_id").val("");
-            $("#member-modal").modal('show'); 
-        }
-     
-        /*
-            submit the form and will be stored to the database
-        */
-        function storeCardMember()
-        {   
-            $("#save-member-btn").prop('disabled', true);
-            let url = $('meta[name=app-url]').attr("content") + "/admin/card-member";
-            let data = {
-                card_no: $("#card_no").val(),
-                user_id: $("#user_id").val(),
-            };
-            $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: url,
-                type: "POST",
-                data: data,
-                success: function(response) {
-                    $("#save-member-btn").prop('disabled', false);
-                    let successHtml = '<div class="alert alert-success" role="alert">Card Was Assigned Successfully</div>';
-                    $("#alert-div").html(successHtml);
-                    $("#card_no").val("");
-                     $("#user_id").val("");
-                    showAllCardMembers();
-                    showAllCards();
-                    $("#member-modal").modal('hide');
-                },
-                error: function(response) {
-                    $("#save-member-btn").prop('disabled', false);
-     
-                    /*
-        show validation error
-                    */
-                    if (typeof response.responseJSON.errors !== 'undefined') 
-                    {
-        let errors = response.responseJSON.errors;
-        let numberValidation = "";
-        if (typeof errors.card_no !== 'undefined') 
-                        {
-                            numberValidation = '<li>' + errors.card_no[0] + '</li>';
-                        }
-        let userValidation = "";
-        if (typeof errors.user_id !== 'undefined') 
-                        {
-                            userValidation = '<li>' + errors.user_id[0] + '</li>';
-                        }        
-        let errorHtml = '<div class="alert alert-danger" role="alert">' +
-            '<b>Validation Error!</b>' +
-            '<ul>' + numberValidation  +'</ul>' +
-        '</div>';
-        $("#error-div").html(errorHtml);        
-    }
-                }
-            });
-        }
-     
+    
 
    function createPayment()
           {
@@ -747,116 +485,8 @@
               });
           }
        
-          /*
-              get and display the record info on modal
-          */
-          function showCardMember(id)
-          {
-              $("#fname-info").html("");
-              $("#mname-info").html("");
-              let url = $('meta[name=app-url]').attr("content") + "/admin/card-payments/" + id +"";
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                    $("#payment-table-body").html("");
 
-                       let card = response.card;
-                       $("#fname-info").html(card.user.fname );
-                       $("#mname-info").html(card.user.mname );
-                       $("#lname-info").html(card.user.lname );
-    //                      let addBtn =  '<button ' +
-    //                             ' class="btn btn-primary    " ' +
-    //                             ' onclick="addCardPayment(' + card[i].id + ')"> Create Payment' +
-    //                         '</button> ';
-    //                    $("#add_payment").append(addBtn);
-                       let payment = response.payment;
-                      for (var i = 0; i < payment.length; i++) 
-                      {
-                         
-                          let editBtn =  '<button ' +
-                              ' class="btn bg-navy btn-sm" ' +
-                              ' onclick="editPayment(' + payment[i].id + ')"><i class="fa fa-edit"></i>' +
-                          '</button> ';
-                          let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger btn-sm" ' +
-                              ' onclick="destroyCardPayment(' + payment[i].id + ')"><i class="fa fa-trash"></i>' +
-                          '</button>';
        
-                          let projectRow = '<tr>' +
-                              '<td>' + payment[i].id + '</td>' +
-                              '<td>' + payment[i].created_at+ '</td>' +
-                              '<td>' + payment[i].amount + '</td>' +
-                              '<td>'  + editBtn + deleteBtn + '</td>' +
-                          '</tr>';
-                          $("#payment-table-body").append(projectRow);
-                       $("#view-modal").modal('show'); 
-                      }
-                    
-       
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-
-          /*
-              delete record function
-          */
-          function destroyCard(id)
-          {
-              let url = $('meta[name=app-url]').attr("content") + "/admin/cards/" + id;
-              let data = {
-                  name: $("#card_no").val(),
-              };
-              $.ajax({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  },
-                  url: url,
-                  type: "DELETE",
-                  data: data,
-                  success: function(response) {
-                      let successHtml = '<div class="alert alert-danger" role="alert">Card Was Deleted Successfully </div>';
-                      $("#alert-div").html(successHtml);
-                      showAllCards();
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-       
-          /*
-              delete record function
-          */
-          function destroyCardMember(id)
-          {
-              let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + id;
-              let data = {
-                  card_no: $("#card_no").val(),
-                  user_id: $("#user_id").val(),
-              };
-              $.ajax({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  },
-                  url: url,
-                  type: "DELETE",
-                  data: data,
-                  success: function(response) {
-                      let successHtml = '<div class="alert alert-danger" role="alert">Assigned Card Was Deleted Successfully </div>';
-                      $("#alert-div").html(successHtml);
-                      showAllCardMembers();
-                      showAllCards();
-                   
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
 
    /*
               delete record function
