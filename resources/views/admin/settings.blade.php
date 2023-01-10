@@ -14,11 +14,6 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header p-2 bg-white">
-              {{-- <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link bg-light nav-light active" href="#interface" data-toggle="tab">System Settings</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#audits" data-toggle="tab">System Audits</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Announcements</a></li>
-              </ul> --}}
               <ul class="nav nav-tabs nav-light">
                 <li class="nav-item">
                   <a class="nav-link text-navy active" href="#interface"  data-toggle="tab">System Settings</a>
@@ -119,7 +114,7 @@
                
                   {{-- start of pledges --}}
                   <div class="p-2">
-                    <table id="example"  class="table table-bordered cell-border">
+                    <table id="example1"  class="table table-bordered cell-border">
                       <thead>
                           <tr class="text-secondary">
                               <th>ID</th>

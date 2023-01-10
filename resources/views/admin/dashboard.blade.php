@@ -90,7 +90,7 @@
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
-                <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height="">
+                {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
                 <h6 class="">                  
@@ -112,7 +112,7 @@
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
-                <img src="{{ asset('icons/salary.png') }}" alt="Flex Logo" class="" width="20%" height="">
+                {{-- <img src="{{ asset('icons/salary.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
                 <h6>                  
@@ -138,7 +138,7 @@
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
-                <img src="{{ asset('icons/card.png') }}" alt="Flex Logo" class="" width="20%" height="">
+                {{-- <img src="{{ asset('icons/card.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
                 <h6>                  
@@ -164,7 +164,7 @@
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
-                <img src="{{ asset('icons/team.png') }}" alt="Flex Logo" class="" width="20%" height="">
+                {{-- <img src="{{ asset('icons/team.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
                 <h6 >                   

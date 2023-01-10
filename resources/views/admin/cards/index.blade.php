@@ -7,20 +7,41 @@
 
 <div class="card p-2">
 <div class="row mb-1">
-    
-{{-- start of statistics --}}
-<div class="">
-     <p>Total Member Cards:</p>
-     <p>Total Assigned Cards:</p>
-     <p>Total UnAssigned Cards:</p>
-     <p>Total Active Cards:</p>
-     <p>Total Inactive Cards:</p>
-     <p>Total Card Payments </p>
+  {{-- start of statistics --}}
+  <div class="">
 
-     <hr class="bg-light">
+    <div class="row starts-border mt-2" >
+      <div class="col-md-6"> <h6 class="text-secondary">Total Member Cards:</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    </div>
+  
+    <div class="row starts-border" >
+      <div class="col-md-6"> <h6 class="text-secondary">Total Assigned Cards </h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    </div>
+  
+    <div class="row starts-border mb-2" >
+      <div class="col-md-6"> <h6 class="text-secondary">Total Active Cards</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    </div>
+    <div class="row starts-border mb-2" >
+      <div class="col-md-6"> <h6 class="text-secondary">Total Inactive Cards</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    </div>
+
+    <div class="row starts-border mb-2" >
+      <div class="col-md-6"> <h6 class="text-secondary">Total Card Payments</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    </div>
+
+    <div class="row starts-border mb-2" >
+      <div class="col-md-6"> <h6 class="text-secondary">Top Card Payer</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    </div>  
+  
   </div>
+  {{-- end of statistics --}}
 
-{{-- end of statistics --}}
 
   <div class="col-sm-5" id="alert-div">
     @if (session('status'))
@@ -39,14 +60,6 @@
       </button>
       {{-- start of add card payment button --}}
 
-      {{-- start assign card member modal --}}
-      @include('admin.cards.register-card-payment-modal')
-      {{-- end of assign card member modal --}}
-
-      {{-- start of ajax assign card member method --}}
-      @include('admin.cards.ajax-register-card-payment')
-      {{-- end of ajax assign card member method --}}
-
       {{-- start of available cards button --}}
       <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" onclick="showAllCards()">
           <i class="fa fa-envelope"></i>
@@ -60,6 +73,26 @@
            Assign Card
       </button>
       {{-- end of assign card button --}}
+
+      {{-- start of create card button--}}
+      <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" onclick="createCard()">
+      <i class="fa fa-plus"></i>
+          Create Card
+      </button>
+       {{-- end of create card button --}}
+      <a href="" class="btn btn-sm bg-cyan mb-1">
+        <i class="fa fa-file-pdf"></i>
+        Generate Report
+      </a>
+     
+
+      {{-- start assign card member modal --}}
+      @include('admin.cards.register-card-payment-modal')
+      {{-- end of assign card member modal --}}
+
+      {{-- start of ajax assign card member method --}}
+      @include('admin.cards.ajax-register-card-payment')
+      {{-- end of ajax assign card member method --}}
 
       {{-- start assign card member modal --}}
       @include('admin.cards.register-card-member-modal')
@@ -76,17 +109,6 @@
       {{-- start of ajax delete payment method --}}
       @include('admin.cards.ajax-delete-card-payment')
       {{-- end of ajax delete  payment method --}}
-
-      {{-- start of create card button--}}
-      <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" onclick="createCard()">
-      <i class="fa fa-plus"></i>
-          Create Card
-      </button>
-      <a href="" class="btn btn-sm bg-cyan mb-1">
-        <i class="fa fa-file-pdf"></i>
-        Generate Report
-      </a>
-      {{-- end of create card button --}}
 
       {{-- start create card modal --}}
       @include('admin.cards.register-card-modal')
