@@ -1,6 +1,6 @@
 {{-- View Single Announcement --}}
 <div class="modal fade" id="view-modal" tabindex="-1" >
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header bg-light">
         <h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -15,6 +15,7 @@
               </p>                                          
               <hr>  
               <!-- /.card -->
+              <div id="attachment"></div>
             </div>
       </div>
     </div>

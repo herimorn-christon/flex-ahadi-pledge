@@ -7,6 +7,8 @@ use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use illuminate\Support\Str;
 
 class AnnouncementController extends Controller
 {
@@ -67,7 +69,8 @@ class AnnouncementController extends Controller
      */
     public function show($id)
     {
-        //
+        $announcement = Announcement::find($id);
+        return response()->json(['announcement' => $announcement]);
     }
 
     /**

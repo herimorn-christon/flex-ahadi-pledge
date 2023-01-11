@@ -80,11 +80,11 @@
         {{-- end of ajax fetch all announcements method --}}
 
         {{-- start of ajax view purpose details method --}}
-        {{-- @include('admin.purposes.ajax-fetch-purpose-details') --}}
+        @include('admin.reports.ajax-fetch-announcement-details')
         {{-- end of ajax view purpose details method --}}
 
         {{-- start of ajax view purpose details modal --}}
-        {{-- @include('admin.purposes.single-purpose-modal') --}}
+        @include('admin.reports.single-announcement-modal')
         {{-- end of ajax view purpose details modal --}}
         </div>
 </div>
