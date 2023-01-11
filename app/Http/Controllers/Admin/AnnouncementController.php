@@ -35,7 +35,7 @@ class AnnouncementController extends Controller
             [
             'title' => 'required|max:255',
             'body' => 'required',
-            'attachment' => 'required',
+            'attachment' => 'nullable',
              ]
             );
 

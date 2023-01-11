@@ -92,7 +92,7 @@
              
             let errorHtml = '<div class="alert alert-danger" role="alert">' +
                 '<b>Validation Error!</b>' +
-                '<ul>' + titleValidation + bodyValidation + fileValidation + '</ul>' +
+                '<ul>' + titleValidation + bodyValidation + attachmentValidation + '</ul>' +
             '</div>';
             $("#error-div").html(errorHtml);        
         }
