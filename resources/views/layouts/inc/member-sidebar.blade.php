@@ -42,10 +42,18 @@
           </a>
           
           <li class="nav-item">
-            <a href="{{ url('member/my-reports') }}" class="nav-link {{ Request::is('member/my-reports') ? 'current':'' }}">
+            <a href="{{ url('member/announcements') }}" class="nav-link {{ Request::is('member/announcements') ? 'current':'' }}">
               <i class="nav-icon fas fa-bullhorn"></i>
               <p>
                 Announcement
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('member/my-reports') }}" class="nav-link {{ Request::is('member/my-reports') ? 'current':'' }}">
+              <i class="nav-icon fas fa-file-pdf"></i>
+              <p>
+                My Reports
               </p>
             </a>
           </li>
@@ -54,6 +62,15 @@
               <i class="nav-icon fas fa-cog"></i>
               <p>
                 Settings
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ url('member/problem') }}" class="nav-link {{ Request::is('member/problem') ? 'current':'' }}">
+              <i class="nav-icon fas fa-headset"></i>
+              <p>
+                Report a Problem
               </p>
             </a>
           </li>

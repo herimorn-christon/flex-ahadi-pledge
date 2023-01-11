@@ -21,9 +21,6 @@
                 <li class="nav-item">
                   <a class="nav-link text-navy" href="#audits"  data-toggle="tab">System Audits</a>
                 </li>
-                {{-- <li class="nav-item">
-                  <a class="nav-link text-navy" href="#announcements" data-toggle="tab" >Announcements</a>
-                </li> --}}
               </ul>
             </div><!-- /.card-header -->
             <div class="">
