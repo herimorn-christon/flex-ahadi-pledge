@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\Member;
 
+use App\Models\Event;
 use App\Models\Pledge;
 use App\Models\Payment;
+use App\Models\CardMember;
+use App\Models\CardPayment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 class DashboardController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
 
         $user=Auth::user()->id;
@@ -22,7 +26,7 @@ class DashboardController extends Controller
                             ->orderby('created_at','Desc')
                            ->where('user_id',$user)
                            ->get();
-
+        $cardpayments=CardMember::where('user_id',$user)->whereYear('created_at', date('Y'))->count();
         // For Payment Statistics
         $payrate = Payment::select(\DB::raw("SUM(amount) as count"))
         ->whereYear('created_at', date('Y'))
@@ -37,14 +41,27 @@ class DashboardController extends Controller
             // formular for remaining amount
             $remaining=$pledges-$payments;
 
-            
+            if($request->ajax()) {  
+                $data = Events::whereDate('event_start', '>=', $request->start)
+                    ->whereDate('event_end',   '<=', $request->end)
+                    ->get(['id', 'event_name', 'event_start', 'event_end']);
+                return response()->json($data);
+            }
 
-            return view('member.dashboard',compact('pledges','payments','remaining','pledges_no','progress','mypledges','payrate'));
+            return view('member.dashboard',compact('pledges','payments','remaining','pledges_no','progress','mypledges','payrate','cardpayments'));
         }
         else{
             $remaining=0;
-            $progress=100;
-            return view('member.dashboard',compact('pledges','payments','remaining','pledges_no','progress','mypledges','payrate'));
+            $progress=0;
+
+            if($request->ajax()) {  
+                $data = Event::whereDate('event_start', '>=', $request->start)
+                    ->whereDate('event_end',   '<=', $request->end)
+                    ->get(['id', 'event_name', 'event_start', 'event_end']);
+                return response()->json($data);
+            }
+
+            return view('member.dashboard',compact('pledges','payments','remaining','pledges_no','progress','mypledges','payrate','cardpayments'));
         }
  
 
@@ -68,5 +85,42 @@ class DashboardController extends Controller
         }
       
         return $num;
+      }
+
+
+      public function calendarEvents(Request $request)
+      {
+   
+          switch ($request->type) {
+             case 'create':
+                $event = Event::create([
+                    'event_name' => $request->event_name,
+                    'event_start' => $request->event_start,
+                    'event_end' => $request->event_end,
+                ]);
+   
+                return response()->json($event);
+               break;
+    
+             case 'edit':
+                $event = Event::find($request->id)->update([
+                    'event_name' => $request->event_name,
+                    'event_start' => $request->event_start,
+                    'event_end' => $request->event_end,
+                ]);
+   
+                return response()->json($event);
+               break;
+    
+             case 'delete':
+                $event = Event::find($request->id)->delete();
+    
+                return response()->json($event);
+               break;
+               
+             default:
+               # ...
+               break;
+          }
       }
 }

@@ -6,7 +6,7 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item ">
@@ -43,9 +43,9 @@
           
           <li class="nav-item">
             <a href="{{ url('member/my-reports') }}" class="nav-link {{ Request::is('member/my-reports') ? 'current':'' }}">
-              <i class="nav-icon fas fa-file-pdf"></i>
+              <i class="nav-icon fas fa-bullhorn"></i>
               <p>
-                My Reports
+                Announcement
               </p>
             </a>
           </li>

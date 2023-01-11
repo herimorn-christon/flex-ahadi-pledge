@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\MethodController;
 use App\Http\Controllers\Admin\PledgeController;
@@ -234,4 +235,9 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::post('change-password', [App\Http\Controllers\Member\ProfileController::class,'store']);
   // my-profile
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
+    // for event remainder
+
+  
+    //  Route::post('calendar-crud-ajax', [EventController::class, 'calendarEvents']);
 });
+

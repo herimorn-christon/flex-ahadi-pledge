@@ -18,10 +18,58 @@
         <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
           <!-- Font Awesome -->
-        <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-            {{-- for flex theme --}}
-        <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+  <style>
+    .page-item.active .page-link{
+        color: whitesmoke !important;
+        background-color: #1888cb  !important; 
+        border: none;
+    }
 
+     .page-link {
+      
+        text-decoration: none !important;
+        color:#1888cb  !important;
+    }
+    .bg-flex{
+      background-color: #1888cb;
+    }
+    .bg-navy{
+      background-color: #1888cb !important;
+    }
+    .text-navy{
+      color: #1888cb !important;
+    }
+    .paginate_button{
+      margin: 1px !important;
+    }
+    .paginate_button.disabled{
+      color: gainsboro !important;
+    }
+    .dataTables_paginate .paginate_button:hover{
+      border: 1px solid transparent !important;
+      background: transparent !important;
+    }
+
+    .current {
+        border-left: 0.45rem solid #1888cb !important;
+        background-color:#f2f3f4 !important;
+      }
+    .bg-teal{
+      background-color: #01b4f2 !important;
+    }
+    
+      .border-bottom-navy {
+        border-bottom: 0.25rem solid #001f3f !important;
+      }
+
+      .nav-tabs .nav-link.active{
+        background-color: #1888cb  !important;
+        font-weight:bold;
+        color: #e5e9ec !important;
+      }
+
+</style>
 </head>
     <body>
         <!-- Navigation-->
@@ -41,7 +89,7 @@
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
-                    <a href="{{ url('login') }}"  class="btn  bg-flex text-light  mt-2 font-weight-light">Sign In To Your Account</a>
+                    <a href="{{ url('login') }}"  class="btn  bg-navy  mt-2 font-weight-light">Sign In To Your Account</a>
                     @endif
                 @else
                     <li class="nav-item dropdown">
@@ -88,10 +136,10 @@
                                 <!-- Email address input-->
                                 <div class="row">
                                     <div class="col-xl-8 mx-auto">
-                                        <a data-bs-toggle="modal" data-bs-target="#registerModal" href="#myModal" class="btn bg-danger   mt-2">Join Us Now !</a>
+                                        <a data-bs-toggle="modal" data-bs-target="#registerModal" href="#myModal" class="btn bg-danger  font-weight-bolder   mt-2">Join Us Now !</a>
 
                                   
-                                        <a href="{{ url('login') }}"  class="btn  bg-flex text-light mt-2 ">Sign In To Your Account</a>
+                                        <a href="{{ url('login') }}"  class="btn  bg-navy  mt-2 font-weight-bolder">Sign In To Your Account</a>
 
                                     </div>
                                 </div>
@@ -339,7 +387,7 @@
                     <div class="row">
                         <div class="col-md-6"></div>
                         <div class="col-md-6">
-                            <button type="submit" class="btn btn-block text-decoration-none text-light bg-flex btn-block col-lg-12">
+                            <button type="submit" class="btn btn-block text-decoration-none text-light bg-info bg-navy btn-block col-lg-12">
                                 {{ __('Register') }}
                             </button>
                         </div>

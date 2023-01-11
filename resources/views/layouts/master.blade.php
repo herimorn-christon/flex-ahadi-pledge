@@ -69,7 +69,7 @@
   {{-- for flex theme --}}
     <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse  layout-fixed">
 <div class="wrapper">
 
   
@@ -78,7 +78,7 @@
   @include('layouts.inc.admin-navbar')
   <!-- /.navbar -->
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-navy elevation-4">
+  <aside class="main-sidebar sidebar-light-navy  elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="text-decoration-none brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">

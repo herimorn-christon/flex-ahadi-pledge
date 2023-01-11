@@ -25,11 +25,13 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     {{-- for flex theme --}}
     <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -41,9 +43,9 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-light-navy elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ url('member/dashboard') }}" class="brand-link">
+    <a href="{{ url('member/dashboard') }}" class="text-decoration-none brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light text-navy">AhadiPledge</span>
+      <span class="brand-text font-weight-light text-white">AhadiPledge</span>
     </a>
 
     <!-- Sidebar -->
@@ -173,7 +175,7 @@
                         </h6>
         
                         <h3 class="text-secondary">
-                          {{$remaining}}
+                          {{$cardpayments}}
                           <small>Tsh</small>
                         </h3>
                       </div>
@@ -184,94 +186,138 @@
                   {{-- end  --}}
 
      
+                  <div class="col-md-12">
+                    <div class="card p-2 border-left-flex">
+                      <div class="row mb-1">
+                       
+                      {{-- start of statistics --}}
+                      <div class="col-md-12">
+                          <div class="row starts-border" >
+                            <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made in {{ date('Y')}} </h6></div>
+                            <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> {{ $pledges}}</h6></div>
+                          </div>
+                          <div class="row starts-border">
+                            <div class="col-md-6"> <h6 class="text-secondary">Total Fullfilled Pledges in {{ date('Y')}}</h6></div>
+                            <div class="col-md-6 text-right" ><h6 class="font-weight-bolder">value</h6></div>
+                          </div>
+                          <div class="row starts-border">
+                            <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Made</h6></div>
+                            <div class="col-md-6 text-right"><h6 class="font-weight-bolder" >value</h6></div>
+                          </div>
+                          <div class="row starts-border">
+                            <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Payments</h6></div>
+                            <div class="col-md-6 text-right"><h6 class="font-weight-bolder">value</h6></div>
+                          </div>
+                          
+                          
+        
+                      
+                        </div>
+                      {{-- end of statistics --}}
+                      
+                      <div class="col-md-12 mt-1">
+                        <div class="">
+                          <div class="p-2">
+                            <h6 class="text-secondary font-weight-bolder">
+                            <span class="bg-white disabled text-navy">
+                              Overall Goal Progress in {{ date('Y')}}
+                            </span>
+                           </h6>
+                          </div>
+                          <div class="">
+            
+                           
+                            <div class="col-md-12 py-2">
+                            <div class="progress"  style="height:20px;">
+                              <div class="progress-bar 
+                              {{-- progress-bar-striped  --}}
+                              progress-bar-animated
+                              @if($progress<=25)
+                              bg-danger
+                              @elseif($progress>25 && $progress<=50)
+                              bg-warning
+                              @elseif($progress>50 && $progress<=75)
+                              bg-primary
+                              @else
+                              bg-success
+                              @endif
+                              "
+            
+                              role="progressbar" style="width: {{ $progress}}%" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
+                            </div>
+                            </div>
+            
+                         
+                          </div>
+                        </div>
+                      </div>
+                   
+                      </div>
+                      
+                      </div>
+                      
+                  </div>
         </div>
         <!-- /.row -->
         <!-- Main row -->
         <div class="row ">
-        {{--start of Goal Progress  --}}
-
-          <div class="col-md-12">
-            <div class="">
-              <div class="p-2">
-                <h6 class="text-secondary font-weight-bolder">
-                <span class="btn bg-white disabled text-navy">
-                  Overall Goal Progress in {{ date('Y')}}
-                </span>
-               </h6>
-              </div>
-              <div class="">
-
-               
-                <div class="col-md-12 py-2">
-                <div class="progress"  style="height:25px;">
-                  <div class="progress-bar 
-                  progress-bar-striped 
-                  progress-bar-animated
-                  @if($progress<=25)
-                  bg-danger
-                  @elseif($progress>25 && $progress<=50)
-                  bg-warning
-                  @elseif($progress>50 && $progress<=75)
-                  bg-primary
-                  @else
-                  bg-success
-                  @endif
-                  "
-
-                  role="progressbar" style="width: {{ $progress}}%" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
-                </div>
-                </div>
-
-             
-              </div>
-            </div>
-          </div>
-
-          <div class="p-2 col-md-12">
-            <h6 class="text-secondary font-weight-bolder">
-            <span class="btn bg-white disabled text-navy">
-              Daily Statistics and Activities in {{ date('Y')}}
-            </span>
-           </h6>
-          </div>
-
-          {{-- stats --}}
-         
-            <div class="col-md-6 mb-2">
-              <div id="container"></div>
-            </div>
             <div class="col-md-6 mb-2">
               <div class="card">
-              <div class="card-header bg-light">
-                <h6 class="text-secondary font-weight-bolder">Latest Pledges Progress</h6>
+              <div class="card-header bg-white">
+                <h6 class="">Pledges Progress</h6>
               </div>
               <div class="row">
               @foreach($mypledges as $item)
               
               
                 <div class="col-md-12 mt-2">
-                  <div class="card">
-                    <div class="card-header">
+                  <div class="row p-1">
+                  <div class="col-md-6">
                       <h6 class="text-secondary ">
-                        {{ $item->id }}
                         {{ $item->name }}
                       </h6>
                     </div>
-                    <div class="">
+                    <div class="col-md-6">
       
-                      @php
+                      <?php
+
                          $purpose= "{$item->id}" ; 
                          
                          $user=Auth::User()->id;
                          $payment=App\Models\Payment::where('user_id',$user)->where('pledge_id',$purpose)->whereYear('created_at', date('Y'))->sum('amount');
                          $amount="{$item->amount}";
-                         $number=($payment/$amount)*100;//progress formular
-                         $progress=number_format((float)$number, 2, '.', '');
-                      @endphp
+                         if ($amount<=0) {
+                          $progress=0;
+                          ?>
                       <div class="col-md-12 py-2">
-                      <div class="progress"  style="height:20px;">
+                      <div class="progress"  style="height:14px;">
                         <div class="progress-bar 
-                        progress-bar-striped 
+                        {{-- progress-bar-striped  --}}
+                        progress-bar-animated
+                        @if($progress<=25)
+                        bg-danger
+                        @elseif($progress>25 && $progress<=50)
+                        bg-warning
+                        @elseif($progress>50 && $progress<=75)
+                        bg-primary
+                        @else
+                        bg-success
+                        @endif
+                        "
+      
+                        role="progressbar" style="width: {{ $progress}}%" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
+                      </div>
+                      </div> 
+                      <?php
+                         }
+                         else {
+                          $number=($payment/$amount)*100;//progress formular
+                         $progress=number_format((float)$number, 2, '.', ''); ?>
+                       
+                      <div class="col-md-12 py-2">
+                      <div class="progress"  style="height:14px;">
+                        <div class="progress-bar 
+                        {{-- progress-bar-striped  --}}
                         progress-bar-animated
                         @if($progress<=25)
                         bg-danger
@@ -287,15 +333,29 @@
                         role="progressbar" style="width: {{ $progress}}%" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
                       </div>
                       </div>
+
+                      <?php } ?>
+                      
+                      
+                    
       
-                   
+                    </div>
                     </div>
                   </div>
-                </div>
               
                @endforeach
               </div>
             </div>
+        </div>
+            {{-- start of upcoming events --}}
+            <div class="col-md-6 mb-2 ">
+              <div class="card">
+                <div class="card-header bg-white">
+                  Event Remainder
+                </div>
+                <div class="card-body" id='full_calendar_events'></div>
+              </div>
+              
             </div>
        
         </div>
@@ -443,5 +503,101 @@
   });
   
   </script>
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var SITEURL = "{{ url('member/') }}";
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            var calendar = $('#full_calendar_events').fullCalendar({
+                editable: true,
+                editable: true,
+                events: SITEURL + "/dashboard",
+                displayEventTime: true,
+                eventRender: function (event, element, view) {
+                    if (event.allDay === 'true') {
+                        event.allDay = true;
+                    } else {
+                        event.allDay = false;
+                    }
+                },
+                selectable: true,
+                selectHelper: true,
+                select: function (event_start, event_end, allDay) {
+                    var event_name = prompt('Event Name:');
+                    if (event_name) {
+                        var event_start = $.fullCalendar.formatDate(event_start, "Y-MM-DD HH:mm:ss");
+                        var event_end = $.fullCalendar.formatDate(event_end, "Y-MM-DD HH:mm:ss");
+                        $.ajax({
+                            url: SITEURL + "/calendar-crud-ajax",
+                            data: {
+                                event_name: event_name,
+                                event_start: event_start,
+                                event_end: event_end,
+                                type: 'create'
+                            },
+                            type: "POST",
+                            success: function (data) {
+                                displayMessage("Event created.");
+                                calendar.fullCalendar('renderEvent', {
+                                    id: data.id,
+                                    title: event_name,
+                                    start: event_start,
+                                    end: event_end,
+                                    allDay: allDay
+                                }, true);
+                                calendar.fullCalendar('unselect');
+                            }
+                        });
+                    }
+                },
+                eventDrop: function (event, delta) {
+                    var event_start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
+                    var event_end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
+                    $.ajax({
+                        url: SITEURL + '/calendar-crud-ajax',
+                        data: {
+                            title: event.event_name,
+                            start: event_start,
+                            end: event_end,
+                            id: event.id,
+                            type: 'edit'
+                        },
+                        type: "POST",
+                        success: function (response) {
+                            displayMessage("Event updated");
+                        }
+                    });
+                },
+                eventClick: function (event) {
+                    var eventDelete = confirm("Are you sure?");
+                    if (eventDelete) {
+                        $.ajax({
+                            type: "POST",
+                            url: SITEURL + '/calendar-crud-ajax',
+                            data: {
+                                id: event.id,
+                                type: 'delete'
+                            },
+                            success: function (response) {
+                                calendar.fullCalendar('removeEvents', event.id);
+                                displayMessage("Event removed");
+                            }
+                        });
+                    }
+                }
+            });
+        });
+        function displayMessage(message) {
+            toastr.success(message, 'Event');            
+        }
+    </script>
 </body>
 </html>

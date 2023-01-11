@@ -39,6 +39,12 @@
 <!-- summernote -->
 <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
   <!-- DataTables -->
+     <!-- DataTables -->
+     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+  
+  
   <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
   <link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -65,7 +71,7 @@
     {{-- for flex theme --}}
     <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -79,7 +85,7 @@
     <!-- Brand Logo -->
     <a href="{{ url('member/dashboard') }}" class="text-decoration-none brand-link ">
       <img src="{{ asset('img/flex.png') }}" alt="Ahadipledge Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light  text-navy">AhadiPledge</span>
+      <span class="brand-text font-weight-light  text-white">AhadiPledge</span>
     </a>
 
     <!-- Sidebar -->
@@ -88,10 +94,10 @@
   </aside>
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper mt-4">
+  <div class="content-wrapper mt-1">
     <!-- Content Header (Page header) -->
     <div class="content-header">
-      <div class="container-fluid">
+      <div class="">
  
         <!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -99,7 +105,7 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="p-2">
+    <section class="p-1">
       <div class="">
         
         @yield('content')
@@ -110,7 +116,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; {{ date('Y')}} <a href="#" class="text-decoration-none text-navy">AhadiPledge</a>.</strong>
+    <strong>Copyright &copy; {{ date('Y')}} <a href="#" class="text-decoration-none text-flex">AhadiPledge</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 0.0.1
@@ -126,35 +132,63 @@
 </div>
 <!-- ./wrapper -->
 
-
 <script>
-  $(document).ready( function () {
-$('#mytable').addClass("myclass2").DataTable(
-  {
-    ordering:  false,
-    searching:  true,
-    autoWidth: false,
-    responsive: true,
-     info: false,
-  }
-);
-} );
+  // for enabling tooltips
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip({
+    'delay': { show: 1200, hide: 500 }
+  })
+})
+
 $(document).ready( function () {
 $('#modaltable').DataTable(
   {
-    ordering:  false,
-    searching:  true,
-    autoWidth: false,
-    responsive: true,
-    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      autoWidth:true,
+      rowReorder: {
+            selector: 'tr'
+        },
+        columnDefs: [
+            { targets: 0, visible: true }
+        ]
   }
 );
 } );
 
-$(document).ready(function () {
-    $('#example').DataTable();
-});
 </script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["csv", "excel", "pdf"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+
+  $(function () {
+    $("#mytable").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      "buttons": ["csv", "excel", "pdf"]
+    }).buttons().container().appendTo('#mytable_wrapper .col-md-6:eq(0)');
+    $('#table').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
+
 <!-- jQuery -->
 <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <!-- jQuery UI 1.11.4 -->
