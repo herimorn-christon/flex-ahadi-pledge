@@ -25,6 +25,9 @@
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+
+    {{-- for flex theme --}}
+    <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -53,7 +56,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header ">
       <div class="">
-        <div class="row mb-0">
+        <div class="row mb-0 g-1">
           <div class="col-sm-6 col-6">
             <h5 class="m-0 text-white">
               {{-- <span class="btn badge bg-navy disabled" >
@@ -81,77 +84,106 @@
       <div class="">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-lightblue">
-              <div class="inner">
-                <h5 class=" font-weight-bolder"> 
-                  {{$pledges}}
-                  <small>Tsh</small>              
-                </h5>
 
-                <p>Pledges Amount</p>
+              {{-- start  --}}
+              <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+                <!-- small box -->
+                <div class="small-box bg-white border-top-flex">
+                  <div class="mx-auto text-center pt-4">
+                    {{-- <i class="fa fa-dollar-sign"></i> --}}
+                    {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
+                  </div>
+                  <div class="text-center">
+                    <h6 class="">                  
+                      Pledges Amount
+                    </h6>
+    
+                    <h3 class="text-secondary">
+                      {{$pledges}}
+                      <small>Tsh</small>
+                    </h3>
+                  </div>
+                  
+                  <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+                </div>
               </div>
-              <div class="icon">
-                <i class="fa fa-dollar-sign"></i>
-              </div>
-              <a href="#" class="small-box-footer ">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-cyan">
-              <div class="inner">
-                <h5 class=" font-weight-bolder"> 
-                  {{$payments}}
-                  <small>Tsh</small>
-                </h5>
+              {{-- end  --}}
 
-                <p>Paid Pledges</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h5 class=" font-weight-bolder"> 
-                  {{$remaining}}
-                  <small>Tsh</small>
-                </h5>
+                   {{-- start  --}}
+                   <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+                    <!-- small box -->
+                    <div class="small-box bg-white border-top-flex">
+                      <div class="mx-auto text-center pt-4">
+                        {{-- <i class="fa fa-dollar-sign"></i> --}}
+                        {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
+                      </div>
+                      <div class="text-center">
+                        <h6 class="">                  
+                          Paid Pledges
+                        </h6>
+        
+                        <h3 class="text-secondary">
+                          {{$payments}}
+                          <small>Tsh</small>
+                        </h3>
+                      </div>
+                      
+                      <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+                    </div>
+                  </div>
+                  {{-- end  --}}
 
-                <p>Remaining Amount</p>
-              </div>
-              <div class="icon">
-                <i class="fa fa-credit-card"></i>
-              </div>
-              <a href="#" class="small-box-footer ">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-teal">
-              <div class="inner">
-                <h5 class=" font-weight-bolder"> 
-                  {{$pledges_no}}
-                </h5>
+    
+                   {{-- start  --}}
+                   <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+                    <!-- small box -->
+                    <div class="small-box bg-white border-top-flex">
+                      <div class="mx-auto text-center pt-4">
+                        {{-- <i class="fa fa-dollar-sign"></i> --}}
+                        {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
+                      </div>
+                      <div class="text-center">
+                        <h6 class="">                  
+                          Remaining Amount
+                        </h6>
+        
+                        <h3 class="text-secondary">
+                          {{$remaining}}
+                          <small>Tsh</small>
+                        </h3>
+                      </div>
+                      
+                      <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+                    </div>
+                  </div>
+                  {{-- end  --}}
 
-                <p>Pledges Made</p>
-              </div>
-              <div class="icon mb-1">
-                <i class="fa fa-balance-scale"></i>
-              </div>
-              <a href="#" class="small-box-footer ">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
+                  
+                   {{-- start  --}}
+                   <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+                    <!-- small box -->
+                    <div class="small-box bg-white border-top-flex">
+                      <div class="mx-auto text-center pt-4">
+                        {{-- <i class="fa fa-dollar-sign"></i> --}}
+                        {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
+                      </div>
+                      <div class="text-center">
+                        <h6 class="">                  
+                          Total Card Payments
+                        </h6>
+        
+                        <h3 class="text-secondary">
+                          {{$remaining}}
+                          <small>Tsh</small>
+                        </h3>
+                      </div>
+                      
+                      <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+                    </div>
+                  </div>
+                  {{-- end  --}}
+
+     
         </div>
         <!-- /.row -->
         <!-- Main row -->
