@@ -42,11 +42,11 @@ class AnnouncementController extends Controller
             $announcement = new Announcement();
             $announcement->title=$request->title;
             $announcement->body=$request->body;
-            if($request->hasfile('attachment')){
-                $file=$request->file('attachment');
-                $filename=$announcement->title.'.'.$file->getClientOriginalExtension();
+            if($request->hasfile('image')){
+                $file=$request->file('image');
+                $filename=time().'.'.$file->getClientOriginalExtension();
                 $file->move('uploads/announcement/', $filename);
-                $attachment->file=$filename;
+                $announcement->file=$filename;
             }
             $announcement->save();
             
@@ -82,7 +82,23 @@ class AnnouncementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'title' => 'required|max:255',
+            'body' => 'required',
+            'attachment' => 'nullable',
+        ]);
+  
+        $announcement =Announcement::find($id);
+        $announcement->title=$request->title;
+        $announcement->body=$request->body;
+        if($request->hasfile('attachment')){
+            $file=$request->file('attachment');
+            $filename=$announcement->title.'.'.$file->getClientOriginalExtension();
+            $file->move('uploads/announcements/', $filename);
+            $attachment->file=$filename;
+        }
+        $announcement->save();
+
     }
 
     /**

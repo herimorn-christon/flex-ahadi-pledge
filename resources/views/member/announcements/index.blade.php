@@ -31,7 +31,7 @@
     <div class="mt-2">
 
         <div class="responsive p-1">
-            <table id="example" class="table table-bordered cell-border">
+            <table id="example1" class="table">
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>
@@ -84,7 +84,7 @@
           */
           function showAllCardMembers()
           {
-              let url = $('meta[name=app-url]').attr("content") + "/member/notifications";
+              let url = $('meta[name=app-url]').attr("content") + "/member/announcements";
               $.ajax({
                   url: url,
                   type: "GET",
@@ -94,7 +94,7 @@
                       for (var i = 0; i < members.length; i++) 
                       {
                           let showBtn =  '<button ' +
-                                ' class="btn bg-teal  btn-sm " ' +
+                                ' class="btn bg-flex text-light  btn-sm " ' +
                                 ' onclick="showCardMember(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
@@ -106,9 +106,9 @@
        
                           let projectRow = '<tr>' +
                               '<td>' + members[i].id +  '</td>' +
-                              '<td class="">' + members[i].type +'</td>' +
+                              '<td class="">' + members[i].title +'</td>' +
                               '<td>' + members[i].created_at +  '</td>' +
-                              '<td>'  +showBtn+ deleteBtn+   '</td>' +
+                              '<td>'  +showBtn+   '</td>' +
                           '</tr>';
                           $("#members-table-body").append(projectRow);
                       
@@ -124,62 +124,6 @@
        
      
        
-
-   
-          /*
-              submit the form and will be stored to the database
-          */
-          function storeCard()
-          {   
-              $("#save-card-btn").prop('disabled', true);
-              let url = $('meta[name=app-url]').attr("content") + "/member/cards";
-              let data = {
-                  card_no: $("#card").val(  
-
-                    ),
-              };
-              $.ajax({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  },
-                  url: url,
-                  type: "POST",
-                  data: data,
-                  success: function(response) {
-                      $("#save-card-btn").prop('disabled', false);
-                      let successHtml = '<div class="alert alert-success" role="alert">Card Was Created Successfully</div>';
-                      $("#alert-div").html(successHtml);
-                      $("#card").val("");
-  //                     showAllCards();
-                      $("#form-modal").modal('hide');
-                  },
-                  error: function(response) {
-                      $("#save-card-btn").prop('disabled', false);
-       
-                      /*
-          show validation error
-                      */
-                      if (typeof response.responseJSON.errors !== 'undefined') 
-                      {
-          let errors = response.responseJSON.errors;
-          let numberValidation = "";
-          if (typeof errors.card_no !== 'undefined') 
-                          {
-                              numberValidation = '<li>' + errors.card_no[0] + '</li>';
-                          }
-           
-          let errorHtml = '<div class="alert alert-danger" role="alert">' +
-              '<b>Validation Error!</b>' +
-              '<ul>' + numberValidation  +'</ul>' +
-          '</div>';
-          $("#error-div").html(errorHtml);        
-      }
-                  }
-              });
-          }
-
-
-
           /*
               get and display the record info on modal
           */
@@ -187,15 +131,15 @@
           {
               $("#fname-info").html("");
               $("#mname-info").html("");
-              let url = $('meta[name=app-url]').attr("content") + "/member/notifications/" + id +"";
+              let url = $('meta[name=app-url]').attr("content") + "/member/announcements/" + id +"";
               $.ajax({
                   url: url,
                   type: "GET",
                   success: function(response) {
-                         let notification = response.notification;
-                       $("#name-info").html(notification.type );
+                         let notification = response.member;
+                       $("#name-info").html(notification.title );
                        $("#date-info").html(notification.created_at );
-                       $("#message-info").html(notification.message );
+                       $("#message-info").html(notification.body );
                        $("#view-modal").modal('show'); 
                     
        

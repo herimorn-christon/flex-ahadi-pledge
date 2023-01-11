@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\CardPaymentController;
 use App\Http\Controllers\Member\MyPaymentsController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\NotificationsController;
+use App\Http\Controllers\Member\MyAnnouncementController;
 use App\Http\Controllers\Member\MyNotificationsController;
 
 
@@ -219,7 +220,7 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     return view('member.announcements.index');
     });
 // my-notifications API
-  Route::apiResource('announcements', MyNotificationsController::class);
+  Route::apiResource('announcements', MyAnnouncementController::class);
 
  // All reports page route
     Route::get('my-reports', function () {

@@ -4,21 +4,20 @@
                 edit record function
                 it will get the existing value and show the purpose form
             */
-            function editPurpose(id)
+            function editAnnouncement(id)
             {
-                let url = $('meta[name=app-url]').attr("content") + "/admin/purposes/" + id ;
+                let url = $('meta[name=app-url]').attr("content") + "/admin/announcements/" + id ;
                 $.ajax({
                     url: url,
                     type: "GET",
                     success: function(response) {
-                        let purpose = response.purpose;
+                        let purpose = response.announcement;
                         $("#alert-div").html("");
                         $("#error-div").html("");   
                         $("#update_id").val(purpose.id);
                         $("#title").val(purpose.title);
-                        $("#start_date").val(purpose.start_date);
-                        $("#end_date").val(purpose.end_date);
-                        $("#description").val(purpose.description);
+                        $("#body").val(purpose.body);
+                        $("#attachment").val(purpose.file);
                         $("#form-modal").modal('show'); 
                     },
                     error: function(response) {
@@ -30,7 +29,7 @@
       /*
                 sumbit the form and will update a record
             */
-            function updatePurpose()
+            function updateAnnouncement()
             {
                 $("#save-purpose-btn").prop('disabled', true);
                 let url = $('meta[name=app-url]').attr("content") + "/admin/purposes/" + $("#update_id").val();

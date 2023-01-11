@@ -1,7 +1,7 @@
 <!-- Register User Modal Page -->
 
 <div class="modal fade" id="form-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" style="width:1250px;">
+    <div class="modal-dialog modal-xl" style="width:1250px;">
       <div class="modal-content">
         <div class="modal-header bg-light">
             <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -16,7 +16,7 @@
             <form >
                    <input type="hidden" name="update_id" id="update_id">
                 <div class="row">
-                <div class="mb-2 col-md-6">
+                <div class="mb-2 col-md-4">
                     <label for="fname" class="text-secondary">{{ __('First Name') }}</label>
 
                     <div class="form-group">
@@ -29,7 +29,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="mb-2 col-md-6">
+                <div class="mb-2 col-md-4">
                     <label for="mname" class="text-secondary">{{ __('Middle Name') }}</label>
 
                     <div class="">
@@ -42,7 +42,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-6 mb-2">
+                <div class="col-md-4 mb-2">
                     <label for="lname" class="text-secondary">{{ __('Last Name') }}</label>
 
                     <div class="form-group">
@@ -79,7 +79,7 @@
                 @endphp
                 <div class="col-md-6">
                     <label for="" class="text-secondary">Jumuiya (Community) </label>
-                    <select name="jumuiya" id="jumuiya" class="form-control">
+                    <select name="jumuiya" id="jumuiya" class="custom-select form-control">
                         <option value="">--Select Community (Jumuiya) --</option>
                         @foreach ( $jumuiya as $item)
                          <option value="{{ $item->id}}">{{ $item->name}}</option>
@@ -95,7 +95,7 @@
 
             <div class="col-lg-6">
                     <label for="gender" class="text-secondary">Gender</label>
-                    <select name="gender" id="gender" class="form-control">
+                    <select name="gender" id="gender" class="custom-select form-control">
                             <option value="">--Select Gender --</option>
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -127,7 +127,7 @@
                 {{-- start of member status select --}}
                 <div class="col-md-6">
                     <label for="" class="text-secondary"> Member Status</label>
-                    <select name="status" id="status" class="form-control bg-light">
+                    <select name="status" id="status" class="custom-select form-control bg-light">
                       <option value="0">Enabled</option>
                       <option value="1">Disabled</option>
                     </select>

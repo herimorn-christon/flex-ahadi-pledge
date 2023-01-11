@@ -27,7 +27,7 @@
 
             <div class="mb-3">
               <label for="message-text" class="text-secondary">Attachment:</label>
-               <input type="file" class="form-control" id="attachment" name="attachment" >
+               <input type="file" class="form-control" id="image" name="image" >
             </div>
             
             <div class="row">

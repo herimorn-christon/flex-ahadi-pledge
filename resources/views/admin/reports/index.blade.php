@@ -61,7 +61,7 @@
 <div class="card mt-1">
         <div class="responsive p-1">
           {{-- start of all purposes table --}}
-            <table id="example1" class="table table-bordered ">
+            <table id="example1" class="table ">
                 <thead>
                     <tr class="text-secondary">
                         <th>SN</th>

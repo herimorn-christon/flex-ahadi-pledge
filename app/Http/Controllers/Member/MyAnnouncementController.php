@@ -21,16 +21,7 @@ class MyAnnouncementController extends Controller
         return response()->json(['members' => $members]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+
 
     /**
      * Display the specified resource.
@@ -40,7 +31,8 @@ class MyAnnouncementController extends Controller
      */
     public function show($id)
     {
-        //
+        $member = Announcement::find($id);
+        return response()->json(['member' => $member]);
     }
 
     /**

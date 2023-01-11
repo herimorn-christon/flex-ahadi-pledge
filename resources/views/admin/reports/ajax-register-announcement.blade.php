@@ -13,7 +13,7 @@
                 $("#update_id").val("");
                 $("#title").val("");
                 $("#body").val("");
-                $("#attachment").val("");
+                $("#image").val("");
                 $("#form-modal").modal('show'); 
             }
          
@@ -41,7 +41,7 @@
                 let data = {
                     title: $("#title").val(),
                     body: $("#body").val(),
-                    file: $("#attachment").val(),
+                    file: $("#image").val(),
                 };
                 $.ajax({
                     headers: {
@@ -56,7 +56,7 @@
                         $("#alert-div").html(successHtml);
                         $("#tite").val("");
                         $("#body").val("");
-                        $("attachment").val("");
+                        $("image").val("");
                         showAllAnnouncements();
                         $("#form-modal").modal('hide');
                     },
