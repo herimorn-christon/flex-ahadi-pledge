@@ -213,6 +213,14 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   // my-notifications API
     Route::apiResource('notifications', MyNotificationsController::class);
 
+  //For announcements 
+
+  Route::get('my-announcements', function () {
+    return view('member.announcements.index');
+    });
+// my-notifications API
+  Route::apiResource('announcements', MyNotificationsController::class);
+
  // All reports page route
     Route::get('my-reports', function () {
      return view('member.reports.index');

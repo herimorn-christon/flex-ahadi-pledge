@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use file;
+// use file;
 use App\Models\User;
 use illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\File;
+// use Symfony\Component\HttpFoundation\File\File;
+use Illuminate\Support\Facades\File;
 
 class ProfileController extends Controller
 {

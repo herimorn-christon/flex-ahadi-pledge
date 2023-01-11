@@ -42,7 +42,7 @@
           </a>
           
           <li class="nav-item">
-            <a href="{{ url('member/announcements') }}" class="nav-link {{ Request::is('member/announcements') ? 'current':'' }}">
+            <a href="{{ url('member/my-announcements') }}" class="nav-link {{ Request::is('member/my-announcements') ? 'current':'' }}">
               <i class="nav-icon fas fa-bullhorn"></i>
               <p>
                 Announcement

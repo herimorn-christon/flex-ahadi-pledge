@@ -11,9 +11,9 @@
             {{-- start of current image --}}
             <div class="row">
               <div class="text-center col-md-6 mx-auto" >
-                <img class="profile-user-img img-fluid img-circle"
+                <img class="profile-user-img  img-circle"
                      src="{{ asset('uploads/user/'. Auth::user()->profile_picture ) }}"
-                     alt="User profile picture" width="100%">
+                     alt="User profile picture" width="100%" height="100px">
                      <br>
                      <small class="text-secondary">
                       Current Image
@@ -22,7 +22,7 @@
             </div>
             {{--  end of current image --}}
             {{-- start of update image form --}}
-            <form method="post" action="{{ url('admin/profile-image')}}">
+            <form method="post" action="{{ url('admin/profile-image')}}" enctype="multipart/form-data">
                  @csrf
                 <input type="hidden" name="update_id" id="{{Auth::User()->id;}}">
                 <div class="row">

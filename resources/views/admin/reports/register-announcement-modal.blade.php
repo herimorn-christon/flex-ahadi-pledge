@@ -10,7 +10,7 @@
             {{--start of displaying errors --}}
             <div id="error-div"></div>
             {{--end of displaying errors --}}
-          <form>
+          <form enctype="multipart/form-data">
             <input type="hidden" name="update_id" id="update_id">
          
             <div class="mb-3">

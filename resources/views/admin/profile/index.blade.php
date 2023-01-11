@@ -56,9 +56,9 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
                         
                     <a href="#avatar-modal" data-toggle="modal" class="text-decoration-none"  onclick="editImage()">
                     <div class="text-center" >
-                      <img class="profile-user-img img-fluid img-circle"
-                           src="{{ asset('img/user.png') }}"
-                           alt="User profile picture" width="240px">
+                      <img class="profile-user-img  img-circle"
+                           src="{{ asset('uploads/user/'. Auth::user()->profile_picture ) }}"
+                           alt="User profile picture" width="240px" height="100px">
                            <br>
                            <small class="text-secondary">
                             <i class="fa fa-edit muted text-secondary"></i>

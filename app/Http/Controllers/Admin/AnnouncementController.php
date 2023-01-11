@@ -35,7 +35,7 @@ class AnnouncementController extends Controller
             [
             'title' => 'required|max:255',
             'body' => 'required',
-            'attachment' => 'nullable',
+            'attachment' => 'required',
              ]
             );
 
@@ -44,7 +44,7 @@ class AnnouncementController extends Controller
             $announcement->body=$request->body;
             if($request->hasfile('attachment')){
                 $file=$request->file('attachment');
-                $filename=$book->slug.'.'.$file->getClientOriginalExtension();
+                $filename=$announcement->title.'.'.$file->getClientOriginalExtension();
                 $file->move('uploads/announcement/', $filename);
                 $attachment->file=$filename;
             }
