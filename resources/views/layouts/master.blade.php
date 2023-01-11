@@ -111,6 +111,27 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+
+    {{-- start of notifications --}}
+
+
+        {{-- start of ajax fetch all members method --}}
+        @include('admin.notifications.ajax-fetch-all-notifications')
+        {{-- end of ajax fetch all members method --}}
+  
+        {{-- start of single member modal --}}
+        {{-- @include('admin.notifications.single-notification-modal') --}}
+        {{-- end of single member modal --}}
+
+        {{-- start of ajax fetch all members method --}}
+        {{-- @include('admin.members.ajax-fetch-notification-details') --}}
+        {{-- end of ajax fetch all members method --}}
+
+        {{-- start of ajax delete members method --}}
+        {{-- @include('admin.members.ajax-delete-notification') --}}
+        {{-- end of ajax delete members method --}}
+
+    {{-- end of notifications --}}
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer mt-4">

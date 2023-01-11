@@ -112,10 +112,6 @@
         {{-- start of ajax fetch all members method --}}
         @include('admin.members.ajax-fetch-all-members')
         {{-- end of ajax fetch all members method --}}
-
-
-    </div>
-</div>
   
         {{-- start of single member modal --}}
         @include('admin.members.single-member-modal')
@@ -128,6 +124,9 @@
         {{-- start of ajax delete members method --}}
         @include('admin.members.ajax-delete-member')
         {{-- end of ajax delete members method --}}
+    </div>
+</div>
+
 
     
 

@@ -31,7 +31,7 @@
     <div class="mt-2">
 
         <div class="responsive p-1">
-            <table id="example" class="table table-bordered cell-border">
+            <table id="example1" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>

@@ -1,5 +1,5 @@
 {{-- all user notifications  modal --}}
-<div class="modal fade" id="avatar-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="notification-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-light">
@@ -19,7 +19,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="members-table-body">
+                <tbody id="notifications-table-body">
    
   
                 </tbody>
