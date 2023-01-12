@@ -56,7 +56,10 @@
         </button> 
           {{-- end of create purpose button --}}
 
-
+          <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="createType()">
+            <i class="fa fa-plus"></i>
+             Add Pledge Type
+            </button>
           {{-- End of create pledge button  --}}
 
         {{-- start of view all pledge types modal --}}
@@ -68,10 +71,7 @@
 
     
         
-        <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="createType()">
-        <i class="fa fa-plus"></i>
-         Add Pledge Type
-        </button>
+       
 
       {{-- start of generate report button --}}
       <a href="" class="btn bg-cyan  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">

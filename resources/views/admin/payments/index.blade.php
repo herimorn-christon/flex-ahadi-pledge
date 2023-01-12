@@ -51,17 +51,18 @@
             Register Payment
         </button>   
         {{-- end of register payment button --}}
-
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
+          <i class="fa fa-plus"></i>
+           Add Payment Method
+        </button>
+        
         <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
              Payment Methods
         </button>
         
 
-        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
-        <i class="fa fa-plus"></i>
-         Add Payment Method
-        </button>
+
       
         {{-- start of generate report button --}}
       <a href="" class="btn bg-cyan  btn-sm mb-2" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
