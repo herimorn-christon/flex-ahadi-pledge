@@ -9,13 +9,13 @@
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-
+    {{-- {{ url('admin/user-notifications') }} --}}
 
     <!-- Messages Dropdown Menu -->
 
     <!-- Notifications Dropdown Menu -->
-    <li class="nav-item dropdown">
-      <a class="nav-link"  href="{{ url('admin/user-notifications') }}">
+    <li class="nav-item ">
+      <a class="nav-link" type="button" data-toggle="modal" onclick="showAllCards()">
         <i class="far fa-bell"></i>
         @php
         $user=Auth::User()->id;

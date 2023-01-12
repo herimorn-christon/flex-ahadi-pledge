@@ -108,6 +108,7 @@
         
         @yield('content')
 
+     
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -115,13 +116,6 @@
     {{-- start of notifications --}}
 
 
-        {{-- start of ajax fetch all members method --}}
-        @include('admin.notifications.ajax-fetch-all-notifications')
-        {{-- end of ajax fetch all members method --}}
-  
-        {{-- start of single member modal --}}
-        {{-- @include('admin.notifications.single-notification-modal') --}}
-        {{-- end of single member modal --}}
 
         {{-- start of ajax fetch all members method --}}
         {{-- @include('admin.members.ajax-fetch-notification-details') --}}

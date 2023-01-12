@@ -1,5 +1,5 @@
 {{-- all user notifications  modal --}}
-<div class="modal fade" id="notification-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="notify-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-light">
@@ -10,10 +10,10 @@
             <div id="error-div"></div>
         {{-- start of notifications table --}}
         <div class="responsive p-1">
-            <table id="example" class="table table-bordered cell-border">
+            <table id="example1" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
-                        <th>ID</th>
+                        <th>SN</th>
                         <th>Notification Name</th>
                         <th>Received At</th>
                         <th>Actions</th>
