@@ -203,16 +203,16 @@
                             <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> {{ $total_pledges}}</h6></div>
                           </div>
                           <div class="row starts-border">
-                            <div class="col-md-6"> <h6 class="text-secondary">Total cash Pledges in {{ date('Y')}}</h6></div>
-                            <div class="col-md-6 text-right" ><h6 class="font-weight-bolder">{{ $cash_pledges}}</h6></div>
+                            <div class="col-md-6"> <h6 class="text-secondary">Total Money Pledges in {{ date('Y')}}</h6></div>
+                            <div class="col-md-6 text-right" ><h6 class="font-weight-bolder">({{$pledges.' Tsh'}}) {{ $cash_pledges}}</h6></div>
                           </div>
                           <div class="row starts-border">
-                            <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Made</h6></div>
-                            <div class="col-md-6 text-right"><h6 class="font-weight-bolder" >value</h6></div>
+                            <div class="col-md-6"> <h6 class="text-secondary"> Total Object Pledges in {{ date('Y')}} </h6></div>
+                            <div class="col-md-6 text-right"><h6 class="font-weight-bolder" >{{ $object_pledges}}</h6></div>
                           </div>
                           <div class="row starts-border">
-                            <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Payments</h6></div>
-                            <div class="col-md-6 text-right"><h6 class="font-weight-bolder">value</h6></div>
+                            <div class="col-md-6"> <h6 class="text-secondary"> Total Amount Contributed in {{date('Y')}}</h6></div>
+                            <div class="col-md-6 text-right"><h6 class="font-weight-bolder">{{ $cardpayments+$payments}} Tsh</h6></div>
                           </div>
                           
                           
@@ -234,7 +234,7 @@
             
                            
                             <div class="col-md-12 py-2">
-                            <div class="progress"  style="height:20px;">
+                            <div class="progress"  style="height:15px;">
                               <div class="progress-bar 
                               {{-- progress-bar-striped  --}}
                               progress-bar-animated

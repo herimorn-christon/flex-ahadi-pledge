@@ -18,6 +18,28 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
 
+
+        
+    function thousandsCurrencyFormat($num) {
+
+        if($num>1000) {
+      
+              $x = round($num);
+              $x_number_format = number_format($x);
+              $x_array = explode(',', $x_number_format);
+              $x_parts = array('k', 'm', 'b', 't');
+              $x_count_parts = count($x_array) - 1;
+              $x_display = $x;
+              $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
+              $x_display .= $x_parts[$x_count_parts - 1];
+      
+              return $x_display;
+      
+        }
+      
+        return $num;
+      }
+
         $user=Auth::user()->id;
         $pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->sum('amount');
         $payments=Payment::where('user_id',$user)->whereYear('created_at', date('Y'))->sum('amount');
@@ -28,6 +50,7 @@ class DashboardController extends Controller
                            ->get();
         $total_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->count();
         $cash_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->where('type_id',2)->count();
+        $object_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->where('type_id',1)->count();
         $card=CardMember::where('user_id',$user)->whereYear('created_at', date('Y'))->where('status','')->first();
         $cardpayments=CardPayment::where('card_member',$card->id)->sum('amount');
         // For Payment Statistics
@@ -71,7 +94,9 @@ class DashboardController extends Controller
                 'cardpayments',
                 'events',
                 'total_pledges',
-                'cash_pledges'
+                'cash_pledges',
+                'object_pledges'
+
             ));
         }
         else{
@@ -96,32 +121,16 @@ class DashboardController extends Controller
                    'mypledges',
                    'payrate',
                    'cardpayments',
-                   'events'
+                   'events',
+                   'total_pledges',
+                   'cash_pledges',
+                   'object_pledges'
                ));
         }
  
 
     }
 
-    function thousandsCurrencyFormat($num) {
-
-        if($num>1000) {
-      
-              $x = round($num);
-              $x_number_format = number_format($x);
-              $x_array = explode(',', $x_number_format);
-              $x_parts = array('k', 'm', 'b', 't');
-              $x_count_parts = count($x_array) - 1;
-              $x_display = $x;
-              $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
-              $x_display .= $x_parts[$x_count_parts - 1];
-      
-              return $x_display;
-      
-        }
-      
-        return $num;
-      }
 
       public function create()
       {

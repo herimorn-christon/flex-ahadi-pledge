@@ -51,18 +51,17 @@
             Register Payment
         </button>   
         {{-- end of register payment button --}}
-        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
-          <i class="fa fa-plus"></i>
-           Add Payment Method
-        </button>
-        
+
         <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
              Payment Methods
         </button>
         
 
-
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
+        <i class="fa fa-plus"></i>
+         Add Payment Method
+        </button>
       
         {{-- start of generate report button --}}
       <a href="" class="btn bg-cyan  btn-sm mb-2" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
@@ -71,6 +70,57 @@
       </a>
         {{-- end of generate report button --}}
 
+
+          {{-- start auto populate member pledges --}}
+
+         <!-- Script -->
+         <script type='text/javascript'>
+
+          $(document).ready(function(){
+
+            // Department Change
+            $('#user_id').change(function(){
+
+                // Department id
+                var id = $(this).val();
+
+                // Empty the dropdown
+                $('#pledge_id').find('option').not(':first').remove();
+
+                // AJAX request 
+                $.ajax({
+                  url: 'getEmployees/'+id,
+                  type: 'get',
+                  dataType: 'json',
+                  success: function(response){
+
+                    var len = 0;
+                    if(response['data'] != null){
+                      len = response['data'].length;
+                    }
+
+                    if(len > 0){
+                      // Read data and create <option >
+                      for(var i=0; i<len; i++){
+
+                        var id = response['data'][i].id;
+                        var name = response['data'][i].name;
+
+                        var option = "<option value='"+id+"'>"+name+"</option>"; 
+
+                        $("#pledge_id").append(option); 
+                      }
+                    }
+
+                  }
+              });
+            });
+
+          });
+
+          </script>
+         
+  {{-- end of auto populate member pledges --}}
         {{-- start register payment modal --}}
         @include('admin.payments.register-payment-modal')
         {{-- end of register  payment modal --}}
@@ -154,55 +204,6 @@
 </div>
 
  
-  {{-- start auto populate member pledges --}}
 
-         <!-- Script -->
-         <script type='text/javascript'>
-
-          $(document).ready(function(){
-
-            // Department Change
-            $('#user_id').change(function(){
-
-                // Department id
-                var id = $(this).val();
-
-                // Empty the dropdown
-                $('#pledge_id').find('option').not(':first').remove();
-
-                // AJAX request 
-                $.ajax({
-                  url: 'getEmployees/'+id,
-                  type: 'get',
-                  dataType: 'json',
-                  success: function(response){
-
-                    var len = 0;
-                    if(response['data'] != null){
-                      len = response['data'].length;
-                    }
-
-                    if(len > 0){
-                      // Read data and create <option >
-                      for(var i=0; i<len; i++){
-
-                        var id = response['data'][i].id;
-                        var name = response['data'][i].name;
-
-                        var option = "<option value='"+id+"'>"+name+"</option>"; 
-
-                        $("#pledge_id").append(option); 
-                      }
-                    }
-
-                  }
-              });
-            });
-
-          });
-
-          </script>
-         
-  {{-- end of auto populate member pledges --}}
    
 @endsection

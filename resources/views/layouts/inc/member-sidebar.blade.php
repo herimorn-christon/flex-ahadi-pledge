@@ -67,7 +67,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ url('member/problem') }}" class="nav-link {{ Request::is('member/problem') ? 'current':'' }}">
+            <a href="{{ url('member/support') }}" class="nav-link {{ Request::is('member/support') ? 'current':'' }}">
               <i class="nav-icon fas fa-headset"></i>
               <p>
                 Report a Problem

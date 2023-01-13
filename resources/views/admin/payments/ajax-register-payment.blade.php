@@ -23,13 +23,10 @@
                 $("#alert-div").html("");
                 $("#error-div").html("");   
                 $("#update_id").val("");
-                $("#name").val("");
                 $("#type_id").val("");
-                $("#purpose_id").val("");
+                $("#pledge_id").val("");
                 $("#user_id").val("");
-                $("#deadline").val("");
                 $("#amount").val("");
-                $("#description").val("");
                 $("#form-modal").modal('show'); 
             }
          

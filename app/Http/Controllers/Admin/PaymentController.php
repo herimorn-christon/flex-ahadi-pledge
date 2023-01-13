@@ -125,55 +125,55 @@ class PaymentController extends Controller
         return response()->json(['payments' => $payments]);
     }
 
-    // public function apistore(Request $request)
-    // {
-    //     request()->validate(
-    //         [
-    //         'type_id' => 'required',
-    //         'pledge_id' => 'required',
-    //         'amount' => 'required',
-    //         'receipt' => 'required'
-    //          ]
-    //         );
+    public function apistore(Request $request)
+    {
+        request()->validate(
+            [
+            'type_id' => 'required',
+            'pledge_id' => 'required',
+            'amount' => 'required',
+            'receipt' => 'required'
+             ]
+            );
 
     
-    //         $pledge = Pledge::find($request->pledge_id);
+            $pledge = Pledge::find($request->pledge_id);
 
-    //         $pledgePayments = Payment::where('pledge_id', $request->pledge_id)->get()->toArray();
+            $pledgePayments = Payment::where('pledge_id', $request->pledge_id)->get()->toArray();
 
-    //         $totalPaid = array_reduce($pledgePayments, 
-    //         function ($acc, $element)
-    //             {
-    //                 return $acc + (int) $element['amount'];
-    //             }
-    //         , 0);
+            $totalPaid = array_reduce($pledgePayments, 
+            function ($acc, $element)
+                {
+                    return $acc + (int) $element['amount'];
+                }
+            , 0);
 
-    //         $reqAmount = (int) $request->amount;
-    //         $pledgeAmount = (int) $pledge->amount;
+            $reqAmount = (int) $request->amount;
+            $pledgeAmount = (int) $pledge->amount;
 
-    //         $remainigAmount = $pledgeAmount - $totalPaid;
+            $remainigAmount = $pledgeAmount - $totalPaid;
 
-    //         if($reqAmount > $remainigAmount){
+            if($reqAmount > $remainigAmount){
 
-    //             return response()->json(['error' => "Amount exceeds remaining amount"], 500);
+                return response()->json(['error' => "Amount exceeds remaining amount"], 500);
 
 
-    //         }else {
-    //             Payment::create([
-    //                 "type_id" => $request->type_id,
-    //                 "user_id" => $request->user()->id,
-    //                 "amount" => $request->amount,
-    //                 "receipt" => $request->receipt,
-    //                 "pledge_id"=>$request->pledge_id,
-    //                 "created_by"=> $request->user()->id
-    //             ]);
+            }else {
+                Payment::create([
+                    "type_id" => $request->type_id,
+                    "user_id" => $request->user()->id,
+                    "amount" => $request->amount,
+                    "receipt" => $request->receipt,
+                    "pledge_id"=>$request->pledge_id,
+                    "created_by"=> $request->user()->id
+                ]);
     
               
-    //             return response()->json(['status' => "success"]);
-    //         }
+                return response()->json(['status' => "success"]);
+            }
 
             
-    // }
+    }
 
 
     // auto fill member pledges
