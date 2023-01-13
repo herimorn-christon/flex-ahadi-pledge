@@ -17,6 +17,11 @@
                     success: function(response) {
                         $("#members-table-body").html("");
                         let members = response.members;
+                        let total_members = response.total_members;
+                        let active_members = response.active_members;
+                        let inactive_members = response.inactive_members;
+                        let male_members = response.male_members;
+                        let female_members = response.female_members;
                         for (var i = 0; i < members.length; i++) 
                         {
                             //For View Single Member Details
@@ -47,6 +52,11 @@
                                 // '<td class="'+(members[i].status == '0' ? 'text-success':'text-danger')+'">' + (members[i].status == '0' ? 'Enabled':'Disabled') + '</td>'+
                                 '<td>' + showBtn + editBtn + deleteBtn + '</td>'+
                             '</tr>';
+                            $("#members").html(total_members);
+                            $("#active").html(active_members);
+                            $("#inactive").html(inactive_members);
+                            $("#male").html(male_members);
+                            $("#female").html(female_members);
                             $("#members-table-body").append(projectRow);
                         }
          

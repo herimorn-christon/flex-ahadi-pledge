@@ -10,7 +10,9 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item ">
-          <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'current':'' }} {{ Request::is('admin/my-profile') ? 'current':'' }}">
+          <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'current':'' }} {{ Request::is('admin/my-profile') ? 'current':'' }}" 
+          data-toggle="tooltip" data-placement="right" title="Click here to View the admin homepage "
+          >
             <i class="nav-icon fas fa-tachometer-alt "></i>
             <p>
               Dashboard
@@ -18,7 +20,9 @@
           </a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('admin/all-members') }}" class="nav-link  {{ Request::is('admin/all-members') ? 'current':'' }}">
+            <a href="{{ url('admin/all-members') }}" class="nav-link  {{ Request::is('admin/all-members') ? 'current':'' }}"
+            data-toggle="tooltip" data-placement="right" title="Click here to Manage all congregation members "
+            >
               <i class="nav-icon fas fa-user-tie "></i>
               <p>
                 Manage Members

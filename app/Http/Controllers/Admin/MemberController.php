@@ -23,8 +23,38 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = User::where('role','member')->orderBy('updated_at','DESC')->with('community')->get();
-        return response()->json(['members' => $members]);
+        // fetching all members query
+        $members = User::where('role','member')
+                        ->orderBy('updated_at','DESC')
+                        ->with('community')
+                        ->get();
+        // fetching total members query
+        $total_members=User::where('role','member')
+                            ->count();
+        // fetching total active members
+        $active_members=User::where('role','member')
+                            ->where('status','')
+                            ->count();
+        // fetching total inactive members
+        $inactive_members=User::where('role','member')
+                                ->where('status','1')
+                                ->count();
+        $male_members=User::where('role','member')
+                            ->where('gender','male')
+                            ->count();
+        $female_members=User::where('role','member')
+                             ->where('gender','female')
+                             ->count();
+
+        return response()->json(
+            [
+                'members' => $members,
+                'total_members'=>$total_members,
+                'active_members'=>$active_members,
+                'inactive_members'=>$inactive_members,
+                'male_members'=>$male_members,
+                'female_members'=>$female_members
+            ]);
     }
 
 

@@ -14,26 +14,26 @@
 <div class="">
   <div class="row starts-border" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Registered Members </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="members"> </h6></div>
   </div>
   <div class="row starts-border" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Active Members </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="active"> </h6></div>
   </div>
   
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Inactive Members </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="inactive"> </h6></div>
   </div>
   
   <div class="row starts-border" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Female Members </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="female"> </h6></div>
   </div>
 
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Male Members </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="male"> </h6></div>
   </div>
 
 
