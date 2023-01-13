@@ -55,7 +55,7 @@
       {{-- end of register member button --}}
 
        {{-- start of generate report button --}}
-      <a href="" class="btn bg-cyan  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+      <a href="" class="btn bg-cyan  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal" data-toggle="tooltip" data-placement="top" title="Click here to Generate Member reports">
         <i class="fa fa-download text-light" ></i>
         Generate Report
       </a>

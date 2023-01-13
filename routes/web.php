@@ -250,12 +250,6 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
     // for event remainder
 
-    Route::get('getevent', [App\Http\Controllers\Member\DashboardController::class,'index']);
-
-    // Route::post('/createevent',[App\Http\Controllers\Member\DashboardController::class,'createEvent']);
-  // Route::post('/deleteevent',[App\Http\Controllers\Member\DashboardController::class,'deleteEvent']);
-  Route::apiResource('events', DashboardController::class);
-  // Route::apiResource('methods', MethodsController::class);
-    //  Route::post('calendar-crud-ajax', [EventController::class, 'calendarEvents']);
+ 
 });
 

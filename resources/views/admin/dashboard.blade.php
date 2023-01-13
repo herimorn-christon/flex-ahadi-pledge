@@ -85,7 +85,7 @@
         <div class="row g-1"  >
 
           {{-- start  --}}
-          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="This is the total of money pledges in {{ date('Y') }}">
             <!-- small box -->
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
@@ -107,7 +107,7 @@
             </div>
           </div>
           {{-- end  --}}
-          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="This is the sum of pledge payments made in {{ date('Y')}}">
             <!-- small box -->
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
@@ -133,7 +133,7 @@
       
 
           {{-- start --}}
-          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="This is the total amount of money for unpaid pledges in {{ date('Y') }}">
             <!-- small box -->
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
@@ -189,37 +189,49 @@
                
               {{-- start of statistics --}}
               <div class="col-md-12">
-                <a href="{{ url('admin/all-members')}}" class="text-decoration-none">
-                  <div class="row starts-border" >
+                <a href="{{ url('admin/all-members')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
+                  <div class="row starts-border"  >
                     <div class="col-md-6"> <h6 class="text-secondary">Total Registered Members </h6></div>
-                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark"> {{ $members}}</h6></div>
                   </div>
                 </a>
-                 <a href="{{ url('admin/all-communities')}}" class="text-decoration-none">
+                <a href="{{ url('admin/all-members')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of members of the congregation who are male">
+                  <div class="row starts-border" >
+                    <div class="col-md-6"> <h6 class="text-secondary">Total Male Members </h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark"> {{ $male}}</h6></div>
+                  </div>
+                </a>
+                <a href="{{ url('admin/all-members')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of members of the congregation who are female">
+                  <div class="row starts-border" >
+                    <div class="col-md-6"> <h6 class="text-secondary">Total Female Members </h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark"> {{ $female}}</h6></div>
+                  </div>
+                </a>
+                 <a href="{{ url('admin/all-communities')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number  of communities (Jumuiya) found in the congregation">
                   <div class="row starts-border">
                     <div class="col-md-6"> <h6 class="text-secondary"> Total Communities</h6></div>
-                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" >212</h6></div>
-                  </div>
-                 </a>
-                 <a href="{{ url('admin/all-purposes')}}" class="text-decoration-none">
-                  <div class="row starts-border">
-                    <div class="col-md-6"> <h6 class="text-secondary">Total Purposes (Contributions)</h6></div>
-                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" >212</h6></div>
-                  </div>
-                 </a>
-                 <a href="{{ url('admin/all-pledges')}}" class="text-decoration-none">
-                  <div class="row starts-border">
-                    <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Made</h6></div>
-                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" >212</h6></div>
-                  </div>
-                 </a>
-                 <a href="{{ url('admin/all-cards')}}" class="text-decoration-none">
-                  <div class="row starts-border">
-                    <div class="col-md-6"> <h6 class="text-secondary"> Total Cards Created</h6></div>
-                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder">212</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark" >{{ $communities}}</h6></div>
                   </div>
                  </a>
 
+                 <a href="{{ url('admin/all-pledges')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of pledges that have been made in {{ date('Y')}}">
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Made</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark" >{{ $total_pledges}}</h6></div>
+                  </div>
+                 </a>
+                 <a href="{{ url('admin/all-cards')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of card members that have been created and issued">
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary"> Total Member Cards Created</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark">{{ $total_cards}}</h6></div>
+                  </div>
+                 </a>
+                 <a href="{{ url('admin/all-purposes')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This the amount of money that has been collected from both pledges and cards in {{ date('Y')}}">
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary">Total Contributions in {{ date('Y')}}</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark" >{{ $contributions}}</h6></div>
+                  </div>
+                 </a>
               
                 </div>
               {{-- end of statistics --}}
@@ -236,12 +248,19 @@
        
         <!-- Main row -->
         <div class="row mx-auto">
+          {{-- start of new member graph --}}
           <div class="col-md-6 mt-1 mb-1 ">
+            
             <div id="container"></div>
           </div>
+          {{-- start of new member graph --}}
+
+          {{-- start of payement trend graph --}}
           <div class="col-md-6 mt-1 mb-1">
             <div id="container1"></div>
           </div>
+          {{-- end of new payment trend graph --}}
+
       </div><!-- /.container-fluid -->
 
  
@@ -432,7 +451,7 @@ Highcharts.chart('container1', {
 
     title: {
 
-        text: 'Payments Growth'
+        text: 'Pledge Payments Graph'
 
     },
 
