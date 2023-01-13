@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Member;
 
-use App\Models\Notification;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
-class NotificationsController extends Controller
+class MyProbemsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class NotificationsController extends Controller
      */
     public function index()
     {
-        $user=Auth::user()->id;
-        $notifications = Notification::orderBy('updated_at','DESC')->limit(8)->where('user_id',0)->get();
-        return response()->json(['notifications' => $notifications]);
+        //
     }
 
     /**
@@ -40,8 +36,7 @@ class NotificationsController extends Controller
      */
     public function show($id)
     {
-        $notification = Notification::where('id',$id)->first();
-        return response()->json(['notification' => $notification]);
+        //
     }
 
     /**
@@ -64,7 +59,6 @@ class NotificationsController extends Controller
      */
     public function destroy($id)
     {
-        $notification = Notification::where('id',$id)->first();
-        return response()->json(['notification' => $notification]);
+        //
     }
 }

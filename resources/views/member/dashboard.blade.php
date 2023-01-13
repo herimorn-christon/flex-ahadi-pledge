@@ -28,6 +28,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>--}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.7/fullcalendar.min.js"></script> 
+  {{-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
+  {{-- <link rel="stylesheet" ref="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/> --}}
     {{-- for flex theme --}}
     <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
 </head>
@@ -187,18 +193,18 @@
 
      
                   <div class="col-md-12">
-                    <div class="card p-2 border-left-flex">
-                      <div class="row mb-1">
+                    <div class="card border-left-flex">
+                      <div class="row mb-1 m-2">
                        
                       {{-- start of statistics --}}
                       <div class="col-md-12">
                           <div class="row starts-border" >
                             <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made in {{ date('Y')}} </h6></div>
-                            <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> {{ $pledges}}</h6></div>
+                            <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> {{ $total_pledges}}</h6></div>
                           </div>
                           <div class="row starts-border">
-                            <div class="col-md-6"> <h6 class="text-secondary">Total Fullfilled Pledges in {{ date('Y')}}</h6></div>
-                            <div class="col-md-6 text-right" ><h6 class="font-weight-bolder">value</h6></div>
+                            <div class="col-md-6"> <h6 class="text-secondary">Total cash Pledges in {{ date('Y')}}</h6></div>
+                            <div class="col-md-6 text-right" ><h6 class="font-weight-bolder">{{ $cash_pledges}}</h6></div>
                           </div>
                           <div class="row starts-border">
                             <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Made</h6></div>
@@ -264,22 +270,103 @@
          <div class="col-md-6" >
           <div class="card">
 
-            <div class="card-header bg-white">
-              Payments Progress
+            <div class="card-header bg-white text-secondary">
+              <i class="fa fa-balance-scale"></i>
+              Latest Pledges Progress
             </div>
-            <div id="container" style="height:540px !important;">
-            
+            <div id="container7" style="height:540px !important;">
+           
+                <div class="row px-2">
+                @foreach($mypledges as $item)
+                
+                
+                  <div class="col-md-12 mt-2">
+                    <div class="row p-1">
+                    <div class="col-md-6">
+                        <h6 class="text-secondary ">
+                          {{ $item->name }}
+                        </h6>
+                      </div>
+                      <div class="col-md-6">
+        
+                        <?php
+  
+                           $purpose= "{$item->id}" ; 
+                           
+                           $user=Auth::User()->id;
+                           $payment=App\Models\Payment::where('user_id',$user)->where('pledge_id',$purpose)->whereYear('created_at', date('Y'))->sum('amount');
+                           $amount="{$item->amount}";
+                           if ($amount<=0) {
+                            $progress=0;
+                            ?>
+                        <div class="col-md-12 py-2">
+                        <div class="progress"  style="height:14px;">
+                          <div class="progress-bar 
+                          {{-- progress-bar-striped  --}}
+                          progress-bar-animated
+                          @if($progress<=25)
+                          bg-danger
+                          @elseif($progress>25 && $progress<=50)
+                          bg-warning
+                          @elseif($progress>50 && $progress<=75)
+                          bg-primary
+                          @else
+                          bg-success
+                          @endif
+                          "
+        
+                          role="progressbar" style="width: {{ $progress}}%" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
+                        </div>
+                        </div> 
+                        <?php
+                           }
+                           else {
+                            $number=($payment/$amount)*100;//progress formular
+                           $progress=number_format((float)$number, 2, '.', ''); ?>
+                         
+                        <div class="col-md-12 py-2">
+                        <div class="progress"  style="height:14px;">
+                          <div class="progress-bar 
+                          {{-- progress-bar-striped  --}}
+                          progress-bar-animated
+                          @if($progress<=25)
+                          bg-danger
+                          @elseif($progress>25 && $progress<=50)
+                          bg-warning
+                          @elseif($progress>50 && $progress<=75)
+                          bg-primary
+                          @else
+                          bg-success
+                          @endif
+                          "
+        
+                          role="progressbar" style="width: {{ $progress}}%" aria-valuenow="{{$progress}}" aria-valuemin="0" aria-valuemax="100">{{$progress}}%</div>
+                        </div>
+                        </div>
+  
+                        <?php } ?>
+                        
+                        
+                      
+        
+                      </div>
+                      </div>
+                    </div>
+                
+                 @endforeach
+                </div>
             </div>
-          </div>
-         
+       
+        </div>
         </div>
             {{-- start of upcoming events --}}
             <div class="col-md-6 mb-2 ">
               <div class="card">
-                <div class="card-header bg-white">
-                  Event Remainder
+                <div class="card-header bg-white text-secondary">
+                  <i class="fa fa-calendar"></i>
+                  Events Remainder
                 </div>
-                <div class="card-body" id='full_calendar_events' style="height:540px !important;"></div>
+                <div class="card-body" id='calendar' style="height:540px !important;"></div>
               </div>
               
             </div>
@@ -434,96 +521,98 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
     <script>
-        $(document).ready(function () {
-            var SITEURL = "{{ url('member/') }}";
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    $(document).ready(function() {
+        // page is now ready, initialize the calendar...
+        $('#calendar2').fullCalendar({
+            // put your options and callbacks here
+            events : [
+                @foreach($events as $event)
+                {
+                    title : '{{ $event->event_name }}',
+                    start : '{{ $event->start_date }}',
+                    end : '{{ $event->end_date }}',
+                    url : ''
+                },
+                @endforeach
+            ]
+        })
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        var calendar = $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            navLinks: false,
+            editable: true,
+            events: [
+                @foreach($events as $event)
+                {
+                    title : '{{ $event->event_name }}',
+                    start : '{{ $event->start_date }}',
+                    end : '{{ $event->end_date }}'
+                },
+                @endforeach
+            ],           
+            displayEventTime: false,
+            eventRender: function (event, element, view) {
+                if (event.allDay === 'true') {
+                    event.allDay = true;
+                } else {
+                    event.allDay = false;
                 }
-            });
-            var calendar = $('#full_calendar_events').fullCalendar({
-                editable: true,
-                editable: true,
-                events: SITEURL + "/dashboard",
-                displayEventTime: true,
-                eventRender: function (event, element, view) {
-                    if (event.allDay === 'true') {
-                        event.allDay = true;
-                    } else {
-                        event.allDay = false;
+            },
+        selectable: true,
+        selectHelper: true,
+        select: function (start, end, allDay) {
+            var title = prompt('Event Title:');
+            if (title) {
+                var start = moment(start, 'DD.MM.YYYY').format('YYYY-MM-DD');
+                var end = moment(end, 'DD.MM.YYYY').format('YYYY-MM-DD');
+                $.ajax({
+                    url: 'createevent',
+                    data: 'title=' + title + '&start=' + start + '&end=' + end +'&_token=' +"{{ csrf_token() }}",
+                    type: "post",
+                    success: function (data) {
+                        alert("Added Successfully");
                     }
-                },
-                selectable: true,
-                selectHelper: true,
-                select: function (event_start, event_end, allDay) {
-                    var event_name = prompt('Event Name:');
-                    if (event_name) {
-                        var event_start = $.fullCalendar.formatDate(event_start, "Y-MM-DD HH:mm:ss");
-                        var event_end = $.fullCalendar.formatDate(event_end, "Y-MM-DD HH:mm:ss");
-                        $.ajax({
-                            url: SITEURL + "/calendar-crud-ajax",
-                            data: {
-                                event_name: event_name,
-                                event_start: event_start,
-                                event_end: event_end,
-                                type: 'create'
-                            },
-                            type: "POST",
-                            success: function (data) {
-                                displayMessage("Event created.");
-                                calendar.fullCalendar('renderEvent', {
-                                    id: data.id,
-                                    title: event_name,
-                                    start: event_start,
-                                    end: event_end,
-                                    allDay: allDay
-                                }, true);
-                                calendar.fullCalendar('unselect');
-                            }
-                        });
-                    }
-                },
-                eventDrop: function (event, delta) {
-                    var event_start = $.fullCalendar.formatDate(event.start, "Y-MM-DD");
-                    var event_end = $.fullCalendar.formatDate(event.end, "Y-MM-DD");
-                    $.ajax({
-                        url: SITEURL + '/calendar-crud-ajax',
-                        data: {
-                            title: event.event_name,
-                            start: event_start,
-                            end: event_end,
-                            id: event.id,
-                            type: 'edit'
+                });
+                calendar.fullCalendar('renderEvent',
+                        {
+                            title: title,
+                            start: start,
+                            end: end,
+                            allDay: allDay
                         },
-                        type: "POST",
-                        success: function (response) {
-                            displayMessage("Event updated");
+                true
+                        );
+            }
+            calendar.fullCalendar('unselect');
+        },
+        eventClick: function (event) {
+            var deleteMsg = confirm("Do you really want to delete?");
+            if (deleteMsg) {
+                $.ajax({
+                    type: "POST",
+                    url: "delete",
+                    data: "&id=" + event.id+'&_token=' +"{{ csrf_token() }}",
+                    success: function (response) {
+                        if(parseInt(response) > 0) {
+                            $('#calendar').fullCalendar('removeEvents', event.id);
+                            alert("Deleted Successfully");
                         }
-                    });
-                },
-                eventClick: function (event) {
-                    var eventDelete = confirm("Are you sure?");
-                    if (eventDelete) {
-                        $.ajax({
-                            type: "POST",
-                            url: SITEURL + '/calendar-crud-ajax',
-                            data: {
-                                id: event.id,
-                                type: 'delete'
-                            },
-                            success: function (response) {
-                                calendar.fullCalendar('removeEvents', event.id);
-                                displayMessage("Event removed");
-                            }
-                        });
                     }
-                }
-            });
-        });
-        function displayMessage(message) {
-            toastr.success(message, 'Event');            
+                });
+            }
         }
-    </script>
+        });
+    });
+</script>
 </body>
 </html>

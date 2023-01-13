@@ -108,7 +108,13 @@
         
         @yield('content')
 
-     
+        {{-- start of ajax fetch all members method --}}
+        @include('admin.notifications.ajax-fetch-all-notifications')
+        {{-- end of ajax fetch all members method --}}
+  
+        {{-- start of single member modal --}}
+        @include('admin.notifications.all-notifications-modal')
+        {{-- end of single member modal --}}
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

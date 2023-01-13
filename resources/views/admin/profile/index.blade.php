@@ -11,7 +11,8 @@
 $user=Auth::user()->id;
 $profile=App\Models\User::where('id',$user)->with('community')->get();
 @endphp
-<div class="row mb-1">
+<div class="card card-light">
+<div class="row mb-1 p-1">
     <div class="col-sm-6">
 
     {{-- start of alert message i.e updated or failed requesst --}}
@@ -33,6 +34,13 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
              Edit My Profile
         </button>
         {{-- end of edit profile button --}}
+
+                {{-- start of edit profile button --}}
+                <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="editProfile()">
+                    <i class="fa fa-key"></i>
+                     Change Password
+                </button>
+                {{-- end of edit profile button --}}
     </li>
        
       </ol>
@@ -47,7 +55,7 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
         <div class="row">
             <div class="col-md-12 mx-auto">
                 <!-- About Me Box -->
-                <div class="card card-light">
+               
                   <!-- /.card-header -->
                   <div class="card-body">
 

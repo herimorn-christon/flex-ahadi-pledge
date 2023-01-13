@@ -102,7 +102,7 @@
 		    <div class="pb-5">
 				<small class="bg-primary">Flèx AhadiPledge</small>
 			    <div class="middle pb-10 title">
-					<img src="" alt="image">
+					<img src="{{ public_path('img/flex.png') }}" alt="image">
 					<p>
 						{{ $headers['title'] }}
 					</p>

@@ -5,11 +5,11 @@
 
 @section('content')
 
-<div class="card  p-2 border-left-flex">
-  <div class="row mb-1">
+<div class="card  border-left-flex">
+  <div class="row mb-1 m-2">
 
   {{-- start of statistics --}}
-<div class="">
+<div class="px-2">
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made in {{ date('Y')}} </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
@@ -301,13 +301,13 @@
                       for (var i = 0; i < pledges.length; i++) 
                       {
                           let showBtn =  '<button ' +
-                              ' class="btn btn-sm bg-teal    " ' +
+                              ' class="btn btn-sm bg-flex text-light    " ' +
                               ' onclick="showPledge(' + pledges[i].id + ')"><i class="fa fa-eye"></i>' +
                           '</button> ';
 
                         
                             let editBtn =  '<button ' +
-                              ' class="btn btn-sm bg-navy " ' +
+                              ' class="btn btn-sm bg-flex text-light " ' +
                               ' onclick="editPledge(' + pledges[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +

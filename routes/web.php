@@ -16,6 +16,7 @@ use App\Http\Controllers\Select2SearchController;
 use App\Http\Controllers\Member\MethodsController;
 use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
+use App\Http\Controllers\Member\DashboardController;
 use App\Http\Controllers\Admin\CardPaymentController;
 use App\Http\Controllers\Member\MyPaymentsController;
 use App\Http\Controllers\Admin\AnnouncementController;
@@ -239,14 +240,22 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::get('/settings', function () {
       return view('member.settings');
       });
-
+  //Report problem route
+  Route::get('/support', function () {
+    return view('member.support.index');
+    });
   // member change password route
     Route::post('change-password', [App\Http\Controllers\Member\ProfileController::class,'store']);
   // my-profile
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
     // for event remainder
 
-  
+    Route::get('getevent', [App\Http\Controllers\Member\DashboardController::class,'index']);
+
+    // Route::post('/createevent',[App\Http\Controllers\Member\DashboardController::class,'createEvent']);
+  // Route::post('/deleteevent',[App\Http\Controllers\Member\DashboardController::class,'deleteEvent']);
+  Route::apiResource('events', DashboardController::class);
+  // Route::apiResource('methods', MethodsController::class);
     //  Route::post('calendar-crud-ajax', [EventController::class, 'calendarEvents']);
 });
 

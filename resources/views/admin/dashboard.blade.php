@@ -142,7 +142,7 @@
               </div>
               <div class="text-center">
                 <h6>                  
-                  Card Payments
+                  Remaining Payments
                 </h6>
 
                 <h3 class="text-secondary">
@@ -168,11 +168,12 @@
               </div>
               <div class="text-center">
                 <h6 >                   
-                  Total Members
+                  Card Payments
                 </h6>
 
                 <h3 class="text-secondary">
-                  {{$members}}
+                  {{$cards}}
+                  <small>Tsh</small>
                 </h3>
               </div>
               
@@ -188,24 +189,36 @@
                
               {{-- start of statistics --}}
               <div class="col-md-12">
+                <a href="{{ url('admin/all-members')}}" class="text-decoration-none">
                   <div class="row starts-border" >
-                    <div class="col-md-6"> <h6 class="text-secondary">Registered Members </h6></div>
+                    <div class="col-md-6"> <h6 class="text-secondary">Total Registered Members </h6></div>
                     <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
                   </div>
+                </a>
+                 <a href="{{ url('admin/all-communities')}}" class="text-decoration-none">
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary"> Total Communities</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" >212</h6></div>
+                  </div>
+                 </a>
+                 <a href="{{ url('admin/all-purposes')}}" class="text-decoration-none">
                   <div class="row starts-border">
                     <div class="col-md-6"> <h6 class="text-secondary">Total Purposes (Contributions)</h6></div>
-                    <div class="col-md-6 text-right"><h6 >212</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" >212</h6></div>
                   </div>
+                 </a>
+                 <a href="{{ url('admin/all-pledges')}}" class="text-decoration-none">
                   <div class="row starts-border">
                     <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Made</h6></div>
-                    <div class="col-md-6 text-right"><h6 >212</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" >212</h6></div>
                   </div>
+                 </a>
+                 <a href="{{ url('admin/all-cards')}}" class="text-decoration-none">
                   <div class="row starts-border">
-                    <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Payments</h6></div>
-                    <div class="col-md-6 text-right"><h6 >212</h6></div>
+                    <div class="col-md-6"> <h6 class="text-secondary"> Total Cards Created</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder">212</h6></div>
                   </div>
-                  
-                  
+                 </a>
 
               
                 </div>
