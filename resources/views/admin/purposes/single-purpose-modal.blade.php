@@ -20,17 +20,21 @@
          <div class="">
               <div class="card">
                 <div class="card-header p-2">
-                  <ul class="nav nav-pills">
-                    <li class="nav-item"><a class="nav-link bg-light nav-light" href="#timeline" data-toggle="tab">Purpose Pledges Made</a></li>
-                    {{-- <li class="nav-item"><a class="nav-link bg-light" href="#pledges" data-toggle="tab">Payments Made</a></li> --}}
-                   
-                  </ul>
+                 
+                <ul class="nav nav-tabs nav-light">
+                  <li class="nav-item">
+                    <a class="nav-link text-navy active" href="#timeline"  data-toggle="tab">Purpose Pledges</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-navy" href="#pledges"  data-toggle="tab">Payments Made</a>
+                  </li>
+                </ul>
                 </div><!-- /.card-header -->
                 <div class="">
                   <div class="tab-content">
                     <div class=" tab-pane" id="pledges">
                       {{-- start of member payments --}}
-                      <table id="mytable"  class="table display responsive table-bordered pt-2" width=""  >
+                      <table id="example1"  class="table display responsive table-bordered pt-2" width=""  >
                           <thead>
                               <tr class="text-secondary">
                                   <th>ID</th>

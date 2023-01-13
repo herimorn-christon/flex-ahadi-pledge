@@ -44,11 +44,7 @@
         <div class="col-md-12">
             <div class="card">
               <div class="card-header p-2 bg-white mb-2">
-                {{-- <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active bg-light nav-light" href="#pledges" data-toggle="tab">Payments</a></li>
-                  <li class="nav-item"><a class="nav-link bg-light" href="#timeline" data-toggle="tab">Pledges</a></li>
-                  <li class="nav-item"><a class="nav-link bg-light" href="#settings" data-toggle="tab">Cards</a></li>
-                </ul> --}}
+      
                 <ul class="nav nav-tabs nav-light">
                   <li class="nav-item">
                     <a class="nav-link text-navy active" href="#pledges"  data-toggle="tab">Pledges Payments</a>

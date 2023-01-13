@@ -12,7 +12,7 @@
          
             <div class="mb-3">
               <label for="title" class=" text-secondary">Purpose Title:</label>
-              <input type="text" class="form-control" id="title"  name="title" placeholder="Enter Purpose Title">
+              <input type="text" class="text-capitalize form-control" id="title"  name="title" placeholder="Enter Purpose Title">
             </div>
             <div class="mb-3">
               <label for="message-text" class="text-secondary">Start Date:</label>

@@ -22,10 +22,13 @@ class PurposeController extends Controller
      */
     public function index()
     {
-        $purposes = Purpose::orderBy('updated_at','DESC')->get();
+        $purposes = Purpose::orderBy('updated_at','DESC')
+                                    ->get();
         $total_purposes=Purpose::count();
-        $accomplished_purposes=Purpose::where('status','1')->count();
-        $inaccomplished_purposes=Purpose::where('status','')->count();
+        $accomplished_purposes=Purpose::where('status','1')
+                                        ->count();
+        $inaccomplished_purposes=Purpose::where('status','')
+                                         ->count();
         return response()->json([
             'purposes' => $purposes,
             'total_purposes'=>$total_purposes,
@@ -85,7 +88,11 @@ class PurposeController extends Controller
         $pledges = Pledge::where('purpose_id',$id)->orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
         $payments = Payment::where('pledge_id',$id)->orderBy('updated_at','DESC')->with('payer')->with('payment')->get();
       
-        return response()->json(['purpose' => $purpose,'pledges' => $pledges,'payments' => $payments]);
+        return response()->json([
+                                'purpose' => $purpose,
+                                'pledges' => $pledges,
+                                'payments' => $payments
+                            ]);
     }
     /**
      * Remove the specified resource from storage.
