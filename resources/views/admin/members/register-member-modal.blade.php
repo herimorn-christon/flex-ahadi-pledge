@@ -16,7 +16,7 @@
             <form >
                    <input type="hidden" name="update_id" id="update_id">
                 <div class="row">
-                <div class="mb-2 col-md-4">
+                <div class="mb-2 col-md-6">
                     <label for="fname" class="text-secondary">{{ __('First Name') }}</label>
 
                     <div class="form-group">
@@ -29,7 +29,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="mb-2 col-md-4">
+                <div class="mb-2 col-md-6">
                     <label for="mname" class="text-secondary">{{ __('Middle Name') }}</label>
 
                     <div class="">
@@ -42,7 +42,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="col-md-4 mb-2">
+                <div class="col-md-6 mb-2">
                     <label for="lname" class="text-secondary">{{ __('Last Name') }}</label>
 
                     <div class="form-group">
@@ -128,6 +128,7 @@
                 <div class="col-md-6">
                     <label for="" class="text-secondary"> Member Status</label>
                     <select name="status" id="status" class="custom-select form-control bg-light">
+                     <option value="0">-- Choose Member Status --</option>
                       <option value="0">Enabled</option>
                       <option value="1">Disabled</option>
                     </select>
