@@ -116,7 +116,10 @@ class MemberController extends Controller
     {
         $member = User::with('community')->find($id);
         $payments = Payment::where('user_id',$id)->with('payment')->with('pledge')->get();
-        $pledges= Pledge::where('user_id',$id)->with('type')->with('purpose')->get();
+        $pledges= Pledge::where('user_id',$id)
+                        ->with('type')
+                        ->with('purpose')
+                        ->get();
         $cards=CardMember::where('user_id',$id)->with('user')->with('card')->get();
         return response()->json(['member' => $member,'payments' =>$payments,'pledges'=>$pledges,'cards'=>$cards]);
     }

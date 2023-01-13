@@ -35,7 +35,7 @@
          
                        let paymentsRow = '<tr>' +
                                 '<td>' + payments[i].id + '</td>' +
-                                '<td>' + payments[i].created_at + '</td>' +
+                                '<td>' + payments[i].created_at+ '</td>' +
                                 '<td>' + payments[i].pledge.name + '</td>' +
                                 '<td>' + payments[i].amount + '</td>' +
                                 '<td>' + payments[i].payment.name + '</td>' +

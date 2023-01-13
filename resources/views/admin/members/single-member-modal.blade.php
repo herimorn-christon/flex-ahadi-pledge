@@ -2,7 +2,7 @@
 
 
 <div class="modal fade" id="view-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-xl" style="width:1250px;">
+    <div class="modal-dialog modal-lg modal-xl" >
       <div class="modal-content">
         <div class="modal-header bg-light">
             <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -43,18 +43,29 @@
     
         <div class="col-md-12">
             <div class="card">
-              <div class="card-header p-2">
-                <ul class="nav nav-pills">
+              <div class="card-header p-2 bg-white mb-2">
+                {{-- <ul class="nav nav-pills">
                   <li class="nav-item"><a class="nav-link active bg-light nav-light" href="#pledges" data-toggle="tab">Payments</a></li>
                   <li class="nav-item"><a class="nav-link bg-light" href="#timeline" data-toggle="tab">Pledges</a></li>
                   <li class="nav-item"><a class="nav-link bg-light" href="#settings" data-toggle="tab">Cards</a></li>
+                </ul> --}}
+                <ul class="nav nav-tabs nav-light">
+                  <li class="nav-item">
+                    <a class="nav-link text-navy active" href="#pledges"  data-toggle="tab">Pledges Payments</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-navy" href="#timeline"  data-toggle="tab">Pledges Made</a>
+                  </li>
+                    <li class="nav-item">
+                    <a class="nav-link text-navy" href="#settings"  data-toggle="tab">Member Cards</a>
+                  </li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="">
                 <div class="tab-content">
                   <div class="active tab-pane" id="pledges">
                     {{-- start of member payments --}}
-                    <table id="mytable"   class="table table-bordered responsive ">
+                    <table id="example2"   class="table table-bordered responsive ">
                         <thead>
                             <tr class="text-secondary">
                                 <th>ID</th>
@@ -76,7 +87,7 @@
                  
                     {{-- start of pledges --}}
  
-                    <table id="my_table"  class="table table-bordered ">
+                    <table id="example2"  class="table table-bordered ">
                         <thead>
                             <tr class="text-secondary">
                                 
@@ -88,7 +99,7 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody id="members-table-body">
+                        <tbody id="pledges-table-body">
                             
             
                         </tbody>
@@ -105,7 +116,7 @@
                  
                     {{-- start of cards --}}
  
-                    <table  class="table table-bordered ">
+                    <table id="example2"  class="table table-bordered ">
                         <thead>
                             <tr class="text-secondary">
                                 <th>ID</th>

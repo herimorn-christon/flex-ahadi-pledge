@@ -47,7 +47,7 @@
                                 '<td>' + members[i].community.abbreviation +'/' + members[i].id +'</td>' +
                                 '<td>' + members[i].fname + '&nbsp;'+ members[i].mname + '&nbsp;'+ members[i].lname +'</td>' +
                                 '<td>' + members[i].community.name + '</td>' +
-                                // '<td>' + members[i].phone + '</td>' +
+                                '<td>' + members[i].phone + '</td>' +
                                 '<td>' + members[i].gender + '</td>' +
                                 // '<td class="'+(members[i].status == '0' ? 'text-success':'text-danger')+'">' + (members[i].status == '0' ? 'Enabled':'Disabled') + '</td>'+
                                 '<td>' + showBtn + editBtn + deleteBtn + '</td>'+

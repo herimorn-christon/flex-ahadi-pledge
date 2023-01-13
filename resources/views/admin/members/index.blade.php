@@ -98,6 +98,7 @@
                             <th>Member ID</th>
                             <th>Member Name</th>
                             <th>Community </th>
+                            <th>Birthdate</th>
                             <th>Gender</th>
                             <th>Actions</th>
                         </tr>
