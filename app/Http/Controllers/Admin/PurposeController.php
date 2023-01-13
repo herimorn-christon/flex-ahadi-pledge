@@ -23,7 +23,15 @@ class PurposeController extends Controller
     public function index()
     {
         $purposes = Purpose::orderBy('updated_at','DESC')->get();
-        return response()->json(['purposes' => $purposes]);
+        $total_purposes=Purpose::count();
+        $accomplished_purposes=Purpose::where('status','1')->count();
+        $inaccomplished_purposes=Purpose::where('status','')->count();
+        return response()->json([
+            'purposes' => $purposes,
+            'total_purposes'=>$total_purposes,
+            'accomplished_purposes'=>$accomplished_purposes,
+            'inaccomplished_purposes'=>$inaccomplished_purposes,
+        ]);
     }
  
 

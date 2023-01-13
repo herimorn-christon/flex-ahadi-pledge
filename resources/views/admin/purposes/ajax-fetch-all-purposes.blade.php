@@ -15,6 +15,9 @@
                     success: function(response) {
                         $("#purposes-table-body").html("");
                         let purposes = response.purposes;
+                        let total_purposes = response.total_purposes;
+                        let accomplished_purposes = response.accomplished_purposes;
+                        let unaccomplished_purposes = response.inaccomplished_purposes;
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
@@ -39,6 +42,9 @@
                                 '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                             '</tr>';
                             $("#purposes-table-body").append(projectRow);
+                            $("#total").html(total_purposes);
+                            $("#accomplished").html(accomplished_purposes);
+                            $("#unaccomplished").html(unaccomplished_purposes);
                         }
          
                          

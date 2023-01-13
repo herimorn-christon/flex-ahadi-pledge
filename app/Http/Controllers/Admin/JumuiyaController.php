@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\Jumuiya;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\jumuiyaFormRequest;
 
@@ -18,8 +19,22 @@ class JumuiyaController extends Controller
      */
     public function index()
     {
-        $communities = Jumuiya::orderBy('updated_at','DESC')->get();
-        return response()->json(['communities' => $communities]);
+        $communities = Jumuiya::orderBy('updated_at','DESC')
+                                ->get();
+        $total_communities=Jumuiya::count();
+
+        $largest_community = User::select('id', 'jumuiya', DB::raw('MIN(total_member) as large_community'))
+        ->where('role','member')
+        ->groupBy('jumuiya')
+        ->with('community')
+        ->count();
+        // $largest_community=89900;
+        return response()
+                ->json([
+                    'communities' => $communities,
+                    'total_communities'=>$total_communities,
+                    'largest_community'=>$largest_community
+                ]);
     }
 
     /**

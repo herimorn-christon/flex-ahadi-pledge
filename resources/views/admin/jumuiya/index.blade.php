@@ -13,15 +13,15 @@
 <div class="">
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Communities  (Jumuiya) </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total"></h6></div>
   </div>
   <div class="row starts-border" >
     <div class="col-md-6"> <h6 class="text-secondary">Largest Community(Jumuiya) </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="largest"> </h6></div>
   </div>
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">smallest Community (Jumuiya)</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="smallest"> </h6></div>
   </div>
 </div>
 {{-- end of statistics --}}

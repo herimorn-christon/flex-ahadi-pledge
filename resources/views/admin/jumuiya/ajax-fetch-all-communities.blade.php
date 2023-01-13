@@ -17,6 +17,8 @@
                 success: function(response) {
                     $("#communities-table-body").html("");
                     let communities = response.communities;
+                    let total_communities = response.total_communities;
+                    let largest_community = response.largest_community;
                     for (var i = 0; i < communities.length; i++) 
                     {
                         let showBtn =  '<button ' +
@@ -40,6 +42,8 @@
                             '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                         '</tr>';
                         $("#communities-table-body").append(projectRow);
+                        $("#total").html(total_communities);
+                        $("#largest").html(largest_community);
                     }
      
                      

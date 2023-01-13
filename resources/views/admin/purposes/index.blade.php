@@ -14,27 +14,27 @@
 <div class="">
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Registered Purposes  (Contributions) </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total"> </h6></div>
   </div>
 
   <div class="row starts-border" >
     <div class="col-md-6"> <h6 class="text-secondary">Accomplished Purposes (Contributions) </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="accomplished"> </h6></div>
   </div>
 
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Unaccomplished Purposes (Contributions)</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="unaccomplished"> </h6></div>
   </div>
 
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Leading Pledged Purpose (Contributions)</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> </h6></div>
   </div>
 
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Lowest Pledged Purposes (Contributions)</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> </h6></div>
   </div>
 
 </div>
