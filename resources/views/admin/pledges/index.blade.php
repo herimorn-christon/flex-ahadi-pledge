@@ -140,6 +140,7 @@
                 <th>Pledge(Ahadi)</th>
                 <th>Purpose</th>
                 <th>Amount</th>
+                <th>Status</th>
                 <th>Actions</th>
                </tr>
             </thead>
