@@ -15,6 +15,11 @@
                   success: function(response) {
                       $("#pledges-table-body").html("");
                       let pledges = response.pledges;
+                      let total_pledges = response.total_pledges;
+                      let unfullfilled = response.unfullfilled;
+                      let amount = response.amount;
+                      let object = response.object;
+                      let fullfilled = response.fullfilled;
                       for (var i = 0; i < pledges.length; i++) 
                       {
                           let showBtn =  '<button ' +
@@ -23,7 +28,7 @@
                           '</button> ';
                           let editBtn =  '<button ' +
                               ' class="btn btn-sm bg-flex text-light" ' +
-                              ' onclick="editPledge(' + pledges[i].id + ')"><i class="fa fa-pen"></i>' +
+                              ' onclick="editPledge(' + pledges[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
                               ' class="btn btn-danger btn-sm" ' +
@@ -40,6 +45,12 @@
                               '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                           '</tr>';
                           $("#pledges-table-body").append(pledgesRow);
+                          $("#total").html(total_pledges);
+                          $("#amount").html(amount);
+                          $("#unfullfilled").html(unfullfilled);
+                          $("#object").html(object);
+                          $("#fullfilled").html(fullfilled);
+                          
                       }
        
                        

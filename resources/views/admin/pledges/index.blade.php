@@ -12,31 +12,31 @@
 
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made  (Ahadi) </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total"></h6></div>
   </div>
 
   <div class="row starts-border" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Money Pledges (Ahadi) </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="amount"></h6></div>
   </div>
 
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Object Pledges (Ahadi)</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="object"></h6></div>
   </div>
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Fulfilled Pledges</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="fullfilled"> </h6></div>
   </div>
 
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Unfulfilled Pledges </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="unfullfilled"></h6></div>
   </div>
 
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Best Pledge Maker</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="best"> 212</h6></div>
   </div>
 
 
@@ -50,20 +50,20 @@
       <ol class="float-sm-right" type="none">
         <li class="">  
           {{-- start of create pledge button --}}
-        <button type="button" class="btn bg-flex text-light btn-sm"  onclick="createPledge()">
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2"  onclick="createPledge()">
             <i class="fa fa-plus"></i>
              Register Pledge 
         </button> 
           {{-- end of create purpose button --}}
 
-          <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="createType()">
+          <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createType()">
             <i class="fa fa-plus"></i>
              Add Pledge Type
             </button>
           {{-- End of create pledge button  --}}
 
         {{-- start of view all pledge types modal --}}
-        <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="modal" onclick="showAllTypes()">
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllTypes()">
             <i class="fa fa-list"></i>
             Pledge Types
         </button>
@@ -74,7 +74,7 @@
        
 
       {{-- start of generate report button --}}
-      <a href="" class="btn bg-cyan  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+      <a href="" class="btn bg-cyan  btn-sm mb-2" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
         <i class="fa fa-download text-light" ></i>
         Generate Report
       </a>
@@ -162,8 +162,6 @@
              {{-- end of ajax view purpose details modal --}}
 
         </div>
-
-
 
 </div>
 

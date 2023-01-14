@@ -23,7 +23,22 @@ class PledgeController extends Controller
     public function index()
     {
         $pledges = Pledge::orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
-        return response()->json(['pledges' => $pledges]);
+        $total_pledges=Pledge::count();
+        $unfullfilled=Pledge::where('status','')
+                              ->count();
+        $amount=Pledge::sum('amount');
+        $object=Pledge::where('type_id','1')
+                        ->count();
+        $fullfilled=Pledge::where('status','1')
+                            ->count();
+        return response()->json([
+                                'pledges' => $pledges,
+                                'total_pledges'=>$total_pledges,
+                                'unfullfilled'=>$unfullfilled,
+                                'fullfilled'=>$fullfilled,
+                                'amount'=>$amount,
+                                'object'=>$object    
+                            ]);
     }
 
 
@@ -82,7 +97,11 @@ class PledgeController extends Controller
     public function show($id)
     {
         $pledge = Pledge::with('user')->with('type')->with('purpose')->find($id);
-        return response()->json(['pledge' => $pledge]);
+        $payments=Payment::where('pledge_id',$id)->get();
+        return response()->json([
+                                'pledge' => $pledge,
+                                'payments'=> $payments
+                            ]);
     }
 
         /**
