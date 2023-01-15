@@ -55,7 +55,7 @@ class CardMemberController extends Controller
             $card->update();
 
             $member->user_id=$request->user_id;
-            $member->status= $request->status == true ? '1':'0';
+            // $member->status='0';
             $member->save();
 
             $notification = new Notification();
@@ -109,14 +109,14 @@ class CardMemberController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'card_no' => 'required',
-            'user_id' => 'required',
+            'card_No' => 'required',
+            'user_Id' => 'required',
         ]);
   
         $member = CardMember::find($id);
-        $member->user_id=$request->user_id;
-        $member->card_no=$request->card_no;
-        $member->status= $request->status == true ? '1':'0';
+        $member->user_id=$request->user_Id;
+        $member->card_no=$request->card_No;
+        $member->status= $request->card_status;
         $member->save();
         
         return response()->json(['status' => "success"]);

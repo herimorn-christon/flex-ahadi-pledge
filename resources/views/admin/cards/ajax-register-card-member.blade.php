@@ -1,6 +1,18 @@
 {{--  This is the ajax assign new card member Ajax  method page --}}
 <script type="text/javascript">
       
+       /*
+              check if form submitted is for creating or updating
+          */
+          $("#save-member-btn").click(function(event ){
+              event.preventDefault();
+              if($("#update_id").val() == null || $("#update_id").val() == "" )
+              {
+                  storeCardMember();
+              } else {
+                  updateCardMember();
+              }
+          })
         /*
             show modal for creating a record and 
             empty the values of form and remove existing alerts
@@ -40,7 +52,6 @@
                     $("#card_no").val("");
                      $("#user_id").val("");
                     showAllCardMembers();
-                    showAllCards();
                     $("#member-modal").modal('hide');
                 },
                 error: function(response) {

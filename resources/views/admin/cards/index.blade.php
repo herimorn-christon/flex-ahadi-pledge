@@ -125,6 +125,10 @@
             {{-- start of ajax view card-member details modal --}}
             @include('admin.cards.single-card-member-modal')
             {{-- end of ajax view card-member details modal --}}
+             
+            {{-- start of ajax delete card member method --}}
+            @include('admin.cards.ajax-delete-card-member')
+            {{-- end of ajax delete card member method --}}
 
 
         </div>
@@ -141,6 +145,10 @@
    {{-- start assign card member modal --}}
    @include('admin.cards.register-card-member-modal')
    {{-- end of assign card member modal --}}
+
+    {{-- start edit card member modal --}}
+   @include('admin.cards.edit-card-member-modal')
+   {{-- end ofeditn card member modal --}}
 
    {{-- start of ajax assign card member method --}}
    @include('admin.cards.ajax-register-card-member')

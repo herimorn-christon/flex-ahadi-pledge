@@ -1,6 +1,17 @@
 {{-- This is the page for Pledge Type detail update ajax method  --}}
 <script type="text/javascript">
-       
+              /*
+              check if form submitted is for creating or updating
+          */
+          $("#edit-member-btn").click(function(event ){
+              event.preventDefault();
+              if($("#update_Id").val() == null || $("#update_Id").val() == "" )
+              {
+                  storeCardMember();
+              } else {
+                  updateCardMember();
+              }
+          })
       /*
                 edit record function
                 it will get the existing value and show the payment form form
@@ -15,10 +26,11 @@
                     let card = response.member;
                     $("#alert-div").html("");
                     $("#error-div").html("");   
-                    $("#update_id").val(card.id);
-                    $("#card_no").val(card.card_no);
-                    $("#user_id").val(card.user_id);
-                    $("#member-modal").modal('show'); 
+                    $("#update_Id").val(card.id);
+                    $("#card_No").val(card.card_no);
+                    $("#user_Id").val(card.user_id);
+                    $("#card_status").val(card.status);
+                    $("#edit-modal").modal('show'); 
                        
                     },
                     error: function(response) {
@@ -32,10 +44,12 @@
             */
             function updateCardMember()
             {
-                $("#save-member-btn").prop('disabled', true);
-                let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + $("#update_id").val(card.id);
+                $("#edit-member-btn").prop('disabled', true);
+                let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + $("#update_Id").val(card.id);
                 let data = {
-                    name: $("#name").val(),
+                        card_No: $("#card_No").val(),
+                        user_Id: $("#user_Id").val(),
+                        card_status: $("#card_status").val(),
                 };
                 $.ajax({
                     headers: {
@@ -45,17 +59,17 @@
                     type: "PUT",
                     data: data,
                     success: function(response) {
-                    $("#save-member-btn").prop('disabled', false);
+                    $("#edit-member-btn").prop('disabled', false);
                     let successHtml = '<div class="alert alert-success" role="alert">Card Member Was Updated Successfully</div>';
                     $("#alert-div").html(successHtml);
-                     $("#card_no").val("");
-                     $("#user_id").val("");
+                     $("#card_No").val("");
+                     $("#user_Id").val("");
+                     $("#card_status").val("");
                     showAllCardMembers();
-                    showAllCards();
-                    $("#member-modal").modal('hide');
+                    $("#edit-modal").modal('hide');
                     },
                      error: function(response) {
-                    $("#save-member-btn").prop('disabled', false);
+                    $("#edit-member-btn").prop('disabled', false);
      
                     /*
         show validation error
@@ -64,18 +78,18 @@
                     {
         let errors = response.responseJSON.errors;
         let numberValidation = "";
-        if (typeof errors.card_no !== 'undefined') 
+        if (typeof errors.card_No !== 'undefined') 
                         {
-                            numberValidation = '<li>' + errors.card_no[0] + '</li>';
+                            numberValidation = '<li>' + errors.card_No[0] + '</li>';
                         }
         let userValidation = "";
-        if (typeof errors.user_id !== 'undefined') 
+        if (typeof errors.user_Id !== 'undefined') 
                         {
-                            userValidation = '<li>' + errors.user_id[0] + '</li>';
+                            userValidation = '<li>' + errors.user_Id[0] + '</li>';
                         }        
         let errorHtml = '<div class="alert alert-danger" role="alert">' +
             '<b>Validation Error!</b>' +
-            '<ul>' + numberValidation  +'</ul>' +
+            '<ul>' + numberValidation  + userValidation  +'</ul>' +
         '</div>';   
             $("#error-div").html(errorHtml);        
         }
