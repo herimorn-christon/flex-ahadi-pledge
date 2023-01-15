@@ -43,16 +43,17 @@
 
                     <div class="col-md-6 mb-3">
                         <label for="" class="text-secondary">Status</label>
-                       <select name="card_status" id="status" class="select form-control">
+                       <select name="card_status" id="card_status" class="select form-control">
                         <option value="0">Active</option>
                         <option value="1">Inactive</option>
                        </select>
                     </div>
 
                     <div class="col-md-6 ">
+                      <label for="" class="text-white">.</label>
                         <button class="btn bg-flex text-light btn-block " id="edit-member-btn" type="submit">
                         <i class="fa fa-save"></i>
-                        Assign Card
+                        Update Card
                         </button>
                     </div>
                 </div>

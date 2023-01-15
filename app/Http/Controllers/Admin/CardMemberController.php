@@ -110,10 +110,10 @@ class CardMemberController extends Controller
     {
         request()->validate([
             'card_No' => 'required',
-            'user_Id' => 'required',
+            'user_Id' => 'required'
         ]);
   
-        $member = CardMember::find($id);
+        $member = CardMember::where('id',$id)->first();
         $member->user_id=$request->user_Id;
         $member->card_no=$request->card_No;
         $member->status= $request->card_status;

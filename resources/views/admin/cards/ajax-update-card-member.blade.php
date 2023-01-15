@@ -23,13 +23,13 @@
                     url: url,
                     type: "GET",
                     success: function(response) {
-                    let card = response.member;
+                    let member = response.member;
                     $("#alert-div").html("");
                     $("#error-div").html("");   
-                    $("#update_Id").val(card.id);
-                    $("#card_No").val(card.card_no);
-                    $("#user_Id").val(card.user_id);
-                    $("#card_status").val(card.status);
+                    $("#update_Id").val(member.id);
+                    $("#card_No").val(member.card_no);
+                    $("#user_Id").val(member.user_id);
+                    $("#card_status").val(member.status);
                     $("#edit-modal").modal('show'); 
                        
                     },
@@ -45,7 +45,7 @@
             function updateCardMember()
             {
                 $("#edit-member-btn").prop('disabled', true);
-                let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + $("#update_Id").val(card.id);
+                let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + $("#update_Id").val(member.id);
                 let data = {
                         card_No: $("#card_No").val(),
                         user_Id: $("#user_Id").val(),
