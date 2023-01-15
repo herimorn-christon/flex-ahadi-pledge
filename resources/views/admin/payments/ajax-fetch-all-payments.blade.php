@@ -18,6 +18,12 @@
                 success: function(response) {
                     $("#payments-table-body").html("");
                     let purposes = response.payments;
+                    let total = response.total;
+                    let highest = response.highest;
+                    let lowest = response.lowest;
+                    let best = response.best;   
+
+
                     for (var i = 0; i < purposes.length; i++) 
                     {
                         let showBtn =  '<button ' +
@@ -42,8 +48,12 @@
                             '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                         '</tr>';
                         $("#payments-table-body").append(projectRow);
+                        
                     }
-     
+                          $("#total").html(total);
+                          $("#highest").html(highest);
+                          $("#lowest").html(lowest);
+                          $("#best").html(best.payer.fname+' '+best.payer.mname+' '+best.payer.lname);
                      
                 },
                 error: function(response) {

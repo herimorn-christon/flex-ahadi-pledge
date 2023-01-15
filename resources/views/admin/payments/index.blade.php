@@ -13,21 +13,21 @@
 
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Payments</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total"></h6></div>
   </div>
 
   <div class="row starts-border" >
     <div class="col-md-6"> <h6 class="text-secondary">Highest Pledge Payment </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="highest"></h6></div>
   </div>
 
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Lowest Pledge Payment</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="lowest"></h6></div>
   </div>
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Best Pledge Payer</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="best"></h6></div>
   </div>
 
 

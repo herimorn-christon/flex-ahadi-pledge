@@ -25,8 +25,14 @@ class PaymentController extends Controller
         $total=Payment::sum('amount');
         $highest=Payment::max('amount');
         $lowest=Payment::min('amount');
+        $best=Payment::where('amount',$highest)->with('payer')->first();
 
-        return response()->json(['payments' => $payments,'total'=>$total,'highest'=>$highest]);
+        return response()->json(['payments' => $payments,
+                                 'total'=>$total,
+                                 'highest'=>$highest,
+                                 'lowest'=>$lowest,
+                                 'best'=>$best
+                                ]);
     }
 
     
