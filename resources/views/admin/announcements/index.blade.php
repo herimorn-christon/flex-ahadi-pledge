@@ -36,11 +36,11 @@
     
         
         {{-- start register purpose modal --}}
-        @include('admin.reports.register-announcement-modal')
+        @include('admin.announcements.register-announcement-modal')
         {{-- end of register purpose modal --}}
 
         {{-- start of ajax register purpose method --}}
-        @include('admin.reports.ajax-register-announcement')
+        @include('admin.announcements.ajax-register-announcement')
         {{-- end of ajax register purpose method --}}
 
         {{-- start of ajax update purpose method --}}
@@ -48,7 +48,7 @@
         {{-- end of ajax update purpose method --}}
 
         {{-- start of ajax delete purpose method --}}
-        @include('admin.reports.ajax-delete-announcement')
+        @include('admin.announcements.ajax-delete-announcement')
         {{-- end of ajax delete purpose method --}}
 
     </li>
@@ -76,15 +76,15 @@
         {{-- end of all purposes tables --}}
 
         {{-- start of ajax fetch all announcements method --}}
-        @include('admin.reports.ajax-fetch-all-announcements')
+        @include('admin.announcements.ajax-fetch-all-announcements')
         {{-- end of ajax fetch all announcements method --}}
 
         {{-- start of ajax view purpose details method --}}
-        @include('admin.reports.ajax-fetch-announcement-details')
+        @include('admin.announcements.ajax-fetch-announcement-details')
         {{-- end of ajax view purpose details method --}}
 
         {{-- start of ajax view purpose details modal --}}
-        @include('admin.reports.single-announcement-modal')
+        @include('admin.announcements.single-announcement-modal')
         {{-- end of ajax view purpose details modal --}}
         </div>
 </div>

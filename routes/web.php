@@ -134,7 +134,7 @@ Route::get('/settings', function () {
 
 // all announcements route
   Route::get('/all-announcements', function () {
-    return view('admin.reports.index');
+    return view('admin.announcements.index');
     });
 
 // Payments API route

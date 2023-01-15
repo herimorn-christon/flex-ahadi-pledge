@@ -70,7 +70,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/all-reports') }}" class="nav-link {{ Request::is('admin/all-reports') ? 'current':'' }}"  >
+            <a href="{{ url('admin/all-announcements') }}" class="nav-link {{ Request::is('admin/all-announcements') ? 'current':'' }}"  >
               <i class="nav-icon fas fa-bullhorn"></i>
               <p>
                 Announcements
