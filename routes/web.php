@@ -89,7 +89,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 
 
 // all payments route
-  //  Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
   Route::get('/all-payments', function () {
     return view('admin.payments.index');
     });
@@ -101,7 +100,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 
 
 // all cards route
-  // Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
   Route::get('/all-cards', function () {
     return view('admin.cards.index');
     });
@@ -171,7 +169,11 @@ Route::get('/settings', function () {
 
 });
 
-// for Member
+
+
+
+
+// for Member Routes
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()
 {
  // setting dashboard route

@@ -80,23 +80,6 @@
       </a>
         {{-- end of generate report button --}}
         
-        {{-- start register purpose modal --}}
-        @include('admin.pledges.register-pledge-modal')
-        {{-- end of register purpose modal --}}
-
-        {{-- start of ajax register pledge method --}}
-        @include('admin.pledges.ajax-register-pledge')
-        {{-- end of ajax register pledge method --}}
-
-        {{-- start of ajax update purpose method --}}
-        @include('admin.pledges.ajax-update-pledge')
-        {{-- end of ajax update purpose method --}}
-
-        {{-- start of ajax delete purpose method --}}
-        @include('admin.pledges.ajax-delete-pledge')
-        {{-- end of ajax delete purpose method --}}
-
-
             {{-- start all pledge types modal --}}
         @include('admin.pledges.all-pledge-types-modal')
         {{-- end of all pledge types modal --}}

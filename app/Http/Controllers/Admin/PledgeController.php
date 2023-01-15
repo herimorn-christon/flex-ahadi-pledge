@@ -118,7 +118,7 @@ class PledgeController extends Controller
             'deadline' => 'required',
             'user_id' => 'required',
             'type_id' => 'required',
-            'purpose_id' => 'required',
+            'purpose_id' => 'required'
         ]);
   
         $pledge = Pledge::find($id);
