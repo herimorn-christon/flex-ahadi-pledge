@@ -26,7 +26,7 @@ class CardMemberController extends Controller
         $active=CardMember::where('status','')->count();
         $inactive=CardMember::where('status','1')->count();
         $total_payments=CardPayment::sum('amount');
-        return response()->json(['members' => $members,'total_cards'=>$total_cards,'assigned'=>$assigned,'active'=>$active,'inactive'=>$inactive   ]);
+        return response()->json(['members' => $members,'total_cards'=>$total_cards,'assigned'=>$assigned,'active'=>$active,'inactive'=>$inactive,'total_payments'=>$total_payments   ]);
     }
 
 

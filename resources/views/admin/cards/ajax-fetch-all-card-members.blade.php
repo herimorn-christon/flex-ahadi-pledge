@@ -20,6 +20,7 @@
                       let assigned = response.assigned;
                       let active = response.active;
                       let inactive = response.inactive;
+                      let total_payments = response.total_payments;
 
                       for (var i = 0; i < members.length; i++) 
                       {
@@ -51,6 +52,7 @@
                       $("#assigned").html(assigned);
                       $("#active").html(active);
                       $("#inactive").html(inactive);
+                      $("#total_payments").html(total_payments);
                        
                   },
                   error: function(response) {
