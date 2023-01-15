@@ -17,9 +17,10 @@
                       let pledges = response.pledges;
                       let total_pledges = response.total_pledges;
                       let unfullfilled = response.unfullfilled;
-                      let amount = response.amount;
+                      let total_amount = response.total_amount;
                       let object = response.object;
                       let fullfilled = response.fullfilled;
+                      let best = response.best;
                       for (var i = 0; i < pledges.length; i++) 
                       {
                           let showBtn =  '<button ' +
@@ -46,10 +47,11 @@
                           '</tr>';
                           $("#pledges-table-body").append(pledgesRow);
                           $("#total").html(total_pledges);
-                          $("#amount").html(amount);
+                          $("#total_amount").html(total_amount);
                           $("#unfullfilled").html(unfullfilled);
                           $("#object").html(object);
                           $("#fullfilled").html(fullfilled);
+                          $("#best").html(best);
                           
                       }
        
