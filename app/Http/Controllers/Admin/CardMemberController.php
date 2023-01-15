@@ -21,7 +21,12 @@ class CardMemberController extends Controller
     public function index()
     {
         $members = CardMember::orderBy('updated_at','DESC')->with('user')->with('card')->get();
-        return response()->json(['members' => $members]);
+        $total_cards=Card::count();
+        $assigned=CardMember::count();
+        $active=CardMember::where('status','')->count();
+        $inactive=CardMember::where('status','1')->count();
+        $total_payments=CardPayment::sum('amount');
+        return response()->json(['members' => $members,'total_cards'=>$total_cards,'assigned'=>$assigned,'active'=>$active,'inactive'=>$inactive   ]);
     }
 
 

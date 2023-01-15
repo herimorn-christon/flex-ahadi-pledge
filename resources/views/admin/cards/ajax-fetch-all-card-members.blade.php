@@ -17,7 +17,10 @@
                       $("#members-table-body").html("");
                       let members = response.members;
                       let total_cards = response.total_cards;
-  
+                      let assigned = response.assigned;
+                      let active = response.active;
+                      let inactive = response.inactive;
+
                       for (var i = 0; i < members.length; i++) 
                       {
                             let showBtn =  '<button ' +
@@ -45,6 +48,9 @@
                       
                       }
                       $("#total_cards").html(total_cards);
+                      $("#assigned").html(assigned);
+                      $("#active").html(active);
+                      $("#inactive").html(inactive);
                        
                   },
                   error: function(response) {
