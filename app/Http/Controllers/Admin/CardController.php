@@ -18,8 +18,15 @@ class CardController extends Controller
      */
     public function index()
     {
-        $cards = Card::orderBy('updated_at','DESC')->where('status','')->get();
-        return response()->json(['cards' => $cards ]);
+        $cards = Card::orderBy('updated_at','DESC')
+                     ->where('status','')
+                     ->get();
+        $total_cards=Card::count();
+        $assigned=CardMember::count();
+        $active=CardMember::where('status','')->count();
+        $inactive=CardMember::where('status','1')->count();
+        $total_payments=CardPayment::sum('amount');
+        return response()->json(['cards' => $cards,'total_cards'=>$total_cards ]);
     }
 
     

@@ -13,6 +13,7 @@
                   success: function(response) {
                       $("#cards-table-body").html("");
                       let cards = response.cards;
+                    
                       for (var i = 0; i < cards.length; i++) 
                       {
                          
@@ -35,6 +36,7 @@
                           $("#cards-table-body").append(projectRow);
                           $("#cards").modal('show'); 
                       }
+                
        
                        
                   },

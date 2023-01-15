@@ -12,32 +12,29 @@
 
     <div class="row starts-border mt-2" >
       <div class="col-md-6"> <h6 class="text-secondary">Total Member Cards:</h6></div>
-      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total_cards"></h6></div>
     </div>
   
     <div class="row starts-border" >
       <div class="col-md-6"> <h6 class="text-secondary">Total Assigned Cards </h6></div>
-      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="assigned"> </h6></div>
     </div>
   
     <div class="row starts-border mb-2" >
       <div class="col-md-6"> <h6 class="text-secondary">Total Active Cards</h6></div>
-      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="active"> </h6></div>
     </div>
     <div class="row starts-border mb-2" >
       <div class="col-md-6"> <h6 class="text-secondary">Total Inactive Cards</h6></div>
-      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="inactive"></h6></div>
     </div>
 
     <div class="row starts-border mb-2" >
       <div class="col-md-6"> <h6 class="text-secondary">Total Card Payments</h6></div>
-      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+      <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total_payments"></h6></div>
     </div>
 
-    <div class="row starts-border mb-2" >
-      <div class="col-md-6"> <h6 class="text-secondary">Top Card Payer</h6></div>
-      <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
-    </div>  
+   
   
   </div>
   {{-- end of statistics --}}

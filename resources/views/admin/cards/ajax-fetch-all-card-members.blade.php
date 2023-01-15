@@ -16,6 +16,8 @@
                   success: function(response) {
                       $("#members-table-body").html("");
                       let members = response.members;
+                      let total_cards = response.total_cards;
+  
                       for (var i = 0; i < members.length; i++) 
                       {
                             let showBtn =  '<button ' +
@@ -42,7 +44,7 @@
                           $("#members-table-body").append(projectRow);
                       
                       }
-       
+                      $("#total_cards").html(total_cards);
                        
                   },
                   error: function(response) {

@@ -15,7 +15,7 @@
 		    }
 		    .title {
 			    font-size: 24px;
-				text-transform: uppercase;
+				/* text-transform: uppercase; */
 		    }
 		    .pb-10 {
 		    	padding-bottom: 10px;
@@ -102,7 +102,9 @@
 		    <div class="pb-5">
 				<small class="bg-primary">Flèx AhadiPledge</small>
 			    <div class="middle pb-10 title">
-					<img src="{{ public_path('img/flex.png') }}" alt="image">
+					<img src="{{ public_path('img/kkkt_logo.jpeg') }}" alt="image" height="100px" width="100px">
+					<p>Kanisa la kkkt Kizundi- Dar-es-salaam</p>
+
 					<p>
 						{{ $headers['title'] }}
 					</p>

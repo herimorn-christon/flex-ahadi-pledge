@@ -1,7 +1,7 @@
 <!-- Register User Modal Page -->
 
 <div class="modal fade" id="form-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl" style="width:1250px;">
+    <div class="modal-dialog modal-lg" style="width:1250px;">
       <div class="modal-content">
         <div class="modal-header bg-light">
             <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
