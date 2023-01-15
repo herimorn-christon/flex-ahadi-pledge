@@ -22,7 +22,11 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::orderBy('updated_at','DESC')->with('payer')->with('payment')->with('pledge')->get();
-        return response()->json(['payments' => $payments]);
+        $total=Payment::sum('amount');
+        $highest=Payment::max('amount');
+        $lowest=Payment::min('amount');
+
+        return response()->json(['payments' => $payments,'total'=>$total,'highest'=>$highest]);
     }
 
     
