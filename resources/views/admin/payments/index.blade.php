@@ -175,6 +175,7 @@
                 <thead>
                      <tr class="text-secondary">
                         <th>ID</th>
+                        <th>Date</th>
                         <th>Payer Name</th>
                         <th>Payment Method</th>
                         <th>Purpose</th>

@@ -10,7 +10,7 @@
         <p>
           <b class="text-secondary">Payer's Fullname:</b>   <span id="fname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span>
           <hr>
-          <b class="text-secondary">Payment Purpose:</b>   <span id="purpose-info" class="text-dark"></span>
+          <b class="text-secondary">Payment Pledge:</b>   <span id="purpose-info" class="text-dark"></span>
           <hr>
           <b class="text-secondary">Payment Amount:</b>   <span id="amount-info" class="text-dark"></span>
           <hr>

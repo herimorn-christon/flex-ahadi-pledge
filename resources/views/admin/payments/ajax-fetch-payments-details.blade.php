@@ -19,7 +19,7 @@
                         $("#purpose-info").html(purpose.pledge.name);
                         $("#amount-info").html(purpose.amount);
                         $("#method-info").html(purpose.payment.name);
-                        $("#date-info").html(purpose.   created_at);
+                        $("#date-info").html(purpose. formattedDate);
                         $("#view-modal").modal('show'); 
          
                     },
