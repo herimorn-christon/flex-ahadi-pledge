@@ -52,8 +52,9 @@ class DashboardController extends Controller
         $cash_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->where('type_id',2)->count();
         $object_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->where('type_id',1)->count();
         $card=CardMember::where('user_id',$user)->whereYear('created_at', date('Y'))->where('status','')->first();
-        $cardpayments=CardPayment::where('card_member',$card->id)->sum('amount');
-        // For Payment Statistics
+        if($card){
+            $cardpayments=CardPayment::where('card_member',$card->id)->sum('amount');
+           // For Payment Statistics
         $payrate = Payment::select(\DB::raw("SUM(amount) as count"))
         ->whereYear('created_at', date('Y'))
         ->where('user_id',$user)
@@ -127,6 +128,87 @@ class DashboardController extends Controller
                    'object_pledges'
                ));
         }
+        }
+        else{
+
+            $cardpayments=0;
+ // For Payment Statistics
+ $payrate = Payment::select(\DB::raw("SUM(amount) as count"))
+ ->whereYear('created_at', date('Y'))
+ ->where('user_id',$user)
+ ->groupBy(\DB::raw("Day(created_at)"))
+ ->pluck('count');
+ $events = Event::all();
+ if($pledges>$payments){
+
+     $number=$payments/$pledges*100; //progress formular
+     $progress=number_format((float)$number, 2, '.', '');//Reducing the number of decimal points to progress 
+     // formular for remaining amount
+     $remaining=$pledges-$payments;
+
+     // if($request->ajax()) {  
+     //     $data = Events::whereDate('event_start', '>=', $request->start)
+     //         ->whereDate('event_end',   '<=', $request->end)
+     //         ->get(['id', 'event_name', 'event_start', 'event_end']);
+     //     return response()->json($data);
+     // }
+
+     if(request()->ajax()){
+         $start = (!empty($_GET["event_start"])) ? ($_GET["event_start"]) : ('');
+         $end = (!empty($_GET["event_end"])) ? ($_GET["event_end"]) : ('');
+        $events = Event::whereDate('event_start', '>=', $start)->whereDate('event_end',   '<=', $end)
+                ->get(['id','event_name','event_start', 'event_end']);
+        return response()->json($events);
+        }
+
+     return view('member.dashboard',
+     compact(
+         'pledges',
+         'payments',
+         'remaining',
+         'pledges_no',
+         'progress',
+         'mypledges',
+         'payrate',
+         'cardpayments',
+         'events',
+         'total_pledges',
+         'cash_pledges',
+         'object_pledges'
+
+     ));
+ }
+ else{
+     $remaining=0;
+     $progress=0;
+
+     if(request()->ajax()){
+         $start = (!empty($_GET["event_start"])) ? ($_GET["event_start"]) : ('');
+         $end = (!empty($_GET["event_end"])) ? ($_GET["event_end"]) : ('');
+        $events = Event::whereDate('event_start', '>=', $start)->whereDate('event_end',   '<=', $end)
+                ->get(['id','event_name','event_start', 'event_end']);
+        return response()->json($events);
+        }
+
+        return view('member.dashboard',
+        compact(
+            'pledges',
+            'payments',
+            'remaining',
+            'pledges_no',
+            'progress',
+            'mypledges',
+            'payrate',
+            'cardpayments',
+            'events',
+            'total_pledges',
+            'cash_pledges',
+            'object_pledges'
+        ));
+ }
+        }
+   
+       
  
 
     }

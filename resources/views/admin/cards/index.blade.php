@@ -102,6 +102,7 @@
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>
+                        <th>Issued Date</th>
                         <th>Member</th>
                         <th>Card Number</th>
                         <th>Status</th>

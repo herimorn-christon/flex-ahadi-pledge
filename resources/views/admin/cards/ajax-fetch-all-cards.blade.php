@@ -19,7 +19,7 @@
                          
                           let editBtn =  '<button ' +
                               ' class="btn btn-sm bg-flex text-light" ' +
-                              ' onclick="editCard(' + cards[i].id + ')"><i class="fa fa-eye"></i>' +
+                              ' onclick="editCard(' + cards[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
                               ' class="btn btn-sm btn-danger" ' +

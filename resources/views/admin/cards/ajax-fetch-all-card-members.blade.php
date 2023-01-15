@@ -40,6 +40,7 @@
        
                           let projectRow = '<tr>' +
                               '<td>' + (1+i) +  '</td>' +
+                              '<td>' + members[i].formattedDate +  '</td>' +
                               '<td>' + members[i].user.fname + '&nbsp;' + members[i].user.mname +  '&nbsp;' + members[i].user.lname +   '</td>' +
                               '<td>' + members[i].card.card_no + ' /'+ members[i].user.id + '</td>' +
                               '<td class="text-success">' + status +'</td>' +

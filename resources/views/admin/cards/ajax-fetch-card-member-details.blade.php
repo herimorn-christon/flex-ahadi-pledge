@@ -42,7 +42,7 @@
                       {
                          
                           let editBtn =  '<button ' +
-                              ' class="btn bg-navy btn-sm" ' +
+                              ' class="btn bg-flex text-light btn-sm" ' +
                               ' onclick="editPayment(' + payment[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
@@ -52,7 +52,7 @@
        
                           let projectRow = '<tr>' +
                               '<td>' + payment[i].id + '</td>' +
-                              '<td>' + payment[i].created_at+ '</td>' +
+                              '<td>' + payment[i].formattedDate+ '</td>' +
                               '<td>' + payment[i].amount + '</td>' +
                               '<td>'  + editBtn + deleteBtn + '</td>' +
                           '</tr>';
