@@ -124,6 +124,12 @@
         {{-- start of single member modal --}}
         @include('admin.notifications.all-notifications-modal')
         {{-- end of single member modal --}}
+
+        
+        {{-- start of ajax delete members method --}}
+        @include('admin.notifications.ajax-delete-notification')
+        {{-- end of ajax delete members method --}}
+        
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -136,9 +142,6 @@
         {{-- @include('admin.members.ajax-fetch-notification-details') --}}
         {{-- end of ajax fetch all members method --}}
 
-        {{-- start of ajax delete members method --}}
-        {{-- @include('admin.members.ajax-delete-notification') --}}
-        {{-- end of ajax delete members method --}}
 
     {{-- end of notifications --}}
   </div>

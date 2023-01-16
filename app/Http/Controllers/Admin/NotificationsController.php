@@ -65,6 +65,8 @@ class NotificationsController extends Controller
     public function destroy($id)
     {
         $notification = Notification::where('id',$id)->first();
-        return response()->json(['notification' => $notification]);
+        Notification::destroy($notification->id);
+        return response()->json(['status' => "success"]);
+
     }
 }

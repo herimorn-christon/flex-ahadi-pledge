@@ -18,11 +18,11 @@
                            
                             let viewBtn =  '<button ' +
                                 ' class="btn btn-sm bg-flex text-light" ' +
-                                ' onclick="editCard(' + notifications[i].id + ')"><i class="fa fa-eye"></i>' +
+                                ' onclick="viewNotification(' + notifications[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let deleteBtn =  '<button ' +
                                 ' class="btn btn-sm btn-danger" ' +
-                                ' onclick="destroyCard(' + notifications[i].id + ')"><i class="fa fa-trash"></i>' +
+                                ' onclick="destroyNotification(' + notifications[i].id + ')"><i class="fa fa-trash"></i>' +
                             '</button>';
          
                             let projectRow = '<tr>' +
