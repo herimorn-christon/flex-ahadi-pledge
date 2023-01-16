@@ -14,6 +14,11 @@
                   success: function(response) {
                       $("#pledges-table-body").html("");
                       let pledges = response.pledges;
+                      let fullfilled = response.fullfilled;
+                      let unfullfilled = response.unfullfilled;
+                      let total_pledges = response.total_pledges;
+                      let money = response.money;
+                      let object = response.object;
                       for (var i = 0; i < pledges.length; i++) 
                       {
                           let showBtn =  '<button ' +
@@ -47,12 +52,13 @@
                               '<td>' + showBtn + (pledges[i].user_id == pledges[i].created_by ? editBtn :adminBtn)+'</td>' +
                           '</tr>';
                           $("#pledges-table-body").append(pledgesRow);
-                      }
                           $("#total").html(total_pledges);
                           $("#fullfilled").html(fullfilled);
                           $("#unfullfilled").html(unfullfilled);
                           $("#money").html(money);
                           $("#object").html(object);
+                      }
+                        
        
                        
                   },

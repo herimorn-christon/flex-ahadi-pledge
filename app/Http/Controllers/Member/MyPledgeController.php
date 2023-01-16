@@ -19,6 +19,26 @@ class MyPledgeController extends Controller
      */
     public function index()
     {
+         // Function for number convertion
+       function thousandsCurrencyFormat($num) {
+
+        if($num>1000) {
+      
+              $x = round($num);
+              $x_number_format = number_format($x);
+              $x_array = explode(',', $x_number_format);
+              $x_parts = array('k', 'm', 'b', 't');
+              $x_count_parts = count($x_array) - 1;
+              $x_display = $x;
+              $x_display = $x_array[0] . ((int) $x_array[1][0] !== 0 ? '.' . $x_array[1][0] : '');
+              $x_display .= $x_parts[$x_count_parts - 1];
+      
+              return $x_display;
+      
+        }
+      
+        return $num;
+      }
         $types=PledgeType::all();
         $user=Auth::user()->id;
         $types=PledgeType::all();
@@ -31,7 +51,7 @@ class MyPledgeController extends Controller
         $unfullfilled=Pledge::where('user_id',$user)
                               ->where('status','')
                               ->count();
-        $money=Pledge::where('user_id',$user)->sum('amount');
+        $money=thousandsCurrencyFormat(Pledge::where('user_id',$user)->sum('amount'));
         $object=Pledge::where('user_id',$user)->where('type_id','0')->count();
 
 
@@ -105,7 +125,11 @@ class MyPledgeController extends Controller
     public function show($id)
     {
         $purpose = Pledge::with('user')->with('type')->with('purpose')->find($id);
-        return response()->json(['purpose' => $purpose]);
+        $payments=Payment::where('pledge_id',$id)->get();
+        return response()->json([
+                                'purpose' => $purpose,
+                                'payments'=>$payments
+                            ]);
     }
 
     /**
