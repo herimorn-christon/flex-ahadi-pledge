@@ -23,9 +23,33 @@ class MyPledgeController extends Controller
         $user=Auth::user()->id;
         $types=PledgeType::all();
         $purposes=Purpose::all();
-        // $pledges=Pledge::where('user_id',$user)->get();
-        $pledges = Pledge::where('user_id',$user)->orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
-        return response()->json(['purposes' => $purposes,'pledges' => $pledges]);
+        $total_pledges=Pledge::where('user_id',$user)
+                               ->count();
+        $fullfilled=Pledge::where('user_id',$user)
+                            ->where('status','1')
+                            ->count();
+        $unfullfilled=Pledge::where('user_id',$user)
+                              ->where('status','')
+                              ->count();
+        $money=Pledge::where('user_id',$user)->sum('amount');
+        $object=Pledge::where('user_id',$user)->where('type_id','0')->count();
+
+
+        $pledges = Pledge::where('user_id',$user)
+                           ->orderBy('updated_at','DESC')
+                           ->with('user')
+                           ->with('type')
+                           ->with('purpose')
+                           ->get();
+        return response()->json([
+                                 'purposes' => $purposes,
+                                 'total_pledges' => $total_pledges,
+                                 'fullfilled' => $fullfilled,
+                                 'unfullfilled' => $unfullfilled,
+                                 'money' => $money,
+                                 'object' => $object,
+                                 'pledges' => $pledges
+                                ]);
     }
 
     /**

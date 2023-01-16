@@ -12,23 +12,23 @@
 <div class="px-2">
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made in {{ date('Y')}} </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total"> </h6></div>
   </div>
   <div class="row starts-border" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Fullfilled Pledges in {{ date('Y')}} </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="fullfilled"></h6></div>
   </div>
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Unfullfilled Pledges in {{ date('Y')}}</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="unfullfilled"></h6></div>
   </div>
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Money Pledges in {{ date('Y')}}</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="money"></h6></div>
   </div>
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Object Pledges in {{ date('Y')}}</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="object"></h6></div>
   </div>
 
 </div>
@@ -157,93 +157,9 @@
   <!-- /.modal-dialog -->
 </div>
 
-{{-- register new pledge  modal--}}
-
-<div class="modal fade" id="form-modal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-        <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-                <div id="error-div"></div>
-             <form>
-             <input type="hidden" name="update_id" id="update_id">
-                <div class="row mb-3">
-                
-                @php
-                $types= App\Models\PledgeType::get();
-                @endphp
-                <div class="col-md-12">
-                    <label for="" class="text-secondary">Pledge Type</label>
-                    <select name="type_id"  id="type_id" class="form-control">
-                        <option value="">--Select Pledge Type --</option>
-                        @foreach ( $types as $item)
-                        <option value="{{ $item->id}}">{{ $item->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                @php
-                $purpose= App\Models\Purpose::where('status','')->get();
-                @endphp
-                <div class="col-md-6">
-                    <label for="" class="text-secondary">Pledge Purpose</label>
-                    <select name="purpose_id" id="purpose_id" class="form-control">
-                        <option value="">--Select Purpose --</option>
-                        @foreach ( $purpose as $item)
-                        <option value="{{ $item->id}}"> {{ $item->title}}</option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="name" class="text-secondary">Name</label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Enter Pledge Name">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                <div class="form-group">
-                    <label for="amount" class="text-secondary">Amount</label>
-                    <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Pledge Amount">
-                </div>
-                </div>
-                <div class="col-md-6">
-                <div class="form-group">
-                    <label for="deadline" class="text-secondary">Deadline</label>
-                    <input type="date" name="deadline" id="deadline" class="form-control" placeholder="Enter Pledge Deadline">
-                </div>
-            </div>
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="description" class="text-secondary">Description</label>
-                    <textarea name="description" class="form-control" id="description" rows="3"></textarea>
-                </div>
-            </div>
-                <div class="col-md-12">
-
-                <div class="row mt-2">
-
-                    <div class="col-md-6 ">
-                 
-                    </div>
-
-                    <div class="col-md-6 ">
-                      <label for="" class="text-white">.</label>
-                        <button class="btn bg-navy btn-block " id="save-pledge-btn" type="submit">
-                        <i class="fa fa-save"></i>
-                        Save Pledge 
-                        </button>
-                    </div>
-                </div>
-                </div>
-                </div>
-            </form>
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
+{{-- start of register new pledge modal --}}
+  @include('member.pledges.register-pledge-modal')
+{{-- end of register new pledge modal --}}
 
 {{-- view single pledge info--}}
 <div class="modal fade" id="view-modal">
@@ -281,178 +197,16 @@
 @endsection
 
 @section('scripts')
+  {{-- start of ajax fetch all pledges method --}}
+  @include('member.pledges.ajax-fetch-all-pledges')
+  {{-- end of ajax fetch all pleges method --}}
 
+  {{-- start of ajax register pledge method --}}
+  @include('member.pledges.ajax-register-pledge-method')
+  {{-- end of ajax register plege method --}}
 <script type="text/javascript">
   
-          showAllPledges();
        
-          /*
-              This function will get all the purposes records
-          */
-          function showAllPledges()
-          {
-              let url = $('meta[name=app-url]').attr("content") + "/member/pledges";
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                      $("#pledges-table-body").html("");
-                      let pledges = response.pledges;
-                      for (var i = 0; i < pledges.length; i++) 
-                      {
-                          let showBtn =  '<button ' +
-                              ' class="btn btn-sm bg-flex text-light    " ' +
-                              ' onclick="showPledge(' + pledges[i].id + ')"><i class="fa fa-eye"></i>' +
-                          '</button> ';
-
-                        
-                            let editBtn =  '<button ' +
-                              ' class="btn btn-sm bg-flex text-light " ' +
-                              ' onclick="editPledge(' + pledges[i].id + ')"><i class="fa fa-edit"></i>' +
-                          '</button> ';
-                          let deleteBtn =  '<button ' +
-                              ' class="btn btn-sm btn-danger" ' +
-                              ' onclick="destroyPledge(' + pledges[i].id + ')">Delete' +
-                          '</button>';
-                          let adminBtn =  '<button ' +
-                              ' class="btn btn-sm text-center" disabled ><i class="fa fa-user-tie text-danger"></i>' +
-                          '</button>';
-                              
-                   
-                          
-       
-                          let pledgesRow = '<tr>' +
-                              '<td>' + pledges[i].id + '</td>' +
-                              '<td>' + pledges[i].name + '</td>' +
-                              '<td>' + pledges[i].purpose.title + '</td>' +
-                              '<td>' + pledges[i].amount +'</td>' +
-                              '<td>' + pledges[i].deadline +'</td>' +
-                              '<td class="text-success">' +(pledges[i].purpose.status == '0' ? 'Not Fullfilled':'Fullfilled')+ '</td>'+
-                              '<td>' + showBtn + (pledges[i].user_id == pledges[i].created_by ? editBtn :adminBtn)+'</td>' +
-                          '</tr>';
-                          $("#pledges-table-body").append(pledgesRow);
-                      }
-       
-                       
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-       
-   
-        
-
-          /*
-              check if form submitted is for creating or updating
-          */
-          $("#save-pledge-btn").click(function(event ){
-              event.preventDefault();
-              if($("#update_id").val() == null || $("#update_id").val() == "")
-              {
-                  storePledge();
-              } else {
-                  updatePledge();
-              }
-          })
-
-
-      
-       
-          /*
-              show modal for creating a record and 
-              empty the values of form and remove existing alerts
-          */
-          function createPledge()
-          {
-              $("#alert-div").html("");
-              $("#error-div").html("");   
-              $("#update_id").val("");
-              $("#name").val("");
-              $("#type_id").val("");
-              $("#purpose_id").val("");
-              $("#deadline").val("");
-              $("#amount").val("");
-              $("#description").val("");
-              $("#form-modal").modal('show'); 
-          }
-       
-          /*
-              submit the form and will be stored to the database
-          */
-          function storePledge()
-          {   
-              $("#save-pledge-btn").prop('disabled', true);
-              let url = $('meta[name=app-url]').attr("content") + "/member/pledges";
-              let data = {
-                  name: $("#name").val(),
-                  amount: $("#amount").val(),
-                  deadline: $("#deadline").val(),
-                  description: $("#description").val(),
-                  type_id: $("#type_id").val(),
-                  purpose_id: $("#purpose_id").val(),
-              };
-              $.ajax({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  },
-                  url: url,
-                  type: "POST",
-                  data: data,
-                  success: function(response) {
-                      $("#save-pledge-btn").prop('disabled', false);
-                      let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Created Successfully</div>';
-                      $("#alert-div").html(successHtml);
-                      $("#name").val("");
-                      $("#type_id").val("");
-                      $("#purpose_id").val("");
-                      $("#deadline").val("");
-                      $("#amount").val("");
-                      $("#description").val("");
-                      showAllPledges();
-                      $("#form-modal").modal('hide');
-                  },
-                  error: function(response) {
-                      $("#save-pledge-btn").prop('disabled', false);
-       
-                      /*
-          show validation error
-                      */
-                      if (typeof response.responseJSON.errors !== 'undefined') 
-                      {
-          let errors = response.responseJSON.errors;
-          let descriptionValidation = "";
-          if (typeof errors.description !== 'undefined') 
-                          {
-                              descriptionValidation = '<li>' + errors.description[0] + '</li>';
-                          }
-          let nameValidation = "";
-          if (typeof errors.name !== 'undefined') 
-                          {
-                              nameValidation = '<li>' + errors.name[0] + '</li>';
-                          }
-          let deadlineValidation = "";
-          if (typeof errors.deadline !== 'undefined') 
-                          {
-                              deadlineValidation = '<li>' + errors.deadline[0] + '</li>';
-                          }
-            
-          let amountValidation = "";
-          if (typeof errors.amount !== 'undefined') 
-                          {
-                              amountValidation = '<li>' + errors.amount[0] + '</li>';
-                          }
-           
-          let errorHtml = '<div class="alert alert-danger" role="alert">' +
-              '<b>Validation Error!</b>' +
-              '<ul>' + nameValidation + descriptionValidation + deadlineValidation + amountValidation +'</ul>' +
-          '</div>';
-          $("#error-div").html(errorHtml);        
-      }
-                  }
-              });
-          }
        
 
     /*
