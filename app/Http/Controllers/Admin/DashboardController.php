@@ -50,6 +50,16 @@ class DashboardController extends Controller
         $contributions=thousandsCurrencyFormat(Payment::sum('amount')+CardPayment::sum('amount'));
         $total_pledges=thousandsCurrencyFormat(Pledge::count());
         $total_cards=thousandsCurrencyFormat(Card::count());
+        $var1=Pledge::whereYear('created_at', date('Y'))->sum('amount');
+        $var2=Payment::whereYear('created_at', date('Y'))->sum('amount');
+
+        if($var1>$var2)
+        {
+            $remaining=thousandsCurrencyFormat($var1-$var2);
+        }
+        else{
+            $remaining=0;
+        }
 
    
         //   for users chart js
@@ -75,7 +85,8 @@ class DashboardController extends Controller
                 'total_pledges',
                 'total_cards',
                 'male',
-                'female'
+                'female',
+                'remaining'
             ));
 
     }

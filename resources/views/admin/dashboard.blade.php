@@ -146,7 +146,7 @@
                 </h6>
 
                 <h3 class="text-secondary">
-                  {{$cards}}
+                  {{$remaining}}
                   <small>Tsh</small>
                 </h3>
               </div>
