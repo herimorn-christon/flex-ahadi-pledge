@@ -48,6 +48,11 @@
                           '</tr>';
                           $("#pledges-table-body").append(pledgesRow);
                       }
+                          $("#total").html(total_pledges);
+                          $("#fullfilled").html(fullfilled);
+                          $("#unfullfilled").html(unfullfilled);
+                          $("#money").html(money);
+                          $("#object").html(object);
        
                        
                   },

@@ -46,14 +46,15 @@
                               '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                           '</tr>';
                           $("#pledges-table-body").append(pledgesRow);
+                      
+                          
+                      }
                           $("#total").html(total_pledges);
                           $("#total_amount").html(total_amount);
                           $("#unfullfilled").html(unfullfilled);
                           $("#object").html(object);
                           $("#fullfilled").html(fullfilled);
                           $("#best").html(best);
-                          
-                      }
        
                        
                   },
