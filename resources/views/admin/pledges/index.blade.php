@@ -79,7 +79,14 @@
         Generate Report
       </a>
         {{-- end of generate report button --}}
+        {{-- start of ajax register pledge method --}}
+        @include('admin.pledges.ajax-register-pledge')
+        {{-- end of ajax register pledge method --}}
         
+        {{-- start register pledge modal --}}
+        @include('admin.pledges.register-pledge-modal')
+        {{-- end of register pledge modal --}}
+
             {{-- start all pledge types modal --}}
         @include('admin.pledges.all-pledge-types-modal')
         {{-- end of all pledge types modal --}}
@@ -103,6 +110,7 @@
         {{-- start of ajax register pledge method --}}
         @include('admin.pledges.ajax-register-type')
         {{-- end of ajax register pledge method --}}
+        
 
         
      
