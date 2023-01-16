@@ -21,7 +21,7 @@ class MyPaymentsController extends Controller
                     ->orderBy('updated_at','DESC')
                     ->with('payer')
                     ->with('payment')
-                    ->with('purpose')
+                    ->with('pledge')
                     ->get();
         return response()->json(['purposes' => $purposes]);
     }

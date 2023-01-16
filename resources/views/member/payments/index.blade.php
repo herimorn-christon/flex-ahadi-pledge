@@ -231,7 +231,7 @@
                             let projectRow = '<tr>' +
                                 '<td>' + purposes[i].payer.fname + '&nbsp;' + purposes[i].payer.mname +  '&nbsp;' + purposes[i].payer.lname +   '</td>' +
                                 '<td>' + purposes[i].payment.name + '</td>' +
-                                '<td>' + purposes[i].purpose.title + '</td>' +
+                                '<td>' + purposes[i].pledge.name + '</td>' +
                                 '<td>' + purposes[i].amount + '</td>' +
                                 '<td>' + showBtn + '</td>' +
                             '</tr>'+'';
