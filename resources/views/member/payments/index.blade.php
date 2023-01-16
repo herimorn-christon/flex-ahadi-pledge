@@ -11,29 +11,29 @@
   }
 </style>
 
-<div class="card  p-2 mx-2 border-left-flex">
-  <div class="row mb-1">
+<div class="card  p-1 border-left-flex">
+  <div class="row mx-1 mb-1">
 
   {{-- start of statistics --}}
 <div class="">
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Pledge Payments Made in {{ date('Y')}} </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total-payments"> </h6></div>
   </div>
 
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Remaining Pledge Payments in {{ date('Y')}} </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="remaining-payment"> </h6></div>
   </div>
 
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Highest Pledge Payments in {{ date('Y')}} </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="highest"> </h6></div>
   </div>
 
   <div class="row starts-border mt-2 mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Lowest Payments Made in {{ date('Y')}} </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="lowest"> </h6></div>
   </div>
 
 </div>
@@ -69,14 +69,15 @@
  
 
         <div class="responsivenes  p-1">
-            <table id="example1"  class="table table-bordered  cell-border">
+            <table id="example"  class="table table-bordered  cell-border">
                 <thead>
                      <tr class="text-secondary">
                         <th>SN</th>
-                        <th>Payer</th>
+                        <th>Payment Date</th>
                         <th>Method</th>
                         <th>Purpose</th>
                         <th>Amount</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -84,7 +85,6 @@
           
   
                 </tbody>
-                <tfoot></tfoot>
             </table>
     </div>
 </div>
@@ -212,11 +212,11 @@
                     type: "GET",
                     success: function(response) {
                         $("#projects-table-body").html("");
-                        let purposes = response.purposes;
+                        let purposes = response.payments;
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
-                                ' class="btn btn-sm bg-teal " ' +
+                                ' class="btn btn-sm bg-flex text-light " ' +
                                 ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                             let editBtn =  '<button ' +
@@ -229,10 +229,12 @@
                             '</button>';
          
                             let projectRow = '<tr>' +
-                                '<td>' + purposes[i].payer.fname + '&nbsp;' + purposes[i].payer.mname +  '&nbsp;' + purposes[i].payer.lname +   '</td>' +
-                                '<td>' + purposes[i].payment.name + '</td>' +
-                                '<td>' + purposes[i].pledge.name + '</td>' +
-                                '<td>' + purposes[i].amount + '</td>' +
+                                '<td>' + (1+i)+ '</td>' +
+                                '<td>' + purposes[i].formattedDate   + '</td>' +
+                                '<td>' + purposes[i].pledge.name + '</td>' +
+                                '<td>' + purposes[i].payment.name + '</td>' +
+                                '<td>' + purposes[i].amount+ 'Tsh'+ '</td>' +
+                                '<td class="'+(purposes.verified == '0' ? 'text-teal':'text-danger')+'">'+(purposes.verified == '0' ? 'Verified':'Not Verified')+ '</td>'+
                                 '<td>' + showBtn + '</td>' +
                             '</tr>'+'';
                             $("#projects-table-body").append(projectRow);

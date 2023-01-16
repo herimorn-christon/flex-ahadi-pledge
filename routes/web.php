@@ -198,11 +198,9 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
 // my-pledges API
     Route::apiResource('pledges', MyPledgeController::class);
 
-  //Create Pledge Route
-  Route::post('save-pledge', [App\Http\Controllers\Member\PledgeController::class,'save']);
 
  // my-payments
-//  Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
+
   Route::get('/my-payments', function () {
   return view('member.payments.index');
   });
@@ -211,8 +209,7 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   // Payment Methods API route
   Route::apiResource('methods', MethodsController::class);
   // my-cards
-  // Route::get('/my-cards', [App\Http\Controllers\Member\CardController::class,'index']);
-  
+ 
     Route::get('my-cards', function () {
     return view('member.cards.index');
     });

@@ -17,13 +17,13 @@ class MyPaymentsController extends Controller
     public function index()
     {
         $user=Auth::user()->id;
-        $purposes = Payment::where('user_id',$user)
+        $payments = Payment::where('user_id',$user)
                     ->orderBy('updated_at','DESC')
                     ->with('payer')
                     ->with('payment')
                     ->with('pledge')
                     ->get();
-        return response()->json(['purposes' => $purposes]);
+        return response()->json(['payments' => $payments]);
     }
 
     /**
