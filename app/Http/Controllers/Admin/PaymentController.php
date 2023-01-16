@@ -79,15 +79,27 @@ class PaymentController extends Controller
 
 
             }else {
-                Payment::create([
-                    "type_id" => $request->type_id,
-                    "user_id" => $request->user_id,
-                    "amount" => $request->amount,
-                    "receipt" => $request->receipt,
-                    "pledge_id"=>$request->pledge_id,
-                    "created_by"=> $request->user()->id,
-                    "verified"=>$request->verified,
-                ]);
+                // Payment::create([
+                //     "type_id" => $request->type_id,
+                //     "user_id" => $request->user_id,
+                //     "amount" => $request->amount,
+                //     "receipt" => $request->receipt,
+                //     "pledge_id"=>$request->pledge_id,
+                //     "created_by"=> $request->user()->id,
+                //     "verified"=>$request->verified,
+                // ] )  ;
+            $payment = new Payment();
+            $payment->type_id = $request->type_id;
+            $payment->user_id = $request->user_id;
+            $payment->amount = $request->amount;
+            $payment->pledge_id=$request->pledge_id;
+            $payment->user_id=$request->user_id;
+            $payment->receipt=$request->receipt;
+            $payment->verified=1;
+            $payment->created_by= Auth::user()->id;
+            $payment->save();
+            
+         
     
               
                 return response()->json(['status' => "success"]);

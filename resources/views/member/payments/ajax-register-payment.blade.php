@@ -106,6 +106,7 @@
             '</div>';
             $("#error-div").html(errorHtml); 
             let fail = response.responseJSON.fail;
+    
             $("#error-div").html(fail); 
                    
         }

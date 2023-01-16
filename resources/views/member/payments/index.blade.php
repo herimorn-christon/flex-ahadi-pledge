@@ -80,7 +80,7 @@
  
 
         <div class="  p-1">
-            <table id="example1"  class="table   cell-border">
+            <table id="example1"  class="table table-bordered   cell-border">
                 <thead>
                      <tr class="text-secondary">
                         <th>SN</th>
@@ -205,7 +205,7 @@
     <!-- /.modal-dialog -->
   </div>
     {{-- start register pledge type modal --}}
-    @include('admin.payments.register-method-modal')
+    @include('member.payments.register-method-modal')
     {{-- end of register pledge type modal --}}
 
     {{-- start of ajax register pledge method --}}
