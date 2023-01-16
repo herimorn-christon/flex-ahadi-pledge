@@ -204,6 +204,13 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
+    {{-- start register pledge type modal --}}
+    @include('admin.payments.register-method-modal')
+    {{-- end of register pledge type modal --}}
+
+    {{-- start of ajax register pledge method --}}
+    @include('admin.payments.ajax-register-method')
+    {{-- end of ajax register pledge method --}}
     {{-- start of ajax fetch all payments --}}
     @include('member.payments.ajax-fetch-all-payments')
     {{-- end of ajax fetch all payments --}}

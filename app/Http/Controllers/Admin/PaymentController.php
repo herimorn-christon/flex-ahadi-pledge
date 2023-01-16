@@ -51,7 +51,8 @@ class PaymentController extends Controller
             'pledge_id' => 'required',
             'amount' => 'required',
             'receipt' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'verified'=>'1'
              ]
             );
 
@@ -73,8 +74,8 @@ class PaymentController extends Controller
             $remainigAmount = $pledgeAmount - $totalPaid;
 
             if($reqAmount > $remainigAmount){
-
-                return response()->json(['fail' => "Amount exceeds remaining amount"]);
+                $fail="Amount exceeds remaining amount";
+                return response()->json(['fail' =>$fail ]);
 
 
             }else {
@@ -84,7 +85,8 @@ class PaymentController extends Controller
                     "amount" => $request->amount,
                     "receipt" => $request->receipt,
                     "pledge_id"=>$request->pledge_id,
-                    "created_by"=> $request->user()->id
+                    "created_by"=> $request->user()->id,
+                    "verified"=>$request->verified,
                 ]);
     
               
