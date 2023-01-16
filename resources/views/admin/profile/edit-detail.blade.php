@@ -12,6 +12,22 @@
                     }
                 })
              
+
+           function changePassword()
+                {
+    
+        //             let url = $('meta[name=app-url]').attr("content") + "/admin/profile/{{Auth::User()->id; }}" ;
+                    $.ajax({
+        //                 url: url,
+        //                 type: "GET",
+                        success: function(response) {
+                            $("#password-modal").modal('show'); 
+                        },
+                        error: function(response) {
+                            console.log(response.responseJSON)
+                        }
+                    });
+                }
     
             /*
                     edit profile detail function

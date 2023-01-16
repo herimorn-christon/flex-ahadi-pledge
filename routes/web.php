@@ -160,6 +160,9 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   // my-notifications API
    Route::apiResource('notifications', NotificationsController::class);
 
+  // admin change password route
+  Route::post('change-password', [App\Http\Controllers\Admin\ProfileController::class,'store']);
+
 // my-profile API
   Route::apiResource('profile', ProfileController::class);
 

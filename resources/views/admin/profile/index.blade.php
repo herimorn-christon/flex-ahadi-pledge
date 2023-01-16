@@ -35,12 +35,12 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
         </button>
         {{-- end of edit profile button --}}
 
-                {{-- start of edit profile button --}}
-                <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="editProfile()">
-                    <i class="fa fa-key"></i>
-                     Change Password
-                </button>
-                {{-- end of edit profile button --}}
+        {{-- start of edit profile button --}}
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="changePassword()">
+            <i class="fa fa-key"></i>
+             Change Password
+        </button>
+        {{-- end of edit profile button --}}
     </li>
        
       </ol>
@@ -103,4 +103,10 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
 
 @include('admin.profile.edit-detail')
 {{-- end of edit profile ajax method --}}
+
+{{-- start of profile modal --}}
+@include('admin.profile.change-password-modal')
+{{-- end of profile modal --}}
+
+
 @endsection
