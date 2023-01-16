@@ -172,7 +172,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 
   Route::get('/getEmployees/{id}',  [App\Http\Controllers\Admin\PaymentController::class, 'getEmployees']);
 
-
   Route::get('ajax-autocomplete-search', [Select2SearchController::class,'selectSearch']);
 
   // all supports route
@@ -263,6 +262,9 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   // my-profile
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
     // for event remainder
+
+//Manage Purposes API route
+Route::apiResource('purposes', PurposeController::class);
 
  
 });

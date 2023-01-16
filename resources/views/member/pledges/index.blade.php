@@ -48,7 +48,7 @@
             <i class="fa fa-plus"></i>
              Register New Pledge 
         </button>  
-        <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" data-target="#types">
+        <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" onclick="showAllPurposes()">
             <i class="fa fa-list"></i>
             Contribution Purposes
         </button>
@@ -113,15 +113,12 @@
         
       </div>
       <div class="modal-body">
-        @php
-        $purposes=App\Models\Purpose::where('status','')->get();
-      
-        @endphp
+     
         <div class="row">
-          <table id="modaltable"  class="cell-border table table-bordered ">
+          <table id="example1"  class="cell-border table table-bordered ">
               <thead>
                   <tr class="text-secondary">
-                      <th>ID</th>
+                      <th>SN</th>
                       <th>Purpose</th>
                       <th>Details</th>
                       <th>Start date</th>
@@ -129,19 +126,8 @@
                       <th>Status</th>
                   </tr>
               </thead>
-              <tbody id="types-table-body">
-                  @foreach ($purposes as $item)
-                  <tr>
-                      <td>{{ $item->id }}</td>
-                      <td>{{ $item->title }}</td>
-                      <td>{{ $item->description }}</td>
-                      <td>{{ $item->start_date }}</td>
-                      <td>{{ $item->end_date }}</td>
-                      <td class="text-success">{{ $item->status=='1'? 'Hidden':'Active' }}</td>
-                   
-                  </tr>
-                  @endforeach
-
+              <tbody id="purposes-table-body">
+                
               </tbody>
           </table>
 
@@ -204,6 +190,10 @@
   {{-- start of ajax register pledge method --}}
   @include('member.pledges.ajax-register-pledge-method')
   {{-- end of ajax register plege method --}}
+
+    {{-- start of ajax fetch all pledges method --}}
+    @include('member.pledges.ajax-fetch-all-purposes')
+    {{-- end of ajax fetch all pleges method --}}
 <script type="text/javascript">
   
        
