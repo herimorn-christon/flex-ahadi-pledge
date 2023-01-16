@@ -112,6 +112,7 @@ class DashboardController extends Controller
 
                return view('member.dashboard',
                compact(
+                'total_amount',
                    'pledges',
                    'payments',
                    'remaining',
@@ -161,6 +162,7 @@ class DashboardController extends Controller
 
      return view('member.dashboard',
      compact(
+        'total_amount',
          'pledges',
          'payments',
          'remaining',
@@ -190,6 +192,7 @@ class DashboardController extends Controller
 
         return view('member.dashboard',
         compact(
+            'total_amount',
             'pledges',
             'payments',
             'remaining',

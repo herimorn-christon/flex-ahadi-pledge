@@ -11,7 +11,7 @@
   }
 </style>
 
-<div class="card  p-2 border-left-flex">
+<div class="card  p-2 mx-2 border-left-flex">
   <div class="row mb-1">
 
   {{-- start of statistics --}}

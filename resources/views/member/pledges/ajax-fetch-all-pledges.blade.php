@@ -47,7 +47,7 @@
                               '<td>' + pledges[i].formattedDate + '</td>' +
                               '<td>' + pledges[i].name + '</td>' +
                               '<td>' + pledges[i].purpose.title + '</td>' +
-                              '<td>' + pledges[i].amount +'</td>' +
+                              '<td>' + (pledges[i].amount== '0' ? 'Null': pledges[i].amount )+'</td>' +
                               '<td>' + pledges[i].deadline +'</td>' +
                               '<td class="'+(pledges[i].purpose.status == '0' ? 'text-danger':'text-teal')+'">' +(pledges[i].purpose.status == '0' ? 'Not Fullfilled':'Fullfilled')+ '</td>'+
                               '<td>' + showBtn + (pledges[i].user_id == pledges[i].created_by ? editBtn :adminBtn)+'</td>' +
