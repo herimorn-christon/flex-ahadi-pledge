@@ -22,11 +22,10 @@ class MyCardController extends Controller
         $user=Auth::user()->id;
         $members = CardMember::where('user_id',$user)->orderBy('updated_at','DESC')->with('user')->with('card')->get();
         $card=CardMember::where('user_id',$user)->orderBy('updated_at','DESC')->where('status','')->with('user')->with('card')->first();
-        $payment=CardPayment::where('card_no',$card->id)->sum('amount');
+        // $payment=CardPayment::where('card_no',$card->id)->sum('amount');
         return response()->json([
                                 'members' => $members,
-                                'card'=>$card,
-                                'payment'=>$payment
+                                'card'=>$card
                             ]);
     }
 

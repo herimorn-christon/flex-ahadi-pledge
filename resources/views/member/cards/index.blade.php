@@ -63,10 +63,10 @@
             <table id="example" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
-                        <th>ID</th>
+                        <th>SN</th>
                         <th>Card Number</th>
                         <th>Status</th>
-                        <th>Created At</th>
+                        <th>Issued Date</th>
                         <th>View</th>
                     </tr>
                 </thead>
@@ -88,6 +88,8 @@
       </div>
       <div class="modal-body">
         <b class="text-secondary">Member Name:</b>   <span id="fname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span>
+        <br>
+        <b class="text-secondary">Card Detail:</b>   <span id="card-info" class="text-dark"></span> 
         <hr>
         <div class="row">
           <table id="modaltable" class="table table-bordered ">
@@ -144,10 +146,10 @@
                           let status= members[i].status == '0' ? 'Active':'InActive';
        
                           let projectRow = '<tr>' +
-                              '<td>' + members[i].id +  '</td>' +
+                              '<td>' + (1+i) +  '</td>' +
                               '<td>' + members[i].card.card_no + ' /'+ members[i].user.id + '</td>' +
                               '<td class="text-success">' + status +'</td>' +
-                              '<td>' + members[i].created_at +  '</td>' +
+                              '<td>' + members[i].formattedDate+  '</td>' +
                               '<td>'  + showBtn+  '</td>' +
                           '</tr>';
                           $("#members-table-body").append(projectRow);
@@ -369,6 +371,7 @@
                        $("#fname-info").html(card.user.fname );
                        $("#mname-info").html(card.user.mname );
                        $("#lname-info").html(card.user.lname );
+                       $("#card-info").html(card.card.card_no+'/'+card.user_id );
     //                      let addBtn =  '<button ' +
     //                             ' class="btn btn-primary    " ' +
     //                             ' onclick="addCardPayment(' + card[i].id + ')"> Create Payment' +
@@ -382,7 +385,7 @@
        
                           let projectRow = '<tr>' +
                               '<td>' + payment[i].id + '</td>' +
-                              '<td>' + payment[i].created_at+ '</td>' +
+                              '<td>' + payment[i].formattedDate+ '</td>' +
                               '<td>' + payment[i].amount + '</td>' +
                           '</tr>';
                           $("#payment-table-body").append(projectRow);
