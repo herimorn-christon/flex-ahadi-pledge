@@ -77,52 +77,7 @@
 
   <script type="text/javascript">
   
-          showAllAnnouncements();
-  
-          /*
-              This function will get all the Announcements records
-          */
-          function showAllAnnouncements()
-          {
-              let url = $('meta[name=app-url]').attr("content") + "/member/announcements";
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                      $("#members-table-body").html("");
-                      let members = response.members;
-                      for (var i = 0; i < members.length; i++) 
-                      {
-                          let showBtn =  '<button ' +
-                                ' class="btn bg-flex text-light  btn-sm " ' +
-                                ' onclick="showCardMember(' + members[i].id + ')"><i class="fa fa-eye"></i>' +
-                            '</button> ';
-                            let deleteBtn =  '<button ' +
-                              ' class="btn btn-danger btn-sm" ' +
-                              ' onclick="destroyCardMember(' + members[i].id + ')"><i class="fa fa-trash"></i>' +
-                          '</button>';
-
-                          let status= members[i].status == '0' ? 'Active':'InActive';
-       
-                          let projectRow = '<tr>' +
-                              '<td>' + members[i].id +  '</td>' +
-                              '<td class="">' + members[i].title +'</td>' +
-                              '<td>' + members[i].created_at +  '</td>' +
-                              '<td>'  +showBtn+   '</td>' +
-                          '</tr>';
-                          $("#members-table-body").append(projectRow);
-                      
-                      }
-       
-                       
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-       
-     
+          
        
           /*
               get and display the record info on modal
@@ -150,35 +105,5 @@
               });
           }
 
-       /*
-              delete record function
-          */
-          function destroyCardMember(id)
-          {
-              let url = $('meta[name=app-url]').attr("content") + "/member/notifications/" + id;
-              let data = {
-                  card_no: $("#card_no").val(),
-                  user_id: $("#user_id").val(),
-              };
-              $.ajax({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  },
-                  url: url,
-                  type: "DELETE",
-                  data: data,
-                  success: function(response) {
-                      let successHtml = '<div class="alert alert-danger" role="alert">Assigned Card Was Deleted Successfully </div>';
-                      $("#alert-div").html(successHtml);
-                      showAllCardMembers();
-                      showAllCards();
-                   
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-       
       </script>
 @endsection
