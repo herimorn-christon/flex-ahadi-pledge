@@ -60,7 +60,7 @@
     <div class="mt-2">
 
         <div class="responsive mx-1 mt-2">
-            <table id="example" class="table table-bordered cell-border">
+            <table id="example1" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
                         <th>SN</th>

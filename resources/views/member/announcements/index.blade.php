@@ -1,6 +1,6 @@
 @extends('layouts.member')
 
-@section('title','My Cards')
+@section('title','Announcements')
 
 
 @section('content')
@@ -30,8 +30,8 @@
  
     <div class="mt-2">
 
-        <div class="responsive p-1">
-            <table id="example1" class="table">
+        <div class=" p-1">
+            <table id="example1" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>
@@ -77,12 +77,12 @@
 
   <script type="text/javascript">
   
-          showAllCardMembers();
+          showAllAnnouncements();
   
           /*
-              This function will get all the Available Cards records
+              This function will get all the Announcements records
           */
-          function showAllCardMembers()
+          function showAllAnnouncements()
           {
               let url = $('meta[name=app-url]').attr("content") + "/member/announcements";
               $.ajax({
