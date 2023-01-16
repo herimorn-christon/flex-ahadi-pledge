@@ -16,6 +16,7 @@
                     success: function(response) {
                         $("#purposes-table-body").html("");
                         let purposes = response.announcements;
+                        let total_announcements = response.total_announcements;
                         for (var i = 0; i < purposes.length; i++) 
                         {
                             let showBtn =  '<button ' +
@@ -33,12 +34,13 @@
          
                             let projectRow = '<tr>' +
                                 '<td>' + (i+1) + '</td>' +
+                                '<td>' + purposes[i].formattedDate + '</td>' +
                                 '<td>' + purposes[i].title + '</td>' +
                                 '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
                             '</tr>';
                             $("#purposes-table-body").append(projectRow);
                         }
-         
+                              $("#total_announcements").html(total_announcements);
                          
                     },
                     error: function(response) {

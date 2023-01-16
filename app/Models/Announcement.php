@@ -15,4 +15,13 @@ class Announcement extends Model
         'file',
     ];
 
+
+              // for formatted date 
+              public function getFormattedDateAttribute()
+              {
+                  return $this->created_at->format('D d-M-Y');
+              }
+              
+              protected $appends = ['formattedDate'];
+
 }

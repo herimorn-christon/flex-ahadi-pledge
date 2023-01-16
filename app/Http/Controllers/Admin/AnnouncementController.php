@@ -20,7 +20,8 @@ class AnnouncementController extends Controller
     public function index()
     {
         $announcements = Announcement::orderBy('updated_at','DESC')->get();
-        return response()->json(['announcements' => $announcements]);
+        $total_announcements=Announcement::count();
+        return response()->json(['announcements' => $announcements,'total_announcements'=>$total_announcements]);
     }
 
     /**
@@ -35,7 +36,7 @@ class AnnouncementController extends Controller
             [
             'title' => 'required|max:255',
             'body' => 'required',
-            'attachment' => 'nullable',
+            'image' => 'nullable',
              ]
             );
 
@@ -48,6 +49,7 @@ class AnnouncementController extends Controller
                 $file->move('uploads/announcement/', $filename);
                 $announcement->file=$filename;
             }
+            
             $announcement->save();
             
             // start of user notification

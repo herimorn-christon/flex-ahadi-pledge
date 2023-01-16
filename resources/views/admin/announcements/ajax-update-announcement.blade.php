@@ -17,7 +17,7 @@
                         $("#update_id").val(purpose.id);
                         $("#title").val(purpose.title);
                         $("#body").val(purpose.body);
-                        $("#attachment").val(purpose.file);
+                        $("#image").val(purpose.file);
                         $("#form-modal").modal('show'); 
                     },
                     error: function(response) {
@@ -31,13 +31,12 @@
             */
             function updateAnnouncement()
             {
-                $("#save-purpose-btn").prop('disabled', true);
-                let url = $('meta[name=app-url]').attr("content") + "/admin/purposes/" + $("#update_id").val();
+                $("#save-announcement-btn").prop('disabled', true);
+                let url = $('meta[name=app-url]').attr("content") + "/admin/announcements/" + $("#update_id").val();
                 let data = {
                     title: $("#title").val(),
-                    start_date: $("#start_date").val(),
-                    end_date: $("#end_date").val(),
-                    description: $("#description").val(),
+                    body: $("#body").val(),
+                    image: $("#image").val()
                 };
                 $.ajax({
                     headers: {
@@ -47,50 +46,45 @@
                     type: "PUT",
                     data: data,
                     success: function(response) {
-                        $("#save-purpose-btn").prop('disabled', false);
-                        let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Updated Successfully !</div>';
+                        $("#save-announcement-btn").prop('disabled', false);
+                        let successHtml = '<div class="alert alert-success" role="alert">Announcement Was Updated Successfully !</div>';
                         $("#alert-div").html(successHtml);
                         $("#tite").val("");
-                        $("#start_date").val("");
-                        $("#end_date").val("");
-                        $("#description").val("");
-                        showAllPurposes();
-                        $("#form-modal").modal('hide');
+                        $("#body").val("");
+                        $("#image").val("");
+                         showAllAnnouncements();
+                         $("#form-modal").modal('hide'); 
+                       
+                       
                     },
                     error: function(response) {
                         /*
             show validation error
                         */
-                        $("#save-purpose-btn").prop('disabled', false);
+                        $("#save-announcement-btn").prop('disabled', false);
                         if (typeof response.responseJSON.errors !== 'undefined') 
                         {
                             console.log(response)
             let errors = response.responseJSON.errors;
            descriptionValidation = "";
-            if (typeof errors.description !== 'undefined') 
-                            {
-                                descriptionValidation = '<li>' + errors.description[0] + '</li>';
-                            }
-            let titleValidation = "";
             if (typeof errors.title !== 'undefined') 
                             {
-                                titleValidation = '<li>' + errors.title[0] + '</li>';
+                                descriptionValidation = '<li>' + errors.title[0] + '</li>';
+                            }
+            let titleValidation = "";
+            if (typeof errors.body !== 'undefined') 
+                            {
+                                titleValidation = '<li>' + errors.body[0] + '</li>';
                             }
             let startDateValidation = "";
-            if (typeof errors.start_date !== 'undefined') 
+            if (typeof errors.image !== 'undefined') 
                             {
-                                startDateValidation = '<li>' + errors.start_date[0] + '</li>';
-                            }
-              
-            let endDateValidation = "";
-            if (typeof errors.end_date !== 'undefined') 
-                            {
-                                endDateValidation = '<li>' + errors.end_date[0] + '</li>';
+                                startDateValidation = '<li>' + errors.image[0] + '</li>';
                             }
              
             let errorHtml = '<div class="alert alert-danger" role="alert">' +
                 '<b>Validation Error!</b>' +
-                '<ul>' + titleValidation + descriptionValidation + startDateValidation + endDateValidation +'</ul>' +
+                '<ul>' + titleValidation + descriptionValidation + startDateValidation +'</ul>' +
             '</div>';
             $("#error-div").html(errorHtml);        
         }

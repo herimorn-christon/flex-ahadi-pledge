@@ -13,7 +13,7 @@
 <div class="">
   <div class="row starts-border mt-2 mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Announcements Made </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total_announcements"></h6></div>
   </div>
 
   
@@ -44,7 +44,7 @@
         {{-- end of ajax register purpose method --}}
 
         {{-- start of ajax update purpose method --}}
-        {{-- @include('admin.purposes.ajax-update-purpose') --}}
+        @include('admin.announcements.ajax-update-announcement')
         {{-- end of ajax update purpose method --}}
 
         {{-- start of ajax delete purpose method --}}
@@ -65,6 +65,7 @@
                 <thead>
                     <tr class="text-secondary">
                         <th>SN</th>
+                        <th>Published Date</th>
                         <th>Announcement Title</th>
                          <th>Actions</th>
                     </tr>
