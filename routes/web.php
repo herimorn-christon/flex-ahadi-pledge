@@ -172,7 +172,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 
   Route::get('ajax-autocomplete-search', [Select2SearchController::class,'selectSearch']);
 
-
+  // all supports route
+  Route::get('support', function () {
+    return view('admin.support.index');
+    });
 });
 
 
