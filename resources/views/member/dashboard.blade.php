@@ -107,7 +107,7 @@
                     </h6>
     
                     <h3 class="text-secondary">
-                      {{$pledges}}
+                      {{$total_amount}}
                       <small>Tsh</small>
                     </h3>
                   </div>
@@ -204,7 +204,7 @@
                           </div>
                           <div class="row starts-border">
                             <div class="col-md-6"> <h6 class="text-secondary">Total Money Pledges in {{ date('Y')}}</h6></div>
-                            <div class="col-md-6 text-right" ><h6 class="font-weight-bolder">({{$pledges.' Tsh'}}) {{ $cash_pledges}}</h6></div>
+                            <div class="col-md-6 text-right" ><h6 class="font-weight-bolder">({{$total_amount.' Tsh'}}) {{ $cash_pledges}}</h6></div>
                           </div>
                           <div class="row starts-border">
                             <div class="col-md-6"> <h6 class="text-secondary"> Total Object Pledges in {{ date('Y')}} </h6></div>
@@ -239,11 +239,11 @@
                               {{-- progress-bar-striped  --}}
                               progress-bar-animated
                               @if($progress<=25)
-                              bg-danger
+                              bg-flex
                               @elseif($progress>25 && $progress<=50)
-                              bg-warning
+                              bg-flex
                               @elseif($progress>50 && $progress<=75)
-                              bg-primary
+                              bg-flex
                               @else
                               bg-success
                               @endif
@@ -305,11 +305,11 @@
                           {{-- progress-bar-striped  --}}
                           progress-bar-animated
                           @if($progress<=25)
-                          bg-danger
+                          bg-flex
                           @elseif($progress>25 && $progress<=50)
-                          bg-warning
+                          bg-flex
                           @elseif($progress>50 && $progress<=75)
-                          bg-primary
+                          bg-flex
                           @else
                           bg-success
                           @endif
@@ -330,11 +330,11 @@
                           {{-- progress-bar-striped  --}}
                           progress-bar-animated
                           @if($progress<=25)
-                          bg-danger
+                          bg-flex
                           @elseif($progress>25 && $progress<=50)
-                          bg-warning
+                          bg-flex
                           @elseif($progress>50 && $progress<=75)
-                          bg-primary
+                          bg-flex
                           @else
                           bg-success
                           @endif

@@ -20,6 +20,7 @@ class DashboardController extends Controller
 
 
         
+    // Function for number convertion
     function thousandsCurrencyFormat($num) {
 
         if($num>1000) {
@@ -39,9 +40,9 @@ class DashboardController extends Controller
       
         return $num;
       }
-
         $user=Auth::user()->id;
         $pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->sum('amount');
+        $total_amount=thousandsCurrencyFormat($pledges);
         $payments=Payment::where('user_id',$user)->whereYear('created_at', date('Y'))->sum('amount');
         $pledges_no=Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->count();
         $mypledges=Pledge::whereYear('created_at', date('Y'))
@@ -52,8 +53,10 @@ class DashboardController extends Controller
         $cash_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->where('type_id',2)->count();
         $object_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->where('type_id',1)->count();
         $card=CardMember::where('user_id',$user)->whereYear('created_at', date('Y'))->where('status','')->first();
+        
         if($card){
             $cardpayments=CardPayment::where('card_member',$card->id)->sum('amount');
+            $total_cardp=thousandsCurrencyFormat(CardPayment::where('card_member',$card->id)->sum('amount'));
            // For Payment Statistics
         $payrate = Payment::select(\DB::raw("SUM(amount) as count"))
         ->whereYear('created_at', date('Y'))
@@ -66,14 +69,7 @@ class DashboardController extends Controller
             $number=$payments/$pledges*100; //progress formular
             $progress=number_format((float)$number, 2, '.', '');//Reducing the number of decimal points to progress 
             // formular for remaining amount
-            $remaining=$pledges-$payments;
-
-            // if($request->ajax()) {  
-            //     $data = Events::whereDate('event_start', '>=', $request->start)
-            //         ->whereDate('event_end',   '<=', $request->end)
-            //         ->get(['id', 'event_name', 'event_start', 'event_end']);
-            //     return response()->json($data);
-            // }
+            $remaining= thousandsCurrencyFormat($pledges-$payments);
 
             if(request()->ajax()){
                 $start = (!empty($_GET["event_start"])) ? ($_GET["event_start"]) : ('');
@@ -85,7 +81,8 @@ class DashboardController extends Controller
 
             return view('member.dashboard',
             compact(
-                'pledges',
+                'total_amount',
+                'total_cardp',
                 'payments',
                 'remaining',
                 'pledges_no',
@@ -96,7 +93,8 @@ class DashboardController extends Controller
                 'events',
                 'total_pledges',
                 'cash_pledges',
-                'object_pledges'
+                'object_pledges',
+                
 
             ));
         }
