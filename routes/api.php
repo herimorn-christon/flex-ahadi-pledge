@@ -47,23 +47,6 @@ Route::middleware('auth:sanctum')->get('/notification', function (Request $reque
 });
 
 
-Route::get('/kappa', function (Request $request) {
-    // $reminders = Reminder::all();
-
-    // $userId = $reminders[0]->pledge()->get()[0]->user_id;
-    // $user = User::find($userId);
-    // $user->notify(new PledgeReminder);
-
-//  $lol = Reminder::find(1)->pledge->name;
-
-//     dd($lol);
-   
-
-    return response()->json(['success' => "Notification Sent"], 200);
-});
-
-
-
 Route::middleware('auth:sanctum')->post('/user/update', function (Request $request) {
     $user = $request->user();
     $user->update($request->all());
