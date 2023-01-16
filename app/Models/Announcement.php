@@ -12,7 +12,7 @@ class Announcement extends Model
     protected $fillable = [
         'title',
         'body',
-        'file',
+        'attachment',
     ];
 
 

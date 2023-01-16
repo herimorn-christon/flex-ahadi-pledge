@@ -459,7 +459,7 @@ Highcharts.chart('container1', {
 
      xAxis: {
 
-        categories: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+        categories: []
 
     },
 
