@@ -49,44 +49,26 @@
                                    <div class="mb-3">
                                       <label for="" class="text-secondary">System Logo</label>
                                       <input name="logo" type="file" class="form-control">
-                              
+                                      <img src="{{ asset('uploads/settings/'.$setting->logo)}}" width="20px" height="20px">
+
                                   </div>
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">System Favicon</label>
                                       <input name="favicon" type="file" class="form-control">
                                       
-                                      <img src="" width="20px" height="20px">
+                                      <img src="{{ asset('uploads/settings/'.$setting->favicon)}}" width="20px" height="20px">
                                       
                                   </div>
                                   <div class="mb-3">
-                                    <label for="" class="text-secondary">Landing Page Image</label>
-                                    <input name="favicon" type="file" class="form-control">
-                                    
-                                    <img src="" width="20px" height="20px">
-                                    
-                                  </div>
-                                  <div class="mb-3">
-                                      <label for="" class="text-secondary">Navbar Theme</label>
-                                      <select name="nav_bar" id="" class="form-control bg-light">
-                                        <option value="">Light and Light Theme</option>
-                                        <option value="">Light and Blue Theme</option>
-                                        <option value="">Dark and Blue Theme</option>
-                                        <option value="">Dark and Info Theme</option>
+                                      <label for="" class="text-secondary">System Theme</label>
+                                      <select name="theme" id="theme" class="form-control bg-light">
+                                        <option value="light">Light Theme</option>
+                                        <option value="dark" class="bg-dark text-light">Dark Theme</option>
+                                        <option value="navy" class="bg-navy text-light">Navy Theme</option>
                                        
                                       </select>
                                      
                                   </div>
-                                  <div class="mb-3">
-                                    <label for="" class="text-secondary">Sidebar Theme</label>
-                                    <select name="nav_bar" id="" class="form-control bg-light">
-                                      <option value="">Light and Light Theme</option>
-                                      <option value="">Light and Blue Theme</option>
-                                      <option value="">Dark and Blue Theme</option>
-                                      <option value="">Dark and Info Theme</option>
-                                     
-                                    </select>
-                                   
-                                </div>
                                 <hr>
                                   <div class="row">
                                     

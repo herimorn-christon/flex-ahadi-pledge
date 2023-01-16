@@ -5,22 +5,26 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
+
+    //index function
+    public function index(){
+        $setting=Setting::find(1);
+        return view('admin.settings',compact('setting'));
+    }
+
+
     public function save(Request $request)
     {
         $validator=Validator::make($request->all(),[
-            'website_name'=>'required|max:255',
+            'system_name'=>'required|max:255',
             'logo'=>'nullable',
             'favicon'=>'nullable',
-            'about'=>'nullable',
-            'terms'=>'nullable',
-            'description'=>'nullable',
-            'privacy'=>'nullable',
-            'meta_title'=>'nullable',
-            'meta_description'=>'required',
-            'meta_keyword'=>'required'
+            'theme'=>'nullable'
         ]);
         if($validator->fails())
         {
