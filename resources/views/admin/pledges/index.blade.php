@@ -36,7 +36,7 @@
 
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Best Pledge Maker</h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="best"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="best"></h6></div>
   </div>
 
 
