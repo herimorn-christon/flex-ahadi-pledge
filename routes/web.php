@@ -127,9 +127,15 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::get('member-pledges', [App\Http\Controllers\PDFViewController::class, 'memberPledgesReport']);
 
 // settings page route
-Route::get('/settings', function () {
-  return view('admin.settings');
-  });
+// Route::get('/settings', function () {
+//   return view('admin.settings');
+//   });
+
+
+  // all settings route
+  Route::get('settings', [App\Http\Controllers\Admin\SettingController::class,'index']);
+  // saving settings using post method
+  Route::post('settings', [App\Http\Controllers\Admin\SettingController::class,'save']);
 
 
 // all announcements route

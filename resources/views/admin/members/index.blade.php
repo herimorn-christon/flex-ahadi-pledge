@@ -75,7 +75,7 @@
 
 
       {{-- start of generate member report modal --}}
-      @include('admin.reports.member-report-modal')
+      @include('admin.announcements.member-report-modal')
       {{-- end of generate member report modal --}}
 </li>
    
