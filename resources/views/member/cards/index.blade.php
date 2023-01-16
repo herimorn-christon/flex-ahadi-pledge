@@ -13,7 +13,7 @@
 <div class="">
   <div class="row starts-border  mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Card Payments Made in {{ date('Y')}} </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="payments"></h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="card-payments"></h6></div>
   </div>
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Current Card Member </h6></div>
@@ -25,7 +25,7 @@
 {{-- end of statistics --}}
     <div class="col-sm-5" id="alert-div">
       @if (session('status'))
-      <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
+      <div class="alert alert-success"  role="alert">
           {{ session('status') }}
       </div>
       @endif

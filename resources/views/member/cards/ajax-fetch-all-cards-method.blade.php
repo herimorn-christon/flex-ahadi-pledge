@@ -14,6 +14,7 @@
                   success: function(response) {
                       $("#members-table-body").html("");
                       let members = response.members;
+                      let card_payments = response.card_payments;
                       for (var i = 0; i < members.length; i++) 
                       {
                             let showBtn =  '<button ' +
@@ -30,6 +31,8 @@
                               '<td>' + members[i].formattedDate+  '</td>' +
                               '<td>'  + showBtn+  '</td>' +
                           '</tr>';
+
+                          $("#card-payments").html(card_payments+' Tsh');
                           $("#members-table-body").append(projectRow);
                       
                       }
