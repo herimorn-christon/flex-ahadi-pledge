@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member;
 
 use App\Models\Pledge;
+use App\Models\Payment;
 use App\Models\Purpose;
 use App\Models\PledgeType;
 use App\Models\Notification;
@@ -52,7 +53,7 @@ class MyPledgeController extends Controller
                               ->where('status','')
                               ->count();
         $money=thousandsCurrencyFormat(Pledge::where('user_id',$user)->sum('amount'));
-        $object=Pledge::where('user_id',$user)->where('type_id','0')->count();
+        $object=Pledge::where('user_id',$user)->where('type_id','1')->count();
 
 
         $pledges = Pledge::where('user_id',$user)

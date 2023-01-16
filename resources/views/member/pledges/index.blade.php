@@ -78,6 +78,7 @@
             <thead>
                 <tr class="text-secondary">
                     <th>ID</th>
+                    <th>Created Date</th>
                     <th>Pledge Name</th>
                     <th>Purpose</th>
                     <th>Amount</th>
@@ -107,9 +108,7 @@
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header bg-light">
-        <button type="button" class="close btn-sm btn-danger" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
         
       </div>
       <div class="modal-body">
