@@ -11,13 +11,13 @@
 
   {{-- start of statistics --}}
 <div class="">
-  <div class="row starts-border mt-2" >
+  <div class="row starts-border mx-1 mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Card Payments Made in {{ date('Y')}} </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="payments"></h6></div>
   </div>
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Current Card Member </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="current"></h6></div>
   </div>
   
 

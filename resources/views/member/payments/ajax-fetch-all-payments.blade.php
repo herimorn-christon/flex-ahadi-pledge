@@ -31,7 +31,7 @@
                                 '<td>' + purposes[i].formattedDate   + '</td>' +
                                 '<td>' + purposes[i].pledge.name + '</td>' +
                                 '<td>' + purposes[i].payment.name + '</td>' +
-                                '<td>' + purposes[i].amount+ 'Tsh'+ '</td>' +
+                                '<td>' + purposes[i].amount+ ' Tsh'+ '</td>' +
                                 '<td class="text-teal">' + (purposes[i].verified == '1' ? 'Verified':'Not Verified' )+  '</td>' +
                                 // '<td class="'+(purposes.verified == '0' ? 'text-teal':'text-danger')+'">'+(purposes.verified == '1' ? 'Verified':'Not Verified')+ '</td>'+
                                 '<td>' + showBtn + '</td>' +
