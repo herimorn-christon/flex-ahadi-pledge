@@ -162,122 +162,19 @@
   @include('member.pledges.ajax-register-pledge-method')
   {{-- end of ajax register plege method --}}
 
-    {{-- start of ajax fetch all pledges method --}}
-    @include('member.pledges.ajax-fetch-all-purposes')
-    {{-- end of ajax fetch all pleges method --}}
+  {{-- start of ajax update pledge method --}}
+  @include('member.pledges.ajax-update-pledge')
+  {{-- end of ajax update plege method --}}
+
+  {{-- start of ajax fetch all pledges method --}}
+  @include('member.pledges.ajax-fetch-all-purposes')
+  {{-- end of ajax fetch all pleges method --}}
+
 <script type="text/javascript">
   
        
        
 
-    /*
-              edit record function
-              it will get the existing value and show the purpose form
-          */
-          function editPledge(id)
-          {
-              let url = $('meta[name=app-url]').attr("content") + "/member/pledges/" + id ;
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                      let purpose = response.purpose;
-                      $("#alert-div").html("");
-                      $("#error-div").html("");   
-                      $("#update_id").val(purpose.id);
-                      $("#name").val(purpose.name);
-                      $("#amount").val(purpose.amount);
-                      $("#user_id").val(purpose.user_id);
-                      $("#type_id").val(purpose.type_id);
-                      $("#purpose_id").val(purpose.purpose_id);
-                      $("#deadline").val(purpose.deadline);
-                      $("#description").val(purpose.description);
-                      $("#status").val(purpose.status);
-                      $("#form-modal").modal('show'); 
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-       
-          /*
-              sumbit the form and will update a record
-          */
-          function updatePledge()
-          {
-              $("#save-pledge-btn").prop('disabled', true);
-              let url = $('meta[name=app-url]').attr("content") + "/member/pledges/" + $("#update_id").val();
-              let data = {
-                  name: $("#name").val(),
-                  amount: $("#amount").val(),
-                  deadline: $("#deadline").val(),
-                  description: $("#description").val(),
-                  type_id: $("#type_id").val(),
-                  purpose_id: $("#purpose_id").val(),
-                  status: $("#status").val(),
-              };
-              $.ajax({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                  },
-                  url: url,
-                  type: "PUT",
-                  data: data,
-                  success: function(response) {
-                      $("#save-pledge-btn").prop('disabled', false);
-                      let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Updated Successfully !</div>';
-                      $("#alert-div").html(successHtml);
-                      $("#name").val("");
-                      $("#type_id").val("");
-                      $("#purpose_id").val("");
-                      $("#deadline").val("");
-                      $("#amount").val("");
-                      $("#description").val("");   
-                      $("#status").val(""); 
-                      showAllPledges();
-                      $("#form-modal").modal('hide');
-                  },
-                  error: function(response) {
-                      /*
-          show validation error
-                      */
-                      $("#save-pledge-btn").prop('disabled', false);
-                      if (typeof response.responseJSON.errors !== 'undefined') 
-                      {
-                          console.log(response)
-          let errors = response.responseJSON.errors;
-          let descriptionValidation = "";
-          if (typeof errors.description !== 'undefined') 
-                          {
-                              descriptionValidation = '<li>' + errors.description[0] + '</li>';
-                          }
-          let nameValidation = "";
-          if (typeof errors.name !== 'undefined') 
-                          {
-                              nameValidation = '<li>' + errors.name[0] + '</li>';
-                          }
-          let deadlineValidation = "";
-          if (typeof errors.deadline !== 'undefined') 
-                          {
-                              deadlineValidation = '<li>' + errors.deadline[0] + '</li>';
-                          }
-            
-          let amountValidation = "";
-          if (typeof errors.amount !== 'undefined') 
-                          {
-                              amountValidation = '<li>' + errors.amount[0] + '</li>';
-                          }
-           
-          let errorHtml = '<div class="alert alert-danger" role="alert">' +
-              '<b>Validation Error!</b>' +
-              '<ul>' + nameValidation + descriptionValidation + deadlineValidation + amountValidation +'</ul>' +
-          '</div>';
-          $("#error-div").html(errorHtml);        
-      }
-                  }
-              });
-          }
  /*
               get and display the record info on modal
           */
