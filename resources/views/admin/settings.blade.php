@@ -44,7 +44,7 @@
                                   @csrf
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">System Name</label>
-                                      <input name="system_name"  type="text" class="form-control">
+                                      <input name="system_name"  type="text" @if($setting) value="{{ $setting->system_name}}" @endif class="form-control">
                                   </div>
                                    <div class="mb-3">
                                       <label for="" class="text-secondary">System Logo</label>
@@ -74,7 +74,7 @@
                                     
                                       <div class="col-md-9"></div>
                                       <div class="col-md-3 ">
-                                          <button class="btn bg-navy btn-block float-end" type="submit">
+                                          <button class="btn bg-flex  text-light btn-block float-end" type="submit">
                                             <i class="fa fa-save"></i>
                                             Save Settings
                                           </button>
