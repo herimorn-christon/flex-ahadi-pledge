@@ -34,13 +34,13 @@
             <table id="example1" class="table table-bordered cell-border">
                 <thead>
                     <tr class="text-secondary">
-                        <th>ID</th>
-                        <th>Notification Name</th>
-                        <th>Received At</th>
+                        <th>SN</th>
+                        <th>Posted Date</th>
+                        <th>Announcement Title</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody id="members-table-body">
+                <tbody id="announcements-table-body">
    
   
                 </tbody>
@@ -72,7 +72,9 @@
 </div>
 
 
-
+ {{-- start of ajax fetch all announcemets --}}
+ @include('member.announcements.ajax-fetch-announcements')
+ {{-- end of ajax fetch all announcements --}}
 
 
   <script type="text/javascript">

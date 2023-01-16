@@ -13,7 +13,7 @@ showAllAnnouncements();
                   url: url,
                   type: "GET",
                   success: function(response) {
-                      $("#members-table-body").html("");
+                      $("#announcements-table-body").html("");
                       let announcements = response.members;
                       for (var i = 0; i < announcements.length; i++) 
                       {
@@ -24,12 +24,12 @@ showAllAnnouncements();
                       
 
                           let announcementRow = '<tr>' +
-                              '<td>' + announcements[i].id +  '</td>' +
-                              '<td class="">' + announcements[i].title +'</td>' +
+                              '<td>' + (1+i) +  '</td>' +
                               '<td>' + announcements[i].created_at +  '</td>' +
+                              '<td class="">' + announcements[i].title +'</td>' +
                               '<td>'  +showBtn+   '</td>' +
                           '</tr>';
-                          $("#members-table-body").append(announcementRow);
+                          $("#announcements-table-body").append(announcementRow);
                       
                       }
        
