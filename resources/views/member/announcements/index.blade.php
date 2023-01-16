@@ -48,64 +48,16 @@
   
         </div>
 
-
-{{-- view single card member info--}}
-<div class="modal fade" id="view-modal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-        <b class="text-secondary"><i class="fa fa-bell text-danger"></i> <span id="name-info" class="text-secondary"></span>  </b> 
-        <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-       
-        <div class="row">
-          
-            <span id="message-info" class="text-dark"></span>
-        </div>
-                
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
-
+{{-- start of single announcemnt modal --}}
+@include('member.announcements.single-announcement-modal')
+{{-- end of single announcement modal --}}
 
  {{-- start of ajax fetch all announcemets --}}
  @include('member.announcements.ajax-fetch-announcements')
  {{-- end of ajax fetch all announcements --}}
 
-
-  <script type="text/javascript">
+  {{-- start of ajax fetch announcement details --}}
+  @include('member.announcements.ajax-fetch-announcement-details')
+  {{-- end of ajax fetch member announcement details --}}
   
-          
-       
-          /*
-              get and display the record info on modal
-          */
-          function showCardMember(id)
-          {
-              $("#fname-info").html("");
-              $("#mname-info").html("");
-              let url = $('meta[name=app-url]').attr("content") + "/member/announcements/" + id +"";
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                         let notification = response.member;
-                       $("#name-info").html(notification.title );
-                       $("#date-info").html(notification.created_at );
-                       $("#message-info").html(notification.body );
-                       $("#view-modal").modal('show'); 
-                    
-       
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-
-      </script>
 @endsection

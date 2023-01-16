@@ -19,13 +19,13 @@ showAllAnnouncements();
                       {
                           let showBtn =  '<button ' +
                                 ' class="btn bg-flex text-light  btn-sm " ' +
-                                ' onclick="showCardMember(' + announcements[i].id + ')"><i class="fa fa-eye"></i>' +
+                                ' onclick="showAnnouncement(' + announcements[i].id + ')"><i class="fa fa-eye"></i>' +
                             '</button> ';
                       
 
                           let announcementRow = '<tr>' +
                               '<td>' + (1+i) +  '</td>' +
-                              '<td>' + announcements[i].created_at +  '</td>' +
+                              '<td>' + announcements[i].formattedDate+  '</td>' +
                               '<td class="">' + announcements[i].title +'</td>' +
                               '<td>'  +showBtn+   '</td>' +
                           '</tr>';
