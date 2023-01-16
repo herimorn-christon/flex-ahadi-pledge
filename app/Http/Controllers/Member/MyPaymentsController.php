@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Member;
 
+use App\Models\Pledge;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,7 +24,28 @@ class MyPaymentsController extends Controller
                     ->with('payment')
                     ->with('pledge')
                     ->get();
-        return response()->json(['payments' => $payments]);
+        $total_payments= Payment::where('user_id',$user)
+                                    ->orderBy('updated_at','DESC')
+                                    ->sum('amount');
+
+        $pledges=Pledge::where('user_id',$user)->sum('amount');
+        $remaining=$pledges-$total_payments;
+
+        $highest=Payment::where('user_id',$user)
+                        ->orderBy('updated_at','DESC')
+                        ->max('amount');
+
+        $lowest=Payment::where('user_id',$user)
+                        ->orderBy('updated_at','DESC')
+                        ->min('amount');
+        return response()->json([
+                                'payments' => $payments,
+                                'total_payments'=>$total_payments,
+                                'remaining'=>$remaining,
+                                'highest'=>$highest,
+                                'lowest'=>$lowest,
+                                'pledges'=>$pledges
+                            ]);
     }
 
     /**
@@ -46,13 +68,13 @@ class MyPaymentsController extends Controller
     public function show($id)
     {
         $user=Auth::User()->id;
-        $purpose = Payment::where('user_id',$user)
+        $payment = Payment::where('user_id',$user)
                             ->where('id',$id)
                             ->with('payer')
                             ->with('payment')
-                            ->with('purpose')
+                            ->with('pledge')
                             ->first();
-        return response()->json(['purpose' => $purpose]);
+        return response()->json(['payment' => $payment]);
     }
 
     /**

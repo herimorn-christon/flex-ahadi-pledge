@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\paymentFormRequest;
 use App\Http\Requests\Admin\paymentsFormRequest;
-
+use Illuminate\Support\Facades\Validator;
 class PaymentController extends Controller
 {
 
@@ -44,33 +44,81 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate(
             [
-            'type_id' => 'required|max:255',
-            'user_id' => 'required',
+            'type_id' => 'required',
             'pledge_id' => 'required',
             'amount' => 'required',
+            'receipt' => 'required',
+            'user_id' => 'required'
              ]
             );
 
-            $payment = new Payment();
-            $payment->type_id = $request->type_id;
-            $payment->user_id = $request->user_id;
-            $payment->amount = $request->amount;
-            $payment->pledge_id=$request->pledge_id;
-            $payment->user_id=$request->user_id;
-            $payment->created_by= Auth::user()->id;
-            $payment->save();
+    
+            $pledge = Pledge::find($request->pledge_id);
 
-            // start of user notification
-            $notification = new Notification();
-            $notification->user_id= $request->user_id;
-            $notification->created_by= Auth::user()->id;
-            $notification->type='Member Pledge';
-            $name=$request->amount;
-            $notification->message='Your Payment of '.$name.' Tsh has been confirmed successfully.';
-            $notification->save();
-            return response()->json(['status' => "success"]);
+            $pledgePayments = Payment::where('pledge_id', $request->pledge_id)->get()->toArray();
+
+            $totalPaid = array_reduce($pledgePayments, 
+            function ($acc, $element)
+                {
+                    return $acc + (int) $element['amount'];
+                }
+            , 0);
+
+            $reqAmount = (int) $request->amount;
+            $pledgeAmount = (int) $pledge->amount;
+
+            $remainigAmount = $pledgeAmount - $totalPaid;
+
+            if($reqAmount > $remainigAmount){
+
+                return response()->json(['fail' => "Amount exceeds remaining amount"]);
+
+
+            }else {
+                Payment::create([
+                    "type_id" => $request->type_id,
+                    "user_id" => $request->user_id,
+                    "amount" => $request->amount,
+                    "receipt" => $request->receipt,
+                    "pledge_id"=>$request->pledge_id,
+                    "created_by"=> $request->user()->id
+                ]);
+    
+              
+                return response()->json(['status' => "success"]);
+            }
+
+            
+        // request()->validate(
+        //     [
+        //     'type_id' => 'required|max:255',
+        //     'user_id' => 'required',
+        //     'pledge_id' => 'required',
+        //     'amount' => 'required',
+        //      ]
+        //     );
+
+        //     $payment = new Payment();
+        //     $payment->type_id = $request->type_id;
+        //     $payment->user_id = $request->user_id;
+        //     $payment->amount = $request->amount;
+        //     $payment->pledge_id=$request->pledge_id;
+        //     $payment->user_id=$request->user_id;
+        //     $payment->created_by= Auth::user()->id;
+        //     $payment->save();
+
+        //     // start of user notification
+        //     $notification = new Notification();
+        //     $notification->user_id= $request->user_id;
+        //     $notification->created_by= Auth::user()->id;
+        //     $notification->type='Member Pledge';
+        //     $name=$request->amount;
+        //     $notification->message='Your Payment of '.$name.' Tsh has been confirmed successfully.';
+        //     $notification->save();
+        //     return response()->json(['status' => "success"]);
     }
 
            /**

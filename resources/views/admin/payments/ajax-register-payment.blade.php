@@ -42,6 +42,7 @@
                     amount: $("#amount").val(),
                     user_id: $("#user_id").val(),
                     type_id: $("#type_id").val(),
+                    receipt: $("#receipt").val(),
                 };
                 $.ajax({
                     headers: {
@@ -59,6 +60,7 @@
                         $("#purpose_id").val("");
                         $("#user_id").val("");
                         $("#amount").val("");
+                        $("#receipt").val("");
                         showAllPayments();
                         $("#form-modal").modal('hide');
                     },
@@ -92,12 +94,20 @@
                             {
                                 amountValidation = '<li>' + errors.amount[0] + '</li>';
                             }
+            let receiptValidation = "";
+            if (typeof errors.receipt !== 'undefined') 
+                            {
+                                receiptValidation = '<li>' + errors.receipt[0] + '</li>';
+                            }
              
             let errorHtml = '<div class="alert alert-danger" role="alert">' +
                 '<b>Validation Error!</b>' +
                 '<ul>' + nameValidation + descriptionValidation + deadlineValidation + amountValidation +'</ul>' +
             '</div>';
-            $("#error-div").html(errorHtml);        
+            $("#error-div").html(errorHtml); 
+            let fail = response.responseJSON.fail;
+            $("#error-div").html(fail); 
+                   
         }
                     }
                 });

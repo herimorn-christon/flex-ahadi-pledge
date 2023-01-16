@@ -17,6 +17,11 @@
   {{-- start of statistics --}}
 <div class="">
   <div class="row starts-border mt-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Pledge Amount Made in {{ date('Y')}} </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total-pledges"> </h6></div>
+  </div> 
+
+  <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Pledge Payments Made in {{ date('Y')}} </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total-payments"> </h6></div>
   </div>
@@ -53,6 +58,12 @@
             <i class="fa fa-list"></i>
             Available Payment Methods
         </button>
+        {{-- start of register payment button --}}
+        <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" onclick="createPayment()">
+            <i class="fa fa-plus"></i>
+            Add Payment
+        </button>   
+            {{-- end of register payment button --}}
         <a href="" class="btn btn-sm bg-cyan mb-1">
           <i class="fa fa-file-pdf"></i>
           Generate Report
@@ -68,8 +79,8 @@
 <div class="card ">
  
 
-        <div class="responsivenes  p-1">
-            <table id="example"  class="table table-bordered  cell-border">
+        <div class="  p-1">
+            <table id="example1"  class="table   cell-border">
                 <thead>
                      <tr class="text-secondary">
                         <th>SN</th>
@@ -177,7 +188,7 @@
         <div class="modal-body">
           <p>
             
-            <b class="text-secondary">Payment Purpose:</b>   <span id="purpose-info" class="text-dark"></span>
+            <b class="text-secondary">Payment Pledge:</b>   <span id="purpose-info" class="text-dark"></span>
             <hr>
             <b class="text-secondary">Payment Amount:</b>   <span id="amount-info" class="text-dark"></span>
             <hr>
@@ -188,66 +199,17 @@
         </p>       
        
         </div>
-        <div class="modal-footer justify-content-between">
-          {{-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        --}}
-        </div>
       </div>
       <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
   </div>
+    {{-- start of ajax fetch all payments --}}
+    @include('member.payments.ajax-fetch-all-payments')
+    {{-- end of ajax fetch all payments --}}
    <script type="text/javascript">
   
-            showAllPledges();
-        
-            /*
-                This function will get all the payments records
-            */
-            function showAllPledges()
-            {
-                let url = $('meta[name=app-url]').attr("content") + "/member/payments";
-                $.ajax({
-                    url: url,
-                    type: "GET",
-                    success: function(response) {
-                        $("#projects-table-body").html("");
-                        let purposes = response.payments;
-                        for (var i = 0; i < purposes.length; i++) 
-                        {
-                            let showBtn =  '<button ' +
-                                ' class="btn btn-sm bg-flex text-light " ' +
-                                ' onclick="showPledge(' + purposes[i].id + ')"><i class="fa fa-eye"></i>' +
-                            '</button> ';
-                            let editBtn =  '<button ' +
-                                ' class="btn btn-secondary" ' +
-                                ' onclick="editPledge(' + purposes[i].id + ')">Edit' +
-                            '</button> ';
-                            let deleteBtn =  '<button ' +
-                                ' class="btn btn-danger" ' +
-                                ' onclick="destroyPledge(' + purposes[i].id + ')">Delete' +
-                            '</button>';
-         
-                            let projectRow = '<tr>' +
-                                '<td>' + (1+i)+ '</td>' +
-                                '<td>' + purposes[i].formattedDate   + '</td>' +
-                                '<td>' + purposes[i].pledge.name + '</td>' +
-                                '<td>' + purposes[i].payment.name + '</td>' +
-                                '<td>' + purposes[i].amount+ 'Tsh'+ '</td>' +
-                                '<td class="'+(purposes.verified == '0' ? 'text-teal':'text-danger')+'">'+(purposes.verified == '0' ? 'Verified':'Not Verified')+ '</td>'+
-                                '<td>' + showBtn + '</td>' +
-                            '</tr>'+'';
-                            $("#projects-table-body").append(projectRow);
-                        }
-         
-                         
-                    },
-                    error: function(response) {
-                        console.log(response.responseJSON)
-                    }
-                });
-            }
-         
+           
 
     //         showAllMethods();
 
@@ -295,7 +257,7 @@
             /*
                 get and display the record info on modal
             */
-            function showPledge(id)
+            function showPayment(id)
             {
                 $("#name-info").html("");
                 $("#description-info").html("");
@@ -304,13 +266,13 @@
                     url: url,
                     type: "GET",
                     success: function(response) {
-                        let purpose = response.purpose;
+                        let purpose = response.payment;
                         $("#mname-info").html(purpose.payer.mname);
                         $("#lname-info").html(purpose.payer.lname);
-                        $("#purpose-info").html(purpose.purpose.title);
+                        $("#purpose-info").html(purpose.pledge.name);
                         $("#amount-info").html(purpose.amount);
                         $("#method-info").html(purpose.payment.name);
-                        $("#date-info").html(purpose.   created_at);
+                        $("#date-info").html(purpose.formattedDate);
                         $("#view-modal").modal('show'); 
          
                     },
