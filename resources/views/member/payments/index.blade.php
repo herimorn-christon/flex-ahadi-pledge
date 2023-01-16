@@ -5,11 +5,7 @@
 
 @section('content')
 
-<style>
-  #example_filter.dataTaable_filter{
-    width: 200px !important;
-  }
-</style>
+
 
 <div class="card  p-1 border-left-flex">
   <div class="row mx-1 mb-1">
