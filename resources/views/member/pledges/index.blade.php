@@ -114,7 +114,7 @@
       <div class="modal-body">
      
         <div class="row">
-          <table id="example1"  class="cell-border table table-bordered ">
+          <table id="example2"  class="cell-border table table-bordered ">
               <thead>
                   <tr class="text-secondary">
                       <th>SN</th>
@@ -146,37 +146,9 @@
   @include('member.pledges.register-pledge-modal')
 {{-- end of register new pledge modal --}}
 
-{{-- view single pledge info--}}
-<div class="modal fade" id="view-modal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header bg-light">
-        <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>
-         
-          <b class="text-secondary">Pledge Name:</b>   <span id="title-info" class="text-dark"></span>
-          <hr>
-          <b class="text-secondary">Pledge Type:</b>   <span id="type-info" class="text-dark"></span>
-          <hr>
-          <b class="text-secondary">Pledge Purpose:</b>   <span id="purpose-info" class="text-dark"></span>
-          <hr>    
-          <b class="text-secondary">Pledge Status:</b>   <span id="status-info" class="text-success"></span>
-          <hr>        
-          <b class="text-secondary">Deadline:</b>   <span id="start-info" class="text-dark"></span>
-          <hr>
-          <b class="text-secondary">Amount:</b>   <span id="end-info" class="text-dark"></span>
-          <hr>
-          <b class="text-secondary">Description:</b> <br><span id="description-info" class="text-dark"></span>
-      </p>
-                
-      </div>
-    </div>
-    <!-- /.modal-content -->
-  </div>
-  <!-- /.modal-dialog -->
-</div>
+{{-- start of single pledge modal --}}
+@include('member.pledges.single-pledge-modal')
+{{-- end of single pledge modal --}}
 
 
 @endsection
@@ -313,21 +285,37 @@
           {
               $("#name-info").html("");
               $("#description-info").html("");
+              $("#payments-table-body").html("");
               let url = $('meta[name=app-url]').attr("content") + "/member/pledges/" + id +"";
               $.ajax({
                   url: url,
                   type: "GET",
                   success: function(response) {
-                      let purpose = response.purpose;
-                      $("#title-info").html(purpose.name);
-                      $("#start-info").html(purpose.deadline);
-                      $("#status-info").html(purpose.status == '0' ? 'Not Fullfilled':'Fullfilled');
-                      $("#end-info").html(purpose.amount);
-                      $("#type-info").html(purpose.type.title);
-                      $("#purpose-info").html(purpose.purpose.title);
-                      $("#description-info").html(purpose.description);
+                      let pledge = response.pledge;
+                      $("#title-info").html(pledge.name);
+                      $("#start-info").html(pledge.deadline);
+                      $("#status-info").html(pledge.status == '0' ? 'Not Fullfilled':'Fullfilled');
+                      $("#end-info").html(pledge.amount);
+                      $("#type-info").html(pledge.type.title);
+                      $("#purpose-info").html(pledge.purpose.title);
+                      $("#description-info").html(pledge.description);
                       $("#view-modal").modal('show'); 
-       
+                         // for payments
+                                     
+                        let payments = response.payments;
+                        for (var j = 0; i < payments.length; j++) 
+                        {      
+         
+                       let paymentsRow = '<tr>' +
+                                '<td>' + payments[i].id + '</td>' +
+                                '<td>' + payments[i].created_at+ '</td>' +
+                                // '<td>' + payments[i].pledge.name + '</td>' +
+                                '<td>' + payments[i].amount + '</td>' +
+                                // '<td>' + payments[i].payment.name + '</td>' +
+                            '</tr>';
+                            $("#payments-table-body").append(paymentsRow);
+                        }
+
                   },
                   error: function(response) {
                       console.log(response.responseJSON)

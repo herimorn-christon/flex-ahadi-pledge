@@ -125,10 +125,10 @@ class MyPledgeController extends Controller
      */
     public function show($id)
     {
-        $purpose = Pledge::with('user')->with('type')->with('purpose')->find($id);
-        $payments=Payment::where('pledge_id',$id)->get();
+        $pledge = Pledge::with('user')->with('type')->with('purpose')->find($id);
+        $payments=Payment::where('pledge_id',$id)->with('pledge')->get();
         return response()->json([
-                                'purpose' => $purpose,
+                                'pledge' => $pledge,
                                 'payments'=>$payments
                             ]);
     }
