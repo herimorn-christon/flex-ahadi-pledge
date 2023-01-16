@@ -2,6 +2,19 @@
 <script type="text/javascript">
 
 
+    /*
+                check if form submitted is for creating or updating
+            */
+            $("#save-announcement-btn").click(function(event ){
+                event.preventDefault();
+                if($("#update_id").val() == null || $("#update_id").val() == "")
+                {
+                    storeAnnouncement();
+                } else {
+                    updateAnnouncement();
+                }
+            })
+         
             /*
                 show modal for creating a record and 
                 empty the values of form and remove existing alerts
@@ -18,19 +31,6 @@
             }
          
 
-        /*
-                check if form submitted is for creating or updating
-            */
-            $("#save-announcement-btn").click(function(event ){
-                event.preventDefault();
-                if($("#update_id").val() == null || $("#update_id").val() == "")
-                {
-                    storeAnnouncement();
-                } else {
-                    updateAnnouncement();
-                }
-            })
-         
             /*
                 submit the form and will be stored to the database
             */
@@ -85,9 +85,9 @@
                                 bodyValidation = '<li>' + errors.body[0] + '</li>';
                             }
                       let fileValidation = "";
-            if (typeof errors.attachment !== 'undefined') 
+            if (typeof errors.image !== 'undefined') 
                             {
-                                fileValidation = '<li>' + errors.attachment[0] + '</li>';
+                                fileValidation = '<li>' + errors.image[0] + '</li>';
                             }
              
             let errorHtml = '<div class="alert alert-danger" role="alert">' +
