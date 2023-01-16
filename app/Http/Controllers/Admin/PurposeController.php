@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Purpose;
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\purposesFormRequest;
@@ -21,24 +22,21 @@ class PurposeController extends Controller
      */
     public function index()
     {
-        $purposes = Purpose::orderBy('updated_at','DESC')->get();
-        return response()->json(['purposes' => $purposes]);
+        $purposes = Purpose::orderBy('updated_at','DESC')
+                                    ->get();
+        $total_purposes=Purpose::count();
+        $accomplished_purposes=Purpose::where('status','1')
+                                        ->count();
+        $inaccomplished_purposes=Purpose::where('status','')
+                                         ->count();
+        return response()->json([
+            'purposes' => $purposes,
+            'total_purposes'=>$total_purposes,
+            'accomplished_purposes'=>$accomplished_purposes,
+            'inaccomplished_purposes'=>$inaccomplished_purposes,
+        ]);
     }
-    // saving purpose  function
-    public function save(purposesFormRequest $request)
-    {
-        $data=$request->validated();
-        $purpose =new Purpose;
-        $purpose->title=$data['title'];
-        $purpose->description=$data['description'];
-        $purpose->start_date=$data['start_date'];
-        $purpose->end_date=$data['end_date'];
-        $purpose->status= $request->status == true ? '1':'0';
-        $purpose->created_by= Auth::user()->id;
-        $purpose->save();
-
-        return redirect('admin/all-pledges')->with('status','Purpose was Added Successfully');
-    }
+ 
 
 
         /**
@@ -89,7 +87,12 @@ class PurposeController extends Controller
         $purpose = Purpose::find($id);
         $pledges = Pledge::where('purpose_id',$id)->orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
         $payments = Payment::where('pledge_id',$id)->orderBy('updated_at','DESC')->with('payer')->with('payment')->get();
-        return response()->json(['purpose' => $purpose,'pledges' => $pledges,'payments' => $payments]);
+      
+        return response()->json([
+                                'purpose' => $purpose,
+                                'pledges' => $pledges,
+                                'payments' => $payments
+                            ]);
     }
     /**
      * Remove the specified resource from storage.

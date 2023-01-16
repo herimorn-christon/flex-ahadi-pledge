@@ -10,7 +10,34 @@
     width: 200px !important;
   }
 </style>
-<div class="row mb-1">
+
+<div class="card  p-2 border-left-flex">
+  <div class="row mb-1">
+
+  {{-- start of statistics --}}
+<div class="">
+  <div class="row starts-border mt-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Pledge Payments Made in {{ date('Y')}} </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+  <div class="row starts-border mt-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Remaining Pledge Payments in {{ date('Y')}} </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+  <div class="row starts-border mt-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Highest Pledge Payments in {{ date('Y')}} </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+  <div class="row starts-border mt-2 mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Lowest Payments Made in {{ date('Y')}} </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+</div>
+{{-- end of statistics --}}
     <div class="col-sm-6" id="alert-div">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
@@ -22,10 +49,14 @@
       <ol class="float-sm-right" type="none">
         <li class=""> 
     
-        <button type="button" class="btn bg-navy btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
+        <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
             Available Payment Methods
         </button>
+        <a href="" class="btn btn-sm bg-cyan mb-1">
+          <i class="fa fa-file-pdf"></i>
+          Generate Report
+        </a>
      
     </li>
        
@@ -33,16 +64,17 @@
       
     </div><!-- /.col -->
   </div>
-
-<div class="card mt-1">
+</div>
+<div class="card ">
  
 
-        <div class="col-md-12 responsivenes mx-auto p-2">
-            <table id="example"  class="table table-bordered responsive cell-border">
+        <div class="responsivenes  p-1">
+            <table id="example1"  class="table table-bordered  cell-border">
                 <thead>
                      <tr class="text-secondary">
-                        <th>Payer Name</th>
-                        <th>Payment Method</th>
+                        <th>SN</th>
+                        <th>Payer</th>
+                        <th>Method</th>
                         <th>Purpose</th>
                         <th>Amount</th>
                         <th>Action</th>

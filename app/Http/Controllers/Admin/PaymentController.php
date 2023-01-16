@@ -21,8 +21,18 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $purposes = Payment::orderBy('updated_at','DESC')->with('payer')->with('payment')->with('pledge')->get();
-        return response()->json(['purposes' => $purposes]);
+        $payments = Payment::orderBy('updated_at','DESC')->with('payer')->with('payment')->with('pledge')->get();
+        $total=Payment::sum('amount');
+        $highest=Payment::max('amount');
+        $lowest=Payment::min('amount');
+        $best=Payment::where('amount',$highest)->with('payer')->first();
+
+        return response()->json(['payments' => $payments,
+                                 'total'=>$total,
+                                 'highest'=>$highest,
+                                 'lowest'=>$lowest,
+                                 'best'=>$best
+                                ]);
     }
 
     
@@ -112,62 +122,7 @@ class PaymentController extends Controller
         $purpose = Payment::with('payer')->with('payment')->with('pledge')->find($id);
         return response()->json(['purpose' => $purpose]);
     }
-    // saving payment method function
-    public function saveMethod(paymentFormRequest $request)
-    {
-        $data=$request->validated();
-        $method =new PaymentType;
-        $method->name=$data['name'];
-        $method->save();
-
-        return redirect('admin/all-payments')->with('status','Payment Method was Added Successfully');
-    }
-
-    // edit payment method page function
-    public function editMethod($method_id)
-    {
-        $type=PaymentType::find($method_id);
-        return view('admin.payments.edit',compact('type'));
-    }
-  // update payment method function
-    public function updateMethod(paymentFormRequest $request,$method_id)
-    {
-        $data=$request->validated();
-        $type =PaymentType::find($method_id);
-        $type->name=$data['name'];
-        // saving data
-        $type->update();
-
-        return redirect('admin/all-payments')->with('status','Payment method was Updated Successfully');
-    }
-// delete  payment method function
-    public function destroyMethod($method_id)
-    {
-        $method=PaymentType::find($method_id);
-
-        if($method){
-            $method->delete();
-            return redirect('admin/all-payments')->with('status','Payment method was deleted Successfully');
-        }
-        else{
-            return redirect('admin/all-payments')->with('status','No Payment method ID was found !');
-        }
-    }
-
-    // saving payment function
-    public function save(paymentsFormRequest $request)
-    {
-        $data=$request->validated();
-        $payment =new Payment;
-        $payment->user_id=$data['user_id'];
-        $payment->type_id=$data['type_id'];
-        $payment->pledge_id=$data['pledge_id'];
-        $payment->amount=$data['amount'];
-        $payment->created_by= Auth::user()->id;
-        $payment->save();
-
-        return redirect('admin/all-payments')->with('status','Payment was Registered Successfully');
-    }
+ 
 
      /**
      * Display a listing of the resource by user.

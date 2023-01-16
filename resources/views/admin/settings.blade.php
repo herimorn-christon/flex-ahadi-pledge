@@ -14,20 +14,12 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header p-2 bg-white">
-              {{-- <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link bg-light nav-light active" href="#interface" data-toggle="tab">System Settings</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#audits" data-toggle="tab">System Audits</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Announcements</a></li>
-              </ul> --}}
               <ul class="nav nav-tabs nav-light">
                 <li class="nav-item">
                   <a class="nav-link text-navy active" href="#interface"  data-toggle="tab">System Settings</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-navy" href="#audits"  data-toggle="tab">System Audits</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link text-navy" href="#announcements" data-toggle="tab" >Announcements</a>
                 </li>
               </ul>
             </div><!-- /.card-header -->
@@ -52,55 +44,37 @@
                                   @csrf
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">System Name</label>
-                                      <input name="system_name"  type="text" class="form-control">
+                                      <input name="system_name"  type="text" @if($setting) value="{{ $setting->system_name}}" @endif class="form-control">
                                   </div>
                                    <div class="mb-3">
                                       <label for="" class="text-secondary">System Logo</label>
                                       <input name="logo" type="file" class="form-control">
-                              
+                                      <img src="{{ asset('uploads/settings/'.$setting->logo)}}" width="20px" height="20px">
+
                                   </div>
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">System Favicon</label>
                                       <input name="favicon" type="file" class="form-control">
                                       
-                                      <img src="" width="20px" height="20px">
+                                      <img src="{{ asset('uploads/settings/'.$setting->favicon)}}" width="20px" height="20px">
                                       
                                   </div>
                                   <div class="mb-3">
-                                    <label for="" class="text-secondary">Landing Page Image</label>
-                                    <input name="favicon" type="file" class="form-control">
-                                    
-                                    <img src="" width="20px" height="20px">
-                                    
-                                  </div>
-                                  <div class="mb-3">
-                                      <label for="" class="text-secondary">Navbar Theme</label>
-                                      <select name="nav_bar" id="" class="form-control bg-light">
-                                        <option value="">Light and Light Theme</option>
-                                        <option value="">Light and Blue Theme</option>
-                                        <option value="">Dark and Blue Theme</option>
-                                        <option value="">Dark and Info Theme</option>
+                                      <label for="" class="text-secondary">System Theme</label>
+                                      <select name="theme" id="theme" class="form-control bg-light">
+                                        <option value="light">Light Theme</option>
+                                        <option value="dark" class="bg-dark text-light">Dark Theme</option>
+                                        <option value="navy" class="bg-navy text-light">Navy Theme</option>
                                        
                                       </select>
                                      
                                   </div>
-                                  <div class="mb-3">
-                                    <label for="" class="text-secondary">Sidebar Theme</label>
-                                    <select name="nav_bar" id="" class="form-control bg-light">
-                                      <option value="">Light and Light Theme</option>
-                                      <option value="">Light and Blue Theme</option>
-                                      <option value="">Dark and Blue Theme</option>
-                                      <option value="">Dark and Info Theme</option>
-                                     
-                                    </select>
-                                   
-                                </div>
                                 <hr>
                                   <div class="row">
                                     
                                       <div class="col-md-9"></div>
                                       <div class="col-md-3 ">
-                                          <button class="btn bg-navy btn-block float-end" type="submit">
+                                          <button class="btn bg-flex  text-light btn-block float-end" type="submit">
                                             <i class="fa fa-save"></i>
                                             Save Settings
                                           </button>
@@ -119,7 +93,7 @@
                
                   {{-- start of pledges --}}
                   <div class="p-2">
-                    <table id="example"  class="table table-bordered cell-border">
+                    <table id="example1"  class="table table-bordered cell-border">
                       <thead>
                           <tr class="text-secondary">
                               <th>ID</th>

@@ -23,33 +23,48 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = User::where('role','member')->orderBy('updated_at','DESC')->with('community')->get();
-        return response()->json(['members' => $members]);
+        // fetching all members query
+        $members = User::where('role','member')
+                        ->orderBy('updated_at','DESC')
+                        ->with('community')
+                        ->get();
+        // fetching total members query
+        $total_members=User::where('role','member')
+                            ->count();
+        // fetching total active members
+        $active_members=User::where('role','member')
+                            ->where('status','')
+                            ->count();
+        // fetching total inactive members
+        $inactive_members=User::where('role','member')
+                                ->where('status','1')
+                                ->count();
+        $male_members=User::where('role','member')
+                            ->where('gender','male')
+                            ->count();
+        $female_members=User::where('role','member')
+                             ->where('gender','female')
+                             ->count();
+
+        return response()->json(
+            [
+                'members' => $members,
+                'total_members'=>$total_members,
+                'active_members'=>$active_members,
+                'inactive_members'=>$inactive_members,
+                'male_members'=>$male_members,
+                'female_members'=>$female_members
+            ]);
     }
 
 
     // search community 
-    public function selectSearch(Request $request)
-
-    {
-
-    	$movies = [];
-
-
-        if($request->has('q')){
-
-            $search = $request->q;
-
-            $movies =Jumuiya::select("id", "name")
-
-            		->where('name', 'LIKE', "%$search%")
-
-            		->get();
-
-        }
-
-        return response()->json($movies);
-
+     public function autocomplete(Request $request)
+    {        
+        $data = Jumuiya::select("name")
+                ->where("name","LIKE","%{$request->str}%")
+                ->get('query');   
+        return response()->json($data);
     }
         /**
      * Store a newly created resource in storage.
@@ -75,9 +90,6 @@ class MemberController extends Controller
             );
 
             $member = new User();
-            // $project->name = $request->name;
-            // $project->description = $request->description;
-            // $project->save();
             $member->fname=$request->fname;
             $member->mname=$request->mname;
             $member->lname=$request->lname;
@@ -93,20 +105,6 @@ class MemberController extends Controller
     }
 
 
-    //view single member
-    // public function show($id)
-
-    // {
-
-    //     $user = User::where('id',$id)->get();
-    //     $payments = Payment::where('user_id',$id)->get();
-    //     $pledges= Pledge::where('user_id',$id)->get();
-    //     $cards=CardMember::where('user_id',$id)->get();
-
-  
-    //     return view('admin.members.profile',compact('user','payments','pledges','cards'));
-
-    // }
 
     /**
      * Display the specified resource.
@@ -117,21 +115,14 @@ class MemberController extends Controller
     public function show($id)
     {
         $member = User::with('community')->find($id);
-        $payments = Payment::where('user_id',$id)->with('payment')->with('purpose')->get();
-        $pledges= Pledge::where('user_id',$id)->with('type')->with('purpose')->get();
+        $payments = Payment::where('user_id',$id)->with('payment')->with('pledge')->get();
+        $pledges= Pledge::where('user_id',$id)
+                        ->with('type')
+                        ->with('purpose')
+                        ->get();
         $cards=CardMember::where('user_id',$id)->with('user')->with('card')->get();
         return response()->json(['member' => $member,'payments' =>$payments,'pledges'=>$pledges,'cards'=>$cards]);
     }
-
-    // edit details function
-    public function edit($id)
-    {
-        $user = User::find($id);
-        return view('admin.members.edit',compact('user'));
-    }
-
-    
-
 
     public function update(Request $request, $id)
     {

@@ -18,10 +18,16 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header p-2 bg-white">
-              <ul class="nav nav-pills nav-light">
-                <li class="nav-item active"><a class="nav-link bg-light nav-white " href="#interface" data-toggle="tab" >Pledges Report</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light " href="#audits" data-toggle="tab">Payments Report</a></li>
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Card Payments Report</a></li>
+              <ul class="nav nav-tabs nav-light">
+                <li class="nav-item">
+                  <a class="nav-link text-navy active" href="#interface"  data-toggle="tab">Pledges Report</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#audits"  data-toggle="tab">Payments Report</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#announcements"  data-toggle="tab">Cards Report</a>
+                </li>
               </ul>
             </div><!-- /.card-header -->
             <div class="">
@@ -57,14 +63,14 @@
                                 </h5>
                                 </div>
                                 <div class="mb-3">
-                                  <label for="message-text" class="text-secondary">From Date:</label>
+                                  <label for="" class="text-secondary">From Date:</label>
                                    <input type="date" class="form-control" id="from_date" name="from_date" placeholder="Enter Start Date">
                                 </div>
                                 <div class="mb-3">
                                   <label for="message-text" class="text-secondary">To Date:</label>
                                    <input type="date" class="form-control" id="to_date" name="to_date" placeholder="Enter End Date">
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 form-group">
                                     <label for="message-text" class="text-secondary">Sort By:</label>
                                     <select name="sort_by" id="sort_by" class="bg-light text-navy form-control">
                                         <option value="name">Pledge Name</option>

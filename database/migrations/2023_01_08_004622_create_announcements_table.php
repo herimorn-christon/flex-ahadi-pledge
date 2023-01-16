@@ -17,7 +17,7 @@ class CreateAnnouncementsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('body');
-            $table->integer('file');
+            $table->integer('attachment');
             $table->timestamps();
         });
     }

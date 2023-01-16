@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AhadiPledge| Dashboard</title>
-
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -17,82 +18,25 @@
   <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
-  
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-  {{-- datatables --}}
-    <!-- DataTables -->
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-  <style>
-    .page-item.active .page-link{
-        color: whitesmoke !important;
-        background-color: #1888cb  !important; 
-        border: none;
-    }
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+    <!-- summernote -->
+    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+    {{-- datatables --}}
+      <!-- DataTables -->
+      <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+      <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+      <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+     {{-- for flex theme --}}
+     <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
 
-     .page-link {
-      
-        text-decoration: none !important;
-        color:#1888cb  !important;
-    }
-    .bg-flex{
-      background-color: #1888cb;
-    }
-    .bg-navy{
-      background-color: #1888cb !important;
-    }
-    .text-navy{
-      color: #1888cb !important;
-    }
-    .paginate_button{
-      margin: 1px !important;
-    }
-    .paginate_button.disabled{
-      color: gainsboro !important;
-    }
-    .dataTables_paginate .paginate_button:hover{
-      border: 1px solid transparent !important;
-      background: transparent !important;
-    }
 
-    .current {
-        border-left: 0.45rem solid #1888cb !important;
-        background-color:#f2f3f4 !important;
-      }
-    .bg-teal{
-      background-color: #01b4f2 !important;
-    }
-    
-    .text-teal{
-      color: #01b4f2 !important;
-    }
-      .border-bottom-navy {
-        border-bottom: 0.25rem solid #1888cb !important;
-      }
-      .border-top-navy {
-        border-top: 0.25rem solid #1888cb !important;
-      }
-      .nav-tabs .nav-link.active{
-        background-color: #1888cb  !important;
-        font-weight:bold;
-        color: #e5e9ec !important;
-      }
-      .marginRow{
-   margin-bottom:0px !important; 
-   }
-
-   
-</style>
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -102,7 +46,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-navy elevation-4">
+  <aside class="main-sidebar sidebar-light-navyb sidebar-collapse elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="Flex Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -141,12 +85,12 @@
         <div class="row g-1"  >
 
           {{-- start  --}}
-          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="This is the total of money pledges in {{ date('Y') }}">
             <!-- small box -->
-            <div class="small-box bg-white border-top-navy">
+            <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
-                <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height="">
+                {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
                 <h6 class="">                  
@@ -163,12 +107,12 @@
             </div>
           </div>
           {{-- end  --}}
-          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="This is the sum of pledge payments made in {{ date('Y')}}">
             <!-- small box -->
-            <div class="small-box bg-white border-top-navy">
+            <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
-                <img src="{{ asset('icons/salary.png') }}" alt="Flex Logo" class="" width="20%" height="">
+                {{-- <img src="{{ asset('icons/salary.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
                 <h6>                  
@@ -189,20 +133,20 @@
       
 
           {{-- start --}}
-          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="This is the total amount of money for unpaid pledges in {{ date('Y') }}">
             <!-- small box -->
-            <div class="small-box bg-white border-top-navy">
+            <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
-                <img src="{{ asset('icons/card.png') }}" alt="Flex Logo" class="" width="20%" height="">
+                {{-- <img src="{{ asset('icons/card.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
                 <h6>                  
-                  Card Payments
+                  Remaining Payments
                 </h6>
 
                 <h3 class="text-secondary">
-                  {{$cards}}
+                  {{$remaining}}
                   <small>Tsh</small>
                 </h3>
               </div>
@@ -217,18 +161,19 @@
 
           <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
             <!-- small box -->
-            <div class="small-box bg-white border-top-navy">
+            <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
                 {{-- <i class="fa fa-dollar-sign"></i> --}}
-                <img src="{{ asset('icons/team.png') }}" alt="Flex Logo" class="" width="20%" height="">
+                {{-- <img src="{{ asset('icons/team.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
                 <h6 >                   
-                  Total Members
+                  Card Payments
                 </h6>
 
                 <h3 class="text-secondary">
-                  {{$members}}
+                  {{$cards}}
+                  <small>Tsh</small>
                 </h3>
               </div>
               
@@ -237,16 +182,85 @@
           </div>
      
           <!-- ./col -->
+
+          <div class="col-md-12">
+            <div class="card p-2 border-left-flex">
+              <div class="row mb-1">
+               
+              {{-- start of statistics --}}
+              <div class="col-md-12">
+                <a href="{{ url('admin/all-members')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
+                  <div class="row starts-border"  >
+                    <div class="col-md-6"> <h6 class="text-secondary">Total Registered Members </h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark"> {{ $members}}</h6></div>
+                  </div>
+                </a>
+                <a href="{{ url('admin/all-members')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of members of the congregation who are male">
+                  <div class="row starts-border" >
+                    <div class="col-md-6"> <h6 class="text-secondary">Total Male Members </h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark"> {{ $male}}</h6></div>
+                  </div>
+                </a>
+                <a href="{{ url('admin/all-members')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of members of the congregation who are female">
+                  <div class="row starts-border" >
+                    <div class="col-md-6"> <h6 class="text-secondary">Total Female Members </h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark"> {{ $female}}</h6></div>
+                  </div>
+                </a>
+                 <a href="{{ url('admin/all-communities')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number  of communities (Jumuiya) found in the congregation">
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary"> Total Communities</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark" >{{ $communities}}</h6></div>
+                  </div>
+                 </a>
+
+                 <a href="{{ url('admin/all-pledges')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of pledges that have been made in {{ date('Y')}}">
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary"> Total Pledges Made</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark" >{{ $total_pledges}}</h6></div>
+                  </div>
+                 </a>
+                 <a href="{{ url('admin/all-cards')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of card members that have been created and issued">
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary"> Total Member Cards Created</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark">{{ $total_cards}}</h6></div>
+                  </div>
+                 </a>
+                 <a href="{{ url('admin/all-purposes')}}" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This the amount of money that has been collected from both pledges and cards in {{ date('Y')}}">
+                  <div class="row starts-border">
+                    <div class="col-md-6"> <h6 class="text-secondary">Total Contributions in {{ date('Y')}}</h6></div>
+                    <div class="col-md-6 text-right"><h6 class="font-weight-bolder text-dark" >{{ $contributions}}</h6></div>
+                  </div>
+                 </a>
+              
+                </div>
+              {{-- end of statistics --}}
+              
+           
+              </div>
+              
+              </div>
+              
+          </div>
+
         </div>
         <!-- /.row -->
+       
         <!-- Main row -->
         <div class="row mx-auto">
+          {{-- start of new member graph --}}
           <div class="col-md-6 mt-1 mb-1 ">
+            
             <div id="container"></div>
           </div>
+          {{-- start of new member graph --}}
+
+          {{-- start of payement trend graph --}}
           <div class="col-md-6 mt-1 mb-1">
             <div id="container1"></div>
           </div>
+          {{-- end of new payment trend graph --}}
+
       </div><!-- /.container-fluid -->
 
  
@@ -437,7 +451,7 @@ Highcharts.chart('container1', {
 
     title: {
 
-        text: 'Payments Growth'
+        text: 'Pledge Payments Graph'
 
     },
 
@@ -445,7 +459,7 @@ Highcharts.chart('container1', {
 
      xAxis: {
 
-        categories: ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun']
+        categories: []
 
     },
 

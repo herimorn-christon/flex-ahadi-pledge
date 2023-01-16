@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+// use file;
 use App\Models\User;
+use illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+// use Symfony\Component\HttpFoundation\File\File;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -15,7 +20,6 @@ class ProfileController extends Controller
      
         $user=Auth::user()->id;
         $member=User::where('id',$user)->with('community')->get();
-        // return view('admin.profile.index',compact('profile'));
         return response()->json(['member' => $member]);
     }
 
@@ -59,5 +63,71 @@ class ProfileController extends Controller
         $member->save();
         return response()->json(['status' => "success"]);
     }
+
+
+    // For updating profile image
+       // update function
+       public function updateImg(Request $request)
+       {
+
+        request()->validate([
+            'image' => 'required'
+        ]);
+           $user=Auth::user()->id;
+        
+           $member=User::find($user);
+           if($request->hasfile('image')){
+   
+               $destination= 'uploads/user/'. Auth::User()->profile_picture;
+               if(File::exists($destination)){
+                $img=$member->profile_picture;
+                if($img!="user.png"){
+
+                    File::delete($destination);
+                }
+               }
+               $file=$request->file('image');
+               $filename=time().'.'.$file->getClientOriginalExtension();
+               $file->move('uploads/user/', $filename);
+               $member->profile_picture=$filename;
+           }
+           // saving data
+           $member->update();
+   
+           return redirect('admin/my-profile')->with('status', 'Image Has been uploaded');
+       }
+
+             /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
+     public function store(Request $request)
+     {
+         request()->validate(
+             [
+             'current_password' => 'required',
+             'new_password' => 'required|confirmed'
+              ]
+             );
+             $user=Auth::User()->id;
+             $existing=Hash::make(Auth::User()->password);
+             $current=  $request->user_id;
+           
+             if(!Hash::check($request->current_password, auth()->user()->password)){
+                return back()->with("status", "Old Password Doesn't match!");
+            }
+
+
+            #Update the new Password
+            User::whereId(auth()->user()->id)->update([
+                'password' => Hash::make($request->new_password)
+            ]);
+
+            return back()->with("status", "Password changed successfully!");
+                
+            }
 
 }

@@ -21,7 +21,12 @@ class CardMemberController extends Controller
     public function index()
     {
         $members = CardMember::orderBy('updated_at','DESC')->with('user')->with('card')->get();
-        return response()->json(['members' => $members]);
+        $total_cards=Card::count();
+        $assigned=CardMember::count();
+        $active=CardMember::where('status','')->count();
+        $inactive=CardMember::where('status','1')->count();
+        $total_payments=CardPayment::sum('amount');
+        return response()->json(['members' => $members,'total_cards'=>$total_cards,'assigned'=>$assigned,'active'=>$active,'inactive'=>$inactive,'total_payments'=>$total_payments   ]);
     }
 
 
@@ -50,7 +55,7 @@ class CardMemberController extends Controller
             $card->update();
 
             $member->user_id=$request->user_id;
-            $member->status= $request->status == true ? '1':'0';
+            // $member->status='0';
             $member->save();
 
             $notification = new Notification();
@@ -72,10 +77,8 @@ class CardMemberController extends Controller
      */
     public function show($id)
     {
-        // $member = CardMember::find($id);
-        // return response()->json(['member' => $member]);
-        $payment=CardPayment::where('card_member',$id)->get();
-        return response()->json(['payment' => $payment]);
+         $member = CardMember::find($id);
+        return response()->json(['member' => $member]);
     }
   
 
@@ -93,6 +96,29 @@ class CardMemberController extends Controller
         $card->status=0;
         $card->update();
         CardMember::destroy($id);
+        return response()->json(['status' => "success"]);
+    }
+
+             /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        request()->validate([
+            'card_No' => 'required',
+            'user_Id' => 'required'
+        ]);
+  
+        $member = CardMember::where('id',$id)->first();
+        $member->user_id=$request->user_Id;
+        $member->card_no=$request->card_No;
+        $member->status= $request->card_status;
+        $member->save();
+        
         return response()->json(['status' => "success"]);
     }
 }

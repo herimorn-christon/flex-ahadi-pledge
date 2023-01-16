@@ -10,7 +10,9 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
         <li class="nav-item ">
-          <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'current':'' }} {{ Request::is('admin/my-profile') ? 'active':'' }}">
+          <a href="{{ url('admin/dashboard') }}" class="nav-link  {{ Request::is('admin/dashboard') ? 'current':'' }} {{ Request::is('admin/my-profile') ? 'current':'' }}" 
+          data-toggle="tooltip" data-placement="right" title="Click here to View the admin homepage "
+          >
             <i class="nav-icon fas fa-tachometer-alt "></i>
             <p>
               Dashboard
@@ -18,7 +20,9 @@
           </a>
         </li>
         <li class="nav-item">
-            <a href="{{ url('admin/all-members') }}" class="nav-link  {{ Request::is('admin/all-members') ? 'current':'' }}">
+            <a href="{{ url('admin/all-members') }}" class="nav-link  {{ Request::is('admin/all-members') ? 'current':'' }}"
+            data-toggle="tooltip" data-placement="right" title="Click here to Manage all congregation members "
+            >
               <i class="nav-icon fas fa-user-tie "></i>
               <p>
                 Manage Members
@@ -66,10 +70,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('admin/all-reports') }}" class="nav-link {{ Request::is('admin/all-reports') ? 'current':'' }}"  >
-              <i class="nav-icon fas fa-folder "></i>
+            <a href="{{ url('admin/all-announcements') }}" class="nav-link {{ Request::is('admin/all-announcements') ? 'current':'' }}"  >
+              <i class="nav-icon fas fa-bullhorn"></i>
               <p>
-                Reports
+                Announcements
               </p>
             </a>
           </li>
@@ -78,6 +82,14 @@
               <i class="nav-icon fas fa-cog "></i>
               <p>
                 Settings
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('admin/support') }}" class="nav-link {{ Request::is('admin/support') ? 'current':'' }}">
+              <i class="nav-icon fas fa-headset"></i>
+              <p>
+                Member Support
               </p>
             </a>
           </li>

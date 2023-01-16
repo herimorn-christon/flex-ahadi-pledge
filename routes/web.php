@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\TypeController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\MethodController;
 use App\Http\Controllers\Admin\PledgeController;
@@ -15,12 +16,13 @@ use App\Http\Controllers\Select2SearchController;
 use App\Http\Controllers\Member\MethodsController;
 use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
+use App\Http\Controllers\Member\DashboardController;
 use App\Http\Controllers\Admin\CardPaymentController;
 use App\Http\Controllers\Member\MyPaymentsController;
+use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\NotificationsController;
+use App\Http\Controllers\Member\MyAnnouncementController;
 use App\Http\Controllers\Member\MyNotificationsController;
-
-// use App\Http\Controllers\Controller\DashboardController;
 
 
 
@@ -34,9 +36,8 @@ Route::get('/', function () {
    return view('welcome');
 });
 
-Route::get('generate-pdf-from-view', [App\Http\Controllers\PDFViewController::class, 'displayReport']);
 
-// for Admin
+// Start of all admin user routes
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 {
@@ -46,15 +47,17 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
     Route::get('/all-members', function () {
       return view('admin.members.index');
       });
-// Members API route
+    //Manage Members API route
     Route::apiResource('members', MemberController::class);
-// Jumuiya Auto search route
-    Route::get('ajax-autocomplete-search', [MemberController::class,'selectSearch']);
+
+    // Jumuiya Auto search route
+    Route::get('autocomplete', [MemberController::class,'selectSearch'])->name('autocomplete');;
+    // Route::get('autocomplete', [SearchController::class, 'autocomplete'])
+
 // view single member route
     Route::get('view-member/{id}', [App\Http\Controllers\Admin\MemberController::class, 'show'])->name('users.show');
 
  // view all communities route
-    // Route::get('/all-communities', [App\Http\Controllers\Admin\JumuiyaController::class,'index']);
     Route::get('/all-communities', function () {
       return view('admin.jumuiya.index');
       });
@@ -64,69 +67,39 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 // view single Community route
    Route::get('view-community/{id}', [App\Http\Controllers\Admin\JumuiyaController::class, 'show'])->name('community.show');
 
- // all pledges route
-  //  Route::get('/all-pledges', [App\Http\Controllers\Admin\PledgeController::class,'index']);
+// all pledges route (Manage Pledges)
   Route::get('/all-pledges', function () { return view('admin.pledges.index'); });
 
-  // Pledges API route
-  Route::apiResource('pledges', PledgeController::class);
-   // Pledge Types API route
-  Route::apiResource('types', TypeController::class);
- //Create Pledge type route  
-   Route::post('add-type', [App\Http\Controllers\Admin\PledgeController::class,'saveType']);
- //Edit Pledge type page route  
-   Route::get('edit-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'editType']);
- //Update Pledge type route  
-   Route::put('edit-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'updateType']);
- //Delete Pledge Type Route  
-   Route::get('delete-type/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'destroyType']);
- //Create Pledge Route
-   Route::post('save-pledge', [App\Http\Controllers\Admin\PledgeController::class,'save']);
-// edit pledge page
-   Route::get('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'edit']);
- //Update Pledge type route  
-   Route::put('edit-pledge/{type_id}', [App\Http\Controllers\Admin\PledgeController::class,'update']);
- // Delete Pledge method route  
-    Route::get('delete-pledge/{id}', [App\Http\Controllers\Admin\PledgeController::class,'destroy']);
-   // view all purposes route
-    Route::get('/all-purposes', function () {
-      return view('admin.purposes.index');
-      });
-  
-  // Purposes API route
+// Manage purposes route
+  Route::get('/all-purposes', function () {
+    return view('admin.purposes.index');
+    });
+
+//Manage Purposes API route
   Route::apiResource('purposes', PurposeController::class);
- //Create Purpose route  
-   Route::post('add-purpose', [App\Http\Controllers\Admin\PurposeController::class,'save']);
- // Delete Purpose method route  
-    Route::get('delete-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'destroy']);
-    Route::get('edit-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'edit']);
- //Update Purpose route  
-    Route::put('edit-purpose/{id}', [App\Http\Controllers\Admin\PurposeController::class,'update']);
+
+
+
+
+  //Manage Pledges API route
+  Route::apiResource('pledges', PledgeController::class);
+   // Pledge Pledge Types API route
+  Route::apiResource('types', TypeController::class);
+
+
 
 // all payments route
-  //  Route::get('/all-payments', [App\Http\Controllers\Admin\PaymentController::class,'index']);
   Route::get('/all-payments', function () {
     return view('admin.payments.index');
     });
   // Payments API route
   Route::apiResource('payments', PaymentController::class);
+
   // Payment Methods API route
   Route::apiResource('methods', MethodController::class);
- //Create Payment method route  
-   Route::post('add-method', [App\Http\Controllers\Admin\PaymentController::class,'saveMethod']);
- //Edit Payment Method page route  
-   Route::get('edit-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'editMethod']);
- //Update Payment Method route  
-   Route::put('edit-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'updateMethod']);
- //Delete Payment method Route  
-   Route::get('delete-method/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroyMethod']);
- //Create Payment Route
-   Route::post('add-payment', [App\Http\Controllers\Admin\PaymentController::class,'save']);
- //Delete Payment method Route  
-  Route::get('delete-payment/{method_id}', [App\Http\Controllers\Admin\PaymentController::class,'destroy']);
+
 
 // all cards route
-  // Route::get('/all-cards', [App\Http\Controllers\Admin\CardController::class,'index']);
   Route::get('/all-cards', function () {
     return view('admin.cards.index');
     });
@@ -136,16 +109,6 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::apiResource('card-member', CardMemberController::class);
     // CardPayment API route
   Route::apiResource('card-payments', CardPaymentController::class);
-
-//Create Card method route  
-  Route::post('add-card', [App\Http\Controllers\Admin\CardController::class,'save']);
-//Edit Card Method page route  
-  Route::get('edit-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'edit']);
-//Update Card Method route  
-  Route::put('edit-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'update']);
-//Delete Card method Route  
-  Route::get('delete-card/{card_id}', [App\Http\Controllers\Admin\CardController::class,'destroy']);
-
 
 
 // All reports page route
@@ -164,9 +127,25 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::get('member-pledges', [App\Http\Controllers\PDFViewController::class, 'memberPledgesReport']);
 
 // settings page route
-Route::get('/settings', function () {
-  return view('admin.settings');
-  });
+// Route::get('/settings', function () {
+//   return view('admin.settings');
+//   });
+
+
+  // all settings route
+  Route::get('settings', [App\Http\Controllers\Admin\SettingController::class,'index']);
+  // saving settings using post method
+  Route::post('settings', [App\Http\Controllers\Admin\SettingController::class,'save']);
+
+
+// all announcements route
+  Route::get('/all-announcements', function () {
+    return view('admin.announcements.index');
+    });
+
+// Payments API route
+  Route::apiResource('announcements', AnnouncementController::class);
+
 
  // my-profile
   Route::get('/my-profile', function () {
@@ -181,8 +160,14 @@ Route::get('/settings', function () {
   // my-notifications API
    Route::apiResource('notifications', NotificationsController::class);
 
+  // admin change password route
+  Route::post('change-password', [App\Http\Controllers\Admin\ProfileController::class,'store']);
+
 // my-profile API
   Route::apiResource('profile', ProfileController::class);
+
+  // update profile image
+  Route::post('profile-image',[App\Http\Controllers\Admin\ProfileController::class, 'updateImg']);
 
 
   Route::get('/getEmployees/{id}',  [App\Http\Controllers\Admin\PaymentController::class, 'getEmployees']);
@@ -190,10 +175,17 @@ Route::get('/settings', function () {
 
   Route::get('ajax-autocomplete-search', [Select2SearchController::class,'selectSearch']);
 
-
+  // all supports route
+  Route::get('support', function () {
+    return view('admin.support.index');
+    });
 });
 
-// for Member
+
+
+
+
+// for Member Routes
 Route::prefix('member')->middleware(['auth','isMember'])->group(function()
 {
  // setting dashboard route
@@ -237,6 +229,14 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   // my-notifications API
     Route::apiResource('notifications', MyNotificationsController::class);
 
+  //For announcements 
+
+  Route::get('my-announcements', function () {
+    return view('member.announcements.index');
+    });
+// my-notifications API
+  Route::apiResource('announcements', MyAnnouncementController::class);
+
  // All reports page route
     Route::get('my-reports', function () {
      return view('member.reports.index');
@@ -254,9 +254,16 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
     Route::get('/settings', function () {
       return view('member.settings');
       });
-
+  //Report problem route
+  Route::get('/support', function () {
+    return view('member.support.index');
+    });
   // member change password route
     Route::post('change-password', [App\Http\Controllers\Member\ProfileController::class,'store']);
   // my-profile
     Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
+    // for event remainder
+
+ 
 });
+

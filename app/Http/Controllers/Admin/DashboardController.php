@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Card;
 use App\Models\User;
 use App\Models\Pledge;
+use App\Models\Jumuiya;
 use App\Models\Payment;
 use App\Models\CardPayment;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class DashboardController extends Controller
     public function index()
     {   
         
-       // for currency converter
+       // Function for number convertion
        function thousandsCurrencyFormat($num) {
 
         if($num>1000) {
@@ -42,19 +43,51 @@ class DashboardController extends Controller
         $cards=thousandsCurrencyFormat($num);
         $pledges=thousandsCurrencyFormat(Pledge::whereYear('created_at', date('Y'))->sum('amount'));
         $payments=thousandsCurrencyFormat(Payment::whereYear('created_at', date('Y'))->sum('amount'));
-        $members=User::where('role','member')->count();
-    //   for users chat js
+        $members=thousandsCurrencyFormat(User::where('role','member')->count());
+        $male=thousandsCurrencyFormat(User::where('role','member')->where('gender','male')->count());
+        $female=thousandsCurrencyFormat(User::where('role','member')->where('gender','female')->count());
+        $communities=thousandsCurrencyFormat(Jumuiya::count());
+        $contributions=thousandsCurrencyFormat(Payment::sum('amount')+CardPayment::sum('amount'));
+        $total_pledges=thousandsCurrencyFormat(Pledge::count());
+        $total_cards=thousandsCurrencyFormat(Card::count());
+        $var1=Pledge::whereYear('created_at', date('Y'))->sum('amount');
+        $var2=Payment::whereYear('created_at', date('Y'))->sum('amount');
+
+        if($var1>$var2)
+        {
+            $remaining=thousandsCurrencyFormat($var1-$var2);
+        }
+        else{
+            $remaining=0;
+        }
+
+   
+        //   for users chart js
         $users = User::select(\DB::raw("COUNT(*) as count"))
         ->whereYear('created_at', date('Y'))
         ->where('role','member')
         ->groupBy(\DB::raw("Month(created_at)"))
         ->pluck('count');
-    // for payments
+    // for payments chart js
         $payrate = Payment::select(\DB::raw("SUM(amount) as count"))
         ->whereYear('created_at', date('Y'))
         ->groupBy(\DB::raw("Day(created_at)"))
         ->pluck('count');
-        return view('admin.dashboard',compact('pledges','members','payments','users','payrate','cards'));
+        return view('admin.dashboard',
+        compact('pledges',
+                'members',
+                'payments',
+                'users',
+                'payrate',
+                'cards',
+                'communities',
+                'contributions',
+                'total_pledges',
+                'total_cards',
+                'male',
+                'female',
+                'remaining'
+            ));
 
     }
 

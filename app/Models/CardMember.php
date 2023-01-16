@@ -28,4 +28,12 @@ class CardMember extends Model implements Auditable
     {
         return $this->belongsTo(User::class, 'user_id','id');
     }
+
+           // for formatted date 
+           public function getFormattedDateAttribute()
+           {
+               return $this->created_at->format('d-m-Y');
+           }
+           
+           protected $appends = ['formattedDate'];
 }

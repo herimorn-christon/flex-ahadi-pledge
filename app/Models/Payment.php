@@ -41,4 +41,12 @@ class Payment extends Model implements Auditable
     {
         return $this->belongsTo(User::class, 'created_by','id');
     }
+
+    // for formatted date 
+    public function getFormattedDateAttribute()
+    {
+        return $this->created_at->format('d-m-Y');
+    }
+    
+    protected $appends = ['formattedDate'];
 }

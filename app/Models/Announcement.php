@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Announcement extends Model
 {
     use HasFactory;
+    protected $table= 'announcements';
+    protected $fillable = [
+        'title',
+        'body',
+        'attachment',
+    ];
+
+
+              // for formatted date 
+              public function getFormattedDateAttribute()
+              {
+                  return $this->created_at->format('D d-M-Y');
+              }
+              
+              protected $appends = ['formattedDate'];
+
 }

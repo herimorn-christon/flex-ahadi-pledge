@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="row my-2 py-5">
+<div class="row my-5 py-5">
     <div class="col-md-4 mx-auto my-5 col-sm-8 col-11">
         <div class="card border-top-flex">
 

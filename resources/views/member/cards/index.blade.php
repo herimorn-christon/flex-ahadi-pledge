@@ -6,7 +6,23 @@
 @section('content')
 
 
-<div class="row mb-1">
+<div class="card  p-2 border-left-flex">
+  <div class="row mb-1">
+
+  {{-- start of statistics --}}
+<div class="">
+  <div class="row starts-border mt-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Card Payments Made in {{ date('Y')}} </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Current Card Member </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  
+
+</div>
+{{-- end of statistics --}}
     <div class="col-sm-5" id="alert-div">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
@@ -23,10 +39,14 @@
                 <input type="text" name="user_id" value="{{ Auth::User()->id; }}" hidden>
                  
         
-          <button  type="submit"  class="btn bg-navy btn-outline" >
+          <button  type="submit"  class="btn bg-flex text-light  btn-sm mb-1" >
             <i class="fa fa-envelope"></i>
              Request New Card
         </button>
+        <a href="" class="btn btn-sm bg-cyan mb-1">
+          <i class="fa fa-file-pdf"></i>
+          Generate Report
+        </a>
       </form> 
     </li>
        
@@ -34,6 +54,7 @@
       
     </div><!-- /.col -->
   </div>
+</div>
 
 <div class="card mt-1">
     <div class="mt-2">

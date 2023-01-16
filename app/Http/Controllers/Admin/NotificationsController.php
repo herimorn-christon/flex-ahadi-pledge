@@ -17,8 +17,8 @@ class NotificationsController extends Controller
     public function index()
     {
         $user=Auth::user()->id;
-        $members = Notification::orderBy('updated_at','DESC')->get();
-        return response()->json(['members' => $members]);
+        $notifications = Notification::orderBy('updated_at','DESC')->limit(8)->where('user_id',0)->get();
+        return response()->json(['notifications' => $notifications]);
     }
 
     /**
@@ -65,6 +65,8 @@ class NotificationsController extends Controller
     public function destroy($id)
     {
         $notification = Notification::where('id',$id)->first();
-        return response()->json(['notification' => $notification]);
+        Notification::destroy($notification->id);
+        return response()->json(['status' => "success"]);
+
     }
 }

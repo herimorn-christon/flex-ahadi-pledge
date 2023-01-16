@@ -5,8 +5,35 @@
 
 @section('content')
 
+<div class="card  border-left-flex">
+  <div class="row mb-1 m-2">
 
-<div class="row mb-1">
+  {{-- start of statistics --}}
+<div class="px-2">
+  <div class="row starts-border mt-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made in {{ date('Y')}} </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  <div class="row starts-border" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Fullfilled Pledges in {{ date('Y')}} </h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Unfullfilled Pledges in {{ date('Y')}}</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Money Pledges in {{ date('Y')}}</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+  <div class="row starts-border mb-2" >
+    <div class="col-md-6"> <h6 class="text-secondary">Total Object Pledges in {{ date('Y')}}</h6></div>
+    <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> 212</h6></div>
+  </div>
+
+</div>
+{{-- end of statistics --}}
+
     <div class="col-sm-6" id="alert-div">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
@@ -17,14 +44,18 @@
     <div class="col-sm-6">
       <ol class="float-sm-right" type="none">
         <li class="">  
-        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal"  onclick="createPledge()">
+        <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal"  onclick="createPledge()">
             <i class="fa fa-plus"></i>
              Register New Pledge 
         </button>  
-        <button type="button" class="btn bg-navy btn-sm" data-toggle="modal" data-target="#types">
+        <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" data-target="#types">
             <i class="fa fa-list"></i>
-            Purposes
+            Contribution Purposes
         </button>
+        <a href="" class="btn btn-sm bg-cyan mb-1">
+          <i class="fa fa-file-pdf"></i>
+          Generate Report
+        </a>
     
     </li>
        
@@ -33,6 +64,7 @@
     </div><!-- /.col -->
   </div>
 
+</div>
 <div class="card mt-1">
     
     <div class="">
@@ -269,13 +301,13 @@
                       for (var i = 0; i < pledges.length; i++) 
                       {
                           let showBtn =  '<button ' +
-                              ' class="btn btn-sm bg-teal    " ' +
+                              ' class="btn btn-sm bg-flex text-light    " ' +
                               ' onclick="showPledge(' + pledges[i].id + ')"><i class="fa fa-eye"></i>' +
                           '</button> ';
 
                         
                             let editBtn =  '<button ' +
-                              ' class="btn btn-sm bg-navy " ' +
+                              ' class="btn btn-sm bg-flex text-light " ' +
                               ' onclick="editPledge(' + pledges[i].id + ')"><i class="fa fa-edit"></i>' +
                           '</button> ';
                           let deleteBtn =  '<button ' +
