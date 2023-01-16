@@ -15,6 +15,7 @@
                       $("#members-table-body").html("");
                       let members = response.members;
                       let card_payments = response.card_payments;
+                      let card = response.card;
                       for (var i = 0; i < members.length; i++) 
                       {
                             let showBtn =  '<button ' +
@@ -33,6 +34,7 @@
                           '</tr>';
 
                           $("#card-payments").html(card_payments+' Tsh');
+                          $("#current-card").html(card.card.card_no+'/'+card.user_id);
                           $("#members-table-body").append(projectRow);
                       
                       }
