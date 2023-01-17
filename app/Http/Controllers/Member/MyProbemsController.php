@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Member;
 
-use App\Http\Controllers\Controller;
+use App\Models\Problem;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class MyProbemsController extends Controller
 {
@@ -14,7 +16,12 @@ class MyProbemsController extends Controller
      */
     public function index()
     {
-        //
+
+        $user=Auth::user()->id;
+
+        $problems=Problem::where('user_id',$user)->get();
+
+        return response()->json(['problems' => $problems]);
     }
 
     /**

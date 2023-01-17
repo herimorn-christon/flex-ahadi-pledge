@@ -56,7 +56,7 @@
                                   @csrf
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">Current Password</label>
-                                      <input name="current_password" placeholder="Enter Current Password" type="text" class="form-control">
+                                      <input name="current_password" placeholder="Enter Current Password" type="password" class="form-control">
                                   </div>
                                   <div class="mb-3">
                                     <label for="newPasswordInput" class="form-label text-secondary">New Password</label>
