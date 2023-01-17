@@ -35,7 +35,7 @@
                 <div class="active tab-pane" id="interface">
                   {{-- start of interface settings --}}
                   
-                    <div class="col-md-12">
+                    <div class="col-md-9 mx-auto">
                       <div class="p-2">
                         
                           <div class="col-md-12">
@@ -54,23 +54,23 @@
                                @endif
                                <form action="{{ url('member/pledges-report') }}" method="GET">
                                 @csrf
-                        
-                                <div class="mb-3">
-                                <h5 class="text-secondary">
+                                <div class="mb-3 row">
+                                <div class="mb-3 ">
+                                <h5 class="text-secondary text-center">
                                     <small>
-                                        Generate Registered Pledges Made Report From the Given Start Date To the given End Date
+                                        Generate a Report about Pledges that you made in a given period by filling the fields below.
                                     </small>  
                                 </h5>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 col-md-6">
                                   <label for="" class="text-secondary">From Date:</label>
                                    <input type="date" class="form-control" id="from_date" name="from_date" placeholder="Enter Start Date">
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3 col-md-6">
                                   <label for="message-text" class="text-secondary">To Date:</label>
                                    <input type="date" class="form-control" id="to_date" name="to_date" placeholder="Enter End Date">
                                 </div>
-                                <div class="mb-3 form-group">
+                                <div class="mb-3 form-group col-md-6">
                                     <label for="message-text" class="text-secondary">Sort By:</label>
                                     <select name="sort_by" id="sort_by" class="bg-light text-navy form-control">
                                         <option value="name">Pledge Name</option>
@@ -86,14 +86,14 @@
                       
                                   </div>
                                   <div class="mb-3 col-md-3">
-                                     <button type="submit" class="btn bg-navy btn-block " id="save-purpose-btn">
+                                     <button type="submit" class="btn bg-flex text-light btn-block " id="save-purpose-btn">
                                       <i class="fa fa-download"></i>
                                       Download Report
                                     </button>
                                   </div>
                                 </div>
                       
-                           
+                                </div>
                               </form>
                           </div>
                       </div>

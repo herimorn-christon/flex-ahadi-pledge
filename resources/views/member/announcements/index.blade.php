@@ -9,7 +9,7 @@
 <div class="row mb-1">
     <div class="col-sm-5" id="alert-div">
       @if (session('status'))
-      <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
+      <div class="alert alert-success">
           {{ session('status') }}
       </div>
       @endif
