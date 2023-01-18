@@ -37,6 +37,27 @@ class User extends Authenticatable implements Auditable
         'jumuiya',
         'password',
         'status',
+        'place_of_birth',
+        'martial_status',
+        'marriage_type',
+        'marriage_date',
+        'partner_name',
+        'place_of_marriage',
+        'old_usharika',
+        'fellowship_name',
+        'neighbour_msharika_name',
+        'neighbour_msharika_phone',
+        'deacon_name',
+        'deacon_phone',
+        'occupation',
+        'place_of_work',
+        'proffession',
+        'can_volunteer',
+        'baptized',
+        'baptization_date',
+       'kipaimara',
+        'kipaimara_date',
+       'sacramenti_meza_bwana'
         
     ];
 
