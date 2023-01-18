@@ -50,7 +50,8 @@
                               '<td>' + (pledges[i].amount== '0' ? 'Null': pledges[i].amount )+'</td>' +
                               '<td>' + pledges[i].deadline +'</td>' +
                               '<td class="'+(pledges[i].purpose.status == '0' ? 'text-danger':'text-teal')+'">' +(pledges[i].purpose.status == '0' ? 'Not Fullfilled':'Fullfilled')+ '</td>'+
-                              '<td>' + showBtn + (pledges[i].user_id == pledges[i].created_by ? editBtn :adminBtn)+'</td>' +
+                              '<td>' + showBtn + '</td>' +
+  //                             '<td>' + showBtn + (pledges[i].user_id == pledges[i].created_by ? editBtn :adminBtn)+'</td>' +
                           '</tr>';
                           $("#pledges-table-body").append(pledgesRow);
                           $("#total").html(total_pledges);

@@ -56,6 +56,13 @@
                       <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Payment Amount">
                   </div>
                </div>
+
+               <div class="col-md-12">
+                <div class="form-group">
+                    <label for="amount" class="text-secondary">Payment Receipt </label>
+                   <textarea name="receipt" id="receipt" class="form-control" rows="4"></textarea>
+                </div>
+             </div>
               </div>
               <div class="row">
                 <div class="col-md-6"></div>

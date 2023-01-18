@@ -18,10 +18,16 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header p-2 bg-white">
-              <ul class="nav nav-pills nav-light">
-                <li class="nav-item active"><a class="nav-link bg-light nav-white " href="#interface" data-toggle="tab" >Change Password</a></li>
-                {{-- <li class="nav-item"><a class="nav-link bg-light nav-light " href="#audits" data-toggle="tab">Notifications</a></li> --}}
-                <li class="nav-item"><a class="nav-link bg-light nav-light" href="#announcements" data-toggle="tab">Report a Problem</a></li>
+              <ul class="nav nav-tabs nav-light">
+                <li class="nav-item">
+                  <a class="nav-link text-navy active" href="#interface"  data-toggle="tab">Change Password</a>
+                </li>
+                {{-- <li class="nav-item">
+                  <a class="nav-link text-navy" href="#payments"  data-toggle="tab">Payments Report</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#announcements"  data-toggle="tab">Cards Payments Report</a>
+                </li> --}}
               </ul>
             </div><!-- /.card-header -->
             <div class="">
@@ -29,7 +35,7 @@
                 <div class="active tab-pane" id="interface">
                   {{-- start of interface settings --}}
                   
-                    <div class="col-md-12">
+                    <div class="col-md-8 mx-auto">
                       <div class="p-2">
                         
                           <div class="col-md-12">
@@ -50,7 +56,7 @@
                                   @csrf
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">Current Password</label>
-                                      <input name="current_password" placeholder="Enter Current Password" type="text" class="form-control">
+                                      <input name="current_password" placeholder="Enter Current Password" type="password" class="form-control">
                                   </div>
                                   <div class="mb-3">
                                     <label for="newPasswordInput" class="form-label text-secondary">New Password</label>
@@ -71,7 +77,7 @@
                                     
                                       <div class="col-md-9"></div>
                                       <div class="col-md-3">
-                                          <button class="btn bg-navy btn-block float-end" type="submit">
+                                          <button class="btn bg-flex text-light btn-block float-end" type="submit">
                                             <i class="fa fa-key"></i>
                                             Change Password
                                           </button>

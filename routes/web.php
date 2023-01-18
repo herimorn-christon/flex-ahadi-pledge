@@ -17,6 +17,7 @@ use App\Http\Controllers\Member\MethodsController;
 use App\Http\Controllers\Member\MyPledgeController;
 use App\Http\Controllers\Admin\CardMemberController;
 use App\Http\Controllers\Member\DashboardController;
+use App\Http\Controllers\Member\MyProbemsController;
 use App\Http\Controllers\Admin\CardPaymentController;
 use App\Http\Controllers\Member\MyPaymentsController;
 use App\Http\Controllers\Admin\AnnouncementController;
@@ -198,11 +199,9 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
 // my-pledges API
     Route::apiResource('pledges', MyPledgeController::class);
 
-  //Create Pledge Route
-  Route::post('save-pledge', [App\Http\Controllers\Member\PledgeController::class,'save']);
 
  // my-payments
-//  Route::get('/my-payments', [App\Http\Controllers\Member\PaymentController::class,'index']);
+
   Route::get('/my-payments', function () {
   return view('member.payments.index');
   });
@@ -211,8 +210,7 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   // Payment Methods API route
   Route::apiResource('methods', MethodsController::class);
   // my-cards
-  // Route::get('/my-cards', [App\Http\Controllers\Member\CardController::class,'index']);
-  
+ 
     Route::get('my-cards', function () {
     return view('member.cards.index');
     });
@@ -257,6 +255,9 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   Route::get('/support', function () {
     return view('member.support.index');
     });
+  // my-problems API
+  Route::apiResource('problems', MyProbemsController::class);
+    
   // member change password route
     Route::post('change-password', [App\Http\Controllers\Member\ProfileController::class,'store']);
   // my-profile

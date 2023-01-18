@@ -15,8 +15,10 @@ class CreateProblemsTable extends Migration
     {
         Schema::create('problems', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id');
+            $table->string('problem');
             $table->text('detail');
-            $table->string('attachment');
+            $table->string('attachment')->nullable();
             $table->timestamps();
         });
     }

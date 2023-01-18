@@ -21,7 +21,22 @@ class MyCardController extends Controller
     {
         $user=Auth::user()->id;
         $members = CardMember::where('user_id',$user)->orderBy('updated_at','DESC')->with('user')->with('card')->get();
-        return response()->json(['members' => $members]);
+        $card=CardMember::where('user_id',$user)->orderBy('updated_at','DESC')->where('status','')->with('user')->with('card')->first();
+        if($card)
+        {
+        $id=$card->id;
+        $card_payments=CardPayment::where('card_member',$id)->sum('amount');
+        }
+        else
+        {
+        $card_payments="Null";
+        }
+       
+        return response()->json([
+                                'members' => $members,
+                                'card'=>$card,
+                                'card_payments'=>$card_payments
+                            ]);
     }
 
     /**

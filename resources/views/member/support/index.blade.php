@@ -16,14 +16,50 @@
       <div class="row">
     
         <div class="col-md-12">
-          
-         
+          <div class="card">
+            <div class="card-header p-2 bg-white">
+              <ul class="nav nav-tabs nav-light">
+                <li class="nav-item">
+                  <a class="nav-link text-navy active" href="#problems"  data-toggle="tab">  Reported Problems</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#report"  data-toggle="tab">Report Problem</a>
+                </li>
+                {{--<li class="nav-item">
+                  <a class="nav-link text-navy" href="#announcements"  data-toggle="tab">Cards Payments Report</a>
+                </li> --}}
+              </ul>
+            </div><!-- /.card-header -->
+            {{-- <div class=""> --}}
+              <div class="tab-content">
+                <div class="active tab-pane" id="problems">
+                  {{-- start of interface settings --}}
+                  
+                    <div class="p-1 mt-2">
+                      <table id="example1" class="table table-bordered cell-bordered ">
+                        <thead>
+                          <th>SN</th>
+                          <th>Repoted Date</th>
+                          <th>Problem</th>
+                          <th>Action</th>
+                        </thead>
+                        <tbody></tbody>
+                      </table>
+                      
+                    </div>
+                
+
+                  {{-- end of interface settings --}}
+                </div>
+                <!-- /.tab-pane -->
+            
+
+                <div class="tab-pane" id="report">
 
                
                   {{-- start of report form --}}
 
-                  <div class="col-md-8 mx-auto mt-4">
-                    <div class="card">
+                  <div class="col-md-12">
                     <div class="p-2">
                       
                         <div class="col-md-12">
@@ -43,8 +79,12 @@
                             <form action="{{ url('member/report-problem') }}" method="post"  enctype="multipart/form-data" >
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="" class="text-secondary">Your Issue</label>
-                                   <textarea name="problem" id="problem" cols="30" rows="5" class="form-control"></textarea>
+                                  <label for="" class="text-secondary">Your Issue</label>
+                                  <input type="text" class="form-control" id="problem" name="problem" placeholder="Enter your problem here...">
+                              </div>
+                                <div class="mb-3">
+                                    <label for="" class="text-secondary">Desscription</label>
+                                   <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <br>
@@ -61,9 +101,9 @@
                                   
                                     <div class="col-md-9"></div>
                                     <div class="col-md-3 ">
-                                        <button class="btn bg-navy btn-block float-end" type="submit">
+                                        <button class="btn bg-flex text-light btn-block float-end" type="submit">
                                           <i class="fa fa-headset"></i>
-                                           Report Issue
+                                           Report IssueB SH
                                         </button>
                                     </div>
                                 </div>
@@ -75,7 +115,10 @@
                   {{-- end of report form --}}
                
               
-               
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
             </div><!-- /.card-body -->
           </div>
           <!-- /.card -->
