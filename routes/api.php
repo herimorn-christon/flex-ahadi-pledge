@@ -58,8 +58,10 @@ Route::middleware('auth:sanctum')->post('/change-password', function (Request $r
         'oldPassword' => 'required',
         'newPassword' => 'required',
     ]);
+    
 
-    if(!Hash::check($request->old_password, $request->user()->password)){
+
+    if(!Hash::check($request->oldPassword, $request->user()->password)){
        return response()->json(['error' => "Old Password Doesn't match!"], 500);
     }
 
