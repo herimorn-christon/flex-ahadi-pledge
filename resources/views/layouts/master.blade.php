@@ -73,6 +73,19 @@
     <style>
      
   </style>
+
+   <!-- Fonts -->
+   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+   <!-- Styles -->
+   <style>
+       body {
+           font-family: 'Nunito', sans-serif;
+       }
+   </style>
+   
+      <!-- Styles -->
+    @livewireStyles
+    @powerGridStyles
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   {{-- for flex theme --}}
@@ -162,6 +175,15 @@
   </aside>
   <!-- /.control-sidebar -->
 </div>
+
+@livewireScripts
+@powerGridScripts
+<script src="//unpkg.com/alpinejs" defer></script>
+<script>
+    window.addEventListener('showAlert', event => {
+        alert(event.detail.message);
+    })
+</script>
 <!-- ./wrapper -->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <!-- jQuery -->
@@ -254,7 +276,14 @@
   });
 </script>
 
-
+@livewireScripts
+@powerGridScripts
+<script src="//unpkg.com/alpinejs" defer></script>
+<script>
+    window.addEventListener('showAlert', event => {
+        alert(event.detail.message);
+    })
+</script>
 </body>
 </html>
 
