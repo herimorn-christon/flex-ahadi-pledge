@@ -86,7 +86,9 @@ Route::get('/subscriptions', [SubscriptionsController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'apistore']);
 
 //CARD PAYMENTS
-Route::middleware('auth:sanctum')->get('/cardpayments', [CardPaymentController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/cards', [CardPaymentController::class, 'index']);
+
+Route::middleware('auth:sanctum')->post('/card-payments', [CardPaymentController::class, 'payments']);
 
 
 //JUMUIYA ROUTES

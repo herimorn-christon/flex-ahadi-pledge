@@ -118,19 +118,24 @@ class MyCardController extends Controller
      */
     public function apistore(Request $request)
         {
+
             
                 $user=$request->user()->id;
 
+
                 $card=CardMember::where('user_id',$user)->where('status','')->first();
 
+
                 if ($card) {
-                    return response()->json(['error' => "Sorry,You Already Have an Active Member Card!"]);
+                    return response()->json(['error' => "Sorry,You Already Have an Active Member Card!"], 500);
 
                 }
                 else{
 
 
-                    $member =new CardMember();
+                    $member = new CardMember();
+
+                    
 
 
                     $card = Card::where('status','')->orderBy('created_by')->first();
@@ -138,7 +143,7 @@ class MyCardController extends Controller
                         $card->status=1;
                         $card->update();
                         $member->card_no=$card->id;
-                        $member->user_id=$request->user_id;
+                        $member->user_id=$request->user()->id;
                         $member->status= $request->status == true ? '1':'0';
                         $member->save(); # code...
                         return response()->json(['success' => "Congratulatioons,You have been assigned a Member Card!"]);
@@ -146,8 +151,16 @@ class MyCardController extends Controller
                     }
                 
                     else{
+
+                        $notification = new Notification();
+                        $notification->user_id= 0; //0=Admin notification
+                        $notification->created_by= $request->user()->id;
+                        $notification->type='Card Request !';
+                        $name=$request->User()->fname;
+                        $notification->message= $name .' All Card Members have been assigned, you have to create new Card Members or Reassign existing ones!';
+                        $notification->save();
         
-                        return response()->json(['success' => "Please wait to be assigned a Member Card!"]);
+                        return response()->json(['error' => "Please wait to be assigned a Member Card!"], 500);
                     }
                  
         
