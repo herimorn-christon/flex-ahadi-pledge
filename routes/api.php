@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\PurposeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Member\MyCardController;
 use App\Http\Controllers\Admin\CardPaymentController;
+use App\Http\Controllers\SubscriptionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,9 @@ Route::middleware('auth:sanctum')->post('/change-password', function (Request $r
 
 
 Route::post('token', [AuthController::class, 'requestToken']);
+
+Route::get('/subscriptions', [SubscriptionsController::class, 'index']);
+
 
 
 //USER ROUTES

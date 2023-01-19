@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Jumuiya;
+use App\Models\PaymentType;
 use App\Models\PledgeType;
 use App\Models\Purpose;
 use App\Models\Subscriptions;
@@ -34,6 +35,10 @@ class DatabaseSeeder extends Seeder
             'end_date' => '2023-01-31',
             'status' => '0',
             'created_by' => '1'
+        ]);
+
+        PaymentType::create([
+            'name' => 'AIRTEL'
         ]);
 
         Jumuiya::create([
