@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
                 );
                 $reminder->delete();
             }
-        })->everyMinute();
+        })->dailyAt('13:00');
     }
 
     /**

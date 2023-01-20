@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\PurposeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Member\MyCardController;
 use App\Http\Controllers\Admin\CardPaymentController;
+use App\Http\Controllers\SubscriptionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,9 @@ Route::middleware('auth:sanctum')->post('/change-password', function (Request $r
 
 Route::post('token', [AuthController::class, 'requestToken']);
 
+Route::get('/subscriptions', [SubscriptionsController::class, 'index']);
+
+
 
 //USER ROUTES
 
@@ -82,7 +86,9 @@ Route::post('token', [AuthController::class, 'requestToken']);
 Route::post('/register', [RegisterController::class, 'apistore']);
 
 //CARD PAYMENTS
-Route::middleware('auth:sanctum')->get('/cardpayments', [CardPaymentController::class, 'index']);
+Route::middleware('auth:sanctum')->get('/cards', [CardPaymentController::class, 'index']);
+
+Route::middleware('auth:sanctum')->post('/card-payments', [CardPaymentController::class, 'payments']);
 
 
 //JUMUIYA ROUTES

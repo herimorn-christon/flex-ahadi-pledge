@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Subscriptions;
+use App\Models\UserSubscriptions;
 use Illuminate\Http\Request;
 
-class SubscriptionsController extends Controller
+class UserSubscriptionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,7 @@ class SubscriptionsController extends Controller
      */
     public function index()
     {
-        $subscriptions = Subscriptions::all();
-        return response()
-                ->json([
-                    'subscriptions' => $subscriptions
-                ]);
+        //
     }
 
     /**
@@ -45,10 +41,10 @@ class SubscriptionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Subscriptions  $subscriptions
+     * @param  \App\Models\UserSubscriptions  $userSubscriptions
      * @return \Illuminate\Http\Response
      */
-    public function show(Subscriptions $subscriptions)
+    public function show(UserSubscriptions $userSubscriptions)
     {
         //
     }
@@ -56,10 +52,10 @@ class SubscriptionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Subscriptions  $subscriptions
+     * @param  \App\Models\UserSubscriptions  $userSubscriptions
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subscriptions $subscriptions)
+    public function edit(UserSubscriptions $userSubscriptions)
     {
         //
     }
@@ -68,10 +64,10 @@ class SubscriptionsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Subscriptions  $subscriptions
+     * @param  \App\Models\UserSubscriptions  $userSubscriptions
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subscriptions $subscriptions)
+    public function update(Request $request, UserSubscriptions $userSubscriptions)
     {
         //
     }
@@ -79,10 +75,10 @@ class SubscriptionsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Subscriptions  $subscriptions
+     * @param  \App\Models\UserSubscriptions  $userSubscriptions
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subscriptions $subscriptions)
+    public function destroy(UserSubscriptions $userSubscriptions)
     {
         //
     }

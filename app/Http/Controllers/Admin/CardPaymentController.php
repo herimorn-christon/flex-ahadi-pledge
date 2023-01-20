@@ -7,6 +7,7 @@ use App\Models\CardPayment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Concerns\ToArray;
 
 class CardPaymentController extends Controller
 {
@@ -15,10 +16,28 @@ class CardPaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $payments = CardPayment::orderBy('updated_at','DESC')->with('user')->with('card')->get();
-        return response()->json(['payments' => $payments]);
+        $user_id = $request->user()->id;
+        $cards = CardMember::where('user_id', $user_id)->with('card')->get();
+        return response()->json(['cards' => $cards]);
+    }
+
+
+    public function payments(Request $request) {
+
+        $card_id = $request->card_id;
+
+        $payments = CardPayment::with('card')->get()->toArray();
+
+
+        $filtered = array_filter($payments, function($payment) use($card_id) {
+            return $payment['card']['card_no'] == $card_id;
+        });
+
+
+        return response()->json(['payments' => $filtered]);
+
     }
 
     /**
