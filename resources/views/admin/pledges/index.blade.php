@@ -153,15 +153,22 @@
        @include('admin.pledges.ajax-update-type')
        {{-- end of ajax update pledge types method --}}
       
-       {{-- start of ajax delete Pledge type method --}}
-       @include('admin.pledges.ajax-delete-type')
-       {{-- end of ajax delete Pledge type method --}}
+       {{-- start of ajax update pledge types method --}}
+       @include('admin.pledges.ajax-update-pledge')
+       {{-- end of ajax update pledge types method --}}
    
        {{-- start of ajax register pledge method --}}
        @include('admin.pledges.ajax-register-type')
        {{-- end of ajax register pledge method --}}
        
-       
+        {{-- start of ajax delete Pledge type method --}}
+        @include('admin.pledges.ajax-delete-type')
+        {{-- end of ajax delete Pledge type method --}}
+
+
+         {{-- start of ajax delete Pledge type method --}}
+       @include('admin.pledges.ajax-delete-pledge')
+       {{-- end of ajax delete Pledge type method --}}
 
         </div>
 

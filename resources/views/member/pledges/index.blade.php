@@ -172,9 +172,6 @@
 
 <script type="text/javascript">
   
-       
-       
-
  /*
               get and display the record info on modal
           */

@@ -77,7 +77,11 @@
                   <div class="row mt-2">
   
                       <div class="col-md-6 ">
-                   
+                        <label for="" class="text-secondary"> Pledge Status</label>
+                        <select name="status" id="status" class="form-control bg-light">
+                          <option value="0">Not Fullfilled</option> 
+                          <option value="1">Fullfilled</option>
+                        </select>
                       </div>
   
                       <div class="col-md-6 ">
