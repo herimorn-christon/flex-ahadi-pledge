@@ -91,9 +91,10 @@
 <div class="card mt-1">
     <div class="">
         <div class="p-1">
-          <div class="bg-white p-4 border border-gray-200 rounded">
-            <livewire:user-table/>
-                {{-- <thead>
+         
+            {{-- <livewire:user-table/> --}}
+            <table id="example1" class="table table-bordered " >
+                <thead>
                      <tr class="text-secondary ">
                             <th>SN</th>
                             <th>Member ID</th>
@@ -106,10 +107,8 @@
                 </thead>
                 <tbody id="members-table-body">
                  
-                </tbody> --}}
+                </tbody>
             </table>
-
-        </div>
 
         {{-- start of ajax fetch all members method --}}
         @include('admin.members.ajax-fetch-all-members')

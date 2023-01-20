@@ -43,7 +43,7 @@
                               '<td>' + pledges[i].purpose.title + '</td>' +
                               '<td>' + pledges[i].amount + '</td>' +
                               '<td class="'+(pledges.status == '0' ? 'text-teal':'text-danger')+'">'+(pledges.status == '0' ? 'Fullfilled':'Not Fullfilled')+ '</td>'+
-                              '<td>' + showBtn + editBtn + deleteBtn + '</td>' +
+                              '<td>' + showBtn + deleteBtn + '</td>' +
                           '</tr>';
                           $("#pledges-table-body").append(pledgesRow);
                       

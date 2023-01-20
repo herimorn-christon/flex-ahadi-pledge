@@ -1,7 +1,8 @@
 {{--  This is the ajax register new Pledge  method page --}}
 <script type="text/javascript">
 
-        /*
+
+  /*
               check if form submitted is for creating or updating
           */
           $("#save-pledge-btn").click(function(event ){
@@ -14,8 +15,7 @@
               }
           })
 
-
-          /*
+   /*
               show modal for creating a record and 
               empty the values of form and remove existing alerts
           */
@@ -33,6 +33,10 @@
               $("#description").val("");
               $("#form-modal").modal('show'); 
           }
+
+      
+
+       
        
           /*
               submit the form and will be stored to the database
@@ -58,7 +62,7 @@
                   type: "POST",
                   data: data,
                   success: function(response) {
-                      $("#save-ledge-btn").prop('disabled', false);
+                      $("#save-pledge-btn").prop('disabled', false);
                       let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Created Successfully</div>';
                       $("#alert-div").html(successHtml);
                       $("#name").val("");
@@ -100,7 +104,7 @@
           if (typeof errors.amount !== 'undefined') 
                           {
                               amountValidation = '<li>' + errors.amount[0] + '</li>';
-                          }
+                         }
            
           let errorHtml = '<div class="alert alert-danger" role="alert">' +
               '<b>Validation Error!</b>' +
