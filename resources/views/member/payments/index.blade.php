@@ -60,7 +60,7 @@
             Add Payment
         </button>   
             {{-- end of register payment button --}}
-        <a href="" class="btn btn-sm bg-cyan mb-1">
+        <a href="" class="btn btn-sm bg-cyan mb-1" data-toggle="modal" onclick="showAllRequests()>
           <i class="fa fa-file-pdf"></i>
           Generate Report
         </a>
