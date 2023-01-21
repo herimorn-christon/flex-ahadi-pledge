@@ -6,9 +6,9 @@
         <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <div id="error-div"></div>
+          <div id="errors-div"></div>
              <form>
-             <input type="hidden" name="update_Id" id="update_Id">
+             <input type="" name="update_Id" id="update_Id">
   
              <div class="row mb-3">
                 @php

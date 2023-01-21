@@ -1,17 +1,6 @@
 {{-- This is the page for Pledge Type detail update ajax method  --}}
 <script type="text/javascript">
-              /*
-              check if form submitted is for creating or updating
-          */
-          $("#edit-member-btn").click(function(event ){
-              event.preventDefault();
-              if($("#update_Id").val() == null || $("#update_Id").val() == "" )
-              {
-                  storeCardMember();
-              } else {
-                  updateCardMember();
-              }
-          })
+   
       /*
                 edit record function
                 it will get the existing value and show the payment form form
@@ -38,6 +27,20 @@
                     }
                 });
             }
+
+
+              /*
+              check if form submitted is for creating or updating
+          */
+          $("#edit-member-btn").click(function(event ){
+              event.preventDefault();
+              if($("#update_Id").val() == null || $("#update_Id").val() == "" )
+              {
+                  storeCardMember();
+              } else {
+                  updateCardMember();
+              }
+          })
          
             /*
                 sumbit the form and will update a record
@@ -45,7 +48,7 @@
             function updateCardMember()
             {
                 $("#edit-member-btn").prop('disabled', true);
-                let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + $("#update_Id").val(member.id);
+                let url = $('meta[name=app-url]').attr("content") + "/admin/card-member/" + $("#update_Id").val();
                 let data = {
                         card_No: $("#card_No").val(),
                         user_Id: $("#user_Id").val(),
@@ -69,7 +72,7 @@
                     $("#edit-modal").modal('hide');
                     },
                      error: function(response) {
-                    $("#edit-member-btn").prop('disabled', false);
+                    $("#edit-member-bt").prop('disabled', false);
      
                     /*
         show validation error
@@ -91,7 +94,7 @@
             '<b>Validation Error!</b>' +
             '<ul>' + numberValidation  + userValidation  +'</ul>' +
         '</div>';   
-            $("#error-div").html(errorHtml);        
+            $("#errors-div").html(errorHtml);        
         }
                     }
                 });
