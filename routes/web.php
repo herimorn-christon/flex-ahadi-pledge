@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CardController;
+use App\Http\Controllers\Admin\PaymentRequest;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MemberController;
@@ -95,7 +96,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
     });
   // Payments API route
   Route::apiResource('payments', PaymentController::class);
-
+  // Payments requests API
+  Route::apiResource('prequests', PaymentRequest::class);
   // Payment Methods API route
   Route::apiResource('methods', MethodController::class);
 
