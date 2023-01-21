@@ -1,6 +1,21 @@
 {{-- This is the page for Pledge Type detail update ajax method  --}}
 <script type="text/javascript">
    
+
+             /*
+              check if form submitted is for creating or updating
+          */
+          $("#edit-member-btn").click(function(event ){
+              event.preventDefault();
+              if($("#update_Id").val() == null || $("#update_Id").val() == "" )
+              {
+                  storeCardMember();
+              } else {
+                  updateCardMember();
+              }
+          })
+         
+
       /*
                 edit record function
                 it will get the existing value and show the payment form form
@@ -29,19 +44,6 @@
             }
 
 
-              /*
-              check if form submitted is for creating or updating
-          */
-          $("#edit-member-btn").click(function(event ){
-              event.preventDefault();
-              if($("#update_Id").val() == null || $("#update_Id").val() == "" )
-              {
-                  storeCardMember();
-              } else {
-                  updateCardMember();
-              }
-          })
-         
             /*
                 sumbit the form and will update a record
             */
@@ -68,8 +70,9 @@
                      $("#card_No").val("");
                      $("#user_Id").val("");
                      $("#card_status").val("");
+                     $("#edit-modal").modal('hide');
                     showAllCardMembers();
-                    $("#edit-modal").modal('hide');
+                   
                     },
                      error: function(response) {
                     $("#edit-member-bt").prop('disabled', false);

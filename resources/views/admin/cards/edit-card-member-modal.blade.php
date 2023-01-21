@@ -8,7 +8,7 @@
       <div class="modal-body">
           <div id="errors-div"></div>
              <form>
-             <input type="" name="update_Id" id="update_Id">
+             <input type="hidden" name="update_Id" id="update_Id">
   
              <div class="row mb-3">
                 @php
@@ -16,7 +16,7 @@
                 @endphp
                 <div class="col-md-12">
                     <label for="" class="text-secondary">All Members</label>
-                    <select name="user_Id" id="user_Id"  class="form-control" >
+                    <select name="user_Id" id="user_Id"  disabled  class="form-control" >
                         <option value="">--Select Member --</option>
                         @foreach ( $members as $item)
                          <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
@@ -30,7 +30,7 @@
                 @endphp
                 <div class="col-md-12 mb-3">
                     <label for="" class="text-secondary">Available Cards</label>
-                    <select name="card_No" id="card_No" class="form-control" >
+                    <select name="card_No" id="card_No" disabled class="form-control" >
                         <option value="">--Select  Card --</option>
                         @foreach ( $purpose as $item)
                          <option value="{{ $item->id}}"> {{ $item->card_no}}</option>
@@ -53,7 +53,7 @@
                       <label for="" class="text-white">.</label>
                         <button class="btn bg-flex text-light btn-block " id="edit-member-btn" type="submit">
                         <i class="fa fa-save"></i>
-                        Update Card
+                        Change Card Status
                         </button>
                     </div>
                 </div>
