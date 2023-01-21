@@ -15,13 +15,14 @@
                         $("#alert-div").html("");
                         $("#error-div").html("");   
                         $("#update_id").val(purpose.id);
-                        $("#pledge_id").val(purpose.pledge_id);
-                        $("#amount").val(purpose.amount);
-                        $("#user_id").val(purpose.user_id);
-                        $("#type_id").val(purpose.type_id);
+                        $("#vpledge_id").val(purpose.pledge_id);
+                        $("#vamount").val(purpose.amount);
+                        $("#vuser_id").val(purpose.user_id);
+                        $("#vtype_id").val(purpose.type_id);
+                        $("#vreceipt").val(purpose.receipt);
+                        // $("#verified").val(purpose.verified);
+                        $("#verify-modal").modal('show'); 
                         $("#requests").modal('hide'); 
-                        $("#request-modal").modal('show'); 
-    
                     },
                     error: function(response) {
                         console.log(response.responseJSON)

@@ -171,6 +171,14 @@
         @include('admin.payments.ajax-register-method')
         {{-- end of ajax register pledge method --}}
 
+        {{-- start of ajax register pledge method --}}
+        @include('admin.payments.ajax-verify-payment')
+        {{-- end of ajax register pledge method --}}
+
+         {{-- start verify payment modal --}}
+        @include('admin.payments.verify-modal')
+        {{-- end of verify payment modal --}}  
+
     </li>
        
       </ol>
