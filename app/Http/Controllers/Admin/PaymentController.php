@@ -79,15 +79,6 @@ class PaymentController extends Controller
 
 
             }else {
-                // Payment::create([
-                //     "type_id" => $request->type_id,
-                //     "user_id" => $request->user_id,
-                //     "amount" => $request->amount,
-                //     "receipt" => $request->receipt,
-                //     "pledge_id"=>$request->pledge_id,
-                //     "created_by"=> $request->user()->id,
-                //     "verified"=>$request->verified,
-                // ] )  ;
             $payment = new Payment();
             $payment->type_id = $request->type_id;
             $payment->user_id = $request->user_id;

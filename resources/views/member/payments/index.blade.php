@@ -127,5 +127,13 @@
      {{-- star all payment methods modal --}}
      @include('member.payments.all-payment-methods-modal')
      {{-- end all payment methods modal --}}
+
+    {{-- start register payment modal --}}
+    @include('member.payments.register-payment-modal')
+    {{-- end of register  payment modal --}}
+     
+    {{-- start of ajax update  payment method --}}
+    @include('member.payments.ajax-register-payment')
+    {{-- end of ajax update  payment method --}}
   
 @endsection

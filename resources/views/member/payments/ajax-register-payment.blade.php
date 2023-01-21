@@ -23,10 +23,9 @@
                 $("#alert-div").html("");
                 $("#error-div").html("");   
                 $("#update_id").val("");
-                $("#type_id").val("");
-                $("#pledge_id").val("");
-                $("#user_id").val("");
-                $("#amount").val("");
+                $("#type").val("");
+                $("#pledge").val("");
+                $("#pamount").val("");
                 $("#form-modal").modal('show'); 
             }
          
@@ -36,12 +35,11 @@
             function storePayment()
             {   
                 $("#save-payment-btn").prop('disabled', true);
-                let url = $('meta[name=app-url]').attr("content") + "/admin/payments";
+                let url = $('meta[name=app-url]').attr("content") + "/member/payments";
                 let data = {
-                    pledge_id: $("#pledge_id").val(),
-                    amount: $("#amount").val(),
-                    user_id: $("#user_id").val(),
-                    type_id: $("#type_id").val(),
+                    pledge_id: $("#pledge").val(),
+                    amount: $("#pamount").val(),
+                    type_id: $("#type").val(),
                     receipt: $("#receipt").val(),
                 };
                 $.ajax({
@@ -55,11 +53,10 @@
                         $("#save-paymentd-btn").prop('disabled', false);
                         let successHtml = '<div class="alert alert-success" role="alert">Payment Was Added Successfully</div>';
                         $("#alert-div").html(successHtml);
-                        $("#pledge_id").val("");
-                        $("#type_id").val("");
-                        $("#purpose_id").val("");
-                        $("#user_id").val("");
-                        $("#amount").val("");
+                        $("#pledge").val("");
+                        $("#type").val("");
+        //                 $("#purpose_id").val("");
+                        $("#pamount").val("");
                         $("#receipt").val("");
                         showAllPayments();
                         $("#form-modal").modal('hide');
@@ -73,11 +70,6 @@
                         if (typeof response.responseJSON.errors !== 'undefined') 
                         {
             let errors = response.responseJSON.errors;
-            let descriptionValidation = "";
-            if (typeof errors.user_id !== 'undefined') 
-                            {
-                                descriptionValidation = '<li>' + errors.user_id[0] + '</li>';
-                            }
             let nameValidation = "";
             if (typeof errors.name !== 'undefined') 
                             {
@@ -102,7 +94,7 @@
              
             let errorHtml = '<div class="alert alert-danger" role="alert">' +
                 '<b>Validation Error!</b>' +
-                '<ul>' + nameValidation + descriptionValidation + deadlineValidation + amountValidation +'</ul>' +
+                '<ul>' + nameValidation + deadlineValidation + amountValidation +'</ul>' +
             '</div>';
             $("#error-div").html(errorHtml); 
             let fail = response.responseJSON.fail;
