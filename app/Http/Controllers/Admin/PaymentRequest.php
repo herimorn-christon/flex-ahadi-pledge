@@ -15,7 +15,7 @@ class PaymentRequest extends Controller
      */
     public function index()
     {
-        $prequests = Payment::where('verified','')->get();
+        $prequests = Payment::where('verified','')->with('payer')->with('payment')->with('pledge')->get();
         return response()->json(['prequests' => $prequests]);
     }
 

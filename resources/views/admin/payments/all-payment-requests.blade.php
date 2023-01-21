@@ -11,11 +11,17 @@
           <div class="col-sm-12" id="alert-div">
           </div>
           <div class="row">
-            <table   class="table table-bordered ">
+            <table id="example2"  class="table table-bordered ">
                 <thead>
                     <tr class="text-secondary">
                         <th>SN</th>
-                        <th>Method Name</th>
+                        <th>Request Date</th>
+                        <th>Payer Name</th>
+                        <th>Method</th>
+                        <th>Pledge</th>
+                        <th>Amount</th>
+                        <th>Receipt</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="requests-table-body">

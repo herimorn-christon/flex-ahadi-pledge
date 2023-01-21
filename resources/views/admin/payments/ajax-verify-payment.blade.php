@@ -19,7 +19,9 @@
                         $("#amount").val(purpose.amount);
                         $("#user_id").val(purpose.user_id);
                         $("#type_id").val(purpose.type_id);
-                        $("#form-modal").modal('show'); 
+                        $("#requests").modal('hide'); 
+                        $("#request-modal").modal('show'); 
+    
                     },
                     error: function(response) {
                         console.log(response.responseJSON)
@@ -30,9 +32,9 @@
             /*
                 sumbit the form and will update a record
             */
-            function updatePayment()
+            function updateVerified()
             {
-                $("#save-pledge-btn").prop('disabled', true);
+                $("#save-verification-btn").prop('disabled', true);
                 let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + $("#update_id").val();
                 let data = {
                     pledge_id: $("#pledge_id").val(),
@@ -48,13 +50,10 @@
                     type: "PUT",
                     data: data,
                     success: function(response) {
-                        $("#save-pledge-btn").prop('disabled', false);
+                        $("#save-verification-btn").prop('disabled', false);
                         let successHtml = '<div class="alert alert-success" role="alert">Payment Was Updated Successfully !</div>';
                         $("#alert-div").html(successHtml);
-                        $("#pledge_id").val("");
-                        $("#type_id").val("");
-                        $("#user_id").val("");
-                        $("#amount").val(""); 
+                        $("#verified").val("");
                         showAllPayments();
                         $("#form-modal").modal('hide');
                     },
@@ -62,7 +61,7 @@
                         /*
             show validation error
                         */
-                        $("#save-pledge-btn").prop('disabled', false);
+                        $("#save-verification-btn").prop('disabled', false);
                         if (typeof response.responseJSON.errors !== 'undefined') 
                         {
                             console.log(response)
