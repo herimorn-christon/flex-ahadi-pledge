@@ -42,44 +42,8 @@ background: transparent !important;
   margin: 1px !important;
   background-color: #001f3f;
 }
-/* button.btn-secondary:nth-child(3):hover{
-  border: 1px solid  #01b4f2  !important;
-  background-color: white  !important;
-  margin: 1px !important;
-  color: #1888cb  !important;
-}
-button.btn-secondary:nth-child(2):hover{
-  border: 1px solid #1888cb  !important;
-  background-color: white  !important;
-  margin: 1px !important;
-  color: #1888cb  !important;
-}
-button.btn-secondary:nth-child(1):hover{
-  border: 1px solid #1888cb  !important;
-  background-color: white  !important;
-  margin: 1px !important;
-  color: #1888cb  !important;
-}
-button.btn-secondary:nth-child(1):hover{
-  border: 1px solid #01b4f2  !important;
-  background-color: #01b4f2  !important;
-  margin: 1px !important;
-  color: white  !important;
-}
-button.btn-secondary:nth-child(2):hover{
-  border: 1px solid #01b4f2  !important;
-  background-color: #01b4f2  !important;
-  margin: 1px !important;
-  color: white  !important;
-}
-button.btn-secondary:nth-child(3):hover{
-  border: 1px solid #01b4f2 !important;
-  background-color:#01b4f2  !important;
-  margin: 1px !important;
-  color: white  !important;
-} */
 
-    .page-item.active .page-link{
+.page-item.active .page-link{
         color: whitesmoke !important;
         background-color: #1888cb  !important; 
         border: none;

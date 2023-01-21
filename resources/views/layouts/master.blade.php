@@ -112,8 +112,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar  @if($setting->theme=="light")  sidebar-light-navy @endif @if($setting->theme=="dark")  sidebar-dark-navy bg-flex @endif elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ url('admin/dashboard') }}" class="text-decoration-none brand-link">
-      <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ url('admin/dashboard') }}" class="text-decoration-none brand-link ">
+      <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class=" brand-image img-circle elevation-3 bg-white" style="opacity: .9">
       <span class="brand-text text-white font-weight-light">AhadiPledge</span>
     </a>
 
