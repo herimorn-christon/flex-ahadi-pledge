@@ -31,10 +31,8 @@
                                     '<td>' + (1+i)+ '</td>' +
                                     '<td>' + methods[i].formattedDate + '</td>' +
                                     '<td>' + methods[i].payer.fname + '&nbsp;' + methods[i].payer.mname +  '&nbsp;' + methods[i].payer.lname +   '</td>' +
-                                    '<td>' + methods[i].payment.name + '</td>' +
                                     '<td>' + methods[i].pledge.name + '</td>' +
                                     '<td>' + methods[i].amount + '</td>' +
-                                    '<td>' + methods[i].receipt + '</td>' +
                                     '<td>' + editBtn + '</td>' +
                                 '</tr>';
                                 $("#requests-table-body").append(projectRow);

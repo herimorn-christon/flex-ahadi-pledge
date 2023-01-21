@@ -38,7 +38,8 @@ class PaymentRequest extends Controller
      */
     public function show($id)
     {
-        //
+        $purpose = Payment::with('payer')->with('payment')->with('pledge')->find($id);
+        return response()->json(['purpose' => $purpose]);
     }
 
     /**
@@ -50,7 +51,10 @@ class PaymentRequest extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $payment = Payment::find($id);
+        $payment->verified= 1;
+        $payment->save();
+        return response()->json(['status' => "success"]);
     }
 
     /**

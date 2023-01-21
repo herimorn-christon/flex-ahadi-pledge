@@ -1,89 +1,53 @@
- {{-- view payment modal --}}
+{{-- Register Payment Modal --}}
 
- <div class="modal fade" id="verify-modal">
+<div class="modal fade" id="verify-modal">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-light">
            <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+        
+          <div class="row">
+            <p>
+                <b class="text-secondary">Payer's Fullname:  <span id="fname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span></b>
+                <hr>
+                <b class="text-secondary">Payment Pledge:  <span id="purpose-info" class="text-dark"></span> </b> 
+                <hr>
+                <b class="text-secondary">Payment Amount:  <span id="amount-info" class="text-dark"></span> </b> 
+                <hr>
+                <b class="text-secondary">Payment Method:  <span id="method-info" class="text-dark"></span> </b> 
+                <hr>
+                <b class="text-secondary">Payment Date:  <span id="date-info" class="text-dark"></span> </b> 
+                <hr>
+                <b class="text-secondary">Payment Receipt: <br>  <span id="receipt-info" class="text-dark"></span> </b> 
+                <hr>
+            </p>    
             <form>
-                <input type="hidden" name="update_id" id="update_id">
-    
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <label for="" class="text-secondary">Payment Owner</label>
-                     <select id='vuser_id' name='sel_depart' disabled class="form-control">
-                    <option value='0'>-- Select Member Here --</option>
-                    @php
-                    $departmentData= App\Models\User::where('role','member')->get();
-                    @endphp
-                    <!-- Read Departments -->
-                    @foreach($departmentData as $department)
-                      <option value='{{ $department->id }}'>{{ $department->fname }} {{ $department->mname }} {{ $department->lname }} ({{ $department->community->abbreviation}} /{{ $department->id }} ) </option>
-                    @endforeach
-    
-                </select>
-                  </div>
-                <div class="col-md-6">
-                <!-- Department Employees Dropdown -->
-                <label for="" class="text-secondary">Payment Pledge</label>
-                <select id='vpledge_id' name='sel_emp' class="form-control">
-                    <option value='0'>-- Select Member's Pledge --</option>
-                </select>
+                 <div id="error-div"></div>
+              <input type="hidden" name="vupdate_id" id="vupdate_id">
                 
+             
+                <div class="row">
+                  <div class="col-md-9"></div>
+                  <div class="col-md-3">
+                     <div class="form-group">
+                      
+                         <button type="submit" class="btn btn-sm bg-flex text-light btn-block" id="save-verification-btn">
+                             <i class="fa fa-check"></i>
+                             Confirm Payment
+                         </button>
+                     </div>
                 </div>
-                </div>
-       
-             <div class="row mb-2">
-                      @php
-                      $purpose= App\Models\PaymentType::get();
-                      @endphp
-                      <div class="col-md-6">
-                          <label for="" class="text-secondary">Payment Method</label>
-                          <select name="type_id" id="vtype_id" disabled class="form-control">
-                              <option value="">--Select Payment Method --</option>
-                              @foreach ( $purpose as $item)
-                               <option value="{{ $item->id}}"> {{ $item->name}}</option>
-                              @endforeach
-                          </select>
-                      </div>
-                   <div class="col-md-6">
-                      <div class="form-group">
-                          <label for="amount" class="text-secondary">Paid Amount </label>
-                          <input type="text" name="amount" id="vamount" disabled class="form-control" placeholder="Enter Payment Amount">
-                      </div>
-                   </div>
-    
-                   <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="amount" class="text-secondary">Payment Receipt </label>
-                       <textarea name="receipt" id="vreceipt" disabled class="form-control" rows="4"> <span id=""></span></textarea>
-                    </div>
+  
                  </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6"></div>
-                    <div class="col-md-6">
-                       <div class="form-group">
-                        
-                           <button type="submit" class="btn btn-sm bg-teal text-light btn-block" id="save-verification-btn">
-                               <i class="fa fa-check"></i>
-                                Confirm Verification
-                           </button>
-                       </div>
-                  </div>
-    
-                   </div>
-                  </div>
-              </form>
-        </div>
-        <div class="modal-footer justify-content-between">
-         
+                </div>
+            </form>
+          </div>
         </div>
       </div>
       <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-  </div>
+  
   

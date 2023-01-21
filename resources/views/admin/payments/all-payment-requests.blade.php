@@ -1,7 +1,7 @@
 {{-- All Payment Methods Modal --}}
 
 <div class="modal fade" id="requests">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header bg-light">
            <button type="button" class="btn-close btn-sm btn-danger" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -17,10 +17,8 @@
                         <th>SN</th>
                         <th>Request Date</th>
                         <th>Payer Name</th>
-                        <th>Method</th>
                         <th>Pledge</th>
                         <th>Amount</th>
-                        <th>Receipt</th>
                         <th>Action</th>
                     </tr>
                 </thead>
