@@ -61,10 +61,10 @@
                                   </div>
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">System Theme</label>
-                                      <select name="theme" id="theme" class="form-control bg-light">
-                                        <option value="light">Light Theme</option>
-                                        <option value="dark" class="bg-dark text-light">Dark Theme</option>
-                                        <option value="navy" class="bg-navy text-light">Navy Theme</option>
+                                      <select name="theme" id="theme" class="custom-select form-control ">
+                                        <option value="light">Fléx Theme</option>
+                                        <option value="dark" >Navy Theme</option>
+                                        <option value="navy" >Dark Theme</option>
                                        
                                       </select>
                                      

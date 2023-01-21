@@ -28,14 +28,14 @@
                         let purpose = response.purpose;
                         $("#error-div").html("");   
                         $("#vupdate_id").val(purpose.id);
-                        $("#fname-info").html(purpose.payer.fname);
-                        $("#mname-info").html(purpose.payer.mname);
-                        $("#lname-info").html(purpose.payer.lname);
-                        $("#purpose-info").html(purpose.pledge.name);
-                        $("#amount-info").html(purpose.amount);
-                        $("#method-info").html(purpose.payment.name);
-                        $("#date-info").html(purpose. formattedDate);
-                        $("#receipt-info").html(purpose. receipt);
+                        $("#vfname-info").html(purpose.payer.fname);
+                        $("#vmname-info").html(purpose.payer.mname);
+                        $("#vlname-info").html(purpose.payer.lname);
+                        $("#vpurpose-info").html(purpose.pledge.name);
+                        $("#vamount-info").html(purpose.amount);
+                        $("#vmethod-info").html(purpose.payment.name);
+                        $("#vdate-info").html(purpose. formattedDate);
+                        $("#vreceipt-info").html(purpose. receipt);
                         $("#verify-modal").modal('show'); 
                         $("#requests").modal('hide'); 
                     },

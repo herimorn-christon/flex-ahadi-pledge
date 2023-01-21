@@ -16,7 +16,7 @@
                     @endphp
                     <div class="col-md-6">
                         <label for="" class="text-secondary">Pledge Owner</label>
-                        <select name="user_id" id="user_id" class="form-control">
+                        <select name="user_id" id="user_id" class="custom-select form-control">
                             <option value="">--Select Member --</option>
                             @foreach ( $jumuiya as $item)
                             <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
@@ -29,7 +29,7 @@
                   @endphp
                   <div class="col-md-6">
                       <label for="" class="text-secondary">Pledge Type</label>
-                      <select name="type_id"  id="type_id" class="form-control">
+                      <select name="type_id"  id="type_id" class="custom-select form-control">
                           <option value="">--Select Pledge Type --</option>
                           @foreach ( $types as $item)
                           <option value="{{ $item->id}}">{{ $item->title}}</option>
@@ -41,7 +41,7 @@
                   @endphp
                   <div class="col-md-6">
                       <label for="" class="text-secondary">Pledge Purpose</label>
-                      <select name="purpose_id" id="purpose_id" class="form-control">
+                      <select name="purpose_id" id="purpose_id" class="custom-select form-control">
                           <option value="">--Select Purpose --</option>
                           @foreach ( $purpose as $item)
                           <option value="{{ $item->id}}"> {{ $item->title}}</option>
@@ -78,7 +78,7 @@
   
                       <div class="col-md-6 ">
                         <label for="" class="text-secondary"> Pledge Status</label>
-                        <select name="status" id="status" class="form-control bg-light">
+                        <select name="status" id="status" class="custom-select form-control bg-light">
                           <option value="0">Not Fullfilled</option> 
                           <option value="1">Fullfilled</option>
                         </select>

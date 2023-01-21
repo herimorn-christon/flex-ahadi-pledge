@@ -17,7 +17,7 @@
                 @endphp
                 <div class="col-md-12">
                     <label for="" class="text-secondary">Member Card</label>
-                    <select name="card_member" id="card_member"  class="form-control">
+                    <select name="card_member" id="card_member"  class="custom-select form-control">
                         <option value="">--Select Member Card --</option>
                         @foreach ( $cardMember as $item)
                          <option value="{{ $item->id}}">{{ $item->card->card_no}} / {{ $item->user->id}} </option>

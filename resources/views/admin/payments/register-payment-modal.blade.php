@@ -15,7 +15,7 @@
             <div class="row mb-3">
               <div class="col-md-6">
                 <label for="" class="text-secondary">Payment Owner</label>
-                 <select id='user_id' name='sel_depart' class="form-control">
+                 <select id='user_id' name='sel_depart' class="custom-select form-control">
                 <option value='0'>-- Select Member Here --</option>
                 @php
                 $departmentData= App\Models\User::where('role','member')->get();
@@ -30,7 +30,7 @@
             <div class="col-md-6">
             <!-- Department Employees Dropdown -->
             <label for="" class="text-secondary">Payment Pledge</label>
-            <select id='pledge_id' name='sel_emp' class="form-control">
+            <select id='pledge_id' name='sel_emp' class="custom-select form-control">
                 <option value='0'>-- Select Member's Pledge --</option>
             </select>
             
@@ -43,7 +43,7 @@
                   @endphp
                   <div class="col-md-6">
                       <label for="" class="text-secondary">Payment Method</label>
-                      <select name="type_id" id="type_id" class="form-control">
+                      <select name="type_id" id="type_id" class="custom-select form-control">
                           <option value="">--Select Payment Method --</option>
                           @foreach ( $purpose as $item)
                            <option value="{{ $item->id}}"> {{ $item->name}}</option>

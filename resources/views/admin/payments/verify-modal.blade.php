@@ -10,17 +10,17 @@
         
           <div class="row">
             <p>
-                <b class="text-secondary">Payer's Fullname:  <span id="fname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span></b>
+                <b class="text-secondary">Payer's Fullname:  <span id="vfname-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span></b>
                 <hr>
-                <b class="text-secondary">Payment Pledge:  <span id="purpose-info" class="text-dark"></span> </b> 
+                <b class="text-secondary">Payment Pledge:  <span id="vpurpose-info" class="text-dark"></span> </b> 
                 <hr>
-                <b class="text-secondary">Payment Amount:  <span id="amount-info" class="text-dark"></span> </b> 
+                <b class="text-secondary">Payment Amount:  <span id="vamount-info" class="text-dark"></span> </b> 
                 <hr>
-                <b class="text-secondary">Payment Method:  <span id="method-info" class="text-dark"></span> </b> 
+                <b class="text-secondary">Payment Method:  <span id="vmethod-info" class="text-dark"></span> </b> 
                 <hr>
-                <b class="text-secondary">Payment Date:  <span id="date-info" class="text-dark"></span> </b> 
+                <b class="text-secondary">Payment Date:  <span id="vdate-info" class="text-dark"></span> </b> 
                 <hr>
-                <b class="text-secondary">Payment Receipt: <br>  <span id="receipt-info" class="text-dark"></span> </b> 
+                <b class="text-secondary">Payment Receipt: <br>  <span id="vreceipt-info" class="text-dark"></span> </b> 
                 <hr>
             </p>    
             <form>
