@@ -164,7 +164,7 @@
                           @forelse($events as $item)
                           <p>
                             <i class="fa fa-clock text-flex"></i> {{ $item->date}}|  {{ $item->title}}
-                            | <a href="" class="btn btn-danger  btn-sm"> <i class="fa fa-trash"></i></a>
+                            | <a href="" class="btn btn-danger  btn-sm text-end"> <i class="fa fa-trash"></i></a>
                           </p>
                           @empty
                           <p>No Event Was Created !!</p>
