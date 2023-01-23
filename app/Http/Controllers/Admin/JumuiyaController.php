@@ -122,4 +122,21 @@ class JumuiyaController extends Controller
         Jumuiya::destroy($id);
         return response()->json(['status' => "success"]);
     }
+
+
+    
+    public function search(Request $request)
+    {
+    	$jumuiyas = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $jumuiyas =Jumuiya::select("id", "name")
+            		->where('name', 'LIKE', "%$search%")
+            		->get();
+        }else {
+            $jumuiyas =Jumuiya::all();
+        }
+        return response()->json($jumuiyas);
+    }
 }

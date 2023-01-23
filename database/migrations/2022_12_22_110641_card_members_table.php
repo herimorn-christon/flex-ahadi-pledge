@@ -14,11 +14,13 @@ class CardMembersTable extends Migration
     public function up()
     {
         Schema::create('cards_members', function (Blueprint $table) {
-            $table->id();  
+            $table->id();
             $table->integer('user_id');  
             $table->integer('card_no');   
             $table->tinyInteger('status')->default('0');     
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 
