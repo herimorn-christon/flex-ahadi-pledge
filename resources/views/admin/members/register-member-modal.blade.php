@@ -1,3 +1,4 @@
+
 <!-- Register User Modal Page -->
 
 <div class="modal fade" id="form-modal" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,17 +75,10 @@
                     </div>
                 </div>
 
-                @php
-                $jumuiya= App\Models\Jumuiya::get();
-                @endphp
-                <div class="col-md-6">
+                <div class="col-md-6 d-flex flex-column" id="form">
                     <label for="" class="text-secondary">Jumuiya (Community) </label>
-                    <select name="jumuiya" id="jumuiya" class="custom-select form-control">
-                        <option value="">--Select Community (Jumuiya) --</option>
-                        @foreach ( $jumuiya as $item)
-                         <option value="{{ $item->id}}">{{ $item->name}}</option>
-                        @endforeach
-                    </select>
+                    <select name="jumuiya" id="jumuiya" class="form-select"></select>
+                    
                 </div>
 
                 <div class="col-lg-6">
@@ -153,3 +147,32 @@
       </div>
     </div>
   </div>
+    {{-- auto search scripts --}}
+
+ 
+    <script type="text/javascript">
+        $('#jumuiya').select2({
+        dropdownParent: $("#form"),
+        theme: 'bootstrap-5',
+        placeholder: 'Select Jumuiya',
+        ajax: {
+            url: '/jumuiya/search',
+            dataType: 'json',
+            delay: 250,
+            processResults: function (data) {
+                return {
+                    results: $.map(data, function (item) {
+                        return {
+                            text: item.name,
+                            id: item.id
+                        }
+                    })
+                };
+            },
+            cache: true
+        }
+    });
+
+    </script>
+    <!-- Script for Modal -->
+  

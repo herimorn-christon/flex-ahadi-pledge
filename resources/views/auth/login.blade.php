@@ -30,7 +30,7 @@
 
                         <div class="input-group mb-3">
 
-                            <input type="text" class="form-control " name="email" id="email"
+                            <input type="text" class="form-control " name="phone" id="phone"
                                 placeholder="Phone Number/Nambari ya Simu" aria-label="Username"
                                 aria-describedby="basic-addon1" required>
                             <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
