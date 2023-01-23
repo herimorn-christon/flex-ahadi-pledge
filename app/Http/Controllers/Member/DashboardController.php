@@ -100,15 +100,16 @@ class DashboardController extends Controller
         }
         else{
             $remaining=0;
-            $progress=0;
+            if($pledges == $payments)
+            {
+                $progress=100;
+            }
+            else
+            {
+                $progress=0;
+            }
+           
 
-            if(request()->ajax()){
-                $start = (!empty($_GET["event_start"])) ? ($_GET["event_start"]) : ('');
-                $end = (!empty($_GET["event_end"])) ? ($_GET["event_end"]) : ('');
-               $events = Event::whereDate('event_start', '>=', $start)->whereDate('event_end',   '<=', $end)
-                       ->get(['id','event_name','event_start', 'event_end']);
-               return response()->json($events);
-               }
 
                return view('member.dashboard',
                compact(
@@ -145,21 +146,6 @@ class DashboardController extends Controller
      // formular for remaining amount
      $remaining=$pledges-$payments;
 
-     // if($request->ajax()) {  
-     //     $data = Events::whereDate('event_start', '>=', $request->start)
-     //         ->whereDate('event_end',   '<=', $request->end)
-     //         ->get(['id', 'event_name', 'event_start', 'event_end']);
-     //     return response()->json($data);
-     // }
-
-     if(request()->ajax()){
-         $start = (!empty($_GET["event_start"])) ? ($_GET["event_start"]) : ('');
-         $end = (!empty($_GET["event_end"])) ? ($_GET["event_end"]) : ('');
-        $events = Event::whereDate('event_start', '>=', $start)->whereDate('event_end',   '<=', $end)
-                ->get(['id','event_name','event_start', 'event_end']);
-        return response()->json($events);
-        }
-
      return view('member.dashboard',
      compact(
         'total_amount',
@@ -180,7 +166,14 @@ class DashboardController extends Controller
  }
  else{
      $remaining=0;
-     $progress=0;
+     if($pledges == $payments)
+     {
+         $progress=100;
+     }
+     else
+     {
+         $progress=0;
+     }
 
      if(request()->ajax()){
          $start = (!empty($_GET["event_start"])) ? ($_GET["event_start"]) : ('');

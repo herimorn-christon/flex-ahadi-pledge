@@ -16,19 +16,20 @@
             <div class="card-header p-2 bg-white">
               <ul class="nav nav-tabs nav-light">
                 <li class="nav-item">
-                  <a class="nav-link text-navy active" href="#interface"  data-toggle="tab">System Settings</a>
+                  <a class="nav-link text-navy active" href="#calendar"  data-toggle="tab">Calendar & Events</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy " href="#interface"  data-toggle="tab">System Settings</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-navy" href="#audits"  data-toggle="tab">System Audits</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link text-navy" href="#calendar"  data-toggle="tab">Calendar & Events</a>
-                </li>
+               
               </ul>
             </div><!-- /.card-header -->
             <div class="">
               <div class="tab-content">
-                <div class="active tab-pane" id="interface">
+                <div class=" tab-pane" id="interface">
                   {{-- start of interface settings --}}
                   
                     <div class="col-md-12">
@@ -141,13 +142,13 @@
               </div>
                 <!-- /.tab-pane -->
 
-                <div class="tab-pane" id="calendar">
+                <div class="tab-pane active" id="calendar">
 
                
                   <div class="row p-1">
 
                     <div class="col-md-5">
-                      <div class="card">
+                      <div class="card" style="height:400px !important;">
                         <div class="card-header">
                           <i class="fa fa-calendar"></i>
                           Today's Events
@@ -162,7 +163,8 @@
 
                           @forelse($events as $item)
                           <p>
-                            {{ $item->date}} {{ $item->title}}
+                            <i class="fa fa-clock text-flex"></i> {{ $item->date}}|  {{ $item->title}}
+                            | <a href="" class="btn btn-danger  btn-sm"> <i class="fa fa-trash"></i></a>
                           </p>
                           @empty
                           <p>No Event Was Created !!</p>
@@ -208,7 +210,7 @@
                             <td><input type="date" name="moreFields[0][date]" placeholder="Enterdate" class="form-control" /></td>  
                             <td><input type="text" name="moreFields[0][title]" placeholder="Enter title" class="form-control" /></td>  
                             <td><textarea name="moreFields[0][description]" placeholder="Enter description" class="form-control" rows="3"></textarea></td>  
-                            <td><button type="button" name="add" id="add-btn" class="btn btn-success btn-sm">Add More</button></td>  
+                            <td><button type="button" name="add" id="add-btn" class="btn bg-cyan btn-sm"> +Add</button></td>  
                             </tr>  
                             </table> 
                             <button type="submit" class="btn bg-flex text-light"><i class="fa fa-save"></i> Save Events</button>
@@ -217,7 +219,7 @@
                               var i = 0;
                               $("#add-btn").click(function(){
                               ++i;
-                              $("#dynamicAddRemove").append('<tr><td><input type="date" name="moreFields['+i+'][date]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][title]" placeholder="Enter title" class="form-control" /></td><td><textarea name="moreFields['+i+'][description]" placeholder="Enter description" class="form-control" rows="3"></textarea></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+                              $("#dynamicAddRemove").append('<tr><td><input type="date" name="moreFields['+i+'][date]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][title]" placeholder="Enter title" class="form-control" /></td><td><textarea name="moreFields['+i+'][description]" placeholder="Enter description" class="form-control" rows="3"></textarea></td><td><button type="button" class="btn btn-danger btn-sm  remove-tr">Remove</button></td></tr>');
                               });
                               $(document).on('click', '.remove-tr', function(){  
                               $(this).parents('tr').remove();
