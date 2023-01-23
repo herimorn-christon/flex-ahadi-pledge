@@ -374,13 +374,22 @@
                 <div class="card-body">
                   @php
                   $date=date('Y-m-d');
-                  $events=App\Models\Todo::where('date',$date)->get();
+                  $events=App\Models\Todo::where('date',$date)->orderBy('created_at','Asc')->limit(3)->get();
                   @endphp
 
                   @forelse($events as $item)
-                  <p>
-                    {{ $item->date}} {{ $item->title}}
-                  </p>
+                  <h5>
+                    <span class="badge bg-light">
+                      <i class="fa fa-clock text-flex"></i>
+                      {{ $item->title}}
+                    </span>
+                    
+                  </h5>
+               
+                  <small class="ml-4 pl-2 text-secondary">
+                    {{ $item->description}} 
+                  </small>
+                  <hr>
                   @empty
                   <p class="py-5 my-5">There is no Events Today !</p>
 
