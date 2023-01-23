@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CardRequest;
 use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\PaymentRequest;
 use App\Http\Controllers\Admin\TypeController;
@@ -113,6 +114,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
   Route::apiResource('card-member', CardMemberController::class);
     // CardPayment API route
   Route::apiResource('card-payments', CardPaymentController::class);
+  // Cards Requests API route
+  Route::apiResource('crequests', CardRequest::class);
 
 
 // All reports page route
