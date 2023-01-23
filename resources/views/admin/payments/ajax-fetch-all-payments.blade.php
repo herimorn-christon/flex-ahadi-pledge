@@ -41,7 +41,7 @@
      
                         let projectRow = '<tr>' +
                             '<td>' + (1+i) + '</td>' +
-                             '<td>' + purposes[i].formattedDate + '</td>' +
+                            '<td>' + purposes[i].formattedDate + '</td>' +
                             '<td>' + purposes[i].payer.fname + '&nbsp;' + purposes[i].payer.mname +  '&nbsp;' + purposes[i].payer.lname +   '</td>' +
                             '<td>' + purposes[i].payment.name + '</td>' +
                             '<td>' + purposes[i].pledge.name + '</td>' +

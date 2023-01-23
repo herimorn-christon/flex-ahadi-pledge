@@ -16,7 +16,7 @@
                 @endphp
                 <div class="col-md-12">
                     <label for="" class="text-secondary">All Members</label>
-                    <select name="user_id" id="user_id"  class="form-control">
+                    <select name="user_id" id="user_id"  class="custom-select form-control">
                         <option value="">--Select Member --</option>
                         @foreach ( $members as $item)
                          <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
@@ -30,7 +30,7 @@
                 @endphp
                 <div class="col-md-12 mb-3">
                     <label for="" class="text-secondary">Available Cards</label>
-                    <select name="card_no" id="card_no" class="form-control">
+                    <select name="card_no" id="card_no" class="custom-select form-control">
                         <option value="">--Select  Card --</option>
                         @foreach ( $purpose as $item)
                          <option value="{{ $item->id}}"> {{ $item->card_no}}</option>

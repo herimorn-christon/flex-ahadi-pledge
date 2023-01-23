@@ -64,10 +64,12 @@
         </button>
       
         {{-- start of generate report button --}}
-      <a href="" class="btn bg-cyan  btn-sm mb-2" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
-        <i class="fa fa-download text-light" ></i>
-        Generate Report
-      </a>
+
+        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllRequests()">
+       
+           <i class="fa fa-download text-light" ></i>
+          Payment Requests
+          </button>
         {{-- end of generate report button --}}
 
 
@@ -141,10 +143,18 @@
         @include('admin.payments.all-payment-methods-modal')
         {{-- end of all payment methods modal --}}
 
+
+        {{-- start all payment requests modal --}}
+        @include('admin.payments.all-payment-requests')
+        {{-- end of all payment requests modal --}}
+
         {{-- start of ajax fetch all pledges method --}}
         @include('admin.payments.ajax-fetch-all-methods')
         {{-- end of ajax fetch all pleges method --}}
 
+        {{-- start of ajax fetch all payments requests --}}
+        @include('admin.payments.ajax-fetch-all-requests')
+        {{-- end of ajax fetch all payments requests --}}
 
         {{-- start of ajax update payment methods method --}}
         @include('admin.payments.ajax-update-method')
@@ -161,6 +171,14 @@
         @include('admin.payments.ajax-register-method')
         {{-- end of ajax register pledge method --}}
 
+
+         {{-- start verify payment modal --}}
+        @include('admin.payments.verify-modal')
+        {{-- end of verify payment modal --}}  
+
+        {{-- start of ajax register pledge method --}}
+        @include('admin.payments.ajax-verify-payment')
+        {{-- end of ajax register pledge method --}}
     </li>
        
       </ol>

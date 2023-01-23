@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CardController;
+use App\Http\Controllers\Admin\PaymentRequest;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MemberController;
@@ -31,6 +32,7 @@ Auth::routes();
 // Home route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('add-remove-multiple-input-fields',  [App\Http\Controllers\Admin\TodoController::class, 'store']);
 
 
 Route::get('/', function () {
@@ -95,7 +97,8 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
     });
   // Payments API route
   Route::apiResource('payments', PaymentController::class);
-
+  // Payments requests API
+  Route::apiResource('prequests', PaymentRequest::class);
   // Payment Methods API route
   Route::apiResource('methods', MethodController::class);
 

@@ -56,7 +56,58 @@ class MyPaymentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        request()->validate(
+            [
+            'type_id' => 'required',
+            'pledge_id' => 'required',
+            'amount' => 'required',
+            'receipt' => 'required',
+            // 'verified'=>'1'
+             ]
+            );
+
+    
+            $pledge = Pledge::find($request->pledge_id);
+
+            $pledgePayments = Payment::where('pledge_id', $request->pledge_id)->get()->toArray();
+
+            $totalPaid = array_reduce($pledgePayments, 
+            function ($acc, $element)
+                {
+                    return $acc + (int) $element['amount'];
+                }
+            , 0);
+
+            $reqAmount = (int) $request->amount;
+            $pledgeAmount = (int) $pledge->amount;
+
+            $remainigAmount = $pledgeAmount - $totalPaid;
+
+            if($reqAmount > $remainigAmount){
+                $fail="Amount exceeds remaining amount";
+                return response()->json(['fail' =>$fail ]);
+
+
+            }else {
+            $payment = new Payment();
+            $payment->type_id = $request->type_id;
+            $payment->user_id = Auth::user()->id;
+            $payment->amount = $request->amount;
+            $payment->pledge_id=$request->pledge_id;
+            $payment->user_id=Auth::user()->id;
+            $payment->receipt=$request->receipt;
+            $payment->verified=0;
+            $payment->created_by= Auth::user()->id;
+            $payment->save();
+            
+         
+    
+              
+                return response()->json(['status' => "success"]);
+            }
+               return response()->json(['status' => "success"]);
+               
     }
 
     /**

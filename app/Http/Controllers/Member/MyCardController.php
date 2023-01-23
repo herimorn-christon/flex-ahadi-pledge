@@ -21,7 +21,7 @@ class MyCardController extends Controller
     {
         $user=Auth::user()->id;
         $members = CardMember::where('user_id',$user)->orderBy('updated_at','DESC')->with('user')->with('card')->get();
-        $card=CardMember::where('user_id',$user)->orderBy('updated_at','DESC')->where('status','')->with('user')->with('card')->first();
+        $card=CardMember::where('user_id',$user)->orderBy('updated_at','DESC')->with('user')->with('card')->first();
         if($card)
         {
         $id=$card->id;
@@ -82,9 +82,9 @@ class MyCardController extends Controller
                         $notification = new Notification();
                         $notification->user_id= 0; //0=Admin notification
                         $notification->created_by= Auth::user()->id;
-                        $notification->type='Card Request !';
-                        // $name=$request->Auth::User()->fname;
-                        $notification->message='All Card Members have been assigned, you have to create new Card Members or Reassign existing ones!';
+                        $notification->type='card';
+                        $name=Auth::User()->fname.''.Auth::User()->lname;
+                        $notification->message=$name.'needs to be created a Member Card !';
                         $notification->save();
                         return redirect('member/my-cards')->with('status','Please wait to be assigned a Member Card!');
                     }

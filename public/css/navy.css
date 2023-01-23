@@ -1,0 +1,104 @@
+/* This is the file for custom css */
+
+.page-item.active .page-link{
+    color: whitesmoke !important;
+    background-color: #001f3f   !important; 
+    border: none;
+  }
+  
+  .page-link {
+  
+    text-decoration: none !important;
+    color:#001f3f   !important;
+  }
+  .bg-flex{
+  background-color: #001f3f ;
+  }
+  
+  
+  .paginate_button.disabled{
+  color: gainsboro !important;
+  }
+  .dataTables_paginate .paginate_button:hover{
+  /* border: 1px solid transparent !important; */
+  background: transparent !important;
+  }
+  
+  .current {
+    border-left: 0.45rem solid #1888cb !important;
+    background-color:#f2f3f4 !important;
+  }
+  
+  .nav-tabs .nav-link.active{
+    background-color: #001f3f   !important;
+    color: #e5e9ec !important;
+  }
+  
+  
+  .dataTable-selector{
+    background-color:  white  !important;
+  }
+  .dt-buttons .button-group{
+    margin: 1px !important;
+    background-color: #001f3f;
+  }
+  
+  .modal{
+    border-bottom: 4px solid #001f3f !important;
+  }
+      .page-item.active .page-link{
+          color: whitesmoke !important;
+          background-color: #001f3f  !important; 
+          border: none;
+      }
+  
+       .page-link {
+        
+          text-decoration: none !important;
+          color:#212529  !important;
+      }
+      /* main colors */
+      .bg-flex{
+        background-color: #001f3f !important;
+      }
+      .text-flex{
+        color: #001f3f!important;
+      }
+
+      .bg-cyan{
+        background-color: #1888cb !important;
+      }
+  
+  
+      .current {
+          border-left: 0.45rem solid #01b4f2 !important;
+          background-color:#f2f3f4 !important;
+          color: #212529 !important;
+        }
+      .bg-lightflex{
+        background-color: #01b4f2 !important;
+      }
+      
+      .text-lightflex{
+        color: #01b4f2 !important;
+      }
+        .border-bottom-flex {
+          border-bottom: 0.25rem solid #001f3f !important;
+        }
+  
+        .border-left-flex {
+          border-left: 0.25rem solid #001f3f !important;
+        }
+  
+        .border-top-flex {
+          border-top: 0.25rem solid #001f3f !important;
+        }
+        .nav-tabs .nav-link.active{
+          background-color: #001f3f !important;
+          font-weight:light;
+          color: #e5e9ec !important;
+        }
+  
+        .starts-border{
+          border-bottom: 1px solid rgb(226, 223, 223);
+        }

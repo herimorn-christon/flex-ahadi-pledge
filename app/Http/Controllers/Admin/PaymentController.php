@@ -21,11 +21,11 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::orderBy('updated_at','DESC')->with('payer')->with('payment')->with('pledge')->get();
-        $total=Payment::sum('amount');
-        $highest=Payment::max('amount');
-        $lowest=Payment::min('amount');
-        $best=Payment::where('amount',$highest)->with('payer')->first();
+        $payments = Payment::orderBy('updated_at','DESC')->where('verified',1)->with('payer')->with('payment')->with('pledge')->get();
+        $total=Payment::where('verified',1)->sum('amount');
+        $highest=Payment::where('verified',1)->max('amount');
+        $lowest=Payment::where('verified',1)->min('amount');
+        $best=Payment::where('verified',1)->where('amount',$highest)->with('payer')->first();
 
         return response()->json(['payments' => $payments,
                                  'total'=>$total,
@@ -79,15 +79,6 @@ class PaymentController extends Controller
 
 
             }else {
-                // Payment::create([
-                //     "type_id" => $request->type_id,
-                //     "user_id" => $request->user_id,
-                //     "amount" => $request->amount,
-                //     "receipt" => $request->receipt,
-                //     "pledge_id"=>$request->pledge_id,
-                //     "created_by"=> $request->user()->id,
-                //     "verified"=>$request->verified,
-                // ] )  ;
             $payment = new Payment();
             $payment->type_id = $request->type_id;
             $payment->user_id = $request->user_id;
@@ -105,34 +96,7 @@ class PaymentController extends Controller
                 return response()->json(['status' => "success"]);
             }
 
-            
-        // request()->validate(
-        //     [
-        //     'type_id' => 'required|max:255',
-        //     'user_id' => 'required',
-        //     'pledge_id' => 'required',
-        //     'amount' => 'required',
-        //      ]
-        //     );
-
-        //     $payment = new Payment();
-        //     $payment->type_id = $request->type_id;
-        //     $payment->user_id = $request->user_id;
-        //     $payment->amount = $request->amount;
-        //     $payment->pledge_id=$request->pledge_id;
-        //     $payment->user_id=$request->user_id;
-        //     $payment->created_by= Auth::user()->id;
-        //     $payment->save();
-
-        //     // start of user notification
-        //     $notification = new Notification();
-        //     $notification->user_id= $request->user_id;
-        //     $notification->created_by= Auth::user()->id;
-        //     $notification->type='Member Pledge';
-        //     $name=$request->amount;
-        //     $notification->message='Your Payment of '.$name.' Tsh has been confirmed successfully.';
-        //     $notification->save();
-        //     return response()->json(['status' => "success"]);
+  
     }
 
            /**

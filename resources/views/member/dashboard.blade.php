@@ -23,6 +23,9 @@
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" />
@@ -268,13 +271,13 @@
         <!-- Main row -->
         <div class="row ">
          <div class="col-md-6" >
-          <div class="card">
+          <div class="card" style="height:400px !important;">
 
             <div class="card-header bg-white text-secondary">
               <i class="fa fa-balance-scale"></i>
               Latest Pledges Progress
             </div>
-            <div id="container7" style="height:540px !important;">
+            <div id="container7">
            
                 <div class="row px-2">
                 @foreach($mypledges as $item)
@@ -361,12 +364,37 @@
         </div>
             {{-- start of upcoming events --}}
             <div class="col-md-6 mb-2 ">
-              <div class="card">
+              <div class="card" style="height:400px !important;">
                 <div class="card-header bg-white text-secondary">
                   <i class="fa fa-calendar"></i>
-                  Events Remainder
+                  Today's Events
                 </div>
-                <div class="card-body" id='calendar' style="height:540px !important;"></div>
+                {{-- <div class="card-body" id='calend' style="height:540px !important;"></div> --}}
+
+                <div class="card-body">
+                  @php
+                  $date=date('Y-m-d');
+                  $events=App\Models\Todo::where('date',$date)->orderBy('created_at','Asc')->limit(3)->get();
+                  @endphp
+
+                  @forelse($events as $item)
+                  <h5>
+                    <span class="badge bg-light">
+                      <i class="fa fa-clock text-flex"></i>
+                      {{ $item->title}}
+                    </span>
+                    
+                  </h5>
+               
+                  <small class="ml-4 pl-2 text-secondary">
+                    {{ $item->description}} 
+                  </small>
+                  <hr>
+                  @empty
+                  <p class="py-5 my-5">There is no Events Today !</p>
+
+                  @endforelse
+                </div>
               </div>
               
             </div>

@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  @php
+  $setting= App\Models\Setting::get()->first();
+  @endphp
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title')</title>
@@ -34,11 +38,7 @@
      <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
    <!-- Theme style -->
    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-    {{-- for flex theme --}}
-    <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
-
-
-
+   
 
   {{-- start of other links --}}
 
@@ -89,9 +89,19 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   {{-- for flex theme --}}
-    <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
+ {{-- for flex theme --}}
+ @if($setting->theme=="light") 
+ <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
+ @endif
+
+ @if($setting->theme=="dark") 
+
+ <link href="{{ asset('css/navy.css') }}" rel="stylesheet">
+
+ @endif
+
 </head>
-<body class="hold-transition sidebar-mini sidebar-collapse  layout-fixed">
+<body class="hold-transition sidebar-mini sidebar-collapse  layout-fixed ">
 <div class="wrapper">
 
   
@@ -100,10 +110,10 @@
   @include('layouts.inc.admin-navbar')
   <!-- /.navbar -->
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-navy  elevation-4">
+  <aside class="main-sidebar  @if($setting->theme=="light")  sidebar-light-navy @endif @if($setting->theme=="dark")  sidebar-dark-navy bg-flex @endif elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ url('admin/dashboard') }}" class="text-decoration-none brand-link">
-      <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ url('admin/dashboard') }}" class="text-decoration-none brand-link ">
+      <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class=" brand-image img-circle elevation-3 bg-white" style="opacity: .9">
       <span class="brand-text text-white font-weight-light">AhadiPledge</span>
     </a>
 

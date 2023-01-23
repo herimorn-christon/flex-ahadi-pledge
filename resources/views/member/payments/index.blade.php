@@ -60,7 +60,7 @@
             Add Payment
         </button>   
             {{-- end of register payment button --}}
-        <a href="" class="btn btn-sm bg-cyan mb-1">
+        <a href="" class="btn btn-sm bg-cyan mb-1" >
           <i class="fa fa-file-pdf"></i>
           Generate Report
         </a>
@@ -127,5 +127,13 @@
      {{-- star all payment methods modal --}}
      @include('member.payments.all-payment-methods-modal')
      {{-- end all payment methods modal --}}
+
+    {{-- start register payment modal --}}
+    @include('member.payments.register-payment-modal')
+    {{-- end of register  payment modal --}}
+     
+    {{-- start of ajax update  payment method --}}
+    @include('member.payments.ajax-register-payment')
+    {{-- end of ajax update  payment method --}}
   
 @endsection

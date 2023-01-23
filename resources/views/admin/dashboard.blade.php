@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AhadiPledge| Dashboard</title>
+
+  @php
+  $setting= App\Models\Setting::get()->first();
+  @endphp
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   <!-- Google Font: Source Sans Pro -->
@@ -31,8 +35,28 @@
       <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-     {{-- for flex theme --}}
-     <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
+    <style>
+      body {
+          font-family: 'Nunito', sans-serif;
+      }
+  </style>
+  
+     <!-- Styles -->
+   @livewireStyles
+   @powerGridStyles
+   <!-- Theme style -->
+   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+ {{-- for flex theme --}}
+{{-- for flex theme --}}
+@if($setting->theme=="light") 
+<link href="{{ asset('css/flex.css') }}" rel="stylesheet">
+@endif
+
+@if($setting->theme=="dark") 
+
+<link href="{{ asset('css/navy.css') }}" rel="stylesheet">
+
+@endif
 
 
 </head>
@@ -46,7 +70,7 @@
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-navyb sidebar-collapse elevation-4">
+  <aside class="main-sidebar  @if($setting->theme=="light")  sidebar-light-navy @endif @if($setting->theme=="dark")  sidebar-dark-navy bg-flex @endif elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('admin/dashboard') }}" class="brand-link">
       <img src="{{ asset('img/flex.png') }}" alt="Flex Logo" class="brand-image img-circle elevation-3" style="opacity: .8">

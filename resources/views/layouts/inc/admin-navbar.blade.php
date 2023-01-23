@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light @if($setting->theme=="dark") navbar-dark bg-flex @endif fixed-top">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">

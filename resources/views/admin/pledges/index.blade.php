@@ -79,38 +79,8 @@
         Generate Report
       </a>
         {{-- end of generate report button --}}
-        {{-- start of ajax register pledge method --}}
-        @include('admin.pledges.ajax-register-pledge')
-        {{-- end of ajax register pledge method --}}
-        
-        {{-- start register pledge modal --}}
-        @include('admin.pledges.register-pledge-modal')
-        {{-- end of register pledge modal --}}
-
-            {{-- start all pledge types modal --}}
-        @include('admin.pledges.all-pledge-types-modal')
-        {{-- end of all pledge types modal --}}
-
-        {{-- start of ajax fetch all pledges method --}}
-        @include('admin.pledges.ajax-fetch-all-types')
-        {{-- end of ajax fetch all pleges method --}}
-
-
-        {{-- start of ajax update pledge types method --}}
-        @include('admin.pledges.ajax-update-type')
-        {{-- end of ajax update pledge types method --}}
        
-        {{-- start of ajax delete Pledge type method --}}
-        @include('admin.pledges.ajax-delete-type')
-        {{-- end of ajax delete Pledge type method --}}
-        {{-- start register pledge type modal --}}
-        @include('admin.pledges.register-pledge-type-modal')
-        {{-- end of register pledge type modal --}}
-
-        {{-- start of ajax register pledge method --}}
-        @include('admin.pledges.ajax-register-type')
-        {{-- end of ajax register pledge method --}}
-        
+      
 
         
      
@@ -143,17 +113,62 @@
           </table>
           {{--  end of all pledges table --}}
 
+
+            {{-- start of ajax view purpose details modal --}}
+            @include('admin.pledges.single-pledge-modal')
+            {{-- end of ajax view purpose details modal --}}
+
+            {{-- start register pledge modal --}}
+            @include('admin.pledges.register-pledge-modal')
+            {{-- end of register pledge modal --}}
+
+            {{-- start register pledge type modal --}}
+            @include('admin.pledges.register-pledge-type-modal')
+            {{-- end of register pledge type modal --}}
+
+
              {{-- start of ajax fetch all pledges method --}}
              @include('admin.pledges.ajax-fetch-all-pledges')
              {{-- end of ajax fetch all pleges method --}}
-     
+              {{-- start of ajax register pledge method --}}
+              @include('admin.pledges.ajax-register-pledge')
+              {{-- end of ajax register pledge method --}}
+       
              {{-- start of ajax view pledge details method --}}
              @include('admin.pledges.ajax-fetch-pledge-details')
              {{-- end of ajax view purpose details method --}}
-     
-             {{-- start of ajax view purpose details modal --}}
-             @include('admin.pledges.single-pledge-modal')
-             {{-- end of ajax view purpose details modal --}}
+  
+
+      
+           {{-- start all pledge types modal --}}
+       @include('admin.pledges.all-pledge-types-modal')
+       {{-- end of all pledge types modal --}}
+
+       {{-- start of ajax fetch all pledges method --}}
+       @include('admin.pledges.ajax-fetch-all-types')
+       {{-- end of ajax fetch all pleges method --}}
+
+
+       {{-- start of ajax update pledge types method --}}
+       @include('admin.pledges.ajax-update-type')
+       {{-- end of ajax update pledge types method --}}
+      
+       {{-- start of ajax update pledge types method --}}
+       @include('admin.pledges.ajax-update-pledge')
+       {{-- end of ajax update pledge types method --}}
+   
+       {{-- start of ajax register pledge method --}}
+       @include('admin.pledges.ajax-register-type')
+       {{-- end of ajax register pledge method --}}
+       
+        {{-- start of ajax delete Pledge type method --}}
+        @include('admin.pledges.ajax-delete-type')
+        {{-- end of ajax delete Pledge type method --}}
+
+
+         {{-- start of ajax delete Pledge type method --}}
+       @include('admin.pledges.ajax-delete-pledge')
+       {{-- end of ajax delete Pledge type method --}}
 
         </div>
 

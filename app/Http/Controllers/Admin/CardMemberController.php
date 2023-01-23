@@ -116,9 +116,37 @@ class CardMemberController extends Controller
         $member = CardMember::where('id',$id)->first();
         $member->user_id=$request->user_Id;
         $member->card_no=$request->card_No;
-        $member->status= $request->card_status;
-        $member->save();
-        
-        return response()->json(['status' => "success"]);
+     
+
+        $card_no=$member->card_no;
+        $card = Card::where('id',$card_no)->first();
+        $cardM= CardMember::where('card_no',$card_no)->where('status','')->first();
+        if($request->card_status==1)
+        {
+            $card->status=0;
+            $member->status= 1;
+            $card->update();
+
+            $member->save();
+            
+            return response()->json(['status' => "success"]);
+        }
+        else
+        {
+            if($cardM){
+                return response()->json(['fail' => "fail"]);
+            }
+            else{
+                $card->status=1;
+                $member->status= 0;
+                $card->update();
+
+                $member->save();
+                
+                return response()->json(['status' => "success"]);
+            }
+           
+        }
+       
     }
 }
