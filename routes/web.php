@@ -40,6 +40,10 @@ Route::get('/', function () {
 });
 
 
+Route::get('/jumuiya/search', [JumuiyaController::class, 'search']);
+
+
+
 // Start of all admin user routes
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
