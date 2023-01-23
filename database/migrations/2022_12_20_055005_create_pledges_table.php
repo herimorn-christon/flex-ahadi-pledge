@@ -25,6 +25,10 @@ class CreatePledgesTable extends Migration
             $table->tinyInteger('status')->default('0');
             $table->integer('created_by');
             $table->timestamps();
+            $table->foreign('type_id')->references('id')->on('pledge_type')->onDelete('cascade');
+            $table->foreign('purpose_id')->references('id')->on('purposes')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 
