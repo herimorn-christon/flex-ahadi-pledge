@@ -24,20 +24,22 @@ class CardPaymentController extends Controller
     }
 
 
-    public function payments(Request $request) {
+    public function payments(Request $request)
+    {
+
+        $request->validate([
+            'card_id' => 'required'
+        ]);
 
         $card_id = $request->card_id;
 
         $payments = CardPayment::with('card')->get()->toArray();
 
-
-        $filtered = array_filter($payments, function($payment) use($card_id) {
+        $filtered = array_filter($payments, function ($payment) use ($card_id) {
             return $payment['card']['card_no'] == $card_id;
         });
 
-
         return response()->json(['payments' => $filtered]);
-
     }
 
     /**
@@ -50,19 +52,19 @@ class CardPaymentController extends Controller
     {
         request()->validate(
             [
-            'card_member' => 'required',
-            'card_amount' => 'required',
-             ]
-            );
+                'card_member' => 'required',
+                'card_amount' => 'required',
+            ]
+        );
 
-           
-            $card =new CardPayment();
-            $card->card_member=$request->card_member;
-            $card->amount=$request->card_amount;
-            $card->created_by= Auth::user()->id;
-            $card->save();
 
-            return response()->json(['status' => "success"]);
+        $card = new CardPayment();
+        $card->card_member = $request->card_member;
+        $card->amount = $request->card_amount;
+        $card->created_by = Auth::user()->id;
+        $card->save();
+
+        return response()->json(['status' => "success"]);
     }
 
     /**
@@ -73,10 +75,10 @@ class CardPaymentController extends Controller
      */
     public function show($id)
     {
-        $card = CardMember::with('user')->with('card')->find($id);  
-        $cid=$card->id;   
-        $payment=CardPayment::where('card_member',$cid)->get();
-        return response()->json(['payment' => $payment,'card'=>$card]);
+        $card = CardMember::with('user')->with('card')->find($id);
+        $cid = $card->id;
+        $payment = CardPayment::where('card_member', $cid)->get();
+        return response()->json(['payment' => $payment, 'card' => $card]);
     }
 
     /**
@@ -100,7 +102,7 @@ class CardPaymentController extends Controller
     public function destroy($id)
     {
         // CardPayment::destroy($id);
-        $card=CardPayment::where('id',$id)->first();
+        $card = CardPayment::where('id', $id)->first();
         $card->delete();
         return response()->json(['status' => "success"]);
     }
