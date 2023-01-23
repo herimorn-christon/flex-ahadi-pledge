@@ -32,6 +32,7 @@ Auth::routes();
 // Home route
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::post('add-remove-multiple-input-fields',  [App\Http\Controllers\Admin\TodoController::class, 'store']);
 
 
 Route::get('/', function () {

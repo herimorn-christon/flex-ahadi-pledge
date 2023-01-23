@@ -23,6 +23,9 @@
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" />
@@ -366,7 +369,53 @@
                   <i class="fa fa-calendar"></i>
                   Events Remainder
                 </div>
-                <div class="card-body" id='calendar' style="height:540px !important;"></div>
+                {{-- <div class="card-body" id='calend' style="height:540px !important;"></div> --}}
+
+                <div class="card-body">
+                  <form action="{{ url('add-remove-multiple-input-fields') }}" method="POST">
+                    @csrf
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                    </div>
+                    @endif
+                    @if (Session::has('success'))
+                    <div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                    <p>{{ Session::get('success') }}</p>
+                    </div>
+                    @endif
+                    <table class="table table-bordered" id="dynamicAddRemove">  
+                    <tr>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                    </tr>
+                    <tr>  
+                      <td><input type="date" name="moreFields[0][date]" placeholder="Enterdate" class="form-control" /></td>  
+                    <td><input type="text" name="moreFields[0][title]" placeholder="Enter title" class="form-control" /></td>  
+                    <td><input type="text" name="moreFields[0][description]" placeholder="Enter description" class="form-control" /></td>  
+                    <td><button type="button" name="add" id="add-btn" class="btn btn-success btn-sm">Add More</button></td>  
+                    </tr>  
+                    </table> 
+                    <button type="submit" class="btn bg-flex text-light"><i class="fa fa-save"></i> Save Calendar</button>
+                    </form>
+                    <script type="text/javascript">
+                      var i = 0;
+                      $("#add-btn").click(function(){
+                      ++i;
+                      $("#dynamicAddRemove").append('<tr><td><input type="date" name="moreFields['+i+'][date]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][title]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][description]" placeholder="Enter description" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+                      });
+                      $(document).on('click', '.remove-tr', function(){  
+                      $(this).parents('tr').remove();
+                      });  
+                      </script>
+                </div>
               </div>
               
             </div>
