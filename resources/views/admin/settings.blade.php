@@ -21,6 +21,9 @@
                 <li class="nav-item">
                   <a class="nav-link text-navy" href="#audits"  data-toggle="tab">System Audits</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#calendar"  data-toggle="tab">Calendar & Events</a>
+                </li>
               </ul>
             </div><!-- /.card-header -->
             <div class="">
@@ -138,12 +141,93 @@
               </div>
                 <!-- /.tab-pane -->
 
-                <div class="tab-pane" id="announcements">
+                <div class="tab-pane" id="calendar">
 
                
-                  {{-- start of cards --}}
+                  <div class="row p-1">
 
-                  {{-- end of pledges --}}
+                    <div class="col-md-5">
+                      <div class="card">
+                        <div class="card-header">
+                          <i class="fa fa-calendar"></i>
+                          Today's Events
+                        </div>
+                        <div class="card-body">
+                          @php
+  
+                          $user=Auth::user()->id;
+                          $date=date('Y-m-d');
+                          $events=App\Models\Todo::where('date',$date)->get();
+                          @endphp
+
+                          @forelse($events as $item)
+                          <p>
+                            {{ $item->date}} {{ $item->title}}
+                          </p>
+                          @empty
+                          <p>No Event Was Created !!</p>
+
+                          @endforelse
+                          
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-7">
+                      <div class="card">
+                        <div class="card-header">
+                          <i class="fa fa-calendar"></i>
+                            Add Events
+                        </div>
+                        <div class="card-body">
+                          <form action="{{ url('add-remove-multiple-input-fields') }}" method="POST">
+                            @csrf
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                            </ul>
+                            </div>
+                            @endif
+                            @if (Session::has('success'))
+                            <div class="alert alert-success text-center">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <p>{{ Session::get('success') }}</p>
+                            </div>
+                            @endif
+                            <table class="table table-border-none" id="dynamicAddRemove">  
+                            <tr>
+                            <th>Date</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Action</th>
+                            </tr>
+                            <tr>  
+                            <td><input type="date" name="moreFields[0][date]" placeholder="Enterdate" class="form-control" /></td>  
+                            <td><input type="text" name="moreFields[0][title]" placeholder="Enter title" class="form-control" /></td>  
+                            <td><textarea name="moreFields[0][description]" placeholder="Enter description" class="form-control" rows="3"></textarea></td>  
+                            <td><button type="button" name="add" id="add-btn" class="btn btn-success btn-sm">Add More</button></td>  
+                            </tr>  
+                            </table> 
+                            <button type="submit" class="btn bg-flex text-light"><i class="fa fa-save"></i> Save Events</button>
+                            </form>
+                            <script type="text/javascript">
+                              var i = 0;
+                              $("#add-btn").click(function(){
+                              ++i;
+                              $("#dynamicAddRemove").append('<tr><td><input type="date" name="moreFields['+i+'][date]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][title]" placeholder="Enter title" class="form-control" /></td><td><textarea name="moreFields['+i+'][description]" placeholder="Enter description" class="form-control" rows="3"></textarea></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
+                              });
+                              $(document).on('click', '.remove-tr', function(){  
+                              $(this).parents('tr').remove();
+                              });  
+                              </script>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
                
               
                 </div>

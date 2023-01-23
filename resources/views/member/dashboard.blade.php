@@ -271,13 +271,13 @@
         <!-- Main row -->
         <div class="row ">
          <div class="col-md-6" >
-          <div class="card">
+          <div class="card" style="height:400px !important;">
 
             <div class="card-header bg-white text-secondary">
               <i class="fa fa-balance-scale"></i>
               Latest Pledges Progress
             </div>
-            <div id="container7" style="height:540px !important;">
+            <div id="container7">
            
                 <div class="row px-2">
                 @foreach($mypledges as $item)
@@ -364,57 +364,27 @@
         </div>
             {{-- start of upcoming events --}}
             <div class="col-md-6 mb-2 ">
-              <div class="card">
+              <div class="card" style="height:400px !important;">
                 <div class="card-header bg-white text-secondary">
                   <i class="fa fa-calendar"></i>
-                  Events Remainder
+                  Today's Events
                 </div>
                 {{-- <div class="card-body" id='calend' style="height:540px !important;"></div> --}}
 
                 <div class="card-body">
-                  <form action="{{ url('add-remove-multiple-input-fields') }}" method="POST">
-                    @csrf
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                    <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                    </ul>
-                    </div>
-                    @endif
-                    @if (Session::has('success'))
-                    <div class="alert alert-success text-center">
-                    <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
-                    <p>{{ Session::get('success') }}</p>
-                    </div>
-                    @endif
-                    <table class="table table-bordered" id="dynamicAddRemove">  
-                    <tr>
-                    <th>Date</th>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                    </tr>
-                    <tr>  
-                      <td><input type="date" name="moreFields[0][date]" placeholder="Enterdate" class="form-control" /></td>  
-                    <td><input type="text" name="moreFields[0][title]" placeholder="Enter title" class="form-control" /></td>  
-                    <td><input type="text" name="moreFields[0][description]" placeholder="Enter description" class="form-control" /></td>  
-                    <td><button type="button" name="add" id="add-btn" class="btn btn-success btn-sm">Add More</button></td>  
-                    </tr>  
-                    </table> 
-                    <button type="submit" class="btn bg-flex text-light"><i class="fa fa-save"></i> Save Calendar</button>
-                    </form>
-                    <script type="text/javascript">
-                      var i = 0;
-                      $("#add-btn").click(function(){
-                      ++i;
-                      $("#dynamicAddRemove").append('<tr><td><input type="date" name="moreFields['+i+'][date]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][title]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][description]" placeholder="Enter description" class="form-control" /></td><td><button type="button" class="btn btn-danger remove-tr">Remove</button></td></tr>');
-                      });
-                      $(document).on('click', '.remove-tr', function(){  
-                      $(this).parents('tr').remove();
-                      });  
-                      </script>
+                  @php
+                  $date=date('Y-m-d');
+                  $events=App\Models\Todo::where('date',$date)->get();
+                  @endphp
+
+                  @forelse($events as $item)
+                  <p>
+                    {{ $item->date}} {{ $item->title}}
+                  </p>
+                  @empty
+                  <p class="py-5 my-5">There is no Events Today !</p>
+
+                  @endforelse
                 </div>
               </div>
               
