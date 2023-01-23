@@ -80,9 +80,9 @@
     
 
    
-      <a href="" class="btn btn-sm bg-cyan mb-1">
-        <i class="fa fa-file-pdf"></i>
-        Generate Report
+      <a href="" class="btn btn-sm bg-flex mb-1 text-light" data-toggle="modal" onclick="cardRequests()">
+        <i class="fa fa-download"></i>
+        Card Requests
       </a>
      
 
