@@ -21,7 +21,7 @@
                  
                   <div class="col-md-6 d-flex flex-column" id="typedrop">
                     <label for="" class="text-secondary">Pledge Type</label>
-                    <select name="type_id" id="type_id" class="custom-select form-select"></select>
+                    <select name="type_id" id="type_id" class="custom-select "></select>
                     
                 </div>
 

@@ -13,21 +13,14 @@
             <input type="hidden" name="update_id" id="update_id">
 
             <div class="row mb-3">
-              <div class="col-md-6">
+              <div class="col-md-6 d-flex flex-column" id="userdrop">
                 <label for="" class="text-secondary">Payment Owner</label>
                  <select id='user_id' name='sel_depart' class="custom-select form-control">
                 <option value='0'>-- Select Member Here --</option>
-                @php
-                $departmentData= App\Models\User::where('role','member')->get();
-                @endphp
-                <!-- Read Departments -->
-                @foreach($departmentData as $department)
-                  <option value='{{ $department->id }}'>{{ $department->fname }} {{ $department->mname }} {{ $department->lname }} ({{ $department->community->abbreviation}} /{{ $department->id }} ) </option>
-                @endforeach
-
+  
             </select>
               </div>
-            <div class="col-md-6">
+            <div class="col-md-6 d-flex flex-column" id="pledgedrop">
             <!-- Department Employees Dropdown -->
             <label for="" class="text-secondary">Payment Pledge</label>
             <select id='pledge_id' name='sel_emp' class="custom-select form-control">
@@ -41,7 +34,7 @@
                   @php
                   $purpose= App\Models\PaymentType::get();
                   @endphp
-                  <div class="col-md-6">
+                  <div class="col-md-6 d-flex flex-column">
                       <label for="" class="text-secondary">Payment Method</label>
                       <select name="type_id" id="type_id" class="custom-select form-control">
                           <option value="">--Select Payment Method --</option>
@@ -114,11 +107,51 @@
 });
 
 
+$(document).ready(function(){
 
-$('#purpose_id').select2({
-    dropdownParent: $("#purposedrop"),
+// Department Change
+$('#user_id').change(function(){
+
+    // Department id
+    var id = $(this).val();
+
+    // Empty the dropdown
+    $('#pledge_id').find('option').not(':first').remove();
+
+    // AJAX request 
+    $.ajax({
+      url: 'getEmployees/'+id,
+      type: 'get',
+      dataType: 'json',
+      success: function(response){
+
+        var len = 0;
+        if(response['data'] != null){
+          len = response['data'].length;
+        }
+
+        if(len > 0){
+          // Read data and create <option >
+          for(var i=0; i<len; i++){
+
+            var id = response['data'][i].id;
+            var name = response['data'][i].name;
+
+            var option = "<option value='"+id+"'>"+name+"</option>"; 
+
+            $("#pledge_id").append(option); 
+          }
+        }
+
+      }
+  });
+});
+
+});
+$('#pledge_id').select2({
+    dropdownParent: $("#pledgedrop"),
     theme: 'bootstrap-5',
-    placeholder: '-- Select Purpose --',
+    placeholder: '-- Select Pledge --',
     ajax: {
         url: '/purpose/search',
         dataType: 'json',

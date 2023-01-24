@@ -76,7 +76,7 @@
           {{-- start auto populate member pledges --}}
 
          <!-- Script -->
-         <script type='text/javascript'>
+         {{-- <script type='text/javascript'>
 
           $(document).ready(function(){
 
@@ -120,7 +120,7 @@
 
           });
 
-          </script>
+          </script> --}}
          
   {{-- end of auto populate member pledges --}}
         {{-- start register payment modal --}}
