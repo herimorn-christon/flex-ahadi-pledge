@@ -20,7 +20,6 @@ class CreateProblemsTable extends Migration
             $table->text('detail');
             $table->string('attachment')->nullable();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
     }

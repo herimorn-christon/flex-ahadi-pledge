@@ -74,10 +74,7 @@
            font-family: 'Nunito', sans-serif;
        }
    </style>
-   
-      <!-- Styles -->
-    @livewireStyles
-    @powerGridStyles
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   {{-- for flex theme --}}
@@ -104,13 +101,15 @@
    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
-
+    <!-- Styles -->
+    @livewireStyles
+    @powerGridStyles
+ 
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse  layout-fixed ">
 <div class="wrapper">
 
   
-
   <!-- Navbar -->
   @include('layouts.inc.admin-navbar')
   <!-- /.navbar -->
@@ -191,8 +190,7 @@
   <!-- /.control-sidebar -->
 </div>
 
-@livewireScripts
-@powerGridScripts
+
 <script src="//unpkg.com/alpinejs" defer></script>
 <script>
     window.addEventListener('showAlert', event => {
@@ -214,17 +212,20 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+
 <!-- Sparkline -->
 <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
 <!-- JQVMap -->
 <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
@@ -251,10 +252,7 @@
 <!-- ChartJS -->
 {{-- end --}}
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -291,8 +289,7 @@
   });
 </script>
 
-@livewireScripts
-@powerGridScripts
+
 <script src="//unpkg.com/alpinejs" defer></script>
 <script>
     window.addEventListener('showAlert', event => {
@@ -301,6 +298,9 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+ <!-- Scripts -->
+ @livewireScripts
+ @powerGridScripts
 </body>
 </html>
 

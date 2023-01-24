@@ -23,9 +23,6 @@ class CreatePaymentsTable extends Migration
             $table->boolean('verified')->default(false);
             $table->integer('created_by');
             $table->timestamps();
-            $table->foreign('type_id')->references('id')->on('payment_type')->onDelete('cascade');
-            $table->foreign('pledge_id')->references('id')->on('pledges')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
     }

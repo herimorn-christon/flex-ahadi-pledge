@@ -19,7 +19,6 @@ class CreateCardPaymentsTable extends Migration
             $table->integer('amount');
             $table->integer('created_by');
             $table->timestamps();
-            $table->foreign('card_member')->references('id')->on('cards_members')->onDelete('cascade');
 
         });
     }

@@ -22,13 +22,13 @@ final class UserTable extends PowerGridComponent
     */
     public function setUp(): array
     {
-        $this->showCheckBox();
+       // $this->showCheckBox();
 
         return [
-            Exportable::make('users')
+            Exportable::make('export')
                 ->striped()
                 ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
-            Header::make()->showSearchInput()->showToggleColumns(),
+           // Header::make()->showSearchInput(),
             Footer::make()
                 ->showPerPage()
                 ->showRecordCount(),
@@ -50,7 +50,7 @@ final class UserTable extends PowerGridComponent
     */
     public function datasource(): Builder
     {
-        return User::query()->where('role','member');
+        return User::query();
     }
 
     /*
@@ -87,21 +87,13 @@ final class UserTable extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('fname')
-
-           /** Example of custom column using a closure **/
-            ->addColumn('fname_lower', function (User $model) {
-                return strtolower(e($model->fname));
-            })
-
             ->addColumn('mname')
             ->addColumn('lname')
             ->addColumn('date_of_birth_formatted', fn (User $model) => Carbon::parse($model->date_of_birth)->format('d/m/Y'))
             ->addColumn('gender')
-            ->addColumn('fcm_token')
-            ->addColumn('phone')
-            ->addColumn('email')
-            ->addColumn('jumuiya')
-            ->addColumn('status');
+            ->addColumn('jumuiya', fn (User $model) => $model->community->name);
+            
+            
     }
 
     /*
@@ -125,65 +117,41 @@ final class UserTable extends PowerGridComponent
                 ->makeInputRange(),
 
             Column::make('FNAME', 'fname')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
+            ->sortable()
+            ->searchable()
+            ->makeInputText(),
+            
             Column::make('MNAME', 'mname')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
+            ->sortable()
+            ->searchable()
+            ->makeInputText(),
+            
             Column::make('LNAME', 'lname')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-
-            Column::make('PROFILE PICTURE', 'profile_picture')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+            ->sortable()
+            ->searchable()
+            ->makeInputText(),
 
             Column::make('DATE OF BIRTH', 'date_of_birth_formatted', 'date_of_birth')
                 ->searchable()
                 ->sortable()
                 ->makeInputDatePicker(),
 
-            Column::make('GENDER', 'gender')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+            Column::make('GENDER', 'gender'),
+            
 
-            // Column::make('FCM TOKEN', 'fcm_token')
+            // Column::make('EMAIL', 'email')
             //     ->sortable()
             //     ->searchable()
             //     ->makeInputText(),
 
-            Column::make('PHONE', 'phone')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
+            Column::make('JUMUIYA', 'jumuiya'),
 
-            Column::make('EMAIL', 'email')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
 
-            // Column::make('JUMUIYA', 'jumuiya')
-            //     ->makeInputRange(),
+          
 
-            Column::make('STATUS', 'status')
-                ->toggleable(),
+            
 
-            // Column::make('CREATED AT', 'created_at_formatted', 'created_at')
-            //     ->searchable()
-            //     ->sortable()
-            //     ->makeInputDatePicker(),
-
-            // Column::make('UPDATED AT', 'updated_at_formatted', 'updated_at')
-            //     ->searchable()
-            //     ->sortable()
-            //     ->makeInputDatePicker(),
+           
 
         ]
 ;
@@ -203,18 +171,21 @@ final class UserTable extends PowerGridComponent
      * @return array<int, Button>
      */
 
-    /*
+    
     public function actions(): array
     {
        return [
-           Button::make('edit', 'Edit')
-               ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
-               ->route('user.edit', ['user' => 'id']),
+        //    Button::make('edit', 'Edit')
+        //        ->class('bg-indigo-500 cursor-pointer text-white px-3 py-2.5 m-1 rounded text-sm')
+        //        ->route('user.edit', ['user' => 'id']),
 
-           Button::make('destroy', 'Delete')
-               ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
-               ->route('user.destroy', ['user' => 'id'])
-               ->method('delete')
+        //    Button::make('destroy', 'Delete')
+        //        ->class('bg-red-500 cursor-pointer text-white px-3 py-2 m-1 rounded text-sm')
+        //        ->route('user.destroy', ['user' => 'id'])
+        //        ->method('delete')
+
+        Button::add('my-custom-button')
+        ->bladeComponent('my-custom-button', ['id' => 'id']),
         ];
     }
     

@@ -19,7 +19,6 @@ class CardMembersTable extends Migration
             $table->integer('card_no');   
             $table->tinyInteger('status')->default('0');     
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
     }
