@@ -9,7 +9,8 @@
     <title>AhadiPledge | Home</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Select 2-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
@@ -73,9 +74,8 @@
                                 {{ Auth::user()->fname }}   {{ Auth::user()->mname }}
 
                                 <span class="text-end">
-                                    <i class="fa fa-sign-out"></i>
+                                    <i class="fa fa-power-off"></i>
                                 </span>
-                            {{ __('Logout') }}
 
 
                         </a>
