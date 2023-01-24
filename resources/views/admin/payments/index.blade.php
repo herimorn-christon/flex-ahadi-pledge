@@ -43,8 +43,7 @@
       @endif
     </div><!-- /.col -->
     <div class="col-sm-7">
-      <ol class="float-sm-right" type="none">
-        <li class=""> 
+      
         {{-- start of register payment button --}}
         <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createPayment()">
             <i class="fa fa-plus"></i>
@@ -76,7 +75,7 @@
           {{-- start auto populate member pledges --}}
 
          <!-- Script -->
-         {{-- <script type='text/javascript'>
+       <script type='text/javascript'>
 
           $(document).ready(function(){
 
@@ -120,7 +119,7 @@
 
           });
 
-          </script> --}}
+          </script> 
          
   {{-- end of auto populate member pledges --}}
         {{-- start register payment modal --}}
@@ -179,9 +178,7 @@
         {{-- start of ajax register pledge method --}}
         @include('admin.payments.ajax-verify-payment')
         {{-- end of ajax register pledge method --}}
-    </li>
-       
-      </ol>
+
       
     </div>
   </div>
