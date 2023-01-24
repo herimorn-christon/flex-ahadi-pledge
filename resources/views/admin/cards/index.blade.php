@@ -82,7 +82,7 @@
    
       <a href="" class="btn btn-sm bg-flex mb-1 text-light" data-toggle="modal" onclick="cardRequests()">
         <i class="fa fa-download"></i>
-        Card Requests
+       Requests
       </a>
      
 
@@ -98,7 +98,7 @@
     <div class="">
         <div class="p-1 mt-2">
           {{-- start of all assigned card members --}}
-            <table id="example1"  class="table table-bordered cell-border">
+            <table id="example1"  class="table table-bordered cell-bordered">
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>
