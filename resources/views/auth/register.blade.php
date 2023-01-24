@@ -68,6 +68,7 @@
                     <div class="bs-stepper-content">
                       <!-- your steps content here -->
                       <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+                       {{-- start of register form --}}
                         <div class="form-group">
                           <label for="exampleInputEmail1">Email address</label>
                           <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
@@ -76,6 +77,126 @@
                           <label for="exampleInputPassword1">Password</label>
                           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                         </div>
+                        <div class="form-group">
+                          <label for="place_of_birth">Place of Birth</label>
+                          <input type="text" class="form-control" id="place_of_birth" name="place_of_birth" placeholder="Place of birth">
+                        </div>
+
+        
+                        <div class="form-group">
+                          <label for="marital_status">Maritial Status</label>
+                          <select name="marital_status" class="form-control" id="marital_status">
+                            <option value="1">Maried</option>
+                            <option value="2">Single</option>
+                            <option value="3">Widowed</option>
+                            <option value="4">Divorced</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="mariage_type">Mariage Type</label>
+                          <select name="mariage_type" class="form-control" id="mariage_type">
+                            <option value="1">Christian</option>
+                            <option value="2">Other</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="mariage_date">Mariage Date</label>
+                          <input type="date" class="form-control" name="mariage_date" id="mariage_date">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="exampleInputPassword1">Partner Name</label>
+                          <input type="text" class="form-control" id="partner_name" name="partner_name" placeholder="Partner Name">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="place_of_mariage">Place of Mariage</label>
+                          <input type="text" class="form-control" id="place_of_mariage" name="place_of_mariage" placeholder="Place of mariage">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="usharika">Usharika Wa Zamani</label>
+                          <input type="text" class="form-control" id="usharika" name="usharika" placeholder="Usharika">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="fellowship">Fellowship Name</label>
+                          <input type="text" class="form-control" id="fellowship" name="fellowship" placeholder="Fellowship Name">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="deacon_name">Deacon Name</label>
+                          <input type="text" class="form-control" id="deacon_name" name="deacon_name" placeholder="Deacon Name">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="deacon_phone">Deacon Phone</label>
+                          <input type="text" class="form-control" id="deacon_phone" name="deacon_phone" placeholder="Deacon Phone">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="jina_msharika_jirani">Jina Msharika Jirani</label>
+                          <input type="text" class="form-control" id="jina_msharika_jirani" name="jina_msharika_jirani" placeholder="Jina Msharika Jirani">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="simu_msharika_jirani">Simu Msharika Jirani</label>
+                          <input type="text" class="form-control" id="simu_msharika_jirani" name="simu_msharika_jirani" placeholder="Simu Msharika Jirani">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="occupation">Occupation</label>
+                          <select name="occupation" class="form-control" id="occupation">
+                            <option value="1">Employed</option>
+                            <option value="2">Unemployed</option>
+                            <option value="3">Student</option>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="place_of_work">Place of work</label>
+                          <input type="text" class="form-control" id="place_of_work" name="place_of_work" placeholder="Place of work">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="kazi">Kazi</label>
+                          <input type="text" class="form-control" class="form-control" id="kazi" name="kazi" placeholder="Kazi">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="kujitolea">Ungependa Kujitolea?</label>
+                          <input type="checkbox" class="form-control" name="kujitolea" id="kujitolea">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="sacramenti">Unashiriki Sacramenti ya meza ya bwana?</label>
+                          <input type="checkbox" class="form-control" name="sacramenti" id="sacramenti">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="ubatizo">Umebatizwa?</label>
+                          <input type="checkbox" class="form-control" name="ubatizo" id="ubatizo">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="baptization_date">Baptization Date</label>
+                          <input type="date" class="form-control" name="baptization_date" id="baptization_date">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="kipaimara">Umepata Kipaimara?</label>
+                          <input type="checkbox" class="form-control" name="kipaimara" id="kipaimara">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="kipaimara_date">Kipaimara Date</label>
+                          <input type="date" class="form-control" name="kipaimara_date" id="kipaimara_date">
+                        </div>
+
+                        {{-- end of register form --}}
+
                         <button class="btn btn-primary" onclick="stepper.next()">Next</button>
                       </div>
                       <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
