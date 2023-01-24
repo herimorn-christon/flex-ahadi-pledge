@@ -49,6 +49,9 @@ Route::get('/purpose/search', [PurposeController::class, 'search']);
 
 Route::get('/pledge-types/search', [TypeController::class, 'search']);
 
+
+Route::get('/pledges/search', [PledgeController::class, 'search']);
+
 // Start of all admin user routes
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()

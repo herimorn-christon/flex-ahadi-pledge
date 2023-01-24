@@ -107,60 +107,20 @@
 });
 
 
-$(document).ready(function(){
 
-// Department Change
-$('#user_id').change(function(){
-
-    // Department id
-    var id = $(this).val();
-
-    // Empty the dropdown
-    $('#pledge_id').find('option').not(':first').remove();
-
-    // AJAX request 
-    $.ajax({
-      url: 'getEmployees/'+id,
-      type: 'get',
-      dataType: 'json',
-      success: function(response){
-
-        var len = 0;
-        if(response['data'] != null){
-          len = response['data'].length;
-        }
-
-        if(len > 0){
-          // Read data and create <option >
-          for(var i=0; i<len; i++){
-
-            var id = response['data'][i].id;
-            var name = response['data'][i].name;
-
-            var option = "<option value='"+id+"'>"+name+"</option>"; 
-
-            $("#pledge_id").append(option); 
-          }
-        }
-
-      }
-  });
-});
-
-});
 $('#pledge_id').select2({
     dropdownParent: $("#pledgedrop"),
     theme: 'bootstrap-5',
-    placeholder: '-- Select Pledge --',
+    placeholder: '-- Select Pledge Here --',
     ajax: {
-        url: '/purpose/search',
+        url: '/pledges/search',
         dataType: 'json',
         delay: 250,
         processResults: function (data) {
             return {
                 results: $.map(data, function (item) {
                     return {
-                        text: item.title,
+                        text: item.name,
                         id: item.id
                     }
                 })

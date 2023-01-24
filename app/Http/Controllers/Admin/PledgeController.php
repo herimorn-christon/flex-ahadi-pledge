@@ -134,59 +134,24 @@ class PledgeController extends Controller
         $pledge->save();
         return response()->json(['status' => "success"]);
     }
-
-    // saving pledge type function
-    public function saveType(pledgeFormRequest $request)
+   
+    public function search(Request $request)
     {
-        $data=$request->validated();
-        $type =new PledgeType;
-        $type->title=$data['title'];
-        $type->save();
+    	$pledges = [];
 
-        return redirect('admin/all-pledges')->with('status','Pledge Type was Added Successfully');
+        if($request->has('q')){
+            $search = $request->q;
+            $pledges =Pledge::select("id", "name")
+            		->where('name', 'LIKE', "%$search%")
+                    ->where('status','')
+            		->get();
+        }else {
+            $pledges =Pledge::where('status','')->get();
+        }
+        return response()->json($pledges);
     }
-
-    // edit pledge type page function
-    public function editType($jumuiya_id)
-    {
-        $type=PledgeType::find($jumuiya_id);
-        return view('admin.pledges.edit',compact('type'));
-    }
-
-    // update pledge type function
-    public function updateType(pledgeFormRequest $request,$type_id)
-    {
-        $data=$request->validated();
-        $type =PledgeType::find($type_id);
-        $type->title=$data['title'];
-        // saving data
-        $type->update();
-
-        return redirect('admin/all-pledges')->with('status','Pledge type was Updated Successfully');
-    }
-// delete  pledge type function
-public function destroyType($type)
-{
-    $jumuiya=PledgeType::find($type);
-
-    if($type){
-        $jumuiya->delete();
-        return redirect('admin/all-pledges')->with('status','Pledge type was deleted Successfully');
-    }
-    else{
-        return redirect('admin/all-pledges')->with('status','No Community ID was found !');
-    }
-}
 
   
-     // edit pledge page function
-        public function edit($pledge_id)
-        {
-            $types=PledgeType::all();
-            $pledge=Pledge::find($pledge_id);
-            return view('admin.pledges.edit-pledge',compact('pledge','types'));
-        }
-
 
     /**
      * Remove the specified resource from storage.
