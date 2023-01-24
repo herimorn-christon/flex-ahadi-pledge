@@ -15,11 +15,13 @@ class CreateCardPaymentsTable extends Migration
     {
         Schema::create('card_payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('card_member');
+            $table->foreignId('card_member');
             $table->integer('amount');
             $table->integer('created_by');
             $table->timestamps();
-
+            $table->foreign('card_member')->references('id')->on('cards_members')
+            ->onDelete('cascade');
+            
         });
     }
 
