@@ -82,4 +82,20 @@ class TypeController extends Controller
         PledgeType::destroy($id);
         return response()->json(['status' => "success"]);
     }
+
+
+    public function search(Request $request)
+    {
+    	$types = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $types =PledgeType::select("id", "title")
+            		->where('title', 'LIKE', "%$search%")
+            		->get();
+        }else {
+            $types =PledgeType::all();
+        }
+        return response()->json($types);
+    }
 }

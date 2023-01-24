@@ -143,4 +143,19 @@ class PurposeController extends Controller
     }
 
 
+    public function search(Request $request)
+    {
+    	$members = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $purposes =Purpose::select("id", "title")
+            		->where('title', 'LIKE', "%$search%")
+            		->get();
+        }else {
+            $purposes =Purpose::all();
+        }
+        return response()->json($purposes);
+    }
+
 }

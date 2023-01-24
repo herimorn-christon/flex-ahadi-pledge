@@ -5,6 +5,7 @@
 
 @section('content')
 
+
 <div class="card  p-2 border-left-flex">
 <div class="row mb-1">
     {{-- start of statistics --}}
@@ -112,7 +113,7 @@
             </tbody>
           </table>
           {{--  end of all pledges table --}}
-
+        </div>
 
             {{-- start of ajax view purpose details modal --}}
             @include('admin.pledges.single-pledge-modal')
@@ -170,7 +171,7 @@
        @include('admin.pledges.ajax-delete-pledge')
        {{-- end of ajax delete Pledge type method --}}
 
-        </div>
+    
 
 </div>
 

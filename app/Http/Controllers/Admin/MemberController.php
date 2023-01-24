@@ -165,4 +165,23 @@ class MemberController extends Controller
         User::destroy($id);
         return response()->json(['status' => "success"]);
     }
+
+
+    public function search(Request $request)
+    {
+    	$members = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $members =User::select("id", "fname", "mname", "lname")
+            		->where('fname', 'LIKE', "%$search%")
+                    ->orwhere('mname', 'LIKE', "%$search%")
+                    ->orwhere('lname', 'LIKE', "%$search%")
+                    ->where('role','member')
+            		->get();
+        }else {
+            $members =User::all()->where('role','member');
+        }
+        return response()->json($members);
+    }
 }

@@ -43,7 +43,11 @@ Route::get('/', function () {
 
 Route::get('/jumuiya/search', [JumuiyaController::class, 'search']);
 
+Route::get('/member/search', [MemberController::class, 'search']);
 
+Route::get('/purpose/search', [PurposeController::class, 'search']);
+
+Route::get('/pledge-types/search', [TypeController::class, 'search']);
 
 // Start of all admin user routes
 
