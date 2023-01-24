@@ -83,4 +83,19 @@ class MethodController extends Controller
         return response()->json(['status' => "success"]);
     }
 
+    public function search(Request $request)
+    {
+    	$methods = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $methods =PaymentType::select("id", "name")
+            		->where('name', 'LIKE', "%$search%")
+            		->get();
+        }else {
+            $methods =PaymentType::all();
+        }
+        return response()->json($methods);
+    }
+
 }

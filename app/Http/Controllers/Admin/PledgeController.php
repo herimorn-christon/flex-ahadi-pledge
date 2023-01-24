@@ -143,10 +143,11 @@ class PledgeController extends Controller
             $search = $request->q;
             $pledges =Pledge::select("id", "name")
             		->where('name', 'LIKE', "%$search%")
+                    ->with('user')
                     ->where('status','')
             		->get();
         }else {
-            $pledges =Pledge::where('status','')->get();
+            $pledges =Pledge::where('status','')->with('user')->get();
         }
         return response()->json($pledges);
     }

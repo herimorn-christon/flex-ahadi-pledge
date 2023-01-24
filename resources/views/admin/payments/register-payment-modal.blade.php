@@ -13,14 +13,21 @@
             <input type="hidden" name="update_id" id="update_id">
 
             <div class="row mb-3">
-              <div class="col-md-6 d-flex flex-column" id="userdrop">
+              <div class="col-md-6" id="userdrop">
                 <label for="" class="text-secondary">Payment Owner</label>
                  <select id='user_id' name='sel_depart' class="custom-select form-control">
                 <option value='0'>-- Select Member Here --</option>
-  
+                @php
+                $departmentData= App\Models\User::where('role','member')->get();
+                @endphp
+                <!-- Read Departments -->
+                @foreach($departmentData as $department)
+                  <option value='{{ $department->id }}'>{{ $department->fname }} {{ $department->mname }} {{ $department->lname }} ({{ $department->community->abbreviation}} /{{ $department->id }} ) </option>
+                @endforeach
+
             </select>
               </div>
-            <div class="col-md-6 d-flex flex-column" id="pledgedrop">
+            <div class="col-md-6">
             <!-- Department Employees Dropdown -->
             <label for="" class="text-secondary">Payment Pledge</label>
             <select id='pledge_id' name='sel_emp' class="custom-select form-control">
@@ -34,7 +41,7 @@
                   @php
                   $purpose= App\Models\PaymentType::get();
                   @endphp
-                  <div class="col-md-6 d-flex flex-column">
+                  <div class="col-md-6">
                       <label for="" class="text-secondary">Payment Method</label>
                       <select name="type_id" id="type_id" class="custom-select form-control">
                           <option value="">--Select Payment Method --</option>
@@ -84,7 +91,7 @@
   
 
    <script type="text/javascript">
-    $('#user_id').select2({
+    $('#use').select2({
     dropdownParent: $("#userdrop"),
     theme: 'bootstrap-5',
     placeholder: '-- Select Member --',
@@ -108,19 +115,19 @@
 
 
 
-$('#pledge_id').select2({
-    dropdownParent: $("#pledgedrop"),
+$('#purpose_id').select2({
+    dropdownParent: $("#purposedrop"),
     theme: 'bootstrap-5',
-    placeholder: '-- Select Pledge Here --',
+    placeholder: '-- Select Purpose --',
     ajax: {
-        url: '/pledges/search',
+        url: '/purpose/search',
         dataType: 'json',
         delay: 250,
         processResults: function (data) {
             return {
                 results: $.map(data, function (item) {
                     return {
-                        text: item.name,
+                        text: item.title,
                         id: item.id
                     }
                 })
