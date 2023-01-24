@@ -34,26 +34,20 @@
    <!-- summernote -->
    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
    {{-- datatables --}}
-     <!-- DataTables -->
-     <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
    <!-- Theme style -->
    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-   
+
 
   {{-- start of other links --}}
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
    
-  <!-- Font Awesome -->
-  {{-- <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}"> --}}
 
-  
   <!-- JQVMap -->
-  {{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet" /> --}}
-  
+
+
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
     <!-- DataTables -->
@@ -79,37 +73,35 @@
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   {{-- for flex theme --}}
  {{-- for flex theme --}}
- @if($setting->theme=="light") 
+ @if($setting->theme=="light")
  <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
  @endif
 
- @if($setting->theme=="dark") 
+ @if($setting->theme=="dark")
 
  <link href="{{ asset('css/navy.css') }}" rel="stylesheet">
 
  @endif
    <!-- Select 2-->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
 
 
 
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
-       integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
-       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
+   <!-- DataTables -->
+   <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+   <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <!-- Styles -->
     @livewireStyles
     @powerGridStyles
- 
+
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse  layout-fixed ">
 <div class="wrapper">
 
-  
+
   <!-- Navbar -->
   @include('layouts.inc.admin-navbar')
   <!-- /.navbar -->
@@ -131,7 +123,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="">
- 
+
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -139,24 +131,30 @@
 
     <!-- Main content -->
     <section class="content">
-      
+
       <div class=" mt-3">
-        
+
         @yield('content')
 
         {{-- start of ajax fetch all members method --}}
         @include('admin.notifications.ajax-fetch-all-notifications')
         {{-- end of ajax fetch all members method --}}
-  
+
         {{-- start of single member modal --}}
         @include('admin.notifications.all-notifications-modal')
         {{-- end of single member modal --}}
 
-        
+
         {{-- start of ajax delete members method --}}
         @include('admin.notifications.ajax-delete-notification')
         {{-- end of ajax delete members method --}}
-        
+
+
+
+        {{-- start of ajax fetch all members method --}}
+        {{-- @include('admin.notifications.ajax-fetch-notification-details') --}}
+        {{-- end of ajax fetch all members method --}}
+
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -165,9 +163,6 @@
 
 
 
-        {{-- start of ajax fetch all members method --}}
-        {{-- @include('admin.members.ajax-fetch-notification-details') --}}
-        {{-- end of ajax fetch all members method --}}
 
 
     {{-- end of notifications --}}
@@ -182,7 +177,7 @@
   </footer>
 
   <!-- Control Sidebar -->
- 
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
