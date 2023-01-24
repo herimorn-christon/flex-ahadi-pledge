@@ -86,3 +86,77 @@
   </div>
   <!-- /.modal-dialog -->
 
+   {{-- auto search scripts --}}
+
+  
+
+   <script type="text/javascript">
+    $('#user_id').select2({
+    dropdownParent: $("#userdrop"),
+    theme: 'bootstrap-5',
+    placeholder: '-- Select Member --',
+    ajax: {
+        url: '/member/search',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+            return {
+                results: $.map(data, function (item) {
+                    return {
+                        text: item.fname+' '+item.mname+' '+item.lname,
+                        id: item.id
+                    }
+                })
+            };
+        },
+        cache: true
+    }
+});
+
+
+
+$('#purpose_id').select2({
+    dropdownParent: $("#purposedrop"),
+    theme: 'bootstrap-5',
+    placeholder: '-- Select Purpose --',
+    ajax: {
+        url: '/purpose/search',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+            return {
+                results: $.map(data, function (item) {
+                    return {
+                        text: item.title,
+                        id: item.id
+                    }
+                })
+            };
+        },
+        cache: true
+    }
+});
+
+$('#type_id').select2({
+    dropdownParent: $("#typedrop"),
+    theme: 'bootstrap-5',
+    placeholder: '-- Select Pledge Type --',
+    ajax: {
+        url: '/pledge-types/search',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+            return {
+                results: $.map(data, function (item) {
+                    return {
+                        text: item.title,
+                        id: item.id
+                    }
+                })
+            };
+        },
+        cache: true
+    }
+});
+</script>
+<!-- Script for Modal -->

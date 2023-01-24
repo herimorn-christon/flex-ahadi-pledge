@@ -13,7 +13,7 @@
                   <div class="row mb-3">
                     <div class="col-md-6 d-flex flex-column" id="userdrop">
                         <label for="" class="text-secondary">Pledge Owner (Pledger/Member)</label>
-                        <select name="user_id" id="user_id" class="form-select"></select>
+                        <select name="user_id" id="user_id" class="custom-select form-select"></select>
                         
                     </div>
           
@@ -21,13 +21,13 @@
                  
                   <div class="col-md-6 d-flex flex-column" id="typedrop">
                     <label for="" class="text-secondary">Pledge Type</label>
-                    <select name="type_id" id="type_id" class="form-select"></select>
+                    <select name="type_id" id="type_id" class="custom-select form-select"></select>
                     
                 </div>
 
                     <div class="col-md-6 d-flex flex-column" id="purposedrop">
                         <label for="" class="text-secondary">Pledge Purpose</label>
-                        <select name="purpose_id" id="purpose_id" class="form-select"></select>
+                        <select name="purpose_id" id="purpose_id" class="custom-select form-select"></select>
                         
                     </div>
                 

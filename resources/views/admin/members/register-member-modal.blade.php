@@ -77,7 +77,7 @@
 
                 <div class="col-md-6 d-flex flex-column" id="form">
                     <label for="" class="text-secondary">Jumuiya (Community) </label>
-                    <select name="jumuiya" id="jumuiya" class="form-select"></select>
+                    <select name="jumuiya" id="jumuiya" class="custom-select form-select"></select>
                     
                 </div>
 
