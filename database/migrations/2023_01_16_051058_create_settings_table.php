@@ -18,7 +18,7 @@ class CreateSettingsTable extends Migration
             $table->string('system_name');
             $table->string('logo');
             $table->string('favicon')->nullable();
-            $table->string('theme')->nullable();
+            $table->string('theme')->default('light');
             $table->timestamps();
         });
     }

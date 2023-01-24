@@ -16,16 +16,17 @@ class CreatePurposesTable extends Migration
         Schema::create('purposes', function (Blueprint $table) {
             $table->id();           
             $table->string('title');
-            $table->mediumText('description');
+            $table->string('description');
             $table->date('start_date');                      
             $table->date('end_date');
             $table->tinyInteger('status')->default('0');            
             $table->integer('created_by');
             $table->timestamps();
+            
         });
     }
 
-    /**
+    /**cle
      * Reverse the migrations.
      *
      * @return void

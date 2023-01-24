@@ -15,12 +15,14 @@ class CreateProblemsTable extends Migration
     {
         Schema::create('problems', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->foreignId('user_id');
             $table->string('problem');
             $table->text('detail');
             $table->string('attachment')->nullable();
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade');
+           
 
         });
     }

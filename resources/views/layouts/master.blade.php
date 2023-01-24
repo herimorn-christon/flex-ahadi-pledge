@@ -34,10 +34,10 @@
    <!-- summernote -->
    <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
    {{-- datatables --}}
-  
+
    <!-- Theme style -->
    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-   
+
 
   {{-- start of other links --}}
 
@@ -47,7 +47,7 @@
 
   <!-- JQVMap -->
 
-  
+
     <!-- SweetAlert2 -->
     <link rel="stylesheet" href="{{ asset('plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
     <!-- DataTables -->
@@ -68,19 +68,16 @@
            font-family: 'Nunito', sans-serif;
        }
    </style>
-   
-      <!-- Styles -->
-    @livewireStyles
-    @powerGridStyles
+
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
   {{-- for flex theme --}}
  {{-- for flex theme --}}
- @if($setting->theme=="light") 
+ @if($setting->theme=="light")
  <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
  @endif
 
- @if($setting->theme=="dark") 
+ @if($setting->theme=="dark")
 
  <link href="{{ asset('css/navy.css') }}" rel="stylesheet">
 
@@ -96,12 +93,14 @@
    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    <!-- Styles -->
+    @livewireStyles
+    @powerGridStyles
 
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse  layout-fixed ">
 <div class="wrapper">
 
-  
 
   <!-- Navbar -->
   @include('layouts.inc.admin-navbar')
@@ -124,7 +123,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="">
- 
+
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -132,29 +131,29 @@
 
     <!-- Main content -->
     <section class="content">
-      
+
       <div class=" mt-3">
-        
+
         @yield('content')
 
         {{-- start of ajax fetch all members method --}}
         @include('admin.notifications.ajax-fetch-all-notifications')
         {{-- end of ajax fetch all members method --}}
-  
+
         {{-- start of single member modal --}}
         @include('admin.notifications.all-notifications-modal')
         {{-- end of single member modal --}}
 
-        
+
         {{-- start of ajax delete members method --}}
         @include('admin.notifications.ajax-delete-notification')
         {{-- end of ajax delete members method --}}
-        
 
-        
+
+
         {{-- start of ajax fetch all members method --}}
         {{-- @include('admin.notifications.ajax-fetch-notification-details') --}}
-        {{-- end of ajax fetch all members method --}} 
+        {{-- end of ajax fetch all members method --}}
 
       </div><!-- /.container-fluid -->
     </section>
@@ -178,7 +177,7 @@
   </footer>
 
   <!-- Control Sidebar -->
- 
+
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Control sidebar content goes here -->
@@ -186,8 +185,7 @@
   <!-- /.control-sidebar -->
 </div>
 
-@livewireScripts
-@powerGridScripts
+
 <script src="//unpkg.com/alpinejs" defer></script>
 <script>
     window.addEventListener('showAlert', event => {
@@ -209,17 +207,20 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
+
 <!-- Sparkline -->
 <script src="{{ asset('plugins/sparklines/sparkline.js') }}"></script>
 <!-- JQVMap -->
 <script src="{{ asset('plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="{{ asset('plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
+
 <!-- jQuery Knob Chart -->
 <script src="{{ asset('plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{ asset('plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('plugins/daterangepicker/daterangepicker.js') }}"></script>
+
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
@@ -246,10 +247,7 @@
 <!-- ChartJS -->
 {{-- end --}}
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+
 <!-- Page specific script -->
 <script>
   $(function () {
@@ -286,8 +284,7 @@
   });
 </script>
 
-@livewireScripts
-@powerGridScripts
+
 <script src="//unpkg.com/alpinejs" defer></script>
 <script>
     window.addEventListener('showAlert', event => {
@@ -296,6 +293,9 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+ <!-- Scripts -->
+ @livewireScripts
+ @powerGridScripts
 </body>
 </html>
 

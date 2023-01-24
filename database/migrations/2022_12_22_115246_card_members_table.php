@@ -15,11 +15,15 @@ class CardMembersTable extends Migration
     {
         Schema::create('cards_members', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');  
-            $table->integer('card_no');   
+            $table->foreignId('user_id');  
+            $table->foreignId('card_no');   
             $table->tinyInteger('status')->default('0');     
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade');
+            $table->foreign('card_no')->references('id')->on('cards')
+            ->onDelete('cascade');
+          
 
         });
     }

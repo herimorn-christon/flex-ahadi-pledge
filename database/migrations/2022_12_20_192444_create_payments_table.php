@@ -15,17 +15,20 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_id');
-            $table->integer('pledge_id');
-            $table->integer('user_id');
+            $table->foreignId('type_id');
+            $table->foreignId('pledge_id');
+            $table->foreignId('user_id');
             $table->string('amount');
             $table->string('receipt');
             $table->boolean('verified')->default(false);
             $table->integer('created_by');
             $table->timestamps();
-            $table->foreign('type_id')->references('id')->on('payment_type')->onDelete('cascade');
-            $table->foreign('pledge_id')->references('id')->on('pledges')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('pledge_id')->references('id')->on('pledges')
+            ->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade');
+            $table->foreign('type_id')->references('id')->on('payment_type')
+            ->onDelete('cascade');
 
         });
     }

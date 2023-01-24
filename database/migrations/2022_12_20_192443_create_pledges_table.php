@@ -15,9 +15,9 @@ class CreatePledgesTable extends Migration
     {
         Schema::create('pledges', function (Blueprint $table) {
             $table->id();
-            $table->integer('type_id');
-            $table->integer('purpose_id');
-            $table->integer('user_id');
+            $table->foreignId('type_id');
+            $table->foreignId('purpose_id');
+            $table->foreignId('user_id');
             $table->string('name');
             $table->mediumText('description');
             $table->string('amount')->nullable();
@@ -25,9 +25,12 @@ class CreatePledgesTable extends Migration
             $table->tinyInteger('status')->default('0');
             $table->integer('created_by');
             $table->timestamps();
-            $table->foreign('type_id')->references('id')->on('pledge_type')->onDelete('cascade');
-            $table->foreign('purpose_id')->references('id')->on('purposes')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('type_id')->references('id')->on('pledge_type')
+            ->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade');
+            $table->foreign('purpose_id')->references('id')->on('purposes')
+            ->onDelete('cascade');
 
         });
     }
