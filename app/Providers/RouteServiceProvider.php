@@ -36,6 +36,27 @@ class RouteServiceProvider extends ServiceProvider
                 ->middleware('api')
                 ->group(base_path('routes/api.php'));
         });
+
+
+        Route::group([
+            'middleware' => ['api', 'cors'],
+            'namespace' => $this->namespace,
+            'prefix' => 'api',
+        ], function ($router) {
+             //Add you routes here, for example:
+                Route::get('/jumuiya/search', [JumuiyaController::class, 'search']);
+
+                Route::get('/member/search', [MemberController::class, 'search']);
+
+                Route::get('/purpose/search', [PurposeController::class, 'search']);
+
+                Route::get('/pledge-types/search', [TypeController::class, 'search']);
+
+
+                Route::get('/pledges/search', [PledgeController::class, 'search']);
+
+                Route::get('/methods/search', [MethodController::class, 'search']);
+        });
     }
 
     /**
