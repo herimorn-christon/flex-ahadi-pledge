@@ -15,25 +15,25 @@
         })
      
         /*
-            show modal for creating a record and 
+            show modal for creating a record and
             empty the values of form and remove existing alerts
         */
         function createCommunity()
         {
             $("#alert-div").html("");
-            $("#error-div").html("");   
+            $("#error-div").html("");
             $("#update_id").val("");
             $("#name").val("");
             $("#abbreviation").val("");
             $("#location").val("");
-            $("#form-modal").modal('show'); 
+            $("#form-modal").modal('show');
         }
      
         /*
             submit the form and will be stored to the database
         */
         function storeCommunity()
-        {   
+        {
             $("#save-community-btn").prop('disabled', true);
             let url = $('meta[name=app-url]').attr("content") + "/admin/communities";
             let data = {
@@ -64,21 +64,21 @@
                     /*
         show validation error
                     */
-                    if (typeof response.responseJSON.errors !== 'undefined') 
+                    if (typeof response.responseJSON.errors !== 'undefined')
                     {
         let errors = response.responseJSON.errors;
         let abbreviationValidation = "";
-        if (typeof errors.abbreviation !== 'undefined') 
+        if (typeof errors.abbreviation !== 'undefined')
                         {
                             abbreviationValidation = '<li>' + errors.abbreviation[0] + '</li>';
                         }
         let locationValidation = "";
-        if (typeof errors.location !== 'undefined') 
+        if (typeof errors.location !== 'undefined')
                         {
                             locationValidation = '<li>' + errors.location[0] + '</li>';
                         }
         let nameValidation = "";
-        if (typeof errors.name !== 'undefined') 
+        if (typeof errors.name !== 'undefined')
                         {
                             nameValidation = '<li>' + errors.name[0] + '</li>';
                         }
@@ -87,12 +87,11 @@
             '<b>Validation Error!</b>' +
             '<ul>' + nameValidation + abbreviationValidation +locationValidation + '</ul>' +
         '</div>';
-        $("#error-div").html(errorHtml);        
+        $("#error-div").html(errorHtml);
     }
                 }
             });
         }
-     
      
          
 
