@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\PurposeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Member\MyCardController;
 use App\Http\Controllers\Admin\CardPaymentController;
+use App\Http\Controllers\Admin\MethodController;
 use App\Http\Controllers\SubscriptionsController;
 
 /*
@@ -35,6 +36,9 @@ use App\Http\Controllers\SubscriptionsController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/paymentmethod', [MethodController::class, 'index']);
+
 
 Route::middleware('auth:sanctum')->get('/notification', function (Request $request) {
     FCMService::send(
@@ -130,7 +134,6 @@ Route::middleware('auth:sanctum')->get('/pledgepurposes', [PurposeController::cl
 
 
 //PAYMENT METHODS ROUTES
-// Route::get('/paymentmethod', [PaymentMethodController::class, 'index']);
 // Route::get('/paymentmethod/{id}', [PaymentMethodController::class, 'show']);
 // Route::post('/paymentmethod', [PaymentMethodController::class, 'store']);
 // Route::patch('/paymentmethod/{id}', [PaymentMethodController::class, 'update']);
