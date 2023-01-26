@@ -7,10 +7,10 @@
 
 
 <section class="content">
-    
+
       <!-- Small boxes (Stat box) -->
       <div class="row">
-     
+
         <div class="col-md-12">
           <div class="card">
             <div class="card-header p-2 bg-white">
@@ -24,17 +24,17 @@
                 <li class="nav-item">
                   <a class="nav-link text-navy" href="#audits"  data-toggle="tab">System Audits</a>
                 </li>
-               
+
               </ul>
             </div><!-- /.card-header -->
             <div class="">
               <div class="tab-content">
                 <div class=" tab-pane" id="interface">
                   {{-- start of interface settings --}}
-                  
+
                     <div class="col-md-12">
                       <div class="p-2">
-                        
+
                           <div class="">
                                {{--displaying all the errors  --}}
                                @if ($errors->any())
@@ -59,9 +59,9 @@
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">System Favicon</label>
                                       <input name="favicon" type="file" class="form-control">
-                                      
+
                                       <img src="{{ asset('uploads/settings/'.$setting->favicon)}}" width="20px" height="20px">
-                                      
+
                                   </div>
                                   <div class="mb-3">
                                       <label for="" class="text-secondary">System Theme</label>
@@ -69,13 +69,13 @@
                                         <option value="light">Fléx Theme</option>
                                         <option value="dark" >Navy Theme</option>
                                         <option value="navy" >Dark Theme</option>
-                                       
+
                                       </select>
-                                     
+
                                   </div>
                                 <hr>
                                   <div class="row">
-                                    
+
                                       <div class="col-md-9"></div>
                                       <div class="col-md-3 ">
                                           <button class="btn bg-flex  text-light btn-block float-end" type="submit">
@@ -88,13 +88,13 @@
                           </div>
                       </div>
                   </div>
-                  
+
 
                   {{-- end of interface settings --}}
                 </div>
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="audits">
-               
+
                   {{-- start of pledges --}}
                   <div class="p-2">
                     <table id="example1"  class="table table-bordered cell-border">
@@ -112,7 +112,7 @@
                       </thead>
                       <tbody id="pledges-table-body">
                         @php
-  
+
                         $user=Auth::user()->id;
                         $audits=App\Models\Audit::orderBy('created_at','DESC')->get();
                         @endphp
@@ -131,20 +131,20 @@
                       </tbody>
                    </table>
                   </div>
-              
-            
+
+
                 {{-- end of pledges --}}
-              
-                 
-               
-              
-              
+
+
+
+
+
               </div>
                 <!-- /.tab-pane -->
 
                 <div class="tab-pane active" id="calendar">
 
-               
+
                   <div class="row p-1">
 
                     <div class="col-md-5">
@@ -155,7 +155,7 @@
                         </div>
                         <div class="card-body">
                           @php
-  
+
                           $user=Auth::user()->id;
                           $date=date('Y-m-d');
                           $events=App\Models\Todo::where('date',$date)->get();
@@ -170,7 +170,7 @@
                           <p>No Event Was Created !!</p>
 
                           @endforelse
-                          
+
                         </div>
                       </div>
                     </div>
@@ -199,20 +199,20 @@
                             <p>{{ Session::get('success') }}</p>
                             </div>
                             @endif
-                            <table class="table table-border-none" id="dynamicAddRemove">  
+                            <table class="table table-border-none" id="dynamicAddRemove">
                             <tr>
                             <th>Date</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Action</th>
                             </tr>
-                            <tr>  
-                            <td><input type="date" name="moreFields[0][date]" placeholder="Enterdate" class="form-control" /></td>  
-                            <td><input type="text" name="moreFields[0][title]" placeholder="Enter title" class="form-control" /></td>  
-                            <td><textarea name="moreFields[0][description]" placeholder="Enter description" class="form-control" rows="3"></textarea></td>  
-                            <td><button type="button" name="add" id="add-btn" class="btn bg-cyan btn-sm"> +Add</button></td>  
-                            </tr>  
-                            </table> 
+                            <tr>
+                            <td><input type="date" name="moreFields[0][date]" placeholder="Enterdate" class="form-control" /></td>
+                            <td><input type="text" name="moreFields[0][title]" placeholder="Enter title" class="form-control" /></td>
+                            <td><textarea name="moreFields[0][description]" placeholder="Enter description" class="form-control" rows="3"></textarea></td>
+                            <td><button type="button" name="add" id="add-btn" class="btn bg-cyan btn-sm"> +Add</button></td>
+                            </tr>
+                            </table>
                             <button type="submit" class="btn bg-flex text-light"><i class="fa fa-save"></i> Save Events</button>
                             </form>
                             <script type="text/javascript">
@@ -221,17 +221,17 @@
                               ++i;
                               $("#dynamicAddRemove").append('<tr><td><input type="date" name="moreFields['+i+'][date]" placeholder="Enter title" class="form-control" /></td><td><input type="text" name="moreFields['+i+'][title]" placeholder="Enter title" class="form-control" /></td><td><textarea name="moreFields['+i+'][description]" placeholder="Enter description" class="form-control" rows="3"></textarea></td><td><button type="button" class="btn btn-danger btn-sm  remove-tr">Remove</button></td></tr>');
                               });
-                              $(document).on('click', '.remove-tr', function(){  
+                              $(document).on('click', '.remove-tr', function(){
                               $(this).parents('tr').remove();
-                              });  
+                              });
                               </script>
                         </div>
                       </div>
                     </div>
 
                   </div>
-               
-              
+
+
                 </div>
                 <!-- /.tab-pane -->
               </div>
@@ -239,11 +239,12 @@
             </div><!-- /.card-body -->
           </div>
           <!-- /.card -->
-        </div>       
+        </div>
       </div>
-   
+
 </section>
-    
+
+
 {{-- Register Member modal --}}
 <div class="modal fade" id="registeredModal" tabindex="-1" >
     <div class="modal-dialog modal-lg">
@@ -255,7 +256,7 @@
         <div class="modal-body">
           <form action="{{ url('admin/registered-members') }}" method="GET">
             @csrf
-    
+
             <div class="mb-3">
             <h5 class="text-secondary">
                 Generate Registered Member Report From the Given Start Date To the given End Date
@@ -279,7 +280,7 @@
               </div>
             <div class="row">
               <div class="col-md-6">
-  
+
               </div>
               <div class="mb-3 col-md-6">
                  <button type="submit" class="btn btn-primary btn-block " id="save-purpose-btn">
@@ -288,17 +289,17 @@
                 </button>
               </div>
             </div>
-  
-       
+
+
           </form>
         </div>
       </div>
     </div>
   </div>
-  
 
 
-  
+
+
 
 
   @endsection
