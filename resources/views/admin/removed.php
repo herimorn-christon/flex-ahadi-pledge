@@ -1,4 +1,4 @@
-// other scripts
+<!-- // other scripts
 // <script>
 //   $(function() {
 //     var Toast = Swal.mixin({
@@ -177,5 +177,5 @@
 // <!-- AdminLTE App -->
 // <script src="{{ asset('dist/js/adminlte.js') }}"></script>
 //  @yield('scripts')
-// </body>
-// </html>
+ </body>
+ </html> -->
