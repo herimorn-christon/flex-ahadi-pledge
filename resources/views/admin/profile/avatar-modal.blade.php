@@ -4,7 +4,7 @@
       <div class="modal-content">
         <div class="modal-header bg-light">
             <button type="button" class="btn-close btn-danger btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
-      
+
         </div>
         <div class="modal-body">
             <div id="error-div"></div>
@@ -30,9 +30,11 @@
                         <label for="file" class="text-secondary font-weight-light">Upload New Image</label>
                         <input type="file" name="image" id="image" class="form-control">
                 </div>
-             
+
+
+
                 <div class="col-md-6"></div>
-  
+
                 <div class="col-md-6 mb-0 ">
                       <label for="" class="text-white">.</label>
                       <button type="submit" class="btn text-light bg-flex btn-block col-lg-12" >
@@ -40,13 +42,13 @@
                           {{ __('Update Image') }}
                       </button>
                 </div>
-             
+
             </div>
           </form>
-  
+
           {{-- end of edit profile form --}}
         </div>
-    
+
       </div>
     </div>
   </div>
