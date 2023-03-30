@@ -9,8 +9,7 @@
     <title>AhadiPledge | Home</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-<!-- Font Awesome -->
-<link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+
     <!-- Select 2-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
@@ -66,26 +65,25 @@
                     Account</a>
                 @endif
                 @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
 
-
-
-                        <a class="text-secondary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <div class="float dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                {{ Auth::user()->fname }}   {{ Auth::user()->mname }}
-
-                                <span class="text-end">
-                                    <i class="fa fa-power-off"></i>
-                                </span>
-
-
+                            {{ __('Logout') }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
-
+                    </div>
+                </li>
                 @endguest
-
+            </ul>
         </div>
     </nav>
     <!-- Masthead-->

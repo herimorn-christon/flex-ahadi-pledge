@@ -42,7 +42,7 @@
       @endif
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="float-sm-right" type="none">
+      <ul class="float-sm-right" type="none">
         <li class="">  
         <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal"  onclick="createPledge()">
             <i class="fa fa-plus"></i>
@@ -52,14 +52,14 @@
             <i class="fa fa-list"></i>
             Contribution Purposes
         </button>
-        <a href="" class="btn btn-sm bg-cyan mb-1">
+        <a href="{{ route("memberPleadgeReport") }}" class="btn btn-sm bg-cyan mb-1">
           <i class="fa fa-file-pdf"></i>
           Generate Report
         </a>
     
     </li>
        
-      </ol>
+      </ul>
       
     </div><!-- /.col -->
   </div>

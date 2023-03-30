@@ -15,13 +15,13 @@
       @endif
     </div><!-- /.col -->
     <div class="col-sm-7">
-      <ol class="float-sm-right" type="none">
+      <ul class="float-sm-right" type="none">
         <li class="">    
    
        
     </li>
        
-      </ol>
+      </ul>
       
     </div><!-- /.col -->
   </div>

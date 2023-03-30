@@ -11,7 +11,12 @@
         }
 </style>
 <section class="content">
-    
+  @php
+  $user=Auth::User()->id;
+  $i=1;
+  //$dependants=App\Models\User::find($user)->dependant;
+  $problems=App\Models\Problem::where('user_id',$user)->get();
+  @endphp
       <!-- Small boxes (Stat box) -->
       <div class="row">
     
@@ -32,6 +37,12 @@
             </div><!-- /.card-header -->
             {{-- <div class=""> --}}
               <div class="tab-content">
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+               
                 <div class="active tab-pane" id="problems">
                   {{-- start of interface settings --}}
                   
@@ -43,7 +54,30 @@
                           <th>Problem</th>
                           <th>Action</th>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                          @foreach ( $problems as $problem )
+                          <tr>
+                            <td>{{ $i++ }} </td>
+                            <td>{{ $problem->created_at}} </td>
+                            <td>{{ $problem->problem }} </td>
+                            <td>
+                              <form action="{{ route('delete-problem',$problem->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button> 
+                                  <i class="fa fa-trash" aria-hidden="true" style="color:green"></i>
+                                </button>
+                               </form>
+
+
+                            </td>
+                            
+                           
+                          </tr>
+                            
+                          @endforeach
+                         
+                        </tbody>
                       </table>
                       
                     </div>
@@ -61,7 +95,9 @@
 
                   <div class="col-md-12">
                     <div class="p-2">
-                      
+                        <!--the status for the messagge-->
+                        <!--end for the status msg -->
+
                         <div class="col-md-12">
                           @if (session('status'))
                           <div class="btn btn-danger disabled btn-block"  role="alert">
@@ -78,6 +114,7 @@
                              @endif
                             <form action="{{ url('member/report-problem') }}" method="post"  enctype="multipart/form-data" >
                                 @csrf
+          
                                 <div class="mb-3">
                                   <label for="" class="text-secondary">Your Issue</label>
                                   <input type="text" class="form-control" id="problem" name="problem" placeholder="Enter your problem here...">
@@ -86,6 +123,8 @@
                                     <label for="" class="text-secondary">Desscription</label>
                                    <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
                                 </div>
+                                <input type="hidden" name="user_id" value="{{ $user }}">
+                                <!--
                                 <div class="mb-3">
                                     <br>
                                     <label for="" class="text-secondary">Attachment</label>
@@ -95,6 +134,7 @@
                                     
                                     <input type="file" class="form-control">
                                 </div>
+                                --->
                                
                               <hr>
                                 <div class="row">

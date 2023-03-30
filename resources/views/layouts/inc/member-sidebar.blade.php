@@ -74,7 +74,40 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            @php
+            $user=Auth::User()->id;
+            //App\Models\User::find($id)->dependant;
+          
+          
+            @endphp
 
+            <a href="{{ route('member_dependant.show') }}" class="nav-link {{ Request::is('member/dependant') ? 'current':'' }}">
+              <i class="nav-icon fas fa-headset"></i>
+              <p>
+                dependant
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('member/spiritual/') }}" class="nav-link {{ Request::is('member/spiritual') ? 'current':'' }}">
+              <i class="nav-icon fas fa-headset"></i>
+              <p>
+                spiritual
+              </p>
+            </a>
+          </li>
+
+          <!--starting of the user guid manual sheet -->
+          <li class="nav-item">
+            <a href="{{ url('member/user-manual/') }}" class="nav-link {{ Request::is('member/user-manual') ? 'current':'' }}">
+              <i class="nav-icon fas fa-headset"></i>
+              <p>
+                user guide
+              </p>
+            </a>
+          </li>
+          <!--ending of the user guide manual sheet -->
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

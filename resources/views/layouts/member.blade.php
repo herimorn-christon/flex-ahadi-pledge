@@ -5,13 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title')</title>
 
+  @php
+  $setting= App\Models\Setting::get()->first();
+  @endphp
 <!-- Google Font: Source Sans Pro -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
  
    <meta name="app-url" content="{{ url('/') }}">
-  
+  @if($setting->theme=="light") 
+<link href="{{ asset('css/flex.css') }}" rel="stylesheet">
+@endif
+
+@if($setting->theme=="dark") 
+
+<link href="{{ asset('css/navy.css') }}" rel="stylesheet">
+
+@endif
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -26,7 +37,7 @@
 <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
 <!-- JQVMap -->
-<link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+{{-- <link href="{{ asset('css/styles.css') }}" rel="stylesheet" /> --}}
 
 
 <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
@@ -64,12 +75,24 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     {{-- for flex theme --}}
-    <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
+{{-- for flex theme --}}
+@if($setting->theme=="light") 
+<link href="{{ asset('css/flex.css') }}" rel="stylesheet">
+@endif
+
+@if($setting->theme=="dark") 
+
+<link href="{{ asset('css/navy.css') }}" rel="stylesheet">
+
+@endif
+
+
 </head>
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
 <div class="wrapper">

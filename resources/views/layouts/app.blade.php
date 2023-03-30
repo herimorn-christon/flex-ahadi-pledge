@@ -27,7 +27,7 @@
       <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 </head>
-<body class="bg-light">
+<body class="bg-light" style="overflow:hidden">
     <div id="app" class="bg-light">
 
         {{-- including navbar --}}

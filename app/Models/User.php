@@ -86,6 +86,10 @@ class User extends Authenticatable implements Auditable
            return $this->belongsTo(Jumuiya::class, 'jumuiya','id');
        }
 
+       /* the relationship between the users and the dependants */
+       public function dependant(){
+        return $this->hasMany(dependant::class,'users_id');
+       }
     /**
      * The attributes that should be cast to native types.
      *

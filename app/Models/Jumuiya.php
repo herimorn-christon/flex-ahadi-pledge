@@ -19,5 +19,9 @@ class Jumuiya extends Model implements Auditable
  
     ];
 
+    public function user(){
+        return $this->hasMany(User::class,'jumuiya','id');
+    }
+
  
 }

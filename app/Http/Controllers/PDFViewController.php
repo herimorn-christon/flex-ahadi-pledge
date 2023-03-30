@@ -7,7 +7,16 @@ use App\Models\User;
 use App\Models\Pledge;
 use App\Models\Payment;
 use App\Models\CardPayment;
+use App\Models\Jumuiya;
+use App\Models\Purpose;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use Barryvdh\Snappy\Facades\SnappyPdf as FacadesSnappyPdf;
 use Illuminate\Http\Request;
+use Jimmyjs\ReportGenerator\Facades\PdfReportFacade;
+use Jimmyjs\ReportGenerator\ReportMedia\PdfReport as ReportMediaPdfReport;
+use Knp\Snappy\Pdf as SnappyPdf;
+use PhpOffice\PhpSpreadsheet\Writer\Pdf as WriterPdf;
 
 class PDFViewController extends Controller
 {
@@ -132,7 +141,7 @@ public function pledgesReport(Request $request)
     $purpose = $request->input('purpose_id');
 
     $total=Pledge::select(['purpose_id','type_id','created_at'])
-    ->whereBetween('created_at', [$fromDate, $toDate])
+  //  ->whereBetween('created_at', [$fromDate, $toDate])
     ->where('purpose_id',$purpose)
     ->count();
     // Report title
@@ -145,12 +154,13 @@ public function pledgesReport(Request $request)
     ];
 
     // Do some querying..
-    $queryBuilder = Pledge::select(['name','user_id', 'purpose_id','status','created_at','amount','deadline'])
-                        ->whereBetween('created_at', [$fromDate, $toDate])
-                        ->where('purpose_id',$purpose)
-                        ->with('user')
-                        ->with('purpose')
-                        ->orderBy($sortBy);
+    $queryBuilder = Pledge::select(['name','user_id', 'purpose_id','status','created_at','amount','deadline']);
+                        //->whereBetween('created_at')
+                        //->where('purpose_id',$purpose);
+                        //->with('user')
+                        //->with('purpose')
+                        //, [$fromDate, $toDate]
+                        //->orderBy($sortBy);
 
     // Set Column to be displayed
     $columns = [
@@ -298,4 +308,54 @@ public function cardPaymentReport(Request $request)
                     ])
                     ->download('Card_Payments_Report'); 
 }
+
+
+public function purpousePdf(){
+
+
+   //return view("communityReport");
+  
+     //dd($purpouse);
+    //showing purpouse pdf
+   // $purpouses=Purpose::all();
+
+   $pdf=FacadePdf::loadView("communityReport");
+  
+ return $pdf->stream();
+    
+
+}
+
+public function communityPdf(){
+     //return view("community1Report");
+     $pdf=FacadePdf::loadView("community1Report");
+  
+  return $pdf->stream();
+}
+public function memberPleadgeReport(){
+    //lets runs the commands to preview the reports before printing
+    $pdf=FacadePdf::loadView("memberPledgeReport");
+  
+    return $pdf->stream();
+    //return view("memberPledgeReport");
+}
+public function admin_user_report(){
+    //return view("admin_dependancyReport");
+    $pdf=FacadePdf::loadView("admin_dependancyReport");
+  
+    return $pdf->stream();
+}
+public function view_payment(){
+    $pdf=FacadePdf::loadView("paymentReport");
+  
+    return $pdf->stream();
+}
+public function showCards(){
+    $pdf=FacadePdf::loadView("cardReport");
+  
+    return $pdf->stream();
+   // return view("cardReport");
+}
+
+
 }

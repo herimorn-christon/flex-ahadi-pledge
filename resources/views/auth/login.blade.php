@@ -3,13 +3,22 @@
 
 @section('content')
 
-<div class="row my-5 py-5">
-    <div class="col-md-4 mx-auto my-5 col-sm-8 col-11">
-        <div class="card border-top-flex">
+<div style="margin-left:85vw;margin-top:2%">
+<a href="/register"><button type="button" class="btn btn-primary">register</button></a>
+</div>
 
-            <div class="card-body">
+<!--
+<button class="btn btn-primary" style="position:relative;left:95%">
+    <a href="./register"><strong>Register</strong></a></button>
+-->
+<div class="row my-1 py-5">
+    <div class="col-md-4 mx-auto my-5 col-sm-5 col-11">
+        <div class="card border-top-flex" style="position:absolute;width:80%">
+           
 
-                <div class="py-4 mt-2">
+            <div class="card-body" >
+
+                <div class="py-4 mt-2" >
                     {{-- start of flex logo --}}
                     <div class="col-md-5 col-sm-5 col-5 col-lg-4 mx-auto">
                         <img src="{{ asset('img/logoshorts.png') }}" alt="Flex Logo" class="" width="100%"
@@ -22,7 +31,7 @@
                     </h4>
                 </div>
                 {{-- start of login form --}}
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login') }}" >
                     @csrf
 
 
@@ -42,7 +51,7 @@
                     <div class="row mb-3">
 
 
-                        <div class="input-group mb-32">
+                        <div class="input-group mb-5">
 
                             <input type="password" class="form-control" name="password" id="password"
                                 placeholder="Password/Neno siri" aria-label="Password" aria-describedby="basic-addon1"
@@ -62,7 +71,7 @@
                         </div>
                         @endif
                         {{--end displaying errors --}}
-                        <div class="col-md-5 offset-md-1">
+                        {{-- <div class="col-md-5 offset-md-1">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{
                                     old('remember') ? 'checked' : '' }}>
@@ -71,8 +80,8 @@
                                     {{ __('Remember Me') }}
                                 </label>
                             </div>
-                        </div>
-                        <div class="col-md-6 ">
+                        </div> --}}
+                        <div class="col-md-12 ">
                             <button type="submit" class="btn bg-flex text-light btn-block col-lg-12 font-weight-bolder">
                                 {{ __('Sign In') }}
                             </button>

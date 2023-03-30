@@ -1,94 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AhadiPledge| Dashboard</title>
+@extends('layouts.member')
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="{{ asset('plugins/jqvmap/jqvmap.min.css') }}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"></script>
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+@section('title','My dashboad')
 
-  {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>--}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.2.7/fullcalendar.min.js"></script> 
-  {{-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> --}}
-  {{-- <link rel="stylesheet" ref="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/> --}}
-    {{-- for flex theme --}}
-    <link href="{{ asset('css/flex.css') }}" rel="stylesheet">
-</head>
-<body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
-<div class="wrapper">
 
-  <!-- Preloader -->
-
-  <!-- Navbar -->
-  @include('layouts.inc.member-navbar')
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-light-navy elevation-4">
-    <!-- Brand Logo -->
-    <a href="{{ url('member/dashboard') }}" class="text-decoration-none brand-link">
-      <img src="{{ asset('img/flex.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light text-white">AhadiPledge</span>
-    </a>
-
-    <!-- Sidebar -->
-    @include('layouts.inc.member-sidebar')
-    <!-- /.sidebar -->
-  </aside>
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper ">
-    <!-- Content Header (Page header) -->
-    <div class="content-header ">
-      <div class="">
-        <div class="row mb-0 g-1">
-          <div class="col-sm-6 col-6">
-            <h5 class="m-0 text-white">
-              {{-- <span class="btn badge bg-navy disabled" >
-                Hello, {{ Auth::User()->fname}}  {{ Auth::User()->mname}}  {{ Auth::User()->lname}}
-              </span> --}}
-            </h5>
-          </div><!-- /.col -->
-          <div class="col-sm-6 col-6">
-            <ol class="float-sm-right" type="none">
-              <h5 class="float-end">
-                <span class=" badge bg-navy ">
-                  <i class="fa fa-clock"></i> &nbsp;
-                  {{ date(('D, d M, Y'))}}
-                </span>
-               </h5>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
+@section('content')
 
     <!-- Main content -->
     <section class="content">
@@ -104,6 +19,11 @@
                     {{-- <i class="fa fa-dollar-sign"></i> --}}
                     {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
                   </div>
+
+                  <!--debugging the progress-->
+
+
+                 <!--end of the debugging process-->
                   <div class="text-center">
                     <h6 class="">                  
                       Pledges Amount
@@ -118,55 +38,54 @@
                   <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
                 </div>
               </div>
-              {{-- end  --}}
 
-                   {{-- start  --}}
-                   <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
-                    <!-- small box -->
-                    <div class="small-box bg-white border-top-flex">
-                      <div class="mx-auto text-center pt-4">
-                        {{-- <i class="fa fa-dollar-sign"></i> --}}
-                        {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
-                      </div>
-                      <div class="text-center">
-                        <h6 class="">                  
-                          Paid Pledges
-                        </h6>
-        
-                        <h3 class="text-secondary">
-                          {{$payments}}
-                          <small>Tsh</small>
-                        </h3>
-                      </div>
-                      
-                      <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+
+              
+             
+
+               {{-- start --}}
+                {{-- start  --}}
+                <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+                  <!-- small box -->
+                  <div class="small-box bg-white border-top-flex">
+                    <div class="mx-auto text-center pt-4">
+                      {{-- <i class="fa fa-dollar-sign"></i> --}}
+                      {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
                     </div>
+                    <div class="text-center">
+                      <h6 class="">                  
+                        total Paid Pledges
+                      </h6>
+      
+                      <h3 class="text-secondary">
+                        {{$payment_total}}
+                        <small>Tsh</small>
+                      </h3>
+                    </div>
+                  
+                    
+                    <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
                   </div>
-                  {{-- end  --}}
+                </div>
+
+
+               {{-- ends --}}
+
+
+                      {{-- -start here  --}}
+
+                       {{-- start  --}}
+         
+
+
+
+                      {{-- ends here --}}
+
+
 
     
                    {{-- start  --}}
-                   <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
-                    <!-- small box -->
-                    <div class="small-box bg-white border-top-flex">
-                      <div class="mx-auto text-center pt-4">
-                        {{-- <i class="fa fa-dollar-sign"></i> --}}
-                        {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
-                      </div>
-                      <div class="text-center">
-                        <h6 class="">                  
-                          Remaining Amount
-                        </h6>
-        
-                        <h3 class="text-secondary">
-                          {{$remaining}}
-                          <small>Tsh</small>
-                        </h3>
-                      </div>
-                      
-                      <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
-                    </div>
-                  </div>
+                   
                   {{-- end  --}}
 
                   
@@ -237,6 +156,11 @@
             
                            
                             <div class="col-md-12 py-2">
+                              <?php 
+                              if($total_amount==0){
+                                $progress=0;
+                              }
+                              ?>
                             <div class="progress"  style="height:15px;">
                               <div class="progress-bar 
                               {{-- progress-bar-striped  --}}
@@ -297,7 +221,7 @@
                            $purpose= "{$item->id}" ; 
                            
                            $user=Auth::User()->id;
-                           $payment=App\Models\Payment::where('user_id',$user)->where('pledge_id',$purpose)->whereYear('created_at', date('Y'))->sum('amount');
+                           $payment=App\Models\Payment::where('user_id',$user)->where('pledge_id',$purpose)->where('verified',1)->whereYear('created_at', date('Y'))->sum('amount');
                            $amount="{$item->amount}";
                            if ($amount<=0) {
                             $progress=0;
@@ -306,6 +230,7 @@
                         <div class="progress"  style="height:14px;">
                           <div class="progress-bar 
                           {{-- progress-bar-striped  --}}
+                          
                           progress-bar-animated
                           @if($progress<=25)
                           bg-flex
@@ -326,6 +251,8 @@
                            else {
                             $number=($payment/$amount)*100;//progress formular
                            $progress=number_format((float)$number, 2, '.', ''); ?>
+                     
+                           
                          
                         <div class="col-md-12 py-2">
                         <div class="progress"  style="height:14px;">
@@ -355,7 +282,7 @@
                       </div>
                       </div>
                     </div>
-                
+                  
                  @endforeach
                 </div>
             </div>
@@ -368,6 +295,8 @@
                 <div class="card-header bg-white text-secondary">
                   <i class="fa fa-calendar"></i>
                   Today's Events
+              
+                
                 </div>
                 {{-- <div class="card-body" id='calend' style="height:540px !important;"></div> --}}
 
@@ -404,10 +333,12 @@
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
+   
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
   @include('layouts.inc.member-footer')
+  @endsection
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

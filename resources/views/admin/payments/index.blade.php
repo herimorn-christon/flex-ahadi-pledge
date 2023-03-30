@@ -43,33 +43,34 @@
       @endif
     </div><!-- /.col -->
     <div class="col-sm-7">
-      
-        {{-- start of register payment button --}}
+         <div style="display:flex;justify-content:flex-end;align-items:center;margin:3%">
+        {{-- start of registe r payment button --}}
         <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createPayment()">
             <i class="fa fa-plus"></i>
             Register Payment
         </button>   
         {{-- end of register payment button --}}
 
-        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
+        <button style="margin-left: 20px" type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
              Payment Methods
         </button>
         
 
-        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
+        <button style="margin-left:15px"type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
         <i class="fa fa-plus"></i>
          Add Payment Method
         </button>
       
         {{-- start of generate report button --}}
 
-        <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllRequests()">
+        <button style="margin-left: 20px" type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllRequests()">
        
            <i class="fa fa-download text-light" ></i>
           Payment Requests
           </button>
         {{-- end of generate report button --}}
+         </div>
 
 
           {{-- start auto populate member pledges --}}

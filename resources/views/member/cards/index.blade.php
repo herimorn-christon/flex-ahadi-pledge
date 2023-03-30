@@ -32,7 +32,7 @@
       
     </div><!-- /.col -->
     <div class="col-sm-7">
-      <ol class="float-sm-right" type="none">
+      <ul class="float-sm-right" type="none">
         <li class="">  
           <form action="{{ url('member/request-card') }}" method="post">
             @csrf 
@@ -43,14 +43,14 @@
             <i class="fa fa-envelope"></i>
              Request New Card
         </button>
-        <a href="" class="btn btn-sm bg-cyan mb-1">
+        <a href="{{ route('show_cards') }}" class="btn btn-sm bg-cyan mb-1">
           <i class="fa fa-file-pdf"></i>
           Generate Report
         </a>
       </form> 
     </li>
        
-      </ol>
+      </ul>
       
     </div><!-- /.col -->
   </div>

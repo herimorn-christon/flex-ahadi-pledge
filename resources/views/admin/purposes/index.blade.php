@@ -44,7 +44,7 @@
 
     </div><!-- /.col -->
     <div class="col-sm-6">
-      <ol class="float-sm-right" type="none">
+      <ul class="float-sm-right" type="none">
         <li class="">    
         {{-- start of create purpose button --}}
         <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="tooltip" data-placement="bottom" title="Click here to Register a New Purpose (Contribution)" onclick="createPurpose()">
@@ -55,7 +55,7 @@
 
         
       {{-- start of generate report button --}}
-      <a href="" class="btn bg-cyan  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+      <a href="{{ route("purpousePdf") }}" class="btn bg-cyan  btn-sm" type="button">
         <i class="fa fa-download text-light" ></i>
         Generate Report
       </a>
@@ -79,7 +79,7 @@
 
     </li>
        
-      </ol>
+      </ul>
       
     </div>
   </div>

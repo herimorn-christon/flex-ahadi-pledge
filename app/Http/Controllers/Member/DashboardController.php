@@ -43,7 +43,9 @@ class DashboardController extends Controller
         $user=Auth::user()->id;
         $pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->sum('amount');
         $total_amount=thousandsCurrencyFormat($pledges);
-        $payments=Payment::where('user_id',$user)->whereYear('created_at', date('Y'))->sum('amount');
+        $payments=Payment::where('user_id',$user)->whereYear('created_at', date('Y'))->where('verified',1)->sum('amount');
+        $payment_total=Payment::where('user_id',$user)->whereYear('created_at', date('Y'))->sum('amount');
+        //the unverified payments 
         $pledges_no=Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->count();
         $mypledges=Pledge::whereYear('created_at', date('Y'))
                             ->orderby('created_at','Desc')
@@ -94,6 +96,7 @@ class DashboardController extends Controller
                 'total_pledges',
                 'cash_pledges',
                 'object_pledges',
+                'payment_total',
                 
 
             ));
@@ -120,12 +123,14 @@ class DashboardController extends Controller
                    'pledges_no',
                    'progress',
                    'mypledges',
+                   'payment_total',
                    'payrate',
                    'cardpayments',
                    'events',
                    'total_pledges',
                    'cash_pledges',
                    'object_pledges'
+                   
                ));
         }
         }
@@ -157,10 +162,12 @@ class DashboardController extends Controller
          'mypledges',
          'payrate',
          'cardpayments',
+         'payment_total',
          'events',
          'total_pledges',
          'cash_pledges',
          'object_pledges'
+        
 
      ));
  }
@@ -197,6 +204,7 @@ class DashboardController extends Controller
             'events',
             'total_pledges',
             'cash_pledges',
+            'payment_total',
             'object_pledges'
         ));
  }

@@ -55,6 +55,12 @@
                     <li class="nav-item">
                     <a class="nav-link text-navy" href="#settings"  data-toggle="tab">Member Cards</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-navy" href="#dependant"  data-toggle="tab">dependants</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-navy" href="#spiritual"  data-toggle="tab">spiritual services</a>
+                  </li>
                 </ul>
               </div><!-- /.card-header -->
               <div class="">
@@ -105,6 +111,80 @@
                 
                 
                 </div>
+
+              {{-- starting of the dependant tab --}}
+              <div class="tab-pane" id="dependant">
+                 
+                {{-- start of pledges --}}
+
+                <table id="example2"  class="table table-bordered ">
+                    <thead>
+                        <tr class="text-secondary">
+                            
+                            <th>ID</th>
+                            <th>fullName</th>
+                            <th>birthDate</th>
+                            <th>relationship</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dependant-table-body">
+                    
+                        
+        
+                    </tbody>
+                 </table>
+                {{-- end of pledges --}}
+             
+            
+            
+            </div>
+
+              {{-- ending of the dependant tab --}}
+
+              {{-- start of spiritual service tab --}}
+                  {{-- starting of the dependant tab --}}
+                  <div class="tab-pane" id="spiritual">
+                 
+                    {{-- start of pledges --}}
+    
+                    <table id="example2"  class="table table-bordered ">
+                        <thead>
+                            <tr class="text-secondary">
+                                <th>marriage date</th>
+                                <th>baptism date</th>
+                                <th>deacon name</th>
+                                <th>deacon number</th>
+                                <th>confarmation date</th>
+                                <th>fellowship name</th>
+                                <th>patner name</th>
+                                <th>proffession</th>
+                                <th>action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="spiritual-table-body">
+                          <td id="two"></td>
+                          <td id="three"></td>
+                          <td id="four"></td>
+                          <td id="five"></td>
+                          <td id="six"></td>
+                          <td id="seven"></td>
+                          <td id="eight"></td>
+                          <td id="nine"></td>
+                          <td id="ten"></td>
+                        
+                            
+            
+                        </tbody>
+                     </table>
+                    {{-- end of pledges --}}
+                 
+                
+                
+                </div>
+              {{-- end of spiritual service tab --}}
+
+
+
                   <!-- /.tab-pane -->
 
                   <div class="tab-pane" id="settings">
@@ -127,9 +207,16 @@
                         </tbody>
                     </table>
                     {{-- end of pledges --}}
+
+                    {{-- start of dependant tab --}}
+                    
+
+                    {{-- end of the dependant tab --}}
+                     
                  
                 
                   </div>
+                 
                   <!-- /.tab-pane -->
                 </div>
                 <!-- /.tab-content -->
@@ -140,3 +227,6 @@
       </div>
     </div>
   </div>
+{{-- ajax call to capture the id of the user according to the editing button cliced --}}
+
+{{-- end of the ajax call --}}

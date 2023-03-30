@@ -10,7 +10,9 @@
             {{--start of displaying errors --}}
             <div id="error-div"></div>
             {{--end of displaying errors --}}
-          <form enctype="multipart/form-data">
+          <form enctype="multipart/form-data" method="POST" action="{{route('myanouncement')}}">
+            @method('PUT')
+            @csrf
             <input type="hidden" name="update_id" id="update_id">
          
             <div class="mb-3">
@@ -24,18 +26,19 @@
 
              </textarea>
             </div>
-
+           <!--
             <div class="mb-3">
               <label for="message-text" class="text-secondary">Attachment:</label>
                <input type="file" class="form-control" id="image" name="image" >
             </div>
+          -->
             
             <div class="row">
               <div class="col-md-9">
   
               </div>
               <div class="mb-3 col-md-3">
-                 <button type="submit" class="btn bg-flex text-light btn-block " id="save-announcement-btn">
+                 <button type="submit" class="btn bg-flex text-light btn-block">
                   <i class="fa fa-save"></i>
                   Post Announcement
                 </button>

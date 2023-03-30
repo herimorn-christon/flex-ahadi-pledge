@@ -5,6 +5,7 @@
             */
             function showMember(id)
             {
+                //console.log(id);
                 $("#name-info").html("");
                 $("#description-info").html("");
                 let url = $('meta[name=app-url]').attr("content") + "/admin/members/" + id +"";
@@ -40,8 +41,34 @@
                                 '<td>' + payments[i].amount + '</td>' +
                                 '<td>' + payments[i].payment.name + '</td>' +
                             '</tr>';
-                            $("#payments-table-body").append(paymentsRow);
+                             $("#payments-table-body").append(paymentsRow);
                         }
+                        //for dependants
+
+
+
+                                   // for pledges
+                        
+                        let dependants=response.dependants;
+                         $("#dependant-table-body").empty();
+                        for(var i=0;i<dependants.length;i++){
+                            // console.log(dependants[i].id);
+                            
+                            let dependant = '<tr>' +
+                                '<td>' + dependants[i].id + '</td>' +
+                                '<td>' + dependants[i].fullName+ '</td>' +
+                                '<td>' + dependants[i].birth_date + '</td>' +
+                                '<td>' + dependants[i].relationship + '</td>' +
+                               
+                            '</tr>';
+                            $("#dependant-table-body").append(dependant);
+    
+                        }
+                        
+
+
+
+
 
                         // for pledges
                         
@@ -60,7 +87,43 @@
                             $("#pledges-table-body").append(pledgesRow);
                         }
 
+                        //for member 
+                        //console.log(member.id);
+                        //console.log(member.id);
+                        $("#ten").empty();
+                        $('#two').html(member.marriage_date);
+                        $('#three').html(member.baptization_date );
+                        $('#four').html(member.deacon_name);
+                        $('#five').html(member.deacon_phone);
+                        $('#six').html(member.kipaimara_date);
+                        $('#seven').html(member.fellowship_name);
+                        $('#eight').html(member.partner_name);
+                        $('#nine').html(member.proffession);
+                        
+                             let editBtn =  '<button ' +
+                                ' class="btn bg-flex btn-sm text-light" ' +
+                                ' onclick="editSpiritual(' + member.id + ')" data-toggle="tooltip" data-placement="bottom" title="Click here to Edit Member Details"><i class="fa fa-edit"></i>' +
+                            '</button> ';
+                          $('#ten').append(editBtn);
+
+                        /*
+                         var  members= '<tr>' +d
+                                '<td>' + member.id + '</td>' +
+                                '<td>' +member.marriage_date+ '</td>' +
+                                '<td>' + member.baptization_date + '</td>' +
+                                '<td>' +member.deacon_name+ '</td>' +  
+                                '<td>' +member.deacon_phone+ '</td>' +
+                                '<td>' +member.kipaimara_date + '</td>' +
+                                '<td>' +member.fellowship_name+ '</td>' +
+                                '<td>' +member.partner_name+ '</td>' +
+                                '<td>' +member.proffession+ '</td>' +
+                             $("#spiritual-table-body").add(members);
+    */
+                    
+                    
                         // for cards
+                    
+                       //console.log(member.fname);
 
                         let cards = response.cards;
                         for (var i = 0; i < cards.length; i++) 

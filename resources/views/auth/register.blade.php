@@ -1,392 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Advanced form elements</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../../plugins/daterangepicker/daterangepicker.css">
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="../../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="../../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="../../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- Select2 -->
-  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
-  <!-- Bootstrap4 Duallistbox -->
-  <link rel="stylesheet" href="../../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
-  <!-- BS Stepper -->
-  <link rel="stylesheet" href="../../plugins/bs-stepper/css/bs-stepper.min.css">
-  <!-- dropzonejs -->
-  <link rel="stylesheet" href="../../plugins/dropzone/min/dropzone.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-</head>
-
-<body class="hold-transition sidebar-mini">
-<div class="container my-5">
-
-        <!-- /.row -->
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-              <div class="card card-default">
-                <div class="card-header">
-                  <h3 class="card-title">bs-stepper</h3>
-                </div>
-                <div class="card-body p-0">
-                  <div class="bs-stepper">
-                    <div class="bs-stepper-header" role="tablist">
-                      <!-- your steps here -->
-                      <div class="step" data-target="#logins-part">
-                        <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
-                          <span class="bs-stepper-circle">1</span>
-                          <span class="bs-stepper-label">Logins</span>
-                        </button>
-                      </div>
-                      <div class="line"></div>
-                      <div class="step" data-target="#information-part">
-                        <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
-                          <span class="bs-stepper-circle">2</span>
-                          <span class="bs-stepper-label">Various information</span>
-                        </button>
-                      </div>
-                      <div class="line"></div>
-                      <div class="step" data-target="#information-part">
-                        <button type="button" class="step-trigger" role="tab" aria-controls="addition-part" id="addition-part-trigger">
-                          <span class="bs-stepper-circle">3</span>
-                          <span class="bs-stepper-label">Other information</span>
-                        </button>
-                      </div>
-                    </div>
-                    <div class="bs-stepper-content">
-                      <!-- your steps content here -->
-                      <div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
-                       {{-- start of register form --}}
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Email address</label>
-                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                          <label for="place_of_birth">Place of Birth</label>
-                          <input type="text" class="form-control" id="place_of_birth" name="place_of_birth" placeholder="Place of birth">
-                        </div>
-
-        
-                        <div class="form-group">
-                          <label for="marital_status">Maritial Status</label>
-                          <select name="marital_status" class="form-control" id="marital_status">
-                            <option value="1">Maried</option>
-                            <option value="2">Single</option>
-                            <option value="3">Widowed</option>
-                            <option value="4">Divorced</option>
-                          </select>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="mariage_type">Mariage Type</label>
-                          <select name="mariage_type" class="form-control" id="mariage_type">
-                            <option value="1">Christian</option>
-                            <option value="2">Other</option>
-                          </select>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="mariage_date">Mariage Date</label>
-                          <input type="date" class="form-control" name="mariage_date" id="mariage_date">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="exampleInputPassword1">Partner Name</label>
-                          <input type="text" class="form-control" id="partner_name" name="partner_name" placeholder="Partner Name">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="place_of_mariage">Place of Mariage</label>
-                          <input type="text" class="form-control" id="place_of_mariage" name="place_of_mariage" placeholder="Place of mariage">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="usharika">Usharika Wa Zamani</label>
-                          <input type="text" class="form-control" id="usharika" name="usharika" placeholder="Usharika">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="fellowship">Fellowship Name</label>
-                          <input type="text" class="form-control" id="fellowship" name="fellowship" placeholder="Fellowship Name">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="deacon_name">Deacon Name</label>
-                          <input type="text" class="form-control" id="deacon_name" name="deacon_name" placeholder="Deacon Name">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="deacon_phone">Deacon Phone</label>
-                          <input type="text" class="form-control" id="deacon_phone" name="deacon_phone" placeholder="Deacon Phone">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="jina_msharika_jirani">Jina Msharika Jirani</label>
-                          <input type="text" class="form-control" id="jina_msharika_jirani" name="jina_msharika_jirani" placeholder="Jina Msharika Jirani">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="simu_msharika_jirani">Simu Msharika Jirani</label>
-                          <input type="text" class="form-control" id="simu_msharika_jirani" name="simu_msharika_jirani" placeholder="Simu Msharika Jirani">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="occupation">Occupation</label>
-                          <select name="occupation" class="form-control" id="occupation">
-                            <option value="1">Employed</option>
-                            <option value="2">Unemployed</option>
-                            <option value="3">Student</option>
-                          </select>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="place_of_work">Place of work</label>
-                          <input type="text" class="form-control" id="place_of_work" name="place_of_work" placeholder="Place of work">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="kazi">Kazi</label>
-                          <input type="text" class="form-control" class="form-control" id="kazi" name="kazi" placeholder="Kazi">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="kujitolea">Ungependa Kujitolea?</label>
-                          <input type="checkbox" class="form-control" name="kujitolea" id="kujitolea">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="sacramenti">Unashiriki Sacramenti ya meza ya bwana?</label>
-                          <input type="checkbox" class="form-control" name="sacramenti" id="sacramenti">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="ubatizo">Umebatizwa?</label>
-                          <input type="checkbox" class="form-control" name="ubatizo" id="ubatizo">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="baptization_date">Baptization Date</label>
-                          <input type="date" class="form-control" name="baptization_date" id="baptization_date">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="kipaimara">Umepata Kipaimara?</label>
-                          <input type="checkbox" class="form-control" name="kipaimara" id="kipaimara">
-                        </div>
-
-                        <div class="form-group">
-                          <label for="kipaimara_date">Kipaimara Date</label>
-                          <input type="date" class="form-control" name="kipaimara_date" id="kipaimara_date">
-                        </div>
-
-                        {{-- end of register form --}}
-
-                        <button class="btn btn-primary" onclick="stepper.next()">Next</button>
-                      </div>
-                      <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
-                        <div class="form-group">
-                          <label for="exampleInputFile">File input</label>
-                          <div class="input-group">
-                            <div class="custom-file">
-                              <input type="file" class="custom-file-input" id="exampleInputFile">
-                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                            </div>
-                            <div class="input-group-append">
-                              <span class="input-group-text">Upload</span>
-                            </div>
-                          </div>
-                        </div>
-                        <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                  Visit <a href="https://github.com/Johann-S/bs-stepper/#how-to-use-it">bs-stepper documentation</a> for more examples and information about the plugin.
-                </div>
-              </div>
-              <!-- /.card -->
-            </div>
-          </div>
-
-
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>flex-ahadi pledge</title>
+      <!-- Normalize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+      <!-- Bootstrap 4 CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css'>
+      <!-- Telephone Input CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.2/css/intlTelInput.css'>
+      <!-- Icons CSS -->
+    <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+      <!-- Nice Select CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.min.css'>
+     <!-- Style CSS -->
+    <link rel="stylesheet" href="css/style.css">
+	<!-- Demo CSS -->
+	<link rel="stylesheet" href="css/demo.css">
+  <style>
+   
+    </style>
+  
+  </head>
+  <body>
  
-</div>
-</div>
-<!-- ./wrapper -->
+ <main style="width:150%">
+  <article >
 
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- Select2 -->
-<script src="../../plugins/select2/js/select2.full.min.js"></script>
-<!-- Bootstrap4 Duallistbox -->
-<script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
-<!-- InputMask -->
-<script src="../../plugins/moment/moment.min.js"></script>
-<script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
-<!-- date-range-picker -->
-<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
-<!-- bootstrap color picker -->
-<script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- BS-Stepper -->
-<script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
-<!-- dropzonejs -->
-<script src="../../plugins/dropzone/min/dropzone.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
+      <!-- Start Multiform HTML -->
+  <section class="multi_step_form"  >  
+    
+     {{-- start displaying errors --}}
+     @if ($errors->any())
+     <div class="btn btn-danger disabled btn-block mb-3">
+         @foreach ($errors->all() as $error)
+         <div>{{$error}}</div>
+         @endforeach
+     </div>
+     @endif
+    <form method="POST" action="{{url("/register")}}" id="msform" style="background:rgb(248, 249, 250)">
+      @csrf
+    <!-- Tittle -->
+    <div class="tittle">
+      <h2>personal information</h2>
+      <p>please fill yor personal information here</p>
+    </div>
+    <!-- progressbar -->
+    <ul id="progressbar">
+      <li class="active">personal information</li>  
+      <li>community information</li> 
+      <li>professional information</li>
+    </ul>
+    <!-- fieldsets -->
+    <fieldset>
+      <div class="form-row"> 
+        <div class="form-group col-md-6">  
+          <input type="text" id="fname" type="text" placeholder="Enter First Name" name="fname" class="form-control"> 
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="text" id="mname" type="text" placeholder="Enter Middle Name"name="mname"class="form-control"> 
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="email" id="mname"  placeholder="Enter email"name="email"class="form-control"> 
+        </div>  
+        <div class="form-group col-md-6">  
+          <input nput id="lname" type="text" placeholder="Enter Last Name" name="lname" class="form-control"> 
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="text" class="form-control" placeholder="+2551123456789" name="phone" id="phone">
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="password" class="form-control" placeholder="password" name="password" id="password">
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="password" class="form-control"placeholder="Confirm Password" type="password"
+          name="password_confirmation" required id="confirm_password">
+        </div> 
+       
+          <div class="card-body col-md-6"style="margin-left:50%;position:relative;top:-100px">
+            <label for="gender">gender</label>
+            <div class="form-group col-md-10" >  
+              <select name="gender" id="" class="form-control" style="height:3rem">
+                <option> select your gender</option>
+               <option value="male"> male</option>
+               <option value="female"> female</option>
+              </select>
+         </div>  
+        
+        </div>
+      
+      </div>
+    
+      <button type="button" class="action-button previous_button">Back</button>
+      <button type="button" class="next action-button">Continue</button>  
+    </fieldset>
 
-<!-- Page specific script -->
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
+    <fieldset>
+     
+      <div class="form-row"> 
+        <div class="form-group col-md-6">  
+          <input type="text" id="fname" type="text" placeholder="Enter your birth place" name="place_of_birth" class="form-control"> 
+        </div>  
+        <div class="form-group col-md-6">  
+             <select name="martial_status" id="" class="form-control" style="height:3rem">
+              <option value="0"> married status</option>
+              <option value="1"> married</option>
+              <option value="2"> single</option>
+              <option value="3"> devorced</option>
+              <option value="4"> widow</option>
+             </select>
+        </div>  
+        <div class="form-group col-md-6">  
+          <select name="marriage_type" id="" class="form-control" style="height:3rem">
+           <option value="0"> marriage types..</option>
+           <option value="1">christian</option>
+           <option value="2">muslim</option>
+           <option value="3">hindus</option>
+          </select>
+     </div>  
+    
+        <div class="form-group col-md-6">  
+          <input  id="lname" type="text" placeholder="Enter place of marriage" name="place_of_marriage" class="form-control"> 
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="text" class="form-control" placeholder="inter old shirika" name="old_usharika" id="phone">
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="text" class="form-control" placeholder="inter fellowship name" name="fellowship_name" id="password" >
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="text" class="form-control"placeholder="inter neigbor member name" type="text"
+          name="neighbour_msharika_name" required id="confirm_password">
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="text" class="form-control" placeholder="inter neigbour phone no" name="neighbour_msharika_phone" id="phone">
+        </div> 
+        <div class="form-group col-md-6">  
+          <input type="text" class="form-control" placeholder="inter patner name" name="partner_name" 
+          id="phone">
+        </div> 
+        <div style="position:relative; top:-10px;left:50px">
+        <label for="mariageDate">mariage date</label>
+      
+          <input type="date" id="mname" name="marriage_date"class="form-control"> 
+       
+      </div>
+      </div>
+      <button type="button" class="action-button previous previous_button">Back</button>
+      <button type="button" class="next action-button">Continue</button>  
+    </fieldset>
 
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
 
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
+    <fieldset>
+      <div class="form-row"> 
+        <div class="form-group col-md-6">  
+          <input type="text" id="fname" type="text" placeholder="Enter occupation" name="proffession" class="form-control"> 
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="text" id="mname" type="text" placeholder="Enter place of work"name="place_of_work"class="form-control"> 
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="text" id="mname" type="text" placeholder="Enter name of your 
+          decon"name="deacon_name"class="form-control"> 
+        </div>  
+        <div class="form-group col-md-6">  
+          <input type="text" id="mname" type="text" placeholder="Enter phone number
+          "name="deacon_phone" class="form-control"> 
+        </div>  
+              
+            <!-handling for each loop to get the data -->
+          
+        <div class="form-group col-md-6">
+          <label for="community">proffesion</label>  
+          <select name="jumuiya" id="" class="form-control" style="height:3rem">
+            @php
+              $jumuiyas=App\Models\Jumuiya::all();
+              @endphp
+              @foreach ($jumuiyas as $jumuiya)
+              <option value="{{ $jumuiya->id }}" class="form-control">{{ $jumuiya->name }}</option>
+              @endforeach
+          </select>
+     </div>  
 
-    //Date picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-
-    //Date and time picker
-    $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
-
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({
-      timePicker: true,
-      timePickerIncrement: 30,
-      locale: {
-        format: 'MM/DD/YYYY hh:mm A'
-      }
-    })
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-    //Timepicker
-    $('#timepicker').datetimepicker({
-      format: 'LT'
-    })
-
-    //Bootstrap Duallistbox
-    $('.duallistbox').bootstrapDualListbox()
-
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-
-    $('.my-colorpicker2').on('colorpickerChange', function(event) {
-      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-    })
-  })
-  // BS-Stepper Init
-  document.addEventListener('DOMContentLoaded', function () {
-    window.stepper = new Stepper(document.querySelector('.bs-stepper'))
-  })
-
-  // DropzoneJS Demo Code Start
-  Dropzone.autoDiscover = false
-
-  // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
-  var previewNode = document.querySelector("#template")
-  previewNode.id = ""
-  var previewTemplate = previewNode.parentNode.innerHTML
-  previewNode.parentNode.removeChild(previewNode)
-
-  var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-    url: "/target-url", // Set the url
-    thumbnailWidth: 80,
-    thumbnailHeight: 80,
-    parallelUploads: 20,
-    previewTemplate: previewTemplate,
-    autoQueue: false, // Make sure the files aren't queued until manually added
-    previewsContainer: "#previews", // Define the container to display the previews
-    clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
-  })
-
-  myDropzone.on("addedfile", function(file) {
-    // Hookup the start button
-    file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
-  })
-
-  // Update the total progress bar
-  myDropzone.on("totaluploadprogress", function(progress) {
-    document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
-  })
-
-  myDropzone.on("sending", function(file) {
-    // Show the total progress bar when upload starts
-    document.querySelector("#total-progress").style.opacity = "1"
-    // And disable the start button
-    file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
-  })
-
-  // Hide the total progress bar when nothing's uploading anymore
-  myDropzone.on("queuecomplete", function(progress) {
-    document.querySelector("#total-progress").style.opacity = "0"
-  })
-
-  // Setup the buttons for all transfers
-  // The "add files" button doesn't need to be setup because the config
-  // `clickable` has already been specified.
-  document.querySelector("#actions .start").onclick = function() {
-    myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
-  }
-  document.querySelector("#actions .cancel").onclick = function() {
-    myDropzone.removeAllFiles(true)
-  }
-  // DropzoneJS Demo Code End
-</script>
-</body>
+            
+     <div class="form-group col-md-6">
+      <label for="community"> occupation</label>  
+      <select name="occupation" id="" class="form-control" style="height:3rem">
+        <option value="1" class="form-control">employed</option>
+        <option value="2" class="form-control">unemployed</option>
+        <option value="3" class="form-control">students</option>
+    </select>
+ </div> 
+     <div style="margin-left:auto" >
+      <h6 style="padding:0">enter the birth of date</h6>
+        <div class="form-group col-md-10"> 
+          <input type="date" id="mname" name="date_of_birth"class="form-control"> 
+        </div> 
+      </div> 
+      </div>
+      </div>
+      <button type="button" class="action-button previous previous_button">Back</button>
+      <button type="submit" class="action-button"> finish</button>
+    </fieldset>
+  </form>  
+</section> 
+      <!-- END Multiform HTML -->
+  </article>
+ </main>
+ 
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.1.2/js/intlTelInput.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js'></script>
+    <script src="js/script.js"></script>
+  
+  </body>
 </html>
-

@@ -1,6 +1,6 @@
 @extends('layouts.member')
 
-@section('title','All Communities')
+@section('title','my profile')
 
 
 @section('content')
@@ -17,11 +17,18 @@
     <div class="col-sm-6">
       <ol class="breadcrumb float-sm-right">
         <li class=""> 
-  
-        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#types">
+         <?php
+                    $user=Auth::User()->id;
+
+          ?>
+                <!--write the code to find easy the user profile-->
+          
+                <a href="my-profile/edit/{{$user}}">
+        <button type="button" class="btn btn-primary btn-sm mb-2" data-toggle="modal" data-target="#types" >
             <i class="fa fa-cog"></i>
-             Edit Profile
-        </button>
+            Edit Profile
+           </button>
+          </a>
     </li>
        
       </ol>
@@ -29,7 +36,8 @@
     </div><!-- /.col -->
   </div>
 
-
+ 
+  @foreach($profile as $item)
 
 
 
@@ -43,8 +51,7 @@
                            src="{{ asset('img/user.png') }}"
                            alt="User profile picture">
                     </div>
-                    @foreach($profile as $item)
-                    <h3 class="profile-username text-center"> {{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</h3>
+                        <h3 class="profile-username text-center"> {{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</h3>
     
                     <p class="text-muted text-center">Member</p>
                
@@ -76,6 +83,38 @@
     
                     <p class="text-muted">
                         {{ $item->date_of_birth}}
+                   
+                    </p>
+    
+                    <hr>
+                    <strong><i class="fas fa-calendar mr-1"></i>proffession</strong>
+    
+                    <p class="text-muted">
+                        {{ $item->proffession}}
+                   
+                    </p>
+    
+                    <hr>
+                    <strong><i class="fas fa-calendar mr-1"></i>baptizim date</strong>
+    
+                    <p class="text-muted">
+                        {{ $item->baptization_date}}
+                   
+                    </p>
+    
+                    <hr>
+                    <strong><i class="fas fa-calendar mr-1"></i>deacon name</strong>
+    
+                    <p class="text-muted">
+                        {{ $item->deacon_name}}
+                   
+                    </p>
+    
+                    <hr>
+                    <strong><i class="fas fa-calendar mr-1"></i>deacon phone</strong>
+    
+                    <p class="text-muted">
+                        {{ $item->deacon_phone}}
                    
                     </p>
     

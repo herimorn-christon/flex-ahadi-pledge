@@ -48,9 +48,16 @@
 <hr>
 
 <p>Occupation</p>
-<p>Place of work</p>
+<p>Place of work
+    <strong>
+{{ $item->place_of_work }}
+    </strong>
+</p>
 <p>Education</p>
-<p>Profession</p>
+<p>Profession
+    <strong>{{ $item->proffession }}</strong>
+</p>
+
 
 <hr>
 <h6 class="text-secondary font-weight-bolder">DEPENDANTS INFORMATIONS</h6>
@@ -70,5 +77,6 @@
 </div>
 <hr>
 <h6 class="text-secondary font-weight-bolder">SPIRITUAL SERVICES</h6>
+{{ $item->baptization_date }}
 <hr>
 @endforeach

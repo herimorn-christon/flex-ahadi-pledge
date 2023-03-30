@@ -157,5 +157,8 @@ class PurposeController extends Controller
         }
         return response()->json($purposes);
     }
+    public function MemberpdfExport(){
+        return view("admin.purposes.viewPurpousePdf");
+    }
 
 }

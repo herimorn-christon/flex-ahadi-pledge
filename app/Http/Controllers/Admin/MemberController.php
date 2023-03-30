@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Admin\memberFormRequest;
 use App\Http\Requests\Admin\updateMemberFormRequest;
+use App\Models\dependant;
 
 class MemberController extends Controller
 {
@@ -121,7 +122,11 @@ class MemberController extends Controller
                         ->with('purpose')
                         ->get();
         $cards=CardMember::where('user_id',$id)->with('user')->with('card')->get();
-        return response()->json(['member' => $member,'payments' =>$payments,'pledges'=>$pledges,'cards'=>$cards]);
+        $dependants=dependant::where('users_id',$id)->get();
+        //dd($dependants);
+        //return $id;
+        return response()->json(['member' => $member,'payments' =>$payments,'pledges'=>$pledges,'cards'=>$cards,
+       'dependants'=>$dependants]);
     }
 
     public function update(Request $request, $id)
@@ -184,4 +189,24 @@ class MemberController extends Controller
         }
         return response()->json($members);
     }
+    public function storeValue(Request $request){
+      $id=$request->update_id;
+        //return $id;
+       $user=User::find($id);
+       $user->marriage_date=$request->mdate;
+          $user->deacon_name=$request->dname;
+          $user->deacon_phone=$request->dphone;
+          $user->baptization_date=$request->bdate;
+          $user->kipaimara_date=$request->cdate;
+          $user->fellowship_name=$request->fename;
+          $user->partner_name=$request->pname;
+          $user->proffession=$request->proffesion;
+          $user->save();
+          return response()->json([
+            'success'=>'spiritualservices are updated'
+
+        ],201);
+
+    }
+   
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\dependant;
 use App\Models\Jumuiya;
 use App\Models\PaymentType;
 use App\Models\PledgeType;
@@ -20,9 +21,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+         $this->call(dependantSeeder::class);
+        //dependant::factory(20)->create();
         // User::factory(10)->create();
 
-
+    /*
         $subs = ['Fellowship', 'Sunday School', 'Wagonjwa', 'Bible Study', 'Uinjilisti', 'Tarumbeta', 'Umoja Wa Wanawake', 'Umoja Wa Vijana'];
         foreach ($subs as $sub) { Subscriptions::create(['name' => $sub]);}
 
@@ -61,6 +64,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'member'
         ]);
 
-        
+        */
     }
 }

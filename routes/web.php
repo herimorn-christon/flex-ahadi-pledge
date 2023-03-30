@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\addAnnouncementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CardRequest;
 use App\Http\Controllers\Admin\CardController;
@@ -24,20 +25,28 @@ use App\Http\Controllers\Admin\CardPaymentController;
 use App\Http\Controllers\Member\MyPaymentsController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\NotificationsController;
+use App\Http\Controllers\adminAddDependantController;
+use App\Http\Controllers\AdminDependancyController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\companySettingController;
+use App\Http\Controllers\editUserProfile;
 use App\Http\Controllers\Member\MyAnnouncementController;
 use App\Http\Controllers\Member\MyNotificationsController;
-
-
+use App\Http\Controllers\memberDependantController;
+use App\Http\Controllers\PDFViewController;
+use App\Http\Controllers\reportProblemController;
+use App\Http\Controllers\spiritualController;
+use App\Http\Controllers\userGuideController;
 
 Auth::routes();
 // Home route
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers
 
 Route::post('add-remove-multiple-input-fields',  [App\Http\Controllers\Admin\TodoController::class, 'store']);
 
 
 Route::get('/', function () {
-   return view('welcome');
+   return view('auth.login');
 });
 
 
@@ -288,4 +297,65 @@ Route::apiResource('purposes', PurposeController::class);
 
  
 });
+Route::put("admin/addAnouncement",[addAnnouncementController::class,'addAnouncement'])->name('myanouncement');
+Route::get("member/spiritual/",[spiritualController::class,'index']);
+Route::put("member/spiritual/{id}",[spiritualController::class,'update'])->name("spiritual.update");
+//Route::get("/humuiya",[RegisterController::class,'viewJumuiya']);
+//lets work on how to edit the profile of the user
+Route::put('member/depandant/update/{id}',[memberDependantController::class,'update'])->name('member_dependant_update');
+Route::post('member/dependant/weka',[memberDependantController::class,'weka'])->name('member_dependant.weka');
+Route::get('member/my-profile/edit/{id}',[editUserProfile::class,'index']);
+Route::put('member/my-profile/update/{id}',[editUserProfile::class,'updateProfile'])->name("member_profile.update");
+route::get('member/depandant/',[memberDependantController::class,'index'])->name('member_dependant.show');
+route::get('member/depandant/edit/{id}',[memberDependantController::class,'edit'])->name('member_dependant.edit');
+route::post('member/depandant/destroy/{id}',[memberDependantController::class,'destroy'])->name('member_dependant.destroy');
+Route::get('member/dependant/trash',[memberDependantController::class,'trash'])->name('trash');
+Route::get('member/dependant/{id}/restore',[memberDependantController::class,'restore'])->name('member.restore');
+//specifying the route for completely delete values from the database
+Route::delete("member/{id}/force-delete",[memberDependantController::class,'forceDelete'])->name("member.force-delete");
+//Route::post('member/depandant/store/{id}',[memberDependantController::class,'store'])->name('member_dependant.store');
 
+//handling the admin controller to view all the dependancy
+Route::get("admin/dependants",[AdminDependancyController::class,'index']);
+Route::get("admin/dependants/{id}",[AdminDependancyController::class,'show'])->name("show_dependant");
+
+//the route for exporting the data to pdf
+Route::get("admin/download_purpouse",[PurposeController::class,'MemberpdfExport'])->name("memberPdf");
+//route for pdf export for admin
+Route::get("admin/download_communiy",[PDFViewController::class,'purpousePdf'])->name("purpousePdf");
+Route::get("admin/download_communiy1",[PDFViewController::class,'communityPdf'])->name("communityPdf");
+
+//the report plinting to show all pledge
+Route::get("admin/show_pledge_report",[PDFViewController::class,'pledgesReport'])->name("pledgeReport");
+
+
+
+//Route for generating pdf on the members sides
+Route::get("member/show_my_plidge",[PDFViewController::class,'memberPleadgeReport'])->name('memberPleadgeReport');
+
+//the user guide implimentation using laravel
+Route::get("member/user-manual",[userGuideController::class,'index'])->name('download-manual');
+Route::get("member/user-manual/download",[userGuideController::class,'downloadLogic'])->name('downloadLogic');
+
+
+//the implimentation of reporting the problem logic
+Route::post("member/report-problem",[reportProblemController::class,'InterProblems']);
+Route::delete("member/delete-problem/{id}",[reportProblemController::class,'deleteProblem'])->name('delete-problem');
+
+Route::get("admin/company_settings",[companySettingController::class,'index'])->name('company_settings');
+//handling the post methods to store the data into database
+Route::post("admin/company_settings",[companySettingController::class,'store'])->name('admin_store.company_setting');
+Route::put("admin/company_settings/{id}",[companySettingController::class,'update'])->name('admin_update_companySettings');
+
+//generating route for showing the report of users
+Route::get("admin/show_all_report",[PDFViewController::class,"admin_user_report"])->name("admin_user_report");
+
+//handles the post request to submit to the data base
+Route::post("admin/all-members",[adminAddDependantController::class,'store'])->name("adminAddDependant.store");
+
+
+//generate the reports for the payments
+Route::get("admin/member/myPayment",[PDFViewController::class,'view_payment'])->name("view_payment");
+//generate the reports for the cards payments
+Route::get("admin/member/my-cards",[PDFViewController::class,'showCards'])->name("show_cards");
+Route::POST("admin/my-members/member",[MemberController::class,'storeValue'])->name("store_value");

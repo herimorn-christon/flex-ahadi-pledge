@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Jumuiya;
 use App\Models\UserSubscriptions;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
@@ -79,11 +80,43 @@ class RegisterController extends Controller
             'lname' => $data['lname'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'date_of_birth' => $data['date_of_birth'],
+             'date_of_birth' => $data['date_of_birth'],
             'gender' => $data['gender'],
             'jumuiya' => $data['jumuiya'],
             'password' => Hash::make($data['password']),
+            'place_of_birth' => $data['place_of_birth'],
+             'martial_status' => $data['martial_status'],
+            'marriage_type' => $data['marriage_type'],
+             'marriage_date' => $data['marriage_date'],
+            'partner_name' => $data['partner_name'],
+            'place_of_marriage' => $data['place_of_marriage'],
+            'old_usharika' => $data['old_usharika'],
+            'fellowship_name' => $data['fellowship_name'],
+            'neighbour_msharika_name' => $data['neighbour_msharika_name'],
+            'neighbour_msharika_phone' => $data['neighbour_msharika_phone'],
+            'deacon_name' => $data['deacon_name'],
+            'deacon_phone' => $data['deacon_phone'],
+              'occupation' => $data['occupation'],
+            'place_of_work' => $data['place_of_work'],
+            'proffession' => $data['proffession'],
+            //'can_volunteer' => $data['can_volunteer'],
+            //'baptized' => $data['baptized'],
+            //'baptization_date' => $data['baptization_date'],
+            //'kipaimara' => $data['kipaimara'],
+        
+            //'kipaimara_date' => $data['kipaimara_date'],
+            //'sacramenti_meza_bwana' => $data['sacramenti_meza_bwana']
         ]);
+      
+    }
+    
+       //the function handling the view of the data in the form ;
+    
+    public function viewJumuiya(){
+        //lets test the logic first
+         $jumuiyas="hiiiiiii";
+         return view("register",compact('jumuiyas'));
+         
     }
 
     public function apistore(Request $request)
@@ -98,10 +131,13 @@ class RegisterController extends Controller
                 'lname' => ['required', 'string', 'max:255'],
                 'phone' => ['required', 'string', 'max:13'],
                 'jumuiya' => ['required'],
-                'date_of_birth' => ['required'],
+                 'date_of_birth' => ['required'],
                 'gender' => ['required'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8'],
+                'place_of_birth'=>['required'],
+
+     
             ]
         );
 
@@ -118,26 +154,26 @@ class RegisterController extends Controller
             'jumuiya' => $request['jumuiya'],
             'password' => Hash::make($request['password']),
             'place_of_birth' => $request['place_of_birth'],
-            'martial_status' => $request['martial_status'],
-            'marriage_type' => $request['marriage_type'],
+              'martial_status' => $request['martial_status'],
+             'marriage_type' => $request['marriage_type'],
             'marriage_date' => $request['marriage_date'],
-            'partner_name' => $request['partner_name'],
+            // 'partner_name' => $request['partner_name'],
             'place_of_marriage' => $request['place_of_marriage'],
-            'old_usharika' => $request['old_usharika'],
-            'fellowship_name' => $request['fellowship_name'],
+              'old_usharika' => $request['old_usharika'],
+              'fellowship_name' => $request['fellowship_name'],
             'neighbour_msharika_name' => $request['neighbour_msharika_name'],
             'neighbour_msharika_phone' => $request['neighbour_msharika_phone'],
-            'deacon_name' => $request['deacon_name'],
-            'deacon_phone' => $request['deacon_phone'],
-            'occupation' => $request['occupation'],
-            'place_of_work' => $request['place_of_work'],
-            'proffession' => $request['proffession'],
-            'can_volunteer' => $request['can_volunteer'],
-            'baptized' => $request['baptized'],
-            'baptization_date' => $request['baptization_date'],
-            'kipaimara' => $request['kipaimara'],
-            'kipaimara_date' => $request['kipaimara_date'],
-            'sacramenti_meza_bwana' => $request['sacramenti_meza_bwana']
+            //'deacon_name' => $request['deacon_name'],
+            //'deacon_phone' => $request['deacon_phone'],
+               'occupation' => $request['occupation'],
+               'place_of_work' => $request['place_of_work'],
+               'proffession' => $request['proffession'],
+            // 'can_volunteer' => $request['can_volunteer'],
+            // 'baptized' => $request['baptized'],
+            // 'baptization_date' => $request['baptization_date'],
+            // 'kipaimara' => $request['kipaimara'],
+            // 'kipaimara_date' => $request['kipaimara_date'],
+            // 'sacramenti_meza_bwana' => $request['sacramenti_meza_bwana']
         ]);
 
         foreach ($request->selected_subs as $sub) {
@@ -149,4 +185,5 @@ class RegisterController extends Controller
 
         return response()->json(['success' => true], 201);
     }
+    
 }

@@ -30,7 +30,7 @@ class AdminMiddleware
         }
         else{
             // if not authenticated
-            return redirect('/home')->with('status','Please Login first !');
+            return redirect('/login')->with('status','Please Login first !');
         }
 
     }

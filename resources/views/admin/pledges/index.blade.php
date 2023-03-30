@@ -48,7 +48,7 @@
     <div class="col-sm-5" id="alert-div">
     </div><!-- /.col -->
     <div class="col-sm-7">
-      <ol class="float-sm-right" type="none">
+      <ul class="float-sm-right" type="none">
         <li class="">  
           {{-- start of create pledge button --}}
         <button type="button" class="btn bg-flex text-light btn-sm mb-2"  onclick="createPledge()">
@@ -75,20 +75,14 @@
        
 
       {{-- start of generate report button --}}
-      <a href="" class="btn bg-cyan  btn-sm mb-2" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal">
+      <a href="{{ route('pledgeReport') }}" class="btn bg-cyan  btn-sm mb-2" type="button">
         <i class="fa fa-download text-light" ></i>
         Generate Report
       </a>
         {{-- end of generate report button --}}
-       
-      
-
-        
-     
-        
     </li>
        
-      </ol>
+      </ul>
       
     </div><!-- /.col -->
   </div>
@@ -167,7 +161,6 @@
         {{-- end of ajax delete Pledge type method --}}
 
 
-         {{-- start of ajax delete Pledge type method --}}
        @include('admin.pledges.ajax-delete-pledge')
        {{-- end of ajax delete Pledge type method --}}
 

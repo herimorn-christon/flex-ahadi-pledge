@@ -54,6 +54,7 @@
   //                             '<td>' + showBtn + (pledges[i].user_id == pledges[i].created_by ? editBtn :adminBtn)+'</td>' +
                           '</tr>';
                           $("#pledges-table-body").append(pledgesRow);
+                           $("#pledge_body_table").append(pledgesRow);
                           $("#total").html(total_pledges);
                           $("#fullfilled").html(fullfilled);
                           $("#unfullfilled").html(unfullfilled);
