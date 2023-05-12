@@ -97,9 +97,9 @@
               
              <li class="nav-item">
               <a href="{{ url('admin/company_settings') }}" class="nav-link {{ Request::is('admin/company_setting') ? 'current':'' }}">
-                <i class="nav-icon fas fa-headset"></i>
+                <i class="fa fa-building-o" aria-hidden="true"></i>
                 <p>
-                  company settings
+                  Company Info
                 </p>
               </a>
             </li>

@@ -41,9 +41,9 @@
                   @php
                   $purpose= App\Models\PaymentType::get();
                   @endphp
-                  <div class="col-md-6">
+                  <div class="col-md-6" id="typedrop">
                       <label for="" class="text-secondary">Payment Method</label>
-                      <select name="type_id" id="type_id" class="custom-select form-control">
+                      <select name="type_id" id="type_id" class="form-control">
                           <option value="">--Select Payment Method --</option>
                           @foreach ( $purpose as $item)
                            <option value="{{ $item->id}}"> {{ $item->name}}</option>
@@ -91,7 +91,7 @@
   
 
    <script type="text/javascript">
-    $('#use').select2({
+    $('#user').select2({
     dropdownParent: $("#userdrop"),
     theme: 'bootstrap-5',
     placeholder: '-- Select Member --',
@@ -141,22 +141,7 @@ $('#type_id').select2({
     dropdownParent: $("#typedrop"),
     theme: 'bootstrap-5',
     placeholder: '-- Select Pledge Type --',
-    ajax: {
-        url: '/pledge-types/search',
-        dataType: 'json',
-        delay: 250,
-        processResults: function (data) {
-            return {
-                results: $.map(data, function (item) {
-                    return {
-                        text: item.title,
-                        id: item.id
-                    }
-                })
-            };
-        },
-        cache: true
-    }
+  
 });
 </script>
 <!-- Script for Modal -->

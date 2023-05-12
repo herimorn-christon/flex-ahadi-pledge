@@ -23,12 +23,14 @@
                     type: "DELETE",
                     data: data,
                     success: function(response) {
+                        toastr.info('Community Was Deleted Successfully !');
                         let successHtml = '<div class="alert alert-danger " role="alert">Community Was Deleted Successfully !</div>';
                         $("#alert-div").html(successHtml);
                         showAllCommunities();
                     },
                     error: function(response) {
                         console.log(response.responseJSON)
+                    toastr.info('something went wrong!');
                     }
                 });
             }

@@ -10,6 +10,8 @@ class MemberMiddleware
 {
     /**
      * Handle an incoming request.
+     * 
+     * the things your doing this is an amaizing !!
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
@@ -19,6 +21,7 @@ class MemberMiddleware
     {
         if(Auth::check())
         {
+           
             if(Auth::user()->role=='member') //1=Admin & 0==user
             {
                 return $next($request);

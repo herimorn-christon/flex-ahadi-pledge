@@ -46,6 +46,7 @@
                     data: data,
                     success: function(response) {
                         $("#save-type-btn").prop('disabled', false);
+                          toastr.success('Pledge Type Was Updated Successfully');
                         let successHtml = '<div class="alert alert-success" role="alert">Pledge Type Was Updated Successfully !</div>';
                         $("#alert-div").html(successHtml);
                         $("#title").val("");
@@ -58,6 +59,7 @@
                         $("#save-type-btn").prop('enabled', true);
                         if (typeof response.responseJSON.errors !== 'undefined') 
                         {
+                           toastr.info('something went wrong');
                             console.log(response)
             let errors = response.responseJSON.errors;
             let nameValidation = "";

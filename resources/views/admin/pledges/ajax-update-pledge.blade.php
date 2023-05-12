@@ -57,6 +57,7 @@
                   data: data,
                   success: function(response) {
                       $("#save-pledge-btn").prop('disabled', false);
+                       toastr.success('Pledge Was Updated Successfully ');
                       let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Updated Successfully !</div>';
                       $("#alert-div").html(successHtml);
                       $("#name").val("");
@@ -76,6 +77,7 @@
                       */
                       $("#save-pledge-btn").prop('disabled', false);
                       if (typeof response.responseJSON.errors !== 'undefined') 
+                            toastr.info('Something went wrong');
                       {
                           console.log(response)
           let errors = response.responseJSON.errors;

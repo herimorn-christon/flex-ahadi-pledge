@@ -50,6 +50,7 @@
                   data: data,
                   success: function(response) {
                       $("#save-card-btn").prop('disabled', false);
+                          toastr.success('Card Was Created Successfully');
                       let successHtml = '<div class="alert alert-success" role="alert">Card Was Created Successfully</div>';
                       $("#alert-div").html(successHtml);
                       $("#card").val("");
@@ -58,6 +59,7 @@
                   },
                   error: function(response) {
                       $("#save-card-btn").prop('disabled', false);
+                   toastr.info('Something went wrong !!!');
        
                       /*
           show validation error

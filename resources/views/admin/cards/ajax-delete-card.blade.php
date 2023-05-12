@@ -16,11 +16,13 @@
                   type: "DELETE",
                   data: data,
                   success: function(response) {
+                      toastr.success('Card Was Deleted Successfully ');
                       let successHtml = '<div class="alert alert-danger" role="alert">Card Was Deleted Successfully </div>';
                       $("#alert-div").html(successHtml);
                       showAllCards();
                   },
                   error: function(response) {
+                    toastr.info('Something went wrong');
                       console.log(response.responseJSON)
                   }
               });

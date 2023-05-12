@@ -47,7 +47,7 @@ class companySettingController extends Controller
             
           $fileName=time().'_'.$request->image->getClientOriginalName();
           $file_path=$request->image->storeAs("uploads",$fileName);
-          $company->logo='storage/'.$file_path;
+          $company->logo='storage/uploads/'.$fileName;
           }else{
             $fileName='storage/uploads/'.$company->logo;
           }
@@ -57,7 +57,7 @@ class companySettingController extends Controller
          $company->postal_box=$request->postal_box;
           $company->city=$request->city;
          $company->town=$request->street;
-          $company->logo='storage/uploads/'.$fileName;
+          //$company->logo='storage/uploads/'.$fileName;
           $company->save();
           return redirect()->back()->with('message',"details are updated successfully");
     }

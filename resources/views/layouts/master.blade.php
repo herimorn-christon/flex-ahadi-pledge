@@ -37,6 +37,7 @@
 
    <!-- Theme style -->
    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+   <link href="{{ asset('backend2/assets/css/style.css') }}" >
 
 
   {{-- start of other links --}}
@@ -93,6 +94,7 @@
    <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
    <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
    <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+   <script src="https://kit.fontawesome.com/6d7dcf1762.js" crossorigin="anonymous"></script>
     <!-- Styles -->
     @livewireStyles
     @powerGridStyles
@@ -244,6 +246,12 @@
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ asset('https://kit.fontawesome.com/6d7dcf1762.js')}}" crossorigin="anonymous"></script>
+<link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flat-icons@1.0.0/creative.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.css" rel="stylesheet">
+
 <!-- ChartJS -->
 {{-- end --}}
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
@@ -283,6 +291,30 @@
     });
   });
 </script>
+<script>
+   
+  @if(Session::has('message'))
+  var type = "{{ Session::get('alert-type','info') }}"
+  switch(type){
+     case 'info':
+     toastr.info(" {{ Session::get('message') }} ");
+     break;
+ 
+     case 'success':
+     toastr.success(" {{ Session::get('message') }} ");
+     break;
+ 
+     case 'warning':
+     toastr.warning(" {{ Session::get('message') }} ");
+     break;
+ 
+     case 'error':
+     toastr.error(" {{ Session::get('message') }} ");
+     break; 
+  }
+  @endif 
+
+ </script>
 
 
 <script src="//unpkg.com/alpinejs" defer></script>
@@ -292,6 +324,9 @@
     })
 </script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/toastr@2.1.4/build/toastr.min.js
+"></script>
 
  <!-- Scripts -->
  @livewireScripts

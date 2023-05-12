@@ -52,6 +52,7 @@
                     data: data,
                     success: function(response) {
                         $("#save-announcement-btn").prop('disabled', false);
+                           toastr.success('Announcement Was Created Successfully');
                         let successHtml = '<div class="alert alert-success" role="alert">Announcement Was Created Successfully</div>';
                         $("#alert-div").html(successHtml);
                         $("#tite").val("");
@@ -61,6 +62,7 @@
                         $("#form-modal").modal('hide');
                     },
                     error: function(response) {
+                    toastr.info('Something went wrong');
                         $("#save-announcement-btn").prop('disabled', false);
          
                         /*

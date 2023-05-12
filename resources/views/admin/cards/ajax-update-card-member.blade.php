@@ -65,6 +65,7 @@
                     data: data,
                     success: function(response) {
                     $("#edit-member-btn").prop('disabled', false);
+                        toastr.success('Card Member Was Updated Successfully');
                     let successHtml = '<div class="alert alert-success" role="alert">Card Member Was Updated Successfully</div>';
                     $("#alert-div").html(successHtml);
                      $("#card_No").val("");
@@ -76,6 +77,7 @@
                     },
                      error: function(response) {
                     $("#edit-member-bt").prop('disabled', false);
+                  toastr.success('Something went wrong !!');
      
                     /*
         show validation error

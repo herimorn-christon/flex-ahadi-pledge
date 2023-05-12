@@ -33,15 +33,18 @@ class PDFViewController extends Controller
 // For Registered Members Reports 
 public function displayReport(Request $request) 
 {
-    // Retrieve any filters
     $fromDate = $request->input('from_date');
     $toDate = $request->input('to_date');
     $sortBy = $request->input('sort_by');
+    $title = 'Registered Member Report';
+    // Retrieve any filters
+    /*
+    
     $total=User::select(['fname', 'mname','lname','gender','jumuiya', 'created_at'])
     ->whereBetween('created_at', [$fromDate, $toDate])
     ->orderBy($sortBy)->count();
     // Report title
-    $title = 'Registered Member Report';
+   
 
     // For displaying filters description on header
     $meta = [
@@ -73,6 +76,11 @@ public function displayReport(Request $request)
                         }
                     ])
                     ->download('MemberReport'); 
+                    */
+                    $pdf=FacadePdf::loadView("adminMemberReport",["fromDate"=>$fromDate,
+                "toDate"=>$toDate, 'sortBy'=>$sortBy,'title'=>$title]);
+  
+                    return $pdf->stream();
 }
 
 // For Collected Payments Reports
@@ -327,14 +335,15 @@ public function purpousePdf(){
 }
 
 public function communityPdf(){
-     //return view("community1Report");
+    // return view("community1Report");
      $pdf=FacadePdf::loadView("community1Report");
-  
   return $pdf->stream();
 }
 public function memberPleadgeReport(){
     //lets runs the commands to preview the reports before printing
     $pdf=FacadePdf::loadView("memberPledgeReport");
+    
+
   
     return $pdf->stream();
     //return view("memberPledgeReport");
@@ -355,6 +364,23 @@ public function showCards(){
   
     return $pdf->stream();
    // return view("cardReport");
+}
+public function myadmin_pledge(){
+    $pdf=FacadePdf::loadView("adminPledgesReport");
+  
+    return $pdf->stream();
+    //return view("adminPledgesReport");
+}
+public function myadmin_payment(){
+    $pdf=FacadePdf::loadView("myadmin_payment_report");
+  
+    return $pdf->stream();
+}
+public function myadmin_card(){
+    $pdf=FacadePdf::loadView("all_cards_report");
+  
+    return $pdf->stream();
+
 }
 
 

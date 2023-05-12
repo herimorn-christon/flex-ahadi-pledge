@@ -9,7 +9,79 @@
 
 <div class="row mb-1">
   {{-- start of statistics --}}
-<div class="">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/money_sum.png')}}"/></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Pledges Payments</span>
+          <span class="info-box-number" id="total">
+        
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-danger elevation-1">
+          <img src="{{asset('icons/high.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Highest Pledge Payment</span>
+          <span class="info-box-number" id="highest" > </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- fix for small devices only -->
+   
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/less-than.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Lowest Pledge Payment</span>
+          <span class="info-box-number"  id="lowest"> </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/best.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Best Pledge Payer</span>
+          <span class="info-box-number"   id="best"> </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- /.col -->
+  </div>
+
+
+
+
+
+{{-- <div class="">
 
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Payments</h6></div>
@@ -32,10 +104,10 @@
 
 
 
-</div>
+</div> --}}
 {{-- end of statistics --}}
 
-    <div class="col-sm-5" id="alert-div">
+    <div class="col-sm-5" id="alert-div4">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
           {{ session('status') }}
@@ -69,6 +141,14 @@
            <i class="fa fa-download text-light" ></i>
           Payment Requests
           </button>
+          <button style="margin-left: 20px" type="button" class="btn text-light btn-sm mb-2" data-toggle="modal" onclick="showAllRequests()">
+            <a href="{{route("myadmin_payment")}}" class="btn bg-cyan  btn-sm" type="button">
+              <i class="fa fa-download text-light" ></i>
+              Generate Report
+            </a>
+           </button>
+
+         
         {{-- end of generate report button --}}
          </div>
 

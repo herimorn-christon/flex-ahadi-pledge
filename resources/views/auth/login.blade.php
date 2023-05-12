@@ -1,104 +1,110 @@
-<!--This is the view for user login page -->
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
 
-@section('content')
+    <head>
+        
+        <meta charset="utf-8" />
+        <title>flex-ahadiPledge </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesdesign" name="author" />
+        <!-- App favicon -->
+       
+        <link rel="shortcut icon" href="{{{asset('img/logoshorts.png') }}}">
 
-<div style="margin-left:85vw;margin-top:2%">
-<a href="/register"><button type="button" class="btn btn-primary">register</button></a>
-</div>
+        <!-- Bootstrap Css -->
+        <link href="{{asset('backend/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css" />
 
-<!--
-<button class="btn btn-primary" style="position:relative;left:95%">
-    <a href="./register"><strong>Register</strong></a></button>
--->
-<div class="row my-1 py-5">
-    <div class="col-md-4 mx-auto my-5 col-sm-5 col-11">
-        <div class="card border-top-flex" style="position:absolute;width:80%">
-           
-
-            <div class="card-body" >
-
-                <div class="py-4 mt-2" >
-                    {{-- start of flex logo --}}
-                    <div class="col-md-5 col-sm-5 col-5 col-lg-4 mx-auto">
-                        <img src="{{ asset('img/logoshorts.png') }}" alt="Flex Logo" class="" width="100%"
-                            height="60px">
-                    </div>
-                    {{-- start of flex logo --}}
-
-                    <h4 class="text-center text-flex py-2">
-                        <span class="font-weight-bolder">AhadiPledge</span>
-                    </h4>
-                </div>
-                {{-- start of login form --}}
-                <form method="POST" action="{{ route('login') }}" >
-                    @csrf
+        <style>
+            body{
+                height:100%;
+            }
+            </style>
+    </head>
 
 
-                    <div class="row mb-2">
+    <body class="auth-body-bg">
+        <div class="bg-overlay"></div>
+        <div class="wrapper-page">
+            <div class="container-fluid p-0">
+                <div class="card">
+                    <div class="card-body">
 
-                        <div class="input-group mb-3">
-
-                            <input type="text" class="form-control " name="phone" id="phone"
-                                placeholder="Phone Number/Nambari ya Simu" aria-label="Username"
-                                aria-describedby="basic-addon1" required>
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone"></i></span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="row mb-3">
-
-
-                        <div class="input-group mb-5">
-
-                            <input type="password" class="form-control" name="password" id="password"
-                                placeholder="Password/Neno siri" aria-label="Password" aria-describedby="basic-addon1"
-                                required required>
-                            <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
-
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        {{-- start displaying errors --}}
-                        @if ($errors->any())
-                        <div class="btn btn-danger disabled btn-block mb-3">
-                            @foreach ($errors->all() as $error)
-                            <div>{{$error}}</div>
-                            @endforeach
-                        </div>
-                        @endif
-                        {{--end displaying errors --}}
-                        {{-- <div class="col-md-5 offset-md-1">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{
-                                    old('remember') ? 'checked' : '' }}>
-
-                                <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
-                                </label>
+                        <div class="text-center mt-4">
+                            <div class="mb-3">
+                                <a href="index.html" class="auth-logo">
+                                    <img src="{{ asset('img/logoshorts.png') }}" height="90" class="logo-dark mx-auto" alt="">
+                                    <img src="{{asset('backend/assets/images/logo-light.png')}}" height="30" class="logo-light mx-auto" alt="">
+                                </a>
                             </div>
-                        </div> --}}
-                        <div class="col-md-12 ">
-                            <button type="submit" class="btn bg-flex text-light btn-block col-lg-12 font-weight-bolder">
-                                {{ __('Sign In') }}
-                            </button>
                         </div>
-
-
-
+    
+                        <h4 class="text-muted text-center font-size-18 font-weight-bolder"><b>AhadiPledge</b></h4>
+    
+                        <div class="p-3">
+                            <form method="POST" action="{{ route('login') }}">
+                                @csrf
+    
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <input class="form-control" type="text"name="phone" id="phone" 
+                                     placeholder="Phone Number/Nambari ya Simu">
+    
+                                    </div>
+                                    
+                                </div>
+    
+                                <div class="form-group mb-3 row">
+                                    <div class="col-12">
+                                        <input class="form-control" type="password" required="" placeholder="Password"
+                                        id="password" name="password">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    {{-- start displaying errors --}}
+                                    @if ($errors->any())
+                                    <div class="btn btn-danger disabled btn-block mb-3">
+                                        @foreach ($errors->all() as $error)
+                                        <div>{{$error}}</div>
+                                        @endforeach
+                                    </div>
+                                    @endif
+    
+                                <div class="form-group mb-3 text-center row mt-3 pt-1">
+                                    <div class="col-12">
+                                        <button class="btn btn-info w-100 waves-effect waves-light" type="submit">Log In</button>
+                                    </div>
+                                </div>
+    
+                                <div class="form-group mb-0 row mt-2">
+                                    <div class="col-sm-5 mt-3">
+                                        <a href="/register" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- end -->
                     </div>
-                </form>
-                {{-- end of login form --}}
+                    <!-- end cardbody -->
+                </div>
+                <!-- end card -->
             </div>
-
+            <!-- end container -->
         </div>
+        <!-- end -->
 
+        <!-- JAVASCRIPT -->
+        <script src="{{asset('backend/assets/libs/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('backend/assets/libs/metismenu/metisMenu.min.js')}}"></script>
+        <script src="{{asset('backend/assets/libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{asset('backend/assets/libs/node-waves/waves.min.js')}}"></script>
 
-    </div>
-</div>
+        <script src="{{asset('backend/assets/js/app.js')}}"></script>
 
-@endsection
-
+    </body>
+</html>

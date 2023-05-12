@@ -9,7 +9,89 @@
   <div class="row mb-1 m-2">
 
   {{-- start of statistics --}}
-<div class="px-2">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/sigma.png')}}"/></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Pledges Made in {{ date('Y')}} </span>
+          <span class="info-box-number" id="total">
+        
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-danger elevation-1">
+          <img src="{{asset('icons/check.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Fullfilled Pledges in {{ date('Y')}}</span>
+          <span class="info-box-number" id="fullfilled" > </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- fix for small devices only -->
+   
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/cancel.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Unfullfilled Pledges in {{ date('Y')}}</span>
+          <span class="info-box-number" id="unfullfilled"> </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/salary.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Money Pledges in {{ date('Y')}}</span>
+          <span class="info-box-number"  id="money"> </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/oath.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Object Pledges in {{ date('Y')}}</span>
+          <span class="info-box-number"  id="object"> 
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+
+    <!-- /.col -->
+  </div>
+
+{{-- <div class="px-2">
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made in {{ date('Y')}} </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total"> </h6></div>
@@ -31,9 +113,8 @@
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="object"></h6></div>
   </div>
 
-</div>
+</div> --}}
 {{-- end of statistics --}}
-
     <div class="col-sm-6" id="alert-div">
       @if (session('status'))
       <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
@@ -42,7 +123,13 @@
       @endif
     </div><!-- /.col -->
     <div class="col-sm-6">
+      @php
+      $member_status=Auth::user()->status;
+      //dd($member_status);
+       @endphp
+       @if ($member_status=='0')
       <ul class="float-sm-right" type="none">
+        
         <li class="">  
         <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal"  onclick="createPledge()">
             <i class="fa fa-plus"></i>
@@ -60,6 +147,7 @@
     </li>
        
       </ul>
+      @endif
       
     </div><!-- /.col -->
   </div>

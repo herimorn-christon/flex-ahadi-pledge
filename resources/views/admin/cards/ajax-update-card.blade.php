@@ -45,6 +45,7 @@
                   data: data,
                   success: function(response) {
                       $("#save-card-btn").prop('disabled', false);
+                          toastr.success('Card Was Updated Successfully !');
                       let successHtml = '<div class="alert alert-success" role="alert">Card Was Updated Successfully !</div>';
                       $("#alert-div").html(successHtml);
                       $("#card").val("");  
@@ -52,6 +53,7 @@
                       $("#form-modal").modal('hide');
                   },
                   error: function(response) {
+                    toastr.info('Something went wrong !');
                       /*
           show validation error
                       */

@@ -47,6 +47,7 @@
                     data: data,
                     success: function(response) {
                         $("#save-method-btn").prop('disabled', false);
+                          toastr.success('Payment Method Was Added Successfully');
                         let successHtml = '<div class="alert alert-success" role="alert">Payment Method Was Added Successfully</div>';
                         $("#alert-div").html(successHtml);
                         $("#name").val("");
@@ -55,6 +56,8 @@
                     },
                     error: function(response) {
                         $("#save-method-btn").prop('disabled', false);
+                          toastr.info("something went wrong !!!");
+             
          
                         /*
             show validation error

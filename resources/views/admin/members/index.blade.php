@@ -12,11 +12,90 @@
        $users=App\Models\User::get();
   @endphp
 
+<div class="row">
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="info-box">
+      <span class="info-box-icon bg-info elevation-1"><img src="{{ asset('icons/registered.png') }}"/> </span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Total Registered Members</span>
+        <span class="info-box-number" id="members">
+        </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="info-box mb-3">
+      <span class="info-box-icon bg-danger elevation-1"><img src="{{ asset('icons/hired.png') }}"/> </span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Total Active Members</span>
+        <span class="info-box-number"  id="active"> </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+
+  <!-- fix for small devices only -->
+ 
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="info-box mb-3">
+      <span class="info-box-icon bg-success elevation-1">
+        <img src="{{ asset('icons/fake.png') }}"/> 
+      </span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Total Inactive Members</span>
+        <span class="info-box-number"  id="inactive"> </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <!-- /.col -->
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="info-box mb-3">
+      <span class="info-box-icon bg-success elevation-1">
+        <img src="{{ asset('icons/female.png') }}"/> 
+      </span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Total female Members</span>
+        <span class="info-box-number"  id="female"> </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+
+
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="info-box mb-3">
+      <span class="info-box-icon bg-success elevation-1">
+        <img src="{{ asset('icons/avatar.png') }}"/> 
+      </span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Total male members</span>
+        <span class="info-box-number"  id="male"> </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+
+  <!-- /.col -->
+</div>
 
  
 {{-- start of statistics --}}
-<div class="">
-  <div class="row starts-border" >
+  
+  {{-- <div class="row starts-border" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Registered Members </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="members"> </h6></div>
   </div>
@@ -38,13 +117,12 @@
   <div class="row starts-border mb-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Male Members </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="male"> </h6></div>
-  </div>
+  </div> --}}
 
 
-</div>
 {{-- end of statistics --}}
 
-<div class="col-sm-6" id="alert-div">
+<div class="col-sm-6" id="alert-divty">
 
 </div><!-- /.col -->
 <div class="col-sm-6 col-12">
@@ -163,14 +241,14 @@
         <div class="p-1">
          
             {{-- <livewire:user-table/> --}}
-            <table id="example1" class="table table-bordered " >
+            <table id="example1" class="table table-bordered">
                 <thead>
                      <tr class="text-secondary ">
                             <th>SN</th>
                             <th>Member ID</th>
                             <th>Member Name</th>
                             <th>Community </th>
-                            <th>Birthdate</th>
+                            <th>phone </th>
                             <th>Gender</th>
                             <th>Actions</th>
                         </tr>

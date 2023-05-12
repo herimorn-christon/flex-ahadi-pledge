@@ -48,6 +48,7 @@
                 data: data,
                 success: function(response) {
                     $("#save-community-btn").prop('disabled', false);
+                   toastr.success('Community Was Updated Successfully');
                     let successHtml = '<div class="alert alert-success " role="alert">Community Was Updated Successfully !</div>';
                     $("#alert-div").html(successHtml);
                     $("#name").val("");
@@ -63,6 +64,7 @@
                     $("#save-community-btn").prop('disabled', false);
                     if (typeof response.responseJSON.errors !== 'undefined') 
                     {
+                      toastr.info('something went wrong');
                         console.log(response)
         let errors = response.responseJSON.errors;
         let abbreviationValidation = "";

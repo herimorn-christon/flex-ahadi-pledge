@@ -61,6 +61,7 @@
                   data: data,
                   success: function(response) {
                       $("#save-pledge-btn").prop('disabled', false);
+                      $("#form-modal").modal('hide');
                       let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Created Successfully</div>';
                       $("#alert-div").html(successHtml);
                       $("#name").val("");

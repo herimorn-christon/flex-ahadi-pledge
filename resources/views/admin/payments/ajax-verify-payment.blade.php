@@ -62,6 +62,7 @@
                     type: "PUT",
                     success: function(response) {
                         $("#save-verification-btn").prop('disabled', false);
+                               toastr.success('Payment Was Verified Successfully !');
                         let successHtml = '<div class="alert alert-success" role="alert">Payment Was Verified Successfully !</div>';
                         $("#alert-div").html(successHtml);
                      

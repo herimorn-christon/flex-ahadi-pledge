@@ -25,9 +25,11 @@
                 <li class="nav-item">
                   <a class="nav-link text-navy" href="#payments"  data-toggle="tab">Payments Report</a>
                 </li>
+                {{--  
                 <li class="nav-item">
                   <a class="nav-link text-navy" href="#announcements"  data-toggle="tab">Cards Payments Report</a>
                 </li>
+                --}}
               </ul>
             </div><!-- /.card-header -->
             <div class="">

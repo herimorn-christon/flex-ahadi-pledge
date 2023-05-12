@@ -8,7 +8,88 @@
 <div class="card p-2">
 <div class="row mb-1">
   {{-- start of statistics --}}
-  <div class="">
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/sigma.png')}}"/></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Member Cards</span>
+          <span class="info-box-number" id="total_cards">
+        
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-danger elevation-1">
+          <img src="{{asset('icons/task.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Assigned Cards</span>
+          <span class="info-box-number" id="assigned" > </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- fix for small devices only -->
+   
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/activity.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Active Cards</span>
+          <span class="info-box-number"  id="active"> </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/toggle.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Inactive Cards</span>
+          <span class="info-box-number"  id="inactive"> </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/debit-card.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Card Payments</span>
+          <span class="info-box-number"  id="total_payments"> 
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+
+    <!-- /.col -->
+  </div>
+  {{-- <div class="">
 
     <div class="row starts-border mt-2" >
       <div class="col-md-6"> <h6 class="text-secondary">Total Member Cards:</h6></div>
@@ -36,11 +117,11 @@
 
    
   
-  </div>
+  </div> --}}
   {{-- end of statistics --}}
 
 
-  <div class="col-sm-5" id="alert-div">
+  <div class="col-sm-5" id="alert-div3">
     @if (session('status'))
     <div class="alert disabled" style="background-color: rgb(198, 253, 216)" role="alert">
         {{ session('status') }}
@@ -84,7 +165,20 @@
         <i class="fa fa-download"></i>
        Requests
       </a>
-     
+      <button style="margin-left:15px" type="button" class="btn text-light btn-sm mb-2" data-toggle="modal" onclick="showAllRequests()">
+        <a href="{{route("myadmin_card")}}" class="btn bg-cyan  btn-sm" type="button">
+          <i class="fa fa-download text-light" ></i>
+          Generate Report
+        </a>
+       </button>
+      {{-- <a href="{{route("myadmin_card")}}">
+        <button style="margin-left: 20px" type="button" class="btn bg-cyan text-light btn-sm mb-2">
+          <i class="fa fa-download text-light" >
+        
+            generate report
+      </i>
+     </button>
+        </a> --}}
 
      
 

@@ -11,11 +11,10 @@ use App\Models\CardPayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-
+use Carbon\Carbon;
 class DashboardController extends Controller
 {
 
-    //
     public function index()
     {   
         
@@ -60,25 +59,63 @@ class DashboardController extends Controller
         else{
             $remaining=0;
         }
-
+      
    
         //   for users chart js
-        $users = User::select(\DB::raw("COUNT(*) as count"))
+        $users = User::select(\DB::raw("COUNT(*) as count",'Month(created_at)'))
         ->whereYear('created_at', date('Y'))
         ->where('role','member')
         ->groupBy(\DB::raw("Month(created_at)"))
         ->pluck('count');
-    // for payments chart js
-        $payrate = Payment::select(\DB::raw("SUM(amount) as count"))
-        ->whereYear('created_at', date('Y'))
-        ->groupBy(\DB::raw("Day(created_at)"))
-        ->pluck('count');
+        \DB::statement("SET SQL_MODE=''");
+    $monthlyPayments = DB::table('payments')
+        ->select(DB::raw('MONTH(created_at) as month'), DB::raw('SUM(amount) as sum'))
+        ->groupBy(DB::raw('MONTH(created_at)'))
+        ->orderBy(DB::raw('MONTH(created_at)'))
+        ->get();
+
+    $months = [];
+    $sums = [];
+
+    foreach ($monthlyPayments as $payment) {
+        $months[] = Carbon::createFromDate(null, $payment->month)->format('F');
+        $sums[] = $payment->sum;
+    }
+
+    //for the  user graphs enlagments
+    $monthlyUsers = DB::table('users')
+        ->select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+        ->groupBy(DB::raw('MONTH(created_at)'))
+        ->orderBy(DB::raw('MONTH(created_at)'))
+        ->get();
+
+    $pmonths = [];
+    $counts = [];
+
+    foreach ($monthlyUsers as $user) {
+        $pmonths[] = Carbon::createFromDate(null, $user->month)->format('F');
+        $counts[] = $user->count;
+    }
+
+       
+        
+        
+
         return view('admin.dashboard',
         compact('pledges',
                 'members',
+                'pmonths',
+                'counts',
+                // 'datas',
                 'payments',
+                // 'payrate',
+                'sums',
                 'users',
-                'payrate',
+                'months',
+                // 'monthCount',
+                // 'pamount',
+                // 'pcreated_at',
+                // 'payrate',
                 'cards',
                 'communities',
                 'contributions',
@@ -86,11 +123,11 @@ class DashboardController extends Controller
                 'total_cards',
                 'male',
                 'female',
-                'remaining'
+                'remaining',
+                
             ));
 
     }
-
 
  
 }

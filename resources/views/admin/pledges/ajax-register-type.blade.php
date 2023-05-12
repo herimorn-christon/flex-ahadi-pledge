@@ -46,6 +46,7 @@
                     data: data,
                     success: function(response) {
                         $("#save-type-btn").prop('disabled', false);
+                       toastr.success('Pledge Type Was Added Successfully');
                         let successHtml = '<div class="alert alert-success" role="alert">Pledge Type Was Added Successfully</div>';
                         $("#alert-div").html(successHtml);
                         $("#title").val("");
@@ -54,6 +55,7 @@
                     },
                     error: function(response) {
                         $("#save-type-btn").prop('disabled', false);
+                         toastr.info('Something went Wrong');
          
                         /*
             show validation error

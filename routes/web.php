@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\addAnnouncementController;
+use App\Http\Controllers\Member\adminProfilesStores;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CardRequest;
 use App\Http\Controllers\Admin\CardController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\companySettingController;
 use App\Http\Controllers\editUserProfile;
 use App\Http\Controllers\Member\MyAnnouncementController;
 use App\Http\Controllers\Member\MyNotificationsController;
+use App\Http\Controllers\Member\SuccessProfile;
 use App\Http\Controllers\memberDependantController;
 use App\Http\Controllers\PDFViewController;
 use App\Http\Controllers\reportProblemController;
@@ -289,7 +291,7 @@ Route::prefix('member')->middleware(['auth','isMember'])->group(function()
   // member change password route
     Route::post('change-password', [App\Http\Controllers\Member\ProfileController::class,'store']);
   // my-profile
-    Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index']);
+    Route::get('/my-profile', [App\Http\Controllers\Member\ProfileController::class,'index'])->name('myprofile');
     // for event remainder
 
 //Manage Purposes API route
@@ -359,3 +361,10 @@ Route::get("admin/member/myPayment",[PDFViewController::class,'view_payment'])->
 //generate the reports for the cards payments
 Route::get("admin/member/my-cards",[PDFViewController::class,'showCards'])->name("show_cards");
 Route::POST("admin/my-members/member",[MemberController::class,'storeValue'])->name("store_value");
+
+//handles the 
+Route::get("admin/pledge_report",[PDFViewController::class,'myadmin_pledge'])->name('myadmin_pledge');
+Route::get("admin/payment_report",[PDFViewController::class,'myadmin_payment'])->name("myadmin_payment");
+Route::get("admin/card_report",[PDFViewController::class,'myadmin_card'])->name("myadmin_card");
+
+Route::post("member/ProfileStores",[SuccessProfile::class,'adminProfilesStores'])->name("admin.profile.stores");

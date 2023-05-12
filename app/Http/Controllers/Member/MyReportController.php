@@ -11,8 +11,9 @@ use App\Models\Pledge;
 use App\Models\Payment;
 use App\Models\CardPayment;
 
-
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\Auth;
+
 
 class MyReportController extends Controller
 {
@@ -43,40 +44,19 @@ public function pledgesReport(Request $request)
     // $queryBuilder = User::select(['name', 'balance', 'registered_at'])
     //                     ->whereBetween('registered_at', [$fromDate, $toDate])
     //                     ->orderBy($sortBy);
+    
     $queryBuilder =Pledge::select(['name','user_id', 'purpose_id','status','created_at','amount','deadline'])
                             ->whereBetween('created_at', [$fromDate, $toDate])
                             ->where('user_id',$user)
                             ->with('user')
                             ->with('purpose')
                             ->orderBy($sortBy);
-    // Set Column to be displayed
- // Set Column to be displayed
-    $columns = [
 
-        'Full Name' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
-            return $user->user->fname.' '.$user->user->mname.' '.$user->user->lname;
-        },
-        'Pledge Title'=>'name',
-        'Purpose' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
-            return $user->purpose->title;
-        },
-        'Created Date'=>'created_at',
-        'Amount'=>'amount',
-        
-        
-    ];
 
-    return PdfReport::of($title, $meta, $queryBuilder, $columns)
-                    ->editColumn('Created Date', [
-                        'displayAs' => function($result) {
-                            return $result->created_at->format('d M Y');
-                        }
-                    ])
-                    // ->groupBy('Purpose')
-                    ->showTotal([
-                        'Amount' => 'point'
-                    ])
-                    ->download('My_Pledges_Report'); 
+    $pdf=FacadePdf::loadView("pledgeRangeReport",['fromDate'=>$fromDate,'toDate'=>$toDate,
+     'sortBy'=>$sortBy]);
+    return $pdf->stream();
+    
     }
     
     // For Payments Made Reports
@@ -109,32 +89,35 @@ public function paymentReport(Request $request)
                         ->with('payment')
                         ->orderBy($sortBy);
 
-    // Set Column to be displayed
-    $columns = [
-        'Full Name' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
-            return $user->payer->fname.' '.$user->payer->mname.' '.$user->payer->lname;
-        },
-        'Purpose' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
-            return $user->purpose->title;
-        },
-        'Payment Method' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
-            return $user->payment->name;
-        },
-        'Payment Date'=>'created_at','Amount'=>'amount',
+    // // Set Column to be displayed
+    // $columns = [
+    //     'Full Name' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+    //         return $user->payer->fname.' '.$user->payer->mname.' '.$user->payer->lname;
+    //     },
+    //     'Purpose' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+    //         return $user->purpose->title;
+    //     },
+    //     'Payment Method' => function($user) { // You can do data manipulation, if statement or any action do you want inside this closure
+    //         return $user->payment->name;
+    //     },
+    //     'Payment Date'=>'created_at','Amount'=>'amount',
         
-    ];
+    // ];
 
-    return PdfReport::of($title, $meta, $queryBuilder, $columns)
-                    ->editColumn('Payment Date', [
-                        'displayAs' => function($result) {
-                            return $result->created_at->format('d M Y');
-                        }
-                    ])
-                    // ->groupBy('Purpose')
-                    ->showTotal([
-                        'Amount' => 'point'
-                    ])
-                    ->download('Pledges_Payments_Report'); 
+    // return PdfReport::of($title, $meta, $queryBuilder, $columns)
+    //                 ->editColumn('Payment Date', [
+    //                     'displayAs' => function($result) {
+    //                         return $result->created_at->format('d M Y');
+    //                     }
+    //                 ])
+    //                 // ->groupBy('Purpose')
+    //                 ->showTotal([
+    //                     'Amount' => 'point'
+    //                 ])
+    //                 ->download('Pledges_Payments_Report'); 
+    $pdf=FacadePdf::loadView("paymentRangeReport",['fromDate'=>$fromDate,'toDate'=>$toDate,
+    'sortBy'=>$sortBy]);
+   return $pdf->stream();
 }
 
 

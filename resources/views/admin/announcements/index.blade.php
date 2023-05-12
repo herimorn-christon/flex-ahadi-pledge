@@ -11,16 +11,30 @@
     <div class="row mb-1">
     {{-- start of statistics --}}
 <div class="">
-  <div class="row starts-border mt-2 mb-2" >
-    <div class="col-md-6"> <h6 class="text-secondary">Total Announcements Made </h6></div>
-    <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total_announcements"></h6></div>
+<div class="row starts-border mt-2 mb-2" >
+  <div class="col-12 col-sm-6 col-md-3">
+    <div class="info-box">
+      <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/anounce.jpg')}}"/></span>
+
+      <div class="info-box-content">
+        <span class="info-box-text">Total Announcements Made</span>
+        <span class="info-box-number" id="total_announcements">
+      
+        </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
   </div>
+  {{-- <div class="col-md-6"> <h6 class="text-secondary">Total Announcements Made </h6></div>
+  <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total_announcements"></h6></div> --}}
+</div>
 
   
 </div>
 {{-- end of statistics --}}
 
-    <div class="col-sm-6" id="alert-div">
+    <div class="col-sm-6" id="alert-div7">
 
     </div><!-- /.col -->
     <div class="col-sm-6">

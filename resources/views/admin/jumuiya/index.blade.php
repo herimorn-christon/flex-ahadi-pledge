@@ -10,7 +10,64 @@
   <div class="row mb-1">
 
   {{-- start of statistics --}}
+  <div class="row" style="display:flex;justify-content:space-around">
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/total_community.jpg')}}"/></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Communities  (Jumuiya)</span>
+          <span class="info-box-number" id="total">
+        
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-danger elevation-1">
+          <img src="{{asset('icons/is-greater-than.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Largest Community(Jumuiya)</span>
+          <span class="info-box-number"  id="largest" > </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- fix for small devices only -->
+   
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/less-than.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">smallest Community (Jumuiya)</span>
+          <span class="info-box-number"  id="smallest"> </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- /.col -->
+  </div>
+  
+  {{-- icons for showing the community estimations --}}
+{{--   
 <div class="">
+
+  
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Communities  (Jumuiya) </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total"></h6></div>
@@ -24,10 +81,15 @@
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="smallest"> </h6></div>
   </div>
 </div>
+ --}}
+
+  {{-- ends of the icons for showing community estimations --}}
+
+
 {{-- end of statistics --}}
 
       {{-- start of activities notifications i.e registration,deletion and update status --}}
-        <div class="col-sm-6" id="alert-div">
+        <div class="col-sm-6" id="alert-divs">
         </div>
       {{-- end of activities notifications --}}
 

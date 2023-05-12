@@ -37,7 +37,7 @@
                   <label for="message-text" class="text-secondary">Sort By:</label>
                   <select name="sort_by" id="sort_by" class="bg-light text-navy form-control">
                       <option value="name">Pledge Name</option>
-                      <option value="purpose">Pledge Purpose</option>
+                      {{-- <option value="purpose">Pledge Purpose</option> --}}
                       <option value="type_id">Pledge Type</option>
                       <option value="created_at">Created Date</option>
                       <option value="status">Status</option>

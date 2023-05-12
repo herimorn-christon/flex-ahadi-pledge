@@ -59,7 +59,22 @@ class RegisterController extends Controller
             'lname' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'max:13'],
             'jumuiya' => ['required'],
-            'date_of_birth' => ['required'],
+            'date_of_birth' =>[
+                'required',
+                'date',
+                function ($attribute, $value, $fail) {
+                    // Calculate the minimum birth year allowed (18 years ago from now)
+                    $minBirthYear = now()->subYears(18)->format('Y');
+                    
+                    // Extract the birth year from the submitted value
+                    $submittedBirthYear = date('Y', strtotime($value));
+                    
+                    // Check if the birth year is above the minimum allowed year
+                    if ($submittedBirthYear > $minBirthYear) {
+                        return $fail('You must be at least 18 years old.');
+                    }
+                },
+            ],
             'gender' => ['required'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -85,21 +100,21 @@ class RegisterController extends Controller
             'jumuiya' => $data['jumuiya'],
             'password' => Hash::make($data['password']),
             'place_of_birth' => $data['place_of_birth'],
-             'martial_status' => $data['martial_status'],
-            'marriage_type' => $data['marriage_type'],
-             'marriage_date' => $data['marriage_date'],
-            'partner_name' => $data['partner_name'],
-            'place_of_marriage' => $data['place_of_marriage'],
-            'old_usharika' => $data['old_usharika'],
+             //'martial_status' => $data['martial_status'],
+            //'marriage_type' => $data['marriage_type'],
+            // 'marriage_date' => $data['marriage_date'],
+            //'partner_name' => $data['partner_name'],
+            //'place_of_marriage' => $data['place_of_marriage'],
+           'old_usharika' => $data['old_usharika'],
             'fellowship_name' => $data['fellowship_name'],
             'neighbour_msharika_name' => $data['neighbour_msharika_name'],
             'neighbour_msharika_phone' => $data['neighbour_msharika_phone'],
             'deacon_name' => $data['deacon_name'],
             'deacon_phone' => $data['deacon_phone'],
-              'occupation' => $data['occupation'],
-            'place_of_work' => $data['place_of_work'],
+             // 'occupation' => $data['occupation'],
+            //'place_of_work' => $data['place_of_work'],
             'proffession' => $data['proffession'],
-            //'can_volunteer' => $data['can_volunteer'],
+           // 'can_volunteer' => $data['can_volunteer'],
             //'baptized' => $data['baptized'],
             //'baptization_date' => $data['baptization_date'],
             //'kipaimara' => $data['kipaimara'],

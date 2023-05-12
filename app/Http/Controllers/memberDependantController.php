@@ -60,26 +60,41 @@ class memberDependantController extends Controller
                $dependants->birth_date=$request->birth_date;
                $dependants->relationship=$request->relationship;
                $dependants->save();
-               return redirect()->route('member_dependant.show',$request->users_id);
+               $notification=array(
+                'message'=>'dependant is updated successfully',
+                'alert-type'=>'success'
+             );
+              return redirect()->route('myprofile')->with($notification);
+              
         
 
     }
     public function destroy($id){
          $dependants=dependant::find($id);
          $dependants->delete();
-         return redirect()->back()->with('msg', 'dependant has been recycled successfully');
+         $notification=array(
+            'message'=>'woow !!dependants is recycled successfully',
+            'alert-type'=>'success'
+         );
+          return redirect()->route('myprofile')->with($notification);
+          
 
     }
     public function trash(){
         $dependants=dependant::onlyTrashed()->get();
+
         return view("admin.members.trash",compact('dependants'));
     }
     public function restore($id){
         $dependants=dependant::onlyTrashed()->find($id);
         $dependants->restore();
-        //finding the user id
-        return Redirect()->route('member_dependant.show',$dependants->users_id)
-        ->with('msg1', 'member successfully restored');
+        //finding the user 
+        $notification=array(
+            'message'=>'the member is successfully restored',
+            'alert-type'=>'success'
+         );
+          return redirect()->route('myprofile')->with($notification);
+          
     }
     public function forceDelete($id){
         $dependants=dependant::onlyTrashed()->find($id);

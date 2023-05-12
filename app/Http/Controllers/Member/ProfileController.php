@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\dependant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,10 +15,10 @@ class ProfileController extends Controller
     // for index function
     public function index()
     {
-     
+        $points=dependant::onlyTrashed()->get();
         $user=Auth::user()->id;
         $profile=User::where('id',$user)->get();
-        return view('member.profile.index',compact('profile'));
+        return view('member.profile.index',compact('profile','points'));
     }
 
       /**

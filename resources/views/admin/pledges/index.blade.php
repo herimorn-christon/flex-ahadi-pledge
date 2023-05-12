@@ -9,7 +9,113 @@
 <div class="card  p-2 border-left-flex">
 <div class="row mb-1">
     {{-- start of statistics --}}
-<div class="">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/swear.png')}}"/></span>
+  
+          <div class="info-box-content">
+            <span class="info-box-text">Total Pledges Made  (Ahadi)</span>
+            <span class="info-box-number" id="total">
+          
+            </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-danger elevation-1">
+            <img src="{{asset('icons/salary.png')}}"/>
+          </span>
+  
+          <div class="info-box-content">
+            <span class="info-box-text">Total Money Pledges (Ahadi)</span>
+            <span class="info-box-number"  id="total_amount" > </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+  
+      <!-- fix for small devices only -->
+     
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1">
+            <img src="{{asset('icons/oath.png')}}"/>
+          </span>
+  
+          <div class="info-box-content">
+            <span class="info-box-text">Total Object Pledges (Ahadi)</span>
+            <span class="info-box-number"  id="object"> </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1">
+            <img src="{{asset('icons/check.png')}}"/>
+          </span>
+  
+          <div class="info-box-content">
+            <span class="info-box-text">Total Fulfilled Pledges</span>
+            <span class="info-box-number"id="fullfilled"> </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box mb-3">
+          <span class="info-box-icon bg-success elevation-1">
+            <img src="{{asset('icons/cancel.png')}}"/>
+          </span>
+  
+          <div class="info-box-content">
+            <span class="info-box-text">Total Unfulfilled Pledges</span>
+            <span class="info-box-number"  id="unfullfilled"> </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+        <!-- /.col -->
+        <div class="col-12 col-sm-6 col-md-3">
+          <div class="info-box mb-3">
+            <span class="info-box-icon bg-success elevation-1">
+              <img src="{{asset('icons/best.png')}}"/>
+            </span>
+    
+            <div class="info-box-content">
+              <span class="info-box-text">Best Pledge Maker</span>
+              <span class="info-box-number"  id="best"> </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+  
+      <!-- /.col -->
+    </div>
+
+
+
+
+
+
+
+{{-- <div class="">
 
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made  (Ahadi) </h6></div>
@@ -42,10 +148,10 @@
 
 
 
-</div>
+</div> --}}
 {{-- end of statistics --}}
 
-    <div class="col-sm-5" id="alert-div">
+    <div class="col-sm-5" id="alert-divw">
     </div><!-- /.col -->
     <div class="col-sm-7">
       <ul class="float-sm-right" type="none">
@@ -75,7 +181,7 @@
        
 
       {{-- start of generate report button --}}
-      <a href="{{ route('pledgeReport') }}" class="btn bg-cyan  btn-sm mb-2" type="button">
+      <a href="{{ route('myadmin_pledge') }}" class="btn bg-cyan  btn-sm mb-2" type="button">
         <i class="fa fa-download text-light" ></i>
         Generate Report
       </a>
@@ -109,62 +215,64 @@
           {{--  end of all pledges table --}}
         </div>
 
-            {{-- start of ajax view purpose details modal --}}
-            @include('admin.pledges.single-pledge-modal')
-            {{-- end of ajax view purpose details modal --}}
+           {{-- start of ajax view purpose details modal --}}
+@include('admin.pledges.single-pledge-modal')
+{{-- end of ajax view purpose details modal --}}
 
-            {{-- start register pledge modal --}}
-            @include('admin.pledges.register-pledge-modal')
-            {{-- end of register pledge modal --}}
+{{-- start register pledge modal --}}
+@include('admin.pledges.register-pledge-modal')
+{{-- end of register pledge modal --}}
 
-            {{-- start register pledge type modal --}}
-            @include('admin.pledges.register-pledge-type-modal')
-            {{-- end of register pledge type modal --}}
-
-
-             {{-- start of ajax fetch all pledges method --}}
-             @include('admin.pledges.ajax-fetch-all-pledges')
-             {{-- end of ajax fetch all pleges method --}}
-              {{-- start of ajax register pledge method --}}
-              @include('admin.pledges.ajax-register-pledge')
-              {{-- end of ajax register pledge method --}}
-       
-             {{-- start of ajax view pledge details method --}}
-             @include('admin.pledges.ajax-fetch-pledge-details')
-             {{-- end of ajax view purpose details method --}}
-  
-
-      
-           {{-- start all pledge types modal --}}
-       @include('admin.pledges.all-pledge-types-modal')
-       {{-- end of all pledge types modal --}}
-
-       {{-- start of ajax fetch all pledges method --}}
-       @include('admin.pledges.ajax-fetch-all-types')
-       {{-- end of ajax fetch all pleges method --}}
+{{-- start register pledge type modal --}}
+@include('admin.pledges.register-pledge-type-modal')
+{{-- end of register pledge type modal --}}
 
 
-       {{-- start of ajax update pledge types method --}}
-       @include('admin.pledges.ajax-update-type')
-       {{-- end of ajax update pledge types method --}}
-      
-       {{-- start of ajax update pledge types method --}}
-       @include('admin.pledges.ajax-update-pledge')
-       {{-- end of ajax update pledge types method --}}
-   
-       {{-- start of ajax register pledge method --}}
-       @include('admin.pledges.ajax-register-type')
-       {{-- end of ajax register pledge method --}}
-       
-        {{-- start of ajax delete Pledge type method --}}
-        @include('admin.pledges.ajax-delete-type')
-        {{-- end of ajax delete Pledge type method --}}
+ {{-- start of ajax fetch all pledges method --}}
+ @include('admin.pledges.ajax-fetch-all-pledges')
+ {{-- end of ajax fetch all pleges method --}}
+  {{-- start of ajax register pledge method --}}
+  @include('admin.pledges.ajax-register-pledge')
+  {{-- end of ajax register pledge method --}}
+
+ {{-- start of ajax view pledge details method --}}
+ @include('admin.pledges.ajax-fetch-pledge-details')
+ {{-- end of ajax view purpose details method --}}
 
 
-       @include('admin.pledges.ajax-delete-pledge')
-       {{-- end of ajax delete Pledge type method --}}
 
-    
+{{-- start all pledge types modal --}}
+@include('admin.pledges.all-pledge-types-modal')
+{{-- end of all pledge types modal --}}
+
+{{-- start of ajax fetch all pledges method --}}
+@include('admin.pledges.ajax-fetch-all-types')
+{{-- end of ajax fetch all pleges method --}}
+
+
+{{-- start of ajax update pledge types method --}}
+@include('admin.pledges.ajax-update-type')
+{{-- end of ajax update pledge types method --}}
+
+{{-- start of ajax update pledge types method --}}
+@include('admin.pledges.ajax-update-pledge')
+{{-- end of ajax update pledge types method --}}
+
+{{-- start of ajax register pledge method --}}
+@include('admin.pledges.ajax-register-type')
+{{-- end of ajax register pledge method --}}
+
+{{-- start of ajax delete Pledge type method --}}
+@include('admin.pledges.ajax-delete-type')
+{{-- end of ajax delete Pledge type method --}}
+
+
+@include('admin.pledges.ajax-delete-pledge')
+{{-- end of ajax delete Pledge t--}}
+ 
+
+</div>
+
 
 </div>
 

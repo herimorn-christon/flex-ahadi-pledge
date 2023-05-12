@@ -49,6 +49,7 @@
                     data: data,
                     success: function(response) {
                         $("#save-purpose-btn").prop('disabled', false);
+                        toastr.info('Purpose Was Updated Successfully');
                         let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Updated Successfully !</div>';
                         $("#alert-div").html(successHtml);
                         $("#tite").val("");
@@ -65,6 +66,7 @@
                         $("#save-purpose-btn").prop('disabled', false);
                         if (typeof response.responseJSON.errors !== 'undefined') 
                         {
+                     toastr.info('something went wrong');
                             console.log(response)
             let errors = response.responseJSON.errors;
            descriptionValidation = "";

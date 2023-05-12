@@ -65,15 +65,7 @@ $i=1;
                     <td>{{ $dependant->relationship }}</td>
                     <td>
                       <div style="display:flex;">
-                        <form action="{{ route('member.force-delete',$dependant->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button style="background:blue"> 
-                              <i class="fa fa-trash" aria-hidden="true" style="color:black" ></i>
-                            </button>
-                           </form>
-                        
-                        
+                       
                        <button style="background:grey">
                           <a class="" href={{ route('member.restore',$dependant->id) }} >
                             <i class='fas fa-trash-restore-alt' style='color:red'>r

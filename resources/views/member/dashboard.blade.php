@@ -9,7 +9,7 @@
     <section class="content">
       <div class="">
         <!-- Small boxes (Stat box) -->
-        <div class="row">
+        <div class="row" style="displa:flex;justify-content:space-between">
 
               {{-- start  --}}
               <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
@@ -30,6 +30,7 @@
                     </h6>
     
                     <h3 class="text-secondary">
+                      <img src="{{asset('icons/oath.png')}}" style="width:50px" height="50px"/>    
                       {{$total_amount}}
                       <small>Tsh</small>
                     </h3>
@@ -58,13 +59,14 @@
                       </h6>
       
                       <h3 class="text-secondary">
+                        <img src="{{asset('icons/money_sum.png')}}" style="width:50px" height="50px"/> 
                         {{$payment_total}}
                         <small>Tsh</small>
                       </h3>
                     </div>
                   
                     
-                    <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+                    <a href="{{ url('member/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
                   </div>
                 </div>
 
@@ -103,6 +105,7 @@
                         </h6>
         
                         <h3 class="text-secondary">
+                          <img src="{{asset('icons/debit-card.png')}}" style="width:50px" height="50px"/> 
                           {{$cardpayments}}
                           <small>Tsh</small>
                         </h3>
@@ -111,15 +114,95 @@
                       <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
                     </div>
                   </div>
+        </div>
                   {{-- end  --}}
 
      
                   <div class="col-md-12">
                     <div class="card border-left-flex">
                       <div class="row mb-1 m-2">
+                        <div class="row">
+                          <div class="col-12 col-sm-6 col-md-3">
+                            <a href="{{ url('admin/all-members')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
+                            <div class="info-box">
+                              <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/pledge.png')}}"/></span>
+                      
+                              <div class="info-box-content">
+                                <span class="info-box-text">Total Pledges Made in {{ date('Y')}} </span>
+                                <span class="info-box-number">
+                                  {{ $total_pledges}}
+                                </span>
+                              </div>
+                              <!-- /.info-box-content -->
+                            </div>
+                            </a>
+                            <!-- /.info-box -->
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-12 col-sm-6 col-md-3">
+                            <a href="{{ url('admin/all-members')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
+                            <div class="info-box mb-3">
+                              <span class="info-box-icon bg-danger elevation-1">
+                                <img src="{{asset('icons/money-bag.png')}}"/>
+                              </span>
+                      
+                              <div class="info-box-content">
+                                <span class="info-box-text">Total Money Pledges in {{ date('Y')}} </span>
+                                <span class="info-box-number">({{$total_amount.' Tsh'}}) {{ $cash_pledges}} </span>
+                              </div>
+                              <!-- /.info-box-content -->
+                            </div>
+                            </a>
+                            <!-- /.info-box -->
+                          </div>
+                          <!-- /.col -->
+                      
+                          <!-- fix for small devices only -->
+                         
+                          <div class="col-12 col-sm-6 col-md-3">
+                            <a href="{{ url('admin/all-members')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
+                            <div class="info-box mb-3">
+                              <span class="info-box-icon bg-success elevation-1">
+                                <img src="{{asset('icons/swear.png')}}"/>
+                              </span>
+                      
+                              <div class="info-box-content">
+                                <span class="info-box-text">Total Object Pledges in {{ date('Y')}}</span>
+                                <span class="info-box-number">{{ $object_pledges}} </span>
+                              </div>
+                              <!-- /.info-box-content -->
+                            </div>
+                            </a>
+                            <!-- /.info-box -->
+                          </div>
+                          <!-- /.col -->
+                          <div class="col-12 col-sm-6 col-md-3">
+                            <a href="{{ url('admin/all-communities')}}" 
+                            style="color:black" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number  of communities (Jumuiya) found in the congregation">
+                            <div class="info-box mb-3">
+                              <span class="info-box-icon bg-success elevation-1">
+                                <img src="{{asset('icons/salary.png')}}" />
+                              </span>
+                      
+                              <div class="info-box-content">
+                                <span class="info-box-text">Total Amount Contributed in {{date('Y')}}</span>
+                                <span class="info-box-number">
+                                  {{ $cardpayments+$payments}} 
+                                   </span>
+                              </div>
+                              <!-- /.info-box-content -->
+                            </div>
+                            </a>
+                            <!-- /.info-box -->
+                          </div>
+                       
+                          <!-- /.col -->
+                        </div>
+                        {{-- estarting statistics --}}
+
                        
                       {{-- start of statistics --}}
-                      <div class="col-md-12">
+                      {{-- <div class="col-md-12">
                           <div class="row starts-border" >
                             <div class="col-md-6"> <h6 class="text-secondary">Total Pledges Made in {{ date('Y')}} </h6></div>
                             <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> {{ $total_pledges}}</h6></div>
@@ -140,7 +223,7 @@
                           
         
                       
-                        </div>
+                        </div> --}}
                       {{-- end of statistics --}}
                       
                       <div class="col-md-12 mt-1">

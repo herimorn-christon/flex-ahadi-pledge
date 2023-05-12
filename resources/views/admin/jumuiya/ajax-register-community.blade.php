@@ -50,6 +50,7 @@
                 data: data,
                 success: function(response) {
                     $("#save-community-btn").prop('disabled', false);
+                   toastr.success('Community Was Added Successfully');
                     let successHtml = '<div class="alert alert-success " role="alert"> Community Was Added Successfully !</div>';
                     $("#alert-div").html(successHtml);
                     $("#name").val("");
@@ -60,6 +61,7 @@
                 },
                 error: function(response) {
                     $("#save-community-btn").prop('disabled', false);
+                    toastr.info('something went wrong');
      
                     /*
         show validation error

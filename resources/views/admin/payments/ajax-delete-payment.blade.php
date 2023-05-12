@@ -21,12 +21,14 @@
                     type: "DELETE",
                     data: data,
                     success: function(response) {
+                      toastr.info('Payment Was Deleted Successfully');
                         let successHtml = '<div class="alert alert-success" role="alert">Payment Was Deleted Successfully </div>';
                         $("#alert-div").html(successHtml);
                         showAllPayments();
                     },
                     error: function(response) {
                         console.log(response.responseJSON)
+                         toastr.info("something went wrong");
                     }
                 });
             }

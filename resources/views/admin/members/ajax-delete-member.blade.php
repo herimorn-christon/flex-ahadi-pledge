@@ -18,11 +18,13 @@
                     type: "DELETE",
                     data: data,
                     success: function(response) {
+                          toastr.success('Member Was Deleted Successfully');
                         let successHtml = '<div class="btn btn-danger btn-block" disabled role="alert"> Member Was Deleted Successfully</div>';
                         $("#alert-div").html(successHtml);
                         showAllMembers();
                     },
                     error: function(response) {
+                      toastr.info('something went wrong ');
                         console.log(response.responseJSON)
                     }
                 });

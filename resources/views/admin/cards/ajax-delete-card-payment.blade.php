@@ -20,12 +20,14 @@
                   type: "DELETE",
                   data: data,
                   success: function(response) {
+                      toastr.success('Card Payment Was Deleted Successfully ');
                       let successHtml = '<div class="alert alert-danger" role="alert">Card Payment Was Deleted Successfully </div>';
                       $("#alert-div").html(successHtml);
                       showAllCardMembers();
                       $("#view-modal").modal('hide'); 
                   },
                   error: function(response) {
+                    toastr.success('something went wrong ');
                       console.log(response.responseJSON)
                   }
               });

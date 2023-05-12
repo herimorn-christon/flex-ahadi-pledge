@@ -47,6 +47,7 @@
                 data: data,
                 success: function(response) {
                     $("#save-member-btn").prop('disabled', false);
+                     toastr.success('Card Was Assigned Successfully');
                     let successHtml = '<div class="alert alert-success" role="alert">Card Was Assigned Successfully</div>';
                     $("#alert-div").html(successHtml);
                     $("#card_no").val("");
@@ -55,6 +56,7 @@
                     $("#member-modal").modal('hide');
                 },
                 error: function(response) {
+                   toastr.info('Something went wrong');
                     $("#save-member-btn").prop('disabled', false);
      
                     /*

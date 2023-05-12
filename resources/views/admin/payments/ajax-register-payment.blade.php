@@ -53,6 +53,7 @@
                     data: data,
                     success: function(response) {
                         $("#save-paymentd-btn").prop('disabled', false);
+                        toastr.success('Payment Was Added Successfully'); 
                         let successHtml = '<div class="alert alert-success" role="alert">Payment Was Added Successfully</div>';
                         $("#alert-div").html(successHtml);
                         $("#pledge_id").val("");
@@ -65,6 +66,7 @@
                         $("#form-modal").modal('hide');
                     },
                     error: function(response) {
+                        toastr.info("something went wrong !!!");
                         $("#save-payment-btn").prop('disabled', false);
          
                         /*

@@ -24,12 +24,14 @@
                   type: "DELETE",
                   data: data,
                   success: function(response) {
+                     toastr.success('Purpose Was Deleted Successfully');
                       let successHtml = '<div class="alert alert-danger" role="alert">Purpose Was Deleted Successfully </div>';
                       $("#alert-div").html(successHtml);
                       showAllPurposes();
                   },
                   error: function(response) {
                       console.log(response.responseJSON)
+                      toastr.info('something went wrong');
                   }
               });
           }

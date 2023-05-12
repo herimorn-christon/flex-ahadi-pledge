@@ -55,6 +55,7 @@
                   data: data,
                   success: function(response) {
                       $("#save-payment-btn").prop('disabled', false);
+                       toastr.success('Payment Was Recorded Successfully');
                       let successHtml = '<div class="alert alert-success" role="alert">Payment Was Recorded Successfully</div>';
                       $("#alert-div").html(successHtml);
                       $("#card_member").val("");
@@ -63,6 +64,7 @@
                       $("#payment-modal").modal('hide');
                   },
                   error: function(response) {
+                     toastr.info('Something went wrong !!!');
                       $("#save-payment-btn").prop('disabled', false);
        
                       /*

@@ -8,9 +8,41 @@
 
 <div class="card  p-1 border-left-flex">
   <div class="row mb-1 mx-1">
-
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/sigma.png')}}"/></span>
+  
+          <div class="info-box-content">
+            <span class="info-box-text">Total Card Payments Made in {{ date('Y')}}</span>
+            <span class="info-box-number" id="card-payments">
+          
+            </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="info-box">
+          <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/debit-card.png')}}"/></span>
+  
+          <div class="info-box-content">
+            <span class="info-box-text">Current Card Member </span>
+            <span class="info-box-number" id="current-card">
+          
+            </span>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+      </div>
+      <!-- /.col -->
+  
+      <!-- /.col -->
+    </div>
   {{-- start of statistics --}}
-<div class="">
+{{-- <div class="">
   <div class="row starts-border  mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Card Payments Made in {{ date('Y')}} </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="card-payments"></h6></div>
@@ -21,7 +53,7 @@
   </div>
   
 
-</div>
+</div> --}}
 {{-- end of statistics --}}
     <div class="col-sm-5" id="alert-div">
       @if (session('status'))
@@ -32,6 +64,11 @@
       
     </div><!-- /.col -->
     <div class="col-sm-7">
+      @php
+      $member_status=Auth::user()->status;
+      //dd($member_status);
+       @endphp
+       @if ($member_status=='0')
       <ul class="float-sm-right" type="none">
         <li class="">  
           <form action="{{ url('member/request-card') }}" method="post">
@@ -51,7 +88,7 @@
     </li>
        
       </ul>
-      
+      @endif
     </div><!-- /.col -->
   </div>
 </div>

@@ -25,12 +25,14 @@
                   type: "DELETE",
                   data: data,
                   success: function(response) {
+                      toastr.success('Pledge Was Deleted Successfully');
                       let successHtml = '<div class="alert alert-danger" role="alert">Pledge Was Deleted Successfully </div>';
                       $("#alert-div").html(successHtml);
                       showAllPledges();
                   },
                   error: function(response) {
                       console.log(response.responseJSON)
+                     toastr.info('Something went wrong!!!!');
                   }
               });
           }

@@ -141,27 +141,27 @@
 
  
     <script type="text/javascript">
-        $('#jumuiya').select2({
-        dropdownParent: $("#form"),
-        theme: 'bootstrap-5',
-        placeholder: 'Select Jumuiya',
-        ajax: {
-            url: '/jumuiya/search',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.name,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    });
+    //     $('#jumuiya').select2({
+    //     dropdownParent: $("#form"),
+    //     theme: 'bootstrap-5',
+    //     placeholder: 'Select Jumuiya 8883',
+    //     ajax: {
+    //         url: '/jumuiya/search',
+    //         dataType: 'json',
+    //         delay: 250,
+    //         processResults: function (data) {
+    //             return {
+    //                 results: $.map(data, function (item) {
+    //                     return {
+    //                         text: item.name,
+    //                         id: item.id
+    //                     }
+    //                 })
+    //             };
+    //         },
+    //         cache: true
+    //     }
+    // });
 
     </script>
     

@@ -12,15 +12,15 @@
   
              <div class="row mb-3">
                 @php
-                // $members= App\Models\User::where('role','member')->get();
+                $members= App\Models\User::where('role','member')->get();
                 @endphp
                 <div class="col-md-12  d-flex flex-column" id="userdrop">
                     <label for="" class="text-secondary">All Members</label>
                     <select name="user_id" id="user_id"  class="custom-select form-control">
-                        {{-- <option value="">--Select Member --</option>
+                         <option value="">--Select Member --</option>
                         @foreach ( $members as $item)
                          <option value="{{ $item->id}}">{{ $item->fname}} {{ $item->mname}} {{ $item->lname}}</option>
-                         @endforeach --}}
+                         @endforeach
                     </select>
                 </div>
     
@@ -72,22 +72,7 @@
   dropdownParent: $("#userdrop"),
   theme: 'bootstrap-5',
   placeholder: '-- Select Member --',
-  ajax: {
-      url: '/member/search',
-      dataType: 'json',
-      delay: 250,
-      processResults: function (data) {
-          return {
-              results: $.map(data, function (item) {
-                  return {
-                      text: item.fname+' '+item.mname+' '+item.lname,
-                      id: item.id
-                  }
-              })
-          };
-      },
-      cache: true
-  }
+  
 });
 
 

@@ -1,9 +1,11 @@
 {{-- This is the page for Purpose detail update method  --}}
 <script type="text/javascript">
         /*
+
                 edit record function
                 it will get the existing value and show the purpose form
             */
+    console.log("haloooo");
             function editAnnouncement(id)
             {
                 let url = $('meta[name=app-url]').attr("content") + "/admin/announcements/" + id ;
@@ -47,6 +49,7 @@
                     data: data,
                     success: function(response) {
                         $("#save-announcement-btn").prop('disabled', false);
+                         toastr.success("Announcement Was Updated Successfully !");
                         let successHtml = '<div class="alert alert-success" role="alert">Announcement Was Updated Successfully !</div>';
                         $("#alert-div").html(successHtml);
                         $("#tite").val("");
@@ -58,6 +61,7 @@
                        
                     },
                     error: function(response) {
+                  toastr.info("Something went wrong!");
                         /*
             show validation error
                         */

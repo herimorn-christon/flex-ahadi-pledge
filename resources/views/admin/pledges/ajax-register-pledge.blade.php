@@ -63,6 +63,7 @@
                   data: data,
                   success: function(response) {
                       $("#save-pledge-btn").prop('disabled', false);
+                        toastr.success('Pledge Was Created Successfully');
                       let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Created Successfully</div>';
                       $("#alert-div").html(successHtml);
                       $("#name").val("");
@@ -77,6 +78,7 @@
                   },
                   error: function(response) {
                       $("#save-pledge-btn").prop('disabled', false);
+                       toastr.info('Something went wrong');
        
                       /*
           show validation error

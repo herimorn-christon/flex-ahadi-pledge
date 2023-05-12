@@ -52,6 +52,7 @@
                     data: data,
                     success: function(response) {
                         $("#save-purpose-btn").prop('disabled', false);
+                        toastr.info('Purpose Was Created Successfully');  
                         let successHtml = '<div class="alert alert-success" role="alert">Purpose Was Created Successfully</div>';
                         $("#alert-div").html(successHtml);
                         $("#tite").val("");
@@ -62,7 +63,12 @@
                         $("#form-modal").modal('hide');
                     },
                     error: function(response) {
+                  
                         $("#save-purpose-btn").prop('disabled', false);
+                             showAllPurposes();
+                     toastr.info('Purpose Was Created Successfully');  
+                        $("#form-modal").modal('hide');    
+                    
          
                         /*
             show validation error

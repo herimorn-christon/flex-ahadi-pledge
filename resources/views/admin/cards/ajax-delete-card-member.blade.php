@@ -18,6 +18,8 @@
                   type: "DELETE",
                   data: data,
                   success: function(response) {
+                        
+                     toastr.success('Assigned Card Was Deleted Successfully');
                       let successHtml = '<div class="alert alert-danger" role="alert">Assigned Card Was Deleted Successfully </div>';
                       $("#alert-div").html(successHtml);
                       showAllCardMembers();
@@ -26,6 +28,7 @@
                   },
                   error: function(response) {
                       console.log(response.responseJSON)
+                    toastr.info('Something went wrong!!!!');
                   }
               });
           }

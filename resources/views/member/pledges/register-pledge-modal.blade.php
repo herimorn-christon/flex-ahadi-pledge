@@ -27,9 +27,9 @@
                   @php
                   $purpose= App\Models\Purpose::where('status','')->get();
                   @endphp
-                  <div class="col-md-6">
+                  <div class="col-md-6" id="kidawa_form">
                       <label for="" class="text-secondary">Pledge Purpose</label>
-                      <select name="purpose_id" id="purpose_id" class="form-control">
+                      <select name="purpose_id" id="purpose_id" class="form-control form-select">
                           <option value="">--Select Purpose --</option>
                           @foreach ( $purpose as $item)
                           <option value="{{ $item->id}}"> {{ $item->title}}</option>
@@ -86,3 +86,25 @@
     <!-- /.modal-dialog -->
   </div>
   
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    console.log("hallooo");
+    
+        $('#purpose_id').select2({
+        dropdownParent: $("#kidawa_form"), 
+        placeholder: 'Select the parents',
+   
+      
+    });
+
+    $('#purpose_id').select2({
+    dropdownParent: $('#kidawa_form'),
+    theme: 'bootstrap-5',
+   width: '100%',
+   height:'20%',
+    placeholder: '-- Select Purpuse --',
+  
+});
+
+
+      </script>

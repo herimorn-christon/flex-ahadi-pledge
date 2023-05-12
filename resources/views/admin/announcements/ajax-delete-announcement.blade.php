@@ -23,11 +23,13 @@
                   type: "DELETE",
                   data: data,
                   success: function(response) {
+                      toastr.success('Announcement Was Deleted Successfully');
                       let successHtml = '<div class="alert alert-danger" role="alert">Announcement Was Deleted Successfully </div>';
                       $("#alert-div").html(successHtml);
                       showAllAnnouncements();
                   },
                   error: function(response) {
+                      toastr.info('Something went wrong');
                       console.log(response.responseJSON)
                   }
               });

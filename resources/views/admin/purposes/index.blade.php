@@ -10,8 +10,62 @@
 <div class="row mb-1">
 
 
+
+
+  <div class="row" style="display:flex;justify-content:space-around">
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box">
+        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/sigma.png')}}"/></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Total Registered Purposes  (Contributions)</span>
+          <span class="info-box-number" id="total">
+          </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-danger elevation-1">
+          <img src="{{asset('icons/check.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">accomplished Purposes (Contributions) </span>
+          <span class="info-box-number"  id="accomplished" > </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- fix for small devices only -->
+   
+    <div class="col-12 col-sm-6 col-md-3">
+      <div class="info-box mb-3">
+        <span class="info-box-icon bg-success elevation-1">
+          <img src="{{asset('icons/cancel.png')}}"/>
+        </span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">Unaccomplished Purposes (Contributions)</span>
+          <span class="info-box-number"  id="unaccomplished"> </span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <!-- /.col -->
+
+    <!-- /.col -->
+  </div>
+
 {{-- start of statistics --}}
-<div class="">
+{{-- <div class="">
   <div class="row starts-border mt-2" >
     <div class="col-md-6"> <h6 class="text-secondary">Total Registered Purposes  (Contributions) </h6></div>
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder" id="total"> </h6></div>
@@ -37,10 +91,10 @@
     <div class="col-md-6 text-right"><h6 class="font-weight-bolder"> </h6></div>
   </div>
 
-</div>
+</div> --}}
 {{-- end of statistics --}}
 
-    <div class="col-sm-6" id="alert-div">
+    <div class="col-sm-6" id="alert-div2">
 
     </div><!-- /.col -->
     <div class="col-sm-6">
