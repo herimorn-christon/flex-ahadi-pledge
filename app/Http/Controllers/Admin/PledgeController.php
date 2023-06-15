@@ -22,21 +22,36 @@ class PledgeController extends Controller
      */
     public function index()
     {
-        $pledges = Pledge::orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
-        $total_pledges=Pledge::count();
+        $new_user=Auth::user()->church_id;
+        $pledges = Pledge::orderBy('updated_at','DESC')
+        ->where('church_id',$new_user)
+        ->where('type_id',9)
+        ->with('user')->with('type')->with('purpose')->get();
+        $pledges_object = Pledge::orderBy('updated_at','DESC')->
+        where('church_id',$new_user)->
+        where('type_id',1)
+        ->with('user')->with('type')->with('purpose')->get();
+        $total_pledges=Pledge::where('church_id',$new_user)->count();
         $unfullfilled=Pledge::where('status','')
+                              ->where('church_id',$new_user)
                               ->count();
-        $total_amount=Pledge::sum('amount');
+        $total_amount=Pledge::where('church_id',$new_user)->sum('amount');
         $object=Pledge::where('type_id','1')
+                        ->where('church_id',$new_user)
                         ->count();
         $fullfilled=Pledge::where('status','1')
+                            ->where('church_id',$new_user)
                             ->count();
-        $best=Pledge::max('amount');
+        $best=Pledge::where('church_id',$new_user)->max('amount');
+       
+
+        //if the payments is received for a pledge 
         return response()->json([
                                 'pledges' => $pledges,
                                 'total_pledges'=>$total_pledges,
                                 'unfullfilled'=>$unfullfilled,
                                 'fullfilled'=>$fullfilled,
+                                 'pledgesObject'=>$pledges_object,
                                 'total_amount'=>$total_amount,
                                 'object'=>$object,
                                 'best'=>$best    
@@ -53,40 +68,50 @@ class PledgeController extends Controller
      */
     public function store(Request $request)
     {
+    //  dd($request->all());
+    $new_user=Auth::user()->church_id;
+      
         request()->validate(
             [
-            'name' => 'required|max:255',
-            'amount' => 'required',
-            'description' => 'required',
-            'deadline' => 'required',
-            'user_id' => 'required',
-            'type_id' => 'required',
-            'purpose_id' => 'required',
+            'names' => 'required|max:255',
+            'descriptions' => 'required',
+            'deadlines' => 'required',
+            'user_ids' => 'required',
+            'type_ids' => 'required',
+            'purpose_ids' => 'required',
              ]
             );
+       
 
             $pledge = new Pledge();
-            $pledge->name = $request->name;
-            $pledge->description = $request->description;
-            $pledge->amount = $request->amount;
-            $pledge->deadline=$request->deadline;
-            $pledge->type_id=$request->type_id;
-            $pledge->purpose_id=$request->purpose_id;
-            $pledge->user_id=$request->user_id;
-            $pledge->status= $request->status == true ? '1':'0';
+            $pledge->name = $request->names;
+            $pledge->description = $request->descriptions;
+            $pledge->amount = $request->amounts;
+            $pledge->deadline=$request->deadlines;
+            $pledge->type_id=$request->type_ids;
+            $pledge->purpose_id=$request->purpose_ids;
+            $pledge->user_id=$request->user_ids;
+            $pledge->object_name=$request->object_names;
+            $pledge->object_quantity=$request->object_quantitys;
+            $pledge->object_cost=$request->object_costs*$request->object_quantitys;
+            // $pledge->status= $request->statuss == true ? '1':'0';
+            $pledge->church_id=$new_user;
             $pledge->created_by= Auth::user()->id;
             $pledge->save();
-
             // saving user notification
             $notification = new Notification();
-            $notification->user_id= $request->user_id;
+            $notification->user_id= $request->user_ids;
             $notification->created_by= Auth::user()->id;
             $notification->type='Member Pledge';
             $name=$request->name;
             $notification->message='Hello,You have made a new pledge tited '.$name.'.';
             $notification->save();
             
-            return response()->json(['status' => "success"]);
+            $notification=array(
+                'message'=>' pledge registered successfully',
+                'alert-type'=>'success'
+             );
+              return redirect()->back()->with($notification);
     }
 
     
@@ -99,7 +124,11 @@ class PledgeController extends Controller
     public function show($id)
     {
         $pledge = Pledge::with('user')->with('type')->with('purpose')->find($id);
-        return response()->json(['pledge' => $pledge]);
+        $pledgeObjects = Pledge::with('user')
+        ->where("type_id",1)
+        ->with('type')->with('purpose')->find($id);
+        return response()->json(['pledge' => $pledge,
+    'pledgeObjects'=>$pledgeObjects]);
     }
 
         /**
@@ -113,7 +142,7 @@ class PledgeController extends Controller
     {
         request()->validate([
             'name' => 'required|max:255',
-            'amount' => 'required',
+            // 'amount' => 'required',
             'description' => 'required',
             'deadline' => 'required',
             'user_id' => 'required',
@@ -130,6 +159,9 @@ class PledgeController extends Controller
         $pledge->type_id=$request->type_id;
         $pledge->status= $request->status == true ? '1':'0';
         $pledge->user_id=$request->user_id;
+        $pledge->object_name=$request->object_name;
+        $pledge->object_quantity=$request->object_quantity;
+        $pledge->object_cost=$request->object_quantity*$request->object_cost;
         $pledge->created_by= Auth::user()->id;
         $pledge->save();
         return response()->json(['status' => "success"]);
@@ -208,4 +240,8 @@ class PledgeController extends Controller
         return  response()->json(['success' => true]);
 
     }
+
+    //handling the getting the plede logic using simply the ajax call
+    
 }
+

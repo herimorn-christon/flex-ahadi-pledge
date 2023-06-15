@@ -17,7 +17,7 @@
                   @endphp
                   <div class="col-md-12">
                       <label for="" class="text-secondary">Pledge Type</label>
-                      <select name="type_id"  id="type_id" class="form-control">
+                      <select name="type_id"  id="type_id" class="form-control" onchange="showFields()">
                           <option value="">--Select Pledge Type --</option>
                           @foreach ( $types as $item)
                           <option value="{{ $item->id}}">{{ $item->title}}</option>
@@ -25,7 +25,9 @@
                       </select>
                   </div>
                   @php
-                  $purpose= App\Models\Purpose::where('status','')->get();
+                   $new_user=Auth::user()->church_id;
+                  $purpose= App\Models\Purpose::where('status','')
+                  ->where('church_id',$new_user)->get();
                   @endphp
                   <div class="col-md-6" id="kidawa_form">
                       <label for="" class="text-secondary">Pledge Purpose</label>
@@ -42,12 +44,53 @@
                           <input type="text" name="name" id="name" class="form-control" placeholder="Enter Pledge Name">
                       </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-6 hidden" id="moneyFields">
                   <div class="form-group">
                       <label for="amount" class="text-secondary">Amount</label>
                       <input type="text" name="amount" id="amount" class="form-control" placeholder="Enter Pledge Amount">
                   </div>
+                  
                   </div>
+                  <div id="objectFields" class="hidden">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="amount" class="text-secondary">object name </label>
+                        <input type="text" name="object_name" id="object_name" class="form-control" placeholder="Enter Pledge Amount">
+                    </div>
+                    </div>
+                    <div class="col-md-6" style="margin-left:50%;margin-top:-5.5rem">
+                        <div class="form-group">
+                            <label for="amount" class="text-secondary">Metrics </label>
+                            <select required name="metrics" class="form-control" id="metrics">
+                                <option disabled selected>Select Metrics</option>
+                                <option value="kg">Kg</option>
+                                <option value="Tonne">Tonne</option>
+                                <option value="g">g</option>
+                                <option value="Mg">Mg</option>
+                                <option value="Litre">Litre</option>
+                                <option value="Ounce">Ounce</option>
+                                <option value="Bar">Bar</option>
+                                <option value="kg">Kg</option>
+                               
+                            </select>
+                        </div>
+                        </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="amount" class="text-secondary">object cost/metrics</label>
+                            <input type="text" name="object_cost" id="object_cost" class="form-control" placeholder="Enter Pledge Amount">
+                        </div>
+                        </div>
+
+                    <div class="col-md-6" style="margin-left:50%;margin-top:-5.5rem">
+                        <div class="form-group">
+                            <label for="amount" class="text-secondary">object quantity </label>
+                            <input type="text" name="object_quantity" id="myquantity" class="form-control" placeholder="Enter Pledge Amount">
+                        </div>
+                        </div>
+                           
+                  </div>
+
                   <div class="col-md-6">
                   <div class="form-group">
                       <label for="deadline" class="text-secondary">Deadline</label>
@@ -85,6 +128,25 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
+  <script>
+  function showFields() {
+    var selection = document.getElementById("type_id").value;
+    console.log(selection);
+    var moneyFields = document.getElementById("moneyFields");
+    var objectFields = document.getElementById("objectFields");
+
+    // Reset fields
+    moneyFields.classList.add("hidden");
+    objectFields.classList.add("hidden");
+
+    if (selection === "9") {
+        moneyFields.classList.remove("hidden");
+    } else if (selection === "1") {
+        objectFields.classList.remove("hidden");
+    }
+}
+</script>
+
   
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>

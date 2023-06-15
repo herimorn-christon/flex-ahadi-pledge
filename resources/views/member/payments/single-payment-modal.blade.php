@@ -11,6 +11,10 @@
             
             <b class="text-secondary">Payment Pledge:</b>   <span id="purpose-info" class="text-dark"></span>
             <hr>
+            <b class="text-secondary">Pledge  Amount:</b>   <span id="purpose-amount" class="text-dark"></span>
+            <hr>
+            <b class="text-secondary">Remained  Amount:</b>   <span id="purpose-remained" class="text-dark"></span>
+            <hr>
             <b class="text-secondary">Payment Amount:</b>   <span id="amount-info" class="text-dark"></span>
             <hr>
             <b class="text-secondary">Payment Method:</b>   <span id="method-info" class="text-dark"></span>

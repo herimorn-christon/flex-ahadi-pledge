@@ -20,6 +20,8 @@ class MyPledgeController extends Controller
      */
     public function index()
     {
+        $new_user=Auth::user()->church_id;
+        // ->where('church_id',$new_user)
          // Function for number convertion
        function thousandsCurrencyFormat($num) {
 
@@ -43,35 +45,50 @@ class MyPledgeController extends Controller
         $types=PledgeType::all();
         $user=Auth::user()->id;
         $types=PledgeType::all();
-        $purposes=Purpose::all();
+        $purposes=Purpose::where('church_id',$new_user)->get();
         $total_pledges=Pledge::where('user_id',$user)
+                               ->where('church_id',$new_user)
                                ->count();
         $fullfilled=Pledge::where('user_id',$user)
+                          ->where('church_id',$new_user)
                             ->where('status','1')
                             ->count();
         $unfullfilled=Pledge::where('user_id',$user)
+        ->where('church_id',$new_user)
                               ->where('status','')
                               ->count();
-        $money=thousandsCurrencyFormat(Pledge::where('user_id',$user)->sum('amount'));
-        $object=Pledge::where('user_id',$user)->where('type_id','1')->count();
+        $money=thousandsCurrencyFormat(Pledge::where('user_id',$user)->where('church_id',$new_user)->sum('amount'));
+        $object=Pledge::where('user_id',$user)->where('church_id',$new_user)->where('type_id','1')->count();
 
 
         $pledges = Pledge::where('user_id',$user)
+                           ->where('type_id',9)
+                           ->where('church_id',$new_user)
                            ->orderBy('updated_at','DESC')
                            ->with('user')
                            ->with('type')
                            ->with('purpose')
                            ->get();
-        return response()->json([
+        $objectPledges = Pledge::where('user_id',Auth::user()->id)
+                           ->where('type_id',1)
+                           ->where('church_id',$new_user)
+                           ->orderBy('updated_at','DESC')
+                           ->with('user')
+                           ->with('type')
+                           ->with('purpose')
+                           ->get();
+                        
+                  return response()->json([
                                  'purposes' => $purposes,
                                  'total_pledges' => $total_pledges,
                                  'fullfilled' => $fullfilled,
                                  'unfullfilled' => $unfullfilled,
                                  'money' => $money,
                                  'object' => $object,
-                                 'pledges' => $pledges
+                                 'pledges' => $pledges,
+                                 'objectPledges'=>$objectPledges,
                                 ]);
-    }
+          }
 
     /**
      * Store a newly created resource in storage.
@@ -80,11 +97,14 @@ class MyPledgeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+
     {
+        $new_user=Auth::user()->church_id;
+         
         request()->validate(
             [
             'name' => 'required|max:255',
-            'amount' => 'required',
+            // 'amount' => 'required',
             'description' => 'required',
             'deadline' => 'required',
             'type_id' => 'required',
@@ -99,8 +119,15 @@ class MyPledgeController extends Controller
             $pledge->deadline=$request->deadline;
             $pledge->type_id=$request->type_id;
             $pledge->purpose_id=$request->purpose_id;
+            $pledge->purpose_id=$request->purpose_id;
+            $pledge->object_name=$request->object_name;
+            $pledge->object_quantity=$request->object_quantity;
+            $pledge->object_cost=$request->object_cost*$request->object_quantity;
+            $pledge->metrics=$request->metrics;
+            $pledge->church_id=$new_user;
             $pledge->user_id=Auth::user()->id;
             $pledge->status='0';
+    
             $pledge->created_by= Auth::user()->id;
             $pledge->save();
 
@@ -126,10 +153,34 @@ class MyPledgeController extends Controller
     public function show($id)
     {
         $pledge = Pledge::with('user')->with('type')->with('purpose')->find($id);
-        $payments=Payment::where('pledge_id',$id)->with('pledge')->get();
+        $objectPledges = Pledge::where('type_id',1)->with('user')->with('type')->with('purpose')->find($id);
+        //payments
+        $payment_object_sum=Payment::where('pledge_id',$id)->sum('object_quantity');
+        $pledge_value=Pledge::find($id);
+        $payments=Payment::where('pledge_id',$id)->with('pledge')
+        ->with('payer')
+        ->with('payment')
+        ->get();
+        // $payments = Payment::where('user_id',$user)
+        // ->orderBy('updated_at','DESC')
+        // ->with('payer')
+        // ->with('payment')
+        // ->with('pledge')
+        // ->whereHas('pledge', function ($query) {
+        //     $query->where('type_id', 9);
+        // })
+        // ->get();
+        $paymentsAmount=Payment::where('pledge_id',$id)->with('pledge')->sum('amount');
+         
         return response()->json([
                                 'pledge' => $pledge,
-                                'payments'=>$payments
+                                'payments'=>$payments,
+                                'objectPledges'=>$objectPledges,
+                                'paymentsAamount'=>$paymentsAmount,
+                                'payment_object_sum'=>$payment_object_sum,
+                                'pledge_value'=>$pledge_value,
+
+
                             ]);
     }
 

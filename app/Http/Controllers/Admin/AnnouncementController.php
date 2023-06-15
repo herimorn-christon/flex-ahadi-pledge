@@ -19,8 +19,9 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::orderBy('updated_at','DESC')->get();
-        $total_announcements=Announcement::count();
+        $new_user=Auth::user()->church_id;
+        $announcements = Announcement::where('church_id',$new_user)->orderBy('updated_at','DESC')->get();
+        $total_announcements=Announcement::where('church_id',$new_user)->count();
         return response()->json(['announcements' => $announcements,'total_announcements'=>$total_announcements]);
     }
 
@@ -32,6 +33,9 @@ class AnnouncementController extends Controller
      */
     public function store(Request $request)
     {
+       
+        //dd($new_user);
+        $new_user = Auth::user()->church_id;
         request()->validate(
             [
             'title' => 'required|max:255',
@@ -43,6 +47,7 @@ class AnnouncementController extends Controller
             $announcement = new Announcement();
             $announcement->title=$request->title;
             $announcement->body=$request->body;
+            $announcement->church_id=$new_user;
             if($request->hasfile('image')){
                 $file=$request->file('image');
                 $filename=time().'.'.$file->getClientOriginalExtension();

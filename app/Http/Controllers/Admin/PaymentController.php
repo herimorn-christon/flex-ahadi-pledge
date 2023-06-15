@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\paymentFormRequest;
 use App\Http\Requests\Admin\paymentsFormRequest;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 class PaymentController extends Controller
 {
@@ -21,17 +22,37 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::orderBy('updated_at','DESC')->where('verified',1)->with('payer')->with('payment')->with('pledge')->get();
-        $total=Payment::where('verified',1)->sum('amount');
-        $highest=Payment::where('verified',1)->max('amount');
-        $lowest=Payment::where('verified',1)->min('amount');
-        $best=Payment::where('verified',1)->where('amount',$highest)->with('payer')->first();
+        $new_user=Auth::user()->church_id;
+        $payments_object = Payment::orderBy('updated_at','DESC')->where('verified',1)
+        ->where('church_id',$new_user)
+        ->with('payer')->with('payment')->with('pledge')
+        ->whereHas('pledge', function ($query) {
+            $query->where('type_id', 1);
+        })
+        ->get();
+        $payments = Payment::orderBy('updated_at','DESC')->where('verified',1)
+        ->where('church_id',$new_user)
+        ->with('payer')->with('payment')->with('pledge')
+        ->whereHas('pledge', function ($query) {
+            $query->where('type_id', 9);
+        })
+        ->get();
+        $total=Payment::where('verified',1)->where('church_id',$new_user)->sum('amount');
+        $highest=Payment::where('verified',1)->where('church_id',$new_user)->max('amount');
+        $lowest=Payment::where('verified',1)->where('church_id',$new_user)->min('amount');
+        $best=Payment::where('verified',1)->where('church_id',$new_user)->where('amount',$highest)->with('payer')->first();
+        $users = User::where('church_id',$new_user)->get();
+        $pledges = Pledge::where('church_id',$new_user)->get();
+
 
         return response()->json(['payments' => $payments,
                                  'total'=>$total,
                                  'highest'=>$highest,
                                  'lowest'=>$lowest,
-                                 'best'=>$best
+                                 'best'=>$best,
+                                 'users'=>$users,
+                                 'pledges'=>$pledges,
+                                 'payments_object'=>$payments_object,
                                 ]);
     }
 
@@ -44,12 +65,12 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-
+        $new_user=Auth::user()->church_id;
         request()->validate(
             [
-            'type_id' => 'required',
+            // 'type_id' => 'required',
             'pledge_id' => 'required',
-            'amount' => 'required',
+            // 'amount' => 'required',
             'receipt' => 'required',
             'user_id' => 'required',
             'verified'=>'1'
@@ -57,9 +78,11 @@ class PaymentController extends Controller
             );
 
     
-            $pledge = Pledge::find($request->pledge_id);
+            $pledge = Pledge::where('church_id',$new_user)->find($request->pledge_id);
+      
 
-            $pledgePayments = Payment::where('pledge_id', $request->pledge_id)->get()->toArray();
+            $pledgePayments = Payment::where('pledge_id', $request->pledge_id)
+            ->where('church_id',$new_user)->get()->toArray();
 
             $totalPaid = array_reduce($pledgePayments, 
             function ($acc, $element)
@@ -86,7 +109,10 @@ class PaymentController extends Controller
             $payment->pledge_id=$request->pledge_id;
             $payment->user_id=$request->user_id;
             $payment->receipt=$request->receipt;
+            $payment->object_cost=$request->object_cost;
+            $payment->object_quantity=$request->object_quantity;
             $payment->verified=1;
+            $payment->church_id=$new_user;
             $payment->created_by= Auth::user()->id;
             $payment->save();
             
@@ -112,15 +138,18 @@ class PaymentController extends Controller
             'type_id' => 'required|max:255',
             'user_id' => 'required',
             'pledge_id' => 'required',
-            'amount' => 'required',
+
         ]);
-  
+           //lets finds the object costs
         $payment = Payment::find($id);
         $payment->type_id = $request->type_id;
         $payment->user_id = $request->user_id;
         $payment->amount = $request->amount;
         $payment->pledge_id=$request->pledge_id;
         $payment->user_id=$request->user_id;
+        $payment->created_by= Auth::user()->id;
+        $payment->object_cost=$request->object_cost;
+        $payment->object_quantity=$request->object_quantity;
         $payment->created_by= Auth::user()->id;
         $payment->save();
         return response()->json(['status' => "success"]);
@@ -137,6 +166,16 @@ class PaymentController extends Controller
         Payment::destroy($id);
         return response()->json(['status' => "success"]);
     }
+    //toogle functionality
+    public function toggle(Request $request, $id)
+    {
+        $payment = Payment::findOrFail($id);
+        $payment->is_active = !$payment->is_active;
+        $payment->save();
+
+        return response()->json(['message' => 'payment status changed successfully']);
+    }
+
         /**
      * Display the specified resource.
      *

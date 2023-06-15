@@ -15,16 +15,16 @@
             <input type="hidden" name="update_id" id="update_id">
          
             <div class="mb-3">
-              <label for="recipient-name" class=" text-secondary">Community Name:</label>
-              <input type="text" class="text-capitalize form-control" id="name"  name="name" placeholder="Enter Community Name">
+              <label for="recipient-name" class=" text-secondary">{{ __("Community Name") }}:</label>
+              <input type="text" class="text-capitalize form-control" id="name"  name="name" placeholder="{{ __('Enter Community Name') }}">
             </div>
             <div class="mb-3">
-              <label for="message-text" class="text-secondary">Community Abbreviation:</label>
-               <input type="text" class="text-uppercase form-control" id="abbreviation" name="abbreviation" placeholder="Enter Community Abbreviation">
+              <label for="message-text" class="text-secondary">{{ __("Community Abbreviation") }}:</label>
+               <input type="text" class="text-uppercase form-control" id="abbreviation" name="abbreviation" placeholder="{{ __('Enter Community Abbreviation') }}">
             </div>
             <div class="mb-3">
-              <label for="message-text" class=" text-secondary">Community Location:</label>
-              <input type="text" class="text-capitalize form-control" id="location" name="location" placeholder="Enter Community Location">
+              <label for="message-text" class=" text-secondary">{{ __("Community Location") }}:</label>
+              <input type="text" class="text-capitalize form-control" id="location" name="location" placeholder="{{ __('Enter Community Location') }}">
             </div>
             <div class="row">
               <div class="col-md-9">
@@ -33,7 +33,8 @@
               <div class="mb-3 col-md-3">
                  <button type="submit" class="btn bg-flex text-light btn-block " id="save-community-btn">
                   <i class="fa fa-save"></i>
-                  Save Community
+                  {{ __("Save Community") }}
+              
                 </button>
               </div>
             </div>       

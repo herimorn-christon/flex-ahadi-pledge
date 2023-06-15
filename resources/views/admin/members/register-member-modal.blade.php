@@ -1,7 +1,8 @@
 
 <!-- Register User Modal Page -->
 @php
-$jumuiyas=App\Models\Jumuiya::get();
+ $new_user=Auth::user()->church_id;
+$jumuiyas=App\Models\Jumuiya::where('church_id',$new_user)->get();
 @endphp
 
 
@@ -25,7 +26,7 @@ $jumuiyas=App\Models\Jumuiya::get();
                     <label for="fname" class="text-secondary">{{ __('First Name') }}</label>
 
                     <div class="form-group">
-                        <input id="fname" type="text" placeholder="Enter First Name" class="text-capitalize form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus type="required">
+                        <input id="fname" type="text" placeholder="{{__('Enter First Name')}}" class="text-capitalize form-control @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}" required autocomplete="name" autofocus type="required">
 
                         @error('fname')
                             <span class="invalid-feedback" role="alert">
@@ -38,7 +39,7 @@ $jumuiyas=App\Models\Jumuiya::get();
                     <label for="mname" class="text-secondary">{{ __('Middle Name') }}</label>
 
                     <div class="">
-                        <input id="mname" type="text" placeholder="Enter Middle Name" class="text-capitalize  form-control @error('mname') is-invalid @enderror" name="mname" value="{{ old('fname') }}" required autocomplete="name" autofocus type="required">
+                        <input id="mname" type="text" placeholder="{{ __('Enter Middle Name') }}" class="text-capitalize  form-control @error('mname') is-invalid @enderror" name="mname" value="{{ old('fname') }}" required autocomplete="name" autofocus type="required">
 
                         @error('mname')
                             <span class="invalid-feedback" role="alert">
@@ -51,7 +52,7 @@ $jumuiyas=App\Models\Jumuiya::get();
                     <label for="lname" class="text-secondary">{{ __('Last Name') }}</label>
 
                     <div class="form-group">
-                        <input id="lname" type="text" placeholder="Enter Last Name" class="text-capitalize  form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus type="required">
+                        <input id="lname" type="text" placeholder="{{ __('Enter Last Name') }}" class="text-capitalize  form-control @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}" required autocomplete="name" autofocus type="required">
 
                         @error('lname')
                             <span class="invalid-feedback" role="alert">
@@ -64,7 +65,7 @@ $jumuiyas=App\Models\Jumuiya::get();
                     <label for="phone" class="form-label text-secondary ">{{ __('phone') }}</label>
 
                     <div class="form-group">
-                        <input id="phone" type="text" maxlength="10" placeholder="Enter Phone Number" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus type="required">
+                        <input id="phone" type="text" maxlength="10" placeholder="{{ __('Enter Phone Number') }}" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus type="required">
 
         
                     </div>
@@ -73,14 +74,14 @@ $jumuiyas=App\Models\Jumuiya::get();
                     <label for="email" class="text-secondary">{{ __('Email Address') }}</label>
 
                     <div class="form-group">
-                        <input id="email" type="email" placeholder="Enter Email Address" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" type="required">
+                        <input id="email" type="email" placeholder="{{__('Enter Email Address') }}" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" type="required">
 
         
                     </div>
                 </div>
 
                 <div class="col-md-6 d-flex flex-column" id="form">
-                    <label for="" class="text-secondary">Jumuiya (Community) </label>
+                    <label for="" class="text-secondary">{{ __("Community") }} </label>
                     <select name="jumuiya" id="jumuiya" class="form-control">
                         @foreach ($jumuiyas as $user )
                         <option value={{ $user->id }}>{{$user->name}}</option>
@@ -92,17 +93,17 @@ $jumuiyas=App\Models\Jumuiya::get();
                 </div>
 
                 <div class="col-lg-6">
-                    <label for="card_no" class="text-secondary">Birthdate</label>
+                    <label for="card_no" class="text-secondary">{{ __("Birthdate") }}/label>
                     <div class="form-group form-primary mb-2"> 
                         <input id="date_of_birth" type="date" class="form-control" name="date_of_birth" placeholder="" > </div>
                 </div>
 
             <div class="col-lg-6">
-                    <label for="gender" class="text-secondary">Gender</label>
+                    <label for="gender" class="text-secondary">{{ __('Gender') }}</label>
                     <select name="gender" id="gender" class="custom-select form-control">
-                            <option value="">--Select Gender --</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="">--{{ __('Select Gender') }} --</option>
+                            <option value="male">{{ __("Male") }}</option>
+                            <option value="female">{{ __("Female") }}</option>
                     </select>
                
             </div>
@@ -111,7 +112,7 @@ $jumuiyas=App\Models\Jumuiya::get();
                     <label for="password" class="text-secondary">{{ __('Password') }}</label>
 
                     <div class="form-group">
-                        <input id="password" placeholder="Enter Password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <input id="password" placeholder="{{ __('Enter Password') }}" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -125,16 +126,16 @@ $jumuiyas=App\Models\Jumuiya::get();
                     <label for="password-confirm" class="">{{ __('Confirm Password') }}</label>
 
                     <div class="form-group">
-                        <input id="password-confirm" placeholder="Confirm Password" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                        <input id="password-confirm" placeholder="{{ __('Confirm Password') }}" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                     </div>
                 </div>
                 {{-- start of member status select --}}
                 <div class="col-md-6">
-                    <label for="" class="text-secondary"> Member Status</label>
+                    <label for="" class="text-secondary"> {{ __('Member Status') }}</label>
                     <select name="status" id="status" class="custom-select form-control bg-light">
-                     <option value="0">-- Choose Member Status --</option>
-                      <option value="0">Enabled</option>
-                      <option value="1">Disabled</option>
+                     <option value="0">-- {{ __('Choose Member Status') }} --</option>
+                      <option value="0">{{ __('Enabled') }}</option>
+                      <option value="1">{{ __('Disabled') }}</option>
                     </select>
                   
                 </div>
@@ -144,7 +145,7 @@ $jumuiyas=App\Models\Jumuiya::get();
                         <label for="" class="text-white">.</label>
                             <button type="submit" class="btn  text-decoration-none text-light bg-flex btn-block col-lg-12" id="save-member-btn">
                                <i class="fa fa-save"></i>
-                                {{ __('Save Member') }}
+                               {{ __('Save Member') }}
                             </button>
                         </div>
              

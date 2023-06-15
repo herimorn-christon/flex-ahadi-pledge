@@ -14,7 +14,7 @@
     <!-- Messages Dropdown Menu -->
 
     <!-- Notifications Dropdown Menu -->
-    <li class="nav-item ">
+    {{-- <li class="nav-item ">
       <a class="nav-link" type="button" data-toggle="modal" onclick="showAllNotifications()">
         <i class="far fa-bell"></i>
         @php
@@ -26,7 +26,7 @@
        
       </a>
    
-    </li>
+    </li> --}}
 
 
     {{-- user details --}}
@@ -59,5 +59,17 @@
    
   </ul>
 
-  
+
+
+  {{-- <form id="languageForm" action="{{ route('switchLanguage', app()->getLocale()) }}" method="GET">
+    @csrf
+    <label for="languageSelect">{{ __('Select Language') }}</label>
+    <select name="locale" id="languageSelect" onchange="document.getElementById('languageForm').submit()">
+        @foreach($languages as $locale => $language)
+            <option value="{{ $locale }}" {{ app()->getLocale() === $locale ? 'selected' : '' }}>
+                {{ $language }}
+            </option>
+        @endforeach
+    </select>
+</form> --}}
 </nav>

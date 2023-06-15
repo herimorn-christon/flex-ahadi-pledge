@@ -33,6 +33,17 @@
       <link rel="stylesheet" href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
       <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
       <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+        <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Include DataTables CSS and JS files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
+
+    <!-- Include DataTables Buttons CSS and JS files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css">
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
       
    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
     <!-- Theme style -->
@@ -67,10 +78,20 @@
 <body class="hold-transition sidebar-mini sidebar-collapse layout-fixed">
 <div class="wrapper">
 
-  <!-- Preloader -->
 
-  <!-- Navbar -->
+  
   @include('layouts.inc.admin-navbar')
+  {{-- <form id="languageForm" action="{{ route('switchLanguage', app()->getLocale()) }}" method="GET">
+    @csrf
+    <label for="languageSelect">{{ __('Select Language') }}</label>
+    <select name="locale" id="languageSelect" onchange="document.getElementById('languageForm').submit()">
+        @foreach($languages as $locale => $language)
+            <option value="{{ $locale }}" {{ app()->getLocale() === $locale ? 'selected' : '' }}>
+                {{ $language }}
+            </option>
+        @endforeach
+    </select>
+</form> --}}
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
@@ -113,7 +134,7 @@
         <div class="row g-1"  >
 
           {{-- start  --}}
-          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="This is the total of money pledges in {{ date('Y') }}">
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="{{ __("This is the total of money pledges in") }} {{ date('Y') }}">
             <!-- small box -->
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
@@ -122,22 +143,21 @@
               </div>
               <div class="text-center">
                 <h6 class=""> 
-                    Pledges Amount
-
+                {{ __( "Pledges Amount") }}
+              
                 </h6>
 
                 <h3 class="text-secondary">
-                <img src="{{asset('icons/oath.png')}}" style="width:50px" height="50px"/>    
-                  {{$pledges}}
-                  <small>Tsh</small>
+                  <i class="fas fa-handshake"></i>  
+                  {{$pledges}} Tsh
                 </h3>
               </div>
               
-              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">{{ __("More Info") }} <i class="fas fa-arrow-circle-right "></i></a>
             </div>
           </div>
           {{-- end  --}}
-          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="This is the sum of pledge payments made in {{ date('Y')}}">
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="{{ __("This is the sum of pledge payments made in") }} {{ date('Y')}}">
             <!-- small box -->
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
@@ -145,14 +165,16 @@
                 {{-- <img src="{{ asset('icons/salary.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
-                <h6>                  
-                  Pledges Payments  
+                <h6>   
+                  {{ __( "Pledges Payments") }}
+                              
+               
                 </h6>
 
                 <h3 class="text-secondary">
-                  <img src="{{asset('icons/money-bag.png')}}" style="width:50px" height="50px"/> 
-                  {{$payments}}
-                  <small>Tsh</small>
+                  <i class="fas fa-coins"></i>
+
+                  {{$payments}}Tsh
                 </h3>
               </div>
               
@@ -164,7 +186,7 @@
       
 
           {{-- start --}}
-          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="This is the total amount of money for unpaid pledges in {{ date('Y') }}">
+          <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;" data-toggle="tooltip" data-placement="bottom" title="{{ __('This is the total amount of money for unpaid pledges in ') }}{{ date('Y') }}">
             <!-- small box -->
             <div class="small-box bg-white border-top-flex">
               <div class="mx-auto text-center pt-4">
@@ -172,18 +194,18 @@
                 {{-- <img src="{{ asset('icons/card.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
               </div>
               <div class="text-center">
-                <h6>                  
-                  Remaining Payments
+                <h6>         
+                  {{ __('Remaining Payments') }}         
+              
                 </h6>
 
                 <h3 class="text-secondary">
-                  <img src="{{asset('icons/coins.png')}}" style="width:50px" height="50px"/> 
-                  {{$remaining}}
-                  <small>Tsh</small>
+                  <i class="fas fa-coins"></i>
+                  {{$remaining}}Tsh
                 </h3>
               </div>
               
-              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer" style="background-color: #fafcfd  !important;">{{ __("More Info") }} <i class="fas fa-arrow-circle-right "></i></a>
             </div>
           </div>
 
@@ -200,18 +222,17 @@
               </div>
               <div class="text-center">
                 <h6 >      
-                               
-                  Card Payments
+                        {{ __("Card Payments") }}       
+                  
                 </h6>
 
                 <h3 class="text-secondary">
-                  <img src="{{asset('icons/debit-card.png')}}" style="width:50px" height="50px"/> 
-                  {{$cards}}
-                  <small>Tsh</small>
+                  <i class="fas fa-credit-card"></i>
+                  {{$cards}}Tsh
                 </h3>
               </div>
               
-              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+              <a href="{{ url('admin/all-pledges') }}" class="small-box-footer" style="background-color: #fafcfd  !important;">{{ __("More Info") }} <i class="fas fa-arrow-circle-right "></i></a>
             </div>
           </div>
      
@@ -224,10 +245,10 @@
                   <div class="col-12 col-sm-6 col-md-3">
                     <a href="{{ url('admin/all-members')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
                     <div class="info-box">
-                      <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/hired.png')}}"/></span>
+                      <span class="info-box-icon elevation-1"><i class="fas fa-user-friends"></i></span>
               
                       <div class="info-box-content">
-                        <span class="info-box-text">Total Registered members</span>
+                        <span class="info-box-text">{{ __("Total Registered members") }}</span>
                         <span class="info-box-number">
                           {{ $members }}
                         </span>
@@ -241,12 +262,12 @@
                   <div class="col-12 col-sm-6 col-md-3">
                     <a href="{{ url('admin/all-members')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
                     <div class="info-box mb-3">
-                      <span class="info-box-icon bg-danger elevation-1">
-                        <img src="{{asset('icons/avatar.png')}}"/>
+                      <span class="info-box-icon  elevation-1">
+                        <i class="fas fa-male"></i>
                       </span>
               
                       <div class="info-box-content">
-                        <span class="info-box-text">Total Male Members </span>
+                        <span class="info-box-text">{{ __("Total Male Members ") }}</span>
                         <span class="info-box-number">{{ $male }} </span>
                       </div>
                       <!-- /.info-box-content -->
@@ -256,17 +277,16 @@
                   </div>
                   <!-- /.col -->
               
-                  <!-- fix for small devices only -->
                  
                   <div class="col-12 col-sm-6 col-md-3">
                     <a href="{{ url('admin/all-members')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
                     <div class="info-box mb-3">
-                      <span class="info-box-icon bg-success elevation-1">
-                        <img src="{{asset('icons/female.png')}}"/>
+                      <span class="info-box-icon elevation-1">
+                        <i class="fas fa-female"></i>
                       </span>
               
                       <div class="info-box-content">
-                        <span class="info-box-text">Total Female Members</span>
+                        <span class="info-box-text">{{ __("Total Female Members") }}</span>
                         <span class="info-box-number"> {{ $female }} </span>
                       </div>
                       <!-- /.info-box-content -->
@@ -279,12 +299,12 @@
                     <a href="{{ url('admin/all-communities')}}" 
                     style="color:black" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number  of communities (Jumuiya) found in the congregation">
                     <div class="info-box mb-3">
-                      <span class="info-box-icon bg-success elevation-1">
-                        <img src="{{asset('icons/epidemiology.png')}}" />
+                      <span class="info-box-icon elevation-1">
+                        <i class="fas fa-users"></i> 
                       </span>
               
                       <div class="info-box-content">
-                        <span class="info-box-text">Total Communities</span>
+                        <span class="info-box-text">{{ __("Total Communities") }}</span>
                         <span class="info-box-number">
                           {{ $communities}}
                            </span>
@@ -297,12 +317,12 @@
                   <div class="col-12 col-sm-6 col-md-3">
                     <a href="{{ url('admin/all-pledges')}}" style="color:black" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of pledges that have been made in {{ date('Y')}}">
                     <div class="info-box mb-3">
-                      <span class="info-box-icon bg-success elevation-1">
-                        <img src="{{asset('icons/swear.png')}}"/>
+                      <span class="info-box-icon elevation-1">
+                        <i class="fas fa-handshake"></i>
                       </span>
               
                       <div class="info-box-content">
-                        <span class="info-box-text"> Total Pledges Made</span>
+                        <span class="info-box-text"> {{ __("Total Pledges Made") }}</span>
                         <span class="info-box-number">{{ $total_pledges}}</span>
                       </div>
                       <!-- /.info-box-content -->
@@ -314,12 +334,12 @@
                     <a href="{{ url('admin/all-cards')}}" class="text-decoration-none" 
                     style="color:black" data-toggle="tooltip" data-placement="bottom" title="This is the total number of card members that have been created and issued">
                     <div class="info-box mb-3">
-                      <span class="info-box-icon bg-success elevation-1">
-                        <img src="{{asset('icons/debit-card.png')}}"/>
+                      <span class="info-box-icon elevation-1">
+                        <i class="fas fa-id-card"></i>
                       </span>
               
                       <div class="info-box-content">
-                        <span class="info-box-text">Total Member Cards Created</span>
+                        <span class="info-box-text">{{ __("Total Member Cards Created") }}</span>
                         <span class="info-box-number">{{ $total_cards}} </span>
                       </div>
                       <!-- /.info-box-content -->
@@ -331,12 +351,13 @@
                     <a href="{{ url('admin/all-purposes')}}" 
                     style="color:black" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This the amount of money that has been collected from both pledges and cards in {{ date('Y')}}">
                     <div class="info-box mb-3">
-                      <span class="info-box-icon bg-success elevation-1">
-                        <img src="{{asset('icons/contribution.jpg')}}"/>
+                      <span class="info-box-icon elevation-1">
+                        <i class="fas fa-donate"></i>
+
                       </span>
               
                       <div class="info-box-content">
-                        <span class="info-box-text">Total Contributions in {{ date('Y')}}</span>
+                        <span class="info-box-text">{{ __("Total Contributions in") }} {{ date('Y')}}</span>
                         <span class="info-box-number">{{ $contributions}} </span>
                       </div>
                       <!-- /.info-box-content -->
@@ -412,7 +433,7 @@
           <div class="col-md-6">
               <div class="card">
                   <div class="card-body">
-                      <h4>Registered Users</h4>
+                      <h4>{{ __("Registered Users") }}</h4>
 
                       <div class="mt-3 chartjs-chart">
                           <canvas id="myChart">
@@ -430,7 +451,7 @@
               <div class="card">
                   <div class="card-body">
                       
-                      <h4>Pledge payment graph</h4>
+                      <h4>{{ __("Pledge payment graph") }}</h4>
                       
                       <div class="mt-3 chartjs-chart">
                           <canvas id="graphs"></canvas>
@@ -502,6 +523,7 @@
 <script src="{{ asset('plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
 <!-- ChartJS -->
 {{-- end --}}
 <script src="{{ asset('dist/js/adminlte.js') }}"></script>
@@ -549,8 +571,7 @@
     });
   });
 </script>
-     
-            
+          
 <script>
   const ctx = document.getElementById('myChart');
      console.log("halooo");
@@ -563,7 +584,7 @@
           label: 'the number of new registered users',
           data: {!!json_encode($counts) !!},
           backgroundColor: [
-          'rgb(60, 179, 113)',
+          'rgb(0, 46, 91)',
       
       ],
           borderWidth: 1
@@ -575,7 +596,7 @@
             beginAtZero: true,
             title: {
             display: true,
-            text: 'our registered member',
+            text: '{{ __("our registered member") }}',
           }
        
           }
@@ -600,14 +621,14 @@
             data: {
               labels:{!!json_encode($months) !!},
               datasets: [{
-                label: 'pledge payment graph',
+                label: '{{ __("pledge payment graph") }}',
                 data: {!!json_encode($sums) !!},
                 backgroundColor: [
-                  'rgb(60, 179, 113)',
+                  'rgb(0, 46, 91)',
             
             ],
             fill: false,
-            borderColor: 'rgb(60, 179, 113)',
+            borderColor: 'rgb(0, 46, 91)',
             tension: 0.1,
         
               }]
@@ -618,7 +639,7 @@
                   beginAtZero: true,
                   title: {
                   display: true,
-                  text: 'plege per payment',
+                  text: '{{ __("pledge per payment") }}',
                 }
              
                 }

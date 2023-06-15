@@ -14,6 +14,7 @@
                   success: function(response) {
                       $("#pledges-table-body").html("");
                       let pledges = response.pledges;
+                       //console.log(pledges);
                       let fullfilled = response.fullfilled;
                       let unfullfilled = response.unfullfilled;
                       let total_pledges = response.total_pledges;

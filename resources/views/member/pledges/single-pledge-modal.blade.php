@@ -20,7 +20,11 @@
             <hr>
             <b class="text-secondary">Amount:</b>   <span id="end-info" class="text-dark"></span>
             <hr>
+            <b class="text-secondary">Remained amount:</b>   <span id="remain-info" class="text-dark"></span>
+            <hr>
             <b class="text-secondary">Description:</b> <br><span id="description-info" class="text-dark"></span>
+            <hr>
+           
         </p>
         <hr>
         <h6 class="text-secondary "> Pledge Payments</h6>
@@ -33,9 +37,11 @@
                 <th>Payment Date</th>
                 <th>Method</th>
                 <th>Amount</th>
+                <th>Remained Amount</th>
                 <th>Payment Status</th>
               </thead>
               <tbody id="payments-table-body">
+              
 
               </tbody>
             </tr>

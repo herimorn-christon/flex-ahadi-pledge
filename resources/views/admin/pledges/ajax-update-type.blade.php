@@ -59,7 +59,8 @@
                         $("#save-type-btn").prop('enabled', true);
                         if (typeof response.responseJSON.errors !== 'undefined') 
                         {
-                           toastr.info('something went wrong');
+                          $("#type-modal").modal('hide');
+                        //    toastr.info('something5 went wrong');
                             console.log(response)
             let errors = response.responseJSON.errors;
             let nameValidation = "";

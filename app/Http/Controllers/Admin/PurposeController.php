@@ -22,12 +22,16 @@ class PurposeController extends Controller
      */
     public function index()
     {
+        $new_user=Auth::user()->church_id;
         $purposes = Purpose::orderBy('updated_at','DESC')
+                                  ->where('church_id',$new_user)
                                     ->get();
-        $total_purposes=Purpose::count();
+        $total_purposes=Purpose::where('church_id',$new_user)->count();
         $accomplished_purposes=Purpose::where('status','1')
+                                         ->where('church_id',$new_user)
                                         ->count();
         $inaccomplished_purposes=Purpose::where('status','')
+                                         ->where('church_id',$new_user)
                                          ->count();
         return response()->json([
             'purposes' => $purposes,
@@ -47,6 +51,7 @@ class PurposeController extends Controller
      */
     public function store(Request $request)
     {
+        $new_user=Auth::user()->church_id;
         request()->validate(
             [
             'title' => 'required|max:255',
@@ -62,6 +67,7 @@ class PurposeController extends Controller
             $purpose->start_date=$request->start_date;
             $purpose->end_date=$request->end_date;
             $purpose->created_by= Auth::user()->id;
+            $purpose->church_id=$new_user;
             $purpose->save();
             
             // start of user notification
@@ -84,9 +90,14 @@ class PurposeController extends Controller
      */
     public function show($id)
     {
-        $purpose = Purpose::find($id);
-        $pledges = Pledge::where('purpose_id',$id)->orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
-        $payments = Payment::where('pledge_id',$id)->orderBy('updated_at','DESC')->with('payer')->with('payment')->get();
+        $new_user=Auth::user()->church_id;
+        $purpose = Purpose::find($id)
+        ->where('church_id', $new_user);
+        $pledges = Pledge::where('purpose_id',$id)
+        ->where('church_id', $new_user)
+        ->orderBy('updated_at','DESC')->with('user')->with('type')->with('purpose')->get();
+        $payments = Payment::where('pledge_id',$id)
+        ->orderBy('updated_at','DESC')->with('payer')->with('payment')->get();
       
         return response()->json([
                                 'purpose' => $purpose,

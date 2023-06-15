@@ -40,7 +40,7 @@ class SuccessProfile extends Controller
            }
            $data->save();
            $notification=array(
-             'message'=>'Member profile Updated SuccessFully',
+             'message'=>' profile Updated SuccessFully',
              'alert-type'=>'success'
           );
            return redirect()->back()->with($notification);

@@ -26,6 +26,8 @@
                 $("#type").val("");
                 $("#pledge").val("");
                 $("#pamount").val("");
+                $("#object_cost").val("");
+                $("#object_quantity").val("");
                 $("#form-modal").modal('show'); 
             }
          
@@ -40,8 +42,11 @@
                     pledge_id: $("#pledge").val(),
                     amount: $("#pamount").val(),
                     type_id: $("#type").val(),
-                    receipt: $("#receipt").val(),
+                    object_cost: $("#object_cost").val(),
+                    object_quantity: $("#object_quantity").val(),
                 };
+    // console.log(data);
+            //    console.log(data);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -50,6 +55,7 @@
                     type: "POST",
                     data: data,
                     success: function(response) {
+                         console.log(response);
                         $("#save-paymentd-btn").prop('disabled', false);
                         let successHtml = '<div class="alert alert-success" role="alert">Payment Was Added Successfully</div>';
                         $("#alert-div").html(successHtml);
@@ -58,50 +64,27 @@
         //                 $("#purpose_id").val("");
                         $("#pamount").val("");
                         $("#receipt").val("");
+                        $("#object_cost").val("");
+                        $("#object_quantity").val("");
                         showAllPayments();
                         $("#form-modal").modal('hide');
                     },
                     error: function(response) {
-                        $("#save-payment-btn").prop('disabled', false);
+                  console.log(response);
+                    $("#save-payment-btn").prop('disabled', false);
+
+                    if (response.responseJSON && response.responseJSON.errors) {
+                        var errors = response.responseJSON.errors;
+                         console.log(response);
+                        // Handle the validation errors
+                        // Display the errors to the user
+                    } else {
+                        // Handle other error scenarios
+                        // Display a general error message
+                    }
+                                      
          
-                        /*
-            show validation error
-                        */
-                        if (typeof response.responseJSON.errors !== 'undefined') 
-                        {
-            let errors = response.responseJSON.errors;
-            let nameValidation = "";
-            if (typeof errors.name !== 'undefined') 
-                            {
-                                nameValidation = '<li>' + errors.name[0] + '</li>';
-                            }
-            let deadlineValidation = "";
-            if (typeof errors.deadline !== 'undefined') 
-                            {
-                                deadlineValidation = '<li>' + errors.deadline[0] + '</li>';
-                            }
-              
-            let amountValidation = "";
-            if (typeof errors.amount !== 'undefined') 
-                            {
-                                amountValidation = '<li>' + errors.amount[0] + '</li>';
-                            }
-            let receiptValidation = "";
-            if (typeof errors.receipt !== 'undefined') 
-                            {
-                                receiptValidation = '<li>' + errors.receipt[0] + '</li>';
-                            }
-             
-            let errorHtml = '<div class="alert alert-danger" role="alert">' +
-                '<b>Validation Error!</b>' +
-                '<ul>' + nameValidation + deadlineValidation + amountValidation +'</ul>' +
-            '</div>';
-            $("#error-div").html(errorHtml); 
-            let fail = response.responseJSON.fail;
-    
-            $("#error-div").html(fail); 
-                   
-        }
+                  
                     }
                 });
             }

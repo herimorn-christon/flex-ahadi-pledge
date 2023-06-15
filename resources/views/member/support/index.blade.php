@@ -64,9 +64,9 @@
                               <form action="{{ route('delete-problem',$problem->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button> 
-                                  <i class="fa fa-trash" aria-hidden="true" style="color:green"></i>
-                                </button>
+                               
+                                  <button type="submit" style="background:blue" class="btn btn-sm btn-danger"><i class="fa fa-trash" style="color:white" aria-hidden="true" ></i></button>
+                                
                                </form>
 
 

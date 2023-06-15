@@ -15,10 +15,10 @@
   <div class="row" style="display:flex;justify-content:space-around">
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/sigma.png')}}"/></span>
+        <span class="info-box-icon  elevation-1"><i class="fas fa-tasks"></i> <i class="fas fa-registered"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Total Registered Purposes  (Contributions)</span>
+          <span class="info-box-text">{{ __("Total Registered Purposes") }}</span>
           <span class="info-box-number" id="total">
           </span>
         </div>
@@ -29,12 +29,12 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-danger elevation-1">
-          <img src="{{asset('icons/check.png')}}"/>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-check"></i> <i class="fas fa-tasks"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">accomplished Purposes (Contributions) </span>
+          <span class="info-box-text">{{ __("Accomplished Purposes") }} </span>
           <span class="info-box-number"  id="accomplished" > </span>
         </div>
         <!-- /.info-box-content -->
@@ -47,12 +47,12 @@
    
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/cancel.png')}}"/>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-times"></i> <i class="fas fa-tasks"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Unaccomplished Purposes (Contributions)</span>
+          <span class="info-box-text">{{ __("Unaccomplished Purposes") }}</span>
           <span class="info-box-number"  id="unaccomplished"> </span>
         </div>
         <!-- /.info-box-content -->
@@ -103,7 +103,9 @@
         {{-- start of create purpose button --}}
         <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="tooltip" data-placement="bottom" title="Click here to Register a New Purpose (Contribution)" onclick="createPurpose()">
         <i class="fa fa-plus"></i>
-         Add New Purpose
+     
+        {{ __("Add New Purpose") }}
+     
         </button>
         {{-- end of create purpose button --}}
 
@@ -111,7 +113,7 @@
       {{-- start of generate report button --}}
       <a href="{{ route("purpousePdf") }}" class="btn bg-cyan  btn-sm" type="button">
         <i class="fa fa-download text-light" ></i>
-        Generate Report
+        {{ __("Generate Report") }}
       </a>
         {{-- end of generate report button --}}
         
@@ -145,11 +147,11 @@
                 <thead>
                     <tr class="text-secondary">
                         <th>SN</th>
-                        <th>Purpose Title</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Status</th>
-                         <th>Actions</th>
+                        <th>{{ __('Purpose Title') }}</th>
+                        <th>{{ __("Start Date") }}</th>
+                        <th>{{ __("End Date") }}</th>
+                        <th>{{ __("}Status") }}</th>
+                         <th>{{ __("Actions") }}</th>
                     </tr>
                 </thead>
                 <tbody id="purposes-table-body">

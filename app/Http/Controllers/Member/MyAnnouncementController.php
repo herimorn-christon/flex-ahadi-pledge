@@ -17,7 +17,8 @@ class MyAnnouncementController extends Controller
     public function index()
     {
         // $user=Auth::user()->id;
-        $members = Announcement::orderBy('updated_at','DESC')->get();
+        $new_user=Auth::user()->church_id;
+        $members = Announcement::orderBy('updated_at','DESC')->where('church_id',$new_user)->get();
         return response()->json(['members' => $members]);
     }
 

@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand fixed-top  navbar-dark navbar-light">
+<nav class="main-header navbar navbar-expand fixed-top  navbar-dark bg-flex  ">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -8,10 +8,37 @@
     </ul>
 
     <!-- Right navbar links -->
+    @php
+    $user=Auth::User()->id;
+    $counts=App\Models\Notification::where('user_id',$user)->orwhere('user_id','0')->count();
+  
+    @endphp
+  
     <ul class="navbar-nav ml-auto ">
+      <div class="dropdown" style="background:black">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="far fa-bell"></i>
+          <sup><span class="badge badge-danger">{{ $counts }}</span></sup>
+        </a>
+      
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            
+             {{-- writting the sql to fetch the latest notification --}}
+               <?php 
+                  $notifications=App\Models\Notification::orderBy('created_at', 'desc')
+                  ->where('created_by',Auth::user()->id)
+                  ->take(3)
+                  ->get();
+               ?>
+               @foreach ($notifications  as $notification )
+               <li><a class="dropdown-item" href="{{ url('member/my-notifications') }}">    {!! nl2br(e($notification->type)) !!}</a></li>
+               @endforeach
+         
+        </ul>
+      </div>
 
 
-      <!-- Messages Dropdown Menu -->
+      {{-- <!-- Messages Dropdown Menu -->
   
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
@@ -37,21 +64,18 @@
 
           @foreach ($notifications as $item)
 
-          <a href="{{ url('member/my-notifications') }}" >
+          {{-- <a href="{{ url('member/my-notifications') }}" >
             <i class="fas fa-bell mr-2"></i> 
             {{ $item->type}}
-            {{-- <small class="float-right text-muted text-sm">
-              {{ $item->created_at->format('m/d/Y') }}
-            </small> --}}
-          </a>
-          <hr>
+          </a> --}}
+          {{-- <hr>
           @endforeach
          
           <div class="dropdown-divider"></div>
           <a href="{{ url('member/my-notifications') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-   
+     --}}
       {{-- user details --}}
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">

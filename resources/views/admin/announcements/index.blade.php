@@ -14,10 +14,11 @@
 <div class="row starts-border mt-2 mb-2" >
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box">
-      <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/anounce.jpg')}}"/></span>
+      <span class="info-box-icon elevation-1"><i class="fas fa-bullhorn"></i>
+      </span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Total Announcements Made</span>
+        <span class="info-box-text">{{ __("Total Announcements Made") }}</span>
         <span class="info-box-number" id="total_announcements">
       
         </span>
@@ -43,7 +44,7 @@
         {{-- start of create purpose button --}}
         <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="tooltip" data-placement="bottom" title="Click here to Register a New Purpose (Contribution)" onclick="createAnnouncement()">
         <i class="fa fa-plus"></i>
-         Make New Announcement
+         {{ __("Make New Announcement") }}
         </button>
         {{-- end of create purpose button --}}
 
@@ -79,9 +80,9 @@
                 <thead>
                     <tr class="text-secondary">
                         <th>SN</th>
-                        <th>Published Date</th>
-                        <th>Announcement Title</th>
-                         <th>Actions</th>
+                        <th>{{__("Published Date") }}</th>
+                        <th>{{__("Announcement Title") }}</th>
+                         <th>{{__("Actions") }}</th>
                     </tr>
                 </thead>
                 <tbody id="purposes-table-body">

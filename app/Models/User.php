@@ -10,10 +10,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use OwenIt\Auditing\Contracts\Auditable;
 use OwenIt\Auditing\Auditable as AuditableTrait;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements Auditable
 {
-    use HasFactory, Notifiable, HasApiTokens, AuditableTrait;
+    use HasFactory, Notifiable, HasApiTokens, AuditableTrait,HasRoles;
 
     
     /**
@@ -57,6 +58,7 @@ class User extends Authenticatable implements Auditable
         'baptization_date',
        'kipaimara',
         'kipaimara_date',
+        'church_id',
        'sacramenti_meza_bwana'
         
     ];

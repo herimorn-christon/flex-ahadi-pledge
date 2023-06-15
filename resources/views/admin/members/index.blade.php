@@ -9,16 +9,23 @@
 <div class="card p-2 border-left-flex">
 <div class="row mb-1"> 
   @php
-       $users=App\Models\User::get();
+$new_user = Auth::user()->church_id;
+$users = \App\Models\User::where('church_id', $new_user)
+    ->whereHas('roles', function ($query) {
+        $query->where('name', 'member');
+    })
+    ->get();
+
   @endphp
 
 <div class="row">
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box">
-      <span class="info-box-icon bg-info elevation-1"><img src="{{ asset('icons/registered.png') }}"/> </span>
+      <span class="info-box-icon elevation-1"><i class="fas fa-user-friends"></i>
+      </span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Total Registered Members</span>
+        <span class="info-box-text">{{ __("Total Registered Members") }}</span>
         <span class="info-box-number" id="members">
         </span>
       </div>
@@ -29,10 +36,11 @@
   <!-- /.col -->
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box mb-3">
-      <span class="info-box-icon bg-danger elevation-1"><img src="{{ asset('icons/hired.png') }}"/> </span>
+      <span class="info-box-icon elevation-1"><i class="fas fa-check-circle"></i>
+      </span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Total Active Members</span>
+        <span class="info-box-text">{{ __("Total Active Members") }}</span>
         <span class="info-box-number"  id="active"> </span>
       </div>
       <!-- /.info-box-content -->
@@ -45,12 +53,13 @@
  
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box mb-3">
-      <span class="info-box-icon bg-success elevation-1">
-        <img src="{{ asset('icons/fake.png') }}"/> 
+      <span class="info-box-icon elevation-1">
+        <i class="fas fa-times-circle"></i>
+
       </span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Total Inactive Members</span>
+        <span class="info-box-text">{{ __("Total Inactive Members") }}</span>
         <span class="info-box-number"  id="inactive"> </span>
       </div>
       <!-- /.info-box-content -->
@@ -60,12 +69,12 @@
   <!-- /.col -->
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box mb-3">
-      <span class="info-box-icon bg-success elevation-1">
-        <img src="{{ asset('icons/female.png') }}"/> 
+      <span class="info-box-icon elevation-1">
+        <i class="fas fa-female"></i>
       </span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Total female Members</span>
+        <span class="info-box-text">{{ __("Total female Members") }}</span>
         <span class="info-box-number"  id="female"> </span>
       </div>
       <!-- /.info-box-content -->
@@ -76,12 +85,12 @@
 
   <div class="col-12 col-sm-6 col-md-3">
     <div class="info-box mb-3">
-      <span class="info-box-icon bg-success elevation-1">
-        <img src="{{ asset('icons/avatar.png') }}"/> 
+      <span class="info-box-icon elevation-1">
+        <i class="fas fa-male"></i>
       </span>
 
       <div class="info-box-content">
-        <span class="info-box-text">Total male members</span>
+        <span class="info-box-text">{{ __("Total male members") }}</span>
         <span class="info-box-number"  id="male"> </span>
       </div>
       <!-- /.info-box-content -->
@@ -132,11 +141,11 @@
       {{-- start of register member button --}}
     <button type="button" class="btn bg-flex text-light btn-sm" data-toggle="tooltip" data-placement="bottom" title="Click here to Register a New Member" onclick="createMember()">
         <i class="fa fa-user-plus"></i>
-         Register New Member
+         {{ __("Register New Member") }}
     </button>  
      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         <i class="fa fa-user-plus"></i>
-         Add dependants
+         {{ __("Add dependants") }}
     </button>  
    
       {{-- end of register member button --}}
@@ -144,7 +153,7 @@
        {{-- start of generate report button --}}
       <a href="" class="btn bg-cyan  btn-sm" type="button"  data-bs-toggle="modal" data-bs-target="#registeredModal" data-toggle="tooltip" data-placement="top" title="Click here to Generate Member reports">
         <i class="fa fa-download text-light" ></i>
-        Generate Report
+        {{ __("Generate Report") }}
       </a>
         {{-- start of generate report button --}}
 
@@ -172,12 +181,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">add dependant</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> {{ __("Add dependants") }}</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="form-group mb-1" style="height:4rem">
-          <label for="">parent name</label>
+          <label for="">{{ __("parent name") }}</label>
 
           <div class="form-group">
               <select id="select_2" name="users_dependant" class="form-control"> 
@@ -195,24 +204,24 @@
       <span id="parent" class="text-danger error_messages"></span>
         </div>
         <div class="form-group mb-3">
-          <label for="">dependant name</label>
+          <label for="">{{ __('dependant name') }}</label>
           <input type="text" name="dependant_name" class="form-control">
           <span id="dependants" class="text-danger error_messages"></span>
         </div>
         <div class="form-group mb-3">
-          <label for="">relationship</label>
+          <label for="">{{ __ ("relationship")}}</label>
           <input type="text" name="relationship" class="form-control">
           <span id="relationship" class="text-danger error_messages"></span>
         </div>
         <div class="form-group mb-3">
-          <label for="">birthdate</label>
+          <label for="">{{ __("birthdate") }}</label>
           <input type="date" name="birth_date" class="form-control">
           <span id="birthdate" class="text-danger error_messages"></span>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="saving">Save dependant</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __("Close") }}</button>
+        <button type="button" class="btn btn-primary" id="saving">{{ __("Save dependant") }}</button>
       </div>
     </div>
   </div>
@@ -245,12 +254,12 @@
                 <thead>
                      <tr class="text-secondary ">
                             <th>SN</th>
-                            <th>Member ID</th>
-                            <th>Member Name</th>
-                            <th>Community </th>
-                            <th>phone </th>
-                            <th>Gender</th>
-                            <th>Actions</th>
+                            <th>{{ __("Member ID") }}</th>
+                            <th>{{ __("Member Name") }}</th>
+                            <th>{{ __("Community") }} </th>
+                            <th>{{ __("phone") }} </th>
+                            <th>{{ __("Gender") }}</th>
+                            <th>{{ __("Actions") }}</th>
                         </tr>
                 </thead>
                 <tbody id="members-table-body">

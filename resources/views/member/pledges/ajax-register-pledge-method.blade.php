@@ -34,6 +34,12 @@
               $("#deadline").val("");
               $("#amount").val("");
               $("#description").val("");
+              $("#object_name").val("");
+              $("#object_quantity").val("");
+              $("#object_cost").val("");
+              $("#metrics").val("");
+             
+
               $("#form-modal").modal('show'); 
           }
        
@@ -51,7 +57,14 @@
                   description: $("#description").val(),
                   type_id: $("#type_id").val(),
                   purpose_id: $("#purpose_id").val(),
+                  object_name: $("#object_name").val(),
+                  object_quantity: $("#myquantity").val(),
+                  object_cost: $("#object_cost").val(),
+                  metrics: $("#metrics").val(),
+
+                  
               };
+               console.log(data);
               $.ajax({
                   headers: {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -64,12 +77,17 @@
                       $("#form-modal").modal('hide');
                       let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Created Successfully</div>';
                       $("#alert-div").html(successHtml);
+                    toastr.success("pledge was added successfully");
                       $("#name").val("");
                       $("#type_id").val("");
                       $("#purpose_id").val("");
                       $("#deadline").val("");
                       $("#amount").val("");
                       $("#description").val("");
+                      $("#object_name").val("");
+                      $("#object_cost").val("");
+                      $("#object_quantity").val("");
+                      $("#metrics").val("");
                       showAllPledges();
                       $("#form-modal").modal('hide');
                   },

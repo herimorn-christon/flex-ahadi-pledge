@@ -79,8 +79,9 @@ class MyCardController extends Controller
                     }
                 
                     else{
+                     
                         $notification = new Notification();
-                        $notification->user_id= 0; //0=Admin notification
+                        $notification->user_id=Auth::user()->id; //0=Admin notification
                         $notification->created_by= Auth::user()->id;
                         $notification->type='card';
                         $name=Auth::User()->fname.''.Auth::User()->lname;

@@ -26,10 +26,13 @@
     <link href="{{ asset('css/flex.css') }}" rel="stylesheet"><!-- link to custom css -->
       <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
 </head>
 <body class="bg-light" style="overflow:hidden">
     <div id="app" class="bg-light">
-
+       
         {{-- including navbar --}}
         @include('layouts.inc.frontend-navbar')
         @yield('top')
@@ -50,5 +53,30 @@
    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}" ></script>
    <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
     <script src="{{ asset('assets/js/scripts.js') }}" ></script>
+                
+ <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+ <script>
+  @if(Session::has('message'))
+  var type = "{{ Session::get('alert-type','info') }}"
+  switch(type){
+     case 'info':
+     toastr.info(" {{ Session::get('message') }} ");
+     break;
+ 
+     case 'success':
+     toastr.success(" {{ Session::get('message') }} ");
+     break;
+ 
+     case 'warning':
+     toastr.warning(" {{ Session::get('message') }} ");
+     break;
+ 
+     case 'error':
+     toastr.error(" {{ Session::get('message') }} ");
+     break; 
+  }
+  @endif 
+ </script>
 </body>
 </html>

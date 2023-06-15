@@ -25,4 +25,13 @@ class Purpose extends Model
     {
         return $this->belongsTo(User::class, 'created_by','id');
     }
+    public function church()
+    {
+        return $this->belongsTo(Church::class);
+    }
+    //this purpouse belongs to the church
+    public function pledges()
+    {
+        return $this->hasMany(Pledge::class);
+    }
 }

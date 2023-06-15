@@ -14,6 +14,7 @@
                     success: function(response) {
                         $("#projects-table-body").html("");
                         let purposes = response.payments;
+                       console.log(purposes);
                         let total_payments = response.total_payments;
                         let remaining = response.remaining;
                         let highest = response.highest;

@@ -24,9 +24,11 @@
                 $("#error-div").html("");   
                 $("#update_id").val("");
                 $("#type_id").val("");
-                $("#pledge_id").val("");
-                $("#user_id").val("");
+                $("#pledgeSelect").val("");
+                $("#userSelect").val("");
                 $("#amount").val("");
+                $("#objectQuantity").val("");
+                $("#objectCost").val("");
                 $("#form-modal").modal('show'); 
             }
          
@@ -38,12 +40,16 @@
                 $("#save-payment-btn").prop('disabled', true);
                 let url = $('meta[name=app-url]').attr("content") + "/admin/payments";
                 let data = {
-                    pledge_id: $("#pledge_id").val(),
+                    pledge_id: $("#pledgeSelect").val(),
                     amount: $("#amount").val(),
-                    user_id: $("#user_id").val(),
+                    user_id: $("#userSelect").val(),
                     type_id: $("#type_id").val(),
-                    receipt: $("#receipt").val(),
+                    receipt:$("#receipt").val(),
+                    object_quantity:$("#objectQuantity").val(),
+                    object_cost:$("#objectCost").val(),
+                    
                 };
+    console.log(data);
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -56,11 +62,13 @@
                         toastr.success('Payment Was Added Successfully'); 
                         let successHtml = '<div class="alert alert-success" role="alert">Payment Was Added Successfully</div>';
                         $("#alert-div").html(successHtml);
-                        $("#pledge_id").val("");
+                        $("#pledgeSelect").val("");
                         $("#type_id").val("");
                         $("#purpose_id").val("");
-                        $("#user_id").val("");
+                        $("#userSelect").val("");
                         $("#amount").val("");
+                        // $("#objectQuantity").val("");
+                        // $("#objectCost").val("");
                         $("#receipt").val("");
                         showAllPayments();
                         $("#form-modal").modal('hide');

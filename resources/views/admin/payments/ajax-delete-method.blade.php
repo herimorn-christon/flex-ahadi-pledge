@@ -2,7 +2,7 @@
   
      /*
                 delete payment record function
-            */
+            */ showAllPayments();
             function destroyMethod(id)
             {
                 let url = $('meta[name=app-url]').attr("content") + "/admin/methods/" + id;
@@ -31,3 +31,28 @@
                 });
             }
         </script>
+    <script>
+    
+        function togglePaymentMethod(id) {
+            showAllPayments();
+             console.log(id);
+              let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id + "/togglePayment";
+              $.ajax({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  url: url,
+                  type: "POST",
+                  success: function(response) {
+                      toastr.success(response.message);
+                      showAllPayments();
+                  },
+                  error: function(response) {
+                      console.log(response.responseJSON);
+                      toastr.error('Failed to toggle payment');
+                       showAllPayments();
+                  }
+              });
+          }
+      
+      </script>

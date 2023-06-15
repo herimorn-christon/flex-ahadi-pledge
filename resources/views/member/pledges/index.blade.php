@@ -4,6 +4,12 @@
 
 
 @section('content')
+@php
+$user=Auth::User()->id;
+$i=1;
+//$dependants=App\Models\User::find($user)->dependant;
+$problems=App\Models\Problem::where('user_id',$user)->get();
+@endphp
 
 <div class="card  border-left-flex">
   <div class="row mb-1 m-2">
@@ -12,7 +18,9 @@
   <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/sigma.png')}}"/></span>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-calculator"></i>
+        </span>
 
         <div class="info-box-content">
           <span class="info-box-text">Total Pledges Made in {{ date('Y')}} </span>
@@ -27,8 +35,8 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-danger elevation-1">
-          <img src="{{asset('icons/check.png')}}"/>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-check-circle"></i>
         </span>
 
         <div class="info-box-content">
@@ -45,8 +53,8 @@
    
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/cancel.png')}}"/>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-times-circle"></i> 
         </span>
 
         <div class="info-box-content">
@@ -60,8 +68,8 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/salary.png')}}"/>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-coins"></i>
         </span>
 
         <div class="info-box-content">
@@ -75,8 +83,8 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/oath.png')}}"/>
+        <span class="info-box-icon  elevation-1">
+          <i class="fas fa-cube"></i>
         </span>
 
         <div class="info-box-content">
@@ -156,32 +164,115 @@
 <div class="card mt-1">
     
     <div class="">
-
-
-
-
-        <div class="mt-4 px-2 ">
- 
-          <table id="mytable"  class="table table-bordered cell-border " >
-            <thead>
-                <tr class="text-secondary">
-                    <th>ID</th>
-                    <th>Created Date</th>
-                    <th>Pledge Name</th>
-                    <th>Purpose</th>
-                    <th>Amount</th>
-                    <th>Deadline</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="pledges-table-body">
+      <div class="row">
+    
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header p-2 bg-white">
+              <ul class="nav nav-tabs nav-light">
+                <li class="nav-item">
+                  <a class="nav-link text-navy active" href="#problems"  data-toggle="tab">Money</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#report"  data-toggle="tab">Object</a>
+                </li>
+                {{--<li class="nav-item">
+                  <a class="nav-link text-navy" href="#announcements"  data-toggle="tab">Cards Payments Report</a>
+                </li> --}}
+              </ul>
+            </div><!-- /.card-header -->
+            {{-- <div class=""> --}}
+              <div class="tab-content">
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+               
+                <div class="active tab-pane" id="problems">
+    
+                  {{-- end of interface settings --}}
+                                   {{-- start of interface settings --}}
+    <div class="mt-4 px-2 ">
+      <table id="mytable"  class="table table-bordered cell-border " >
+                <thead>
+                    <tr class="text-secondary">
+                        <th>ID</th>
+                        <th>Created Date</th>
+                        <th>Pledge Name</th>
+                        <th>Purpose</th>
+                        <th>Amount</th>
+                        <th>Deadline</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="pledges-table-body">
+                
+    
+                </tbody>
+               
+             </table>
+            </div>
+                    
+    
+                </div>
+                <!-- /.tab-pane -->
             
 
-            </tbody>
-           
-         </table>
-        </div>
+                <div class="tab-pane" id="report">
+
+               
+                  {{-- start of report form --}}
+
+                  <div class="col-md-12">
+                    <div class="p-2">
+                                    {{-- start of interface settings --}}
+    <div class="mt-4 px-2 ">
+      <table id="example1" class="table table-bordered cell-border " >
+                <thead>
+                    <tr class="text-secondary">
+                        <th>ID</th>
+                        <th>Created Date</th>
+                        <th>Pledge Name</th>
+                        <th>Purpose</th>
+                        <th>Object Name</th>
+                        <th>Quantity</th>
+                        <th>Deadline</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="pledges-table_object-body">
+                
+    
+                </tbody>
+               
+             </table>
+            </div>
+                    
+    
+                        
+
+                    </div>
+                </div>
+                
+                  {{-- end of report form --}}
+               
+              
+                </div>
+                <!-- /.tab-pane -->
+              </div>
+              <!-- /.tab-content -->
+            </div><!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>       
+      </div>
+
+      <!--adding the panel table to fetch the object and the pledge payment-->
+   
+
 
 
 
@@ -236,6 +327,7 @@
 
 {{-- start of single pledge modal --}}
 @include('member.pledges.single-pledge-modal')
+@include('member.pledges.single-pledgeObject-modal')
 {{-- end of single pledge modal --}}
 
 
@@ -244,6 +336,7 @@
 @section('scripts')
   {{-- start of ajax fetch all pledges method --}}
   @include('member.pledges.ajax-fetch-all-pledges')
+  @include('member.pledges.ajax-fetch-all-Objectpledge')
   {{-- end of ajax fetch all pleges method --}}
 
   {{-- start of ajax register pledge method --}}
@@ -257,54 +350,118 @@
   {{-- start of ajax fetch all pledges method --}}
   @include('member.pledges.ajax-fetch-all-purposes')
   {{-- end of ajax fetch all pleges method --}}
+  
+  <script type="text/javascript">
+    /*
+    get and display the record info on modal
+    */
+    function showPledgeObject(id) {
+      console.log(id);
+      $("#name-info").html("");
+      $("#description-info").html("");
+      $("#payments-table-body").html("");
+  
+      let url = $('meta[name=app-url]').attr("content") + "/member/pledges/" + id;
+      $.ajax({
+        url: url,
+        type: "GET",
+        success: function(response) {
+          let pledge = response.objectPledges;
+          let Pledge_total=response.pledge_value.object_quantity;
+         let payment_object_total=response.payment_object_sum;
+         let remaining=Pledge_total-payment_object_total;
+        //  console.log(remaining);
+        //  console.log(Pledge_total);
+        //  console.log(remaining);
+          //  console.log(pledge);
+          // console.log(pledge.deadline);
+         
+          $("#totalPayment_show").html(payment_object_total);
+          $("#title-info_show").html(pledge.name);
+          $("#deadlines").html(pledge.deadline);
+          $("#status-info_show").html(pledge.status == '0' ? 'Not Fulfilled' : 'Fulfilled');
+          $("#end-info_show").html(pledge.amount);
+          $("#type-info_show").html(pledge.type.title);
+          $("#purpose-info_show").html(pledge.purpose.title);
+          $("#description-info_show").html(pledge.description);
+          $("#myObject-show").html(pledge.object_name);
+          $("#myobject_cost").html(pledge.object_cost);
+          $("#myRemainQuantity_show").html(remaining);
+          $("#myQuantity_show").html(pledge.object_quantity + pledge.metrics);
+          $("#views-modal").modal('show');
+  
+          let payments = response.payments;
+          payments.forEach(payment => {
+            let paymentsRows = '<tr>' +
+              '<td>' + payment.id + '</td>' +
+              '<td>' + payment.created_at + '</td>' +
+              '<td>' + payment.pledge.object_name + '</td>' +
+              '<td>' + payment.object_transaction + '</td>' +
+              '<td>' + payment.object_quantity + payment.pledge.metrics + '</td>' +
+              '<td>' + payment.object_cost + '</td>' +
+              '<td>' + (payment.verified == '1' ? 'verified' : 'not verified') + '</td>' +
+              '</tr>';
+            $("#payments-tableObject-body").append(paymentsRows);
+          });
+        },
+        error: function(response) {
+          console.log(response.responseJSON);
+        }
+      });
+    }
+  </script>
+  
+  <script type="text/javascript">
+    /*
+    get and display the record info on modal
+    */
+    function showPledge(id) {
+      $("#name-info").html("");
+      $("#description-info").html("");
+      $("#payments-table-body").html("");
+      let url = $('meta[name=app-url]').attr("content") + "/member/pledges/" + id;
+      $.ajax({
+        url: url,
+        type: "GET",
+        success: function(response) {
+          let pledge = response.pledge;
+          let paymentAmount = response.paymentsAamount;
+          let remainingAmount = pledge.amount - paymentAmount;
+          $("#title-info").html(pledge.name);
+          $("#start-info").html(pledge.deadline);
+          $("#status-info").html(pledge.status == '0' ? 'Not Fulfilled' : 'Fulfilled');
+          $("#end-info").html(pledge.amount);
+          $("#type-info").html(pledge.type.title);
+          $("#remain-info").html(remainingAmount);
+          $("#purpose-info").html(pledge.purpose.title);
+          $("#description-info").html(pledge.description);
+         
+         
+          $("#myObject").html(pledge.object_name);
+          $("#myQuantity").html(pledge.object_quantity);
+          $("#view-modal").modal('show');
+  
+          let payments = response.payments;
+          console.log(payments);
+          payments.forEach(payment => {
+            let paymentsRow = '<tr>' +
+              '<td>' + payment.id + '</td>' +
+              '<td>' + payment.created_at + '</td>' +
+              '<td>' + payment.payment.name + '</td>' +
+              '<td>' + payment.amount + '</td>' +
+              '<td>' + payment.money_transaction + '</td>' +
+              '<td>' + (payment.verified == '1' ? 'verified' : 'not verified') + '</td>' +
+              '</tr>';
+            $("#payments-table-body").append(paymentsRow);
+          });
+        },
+        error: function(response) {
+          console.log(response.responseJSON);
+        }
+      });
+    }
+  </script>
+  
 
-<script type="text/javascript">
-  
- /*
-              get and display the record info on modal
-          */
-          function showPledge(id)
-          {
-              $("#name-info").html("");
-              $("#description-info").html("");
-              $("#payments-table-body").html("");
-              let url = $('meta[name=app-url]').attr("content") + "/member/pledges/" + id +"";
-              $.ajax({
-                  url: url,
-                  type: "GET",
-                  success: function(response) {
-                      let pledge = response.pledge;
-                      $("#title-info").html(pledge.name);
-                      $("#start-info").html(pledge.deadline);
-                      $("#status-info").html(pledge.status == '0' ? 'Not Fullfilled':'Fullfilled');
-                      $("#end-info").html(pledge.amount);
-                      $("#type-info").html(pledge.type.title);
-                      $("#purpose-info").html(pledge.purpose.title);
-                      $("#description-info").html(pledge.description);
-                      $("#view-modal").modal('show'); 
-                         // for payments
-                                     
-                        let payments = response.payments;
-                        for (var j = 0; i < payments.length; j++) 
-                        {      
-         
-                       let paymentsRow = '<tr>' +
-                                '<td>' + payments[i].id + '</td>' +
-                                '<td>' + payments[i].created_at+ '</td>' +
-                                // '<td>' + payments[i].pledge.name + '</td>' +
-                                '<td>' + payments[i].amount + '</td>' +
-                                // '<td>' + payments[i].payment.name + '</td>' +
-                            '</tr>';
-                            $("#payments-table-body").append(paymentsRow);
-                        }
-
-                  },
-                  error: function(response) {
-                      console.log(response.responseJSON)
-                  }
-              });
-          }
-       
-</script>
 
 @endsection

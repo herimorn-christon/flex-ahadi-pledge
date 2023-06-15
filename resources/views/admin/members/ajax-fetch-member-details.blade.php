@@ -67,7 +67,24 @@
                         
 
 
-
+                          //for the object pledge  $pledges_object
+                          let pledges_object= response.pledges_object;
+                        for (var i = 0; i < pledges_object.length; i++) 
+                        {      
+        
+                       let pledgesRowss = '<tr>' +
+                                '<td>' + pledges_object[i].id + '</td>' +
+                                '<td>' + pledges_object[i].purpose.title + '</td>' + 
+                                '<td>' + pledges_object[i].name + '</td>' +
+                                '<td>' + pledges_object[i].object_name + '</td>' +
+                                '<td>' + pledges_object[i].object_quantity + + pledges_object[i].metrics +'</td>' +
+                                '<td>' + pledges_object[i].object_cost + '</td>' +
+                                '<td>' + pledges_object[i].deadline + '</td>' +  
+                             
+                                '<td class="text-success">' + (pledges_object[i].status == '0' ? 'Not Fullfilled':'Fullfilled') + '</td>' +
+                            '</tr>';
+                            $("#object-table-body").append(pledgesRowss);
+                        }
 
 
                         // for pledges

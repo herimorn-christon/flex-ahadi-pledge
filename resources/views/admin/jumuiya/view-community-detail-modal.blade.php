@@ -11,20 +11,20 @@
             {{-- start of Community details --}}
           <table class="table table-bordered">
             <tr>
-              <td class="font-weight-bolder text-secondary">Community Name</td>
+              <td class="font-weight-bolder text-secondary">{{ __("Community Name") }}</td>
               <td><span id="name-info" class="text-dark"></span></td>
             </tr>
             <tr>
-              <td class="font-weight-bolder text-secondary">Abbreviation</td>
+              <td class="font-weight-bolder text-secondary">{{ __("Abbreviation") }}</td>
               <td><span id="description-info" class="text-dark"></span></td>
             </tr>
             <tr>
-              <td class="font-weight-bolder text-secondary">Location</td>
+              <td class="font-weight-bolder text-secondary">{{ __("Location") }}</td>
               <td><span id="location-info" class="text-dark"></span></td>
             </tr>
           </table>
           <h6 class="text-secondary">
-            Community(Jumuiya) Members
+           {{__(" Community Members")}}
           </h6>
           <hr>
           {{-- start of community member table --}}
@@ -32,10 +32,10 @@
             <thead>
                 <tr class="text-secondary">
                   <th>Member ID</th>
-                  <th>Member Name</th>
-                  <th>Phone Number</th>
-                  <th>Gender</th>
-                  <th>Status </th>
+                  <th>{{ __("Member Name") }}</th>
+                  <th>{{ __("Phone Number") }}</th>
+                  <th>{{ __("Gender") }}</th>
+                  <th>{{ __("Status") }} </th>
                 </tr>
             </thead>
             <tbody id="members-table-body">

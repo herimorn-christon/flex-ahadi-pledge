@@ -68,8 +68,14 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function deleteTodos(Request $request,$id)
     {
-        //
+        $delete_todos=Todo::find($id)->delete();
+        //adding the tostr notification
+        $notification=array(
+            'message'=>' data deleted SuccessFully',
+            'alert-type'=>'success'
+         );
+          return redirect()->back()->with($notification);
     }
 }

@@ -24,6 +24,18 @@
                 <li class="nav-item">
                   <a class="nav-link text-navy" href="#audits"  data-toggle="tab">System Audits</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#roles"  data-toggle="tab">Create Roles</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#permission"  data-toggle="tab">Create pemission</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#assignRoles"  data-toggle="tab">Assign Roles to user </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-navy" href="#rolesPermission"  data-toggle="tab">Assign permission</a>
+                </li>
 
               </ul>
             </div><!-- /.card-header -->
@@ -90,8 +102,223 @@
                   </div>
 
 
+
+                
+
+
+
                   {{-- end of interface settings --}}
                 </div>
+
+                  
+                <div class=" tab-pane" id="permission">
+                  {{-- start of interface settings --}}
+
+                    <div class="col-md-12">
+                      <div class="p-2">
+
+                          <div class="">
+                               {{--displaying all the errors  --}}
+                               @if ($errors->any())
+                               <div class="alert alert-danger">
+                                   @foreach ($errors->all() as $error)
+                                       <div>{{$error}}</div>
+                                   @endforeach
+                               </div>
+                               @endif
+
+                         {{-- start of the form  --}}
+                         <form action="{{ route('permissions.store') }}" method="POST">
+                          @csrf
+                  
+                          <div class="form-group">
+                              <label for="name">Permission Name</label>
+                              <input type="text" id="name" name="name" class="form-control" required>
+                          </div>
+                  
+                          <button type="submit" class="btn btn-primary">Create Permission</button>
+                      </form>
+                         {{-- end of the form --}}
+                        
+
+
+                          </div>
+                      </div>
+                  </div>
+
+
+
+                
+
+
+
+                  {{-- end of interface settings --}}
+                </div>
+
+
+                <div class=" tab-pane" id="roles">
+                  {{-- start of interface settings --}}
+
+                    <div class="col-md-12">
+                      <div class="p-2">
+
+                          <div class="">
+                               {{--displaying all the errors  --}}
+                               @if ($errors->any())
+                               <div class="alert alert-danger">
+                                   @foreach ($errors->all() as $error)
+                                       <div>{{$error}}</div>
+                                   @endforeach
+                               </div>
+                               @endif
+
+                         {{-- start of the form  --}}
+                         <form action="{{ route('roles.store') }}" method="POST">
+                          @csrf
+                  
+                          <div class="form-group">
+                              <label for="name">Role Name</label>
+                              <input type="text" id="name" name="name" class="form-control" required>
+                          </div>
+                  
+                          <button type="submit" class="btn btn-primary">Create Role</button>
+                      </form>
+                         {{-- end of the form --}}
+                        
+
+
+                          </div>
+                      </div>
+                  </div>
+
+
+
+                
+
+
+
+                  {{-- end of interface settings --}}
+                </div>
+
+
+
+                <div class=" tab-pane" id="rolesPermission">
+                  {{-- start of interface settings --}}
+
+                    <div class="col-md-12">
+                      <div class="p-2">
+
+                          <div class="">
+                               {{--displaying all the errors  --}}
+                               @if ($errors->any())
+                               <div class="alert alert-danger">
+                                   @foreach ($errors->all() as $error)
+                                       <div>{{$error}}</div>
+                                   @endforeach
+                               </div>
+                               @endif
+
+                         {{-- start of the form  --}}
+              
+    <form action="{{ route('roles.store-permissions') }}" method="POST">
+      @csrf
+
+      <div class="form-group">
+          <label for="role">Role</label>
+          <select id="role" name="role" class="form-control" required>
+              @foreach($roles as $role)
+                  <option value="{{ $role->id }}">{{ $role->name }}</option>
+              @endforeach
+          </select>
+      </div>
+
+      <div class="form-group">
+          <label for="permissions">Permissions</label>
+          <select id="permissions" name="permissions[]" class="form-control" multiple required>
+              @foreach($permissions as $permission)
+                  <option value="{{ $permission->id }}">{{ $permission->name }}</option>
+              @endforeach
+          </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Assign Permissions</button>
+  </form>
+                         {{-- end of the form --}}
+                        
+
+
+                          </div>
+                      </div>
+                  </div>
+
+
+
+                
+
+
+
+                  {{-- end of interface settings --}}
+                </div>
+
+
+                
+                <div class=" tab-pane" id="assignRoles">
+                  {{-- start of interface settings --}}
+
+                    <div class="col-md-12">
+                      <div class="p-2">
+
+                          <div class="">
+                               {{--displaying all the errors  --}}
+                               @if ($errors->any())
+                               <div class="alert alert-danger">
+                                   @foreach ($errors->all() as $error)
+                                       <div>{{$error}}</div>
+                                   @endforeach
+                               </div>
+                               @endif
+
+                     <form action="{{ route('users.store-roles') }}" method="POST">
+        @csrf
+
+        <div class="form-group">
+            <label for="user">User</label>
+            <select id="user" name="user" class="form-control" required>
+                <option value="" disabled selected>Select User</option>
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->fname }}{{ $user->mname }} {{ $user->lname }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="roless">Roles</label>
+            <select id="roless" name="roles[]" class="form-control" multiple required>
+                @foreach($roles as $role)
+                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Assign Roles</button>
+    </form>
+                        
+
+
+                          </div>
+                      </div>
+                  </div>
+
+
+
+                
+
+
+
+                  {{-- end of interface settings --}}
+                </div>
+
+
                 <!-- /.tab-pane -->
                 <div class="tab-pane" id="audits">
 
@@ -163,8 +390,9 @@
 
                           @forelse($events as $item)
                           <p>
+                            <input type="hidden" value="{{ $item->id }}" name="id"/>
                             <i class="fa fa-clock text-flex"></i> {{ $item->date}}|  {{ $item->title}}
-                            | <a href="" class="btn btn-danger  btn-sm text-end"> <i class="fa fa-trash"></i></a>
+                            | <a href="{{ route('destroy_events',['id'=>$item->id]) }}" class="btn btn-danger  btn-sm text-end"> <i class="fa fa-trash"></i></a>
                           </p>
                           @empty
                           <p>No Event Was Created !!</p>
@@ -234,6 +462,13 @@
 
                 </div>
                 <!-- /.tab-pane -->
+
+
+                  {{-- start of the section --}}
+                  
+                  {{-- end of the section  --}}
+
+
               </div>
               <!-- /.tab-content -->
             </div><!-- /.card-body -->
@@ -299,6 +534,13 @@
 
 
 
+  <script>
+    $(document).ready(function() {
+        // Initialize Select2 for user and roles
+        $('#user').select2();
+        // $('#roless').select2();
+    });
+</script>
 
 
 

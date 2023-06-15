@@ -9,7 +9,7 @@
     <section class="content">
       <div class="">
         <!-- Small boxes (Stat box) -->
-        <div class="row" style="displa:flex;justify-content:space-between">
+        <div class="row" style="display:flex">
 
               {{-- start  --}}
               <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
@@ -26,20 +26,21 @@
                  <!--end of the debugging process-->
                   <div class="text-center">
                     <h6 class="">                  
-                      Pledges Amount
+                      {{ __("Pledges Amount") }}
                     </h6>
     
                     <h3 class="text-secondary">
-                      <img src="{{asset('icons/oath.png')}}" style="width:50px" height="50px"/>    
+                      <i class="fas fa-hand-holding-usd"></i>
                       {{$total_amount}}
-                      <small>Tsh</small>
+                      Tsh
                     </h3>
                   </div>
                   
-                  <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+                  <a href="{{ url('member/my-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
                 </div>
               </div>
-
+          
+              
 
               
              
@@ -55,20 +56,55 @@
                     </div>
                     <div class="text-center">
                       <h6 class="">                  
-                        total Paid Pledges
+                        Total Paid Pledges
                       </h6>
       
                       <h3 class="text-secondary">
-                        <img src="{{asset('icons/money_sum.png')}}" style="width:50px" height="50px"/> 
+                        <span>
+                          <i class="fas fa-coins"></i>
+                         
+                        </span>
                         {{$payment_total}}
-                        <small>Tsh</small>
+                        Tsh
                       </h3>
                     </div>
                   
                     
-                    <a href="{{ url('member/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+                    <a href="{{ url('member/my-payments') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
                   </div>
                 </div>
+
+                
+
+
+                <div class="col-lg-3 col-6 col-sm-6 col-md-3" style="margin:0px !important;">
+                  <!-- small box -->
+                  <div class="small-box bg-white border-top-flex">
+                    <div class="mx-auto text-center pt-4">
+                      {{-- <i class="fa fa-dollar-sign"></i> --}}
+                      {{-- <img src="{{ asset('icons/pledge.png') }}" alt="Flex Logo" class="" width="20%" height=""> --}}
+                    </div>
+                    <div class="text-center">
+                      <h6 class="">                  
+                        Total Announcement 
+                      </h6>
+                        @php
+                          $new_user=Auth::user()->church_id;
+                          $announcement=App\Models\Announcement::get()->where("church_id",$new_user)->count();
+                        @endphp
+                      <h3 class="text-secondary">
+                        <i class="fas fa-bullhorn"></i>
+                        
+                        {{ $announcement}}
+                      
+                      </h3>
+                    </div>
+                  
+                    
+                    <a href="{{ url('member/my-announcements') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+                  </div>
+                </div>
+
 
 
                {{-- ends --}}
@@ -105,13 +141,13 @@
                         </h6>
         
                         <h3 class="text-secondary">
-                          <img src="{{asset('icons/debit-card.png')}}" style="width:50px" height="50px"/> 
+                          <i class="fas fa-credit-card"></i>
                           {{$cardpayments}}
-                          <small>Tsh</small>
+                          Tsh
                         </h3>
                       </div>
                       
-                      <a href="{{ url('admin/all-pledges') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
+                      <a href="{{ url('member/my-cards') }}" class="small-box-footer bg-navy" style="background-color: #fafcfd  !important;">More info <i class="fas fa-arrow-circle-right "></i></a>
                     </div>
                   </div>
         </div>
@@ -123,9 +159,10 @@
                       <div class="row mb-1 m-2">
                         <div class="row">
                           <div class="col-12 col-sm-6 col-md-3">
-                            <a href="{{ url('admin/all-members')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
-                            <div class="info-box">
-                              <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/pledge.png')}}"/></span>
+                            <a href="{{ url('member/my-pledges')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
+                            <div class="info-box" >
+                              <span class="info-box-icon  elevation-1"> 
+                                <i class="fas fa-hands-helping"></i></span>
                       
                               <div class="info-box-content">
                                 <span class="info-box-text">Total Pledges Made in {{ date('Y')}} </span>
@@ -140,15 +177,16 @@
                           </div>
                           <!-- /.col -->
                           <div class="col-12 col-sm-6 col-md-3">
-                            <a href="{{ url('admin/all-members')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
+                            <a href="{{ url('member/my-payments')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
                             <div class="info-box mb-3">
-                              <span class="info-box-icon bg-danger elevation-1">
-                                <img src="{{asset('icons/money-bag.png')}}"/>
+                              <span class="info-box-icon elevation-1">
+                               
+                                <i class="fas fa-hand-holding-usd"></i>
                               </span>
                       
                               <div class="info-box-content">
                                 <span class="info-box-text">Total Money Pledges in {{ date('Y')}} </span>
-                                <span class="info-box-number">({{$total_amount.' Tsh'}}) {{ $cash_pledges}} </span>
+                                <span class="info-box-number">({{$total_amount.' Tsh'}}) </span>
                               </div>
                               <!-- /.info-box-content -->
                             </div>
@@ -160,14 +198,15 @@
                           <!-- fix for small devices only -->
                          
                           <div class="col-12 col-sm-6 col-md-3">
-                            <a href="{{ url('admin/all-members')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
+                            <a href="{{ url('member/my-pledges')}}" style="color:black"class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number of the members of the congregation">
                             <div class="info-box mb-3">
-                              <span class="info-box-icon bg-success elevation-1">
-                                <img src="{{asset('icons/swear.png')}}"/>
+                              <span class="info-box-icon elevation-1">
+                                  <i class="fas fa-cubes"></i>
+        
                               </span>
                       
                               <div class="info-box-content">
-                                <span class="info-box-text">Total Object Pledges in {{ date('Y')}}</span>
+                                <span class="info-box-text" >Total Object Pledges in {{ date('Y')}}</span>
                                 <span class="info-box-number">{{ $object_pledges}} </span>
                               </div>
                               <!-- /.info-box-content -->
@@ -177,11 +216,11 @@
                           </div>
                           <!-- /.col -->
                           <div class="col-12 col-sm-6 col-md-3">
-                            <a href="{{ url('admin/all-communities')}}" 
+                            <a href="{{ url('member/my-payments')}}" 
                             style="color:black" class="text-decoration-none" data-toggle="tooltip" data-placement="bottom" title="This is the total number  of communities (Jumuiya) found in the congregation">
                             <div class="info-box mb-3">
-                              <span class="info-box-icon bg-success elevation-1">
-                                <img src="{{asset('icons/salary.png')}}" />
+                              <span class="info-box-icon elevation-1" >
+                                <i class="fas fa-dollar-sign"></i>
                               </span>
                       
                               <div class="info-box-content">
@@ -282,7 +321,7 @@
 
             <div class="card-header bg-white text-secondary">
               <i class="fa fa-balance-scale"></i>
-              Latest Pledges Progress
+              Latest Pledges Progress in %
             </div>
             <div id="container7">
            
@@ -420,7 +459,9 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  @include('layouts.inc.member-footer')
+  <br>
+  <br>
+  <br>
   @endsection
 
   <!-- Control Sidebar -->

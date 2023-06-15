@@ -15,7 +15,8 @@
           >
             <i class="nav-icon fas fa-tachometer-alt "></i>
             <p>
-              Dashboard
+              {{ __("  Dashboard") }}
+            
             </p>
           </a>
         </li>
@@ -25,7 +26,9 @@
             >
               <i class="nav-icon fas fa-user-tie "></i>
               <p>
-                Manage Members
+                {{ __("Manage Members") }}
+               
+               
               </p>
             </a>
           </li>
@@ -33,7 +36,9 @@
             <a href="{{ url('admin/all-communities') }}" class="nav-link  {{ Request::is('admin/all-communities') ? 'current':'' }}">
               <i class="nav-icon fas fa-users "></i>
               <p>
-                Manage Communities
+                {{ __("Manage Communities") }}
+          
+               
               </p>
             </a>
           </li>
@@ -41,7 +46,8 @@
             <a href="{{ url('admin/all-purposes') }}" class="nav-link  {{ Request::is('admin/all-purposes') ? 'current':'' }}">
               <i class="nav-icon fas fa-calendar "></i>
               <p>
-                Manage Purposes
+                {{ __("Manage Purposes") }}
+              
               </p>
             </a>
           </li>
@@ -49,7 +55,9 @@
           <a href="{{ url('admin/all-pledges') }}" class="nav-link  {{ Request::is('admin/all-pledges') ? 'current':'' }}">
             <i class="nav-icon fas fa-balance-scale "></i>
             <p>
-              Manage Pledges
+              {{ __("Manage Pledges")}}
+      
+             
             </p>
           </a>
         </li>
@@ -57,7 +65,8 @@
             <a href="{{ url('admin/all-payments') }}" class="nav-link {{ Request::is('admin/all-payments') ? 'current':'' }}">
               <i class="nav-icon fas fa-credit-card "></i>
               <p>
-                Manage Payments
+                {{ __("Manage Payments") }}
+              
               </p>
             </a>
           </li>
@@ -65,7 +74,8 @@
             <a href="{{ url('admin/all-cards') }}" class="nav-link {{ Request::is('admin/all-cards') ? 'current':'' }}">
               <i class="nav-icon fas fa-envelope "></i>
               <p>
-                Manage Cards
+                {{ __("Manage Cards") }}
+              
               </p>
             </a>
           </li>
@@ -73,23 +83,28 @@
             <a href="{{ url('admin/all-announcements') }}" class="nav-link {{ Request::is('admin/all-announcements') ? 'current':'' }}"  >
               <i class="nav-icon fas fa-bullhorn"></i>
               <p>
-                Announcements
+                {{ __("Announcements") }}
+            
+              
               </p>
             </a>
           </li>
+          @if(auth()->user()->hasRole('admin'))
           <li class="nav-item">
-            <a href="{{ url('admin/settings') }}" class="nav-link {{ Request::is('admin/settings') ? 'current':'' }}">
-              <i class="nav-icon fas fa-cog "></i>
-              <p>
-                Settings
-              </p>
-            </a>
+              <a href="{{ url('admin/settings') }}" class="nav-link {{ Request::is('admin/settings') ? 'current' : '' }}">
+                  <i class="nav-icon fas fa-cog"></i>
+                  <p>
+                      {{ __("Settings") }}
+                  </p>
+              </a>
           </li>
+      @endif
           <li class="nav-item">
             <a href="{{ url('admin/support') }}" class="nav-link {{ Request::is('admin/support') ? 'current':'' }}">
               <i class="nav-icon fas fa-headset"></i>
               <p>
-                Member Support
+                {{ __("Member Support") }}
+              
               </p>
             </a>
           </li>
@@ -99,7 +114,8 @@
               <a href="{{ url('admin/company_settings') }}" class="nav-link {{ Request::is('admin/company_setting') ? 'current':'' }}">
                 <i class="fa fa-building-o" aria-hidden="true"></i>
                 <p>
-                  Company Info
+                  {{ __("Company Info") }}
+                
                 </p>
               </a>
             </li>

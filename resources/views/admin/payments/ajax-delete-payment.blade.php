@@ -33,3 +33,31 @@
                 });
             }
       </script>
+
+
+<script>
+    
+  function togglePayment(id) {
+       console.log(id);
+        let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id + "/toggle";
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: url,
+            type: "POST",
+            success: function(response) {
+                toastr.success(response.message);
+            },
+            error: function(response) {
+                console.log(response.responseJSON);
+                toastr.error('Failed to toggle payment');
+            }
+        });
+    }
+
+</script>
+
+
+
+

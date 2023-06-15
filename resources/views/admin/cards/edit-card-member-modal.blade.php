@@ -12,7 +12,12 @@
   
              <div class="row mb-3">
                 @php
-                $members= App\Models\User::where('role','member')->get();
+                 $new_user=Auth::user()->church_id;
+                $members = App\Models\User::whereHas('roles', function ($query) {
+                        $query->where('name', 'member');
+                    })
+                ->where('church_id', $new_user)
+                ->get()
                 @endphp
                 <div class="col-md-12">
                     <label for="" class="text-secondary">All Members</label>

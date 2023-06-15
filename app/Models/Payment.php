@@ -12,16 +12,16 @@ class Payment extends Model implements Auditable
 {
     use AuditableTrait;
     protected $table= 'payments';
-    protected $fillable = [
-        'type_id',
-        'user_id',
-        'pledge_id',
-        'amount',
-        'created_by',
-        'verified',
-        'receipt'
+    // protected $fillable = [
+    //     'type_id',
+    //     'user_id',
+    //     'pledge_id',
+    //     'amount',
+    //     'created_by',
+    //     'verified',
+    //     'receipt'
    
-    ];
+    // ];
 
     public function payment()
     {

@@ -11,31 +11,31 @@
         <div class="modal-body">
             <table class="table table-bordered">
                 <tr>
-                    <td><b class="text-secondary">Full Member Name:</b></td>
+                    <td><b class="text-secondary">{{ __("Full Member Name") }}:</b></td>
                     <td><span id="name-info" class="text-dark"></span> <span id="mname-info" class="text-dark"></span> <span id="lname-info" class="text-dark"></span></td>
                 </tr>
                 <tr>
-                    <td>  <b class="text-secondary">Community:</b></td>
+                    <td>  <b class="text-secondary">{{ __("Community") }}:</b></td>
                     <td><span id="community-info" class="text-dark"></span> </td>
                 </tr>
                 <tr>
-                    <td><b class="text-secondary">Birthdate:</b> </td>
+                    <td><b class="text-secondary">{{ __("Birthdate") }}:</b> </td>
                     <td> <span id="date-info" class="text-dark"></span></td>
                 </tr>
                 <tr>
-                    <td>  <b class="text-secondary">Gender:</b></td>
+                    <td>  <b class="text-secondary">{{ __("Gender") }}:</b></td>
                     <td><span id="description-info" class="text-dark"></span> </td>
                 </tr>
                 <tr>
-                    <td>  <b class="text-secondary">Phone Number:</b></td>
+                    <td>  <b class="text-secondary">{{ __("Phone Number") }}:</b></td>
                     <td><span id="phone-info" class="text-dark"></span> </td>
                 </tr>
                 <tr>
-                    <td>  <b class="text-secondary">Email:</b></td>
+                    <td>  <b class="text-secondary">{{ __("Email") }}:</b></td>
                     <td><span id="email-info" class="text-dark"></span> </td>
                 </tr>
                 <tr>
-                    <td>  <b class="text-secondary">Member Status:</b></td>
+                    <td>  <b class="text-secondary">{{ __("Member Status") }}:</b></td>
                     <td><span id="status-info" class="text-success"></span> </td>
                 </tr>
             </table>
@@ -46,20 +46,23 @@
               <div class="card-header p-2 bg-white mb-2">
       
                 <ul class="nav nav-tabs nav-light">
-                  <li class="nav-item">
-                    <a class="nav-link text-navy active" href="#pledges"  data-toggle="tab">Pledges Payments</a>
+                  <li class="nav-item" style="border:1px solid black">
+                    <a class="nav-link text-navy active" href="#pledges"  data-toggle="tab">{{ __("Pledges Payments") }}</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-navy" href="#timeline"  data-toggle="tab">Pledges Made</a>
+                  <li class="nav-item" style="border:1px solid grey">
+                    <a class="nav-link text-navy" href="#timeline"  data-toggle="tab">{{ __("Money Pledge") }}</a>
                   </li>
-                    <li class="nav-item">
-                    <a class="nav-link text-navy" href="#settings"  data-toggle="tab">Member Cards</a>
+                  <li class="nav-item" style="border:1px solid  grey">
+                    <a class="nav-link text-navy" href="#obectPledge"  data-toggle="tab">{{ __("Object Pledge") }}</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-navy" href="#dependant"  data-toggle="tab">dependants</a>
+                    <li class="nav-item" style="border:1px solid  grey">
+                    <a class="nav-link text-navy" href="#settings"  data-toggle="tab">{{ __("Member Cards") }}</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-navy" href="#spiritual"  data-toggle="tab">spiritual services</a>
+                  <li class="nav-item" style="border:1px solid  grey">
+                    <a class="nav-link text-navy" href="#dependant"  data-toggle="tab">{{ __("dependants") }}</a>
+                  </li>
+                  <li class="nav-item" style="border:1px solid  grey">
+                    <a class="nav-link text-navy" href="#spiritual"  data-toggle="tab">{{ __("spiritual services") }}</a>
                   </li>
                 </ul>
               </div><!-- /.card-header -->
@@ -71,10 +74,10 @@
                         <thead>
                             <tr class="text-secondary">
                                 <th>ID</th>
-                                <th>Payment Date</th>
-                                <th>Payment Purpose</th>
-                                <th>Amount</th>
-                                <th>Method</th>
+                                <th>{{ __("Payment Date") }}</th>
+                                <th>{{ __("Payment Purpose") }}</th>
+                                <th>{{ __("Amount") }}</th>
+                                <th>{{ __("Method") }}</th>
                             </tr>
                         </thead>
                         <tbody id="payments-table-body">
@@ -85,6 +88,40 @@
         
                   </div>
                   <!-- /.tab-pane -->
+
+
+
+                  <div class="tab-pane" id="obectPledge">
+                    {{-- start of member payments --}}
+                    <table id="example2"   class="table table-bordered responsive ">
+                        <thead>
+                            <tr class="text-secondary">
+                              <th>ID</th>
+                              <th>{{ __("Pledge Name") }}</th>
+                              <th>{{ __("Purpouse Title") }}</th>
+                              <th>{{ __("Object Name") }}</th>
+                              <th>{{ __("Object Quantity") }}</th>
+                              <th>{{ __("Object Cost") }}</th>
+                              <th>{{ __("Deadline") }}</th>
+                              <th>{{ __("Status") }}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="object-table-body">
+
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+        
+                  </div>
+
+
+
+
+
+
+
+
+
                   <div class="tab-pane" id="timeline">
                  
                     {{-- start of pledges --}}
@@ -94,11 +131,11 @@
                             <tr class="text-secondary">
                                 
                                 <th>ID</th>
-                                <th>Pledge Name</th>
-                                <th>Amount</th>
-                                <th>Purpose</th>
-                                <th>Deadline</th>
-                                <th>Status</th>
+                                <th>{{ __("Pledge Name") }}</th>
+                                <th>{{ __("Amount") }}</th>
+                                <th>{{ __("Purpose") }}</th>
+                                <th>{{ __("Deadline") }}</th>
+                                <th>{{ __("Status") }}</th>
                             </tr>
                         </thead>
                         <tbody id="pledges-table-body">
@@ -122,9 +159,9 @@
                         <tr class="text-secondary">
                             
                             <th>ID</th>
-                            <th>fullName</th>
-                            <th>birthDate</th>
-                            <th>relationship</th>
+                            <th>{{ __("FullName") }}</th>
+                            <th>{{ __("BirthDate") }}</th>
+                            <th>{{ __("Relationship") }}</th>
                         </tr>
                     </thead>
                     <tbody id="dependant-table-body">
@@ -150,15 +187,15 @@
                     <table id="example2"  class="table table-bordered ">
                         <thead>
                             <tr class="text-secondary">
-                                <th>marriage date</th>
-                                <th>baptism date</th>
-                                <th>deacon name</th>
-                                <th>deacon number</th>
-                                <th>confarmation date</th>
-                                <th>fellowship name</th>
-                                <th>patner name</th>
-                                <th>proffession</th>
-                                <th>action</th>
+                                <th>{{ __("Marriage Date") }}</th>
+                                <th>{{ __("Baptism Date") }}</th>
+                                <th>{{ __("Deacon Name") }}</th>
+                                <th>{{ __("Deacon Number") }}</th>
+                                <th>{{ __("Confarmation Date") }}</th>
+                                <th>{{ __("Fellowship Name") }}</th>
+                                <th>{{ __("Patner Name") }}</th>
+                                <th>{{ __("Proffession") }}</th>
+                                <th>{{ __("Actions") }}</th>
                             </tr>
                         </thead>
                         <tbody id="spiritual-table-body">
@@ -196,8 +233,8 @@
                         <thead>
                             <tr class="text-secondary">
                                 <th>ID</th>
-                                <th>Card Number</th>
-                                <th>Status</th>
+                                <th>{{ __("Card Number") }}</th>
+                                <th>{{ __("Status") }}</th>
                                 {{-- <th>Actions</th> --}}
                             </tr>
                         </thead>

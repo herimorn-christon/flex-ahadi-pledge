@@ -5,9 +5,9 @@
   /*
               check if form submitted is for creating or updating
           */
-          $("#save-pledge-btn").click(function(event ){
+          $("#save-type-btn").click(function(event ){
               event.preventDefault();
-              if($("#update_id").val() == null || $("#update_id").val() == "")
+              if($("#update_id").val()  == null || $("#update_id").val() == "")
               {
                   storePledge();
               } else {
@@ -29,6 +29,9 @@
               $("#purpose_id").val("");
               $("#user_id").val("");
               $("#deadline").val("");
+             $("#objectName").val("");
+             $("#objectCost").val("");
+             $("#objectQuantity").val("");
               $("#amount").val("");
               $("#description").val("");
               $("#form-modal").modal('show'); 
@@ -53,7 +56,11 @@
                   user_id: $("#user_id").val(),
                   type_id: $("#type_id").val(),
                   purpose_id: $("#purpose_id").val(),
+                  object_name: $("#objectName").val(),
+                  object_cost: $("#objectCost").val(),
+                  object_quantity: $("#objectQuantity").val(),
               };
+               console.log(data);
               $.ajax({
                   headers: {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -62,6 +69,7 @@
                   type: "POST",
                   data: data,
                   success: function(response) {
+                       console.log(response);
                       $("#save-pledge-btn").prop('disabled', false);
                         toastr.success('Pledge Was Created Successfully');
                       let successHtml = '<div class="alert alert-success" role="alert">Pledge Was Created Successfully</div>';
@@ -73,10 +81,14 @@
                       $("#deadline").val("");
                       $("#amount").val("");
                       $("#description").val("");
+                      $("#objectName").val("");
+                     $("#objectCost").val("");
+                     $("#objectQuantity").val("");
                       showAllPledges();
                       $("#form-modal").modal('hide');
                   },
                   error: function(response) {
+    
                       $("#save-pledge-btn").prop('disabled', false);
                        toastr.info('Something went wrong');
        
@@ -112,7 +124,7 @@
               '<b>Validation Error!</b>' +
               '<ul>' + nameValidation + descriptionValidation + deadlineValidation + amountValidation +'</ul>' +
           '</div>';
-          $("#error-div").html(errorHtml);        
+          $("#error-div-pledge").html(errorHtml);        
       }
                   }
               });

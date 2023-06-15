@@ -17,7 +17,7 @@ class DashboardController extends Controller
     //
     public function index(Request $request)
     {
-
+        $new_user=Auth::user()->church_id;
 
         
     // Function for number convertion
@@ -41,19 +41,26 @@ class DashboardController extends Controller
         return $num;
       }
         $user=Auth::user()->id;
-        $pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->sum('amount');
+        $pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->where('church_id',$new_user)->sum('amount');
         $total_amount=thousandsCurrencyFormat($pledges);
-        $payments=Payment::where('user_id',$user)->whereYear('created_at', date('Y'))->where('verified',1)->sum('amount');
-        $payment_total=Payment::where('user_id',$user)->whereYear('created_at', date('Y'))->sum('amount');
+        $payments=Payment::where('user_id',$user)->whereYear('created_at', date('Y'))
+         ->where('church_id',$new_user)
+        ->where('verified',1)->sum('amount');
+        $payment_total=Payment::where('user_id',$user)
+        ->where('church_id',$new_user)->whereYear('created_at', date('Y'))->sum('amount');
         //the unverified payments 
-        $pledges_no=Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->count();
+        $pledges_no=Pledge::whereYear('created_at', date('Y'))
+        ->where('church_id',$new_user)->where('user_id',$user)->count();
         $mypledges=Pledge::whereYear('created_at', date('Y'))
                             ->orderby('created_at','Desc')
                            ->where('user_id',$user)
+                           ->where('church_id',$new_user)
                            ->get();
-        $total_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->count();
-        $cash_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->where('type_id',2)->count();
-        $object_pledges= Pledge::whereYear('created_at', date('Y'))->where('user_id',$user)->where('type_id',1)->count();
+        $total_pledges= Pledge::whereYear('created_at', date('Y'))
+        ->where('church_id',$new_user)->where('user_id',$user)->count();
+        $cash_pledges= Pledge::whereYear('created_at', date('Y'))
+        ->where('church_id',$new_user)->where('user_id',$user)->where('type_id',2)->count();
+        $object_pledges= Pledge::whereYear('created_at', date('Y'))->where('church_id',$new_user)->where('user_id',$user)->where('type_id',1)->count();
         $card=CardMember::where('user_id',$user)->whereYear('created_at', date('Y'))->where('status','')->first();
         
         if($card){
@@ -63,6 +70,7 @@ class DashboardController extends Controller
         $payrate = Payment::select(\DB::raw("SUM(amount) as count"))
         ->whereYear('created_at', date('Y'))
         ->where('user_id',$user)
+        ->where('church_id',$new_user)
         ->groupBy(\DB::raw("Day(created_at)"))
         ->pluck('count');
         $events = Event::all();
@@ -140,6 +148,8 @@ class DashboardController extends Controller
  // For Payment Statistics
  $payrate = Payment::select(\DB::raw("SUM(amount) as count"))
  ->whereYear('created_at', date('Y'))
+ ->where('church_id',$new_user)
+ 
  ->where('user_id',$user)
  ->groupBy(\DB::raw("Day(created_at)"))
  ->pluck('count');

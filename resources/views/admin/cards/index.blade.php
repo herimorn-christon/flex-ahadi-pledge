@@ -11,10 +11,10 @@
   <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/sigma.png')}}"/></span>
+        <span class="info-box-icon elevation-1"><i class="fas fa-credit-card"></i> <i class="fas fa-layer-group"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Total Member Cards</span>
+      <span class="info-box-text">{{ __("Total Member Cards") }}</span>
           <span class="info-box-number" id="total_cards">
         
           </span>
@@ -26,12 +26,12 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-danger elevation-1">
-          <img src="{{asset('icons/task.png')}}"/>
+        <span class="info-box-icon  elevation-1">
+          <i class="fas fa-id-card"></i> <i class="fas fa-check-circle"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Total Assigned Cards</span>
+          <span class="info-box-text">{{ __("Total Assigned Cards") }}</span>
           <span class="info-box-number" id="assigned" > </span>
         </div>
         <!-- /.info-box-content -->
@@ -44,12 +44,12 @@
    
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/activity.png')}}"/>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-credit-card"></i> <i class="fas fa-bolt"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Total Active Cards</span>
+          <span class="info-box-text">{{ __("Total Active Cards") }}</span>
           <span class="info-box-number"  id="active"> </span>
         </div>
         <!-- /.info-box-content -->
@@ -59,12 +59,12 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/toggle.png')}}"/>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-credit-card"></i> <i class="fas fa-ban"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Total Inactive Cards</span>
+          <span class="info-box-text">{{ __("Total Inactive Cards") }}</span>
           <span class="info-box-number"  id="inactive"> </span>
         </div>
         <!-- /.info-box-content -->
@@ -74,12 +74,13 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/debit-card.png')}}"/>
+        <span class="info-box-icon  elevation-1" >
+          <i class="fas fa-credit-card"></i> <i class="fas fa-coins"></i>
+
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Total Card Payments</span>
+          <span class="info-box-text">{{ __("Total Card Payments") }}</span>
           <span class="info-box-number"  id="total_payments"> 
         </div>
         <!-- /.info-box-content -->
@@ -134,25 +135,25 @@
        {{-- start of create card button--}}
        <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" onclick="createCard()">
         <i class="fa fa-plus"></i>
-            Create Card Member
+            {{ __("Create Card Member") }}
         </button>
          {{-- end of create card button --}}  
             {{-- start of available cards button --}}
       <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" onclick="showAllCards()">
         <i class="fa fa-envelope"></i>
-         Available Card Members
+      {{__("Available Card Members")}}
     </button>
     {{-- end of available cards button --}}
            {{-- start of assign card button --}}
       <button type="button" class="btn bg-flex text-light btn-sm mb-1"  onclick="createCardMember()">
         <i class="fa fa-list"></i>
-         Assign Card
+        {{("Assign Card")}}
     </button>
     {{-- end of assign card button --}}
       {{-- start of add card payment button --}}         
       <button type="button" class="btn bg-flex text-light btn-sm mb-1" data-toggle="modal" onclick="createPayment()">
           <i class="fa fa-dollar-sign"></i>
-           Add Card Payment
+         {{__("Add Card Payment")}}
       </button>
       {{-- start of add card payment button --}}
 
@@ -163,12 +164,12 @@
    
       <a href="" class="btn btn-sm bg-flex mb-1 text-light" data-toggle="modal" onclick="cardRequests()">
         <i class="fa fa-download"></i>
-       Requests
+       {{ __("Requests") }}
       </a>
       <button style="margin-left:15px" type="button" class="btn text-light btn-sm mb-2" data-toggle="modal" onclick="showAllRequests()">
         <a href="{{route("myadmin_card")}}" class="btn bg-cyan  btn-sm" type="button">
           <i class="fa fa-download text-light" ></i>
-          Generate Report
+          {{ __("Generate Report") }}
         </a>
        </button>
       {{-- <a href="{{route("myadmin_card")}}">
@@ -196,11 +197,11 @@
                 <thead>
                     <tr class="text-secondary">
                         <th>ID</th>
-                        <th>Issued Date</th>
-                        <th>Member</th>
-                        <th>Card Number</th>
-                        <th>Status</th>
-                        <th>Actions</th>
+                        <th>{{ __("Issued Date") }}</th>
+                        <th>{{__("Member")}}</th>
+                        <th>{{__("Card Number") }}</th>
+                        <th>{{ __("Status") }}</th>
+                        <th>{{ __("Actions") }}</th>
                     </tr>
                 </thead>
                 <tbody id="members-table-body">    

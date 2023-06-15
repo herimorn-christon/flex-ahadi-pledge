@@ -23,5 +23,9 @@ class Announcement extends Model
               }
               
               protected $appends = ['formattedDate'];
+    public function church()
+{
+    return $this->belongsTo(Church::class);
+}
 
 }

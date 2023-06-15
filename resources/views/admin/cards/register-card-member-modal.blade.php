@@ -1,4 +1,7 @@
  {{-- Assign Card Member Modal --}}
+ @php
+      $new_user=Auth::user()->church_id;
+ @endphp
  <div class="modal fade" id="member-modal">
   <div class="modal-dialog ">
     <div class="modal-content">
@@ -12,7 +15,11 @@
   
              <div class="row mb-3">
                 @php
-                $members= App\Models\User::where('role','member')->get();
+                $members = App\Models\User::whereHas('roles', function ($query) {
+                        $query->where('name', 'member');
+                    })
+                ->where('church_id', $new_user)
+                ->get()
                 @endphp
                 <div class="col-md-12  d-flex flex-column" id="userdrop">
                     <label for="" class="text-secondary">All Members</label>
@@ -26,7 +33,7 @@
     
                 @php
                 
-                $purpose= App\Models\Card::where('status','')->get();
+                $purpose= App\Models\Card::where('status','')->where('church_id',$new_user)->get();
                 @endphp
                 <div class="col-md-12 mb-3">
                     <label for="" class="text-secondary">Available Cards</label>

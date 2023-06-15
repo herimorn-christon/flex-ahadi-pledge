@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\jumuiyaFormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class JumuiyaController extends Controller
 {
@@ -19,12 +20,19 @@ class JumuiyaController extends Controller
      */
     public function index()
     {
+        $new_user=Auth::user()->church_id;
         $communities = Jumuiya::orderBy('updated_at','DESC')
+                                ->where('church_id',$new_user)
                                 ->get();
-        $total_communities=Jumuiya::count();
+        $total_communities=Jumuiya::
+        where('church_id',$new_user)->
+        count();
 
         $largest_community = User::select('id', 'jumuiya', DB::raw('MIN(total_member) as large_community'))
-        ->where('role','member')
+        ->where('church_id',$new_user)
+        ->whereHas('roles', function ($query) {
+            $query->where('name', 'member');
+        })
         ->groupBy('jumuiya')
         ->with('community')
         ->count();
@@ -45,6 +53,7 @@ class JumuiyaController extends Controller
      */
     public function store(Request $request)
     {
+        $new_user=Auth::user()->church_id;
         request()->validate(
             [
             'name' => 'required|max:255',
@@ -57,6 +66,7 @@ class JumuiyaController extends Controller
             $communities->name = $request->name;
             $communities->abbreviation = $request->abbreviation;
             $communities->location = $request->location;
+            $communities->church_id=$new_user;
             $communities->save();
             return response()->json(['status' => "success"]);
     }
@@ -70,7 +80,9 @@ class JumuiyaController extends Controller
     public function show($id)
     {
         $community = Jumuiya::find($id);
-        $members = User::where('jumuiya',$id)->where('role','member')->get();
+        $members = User::where('jumuiya',$id)->whereHas('roles', function ($query) {
+            $query->where('name', 'member');
+        })->get();
         return response()->json(['community' => $community,'members' => $members]);
     }
 
@@ -106,7 +118,9 @@ class JumuiyaController extends Controller
     {
 
         $community = Jumuiya::where('id',$id)->get();
-        $members = User::where('jumuiya',$id)->where('role','member')->with('community')->get();
+        $members = User::where('jumuiya',$id)->whereHas('roles', function ($query) {
+            $query->where('name', 'member');
+        })->with('community')->get();
   
 
         return view('admin.jumuiya.detail',compact('community','members'));

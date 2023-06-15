@@ -18,7 +18,9 @@ class CardController extends Controller
      */
     public function index()
     {
+        $new_user=Auth::user()->church_id;
         $cards = Card::orderBy('updated_at','DESC')
+                     ->where('church_id',$new_user)
                      ->where('status','')
                      ->get();
   
@@ -34,6 +36,7 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
+        $new_user=Auth::user()->church_id;
         request()->validate(
             [
             'card_no' => 'required|max:255',
@@ -44,6 +47,7 @@ class CardController extends Controller
             $card =new Card();
             $card->card_no=$request->card_no;
             $card->created_by= Auth::user()->id;
+            $card->church_id=$new_user;
             $card->save();
 
             return response()->json(['status' => "success"]);
@@ -57,7 +61,8 @@ class CardController extends Controller
      */
     public function show($id)
     {
-        $card = Card::find($id);
+        $new_user=Auth::user()->church_id;
+        $card = Card::where('church_id',$new_user)->find($id);
         return response()->json(['card' => $card]);
     }
 

@@ -80,7 +80,16 @@ return [
     |
     */
 
-    'locale' => 'en',
+    // // 'locale' => 'en',
+    // 'locale' => [
+    //     'en' => 'English',
+    //     'sw' => 'Swahili',
+    //     // Add more languages if needed
+    // ],
+    'languages' => [
+        'en' => 'English',
+        'sw' => 'Swahili',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +102,8 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    // 'fallback_locale' => 'en',
+    'fallback_locale' => 'sw',
 
     /*
     |--------------------------------------------------------------------------
@@ -162,6 +172,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
 
         /*
@@ -231,6 +242,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
         'PdfReport' => Jimmyjs\ReportGenerator\Facades\PdfReportFacade::class,
         'ExcelReport' => Jimmyjs\ReportGenerator\Facades\ExcelReportFacade::class,
         'CSVReport' => Jimmyjs\ReportGenerator\Facades\CSVReportFacade::class,

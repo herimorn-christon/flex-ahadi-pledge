@@ -13,10 +13,10 @@
   <div class="row" style="display:flex;justify-content:space-around">
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/total_community.jpg')}}"/></span>
+        <span class="info-box-icon elevation-1"><i class="fas fa-users"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Total Communities  (Jumuiya)</span>
+          <span class="info-box-text">{{ __("Total Communities") }}</span>
           <span class="info-box-number" id="total">
         
           </span>
@@ -28,12 +28,13 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-danger elevation-1">
-          <img src="{{asset('icons/is-greater-than.png')}}"/>
+        <span class="info-box-icon elevation-1">
+ 
+          <i class="fas fa-users fa-fw"></i> <i class="fas fa-long-arrow-alt-up fa-fw"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Largest Community(Jumuiya)</span>
+          <span class="info-box-text">{{ __("Largest Community") }}</span>
           <span class="info-box-number"  id="largest" > </span>
         </div>
         <!-- /.info-box-content -->
@@ -46,12 +47,12 @@
    
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/less-than.png')}}"/>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-users fa-fw"></i> <i class="fas fa-long-arrow-alt-down fa-fw"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">smallest Community (Jumuiya)</span>
+          <span class="info-box-text">{{ __("Smallest Community") }}</span>
           <span class="info-box-number"  id="smallest"> </span>
         </div>
         <!-- /.info-box-content -->
@@ -99,13 +100,13 @@
 
         <button type="button" class="btn  bg-flex  text-light btn-sm" data-toggle="tooltip" data-placement="bottom" title="Click here to Register a New Community"  onclick="createCommunity()">
         <i class="fa fa-plus"></i>
-         Add New Community
+         {{ __("Add New Community") }}
         </button>
 
       {{-- start of generate report button --}}
       <a href="{{ route('communityPdf') }}" class="btn bg-cyan btn-sm" type="button">
         <i class="fa fa-download text-light" ></i>
-        Generate Report
+       {{__("Generate Report")}}
       </a>
         {{-- end of generate report button --}}
 
@@ -144,10 +145,10 @@
                 <thead>
                     <tr class="text-secondary">
                         <th>SN</th>
-                        <th>Jumuiya Name</th>
-                        <th>Abbreviation</th>
-                        <th>Location</th>
-                        <th>Actions</th>
+                        <th>{{ __("Community Name") }}</th>
+                        <th>{{ __("Abbreviation") }}</th>
+                        <th>{{__("Location") }}</th>
+                        <th>{{ __("Actions") }}</th>
                     </tr>
                 </thead>
                 <tbody id="communities-table-body">

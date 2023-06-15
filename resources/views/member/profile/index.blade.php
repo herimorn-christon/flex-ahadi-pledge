@@ -38,11 +38,13 @@ $dependants=App\Models\User::find($user)->dependant;
                             <!--end col-->
                             <div class="col">
                                 <div class="p-2">
-                                    <h3 class="text-white mb-1">{{Auth::User()->fname}} {{ Auth::user()->mname }}
+                                    <h3 class="text-white mb-1"
+                                    style="text-transform:capitalize">{{Auth::User()->fname}} {{ Auth::user()->mname }}
                                     {{ Auth::user()->lname }}</h3>
                                    
                                     <div class="hstack text-white-50 gap-1">
-                                        <div class="me-2"><i class="ri-map-pin-user-line me-1 text-white-75 fs-16 align-middle"></i>{{ Auth::user()->proffession }},</div>
+                                        <div class="me-2" style="text-transform:capitalize;color:white">
+                                            {{ Auth::user()->proffession }},</div>
                                         <div>
                                             <i class="ri-building-line me-1 text-white-75 fs-16 align-middle"></i>
                                         </div>
@@ -63,22 +65,29 @@ $dependants=App\Models\User::find($user)->dependant;
                                     <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
                                         <li class="nav-item">
                                             <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
-                                                <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Overview</span>
+                                                <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block" 
+                                                style="text-transform:capitalize"><strong><span style="color:white">Overview</span></strong></span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link fs-14" data-bs-toggle="tab" href="#activities" role="tab">
-                                                <i class="ri-list-unordered d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">spiritual information</span>
+                                                <i class="ri-list-unordered d-inline-block d-md-none"
+                                                style="text-transform:capitalize;color:white"></i> <span class="d-none d-md-inline-block" style="color:white">
+                                                    <strong>spiritual information</strong></span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link fs-14" data-bs-toggle="tab" href="#projects" role="tab">
-                                                <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">dependants</span>
+                                            <a class="nav-link fs-14" data-bs-toggle="tab" href="#projects" role="tab"
+                                            style="text-transform:capitalize">
+                                                <i class="ri-price-tag-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block"
+                                                style="color:white">dependants</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link fs-14" data-bs-toggle="tab" href="#documents" role="tab">
-                                                <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">trashed dependants</span>
+                                            <a class="nav-link fs-14" data-bs-toggle="tab" href="#documents" role="tab"
+                                            style="text-transform:capitalize">
+                                                <i class="ri-folder-4-line d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block"
+                                                style="color:white">activate dependants</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -89,18 +98,20 @@ $dependants=App\Models\User::find($user)->dependant;
                                     </div>
                                 </div>
                                 <!-- Tab panes -->
-                                <div class="tab-content pt-4 text-muted">
+                                <div class="tab-content pt-4 text-muted" style="text-transform:capitalize">
                                     <div class="tab-pane active" id="overview-tab" role="tabpanel">
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <h5 class="card-title mb-5">Complete Your Profile</h5>
-                                                        <div class="progress animated-progress custom-progress progress-label">
-                                                            <div class="progress-bar bg-danger" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+                                                        {{-- <h5 class="card-title mb-5">Complete Your Profile</h5> --}}
+                                                        <br>
+                                                        {{-- <div class="progress animated-progress custom-progress progress-label">
+                                                            <div class="progress-bar bg-secondary"
+                                                             role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
                                                                 <div class="label">30%</div>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
 
@@ -198,7 +209,7 @@ $dependants=App\Models\User::find($user)->dependant;
                                                 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                                 style="float:right;margin:10px">
                                                     <i class="fa fa-user-plus"></i>
-                                                     create dependants
+                                                     Create Dependants
                                                 </button>  
                                                 <table id="example1" class="table table-bordered cell-border">
                                                     <thead>
@@ -258,10 +269,6 @@ $dependants=App\Models\User::find($user)->dependant;
                                             <div class="card-body">
                                                 <div class="d-flex align-items-center mb-4">
                                                     <h5 class="card-title flex-grow-1 mb-0">trashed dependants</h5>
-                                                    <div class="flex-shrink-0">
-                                                        <input class="form-control d-none" type="file" id="formFile">
-                                                        <label for="formFile" class="btn btn-danger"><i class="ri-upload-2-fill me-1 align-bottom"></i> Upload File</label>
-                                                    </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-12">
@@ -285,14 +292,9 @@ $dependants=App\Models\User::find($user)->dependant;
                                                                     <td>{{ $dependant->relationship }}</td>
                                                                     <td>
                                                                       <div style="display:flex;">
-                                                                       
-                                                                       <button style="background:grey">
-                                                                          <a class="" href={{ route('member.restore',$dependant->id) }} >
-                                                                            <i class='fas fa-trash-restore-alt' style='color:red'>r
-                                                                            </i>
-                                                                            </a>
-                                                                       </button>
-                                                                        
+                                                                       <a class="" href={{ route('member.restore',$dependant->id) }} >
+                                                                       <button type="submit" style="background:rgb(0, 46, 91)" class="btn btn-sm btn-danger"><i class="fa fa-trash-restore" style="color:white" aria-hidden="true" ></i></button>
+                                                                       </a>  
                                                                     </div>
                                                                  
                                                                      </td>
@@ -305,7 +307,7 @@ $dependants=App\Models\User::find($user)->dependant;
                                                   
                                                         </div>
                                                         <div class="text-center mt-3">
-                                                            <a href="javascript:void(0);" class="text-success"><i class="mdi mdi-loading mdi-spin fs-20 align-middle me-2"></i> Load more </a>
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -333,7 +335,7 @@ $dependants=App\Models\User::find($user)->dependant;
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">add dependant</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Dependant</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -343,17 +345,17 @@ $dependants=App\Models\User::find($user)->dependant;
           <span id="parent" class="text-danger error_messages"></span>
             </div>
             <div class="form-group mb-3">
-              <label for="">dependant name</label>
+              <label for="">Dependant Name</label>
               <input type="text" name="dependant_name" class="form-control">
               <span id="dependants" class="text-danger error_messages"></span>
             </div>
             <div class="form-group mb-3">
-              <label for="">relationship</label>
+              <label for="">Relationship</label>
               <input type="text" name="relationship" class="form-control">
               <span id="relationship" class="text-danger error_messages"></span>
             </div>
             <div class="form-group mb-3">
-              <label for="">birthdate</label>
+              <label for="">Birthdate</label>
               <input type="date" name="birth_date" class="form-control">
               <span id="birthdate" class="text-danger error_messages"></span>
             </div>
@@ -377,16 +379,17 @@ $dependants=App\Models\User::find($user)->dependant;
   <form method="post" enctype="multipart/form-data" 
 action="{{ route('admin.profile.stores') }}">
     @csrf
-  <div class="modal fade" id="exampleModalScrollable" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable" role="document">
-      <div class="modal-content">
+  <div class="modal fade" id="exampleModalScrollable" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-scrollable" role="document" style="max-width: 800px;">
+      <div class="modal-content ">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalScrollableTitle"><i class="mdi mdi-account-circle me-1"></i> Personal Info</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body ">
       
                
                 <div class="row">
@@ -417,7 +420,7 @@ action="{{ route('admin.profile.stores') }}">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="lastname" class="form-label"
-                            style="color:black;font-weight:500">phone</label>
+                            style="color:black;font-weight:500">Phone</label>
                             <input type="text" class="form-control" id="lastname" placeholder="Enter phone number" name="phone"
                             value="{{ Auth::user()->phone }}">
                         </div>
@@ -425,14 +428,14 @@ action="{{ route('admin.profile.stores') }}">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="lastname" class="form-label"
-                            style="color:black;font-weight:500">email</label>
+                            style="color:black;font-weight:500">Email</label>
                             <input type="email" class="form-control" id="lastname" placeholder="please inter your email" name="email"
                             value="{{ Auth::user()->email }}">
                         </div>
                     </div> <!-- end col -->
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label>gender</label>
+                            <label>Gender</label>
                             <br>
                           <select required  class="form-control" name="gender" value={{ Auth::user()->gender }}>
                               <option disabled selected>Select gender</option>
@@ -444,7 +447,7 @@ action="{{ route('admin.profile.stores') }}">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="lastname" class="form-label"
-                            style="color:black;font-weight:500">birthdate</label>
+                            style="color:black;font-weight:500">Birthdate</label>
                             <input type="date" class="form-control" id="lastname" placeholder="please inter your email" name="date_of_birth"
                             value="{{ Auth::user()->date_of_birth }}">
                         </div>
@@ -466,7 +469,7 @@ action="{{ route('admin.profile.stores') }}">
                     <div class="col-md-6" style="display:none" id="marriage_date">
                         <div class="mb-3">
                             <label for="lastname" class="form-label"
-                            style="color:black;font-weight:500">Marriage_date</label>
+                            style="color:black;font-weight:500">Marriage Date</label>
                             <input type="date" class="form-control"  placeholder="please inter your email" name="marriage_date"
                             value="{{ Auth::user()->marriage_date}}">
                         </div>
@@ -487,7 +490,7 @@ action="{{ route('admin.profile.stores') }}">
                     <div class="col-md-6" style="display:none" id="marriage_patner">
                         <div class="mb-3">
                             <label for="lastname" class="form-label"
-                            style="color:black;font-weight:500">Marriage patner</label>
+                            style="color:black;font-weight:500">Marriage Patner</label>
                             <input type="text" class="form-control"  placeholder="" name="partner_name" value="{{ Auth::user()->partner_name }}"
                             value="{{ Auth::user()->date_of_birth }}">
                         </div>
@@ -508,7 +511,7 @@ action="{{ route('admin.profile.stores') }}">
                     <div class="col-md-6" id="proffession" style="display:none" >
                         <div class="mb-3">
                         <label for="lastname" class="form-label"
-                            style="color:black;font-weight:500">proffession </label>
+                            style="color:black;font-weight:500">Proffession </label>
                             <input type="text" class="form-control"  name="proffession"  value="{{ Auth::user()->proffession }}"/>
                          
                         </div>
@@ -519,7 +522,7 @@ action="{{ route('admin.profile.stores') }}">
                             <br>
                           <select required name="baptized" class="form-control" id="baptized"
                         value={{ Auth::user()->baptized }}>
-                              <option disabled selected>select occupation</option>
+                              <option disabled selected>Select Occupation</option>
                               <option value="0">No</option>
                               <option value="1">Yes</option>
                           </select>
@@ -528,14 +531,14 @@ action="{{ route('admin.profile.stores') }}">
                     <div class="col-md-6" id="baptization_date">
                         <div class="mb-3">
                             <label for="lastname" class="form-label"
-                            style="color:black;font-weight:500">baptization date</label>
+                            style="color:black;font-weight:500">Baptization Date</label>
                             <input type="date" class="form-control"  name="baptization_date"
                             value="{{ Auth::user()->baptization_date }}">
                         </div>
                     </div> 
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label> kipaimara</label>
+                            <label> Kipaimara</label>
                             <br>
                           <select required name="kipaimara" class="form-control" id="kipaimara"
                         value={{ Auth::user()->kipaimara}}>
@@ -548,7 +551,7 @@ action="{{ route('admin.profile.stores') }}">
                     <div class="col-md-6" id="kipaimara_date">
                         <div class="mb-3">
                             <label for="lastname" class="form-label"
-                            style="color:black;font-weight:500">kipaimara date</label>
+                            style="color:black;font-weight:500">Kipaimara Date</label>
                             <input type="date" class="form-control"  name="kipaimara_date"
                             value="{{ Auth::user()->kipaimara_date}}">
                         </div>
@@ -561,7 +564,7 @@ action="{{ route('admin.profile.stores') }}">
                     </div>
                      </div> 
                       {{-- starting of the preview image --}}
-                      <div class="col-md-12">
+                      {{-- <div class="col-md-12">
                         <div class="mb-3">
                             <label for="example-fileinput" class="form-label"></label>
                             <img id="show_image" src="{{ (!empty(Auth::user()->profile_picture))? url(
@@ -569,7 +572,7 @@ action="{{ route('admin.profile.stores') }}">
                             ):url('uploads/user/no_image.jpg')}}" class="rounded-circle avatar-lg img-thumbnail"
                             alt="profile-image" style="width:4rem">
                         </div>
-                         </div> 
+                         </div>  --}}
                           
                       {{-- end of the image preview --}}
                       

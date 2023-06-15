@@ -31,7 +31,7 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
                         <img class="img-fluid" src="{{ asset('uploads/user/'. Auth::user()->profile_picture ) }}" alt="" 
                         />
                         <br>
-                        <small class="text-secondary" >
+                        <small class="text-secondary" style="text-transform:capitalize">
                          <i class="fa fa-edit muted text-secondary"></i>
                          Change Image
                         </small>
@@ -60,14 +60,14 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
 
                     </div>
                     <div class="col-lg-8">
-                      <h4>personal information</h4>
-                      <div class="user-profile-name">name : 
+                      <h4 style="text-transform:capitalize">personal information</h4>
+                      <div class="user-profile-name" style="text-transform:capitalize">name : 
                         <i class="ti-location-pin">{{ Auth::user()->fname }} {{ Auth::user()->mname }}
                           {{ Auth::user()->lname }}</i>
                       </div>
                       <div class="user-Location">
                        </div>
-                      <div class="user-job-title">work: <i class="ti-location-pin">{{ Auth::user()->proffession }}
+                      <div class="user-job-title" style="text-transform:capitalize">work: <i class="ti-location-pin">{{ Auth::user()->proffession }}
                       </i></div>
                       <hr>
                             {{-- user buttons --}}
@@ -81,26 +81,26 @@ $profile=App\Models\User::where('id',$user)->with('community')->get();
                         <div class="tab-content">
                           <div role="tabpanel" class="tab-pane active" id="1">
                             <div class="contact-information">
-                              <h4>Contact information</h4>
+                              <h4 style="text-transform:capitalize">Contact information</h4>
                               <div class="phone-content">
                                 <span class="contact-title">Phone:</span>
                                 <span class="phone-number">{{ Auth::user()->phone }}</span>
                               </div>
                   
-                              <div class="email-content">
+                              <div class="email-content" style="text-transform:capitalize">
                                 <span class="contact-title">Email:</span>
                                 <span class="contact-email">{{ Auth::user()->email }}</span>
                               </div>
               
                             </div>
                             <hr>
-                            <div class="basic-information">
+                            <div class="basic-information"style="text-transform:capitalize">
                               <h4>Basic information</h4>
                               <div class="birthday-content">
                                 <span class="contact-title">Birthday:</span>
                                 <span class="birth-date">{{ Auth::user()->date_of_birth }}</span>
                               </div>
-                              <div class="gender-content">
+                              <div class="gender-content" style="text-transform:capitalize">
                                 <span class="contact-title">Gender:</span>
                                 <span class="gender">{{ Auth::user()->gender}}</span>
                               </div>

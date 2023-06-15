@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CardRequest;
 use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\PaymentRequest;
 use App\Http\Controllers\Admin\TypeController;
+
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\MethodController;
@@ -26,6 +27,7 @@ use App\Http\Controllers\Admin\CardPaymentController;
 use App\Http\Controllers\Member\MyPaymentsController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\NotificationsController;
+use App\Http\Controllers\Admin\TodoController;
 use App\Http\Controllers\adminAddDependantController;
 use App\Http\Controllers\AdminDependancyController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -39,6 +41,14 @@ use App\Http\Controllers\PDFViewController;
 use App\Http\Controllers\reportProblemController;
 use App\Http\Controllers\spiritualController;
 use App\Http\Controllers\userGuideController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserRoleController;
+use App\Http\Controllers\UserRolePermissionController;
+use Spatie\Permission\Models\Role;
 
 Auth::routes();
 // Home route
@@ -49,7 +59,7 @@ Route::post('add-remove-multiple-input-fields',  [App\Http\Controllers\Admin\Tod
 
 Route::get('/', function () {
    return view('auth.login');
-});
+})->name("homepage");
 
 
 Route::get('/jumuiya/search', [JumuiyaController::class, 'search']);
@@ -67,7 +77,8 @@ Route::get('/methods/search', [MethodController::class, 'search']);
 
 // Start of all admin user routes
 
-Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
+
+Route::prefix('admin')->middleware(['auth','web'])->group(function()
 {
  // admin dashboard route
     Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class,'index']);
@@ -216,7 +227,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function()
 
 
 // for Member Routes
-Route::prefix('member')->middleware(['auth','isMember'])->group(function()
+Route::prefix('member')->middleware(['auth'])->group(function()
 {
  // setting dashboard route
     Route::get('/dashboard', [App\Http\Controllers\Member\DashboardController::class,'index']);
@@ -355,16 +366,77 @@ Route::get("admin/show_all_report",[PDFViewController::class,"admin_user_report"
 //handles the post request to submit to the data base
 Route::post("admin/all-members",[adminAddDependantController::class,'store'])->name("adminAddDependant.store");
 
-
 //generate the reports for the payments
 Route::get("admin/member/myPayment",[PDFViewController::class,'view_payment'])->name("view_payment");
 //generate the reports for the cards payments
 Route::get("admin/member/my-cards",[PDFViewController::class,'showCards'])->name("show_cards");
 Route::POST("admin/my-members/member",[MemberController::class,'storeValue'])->name("store_value");
-
 //handles the 
 Route::get("admin/pledge_report",[PDFViewController::class,'myadmin_pledge'])->name('myadmin_pledge');
 Route::get("admin/payment_report",[PDFViewController::class,'myadmin_payment'])->name("myadmin_payment");
 Route::get("admin/card_report",[PDFViewController::class,'myadmin_card'])->name("myadmin_card");
 
 Route::post("member/ProfileStores",[SuccessProfile::class,'adminProfilesStores'])->name("admin.profile.stores");
+//forget password
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showResetForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+Route::get('/destroy/todos/{id}', [TodoController::class, 'deleteTodos'])->name('destroy_events');
+Route::Post("/members/pays",[MyPaymentsController::class,'store'])->name('test_payment');
+//route for regisering the pledge now
+Route::Post("/admin/register/pledge",[PledgeController::class,'store'])->name('admin_register_pledge');
+
+//the web route to handle ajax call for the payments 
+Route::get('/get-pledges/{userId}', 'PledgeController@getPledges');
+Route::get('/get-pledge-type/{pledgeId}', 'PledgeController@getPledgeType');
+
+//routes to impliments the toggle functionality
+// Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+//   // Route::post('/payments/{id}/toggle', 'PaymentController@toggle');
+//   Route::post('/payments/{id}/toggle',['PaymentController::class','toggle']);
+
+//   // Other routes for creating, updating, etc. if needed
+// });
+
+
+//  $('.toggle-payment').bootstrapToggle();
+//  let url = $('meta[name=app-url]').attr("content") + "/admin/payments/" + id;
+Route::post('/admin/payments/{id}/toggle', [PaymentController::class, 'toggle']);
+//the routes for the methods toooglings 
+Route::post('/admin/payments/{id}/togglePayment', [MethodController::class, 'togglePayment']);
+//post routes for togling payment methods
+// Route::get('lang/{lang}', ['as' => 'lang.switch', 'uses' => 'App\Http\Controllers\LanguageController@switchLang']);
+Route::get('/language/switch', [LanguageController::class, 'switchLanguage'])->name('language.switch');
+
+// // Route::post('/language/switch/{locale}', [LanguageController::class, 'switchLanguage'])->name('switchLanguage');
+// Route::get('language/switch/{locale?}', [LanguageController::class, 'switchLanguage'])->name('switchLanguage');
+// Route::get('languages', 'LanguageController@index');
+// Route::post('languages', 'LanguageController@change');
+// Route::get('/language', 'LanguageController@setLanguage')->name('language.set');
+// Route::group(['middleware' => ['web']], function () {
+//   Route::get('/language/{lang}', 'App\Http\Controllers\LanguageController@setLanguage')->name('language.set');
+// });
+// Route::get('/language/change/{locale}', 'App\Http\Controllers\LanguageController@change')->name('language.change');
+Route::get('lang/{locale}', [App\Http\Controllers\LanguageController::class, 'index']);
+
+
+
+// handling the church selection
+//route of getting all community from the churches
+Route::get('churches/{id}/communities', 'App\Http\Controllers\ChurchController@getCommunities');
+
+//assigning roles
+Route::post('admin/settings/roles', [RoleController::class, 'store'])->name('roles.store');
+//assigning the permission
+Route::post('admin/setting/permissions', [PermissionController::class, 'store'])->name('permissions.store');
+//assigning the roles to selected user
+Route::post('/users/assign-roles', [UserRoleController::class, 'storeRoles'])->name('users.store-roles');
+//assigning the role to permissions
+Route::post('/roles/store-permissions', [UserRolePermissionController::class, 'storePermissions'])->name('roles.store-permissions');
+
+
+
+
+
+

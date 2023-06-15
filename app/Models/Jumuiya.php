@@ -16,6 +16,7 @@ class Jumuiya extends Model implements Auditable
         'name',
         'location',
         'abbreviation'
+       
  
     ];
 

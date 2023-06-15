@@ -1,4 +1,6 @@
 {{-- This is the page for ajax to fetch all registered Payment Methods --}}
+{{-- This is the page for ajax to fetch all registered Purposes/Contributions --}}
+
 
 <script type="text/javascript">
    
@@ -16,6 +18,11 @@
                         let methods = response.methods;
                         for (var i = 0; i < methods.length; i++) 
                         {
+        let toggleBtn = '<input type="checkbox" class="toggles-payments" style="width:6rem" data-id="' +  methods[i].id + '" ' +
+                        ( methods[i].is_active ? 'checked' : '') + ' data-toggle="toggle" ' +
+                        'data-on="Active" data-off="Inactive" data-onstyle="success" data-offstyle="danger" ' +
+                        'data-size="small" onchange="togglePaymentMethod(' +  methods[i].id + ')">';
+                         
                           
                             let editBtn =  '<button ' +
                                 ' class="btn btn-sm bg-flex text-light" ' +
@@ -29,11 +36,12 @@
                             let projectRow = '<tr>' +
                                 '<td>' + methods[i].id + '</td>' +
                                 '<td>' + methods[i].name + '</td>' +
-                                '<td>' + editBtn + deleteBtn + '</td>' +
+                                '<td>' + editBtn + toggleBtn+ '</td>' +
                             '</tr>';
                             $("#methods-table-body").append(projectRow);
                             $("#types").modal('show'); 
                         }
+                  $('.toggles-payments').bootstrapToggle();
          
                          
                     },

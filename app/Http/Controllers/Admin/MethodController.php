@@ -71,6 +71,7 @@ class MethodController extends Controller
         return response()->json(['status' => "success"]);
     }
 
+
        /**
      * Remove the specified resource from storage.
      *
@@ -81,6 +82,14 @@ class MethodController extends Controller
     {
         PaymentType::destroy($id);
         return response()->json(['status' => "success"]);
+    }
+    public function togglePayment(Request $request, $id)
+    {
+        $payment = PaymentType::findOrFail($id);
+        $payment->is_active = !$payment->is_active;
+        $payment->save();
+
+        return response()->json(['message' => 'payment status changed successfully']);
     }
 
     public function search(Request $request)

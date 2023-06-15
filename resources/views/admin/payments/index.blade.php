@@ -12,10 +12,10 @@
   <div class="row">
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box">
-        <span class="info-box-icon bg-info elevation-1"><img src="{{asset('icons/money_sum.png')}}"/></span>
+        <span class="info-box-icon elevation-1"><i class="fas fa-coins"></i></i> <i class="fas fa-tasks"></i></span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Total Pledges Payments</span>
+          <span class="info-box-text">{{ __("Total Pledges Payments") }}</span>
           <span class="info-box-number" id="total">
         
           </span>
@@ -27,12 +27,12 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-danger elevation-1">
-          <img src="{{asset('icons/high.png')}}"/>
+        <span class="info-box-icon  elevation-1">
+          <i class="fas fa-coins"></i> <i class="fas fa-arrow-up"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Highest Pledge Payment</span>
+          <span class="info-box-text">{{ __("Highest Pledge Payment") }}</span>
           <span class="info-box-number" id="highest" > </span>
         </div>
         <!-- /.info-box-content -->
@@ -45,12 +45,12 @@
    
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/less-than.png')}}"/>
+        <span class="info-box-icon  elevation-1">
+          <i class="fas fa-coins"></i> <i class="fas fa-arrow-down"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Lowest Pledge Payment</span>
+          <span class="info-box-text">{{ __("Lowest Pledge Payment") }}</span>
           <span class="info-box-number"  id="lowest"> </span>
         </div>
         <!-- /.info-box-content -->
@@ -60,12 +60,12 @@
     <!-- /.col -->
     <div class="col-12 col-sm-6 col-md-3">
       <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1">
-          <img src="{{asset('icons/best.png')}}"/>
+        <span class="info-box-icon elevation-1">
+          <i class="fas fa-award"></i> <i class="fas fa-user"></i>
         </span>
 
         <div class="info-box-content">
-          <span class="info-box-text">Best Pledge Payer</span>
+          <span class="info-box-text">{{ __("Best Pledge Payer") }}</span>
           <span class="info-box-number"   id="best"> </span>
         </div>
         <!-- /.info-box-content -->
@@ -115,36 +115,43 @@
       @endif
     </div><!-- /.col -->
     <div class="col-sm-7">
-         <div style="display:flex;justify-content:flex-end;align-items:center;margin:3%">
+         <div style="display:flex;justify-content:space-around;align-items:center;margin:3%">
         {{-- start of registe r payment button --}}
         <button type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createPayment()">
             <i class="fa fa-plus"></i>
-            Register Payment
+            {{ __("Register Payment") }}
+           
         </button>   
         {{-- end of register payment button --}}
 
         <button style="margin-left: 20px" type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllMethods()">
             <i class="fa fa-list"></i>
-             Payment Methods
+             {{ __("Payment Methods") }}
         </button>
         
 
         <button style="margin-left:15px"type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="createMethod()">
         <i class="fa fa-plus"></i>
-         Add Payment Method
+        {{ __("Add Payment Method") }}
+       
         </button>
       
         {{-- start of generate report button --}}
 
-        <button style="margin-left: 20px" type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick="showAllRequests()">
+        <button style="margin-left: 20px" type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick=" showAllMoneyRequests()">
        
            <i class="fa fa-download text-light" ></i>
-          Payment Requests
+         {{ __("Payment Money Requests")}}
           </button>
+          <button style="margin-left: 20px" type="button" class="btn bg-flex text-light btn-sm mb-2" data-toggle="modal" onclick=" showAllPaymentObjectRequests()">
+       
+            <i class="fa fa-download text-light" ></i>
+           {{ __("Payment Object Requests") }}
+           </button>
           <button style="margin-left: 20px" type="button" class="btn text-light btn-sm mb-2" data-toggle="modal" onclick="showAllRequests()">
             <a href="{{route("myadmin_payment")}}" class="btn bg-cyan  btn-sm" type="button">
               <i class="fa fa-download text-light" ></i>
-              Generate Report
+             {{__("Generate Report")}}
             </a>
            </button>
 
@@ -265,25 +272,109 @@
   </div>
 </div>
 <div class="card mt-1">
+  <div class="row">
+    
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header p-2 bg-white">
+          <ul class="nav nav-tabs nav-light">
+            <li class="nav-item">
+        <a class="nav-link text-navy active" href="#problems"  data-toggle="tab">{{ __("Money Payments") }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-navy" href="#report"  data-toggle="tab">{{ __("Object Payments") }}</a>
+            </li>
+            {{--<li class="nav-item">
+              <a class="nav-link text-navy" href="#announcements"  data-toggle="tab">Cards Payments Report</a>
+            </li> --}}
+          </ul>
+        </div><!-- /.card-header -->
+        {{-- <div class=""> --}}
+          <div class="tab-content">
+            @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+           
+            <div class="active tab-pane" id="problems">
+              {{-- start of interface settings --}}
+              
+                <div class="p-1 mt-2">
+                  <table id="example1" class="table table-bordered cell-border responsive">
+                    <thead>
+                         <tr class="text-secondary">
+                            <th>ID</th>
+                            <th>{{ __("Date")}}</th>
+                            <th>{{ __("Payer Name") }}</th>
+                            <th>{{ __("Payment Method") }}</th>
+                            <th>{{ __("Purpose") }}</th>
+                            <th>{{ __("Amount") }}</th>
+                            <th>{{ __("Actions") }}</th>
+                        </tr>
+                    </thead>
+                    <tbody id="payments-table-body">
+              
+      
+                    </tbody>
+                </table>
+                </div>
+            
 
-        <div class="responsiveness p-1">
-            <table id="example1" class="table table-bordered cell-border responsive">
-                <thead>
-                     <tr class="text-secondary">
-                        <th>ID</th>
-                        <th>Date</th>
-                        <th>Payer Name</th>
-                        <th>Payment Method</th>
-                        <th>Purpose</th>
-                        <th>Amount</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="payments-table-body">
+              {{-- end of interface settings --}}
+            </div>
+            <!-- /.tab-pane -->
+        
+
+            <div class="tab-pane" id="report">
+
+           
+              {{-- start of report form --}}
+
+              <div class="col-md-12">
+                <div class="p-2">
+                    <!--the status for the messagge-->
+                    <!--end for the status msg -->
+
+                    <div class="col-md-12">
+                      <table id="example4"  class="table table-bordered   cell-border">
+                        <thead>
+                             <tr class="text-secondary">
+                                <th>SN</th>
+                                <th>{{ __("Payment Date") }}</th>
+                                <th>{{ __("Pledge Name") }}</th>
+                                <th>{{ __("Object Name") }}</th>
+                                <th>{{ __("Object Quantity") }}</th>
+                                <th>{{ __("Status") }}</th>
+                                <th>{{ __("Actions") }}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projects-table-bodyObject">
+                  
           
-  
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                    
+                     
+                       
+                    </div>
+                </div>
+            </div>
+            
+              {{-- end of report form --}}
+           
+          
+            </div>
+            <!-- /.tab-pane -->
+          </div>
+          <!-- /.tab-content -->
+        </div><!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>       
+  </div>
+
+        
             
              {{-- start of ajax fetch all pledges method --}}
              @include('admin.payments.ajax-fetch-all-payments')
@@ -297,7 +388,7 @@
              @include('admin.payments.single-payment-modal')
              {{-- end of ajax view payment details modal --}}
 
-    </div>
+    
 </div>
 
  
